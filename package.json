@@ -1,0 +1,26 @@
+{
+  "name": "fr.liris.plume.recorder",
+  "version": "1.0.0",
+  "displayName": "PLUME-Recorder",
+  "description": "PLUME: PLugin for Unity to Monitor Experiments",
+  "unity": "2021.3",
+  "unityRelease": "17f1",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
+  "dependencies": {
+    "com.unity.test-framework": "2.0.1-pre.18"
+  },
+  "keywords": [
+    "Behavior",
+    "Record",
+    "Replay",
+    "Viewer",
+    "Analyze"
+  ],
+  "author": {
+    "name": "Charles JAVERLIAT",
+    "email": "charles.javerliat@liris.cnrs.fr",
+    "url": "https://liris.cnrs.fr/page-membre/charles-javerliat"
+  }
+}

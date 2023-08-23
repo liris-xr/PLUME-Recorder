@@ -19,9 +19,9 @@ namespace PLUME
 
         private readonly Dictionary<ObjectNullSafeReference<Transform>, int> _lastSiblingIndex = new();
         private readonly Dictionary<ObjectNullSafeReference<Transform>, int?> _lastParentTransformId = new();
-        private readonly Dictionary<ObjectNullSafeReference<Transform>, Vector3> _lastLocalScale = new();
-        private readonly Dictionary<ObjectNullSafeReference<Transform>, Vector3> _lastLocalPosition = new();
-        private readonly Dictionary<ObjectNullSafeReference<Transform>, Quaternion> _lastLocalRotation = new();
+        private readonly Dictionary<ObjectNullSafeReference<Transform>, Vector3> _lastScale = new();
+        private readonly Dictionary<ObjectNullSafeReference<Transform>, Vector3> _lastPosition = new();
+        private readonly Dictionary<ObjectNullSafeReference<Transform>, Quaternion> _lastRotation = new();
 
         public void FixedUpdate()
         {
@@ -43,9 +43,9 @@ namespace PLUME
                     _cachedIdentifiers.Add(transformRef, t.ToIdentifierPayload());
                     _lastSiblingIndex.Add(transformRef, t.GetSiblingIndex());
                     _lastParentTransformId.Add(transformRef, t.parent == null ? null : t.parent.GetInstanceID());
-                    _lastLocalScale.Add(transformRef, t.transform.localScale);
-                    _lastLocalPosition.Add(transformRef, t.transform.localPosition);
-                    _lastLocalRotation.Add(transformRef, t.transform.localRotation);
+                    _lastScale.Add(transformRef, t.transform.lossyScale);
+                    _lastPosition.Add(transformRef, t.transform.position);
+                    _lastRotation.Add(transformRef, t.transform.rotation);
                     RecordCreation(transformRef);
                 }
             }
@@ -63,9 +63,9 @@ namespace PLUME
                     _recordedTransformsRefs.Remove(transformRef);
                     _lastSiblingIndex.Remove(transformRef);
                     _lastParentTransformId.Remove(transformRef);
-                    _lastLocalScale.Remove(transformRef);
-                    _lastLocalPosition.Remove(transformRef);
-                    _lastLocalRotation.Remove(transformRef);
+                    _lastScale.Remove(transformRef);
+                    _lastPosition.Remove(transformRef);
+                    _lastRotation.Remove(transformRef);
                     _cachedIdentifiers.Remove(transformRef);
                 }
             }
@@ -147,9 +147,9 @@ namespace PLUME
                     var parent = t.parent;
 
                     var lastParentTransformId = _lastParentTransformId[transformRef];
-                    var lastLocalScale = _lastLocalScale[transformRef];
-                    var lastLocalPosition = _lastLocalPosition[transformRef];
-                    var lastLocalRotation = _lastLocalRotation[transformRef];
+                    var lastScale = _lastScale[transformRef];
+                    var lastPosition = _lastPosition[transformRef];
+                    var lastRotation = _lastRotation[transformRef];
 
                     var parentHasChanged = parent == null && lastParentTransformId.HasValue ||
                                            parent != null && !lastParentTransformId.HasValue ||
@@ -166,12 +166,11 @@ namespace PLUME
 
                     t.GetLocalPositionAndRotation(out var localPosition, out var localRotation);
                     var localScale = t.localScale;
+                    t.GetPositionAndRotation(out var position, out var rotation);
+                    var scale = t.lossyScale;
 
-                    if (lastLocalPosition != localPosition && lastLocalRotation != localRotation)
+                    if (lastPosition != position && lastRotation != rotation)
                     {
-                        // Use the faster alternative to get position and rotation at the same time
-                        t.GetPositionAndRotation(out var position, out var rotation);
-
                         var transformUpdatePosition = new TransformUpdatePosition
                         {
                             Id = _cachedIdentifiers[transformRef],
@@ -188,48 +187,46 @@ namespace PLUME
 
                         recorder.RecordSample(transformUpdatePosition);
                         recorder.RecordSample(transformUpdateRotation);
-                        _lastLocalPosition[transformRef] = localPosition;
-                        _lastLocalRotation[transformRef] = localRotation;
+                        _lastPosition[transformRef] = position;
+                        _lastRotation[transformRef] = rotation;
                     }
-                    else if (lastLocalPosition != localPosition)
+                    else if (lastPosition != position)
                     {
                         var transformUpdatePosition = new TransformUpdatePosition
                         {
                             Id = _cachedIdentifiers[transformRef],
                             LocalPosition = localPosition.ToPayload(),
-                            WorldPosition = t.transform.position.ToPayload()
+                            WorldPosition = position.ToPayload()
                         };
 
                         recorder.RecordSample(transformUpdatePosition);
-                        _lastLocalPosition[transformRef] = localPosition;
+                        _lastPosition[transformRef] = position;
                     }
-                    else if (lastLocalRotation != localRotation)
+                    else if (lastRotation != rotation)
                     {
                         var transformUpdateRotation = new TransformUpdateRotation
                         {
                             Id = _cachedIdentifiers[transformRef],
                             LocalRotation = localRotation.ToPayload(),
-                            WorldRotation = t.transform.rotation.ToPayload()
+                            WorldRotation = rotation.ToPayload()
                         };
 
                         recorder.RecordSample(transformUpdateRotation);
-                        _lastLocalRotation[transformRef] = localRotation;
+                        _lastRotation[transformRef] = rotation;
                     }
 
-                    if (lastLocalScale != localScale)
+                    if (lastScale != scale)
                     {
-                        var lossyScale = t.lossyScale;
-                        
                         var transformUpdateScale = new TransformUpdateScale
                         {
                             Id = _cachedIdentifiers[transformRef],
                             LocalScale = new Sample.Common.Vector3
                                 {X = localScale.x, Y = localScale.y, Z = localScale.z},
                             WorldScale = new Sample.Common.Vector3
-                                {X = lossyScale.x, Y = lossyScale.y, Z = lossyScale.z}
+                                {X = scale.x, Y = scale.y, Z = scale.z}
                         };
                         recorder.RecordSample(transformUpdateScale);
-                        _lastLocalScale[transformRef] = localScale;
+                        _lastScale[transformRef] = scale;
                     }
 
                     t.hasChanged = false;

@@ -21,18 +21,15 @@ namespace PLUME
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-            
+
+#if UNITY_STANDALONE_WIN
+            Patcher.DoPatching();
+#else
             // Android platforms can't be patched using Harmony because of IL2CPP
-            if (Application.platform == RuntimePlatform.Android)
-            {
-                var go = new GameObject();
-                go.name = "Android event dispatcher";
-                Object.DontDestroyOnLoad(go);
-            }
-            else
-            {
-                Patcher.DoPatching();
-            }
+            var go = new GameObject();
+            go.name = "Android event dispatcher";
+            Object.DontDestroyOnLoad(go);
+#endif
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,24 +11,29 @@ namespace PLUME.UI
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-        private readonly HashSet<CanvasScaler> _recordedCanvasScaler = new();
+        private readonly Dictionary<int, CanvasScaler> _recordedCanvasScaler = new();
 
         public void OnStartRecordingObject(Object obj)
         {
-            if (obj is CanvasScaler canvasScaler && !_recordedCanvasScaler.Contains(canvasScaler))
+            if (obj is CanvasScaler canvasScaler && !_recordedCanvasScaler.ContainsKey(canvasScaler.GetInstanceID()))
             {
-                _recordedCanvasScaler.Add(canvasScaler);
+                _recordedCanvasScaler.Add(canvasScaler.GetInstanceID(), canvasScaler);
                 RecordCreation(canvasScaler);
             }
         }
 
-        public void OnStopRecordingObject(Object obj)
+        public void OnStopRecordingObject(int objectInstanceId)
         {
-            if (obj is CanvasScaler canvasScaler && _recordedCanvasScaler.Contains(canvasScaler))
+            if (_recordedCanvasScaler.ContainsKey(objectInstanceId))
             {
-                _recordedCanvasScaler.Remove(canvasScaler);
-                RecordDestruction(canvasScaler);
+                RecordDestruction(objectInstanceId);
+                RemoveFromCache(objectInstanceId);
             }
+        }
+
+        private void RemoveFromCache(int canvasScalerInstanceId)
+        {
+            _recordedCanvasScaler.Remove(canvasScalerInstanceId);
         }
 
         private void RecordCreation(CanvasScaler canvasScaler)
@@ -44,10 +50,16 @@ namespace PLUME.UI
             recorder.RecordSample(canvasScalerUpdate);
         }
 
-        private void RecordDestruction(CanvasScaler canvasScaler)
+        private void RecordDestruction(int canvasScalerInstanceId)
         {
-            var canvasDestroy = new CanvasScalerDestroy {Id = canvasScaler.ToIdentifierPayload()};
+            var canvasDestroy = new ComponentDestroy
+                {Id = new ComponentDestroyIdentifier {Id = canvasScalerInstanceId.ToString()}};
             recorder.RecordSample(canvasDestroy);
+        }
+
+        protected override void ResetCache()
+        {
+            _recordedCanvasScaler.Clear();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using PLUME.Sample.Unity;
-using Runtime;
 using UnityEngine;
 
 namespace PLUME
@@ -9,10 +8,16 @@ namespace PLUME
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-        private readonly List<ObjectNullSafeReference<GameObject>> _recordedGameObjectsRefs = new();
-        private readonly Dictionary<ObjectNullSafeReference<GameObject>, TransformGameObjectIdentifier>
-            _cachedIdentifiers = new();
-        private readonly Dictionary<ObjectNullSafeReference<GameObject>, bool> _lastGameObjectActive = new();
+        private readonly Dictionary<int, GameObject> _recordedGameObjects = new();
+        private readonly Dictionary<int, TransformGameObjectIdentifier> _cachedIdentifiers = new();
+        private readonly Dictionary<int, bool> _lastGameObjectActive = new();
+
+        protected override void ResetCache()
+        {
+            _recordedGameObjects.Clear();
+            _cachedIdentifiers.Clear();
+            _lastGameObjectActive.Clear();
+        }
 
         public void OnStartRecordingObject(Object obj)
         {
@@ -20,33 +25,26 @@ namespace PLUME
 
             if (obj is GameObject go)
             {
-                var goRef = new ObjectNullSafeReference<GameObject>(go);
+                var goInstanceId = go.GetInstanceID();
 
-                if (!_recordedGameObjectsRefs.Contains(goRef))
+                if (!_recordedGameObjects.ContainsKey(goInstanceId))
                 {
-                    _recordedGameObjectsRefs.Add(goRef);
-                    _cachedIdentifiers.Add(goRef, go.ToIdentifierPayload());
-                    _lastGameObjectActive.Add(goRef, go.activeSelf);
-                    RecordCreation(goRef);
+                    _recordedGameObjects.Add(goInstanceId, go);
+                    _cachedIdentifiers.Add(goInstanceId, go.ToIdentifierPayload());
+                    _lastGameObjectActive.Add(goInstanceId, go.activeSelf);
+                    RecordCreation(go);
                 }
             }
         }
 
-        public void OnStopRecordingObject(Object obj)
+        public void OnStopRecordingObject(int objectInstanceId)
         {
             ObjectEvents.OnSetName -= OnObjectSetNameCallback;
 
-            if (obj is GameObject go)
+            if (_recordedGameObjects.ContainsKey(objectInstanceId))
             {
-                var goRef = new ObjectNullSafeReference<GameObject>(go);
-                
-                if (_recordedGameObjectsRefs.Contains(goRef))
-                {
-                    RecordDestruction(goRef);
-                    _recordedGameObjectsRefs.Remove(goRef);
-                    _cachedIdentifiers.Remove(goRef);
-                    _lastGameObjectActive.Remove(goRef);
-                }
+                RecordDestruction(objectInstanceId);
+                RemoveFromCache(objectInstanceId);
             }
         }
 
@@ -54,16 +52,16 @@ namespace PLUME
         {
             if (obj is GameObject go)
             {
-                var goRef = new ObjectNullSafeReference<GameObject>(go);
+                var goInstanceId = go.GetInstanceID();
                 
-                if (_recordedGameObjectsRefs.Contains(goRef))
+                if (_recordedGameObjects.ContainsKey(goInstanceId))
                 {
                     var gameObjectUpdateName = new GameObjectUpdateName
                     {
                         Id = go.ToIdentifierPayload(),
                         Name = go.name
                     };
-                    
+
                     recorder.RecordSample(gameObjectUpdateName);
                 }
             }
@@ -71,74 +69,78 @@ namespace PLUME
 
         private void FixedUpdate()
         {
-            var nullGameObjectRefs = new List<ObjectNullSafeReference<GameObject>>();
+            var nullGameObjectInstanceIds = new List<int>();
 
-            foreach (var goRef in _recordedGameObjectsRefs)
+            foreach (var (gameObjectInstanceId, go) in _recordedGameObjects)
             {
-                if (goRef.HasBeenDestroyed())
+                if (go == null)
                 {
-                    nullGameObjectRefs.Add(goRef);
-                    RecordDestruction(goRef);
+                    nullGameObjectInstanceIds.Add(gameObjectInstanceId);
+                    RecordDestruction(gameObjectInstanceId);
                     continue;
                 }
 
-                var go = goRef.Object;
-                
-                if (_lastGameObjectActive[goRef] != go.activeSelf)
+                if (_lastGameObjectActive[gameObjectInstanceId] != go.activeSelf)
                 {
-                    _lastGameObjectActive[goRef] = go.activeSelf;
-                    
+                    _lastGameObjectActive[gameObjectInstanceId] = go.activeSelf;
+
                     var gameObjectUpdateActiveSelf = new GameObjectUpdateActiveSelf
                     {
                         Id = go.ToIdentifierPayload(),
                         Active = go.activeSelf
                     };
-                    
+
                     recorder.RecordSample(gameObjectUpdateActiveSelf);
                 }
             }
-            
-            foreach (var nullGoRef in nullGameObjectRefs)
+
+            foreach (var nullGoInstanceId in nullGameObjectInstanceIds)
             {
-                _recordedGameObjectsRefs.Remove(nullGoRef);
+                RemoveFromCache(nullGoInstanceId);
             }
         }
 
-        private void RecordCreation(ObjectNullSafeReference<GameObject> goRef)
+        private void RemoveFromCache(int gameObjectInstanceId)
         {
-            var go = goRef.Object;
-            var gameObjectCreation = new GameObjectCreate { Id = go.ToIdentifierPayload() };
+            _recordedGameObjects.Remove(gameObjectInstanceId);
+            _cachedIdentifiers.Remove(gameObjectInstanceId);
+            _lastGameObjectActive.Remove(gameObjectInstanceId);
+        }
+
+        private void RecordCreation(GameObject go)
+        {
+            var gameObjectCreation = new GameObjectCreate {Id = go.ToIdentifierPayload()};
 
             var gameObjectUpdateName = new GameObjectUpdateName
             {
                 Id = go.ToIdentifierPayload(),
                 Name = go.name
             };
-            
+
             var gameObjectUpdateLayer = new GameObjectUpdateLayer
             {
                 Id = go.ToIdentifierPayload(),
                 Layer = go.layer
             };
-            
+
             var gameObjectUpdateTag = new GameObjectUpdateTag
             {
                 Id = go.ToIdentifierPayload(),
                 Tag = go.tag
             };
-            
+
             var gameObjectUpdateScene = new GameObjectUpdateScene
             {
                 Id = go.ToIdentifierPayload(),
                 SceneId = go.scene.buildIndex
             };
-            
+
             var gameObjectUpdateActiveSelf = new GameObjectUpdateActiveSelf
             {
                 Id = go.ToIdentifierPayload(),
                 Active = go.activeSelf
             };
-            
+
             recorder.RecordSample(gameObjectCreation);
             recorder.RecordSample(gameObjectUpdateName);
             recorder.RecordSample(gameObjectUpdateLayer);
@@ -147,9 +149,9 @@ namespace PLUME
             recorder.RecordSample(gameObjectUpdateActiveSelf);
         }
 
-        private void RecordDestruction(ObjectNullSafeReference<GameObject> goRef)
+        private void RecordDestruction(int gameObjectInstanceId)
         {
-            var gameObjectDestroy = new GameObjectDestroy { Id = _cachedIdentifiers[goRef] };
+            var gameObjectDestroy = new GameObjectDestroy {Id = _cachedIdentifiers[gameObjectInstanceId]};
             recorder.RecordSample(gameObjectDestroy);
         }
     }

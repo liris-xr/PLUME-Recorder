@@ -5,8 +5,9 @@ namespace PLUME
 {
     public class RenderSettingsRecorderModule : RecorderModule, IStartRecordingEventReceiver
     {
-        public void OnStartRecording()
+        public new void OnStartRecording()
         {
+            base.OnStartRecording();
             var renderSettingsUpdate = new RenderSettingsUpdate
             {
                 SkyboxId = RenderSettings.skybox == null ? null : RenderSettings.skybox.ToAssetIdentifierPayload(),
@@ -44,6 +45,10 @@ namespace PLUME
             };
 
             recorder.RecordSample(renderSettingsUpdate);
+        }
+
+        protected override void ResetCache()
+        {
         }
     }
 }

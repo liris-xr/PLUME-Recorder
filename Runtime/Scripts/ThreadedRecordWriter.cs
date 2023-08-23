@@ -35,7 +35,7 @@ namespace PLUME
             _thread.Start();
         }
 
-        public void Write(UnpackedSample unpackedSample, bool hasTimestampOffset)
+        public void Write(UnpackedSample unpackedSample)
         {
             if (_stopThread)
             {

@@ -28,33 +28,30 @@ namespace PLUME.Sample.Unity {
             "bXBsZS51bml0eRoXdW5pdHkvaWRlbnRpZmllcnMucHJvdG8aE2NvbW1vbi9i",
             "b3VuZHMucHJvdG8iUAoZU2tpbm5lZE1lc2hSZW5kZXJlckNyZWF0ZRIzCgJp",
             "ZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlm",
-            "aWVyIlEKGlNraW5uZWRNZXNoUmVuZGVyZXJEZXN0cm95EjMKAmlkGAEgASgL",
-            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIiaAog",
-            "U2tpbm5lZE1lc2hSZW5kZXJlclVwZGF0ZUVuYWJsZWQSMwoCaWQYASABKAsy",
-            "Jy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIPCgdl",
-            "bmFibGVkGAIgASgIIpsBCh1Ta2lubmVkTWVzaFJlbmRlcmVyVXBkYXRlTWVz",
-            "aBIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJ",
-            "ZGVudGlmaWVyEjkKB21lc2hfaWQYAiABKAsyIy5wbHVtZS5zYW1wbGUudW5p",
-            "dHkuQXNzZXRJZGVudGlmaWVySACIAQFCCgoIX21lc2hfaWQilQEKIlNraW5u",
-            "ZWRNZXNoUmVuZGVyZXJVcGRhdGVNYXRlcmlhbHMSMwoCaWQYASABKAsyJy5w",
-            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchI6Cg1tYXRl",
-            "cmlhbHNfaWRzGAIgAygLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRl",
-            "bnRpZmllciL6AQoeU2tpbm5lZE1lc2hSZW5kZXJlclVwZGF0ZUJvbmVzEjMK",
-            "AmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50",
-            "aWZpZXISRAoJYm9uZXNfaWRzGAIgAygLMjEucGx1bWUuc2FtcGxlLnVuaXR5",
-            "LlRyYW5zZm9ybUdhbWVPYmplY3RJZGVudGlmaWVyEkwKDHJvb3RfYm9uZV9p",
-            "ZBgDIAEoCzIxLnBsdW1lLnNhbXBsZS51bml0eS5UcmFuc2Zvcm1HYW1lT2Jq",
-            "ZWN0SWRlbnRpZmllckgAiAEBQg8KDV9yb290X2JvbmVfaWQivAEKH1NraW5u",
-            "ZWRNZXNoUmVuZGVyZXJVcGRhdGVCb3VuZHMSMwoCaWQYASABKAsyJy5wbHVt",
-            "ZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIxCgxsb2NhbF9i",
-            "b3VuZHMYAiABKAsyGy5wbHVtZS5zYW1wbGUuY29tbW9uLkJvdW5kcxIxCgx3",
-            "b3JsZF9ib3VuZHMYAyABKAsyGy5wbHVtZS5zYW1wbGUuY29tbW9uLkJvdW5k",
-            "c0IVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
+            "aWVyImgKIFNraW5uZWRNZXNoUmVuZGVyZXJVcGRhdGVFbmFibGVkEjMKAmlk",
+            "GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
+            "ZXISDwoHZW5hYmxlZBgCIAEoCCKbAQodU2tpbm5lZE1lc2hSZW5kZXJlclVw",
+            "ZGF0ZU1lc2gSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29t",
+            "cG9uZW50SWRlbnRpZmllchI5CgdtZXNoX2lkGAIgASgLMiMucGx1bWUuc2Ft",
+            "cGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckgAiAEBQgoKCF9tZXNoX2lkIpUB",
+            "CiJTa2lubmVkTWVzaFJlbmRlcmVyVXBkYXRlTWF0ZXJpYWxzEjMKAmlkGAEg",
+            "ASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIS",
+            "OgoNbWF0ZXJpYWxzX2lkcxgCIAMoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5B",
+            "c3NldElkZW50aWZpZXIi+gEKHlNraW5uZWRNZXNoUmVuZGVyZXJVcGRhdGVC",
+            "b25lcxIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25l",
+            "bnRJZGVudGlmaWVyEkQKCWJvbmVzX2lkcxgCIAMoCzIxLnBsdW1lLnNhbXBs",
+            "ZS51bml0eS5UcmFuc2Zvcm1HYW1lT2JqZWN0SWRlbnRpZmllchJMCgxyb290",
+            "X2JvbmVfaWQYAyABKAsyMS5wbHVtZS5zYW1wbGUudW5pdHkuVHJhbnNmb3Jt",
+            "R2FtZU9iamVjdElkZW50aWZpZXJIAIgBAUIPCg1fcm9vdF9ib25lX2lkIrwB",
+            "Ch9Ta2lubmVkTWVzaFJlbmRlcmVyVXBkYXRlQm91bmRzEjMKAmlkGAEgASgL",
+            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISMQoM",
+            "bG9jYWxfYm91bmRzGAIgASgLMhsucGx1bWUuc2FtcGxlLmNvbW1vbi5Cb3Vu",
+            "ZHMSMQoMd29ybGRfYm91bmRzGAMgASgLMhsucGx1bWUuc2FtcGxlLmNvbW1v",
+            "bi5Cb3VuZHNCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.BoundsReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererCreate), global::PLUME.Sample.Unity.SkinnedMeshRendererCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererDestroy), global::PLUME.Sample.Unity.SkinnedMeshRendererDestroy.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdateEnabled), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdateEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdateMesh), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdateMesh.Parser, new[]{ "Id", "MeshId" }, new[]{ "MeshId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdateMaterials), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdateMaterials.Parser, new[]{ "Id", "MaterialsIds" }, null, null, null, null),
@@ -264,204 +261,6 @@ namespace PLUME.Sample.Unity {
 
   }
 
-  public sealed partial class SkinnedMeshRendererDestroy : pb::IMessage<SkinnedMeshRendererDestroy>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<SkinnedMeshRendererDestroy> _parser = new pb::MessageParser<SkinnedMeshRendererDestroy>(() => new SkinnedMeshRendererDestroy());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<SkinnedMeshRendererDestroy> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.SkinnedMeshRendererReflection.Descriptor.MessageTypes[1]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SkinnedMeshRendererDestroy() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SkinnedMeshRendererDestroy(SkinnedMeshRendererDestroy other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SkinnedMeshRendererDestroy Clone() {
-      return new SkinnedMeshRendererDestroy(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as SkinnedMeshRendererDestroy);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(SkinnedMeshRendererDestroy other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(SkinnedMeshRendererDestroy other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
   public sealed partial class SkinnedMeshRendererUpdateEnabled : pb::IMessage<SkinnedMeshRendererUpdateEnabled>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -476,7 +275,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.SkinnedMeshRendererReflection.Descriptor.MessageTypes[2]; }
+      get { return global::PLUME.Sample.Unity.SkinnedMeshRendererReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -711,7 +510,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.SkinnedMeshRendererReflection.Descriptor.MessageTypes[3]; }
+      get { return global::PLUME.Sample.Unity.SkinnedMeshRendererReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -955,7 +754,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.SkinnedMeshRendererReflection.Descriptor.MessageTypes[4]; }
+      get { return global::PLUME.Sample.Unity.SkinnedMeshRendererReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1179,7 +978,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.SkinnedMeshRendererReflection.Descriptor.MessageTypes[5]; }
+      get { return global::PLUME.Sample.Unity.SkinnedMeshRendererReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1449,7 +1248,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.SkinnedMeshRendererReflection.Descriptor.MessageTypes[6]; }
+      get { return global::PLUME.Sample.Unity.SkinnedMeshRendererReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

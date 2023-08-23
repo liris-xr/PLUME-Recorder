@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using HarmonyLib;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
+#if UNITY_STANDALONE_WIN
+using HarmonyLib;
+#endif
+
 namespace PLUME
 {
+#if UNITY_STANDALONE_WIN
     /**
      * Simple monkey patcher using Harmony.
      *
@@ -31,7 +35,7 @@ namespace PLUME
                 RendererEvents.OnSetInstanceMaterials.Invoke(__instance, value);
         }
     }
-    
+
     [HarmonyPatch(typeof(Renderer), "set_" + nameof(Renderer.material))]
     public class PatchRendererSetMaterial
     {
@@ -41,17 +45,17 @@ namespace PLUME
                 RendererEvents.OnSetInstanceMaterial.Invoke(__instance, value);
         }
     }
-    
+
     [HarmonyPatch(typeof(Renderer), "set_" + nameof(Renderer.sharedMaterials))]
     public class PatchRendererSetSharedMaterials
     {
         public static void Postfix(Renderer __instance, Material[] value)
         {
             if (RendererEvents.OnSetSharedMaterials != null)
-                RendererEvents.OnSetSharedMaterials.Invoke(__instance, value);
+                RendererEvents.OnSetSharedMaterials?.Invoke(__instance, value);
         }
     }
-    
+
     [HarmonyPatch(typeof(Renderer), "set_" + nameof(Renderer.sharedMaterial))]
     public class PatchRendererSetSharedMaterial
     {
@@ -61,7 +65,7 @@ namespace PLUME
                 RendererEvents.OnSetSharedMaterial.Invoke(__instance, value);
         }
     }
-    
+
     [HarmonyPatch(typeof(Object), nameof(Object.Instantiate), typeof(Object), typeof(Vector3), typeof(Quaternion))]
     public class PatchGameObjectInstantiate01
     {
@@ -93,7 +97,7 @@ namespace PLUME
         public static void Postfix(Object __result)
         {
             if (ObjectEvents.OnCreate != null)
-                ObjectEvents.OnCreate.Invoke(__result);
+                ObjectEvents.OnCreate?.Invoke(__result);
         }
     }
 
@@ -146,8 +150,8 @@ namespace PLUME
     {
         public static void Prefix(Object obj)
         {
-            if (ObjectEvents.OnDestroy != null)
-                ObjectEvents.OnDestroy.Invoke(obj);
+            if (ObjectEvents.OnDestroy != null && obj != null)
+                ObjectEvents.OnDestroy.Invoke(obj.GetInstanceID());
         }
     }
 
@@ -156,8 +160,8 @@ namespace PLUME
     {
         public static void Prefix(Object obj)
         {
-            if (ObjectEvents.OnDestroy != null)
-                ObjectEvents.OnDestroy.Invoke(obj);
+            if (ObjectEvents.OnDestroy != null && obj != null)
+                ObjectEvents.OnDestroy.Invoke(obj.GetInstanceID());
         }
     }
 
@@ -167,7 +171,7 @@ namespace PLUME
         public static void Postfix(GameObject __instance, Type componentType, Component __result)
         {
             if (ObjectEvents.OnCreate != null)
-                ObjectEvents.OnCreate(__result);
+                ObjectEvents.OnCreate.Invoke(__result);
         }
     }
 
@@ -177,7 +181,7 @@ namespace PLUME
         public static void Postfix(GameObject __instance)
         {
             if (ObjectEvents.OnCreate != null)
-                ObjectEvents.OnCreate(__instance);
+                ObjectEvents.OnCreate.Invoke(__instance);
         }
     }
 
@@ -187,7 +191,7 @@ namespace PLUME
         public static void Postfix(GameObject __instance)
         {
             if (ObjectEvents.OnCreate != null)
-                ObjectEvents.OnCreate(__instance);
+                ObjectEvents.OnCreate.Invoke(__instance);
         }
     }
 
@@ -197,7 +201,8 @@ namespace PLUME
         public static void Postfix(GameObject __instance)
         {
             if (ObjectEvents.OnCreate != null)
-                ObjectEvents.OnCreate(__instance);
+                ObjectEvents.OnCreate.Invoke(__instance);
         }
     }
+#endif
 }

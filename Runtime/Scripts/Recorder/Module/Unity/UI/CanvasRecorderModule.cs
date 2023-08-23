@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.UI;
 using UnityEngine;
 
@@ -9,24 +10,29 @@ namespace PLUME.UI
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-        private readonly HashSet<Canvas> _recordedCanvas = new();
+        private readonly Dictionary<int, Canvas> _recordedCanvas = new();
 
         public void OnStartRecordingObject(Object obj)
         {
-            if (obj is Canvas canvas && !_recordedCanvas.Contains(canvas))
+            if (obj is Canvas canvas && !_recordedCanvas.ContainsKey(canvas.GetInstanceID()))
             {
-                _recordedCanvas.Add(canvas);
+                _recordedCanvas.Add(canvas.GetInstanceID(), canvas);
                 RecordCreation(canvas);
             }
         }
 
-        public void OnStopRecordingObject(Object obj)
+        public void OnStopRecordingObject(int objectInstanceId)
         {
-            if (obj is Canvas canvas && _recordedCanvas.Contains(canvas))
+            if (_recordedCanvas.ContainsKey(objectInstanceId))
             {
-                _recordedCanvas.Remove(canvas);
-                RecordDestruction(canvas);
+                RecordDestruction(objectInstanceId);
+                RemoveFromCache(objectInstanceId);
             }
+        }
+
+        private void RemoveFromCache(int canvasInstanceId)
+        {
+            _recordedCanvas.Remove(canvasInstanceId);
         }
 
         private void RecordCreation(Canvas canvas)
@@ -42,10 +48,15 @@ namespace PLUME.UI
             recorder.RecordSample(canvasUpdate);
         }
 
-        private void RecordDestruction(Canvas canvas)
+        private void RecordDestruction(int canvasInstanceId)
         {
-            var canvasDestroy = new CanvasDestroy {Id = canvas.ToIdentifierPayload()};
+            var canvasDestroy = new ComponentDestroy {Id = new ComponentDestroyIdentifier { Id = canvasInstanceId.ToString() }};
             recorder.RecordSample(canvasDestroy);
+        }
+
+        protected override void ResetCache()
+        {
+            _recordedCanvas.Clear();
         }
     }
 }

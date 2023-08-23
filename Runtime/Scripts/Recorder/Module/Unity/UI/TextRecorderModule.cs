@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,23 +11,23 @@ namespace PLUME.UI
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-        private readonly HashSet<Text> _recordedTexts = new();
+        private readonly Dictionary<int, Text> _recordedTexts = new();
 
         public void OnStartRecordingObject(Object obj)
         {
-            if (obj is Text text && !_recordedTexts.Contains(text))
+            if (obj is Text text && !_recordedTexts.ContainsKey(text.GetInstanceID()))
             {
-                _recordedTexts.Add(text);
+                _recordedTexts.Add(text.GetInstanceID(), text);
                 RecordCreation(text);
             }
         }
 
-        public void OnStopRecordingObject(Object obj)
+        public void OnStopRecordingObject(int objectInstanceId)
         {
-            if (obj is Text text && _recordedTexts.Contains(text))
+            if (_recordedTexts.ContainsKey(objectInstanceId))
             {
-                _recordedTexts.Remove(text);
-                RecordDestruction(text);
+                RecordDestruction(objectInstanceId);
+                RemoveFromCache(objectInstanceId);
             }
         }
 
@@ -71,10 +72,21 @@ namespace PLUME.UI
             recorder.RecordSample(textUpdateExtras);
         }
 
-        private void RecordDestruction(Text text)
+        private void RemoveFromCache(int textInstanceId)
         {
-            var textDestroy = new TextDestroy {Id = text.ToIdentifierPayload()};
+            _recordedTexts.Remove(textInstanceId);
+        }
+
+        private void RecordDestruction(int textInstanceId)
+        {
+            var textDestroy = new ComponentDestroy
+                {Id = new ComponentDestroyIdentifier {Id = textInstanceId.ToString()}};
             recorder.RecordSample(textDestroy);
+        }
+
+        protected override void ResetCache()
+        {
+            _recordedTexts.Clear();
         }
     }
 }

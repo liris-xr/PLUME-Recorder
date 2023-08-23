@@ -10,7 +10,7 @@ namespace PLUME
 
         public static Action<Object> OnCreate;
 
-        public static Action<Object> OnDestroy;
+        public static Action<int> OnDestroy;
     }
 
     public static class RendererEvents

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using PLUME.Sample.Unity;
 using UnityEngine;
-using LightType = PLUME.Sample.Unity.LightType;
-using Object = UnityEngine.Object;
 
 namespace PLUME
 {
@@ -12,41 +9,57 @@ namespace PLUME
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-        private readonly HashSet<Light> _recordedLights = new();
-        private readonly Dictionary<Light, bool> _lastEnabled = new();
+        private readonly Dictionary<int, Light> _recordedLights = new();
+        private readonly Dictionary<int, bool> _lastEnabled = new();
 
-        public void Reset()
+        protected override void ResetCache()
         {
+            _recordedLights.Clear();
             _lastEnabled.Clear();
         }
 
         public void OnStartRecordingObject(Object obj)
         {
-            if (obj is Light light && !_recordedLights.Contains(light))
+            // ReSharper disable once LocalVariableHidesMember
+            if (obj is Light light && !_recordedLights.ContainsKey(light.GetInstanceID()))
             {
-                _recordedLights.Add(light);
-                _lastEnabled.Add(light, light.enabled);
+                var lightInstanceId = light.GetInstanceID();
+                _recordedLights.Add(lightInstanceId, light);
+                _lastEnabled.Add(lightInstanceId, light.enabled);
                 RecordCreation(light);
             }
         }
 
-        public void OnStopRecordingObject(Object obj)
+        public void OnStopRecordingObject(int objectInstanceId)
         {
-            if (obj is Light light && _recordedLights.Contains(light))
+            if (_recordedLights.ContainsKey(objectInstanceId))
             {
-                _recordedLights.Remove(light);
-                _lastEnabled.Remove(light);
-                RecordDestruction(light);
+                RecordDestruction(objectInstanceId);
+                RemoveFromCache(objectInstanceId);
             }
+        }
+
+        private void RemoveFromCache(int lightInstanceId)
+        {
+            _recordedLights.Remove(lightInstanceId);
+            _lastEnabled.Remove(lightInstanceId);
         }
 
         public void FixedUpdate()
         {
-            foreach (var light in _recordedLights)
+            var nullLightsInstanceIds = new List<int>();
+            
+            foreach (var (lightInstanceId, light) in _recordedLights)
             {
-                if (_lastEnabled[light] != light.enabled)
+                if (light == null)
                 {
-                    _lastEnabled[light] = light.enabled;
+                    nullLightsInstanceIds.Add(lightInstanceId);
+                    continue;
+                }
+                
+                if (_lastEnabled[lightInstanceId] != light.enabled)
+                {
+                    _lastEnabled[lightInstanceId] = light.enabled;
 
                     var lightUpdateEnabled = new LightUpdateEnabled
                     {
@@ -56,6 +69,12 @@ namespace PLUME
 
                     recorder.RecordSample(lightUpdateEnabled);
                 }
+            }
+
+            foreach (var nullLightInstanceId in nullLightsInstanceIds)
+            {
+                RecordDestruction(nullLightInstanceId);
+                RemoveFromCache(nullLightInstanceId);
             }
         }
 
@@ -70,19 +89,19 @@ namespace PLUME
                 Id = lightIdentifier,
                 Type = light.type.ToPayload()
             };
-            
+
             var lightUpdateIntensity = new LightUpdateIntensity
             {
                 Id = lightIdentifier,
                 Intensity = light.intensity
             };
-            
+
             var lightUpdateRange = new LightUpdateRange
             {
                 Id = lightIdentifier,
                 Range = light.range,
             };
-            
+
             var lightUpdateColor = new LightUpdateColor
             {
                 Id = lightIdentifier,
@@ -90,19 +109,19 @@ namespace PLUME
                 ColorTemperature = light.colorTemperature,
                 UseColorTemperature = light.useColorTemperature
             };
-            
+
             var lightUpdateShape = new LightUpdateShape
             {
                 Id = lightIdentifier,
                 Shape = light.shape.ToPayload()
             };
-            
+
             var lightUpdateBounceIntensity = new LightUpdateBounceIntensity
             {
                 Id = lightIdentifier,
                 BounceIntensity = light.bounceIntensity
             };
-            
+
             var lightUpdateSpotAngle = new LightUpdateSpotAngle
             {
                 Id = lightIdentifier,
@@ -115,7 +134,7 @@ namespace PLUME
                 Id = lightIdentifier,
                 RenderingLayerMask = light.renderingLayerMask
             };
-            
+
             var lightUpdateCulling = new LightUpdateCulling
             {
                 Id = lightIdentifier,
@@ -123,7 +142,7 @@ namespace PLUME
                 BoundingSphereOverride = light.boundingSphereOverride.ToPayload(),
                 UseBoundingSphereOverride = light.useBoundingSphereOverride
             };
-            
+
             var lightUpdateShadows = new LightUpdateShadows
             {
                 Id = lightIdentifier,
@@ -136,18 +155,18 @@ namespace PLUME
                 ShadowNormalBias = light.shadowNormalBias,
                 ShadowNearPlane = light.shadowNearPlane,
                 UseViewFrustumForShadowCasterCull = light.useViewFrustumForShadowCasterCull,
-                LayerShadowCullDistances = { light.layerShadowCullDistances },
+                LayerShadowCullDistances = {light.layerShadowCullDistances},
                 ShadowCustomResolution = light.shadowCustomResolution,
                 LightShadowCasterMode = light.lightShadowCasterMode.ToPayload()
             };
-            
+
             var lightUpdateCookie = new LightUpdateCookie
             {
                 Id = lightIdentifier,
                 CookieId = light.cookie == null ? null : light.cookie.ToAssetIdentifierPayload(),
                 CookieSize = light.cookieSize
             };
-            
+
             var lightUpdateFlare = new LightUpdateFlare
             {
                 Id = lightIdentifier,
@@ -176,9 +195,10 @@ namespace PLUME
             recorder.RecordSample(lightUpdateEnabled);
         }
 
-        private void RecordDestruction(Light light)
+        private void RecordDestruction(int lightInstanceId)
         {
-            var lightDestroy = new LightDestroy {Id = light.ToIdentifierPayload()};
+            var lightDestroy = new ComponentDestroy
+                {Id = new ComponentDestroyIdentifier {Id = lightInstanceId.ToString()}};
             recorder.RecordSample(lightDestroy);
         }
     }

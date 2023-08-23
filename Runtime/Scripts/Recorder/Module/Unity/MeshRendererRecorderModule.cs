@@ -12,19 +12,27 @@ namespace PLUME
         IStartRecordingEventReceiver,
         IStopRecordingEventReceiver
     {
-        private readonly HashSet<MeshRenderer> _recordedMeshRenderers = new();
-        private readonly Dictionary<MeshRenderer, bool> _lastEnabled = new();
+        private readonly Dictionary<int, MeshRenderer> _recordedMeshRenderers = new();
+        private readonly Dictionary<int, bool> _lastEnabled = new();
 
         public void FixedUpdate()
         {
             if (_recordedMeshRenderers.Count == 0)
                 return;
 
-            foreach (var meshRenderer in _recordedMeshRenderers)
+            var nullMeshRendererInstanceIds = new List<int>();
+
+            foreach (var (meshRendererInstanceId, meshRenderer) in _recordedMeshRenderers)
             {
-                if (_lastEnabled[meshRenderer] != meshRenderer.enabled)
+                if (meshRenderer == null)
                 {
-                    _lastEnabled[meshRenderer] = meshRenderer.enabled;
+                    nullMeshRendererInstanceIds.Add(meshRendererInstanceId);
+                    continue;
+                }
+
+                if (_lastEnabled[meshRendererInstanceId] != meshRenderer.enabled)
+                {
+                    _lastEnabled[meshRendererInstanceId] = meshRenderer.enabled;
 
                     var meshRendererUpdateEnabled = new MeshRendererUpdateEnabled()
                     {
@@ -35,16 +43,29 @@ namespace PLUME
                     recorder.RecordSample(meshRendererUpdateEnabled);
                 }
             }
+
+            foreach (var meshRendererInstanceId in nullMeshRendererInstanceIds)
+            {
+                RecordDestruction(meshRendererInstanceId);
+                RemoveFromCache(meshRendererInstanceId);
+            }
         }
 
-        public void OnStartRecording()
+        public new void OnStartRecording()
         {
+            base.OnStartRecording();
             RendererEvents.OnSetInstanceMaterials += (r, _) => OnUpdateMaterials(r);
             RendererEvents.OnSetInstanceMaterial += (r, _) => OnUpdateMaterials(r);
             RendererEvents.OnSetSharedMaterials += (r, _) => OnUpdateMaterials(r);
             RendererEvents.OnSetSharedMaterial += (r, _) => OnUpdateMaterials(r);
         }
-        
+
+        protected override void ResetCache()
+        {
+            _recordedMeshRenderers.Clear();
+            _lastEnabled.Clear();
+        }
+
         public void OnStopRecording()
         {
             RendererEvents.OnSetInstanceMaterials -= (r, _) => OnUpdateMaterials(r);
@@ -55,7 +76,7 @@ namespace PLUME
 
         private void OnUpdateMaterials(Renderer r)
         {
-            if (r is MeshRenderer meshRenderer && _recordedMeshRenderers.Contains(r))
+            if (r is MeshRenderer meshRenderer && _recordedMeshRenderers.ContainsKey(r.GetInstanceID()))
             {
                 var meshRendererUpdateMaterials = new MeshRendererUpdateMaterials
                 {
@@ -69,21 +90,21 @@ namespace PLUME
 
         public void OnStartRecordingObject(Object obj)
         {
-            if (obj is MeshRenderer meshRenderer && !_recordedMeshRenderers.Contains(meshRenderer))
+            if (obj is MeshRenderer meshRenderer && !_recordedMeshRenderers.ContainsKey(meshRenderer.GetInstanceID()))
             {
-                _recordedMeshRenderers.Add(meshRenderer);
-                _lastEnabled.Add(meshRenderer, meshRenderer.enabled);
+                var meshRendererInstanceId = meshRenderer.GetInstanceID();
+                _recordedMeshRenderers.Add(meshRendererInstanceId, meshRenderer);
+                _lastEnabled.Add(meshRendererInstanceId, meshRenderer.enabled);
                 RecordCreation(meshRenderer);
             }
         }
 
-        public void OnStopRecordingObject(Object obj)
+        public void OnStopRecordingObject(int objectInstanceId)
         {
-            if (obj is MeshRenderer meshRenderer && _recordedMeshRenderers.Contains(meshRenderer))
+            if (_recordedMeshRenderers.ContainsKey(objectInstanceId))
             {
-                _recordedMeshRenderers.Remove(meshRenderer);
-                _lastEnabled.Remove(meshRenderer);
-                RecordDestruction(meshRenderer);
+                RecordDestruction(objectInstanceId);
+                RemoveFromCache(objectInstanceId);
             }
         }
 
@@ -108,9 +129,16 @@ namespace PLUME
             recorder.RecordSample(meshRendererUpdateEnabled);
         }
 
-        private void RecordDestruction(MeshRenderer meshRenderer)
+        private void RemoveFromCache(int meshRendererInstanceId)
         {
-            var meshRendererDestroy = new MeshRendererDestroy {Id = meshRenderer.ToIdentifierPayload()};
+            _recordedMeshRenderers.Remove(meshRendererInstanceId);
+            _lastEnabled.Remove(meshRendererInstanceId);
+        }
+
+        private void RecordDestruction(int meshRendererInstanceId)
+        {
+            var meshRendererDestroy = new ComponentDestroy
+                {Id = new ComponentDestroyIdentifier {Id = meshRendererInstanceId.ToString()}};
             recorder.RecordSample(meshRendererDestroy);
         }
     }

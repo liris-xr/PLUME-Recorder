@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,23 +12,23 @@ namespace PLUME.UI
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-        private readonly HashSet<Image> _recordedImages = new();
+        private readonly Dictionary<int, Image> _recordedImages = new();
 
         public void OnStartRecordingObject(Object obj)
         {
-            if (obj is Image image && !_recordedImages.Contains(image))
+            if (obj is Image image && !_recordedImages.ContainsKey(image.GetInstanceID()))
             {
-                _recordedImages.Add(image);
+                _recordedImages.Add(image.GetInstanceID(), image);
                 RecordCreation(image);
             }
         }
 
-        public void OnStopRecordingObject(Object obj)
+        public void OnStopRecordingObject(int objectInstanceId)
         {
-            if (obj is Image image && _recordedImages.Contains(image))
+            if (_recordedImages.ContainsKey(objectInstanceId))
             {
-                _recordedImages.Remove(image);
-                RecordDestruction(image);
+                RecordDestruction(objectInstanceId);
+                RemoveFromCache(objectInstanceId);
             }
         }
 
@@ -50,10 +51,21 @@ namespace PLUME.UI
             recorder.RecordSample(imageUpdateSprite);
         }
 
-        private void RecordDestruction(Image image)
+        private void RemoveFromCache(int imageInstanceId)
         {
-            var imageDestroy = new ImageDestroy {Id = image.ToIdentifierPayload()};
+            _recordedImages.Remove(imageInstanceId);
+        }
+
+        private void RecordDestruction(int imageInstanceId)
+        {
+            var imageDestroy = new ComponentDestroy
+                {Id = new ComponentDestroyIdentifier {Id = imageInstanceId.ToString()}};
             recorder.RecordSample(imageDestroy);
+        }
+
+        protected override void ResetCache()
+        {
+            _recordedImages.Clear();
         }
     }
 }

@@ -9,11 +9,12 @@ namespace PLUME
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-        private readonly HashSet<MeshFilter> _recordedMeshFilters = new();
-        private readonly Dictionary<MeshFilter, int> _lastMeshInstanceIds = new();
+        private readonly Dictionary<int, MeshFilter> _recordedMeshFilters = new();
+        private readonly Dictionary<int, int> _lastMeshInstanceIds = new();
 
-        public void Reset()
+        protected override void ResetCache()
         {
+            _recordedMeshFilters.Clear();
             _lastMeshInstanceIds.Clear();
         }
 
@@ -22,13 +23,21 @@ namespace PLUME
             if (_recordedMeshFilters.Count == 0)
                 return;
 
-            foreach (var meshFilter in _recordedMeshFilters)
+            var nullMeshFilterInstanceIds = new List<int>();
+
+            foreach (var (meshFilterInstanceId, meshFilter) in _recordedMeshFilters)
             {
-                var lastMeshInstanceId = _lastMeshInstanceIds.GetValueOrDefault(meshFilter);
+                if (meshFilter == null)
+                {
+                    nullMeshFilterInstanceIds.Add(meshFilterInstanceId);
+                    continue;
+                }
+
+                var lastMeshInstanceId = _lastMeshInstanceIds.GetValueOrDefault(meshFilterInstanceId);
 
                 var sharedMeshId = meshFilter.sharedMesh == null ? 0 : meshFilter.sharedMesh.GetInstanceID();
                 var updateMesh = lastMeshInstanceId != sharedMeshId;
-                
+
                 if (updateMesh)
                 {
                     var meshFilterUpdateSharedMesh = new MeshFilterUpdateMesh
@@ -38,28 +47,39 @@ namespace PLUME
                             ? null
                             : meshFilter.sharedMesh.ToAssetIdentifierPayload()
                     };
-                    _lastMeshInstanceIds[meshFilter] = sharedMeshId;
+                    _lastMeshInstanceIds[meshFilterInstanceId] = sharedMeshId;
                     recorder.RecordSample(meshFilterUpdateSharedMesh);
                 }
             }
+
+            foreach (var nullMeshFilterInstanceId in nullMeshFilterInstanceIds)
+            {
+                RecordDestruction(nullMeshFilterInstanceId);
+                RemoveFromCache(nullMeshFilterInstanceId);
+            }
+        }
+
+        private void RemoveFromCache(int meshFilterInstanceId)
+        {
+            _recordedMeshFilters.Remove(meshFilterInstanceId);
+            _lastMeshInstanceIds.Remove(meshFilterInstanceId);
         }
 
         public void OnStartRecordingObject(Object obj)
         {
-            if (obj is MeshFilter meshFilter && !_recordedMeshFilters.Contains(meshFilter))
+            if (obj is MeshFilter meshFilter && !_recordedMeshFilters.ContainsKey(meshFilter.GetInstanceID()))
             {
-                _recordedMeshFilters.Add(meshFilter);
+                _recordedMeshFilters.Add(meshFilter.GetInstanceID(), meshFilter);
                 RecordCreation(meshFilter);
             }
         }
 
-        public void OnStopRecordingObject(Object obj)
+        public void OnStopRecordingObject(int objectInstanceId)
         {
-            if (obj is MeshFilter meshFilter && _recordedMeshFilters.Contains(meshFilter))
+            if (_recordedMeshFilters.ContainsKey(objectInstanceId))
             {
-                _recordedMeshFilters.Remove(meshFilter);
-                _lastMeshInstanceIds.Remove(meshFilter);
-                RecordDestruction(meshFilter);
+                RecordDestruction(objectInstanceId);
+                RemoveFromCache(objectInstanceId);
             }
         }
 
@@ -69,9 +89,10 @@ namespace PLUME
             recorder.RecordSample(meshFilterCreate);
         }
 
-        private void RecordDestruction(MeshFilter meshFilter)
+        private void RecordDestruction(int meshFilterInstanceId)
         {
-            var meshFilterDestroy = new MeshFilterDestroy {Id = meshFilter.ToIdentifierPayload()};
+            var meshFilterDestroy = new ComponentDestroy
+                {Id = new ComponentDestroyIdentifier {Id = meshFilterInstanceId.ToString()}};
             recorder.RecordSample(meshFilterDestroy);
         }
     }

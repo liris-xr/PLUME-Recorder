@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using Runtime;
 
 namespace PLUME
 {
@@ -62,7 +61,7 @@ namespace PLUME
          */
         public static void ForceNotifyOnDestroy(this Object obj)
         {
-            ObjectEvents.OnDestroy?.Invoke(obj);
+            ObjectEvents.OnDestroy?.Invoke(obj.GetInstanceID());
         }
         
         public static void ForceNotifyOnDestroy(this GameObject go, bool notifyOnDestroyForComponents = true)
@@ -71,15 +70,15 @@ namespace PLUME
             {
                 foreach (var component in go.GetComponents<Component>())
                 {
-                    ObjectEvents.OnDestroy?.Invoke(component);
+                    ObjectEvents.OnDestroy?.Invoke(component.GetInstanceID());
                 }
             }
             
-            ObjectEvents.OnDestroy?.Invoke(go);
+            ObjectEvents.OnDestroy?.Invoke(go.GetInstanceID());
         }
 
         // TODO: this can be moved inside PlayerContext and optimized using a cache updated when a new identifier correspondence is registered
-        public static Object FindObjectFromInstanceID(int instanceId)
+        public static Object FindObjectByInstanceID(int instanceId)
         {
             var found = CachedObjectFromInstanceId.TryGetValue(instanceId, out var obj);
 

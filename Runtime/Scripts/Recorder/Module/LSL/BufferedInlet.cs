@@ -49,12 +49,12 @@ namespace PLUME
 
         public void Close()
         {
-            Inlet.Dispose();
+            Inlet.close_stream();
         }
 
         public void Dispose()
         {
-            Inlet.Dispose();
+            Inlet.close_stream();
         }
     }
 

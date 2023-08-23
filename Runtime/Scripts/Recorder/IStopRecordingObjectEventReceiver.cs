@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-
-namespace PLUME
+﻿namespace PLUME
 {
     public interface IStopRecordingObjectEventReceiver
     {
-        public void OnStopRecordingObject(Object obj);
+        public void OnStopRecordingObject(int objectInstanceId);
     }
 }

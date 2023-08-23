@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using PLUME.Sample.Unity;
-using Runtime;
 using UnityEngine;
 using Quaternion = PLUME.Sample.Common.Quaternion;
 using Vector2 = PLUME.Sample.Common.Vector2;
@@ -13,17 +12,14 @@ namespace PLUME
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-        private readonly List<ObjectNullSafeReference<Transform>> _recordedTransformsRefs = new();
-
-        private readonly Dictionary<ObjectNullSafeReference<Transform>, TransformGameObjectIdentifier>
-            _cachedIdentifiers = new();
-
-        private readonly Dictionary<ObjectNullSafeReference<Transform>, int> _lastSiblingIndex = new();
-        private readonly Dictionary<ObjectNullSafeReference<Transform>, int?> _lastParentTransformId = new();
+        private readonly Dictionary<int, RectTransform> _recordedRectTransforms = new();
+        private readonly Dictionary<int, TransformGameObjectIdentifier> _cachedIdentifiers = new();
+        private readonly Dictionary<int, int> _lastSiblingIndex = new();
+        private readonly Dictionary<int, int?> _lastParentTransformId = new();
 
         public void FixedUpdate()
         {
-            if (_recordedTransformsRefs.Count == 0)
+            if (_recordedRectTransforms.Count == 0)
                 return;
 
             RecordUpdate();
@@ -31,45 +27,37 @@ namespace PLUME
 
         public void OnStartRecordingObject(Object obj)
         {
-            if (obj is RectTransform rt)
+            if (obj is RectTransform rectTransform)
             {
-                var transformRef = new ObjectNullSafeReference<Transform>(rt);
+                var rectTransformInstanceId = rectTransform.GetInstanceID();
 
-                if (!_recordedTransformsRefs.Contains(transformRef))
+                if (!_recordedRectTransforms.ContainsKey(rectTransformInstanceId))
                 {
-                    _recordedTransformsRefs.Add(transformRef);
-                    _cachedIdentifiers.Add(transformRef, rt.ToIdentifierPayload());
-                    _lastSiblingIndex.Add(transformRef, rt.GetSiblingIndex());
-                    _lastParentTransformId.Add(transformRef, rt.parent == null ? null : rt.parent.GetInstanceID());
-                    RecordCreation(transformRef);
+                    _recordedRectTransforms.Add(rectTransformInstanceId, rectTransform);
+                    _cachedIdentifiers.Add(rectTransformInstanceId, rectTransform.ToIdentifierPayload());
+                    _lastSiblingIndex.Add(rectTransformInstanceId, rectTransform.GetSiblingIndex());
+                    _lastParentTransformId.Add(rectTransformInstanceId,
+                        rectTransform.parent == null ? null : rectTransform.parent.GetInstanceID());
+                    RecordCreation(rectTransform);
                 }
             }
         }
 
-        public void OnStopRecordingObject(Object obj)
+        public void OnStopRecordingObject(int objectInstanceId)
         {
-            if (obj is RectTransform t)
+            if (_recordedRectTransforms.ContainsKey(objectInstanceId))
             {
-                var transformRef = new ObjectNullSafeReference<Transform>(t);
-
-                if (_recordedTransformsRefs.Contains(transformRef))
-                {
-                    RecordDestruction(transformRef);
-                    _recordedTransformsRefs.Remove(transformRef);
-                    _lastSiblingIndex.Remove(transformRef);
-                    _lastParentTransformId.Remove(transformRef);
-                    _cachedIdentifiers.Remove(transformRef);
-                }
+                RecordDestruction(objectInstanceId);
+                RemoveFromCache(objectInstanceId);
             }
         }
 
-        private void RecordCreation(ObjectNullSafeReference<Transform> transformRef)
+        private void RecordCreation(RectTransform rt)
         {
-            var rectTransformCreate = new RectTransformCreate {Id = _cachedIdentifiers[transformRef]};
-            var rectTransformUpdateParent = CreateTransformUpdateParent(transformRef);
-            var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(transformRef);
-
-            var rt = transformRef.Object as RectTransform;
+            var rectTransformInstanceId = rt.GetInstanceID();
+            var rectTransformCreate = new RectTransformCreate {Id = _cachedIdentifiers[rectTransformInstanceId]};
+            var rectTransformUpdateParent = CreateTransformUpdateParent(rt);
+            var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(rt);
 
             rt.GetPositionAndRotation(out var position, out var rotation);
             var lossyScale = rt.lossyScale;
@@ -82,14 +70,14 @@ namespace PLUME
 
             var rectTransformUpdatePosition = new RectTransformUpdatePosition
             {
-                Id = _cachedIdentifiers[transformRef],
+                Id = _cachedIdentifiers[rectTransformInstanceId],
                 LocalPosition = new Vector3 {X = localPosition.x, Y = localPosition.y, Z = localPosition.z},
                 WorldPosition = new Vector3 {X = position.x, Y = position.y, Z = position.z}
             };
 
             var rectTransformUpdateRotation = new RectTransformUpdateRotation
             {
-                Id = _cachedIdentifiers[transformRef],
+                Id = _cachedIdentifiers[rectTransformInstanceId],
                 LocalRotation = new Quaternion
                     {X = localRotation.x, Y = localRotation.y, Z = localRotation.z, W = localRotation.w},
                 WorldRotation = new Quaternion {X = rotation.x, Y = rotation.y, Z = rotation.z, W = rotation.w}
@@ -97,27 +85,27 @@ namespace PLUME
 
             var rectTransformUpdateScale = new RectTransformUpdateScale
             {
-                Id = _cachedIdentifiers[transformRef],
+                Id = _cachedIdentifiers[rectTransformInstanceId],
                 LocalScale = new Vector3 {X = localScale.x, Y = localScale.y, Z = localScale.z},
                 WorldScale = new Vector3 {X = lossyScale.x, Y = lossyScale.y, Z = lossyScale.z}
             };
 
             var rectTransformUpdateAnchors = new RectTransformUpdateAnchors
             {
-                Id = _cachedIdentifiers[transformRef],
+                Id = _cachedIdentifiers[rectTransformInstanceId],
                 AnchorMin = new Vector2 {X = anchorMin.x, Y = anchorMin.y},
                 AnchorMax = new Vector2 {X = anchorMax.x, Y = anchorMax.y}
             };
 
             var rectTransformUpdateSize = new RectTransformUpdateSize
             {
-                Id = _cachedIdentifiers[transformRef],
+                Id = _cachedIdentifiers[rectTransformInstanceId],
                 SizeDelta = new Vector2 {X = sizeDelta.x, Y = sizeDelta.y}
             };
 
             var rectTransformUpdatePivot = new RectTransformUpdatePivot
             {
-                Id = _cachedIdentifiers[transformRef],
+                Id = _cachedIdentifiers[rectTransformInstanceId],
                 Pivot = new Vector2 {X = pivot.x, Y = pivot.y}
             };
 
@@ -129,9 +117,9 @@ namespace PLUME
             recorder.RecordSample(rectTransformUpdatePivot);
         }
 
-        private void RecordDestruction(ObjectNullSafeReference<Transform> transformRef)
+        private void RecordDestruction(int rectTransformInstanceId)
         {
-            var rectTransformDestroy = new RectTransformDestroy {Id = _cachedIdentifiers[transformRef]};
+            var rectTransformDestroy = new RectTransformDestroy {Id = _cachedIdentifiers[rectTransformInstanceId]};
             recorder.RecordSample(rectTransformDestroy);
         }
 
@@ -139,25 +127,21 @@ namespace PLUME
         {
             // Keep track of any transforms destroyed (ref == null) that were not picked up by the system.
             // This can happen if the object is not destroyed by calling Destroy or DestroyImmediate (in Editor or internal C++ engine)
-            var nullTransformRefs = new List<ObjectNullSafeReference<Transform>>();
+            var nullTransformInstanceIds = new List<int>();
 
-            foreach (var transformRef in _recordedTransformsRefs)
+            foreach (var (rectTransformInstanceId, rt) in _recordedRectTransforms)
             {
-                // Prevent MissingReferenceException and record object destruction in a clean way
-                if (transformRef.HasBeenDestroyed())
+                if (rt == null)
                 {
-                    nullTransformRefs.Add(transformRef);
-                    RecordDestruction(transformRef);
+                    nullTransformInstanceIds.Add(rectTransformInstanceId);
                     continue;
                 }
 
-                var t = transformRef.Object;
-
-                if (t.hasChanged)
+                if (rt.hasChanged)
                 {
-                    var parent = t.parent;
+                    var parent = rt.parent;
 
-                    var lastParentTransformId = _lastParentTransformId[transformRef];
+                    var lastParentTransformId = _lastParentTransformId[rectTransformInstanceId];
 
                     var parentHasChanged = parent == null && lastParentTransformId.HasValue ||
                                            parent != null && !lastParentTransformId.HasValue ||
@@ -166,14 +150,13 @@ namespace PLUME
 
                     if (parentHasChanged)
                     {
-                        _lastParentTransformId[transformRef] = parent == null ? null : t.parent.GetInstanceID();
-                        var transformUpdateParent = CreateTransformUpdateParent(transformRef);
-                        _lastParentTransformId[transformRef] = t.parent == null ? null : t.parent.GetInstanceID();
+                        _lastParentTransformId[rectTransformInstanceId] =
+                            parent == null ? null : rt.parent.GetInstanceID();
+                        var transformUpdateParent = CreateTransformUpdateParent(rt);
+                        _lastParentTransformId[rectTransformInstanceId] =
+                            rt.parent == null ? null : rt.parent.GetInstanceID();
                         recorder.RecordSample(transformUpdateParent);
                     }
-
-
-                    var rt = transformRef.Object as RectTransform;
 
                     rt.GetPositionAndRotation(out var position, out var rotation);
                     var lossyScale = rt.lossyScale;
@@ -186,14 +169,14 @@ namespace PLUME
 
                     var rectTransformUpdatePosition = new RectTransformUpdatePosition
                     {
-                        Id = _cachedIdentifiers[transformRef],
+                        Id = _cachedIdentifiers[rectTransformInstanceId],
                         LocalPosition = new Vector3 {X = localPosition.x, Y = localPosition.y, Z = localPosition.z},
                         WorldPosition = new Vector3 {X = position.x, Y = position.y, Z = position.z}
                     };
 
                     var rectTransformUpdateRotation = new RectTransformUpdateRotation
                     {
-                        Id = _cachedIdentifiers[transformRef],
+                        Id = _cachedIdentifiers[rectTransformInstanceId],
                         LocalRotation = new Quaternion
                             {X = localRotation.x, Y = localRotation.y, Z = localRotation.z, W = localRotation.w},
                         WorldRotation = new Quaternion {X = rotation.x, Y = rotation.y, Z = rotation.z, W = rotation.w}
@@ -201,27 +184,27 @@ namespace PLUME
 
                     var rectTransformUpdateScale = new RectTransformUpdateScale
                     {
-                        Id = _cachedIdentifiers[transformRef],
+                        Id = _cachedIdentifiers[rectTransformInstanceId],
                         LocalScale = new Vector3 {X = localScale.x, Y = localScale.y, Z = localScale.z},
                         WorldScale = new Vector3 {X = lossyScale.x, Y = lossyScale.y, Z = lossyScale.z}
                     };
 
                     var rectTransformUpdateAnchors = new RectTransformUpdateAnchors
                     {
-                        Id = _cachedIdentifiers[transformRef],
+                        Id = _cachedIdentifiers[rectTransformInstanceId],
                         AnchorMin = new Vector2 {X = anchorMin.x, Y = anchorMin.y},
                         AnchorMax = new Vector2 {X = anchorMax.x, Y = anchorMax.y}
                     };
 
                     var rectTransformUpdateSize = new RectTransformUpdateSize
                     {
-                        Id = _cachedIdentifiers[transformRef],
+                        Id = _cachedIdentifiers[rectTransformInstanceId],
                         SizeDelta = new Vector2 {X = sizeDelta.x, Y = sizeDelta.y}
                     };
 
                     var rectTransformUpdatePivot = new RectTransformUpdatePivot
                     {
-                        Id = _cachedIdentifiers[transformRef],
+                        Id = _cachedIdentifiers[rectTransformInstanceId],
                         Pivot = new Vector2 {X = pivot.x, Y = pivot.y}
                     };
 
@@ -231,62 +214,76 @@ namespace PLUME
                     recorder.RecordSample(rectTransformUpdateAnchors);
                     recorder.RecordSample(rectTransformUpdateSize);
                     recorder.RecordSample(rectTransformUpdatePivot);
-                    t.hasChanged = false;
+                    rt.hasChanged = false;
                 }
 
-                var hasSiblingIndexChanged = _lastSiblingIndex[transformRef] != t.GetSiblingIndex();
+                var hasSiblingIndexChanged = _lastSiblingIndex[rectTransformInstanceId] != rt.GetSiblingIndex();
 
                 if (hasSiblingIndexChanged)
                 {
-                    _lastSiblingIndex[transformRef] = t.GetSiblingIndex();
-                    var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(transformRef);
+                    _lastSiblingIndex[rectTransformInstanceId] = rt.GetSiblingIndex();
+                    var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(rt);
                     recorder.RecordSample(transformUpdateSiblingIndex);
                 }
             }
 
-            foreach (var nullTransformRef in nullTransformRefs)
+            foreach (var nullTransformInstanceId in nullTransformInstanceIds)
             {
-                _recordedTransformsRefs.Remove(nullTransformRef);
+                RecordDestruction(nullTransformInstanceId);
+                RemoveFromCache(nullTransformInstanceId);
             }
         }
 
-        private RectTransformUpdateSiblingIndex CreateTransformUpdateSiblingIndex(
-            ObjectNullSafeReference<Transform> transformRef)
+        private void RemoveFromCache(int transformInstanceId)
         {
-            var t = transformRef.Object;
+            _recordedRectTransforms.Remove(transformInstanceId);
+            _cachedIdentifiers.Remove(transformInstanceId);
+            _lastParentTransformId.Remove(transformInstanceId);
+            _lastSiblingIndex.Remove(transformInstanceId);
+        }
 
+        private RectTransformUpdateSiblingIndex CreateTransformUpdateSiblingIndex(RectTransform t)
+        {
+            var transformId = t.GetInstanceID();
             var rectTransformUpdateSiblingIndex = new RectTransformUpdateSiblingIndex
             {
-                Id = _cachedIdentifiers[transformRef],
+                Id = _cachedIdentifiers[transformId],
                 SiblingIndex = t.GetSiblingIndex()
             };
 
             return rectTransformUpdateSiblingIndex;
         }
 
-        private RectTransformUpdateParent CreateTransformUpdateParent(ObjectNullSafeReference<Transform> transformRef)
+        private RectTransformUpdateParent CreateTransformUpdateParent(Transform t)
         {
             TransformGameObjectIdentifier parentIdentifier = null;
 
-            var t = transformRef.Object;
             var parent = t.parent;
 
             if (parent != null)
             {
-                var parentRef = new ObjectNullSafeReference<Transform>(parent);
+                var parentInstanceId = parent.GetInstanceID();
 
-                parentIdentifier = _cachedIdentifiers.ContainsKey(parentRef)
-                    ? _cachedIdentifiers[parentRef]
+                parentIdentifier = _cachedIdentifiers.ContainsKey(parentInstanceId)
+                    ? _cachedIdentifiers[parentInstanceId]
                     : parent.ToIdentifierPayload();
             }
 
             var rectTransformUpdateParent = new RectTransformUpdateParent
             {
-                Id = _cachedIdentifiers[transformRef],
+                Id = _cachedIdentifiers[t.GetInstanceID()],
                 ParentId = parentIdentifier
             };
 
             return rectTransformUpdateParent;
+        }
+
+        protected override void ResetCache()
+        {
+            _recordedRectTransforms.Clear();
+            _cachedIdentifiers.Clear();
+            _lastParentTransformId.Clear();
+            _lastSiblingIndex.Clear();
         }
     }
 }

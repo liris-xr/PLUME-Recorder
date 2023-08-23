@@ -98,8 +98,6 @@ namespace PLUME
             {
                 try
                 {
-                    // TODO: write samples in order
-                    
                     header.WriteDelimitedTo(_customOutputStream);
                     
                     foreach (var tmpSampleInfo in _tmpSamplesInfos)
@@ -218,8 +216,10 @@ namespace PLUME
             if (ReferenceEquals(x, y)) return 0;
             if (ReferenceEquals(null, y)) return 1;
             if (ReferenceEquals(null, x)) return -1;
+            // First order by timestamp, then by sequence id
+            var timestampComparison = x.timestamp.CompareTo(y.timestamp);
             var seqComparison = x.seq.CompareTo(y.seq);
-            return seqComparison != 0 ? seqComparison : x.timestamp.CompareTo(y.timestamp);
+            return timestampComparison != 0 ? timestampComparison : seqComparison;
         }
     }
 }

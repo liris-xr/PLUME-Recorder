@@ -28,79 +28,77 @@ namespace PLUME.Sample.Unity {
             "eS9pZGVudGlmaWVycy5wcm90bxoWY29tbW9uL21hdHJpeDR4NC5wcm90bxoU",
             "Y29tbW9uL3ZlY3RvcjQucHJvdG8aEmNvbW1vbi9jb2xvci5wcm90byJCCgtM",
             "aWdodENyZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5D",
-            "b21wb25lbnRJZGVudGlmaWVyIkMKDExpZ2h0RGVzdHJveRIzCgJpZBgBIAEo",
-            "CzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIloK",
-            "EkxpZ2h0VXBkYXRlRW5hYmxlZBIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBs",
-            "ZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEg8KB2VuYWJsZWQYAiABKAgi",
-            "cwoPTGlnaHRVcGRhdGVUeXBlEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxl",
-            "LnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISKwoEdHlwZRgCIAEoDjIdLnBs",
-            "dW1lLnNhbXBsZS51bml0eS5MaWdodFR5cGUidgoQTGlnaHRVcGRhdGVTaGFw",
-            "ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJ",
-            "ZGVudGlmaWVyEi0KBXNoYXBlGAIgASgOMh4ucGx1bWUuc2FtcGxlLnVuaXR5",
-            "LkxpZ2h0U2hhcGUiXgoUTGlnaHRVcGRhdGVJbnRlbnNpdHkSMwoCaWQYASAB",
-            "KAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIR",
-            "CglpbnRlbnNpdHkYAiABKAIiawoaTGlnaHRVcGRhdGVCb3VuY2VJbnRlbnNp",
-            "dHkSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50",
-            "SWRlbnRpZmllchIYChBib3VuY2VfaW50ZW5zaXR5GAIgASgCIlYKEExpZ2h0",
-            "VXBkYXRlUmFuZ2USMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
-            "Q29tcG9uZW50SWRlbnRpZmllchINCgVyYW5nZRgCIAEoAiKsAQoQTGlnaHRV",
-            "cGRhdGVDb2xvchIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5D",
-            "b21wb25lbnRJZGVudGlmaWVyEikKBWNvbG9yGAIgASgLMhoucGx1bWUuc2Ft",
-            "cGxlLmNvbW1vbi5Db2xvchIZChFjb2xvcl90ZW1wZXJhdHVyZRgDIAEoAhId",
-            "ChV1c2VfY29sb3JfdGVtcGVyYXR1cmUYBCABKAgieQoUTGlnaHRVcGRhdGVT",
-            "cG90QW5nbGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29t",
-            "cG9uZW50SWRlbnRpZmllchISCgpzcG90X2FuZ2xlGAIgASgCEhgKEGlubmVy",
-            "X3Nwb3RfYW5nbGUYAyABKAIilAUKEkxpZ2h0VXBkYXRlU2hhZG93cxIzCgJp",
+            "b21wb25lbnRJZGVudGlmaWVyIloKEkxpZ2h0VXBkYXRlRW5hYmxlZBIzCgJp",
             "ZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlm",
-            "aWVyEjEKB3NoYWRvd3MYAiABKA4yIC5wbHVtZS5zYW1wbGUudW5pdHkuTGln",
-            "aHRTaGFkb3dzEhcKD3NoYWRvd19zdHJlbmd0aBgDIAEoAhJEChFzaGFkb3df",
-            "cmVzb2x1dGlvbhgEIAEoDjIpLnBsdW1lLnNhbXBsZS51bml0eS5MaWdodFNo",
-            "YWRvd1Jlc29sdXRpb24SPgoWc2hhZG93X21hdHJpeF9vdmVycmlkZRgFIAEo",
-            "CzIeLnBsdW1lLnNhbXBsZS5jb21tb24uTWF0cml4NHg0EiIKGnVzZV9zaGFk",
-            "b3dfbWF0cml4X292ZXJyaWRlGAYgASgIEhMKC3NoYWRvd19iaWFzGAcgASgC",
-            "EhoKEnNoYWRvd19ub3JtYWxfYmlhcxgIIAEoAhIZChFzaGFkb3dfbmVhcl9w",
-            "bGFuZRgJIAEoAhIvCid1c2Vfdmlld19mcnVzdHVtX2Zvcl9zaGFkb3dfY2Fz",
-            "dGVyX2N1bGwYCiABKAgSIwobbGF5ZXJfc2hhZG93X2N1bGxfZGlzdGFuY2Vz",
-            "GAsgAygCEiUKGHNoYWRvd19jdXN0b21fcmVzb2x1dGlvbhgMIAEoBUgAiAEB",
-            "ElAKGGxpZ2h0X3NoYWRvd19jYXN0ZXJfbW9kZRgNIAEoDjIpLnBsdW1lLnNh",
-            "bXBsZS51bml0eS5MaWdodFNoYWRvd0Nhc3Rlck1vZGVIAYgBAUIbChlfc2hh",
-            "ZG93X2N1c3RvbV9yZXNvbHV0aW9uQhsKGV9saWdodF9zaGFkb3dfY2FzdGVy",
-            "X21vZGUicgodTGlnaHRVcGRhdGVSZW5kZXJpbmdMYXllck1hc2sSMwoCaWQY",
-            "ASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmll",
-            "chIcChRyZW5kZXJpbmdfbGF5ZXJfbWFzaxgCIAEoBSLFAQoSTGlnaHRVcGRh",
-            "dGVDdWxsaW5nEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNv",
-            "bXBvbmVudElkZW50aWZpZXISFAoMY3VsbGluZ19tYXNrGAIgASgFEj4KGGJv",
-            "dW5kaW5nX3NwaGVyZV9vdmVycmlkZRgDIAEoCzIcLnBsdW1lLnNhbXBsZS5j",
-            "b21tb24uVmVjdG9yNBIkChx1c2VfYm91bmRpbmdfc3BoZXJlX292ZXJyaWRl",
-            "GAQgASgIIr0BChFMaWdodFVwZGF0ZUNvb2tpZRIzCgJpZBgBIAEoCzInLnBs",
-            "dW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEjsKCWNvb2tp",
-            "ZV9pZBgCIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZp",
-            "ZXJIAIgBARIYCgtjb29raWVfc2l6ZRgDIAEoAkgBiAEBQgwKCl9jb29raWVf",
-            "aWRCDgoMX2Nvb2tpZV9zaXplIpABChBMaWdodFVwZGF0ZUZsYXJlEjMKAmlk",
+            "aWVyEg8KB2VuYWJsZWQYAiABKAgicwoPTGlnaHRVcGRhdGVUeXBlEjMKAmlk",
             "GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
-            "ZXISOgoIZmxhcmVfaWQYAiABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNz",
-            "ZXRJZGVudGlmaWVySACIAQFCCwoJX2ZsYXJlX2lkKpYBCglMaWdodFR5cGUS",
-            "EwoPTElHSFRfVFlQRV9TUE9UEAASGgoWTElHSFRfVFlQRV9ESVJFQ1RJT05B",
-            "TBABEhQKEExJR0hUX1RZUEVfUE9JTlQQAhITCg9MSUdIVF9UWVBFX0FSRUEQ",
-            "AxIYChRMSUdIVF9UWVBFX1JFQ1RBTkdMRRAEEhMKD0xJR0hUX1RZUEVfRElT",
-            "QxAFKlAKCkxpZ2h0U2hhcGUSFAoQTElHSFRfU0hBUEVfQ09ORRAAEhcKE0xJ",
-            "R0hUX1NIQVBFX1BZUkFNSUQQARITCg9MSUdIVF9TSEFQRV9CT1gQAiqZAQoV",
-            "TGlnaHRTaGFkb3dDYXN0ZXJNb2RlEiQKIExJR0hUX1NIQURPV19DQVNURVJf",
-            "TU9ERV9ERUZBVUxUEAASMQotTElHSFRfU0hBRE9XX0NBU1RFUl9NT0RFX05P",
-            "Tl9MSUdIVE1BUFBFRF9PTkxZEAESJwojTElHSFRfU0hBRE9XX0NBU1RFUl9N",
-            "T0RFX0VWRVJZVEhJTkcQAirYAQoVTGlnaHRTaGFkb3dSZXNvbHV0aW9uEjEK",
-            "LUxJR0hUX1NIQURPV19SRVNPTFVUSU9OX0ZST01fUVVBTElUWV9TRVRUSU5H",
-            "UxAAEh8KG0xJR0hUX1NIQURPV19SRVNPTFVUSU9OX0xPVxABEiIKHkxJR0hU",
-            "X1NIQURPV19SRVNPTFVUSU9OX01FRElVTRACEiAKHExJR0hUX1NIQURPV19S",
-            "RVNPTFVUSU9OX0hJR0gQAxIlCiFMSUdIVF9TSEFET1dfUkVTT0xVVElPTl9W",
-            "RVJZX0hJR0gQBCpWCgxMaWdodFNoYWRvd3MSFgoSTElHSFRfU0hBRE9XU19O",
-            "T05FEAASFgoSTElHSFRfU0hBRE9XU19IQVJEEAESFgoSTElHSFRfU0hBRE9X",
-            "U19TT0ZUEAJCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
+            "ZXISKwoEdHlwZRgCIAEoDjIdLnBsdW1lLnNhbXBsZS51bml0eS5MaWdodFR5",
+            "cGUidgoQTGlnaHRVcGRhdGVTaGFwZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNh",
+            "bXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEi0KBXNoYXBlGAIgASgO",
+            "Mh4ucGx1bWUuc2FtcGxlLnVuaXR5LkxpZ2h0U2hhcGUiXgoUTGlnaHRVcGRh",
+            "dGVJbnRlbnNpdHkSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
+            "Q29tcG9uZW50SWRlbnRpZmllchIRCglpbnRlbnNpdHkYAiABKAIiawoaTGln",
+            "aHRVcGRhdGVCb3VuY2VJbnRlbnNpdHkSMwoCaWQYASABKAsyJy5wbHVtZS5z",
+            "YW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIYChBib3VuY2VfaW50",
+            "ZW5zaXR5GAIgASgCIlYKEExpZ2h0VXBkYXRlUmFuZ2USMwoCaWQYASABKAsy",
+            "Jy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchINCgVy",
+            "YW5nZRgCIAEoAiKsAQoQTGlnaHRVcGRhdGVDb2xvchIzCgJpZBgBIAEoCzIn",
+            "LnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEikKBWNv",
+            "bG9yGAIgASgLMhoucGx1bWUuc2FtcGxlLmNvbW1vbi5Db2xvchIZChFjb2xv",
+            "cl90ZW1wZXJhdHVyZRgDIAEoAhIdChV1c2VfY29sb3JfdGVtcGVyYXR1cmUY",
+            "BCABKAgieQoUTGlnaHRVcGRhdGVTcG90QW5nbGUSMwoCaWQYASABKAsyJy5w",
+            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchISCgpzcG90",
+            "X2FuZ2xlGAIgASgCEhgKEGlubmVyX3Nwb3RfYW5nbGUYAyABKAIilAUKEkxp",
+            "Z2h0VXBkYXRlU2hhZG93cxIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51",
+            "bml0eS5Db21wb25lbnRJZGVudGlmaWVyEjEKB3NoYWRvd3MYAiABKA4yIC5w",
+            "bHVtZS5zYW1wbGUudW5pdHkuTGlnaHRTaGFkb3dzEhcKD3NoYWRvd19zdHJl",
+            "bmd0aBgDIAEoAhJEChFzaGFkb3dfcmVzb2x1dGlvbhgEIAEoDjIpLnBsdW1l",
+            "LnNhbXBsZS51bml0eS5MaWdodFNoYWRvd1Jlc29sdXRpb24SPgoWc2hhZG93",
+            "X21hdHJpeF9vdmVycmlkZRgFIAEoCzIeLnBsdW1lLnNhbXBsZS5jb21tb24u",
+            "TWF0cml4NHg0EiIKGnVzZV9zaGFkb3dfbWF0cml4X292ZXJyaWRlGAYgASgI",
+            "EhMKC3NoYWRvd19iaWFzGAcgASgCEhoKEnNoYWRvd19ub3JtYWxfYmlhcxgI",
+            "IAEoAhIZChFzaGFkb3dfbmVhcl9wbGFuZRgJIAEoAhIvCid1c2Vfdmlld19m",
+            "cnVzdHVtX2Zvcl9zaGFkb3dfY2FzdGVyX2N1bGwYCiABKAgSIwobbGF5ZXJf",
+            "c2hhZG93X2N1bGxfZGlzdGFuY2VzGAsgAygCEiUKGHNoYWRvd19jdXN0b21f",
+            "cmVzb2x1dGlvbhgMIAEoBUgAiAEBElAKGGxpZ2h0X3NoYWRvd19jYXN0ZXJf",
+            "bW9kZRgNIAEoDjIpLnBsdW1lLnNhbXBsZS51bml0eS5MaWdodFNoYWRvd0Nh",
+            "c3Rlck1vZGVIAYgBAUIbChlfc2hhZG93X2N1c3RvbV9yZXNvbHV0aW9uQhsK",
+            "GV9saWdodF9zaGFkb3dfY2FzdGVyX21vZGUicgodTGlnaHRVcGRhdGVSZW5k",
+            "ZXJpbmdMYXllck1hc2sSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5p",
+            "dHkuQ29tcG9uZW50SWRlbnRpZmllchIcChRyZW5kZXJpbmdfbGF5ZXJfbWFz",
+            "axgCIAEoBSLFAQoSTGlnaHRVcGRhdGVDdWxsaW5nEjMKAmlkGAEgASgLMicu",
+            "cGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISFAoMY3Vs",
+            "bGluZ19tYXNrGAIgASgFEj4KGGJvdW5kaW5nX3NwaGVyZV9vdmVycmlkZRgD",
+            "IAEoCzIcLnBsdW1lLnNhbXBsZS5jb21tb24uVmVjdG9yNBIkChx1c2VfYm91",
+            "bmRpbmdfc3BoZXJlX292ZXJyaWRlGAQgASgIIr0BChFMaWdodFVwZGF0ZUNv",
+            "b2tpZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25l",
+            "bnRJZGVudGlmaWVyEjsKCWNvb2tpZV9pZBgCIAEoCzIjLnBsdW1lLnNhbXBs",
+            "ZS51bml0eS5Bc3NldElkZW50aWZpZXJIAIgBARIYCgtjb29raWVfc2l6ZRgD",
+            "IAEoAkgBiAEBQgwKCl9jb29raWVfaWRCDgoMX2Nvb2tpZV9zaXplIpABChBM",
+            "aWdodFVwZGF0ZUZsYXJlEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVu",
+            "aXR5LkNvbXBvbmVudElkZW50aWZpZXISOgoIZmxhcmVfaWQYAiABKAsyIy5w",
+            "bHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVudGlmaWVySACIAQFCCwoJX2Zs",
+            "YXJlX2lkKpYBCglMaWdodFR5cGUSEwoPTElHSFRfVFlQRV9TUE9UEAASGgoW",
+            "TElHSFRfVFlQRV9ESVJFQ1RJT05BTBABEhQKEExJR0hUX1RZUEVfUE9JTlQQ",
+            "AhITCg9MSUdIVF9UWVBFX0FSRUEQAxIYChRMSUdIVF9UWVBFX1JFQ1RBTkdM",
+            "RRAEEhMKD0xJR0hUX1RZUEVfRElTQxAFKlAKCkxpZ2h0U2hhcGUSFAoQTElH",
+            "SFRfU0hBUEVfQ09ORRAAEhcKE0xJR0hUX1NIQVBFX1BZUkFNSUQQARITCg9M",
+            "SUdIVF9TSEFQRV9CT1gQAiqZAQoVTGlnaHRTaGFkb3dDYXN0ZXJNb2RlEiQK",
+            "IExJR0hUX1NIQURPV19DQVNURVJfTU9ERV9ERUZBVUxUEAASMQotTElHSFRf",
+            "U0hBRE9XX0NBU1RFUl9NT0RFX05PTl9MSUdIVE1BUFBFRF9PTkxZEAESJwoj",
+            "TElHSFRfU0hBRE9XX0NBU1RFUl9NT0RFX0VWRVJZVEhJTkcQAirYAQoVTGln",
+            "aHRTaGFkb3dSZXNvbHV0aW9uEjEKLUxJR0hUX1NIQURPV19SRVNPTFVUSU9O",
+            "X0ZST01fUVVBTElUWV9TRVRUSU5HUxAAEh8KG0xJR0hUX1NIQURPV19SRVNP",
+            "TFVUSU9OX0xPVxABEiIKHkxJR0hUX1NIQURPV19SRVNPTFVUSU9OX01FRElV",
+            "TRACEiAKHExJR0hUX1NIQURPV19SRVNPTFVUSU9OX0hJR0gQAxIlCiFMSUdI",
+            "VF9TSEFET1dfUkVTT0xVVElPTl9WRVJZX0hJR0gQBCpWCgxMaWdodFNoYWRv",
+            "d3MSFgoSTElHSFRfU0hBRE9XU19OT05FEAASFgoSTElHSFRfU0hBRE9XU19I",
+            "QVJEEAESFgoSTElHSFRfU0hBRE9XU19TT0ZUEAJCFaoCElBMVU1FLlNhbXBs",
+            "ZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Matrix4X4Reflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.LightType), typeof(global::PLUME.Sample.Unity.LightShape), typeof(global::PLUME.Sample.Unity.LightShadowCasterMode), typeof(global::PLUME.Sample.Unity.LightShadowResolution), typeof(global::PLUME.Sample.Unity.LightShadows), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightCreate), global::PLUME.Sample.Unity.LightCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightDestroy), global::PLUME.Sample.Unity.LightDestroy.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateEnabled), global::PLUME.Sample.Unity.LightUpdateEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateType), global::PLUME.Sample.Unity.LightUpdateType.Parser, new[]{ "Id", "Type" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateShape), global::PLUME.Sample.Unity.LightUpdateShape.Parser, new[]{ "Id", "Shape" }, null, null, null, null),
@@ -356,204 +354,6 @@ namespace PLUME.Sample.Unity {
 
   }
 
-  public sealed partial class LightDestroy : pb::IMessage<LightDestroy>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightDestroy> _parser = new pb::MessageParser<LightDestroy>(() => new LightDestroy());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightDestroy> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[1]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightDestroy() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightDestroy(LightDestroy other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightDestroy Clone() {
-      return new LightDestroy(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightDestroy);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightDestroy other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightDestroy other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
   public sealed partial class LightUpdateEnabled : pb::IMessage<LightUpdateEnabled>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -568,7 +368,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[2]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -803,7 +603,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[3]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1038,7 +838,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[4]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1273,7 +1073,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[5]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1508,7 +1308,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[6]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1743,7 +1543,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[7]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1978,7 +1778,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[8]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2296,7 +2096,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[9]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2569,7 +2369,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[10]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3251,7 +3051,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[11]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3486,7 +3286,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[12]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3805,7 +3605,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[13]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4102,7 +3902,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[14]; }
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

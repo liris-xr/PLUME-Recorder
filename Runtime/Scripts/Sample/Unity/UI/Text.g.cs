@@ -27,30 +27,27 @@ namespace PLUME.Sample.Unity.UI {
             "ChN1bml0eS91aS90ZXh0LnByb3RvEhJwbHVtZS5zYW1wbGUudW5pdHkaF3Vu",
             "aXR5L2lkZW50aWZpZXJzLnByb3RvGhJjb21tb24vY29sb3IucHJvdG8iQQoK",
             "VGV4dENyZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5D",
-            "b21wb25lbnRJZGVudGlmaWVyIkIKC1RleHREZXN0cm95EjMKAmlkGAEgASgL",
-            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIiVAoP",
-            "VGV4dFVwZGF0ZVZhbHVlEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVu",
-            "aXR5LkNvbXBvbmVudElkZW50aWZpZXISDAoEdGV4dBgCIAEoCSKzAQoOVGV4",
-            "dFVwZGF0ZUZvbnQSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
-            "Q29tcG9uZW50SWRlbnRpZmllchI5Cgdmb250X2lkGAIgASgLMiMucGx1bWUu",
-            "c2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckgAiAEBEhIKCmZvbnRfc3R5",
-            "bGUYAyABKAUSEQoJZm9udF9zaXplGAQgASgFQgoKCF9mb250X2lkInEKD1Rl",
-            "eHRVcGRhdGVDb2xvchIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0",
-            "eS5Db21wb25lbnRJZGVudGlmaWVyEikKBWNvbG9yGAIgASgLMhoucGx1bWUu",
-            "c2FtcGxlLmNvbW1vbi5Db2xvciK8AgoQVGV4dFVwZGF0ZUV4dHJhcxIzCgJp",
-            "ZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlm",
-            "aWVyEhQKDGxpbmVfc3BhY2luZxgCIAEoAhIZChFzdXBwb3J0X3JpY2hfdGV4",
-            "dBgDIAEoCBIRCglhbGlnbm1lbnQYBCABKAUSGQoRYWxpZ25fYnlfZ2VvbWV0",
-            "cnkYBSABKAgSGwoTaG9yaXpvbnRhbF9vdmVyZmxvdxgGIAEoBRIZChF2ZXJ0",
-            "aWNhbF9vdmVyZmxvdxgHIAEoBRIgChhyZXNpemVfdGV4dF9mb3JfYmVzdF9m",
-            "aXQYCCABKAgSHAoUcmVzaXplX3RleHRfbWluX3NpemUYCSABKAUSHAoUcmVz",
-            "aXplX3RleHRfbWF4X3NpemUYCiABKAVCGKoCFVBMVU1FLlNhbXBsZS5Vbml0",
-            "eS5VSWIGcHJvdG8z"));
+            "b21wb25lbnRJZGVudGlmaWVyIlQKD1RleHRVcGRhdGVWYWx1ZRIzCgJpZBgB",
+            "IAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVy",
+            "EgwKBHRleHQYAiABKAkiswEKDlRleHRVcGRhdGVGb250EjMKAmlkGAEgASgL",
+            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISOQoH",
+            "Zm9udF9pZBgCIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50",
+            "aWZpZXJIAIgBARISCgpmb250X3N0eWxlGAMgASgFEhEKCWZvbnRfc2l6ZRgE",
+            "IAEoBUIKCghfZm9udF9pZCJxCg9UZXh0VXBkYXRlQ29sb3ISMwoCaWQYASAB",
+            "KAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIp",
+            "CgVjb2xvchgCIAEoCzIaLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3IivAIK",
+            "EFRleHRVcGRhdGVFeHRyYXMSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUu",
+            "dW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIUCgxsaW5lX3NwYWNpbmcYAiAB",
+            "KAISGQoRc3VwcG9ydF9yaWNoX3RleHQYAyABKAgSEQoJYWxpZ25tZW50GAQg",
+            "ASgFEhkKEWFsaWduX2J5X2dlb21ldHJ5GAUgASgIEhsKE2hvcml6b250YWxf",
+            "b3ZlcmZsb3cYBiABKAUSGQoRdmVydGljYWxfb3ZlcmZsb3cYByABKAUSIAoY",
+            "cmVzaXplX3RleHRfZm9yX2Jlc3RfZml0GAggASgIEhwKFHJlc2l6ZV90ZXh0",
+            "X21pbl9zaXplGAkgASgFEhwKFHJlc2l6ZV90ZXh0X21heF9zaXplGAogASgF",
+            "QhiqAhVQTFVNRS5TYW1wbGUuVW5pdHkuVUliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextCreate), global::PLUME.Sample.Unity.UI.TextCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextDestroy), global::PLUME.Sample.Unity.UI.TextDestroy.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextUpdateValue), global::PLUME.Sample.Unity.UI.TextUpdateValue.Parser, new[]{ "Id", "Text" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextUpdateFont), global::PLUME.Sample.Unity.UI.TextUpdateFont.Parser, new[]{ "Id", "FontId", "FontStyle", "FontSize" }, new[]{ "FontId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextUpdateColor), global::PLUME.Sample.Unity.UI.TextUpdateColor.Parser, new[]{ "Id", "Color" }, null, null, null, null),
@@ -259,204 +256,6 @@ namespace PLUME.Sample.Unity.UI {
 
   }
 
-  public sealed partial class TextDestroy : pb::IMessage<TextDestroy>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<TextDestroy> _parser = new pb::MessageParser<TextDestroy>(() => new TextDestroy());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TextDestroy> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[1]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextDestroy() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextDestroy(TextDestroy other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextDestroy Clone() {
-      return new TextDestroy(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as TextDestroy);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TextDestroy other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TextDestroy other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
   public sealed partial class TextUpdateValue : pb::IMessage<TextUpdateValue>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -471,7 +270,7 @@ namespace PLUME.Sample.Unity.UI {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[2]; }
+      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -706,7 +505,7 @@ namespace PLUME.Sample.Unity.UI {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[3]; }
+      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1024,7 +823,7 @@ namespace PLUME.Sample.Unity.UI {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[4]; }
+      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1268,7 +1067,7 @@ namespace PLUME.Sample.Unity.UI {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[5]; }
+      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

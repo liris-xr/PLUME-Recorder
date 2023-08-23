@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.UI;
 using TMPro;
 using UnityEngine;
@@ -10,23 +11,23 @@ namespace PLUME.UI
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-        private readonly HashSet<TextMeshProUGUI> _recordedTMPTexts = new();
-        
+        private readonly Dictionary<int, TextMeshProUGUI> _recordedTMPTexts = new();
+
         public void OnStartRecordingObject(Object obj)
         {
-            if (obj is TextMeshProUGUI tmpText && !_recordedTMPTexts.Contains(tmpText))
+            if (obj is TextMeshProUGUI tmpText && !_recordedTMPTexts.ContainsKey(tmpText.GetInstanceID()))
             {
-                _recordedTMPTexts.Add(tmpText);
+                _recordedTMPTexts.Add(tmpText.GetInstanceID(), tmpText);
                 RecordCreation(tmpText);
             }
         }
 
-        public void OnStopRecordingObject(Object obj)
+        public void OnStopRecordingObject(int objectInstanceId)
         {
-            if (obj is TextMeshProUGUI tmpText && _recordedTMPTexts.Contains(tmpText))
+            if (_recordedTMPTexts.ContainsKey(objectInstanceId))
             {
-                _recordedTMPTexts.Remove(tmpText);
-                RecordDestruction(tmpText);
+                RecordDestruction(objectInstanceId);
+                RemoveFromCache(objectInstanceId);
             }
         }
 
@@ -76,10 +77,21 @@ namespace PLUME.UI
             recorder.RecordSample(tmpTextUpdateExtras);
         }
 
-        private void RecordDestruction(TextMeshProUGUI tmpText)
+        private void RemoveFromCache(int tmpTextInstanceId)
         {
-            var tmpTextDestroy = new TMPTextDestroy {Id = tmpText.ToIdentifierPayload()};
+            _recordedTMPTexts.Remove(tmpTextInstanceId);
+        }
+
+        private void RecordDestruction(int tmpTextInstanceId)
+        {
+            var tmpTextDestroy = new ComponentDestroy
+                {Id = new ComponentDestroyIdentifier {Id = tmpTextInstanceId.ToString()}};
             recorder.RecordSample(tmpTextDestroy);
+        }
+
+        protected override void ResetCache()
+        {
+            _recordedTMPTexts.Clear();
         }
     }
 }

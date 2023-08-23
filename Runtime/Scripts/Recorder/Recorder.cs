@@ -6,6 +6,7 @@ using System.Linq;
 using Google.Protobuf;
 using PLUME.Sample;
 using PLUME.Sample.Common;
+using PLUME.Sample.LSL;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
@@ -23,7 +24,7 @@ namespace PLUME
         
         private Stopwatch _recorderClock;
 
-        private readonly HashSet<Object> _recordedObjects = new();
+        private readonly HashSet<int> _recordedObjectsInstanceIds = new();
 
         private uint _nextProtobufSampleSeq;
 
@@ -71,7 +72,7 @@ namespace PLUME
                 return false;
             
             _nextProtobufSampleSeq = 0;
-            _recordedObjects.Clear();
+            _recordedObjectsInstanceIds.Clear();
 
             if (!Directory.Exists(recordDirectory))
                 Directory.CreateDirectory(recordDirectory);
@@ -94,10 +95,17 @@ namespace PLUME
             foreach (var startRecordingEventReceiver in _startRecordingEventReceivers)
                 startRecordingEventReceiver.OnStartRecording();
 
-            var allGameObjects = FindObjectsOfType<GameObject>(true);
+            var allComponents = FindObjectsByType<Component>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            var allGameObjects = FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            
             foreach (var go in allGameObjects)
             {
                 TryStartRecordingObject(go);
+            }
+            
+            foreach (var component in allComponents)
+            {
+                TryStartRecordingObject(component);
             }
 
             ObjectEvents.OnCreate += TryStartRecordingObject;
@@ -141,14 +149,21 @@ namespace PLUME
             ObjectEvents.OnCreate -= TryStartRecordingObject;
             ObjectEvents.OnDestroy -= TryStopRecordingObject;
 
-            var allGameObjects = FindObjectsOfType<GameObject>(true);
+            var allComponents = FindObjectsByType<Component>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            var allGameObjects = FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            
+            foreach (var component in allComponents)
+            {
+                TryStopRecordingObject(component.GetInstanceID());
+            }
+            
             foreach (var go in allGameObjects)
             {
-                TryStopRecordingObject(go);
+                TryStopRecordingObject(go.GetInstanceID());
             }
 
             _recorderClock.Stop();
-
+            
             _recordWriter.Close();
 
             IsRecording = false;
@@ -163,7 +178,7 @@ namespace PLUME
             if (!IsRecording)
                 return;
 
-            if (_recordedObjects.Contains(obj))
+            if (_recordedObjectsInstanceIds.Contains(obj.GetInstanceID()))
                 return;
 
             // Don't record DontDestroyOnLoad objects
@@ -179,39 +194,24 @@ namespace PLUME
             if (dontSave)
                 return;
 
-            _recordedObjects.Add(obj);
+            _recordedObjectsInstanceIds.Add(obj.GetInstanceID());
 
             foreach (var startRecordingObjectEventReceiver in _startRecordingObjectEventReceivers)
                 startRecordingObjectEventReceiver.OnStartRecordingObject(obj);
-
-            if (obj is GameObject go)
-            {
-                foreach (var component in go.GetComponents<Component>())
-                    TryStartRecordingObject(component);
-            }
         }
 
-        private void TryStopRecordingObject(Object obj)
+        private void TryStopRecordingObject(int objectInstanceId)
         {
-            if (obj == null)
-                return;
-            
             if (!IsRecording)
                 return;
 
-            if (!_recordedObjects.Contains(obj))
+            if (!_recordedObjectsInstanceIds.Contains(objectInstanceId))
                 return;
 
-            if (obj is GameObject go)
-            {
-                foreach (var component in go.GetComponents<Component>())
-                    TryStopRecordingObject(component);
-            }
-
-            _recordedObjects.Remove(obj);
+            _recordedObjectsInstanceIds.Remove(objectInstanceId);
 
             foreach (var stopRecordingObjectEventReceiver in _stopRecordingObjectEventReceivers)
-                stopRecordingObjectEventReceiver.OnStopRecordingObject(obj);
+                stopRecordingObjectEventReceiver.OnStopRecordingObject(objectInstanceId);
         }
 
         public bool TryRecordMaker(string label)
@@ -245,9 +245,8 @@ namespace PLUME
             if (!IsRecording)
                 throw new Exception($"Recording sample but {nameof(Recorder)} is not running.");
 
-            var hasTimestampOffset = timestampOffset != 0;
             var time = (long) GetTimeInNanoseconds() + timestampOffset;
-            
+
             if (time < 0)
                 time = 0;
             
@@ -255,7 +254,7 @@ namespace PLUME
             header.Seq = _nextProtobufSampleSeq++;
             header.Time = (ulong) time;
             var sample = UnpackedSample.InstantiateUnpackedSample(header, samplePayload);
-            _recordWriter.Write(sample, hasTimestampOffset);
+            _recordWriter.Write(sample);
         }
 
         public ulong GetTimeInNanoseconds()

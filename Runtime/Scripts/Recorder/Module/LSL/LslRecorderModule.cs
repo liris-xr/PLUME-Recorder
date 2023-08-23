@@ -17,18 +17,10 @@ namespace PLUME
         private ContinuousResolver _streamResolver;
         private bool _resolveStream;
 
-        // Correspondence between LSL and PLUME timestamps
-        private Tuple<double, ulong> _lslTimestampCorrespondence;
-
         // Stream ID should always start at 1 according to LSL code, otherwise it is considered unset if it equals 0.
         private uint _nextLslStreamId = 1;
 
         private readonly List<BufferedInlet> _recordedStreams = new();
-
-        public void Reset()
-        {
-            _nextLslStreamId = 1;
-        }
 
         public uint PickNextLslStreamId()
         {
@@ -39,10 +31,22 @@ namespace PLUME
         {
             _streamResolver = new ContinuousResolver(resolverPredicate, forgetAfter);
         }
-
-        public void OnStartRecording()
+        
+        protected override void ResetCache()
         {
-            _lslTimestampCorrespondence = new Tuple<double, ulong>(Lsl.local_clock(), recorder.GetTimeInNanoseconds());
+            _nextLslStreamId = 1;
+
+            foreach (var recordedStream in _recordedStreams)
+            {
+                recordedStream.Close();
+            }
+            
+            _recordedStreams.Clear();
+        }
+
+        public new void OnStartRecording()
+        {
+            base.OnStartRecording();
             StartCoroutine(ResolveStreams());
         }
 

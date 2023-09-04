@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using PLUME.Sample.Unity;
 using UnityEngine;
-using UnityEngine.Profiling;
+using Debug = UnityEngine.Debug;
 
 namespace PLUME
 {
@@ -10,14 +11,66 @@ namespace PLUME
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-        private readonly Dictionary<int, Transform> _recordedTransforms = new();
-        private readonly Dictionary<int, TransformGameObjectIdentifier> _cachedIdentifiers = new();
+        public struct CachedTransformGameObjectIdentifier
+        {
+            public string TransformId;
+            public string GameObjectId;
+
+            public TransformGameObjectIdentifier ToPayload()
+            {
+                return new TransformGameObjectIdentifier
+                {
+                    TransformId = TransformId,
+                    GameObjectId = GameObjectId
+                };
+            }
+        }
         
+        private readonly Dictionary<int, Transform> _recordedTransforms = new();
+        private readonly Dictionary<int, CachedTransformGameObjectIdentifier> _cachedIdentifiers = new();
+
         private readonly Dictionary<int, int> _lastSiblingIndex = new();
         private readonly Dictionary<int, int?> _lastParentTransformId = new();
         private readonly Dictionary<int, Vector3> _lastScale = new();
         private readonly Dictionary<int, Vector3> _lastPosition = new();
         private readonly Dictionary<int, Quaternion> _lastRotation = new();
+
+        private SamplePayloadPool<TransformUpdatePosition> _updatePositionPayloadPool;
+        private SamplePayloadPool<TransformUpdateRotation> _updateRotationPayloadPool;
+        private SamplePayloadPool<TransformUpdateScale> _updateScalePayloadPool;
+
+        private int nUpdates = 0;
+        private double time = 0;
+        
+        public void Start()
+        {
+            _updatePositionPayloadPool = recorder.GetSamplePoolManager().CreateSamplePayloadPool(() =>
+            {
+                var updatePositionSample = new TransformUpdatePosition();
+                updatePositionSample.LocalPosition = new Sample.Common.Vector3();
+                updatePositionSample.WorldPosition = new Sample.Common.Vector3();
+                updatePositionSample.Id = new TransformGameObjectIdentifier();
+                return updatePositionSample;
+            });
+
+            _updateRotationPayloadPool = recorder.GetSamplePoolManager().CreateSamplePayloadPool(() =>
+            {
+                var updateRotationSample = new TransformUpdateRotation();
+                updateRotationSample.LocalRotation = new Sample.Common.Quaternion();
+                updateRotationSample.WorldRotation = new Sample.Common.Quaternion();
+                updateRotationSample.Id = new TransformGameObjectIdentifier();
+                return updateRotationSample;
+            });
+
+            _updateScalePayloadPool = recorder.GetSamplePoolManager().CreateSamplePayloadPool(() =>
+            {
+                var updateScaleSample = new TransformUpdateScale();
+                updateScaleSample.LocalScale = new Sample.Common.Vector3();
+                updateScaleSample.WorldScale = new Sample.Common.Vector3();
+                updateScaleSample.Id = new TransformGameObjectIdentifier();
+                return updateScaleSample;
+            });
+        }
 
         protected override void ResetCache()
         {
@@ -29,13 +82,23 @@ namespace PLUME
             _lastPosition.Clear();
             _lastRotation.Clear();
         }
-        
+
         public void FixedUpdate()
         {
             if (_recordedTransforms.Count == 0)
                 return;
 
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
             RecordUpdate();
+            stopwatch.Stop();
+            time += stopwatch.Elapsed.TotalMilliseconds;
+            nUpdates++;
+
+            if (nUpdates % 1000 == 0)
+            {
+                Debug.Log("Avg time: " + time / nUpdates + "ms");
+            }
         }
 
         public void OnStartRecordingObject(Object obj)
@@ -46,7 +109,11 @@ namespace PLUME
                 {
                     var transformId = t.GetInstanceID();
                     _recordedTransforms.Add(transformId, t);
-                    _cachedIdentifiers.Add(transformId, t.ToIdentifierPayload());
+                    _cachedIdentifiers.Add(transformId, new CachedTransformGameObjectIdentifier
+                    {
+                        TransformId = t.GetInstanceID().ToString(),
+                        GameObjectId = t.gameObject.GetInstanceID().ToString()
+                    });
                     _lastSiblingIndex.Add(transformId, t.GetSiblingIndex());
                     _lastParentTransformId.Add(transformId, t.parent == null ? null : t.parent.GetInstanceID());
                     _lastScale.Add(transformId, t.transform.lossyScale);
@@ -85,7 +152,7 @@ namespace PLUME
         private void RecordCreation(Transform t)
         {
             var transformId = t.GetInstanceID();
-            var transformCreate = new TransformCreate {Id = _cachedIdentifiers[transformId]};
+            var transformCreate = new TransformCreate {Id = _cachedIdentifiers[transformId].ToPayload()};
             var transformUpdateParent = CreateTransformUpdateParent(t);
             var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(t);
 
@@ -96,7 +163,7 @@ namespace PLUME
 
             var transformUpdatePosition = new TransformUpdatePosition
             {
-                Id = _cachedIdentifiers[transformId],
+                Id = _cachedIdentifiers[transformId].ToPayload(),
                 LocalPosition = new Sample.Common.Vector3
                     {X = localPosition.x, Y = localPosition.y, Z = localPosition.z},
                 WorldPosition = new Sample.Common.Vector3 {X = position.x, Y = position.y, Z = position.z},
@@ -104,7 +171,7 @@ namespace PLUME
 
             var transformUpdateRotation = new TransformUpdateRotation
             {
-                Id = _cachedIdentifiers[transformId],
+                Id = _cachedIdentifiers[transformId].ToPayload(),
                 LocalRotation = new Sample.Common.Quaternion
                     {X = localRotation.x, Y = localRotation.y, Z = localRotation.z, W = localRotation.w},
                 WorldRotation = new Sample.Common.Quaternion
@@ -113,7 +180,7 @@ namespace PLUME
 
             var transformUpdateScale = new TransformUpdateScale
             {
-                Id = _cachedIdentifiers[transformId],
+                Id = _cachedIdentifiers[transformId].ToPayload(),
                 LocalScale = new Sample.Common.Vector3 {X = localScale.x, Y = localScale.y, Z = localScale.z},
                 WorldScale = new Sample.Common.Vector3 {X = lossyScale.x, Y = lossyScale.y, Z = lossyScale.z}
             };
@@ -128,15 +195,12 @@ namespace PLUME
 
         private void RecordDestruction(int transformId)
         {
-            var transformDestroy = new TransformDestroy {Id = _cachedIdentifiers[transformId]};
+            var transformDestroy = new TransformDestroy {Id = _cachedIdentifiers[transformId].ToPayload()};
             recorder.RecordSample(transformDestroy);
         }
 
-        // TODO add object pool for transform messages
         private void RecordUpdate()
         {
-            Profiler.BeginSample("Recording transform");
-
             // Keep track of any transforms destroyed (ref == null) that were not picked up by the system.
             // This can happen if the object is not destroyed by calling Destroy or DestroyImmediate (in Editor or internal C++ engine)
             var nullTransformInstanceIds = new List<int>();
@@ -158,81 +222,173 @@ namespace PLUME
                     var lastPosition = _lastPosition[transformId];
                     var lastRotation = _lastRotation[transformId];
 
-                    var parentHasChanged = parent == null && lastParentTransformId.HasValue ||
-                                           parent != null && !lastParentTransformId.HasValue ||
-                                           parent != null && lastParentTransformId.HasValue &&
-                                           lastParentTransformId.Value != parent.GetHashCode();
+                    var parentHasChanged = (parent == null && lastParentTransformId.HasValue) ||
+                                           (parent != null && !lastParentTransformId.HasValue) ||
+                                           (parent != null && lastParentTransformId.HasValue &&
+                                            lastParentTransformId.Value != parent.GetInstanceID());
 
                     if (parentHasChanged)
                     {
-                        _lastParentTransformId[transformId] = parent == null ? null : t.parent.GetInstanceID();
                         var transformUpdateParent = CreateTransformUpdateParent(t);
-                        _lastParentTransformId[transformId] = t.parent == null ? null : t.parent.GetInstanceID();
                         recorder.RecordSample(transformUpdateParent);
+                        _lastParentTransformId[transformId] = t.parent == null ? null : t.parent.GetInstanceID();
                     }
-
-                    t.GetLocalPositionAndRotation(out var localPosition, out var localRotation);
-                    var localScale = t.localScale;
+                    
                     t.GetPositionAndRotation(out var position, out var rotation);
                     var scale = t.lossyScale;
 
                     if (lastPosition != position && lastRotation != rotation)
                     {
-                        var transformUpdatePosition = new TransformUpdatePosition
-                        {
-                            Id = _cachedIdentifiers[transformId],
-                            LocalPosition = localPosition.ToPayload(),
-                            WorldPosition = position.ToPayload()
-                        };
+                        t.GetLocalPositionAndRotation(out var localPosition, out var localRotation);
                         
-                        var transformUpdateRotation = new TransformUpdateRotation
-                        {
-                            Id = _cachedIdentifiers[transformId],
-                            LocalRotation = localRotation.ToPayload(),
-                            WorldRotation = rotation.ToPayload()
-                        };
+                        var cachedIdentifier = _cachedIdentifiers[transformId];
 
-                        recorder.RecordSample(transformUpdatePosition);
-                        recorder.RecordSample(transformUpdateRotation);
+                        TransformUpdatePosition positionSample;
+                        TransformUpdateRotation rotationSample;
+                        
+                        if (recorder.enableSamplePooling)
+                        {
+                            positionSample = _updatePositionPayloadPool.Get();
+                            rotationSample = _updateRotationPayloadPool.Get();
+                        }
+                        else
+                        {
+                            positionSample = new TransformUpdatePosition();
+                            positionSample.LocalPosition = new Sample.Common.Vector3();
+                            positionSample.WorldPosition = new Sample.Common.Vector3();
+                            positionSample.Id = new TransformGameObjectIdentifier();
+                            
+                            rotationSample = new TransformUpdateRotation();
+                            rotationSample.LocalRotation = new Sample.Common.Quaternion();
+                            rotationSample.WorldRotation = new Sample.Common.Quaternion();
+                            rotationSample.Id = new TransformGameObjectIdentifier();
+                        }
+
+                        positionSample.Id.TransformId = cachedIdentifier.TransformId;
+                        positionSample.Id.GameObjectId = cachedIdentifier.GameObjectId;
+                        positionSample.LocalPosition.X = localPosition.x;
+                        positionSample.LocalPosition.Y = localPosition.y;
+                        positionSample.LocalPosition.Z = localPosition.z;
+                        positionSample.WorldPosition.X = position.x;
+                        positionSample.WorldPosition.Y = position.y;
+                        positionSample.WorldPosition.Z = position.z;
+                        
+                        recorder.RecordSample(positionSample);
+
+                        rotationSample.Id.TransformId = cachedIdentifier.TransformId;
+                        rotationSample.Id.GameObjectId = cachedIdentifier.GameObjectId;
+                        rotationSample.LocalRotation.X = localRotation.x;
+                        rotationSample.LocalRotation.Y = localRotation.y;
+                        rotationSample.LocalRotation.Z = localRotation.z;
+                        rotationSample.LocalRotation.W = localRotation.w;
+                        rotationSample.WorldRotation.X = rotation.x;
+                        rotationSample.WorldRotation.Y = rotation.y;
+                        rotationSample.WorldRotation.Z = rotation.z;
+                        rotationSample.WorldRotation.W = rotation.w;
+
+                        recorder.RecordSample(rotationSample);
+
                         _lastPosition[transformId] = position;
                         _lastRotation[transformId] = rotation;
                     }
                     else if (lastPosition != position)
                     {
-                        var transformUpdatePosition = new TransformUpdatePosition
-                        {
-                            Id = _cachedIdentifiers[transformId],
-                            LocalPosition = localPosition.ToPayload(),
-                            WorldPosition = position.ToPayload()
-                        };
+                        var localPosition = t.localPosition;
+                        
+                        var cachedIdentifier = _cachedIdentifiers[transformId];
 
-                        recorder.RecordSample(transformUpdatePosition);
+                        TransformUpdatePosition positionSample;
+                        
+                        if (recorder.enableSamplePooling)
+                        {
+                            positionSample = _updatePositionPayloadPool.Get();
+                        }
+                        else
+                        {
+                            positionSample = new TransformUpdatePosition();
+                            positionSample.LocalPosition = new Sample.Common.Vector3();
+                            positionSample.WorldPosition = new Sample.Common.Vector3();
+                            positionSample.Id = new TransformGameObjectIdentifier();
+                        }
+                        
+                        positionSample.Id.TransformId = cachedIdentifier.TransformId;
+                        positionSample.Id.GameObjectId = cachedIdentifier.GameObjectId;
+                        positionSample.LocalPosition.X = localPosition.x;
+                        positionSample.LocalPosition.Y = localPosition.y;
+                        positionSample.LocalPosition.Z = localPosition.z;
+                        positionSample.WorldPosition.X = position.x;
+                        positionSample.WorldPosition.Y = position.y;
+                        positionSample.WorldPosition.Z = position.z;
+
+                        recorder.RecordSample(positionSample);
+                        
                         _lastPosition[transformId] = position;
                     }
                     else if (lastRotation != rotation)
                     {
-                        var transformUpdateRotation = new TransformUpdateRotation
-                        {
-                            Id = _cachedIdentifiers[transformId],
-                            LocalRotation = localRotation.ToPayload(),
-                            WorldRotation = rotation.ToPayload()
-                        };
+                        var localRotation = t.localRotation;   
+                        var cachedIdentifier = _cachedIdentifiers[transformId];
 
-                        recorder.RecordSample(transformUpdateRotation);
+                        TransformUpdateRotation rotationSample;
+                        
+                        if (recorder.enableSamplePooling)
+                        {
+                            rotationSample = _updateRotationPayloadPool.Get();
+                        }
+                        else
+                        {
+                            rotationSample = new TransformUpdateRotation();
+                            rotationSample.LocalRotation = new Sample.Common.Quaternion();
+                            rotationSample.WorldRotation = new Sample.Common.Quaternion();
+                            rotationSample.Id = new TransformGameObjectIdentifier();
+                        }
+
+                        rotationSample.Id.TransformId = cachedIdentifier.TransformId;
+                        rotationSample.Id.GameObjectId = cachedIdentifier.GameObjectId;
+                        rotationSample.LocalRotation.X = localRotation.x;
+                        rotationSample.LocalRotation.Y = localRotation.y;
+                        rotationSample.LocalRotation.Z = localRotation.z;
+                        rotationSample.LocalRotation.W = localRotation.w;
+                        rotationSample.WorldRotation.X = rotation.x;
+                        rotationSample.WorldRotation.Y = rotation.y;
+                        rotationSample.WorldRotation.Z = rotation.z;
+                        rotationSample.WorldRotation.W = rotation.w;
+
+                        recorder.RecordSample(rotationSample);
+
                         _lastRotation[transformId] = rotation;
                     }
 
                     if (lastScale != scale)
                     {
-                        var transformUpdateScale = new TransformUpdateScale
+                        var localScale = t.localScale;
+                        var cachedIdentifier = _cachedIdentifiers[transformId];
+                        
+                        TransformUpdateScale scaleSample;
+                        
+                        if (recorder.enableSamplePooling)
                         {
-                            Id = _cachedIdentifiers[transformId],
-                            LocalScale = new Sample.Common.Vector3
-                                {X = localScale.x, Y = localScale.y, Z = localScale.z},
-                            WorldScale = new Sample.Common.Vector3
-                                {X = scale.x, Y = scale.y, Z = scale.z}
-                        };
-                        recorder.RecordSample(transformUpdateScale);
+                            scaleSample = _updateScalePayloadPool.Get();
+                        }
+                        else
+                        {
+                            scaleSample = new TransformUpdateScale();
+                            scaleSample.LocalScale = new Sample.Common.Vector3();
+                            scaleSample.WorldScale = new Sample.Common.Vector3();
+                            scaleSample.Id = new TransformGameObjectIdentifier();
+                        }
+                        
+                        scaleSample.Id.TransformId = cachedIdentifier.TransformId;
+                        scaleSample.Id.GameObjectId = cachedIdentifier.GameObjectId;
+                        scaleSample.LocalScale.X = localScale.x;
+                        scaleSample.LocalScale.Y = localScale.y;
+                        scaleSample.LocalScale.Z = localScale.z;
+                        scaleSample.WorldScale.X = scale.x;
+                        scaleSample.WorldScale.Y = scale.y;
+                        scaleSample.WorldScale.Z = scale.z;
+
+                        recorder.RecordSample(scaleSample);
+                        
                         _lastScale[transformId] = scale;
                     }
 
@@ -243,9 +399,9 @@ namespace PLUME
 
                 if (hasSiblingIndexChanged)
                 {
-                    _lastSiblingIndex[transformId] = t.GetSiblingIndex();
                     var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(t);
                     recorder.RecordSample(transformUpdateSiblingIndex);
+                    _lastSiblingIndex[transformId] = t.GetSiblingIndex();
                 }
             }
 
@@ -254,15 +410,19 @@ namespace PLUME
                 RecordDestruction(nullTransformInstanceId);
                 RemoveFromCache(nullTransformInstanceId);
             }
-
-            Profiler.EndSample();
         }
 
         private TransformUpdateSiblingIndex CreateTransformUpdateSiblingIndex(Transform t)
         {
+            var transformId = t.GetInstanceID();
+
             var transformUpdateSiblingIndex = new TransformUpdateSiblingIndex
             {
-                Id = _cachedIdentifiers[t.GetInstanceID()],
+                Id = new TransformGameObjectIdentifier
+                {
+                    TransformId = _cachedIdentifiers[transformId].TransformId,
+                    GameObjectId = _cachedIdentifiers[transformId].GameObjectId
+                },
                 SiblingIndex = t.GetSiblingIndex()
             };
 
@@ -278,15 +438,17 @@ namespace PLUME
             if (parent != null)
             {
                 var parentId = parent.GetInstanceID();
-                
-                parentIdentifier = _cachedIdentifiers.ContainsKey(parentId)
-                    ? _cachedIdentifiers[parentId]
+
+                parentIdentifier = _cachedIdentifiers.TryGetValue(parentId, out var cachedIdentifier)
+                    ? cachedIdentifier.ToPayload()
                     : parent.ToIdentifierPayload();
             }
 
+            var transformId = t.GetInstanceID();
+
             var transformUpdateParent = new TransformUpdateParent
             {
-                Id = _cachedIdentifiers[t.GetInstanceID()],
+                Id = _cachedIdentifiers[transformId].ToPayload(),
                 ParentId = parentIdentifier
             };
 

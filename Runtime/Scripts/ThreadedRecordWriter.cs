@@ -19,16 +19,20 @@ namespace PLUME
 
         private bool _closed;
 
-        public ThreadedRecordWriter(string filepath, string recordIdentifier, bool leaveOpen = false)
+        private readonly SamplePoolManager _samplePoolManager;
+
+        public ThreadedRecordWriter(SamplePoolManager samplePoolManager, string filepath, string recordIdentifier, bool leaveOpen = false)
         {
+            _samplePoolManager = samplePoolManager;
             _writer = new RecordWriter(filepath, recordIdentifier, leaveOpen);
             _unpackedSamples = new ConcurrentQueue<UnpackedSample>();
             _thread = new Thread(PackSamples);
             _thread.Start();
         }
 
-        public ThreadedRecordWriter(Stream outputStream, string recordIdentifier, bool leaveOpen = false)
+        public ThreadedRecordWriter(SamplePoolManager samplePoolManager, Stream outputStream, string recordIdentifier, bool leaveOpen = false)
         {
+            _samplePoolManager = samplePoolManager;
             _writer = new RecordWriter(outputStream, recordIdentifier, leaveOpen);
             _unpackedSamples = new ConcurrentQueue<UnpackedSample>();
             _thread = new Thread(PackSamples);
@@ -56,6 +60,9 @@ namespace PLUME
                         var packedPayload = Any.Pack(unpackedSample.Payload);
                         var packedSample = new PackedSample {Header = unpackedSample.Header, Payload = packedPayload};
                         _writer.WriteSample(packedSample);
+                        
+                        _samplePoolManager.ReleaseSamplePayload(unpackedSample.Payload);
+                        _samplePoolManager.ReleaseUnpackedSample(unpackedSample);
                     }
                 }
                 catch (ThreadInterruptedException)
@@ -72,11 +79,9 @@ namespace PLUME
 
             Debug.Log($"Waiting for the {_unpackedSamples.Count} samples left to be packed and saved.");
 
-            Profiler.BeginSample("Wait for threaded record writer");
             // Stop thread and wait for the queue to be empty
             _stopThread = true;
             _thread.Join();
-            Profiler.EndSample();
 
             _writer.Close();
             _closed = true;

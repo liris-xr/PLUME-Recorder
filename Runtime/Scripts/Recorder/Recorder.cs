@@ -6,7 +6,6 @@ using System.Linq;
 using Google.Protobuf;
 using PLUME.Sample;
 using PLUME.Sample.Common;
-using PLUME.Sample.LSL;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
@@ -22,6 +21,8 @@ namespace PLUME
 
         public bool autoStart = true;
         
+        public bool enableSamplePooling = true;
+        
         private Stopwatch _recorderClock;
 
         private readonly HashSet<int> _recordedObjectsInstanceIds = new();
@@ -35,6 +36,8 @@ namespace PLUME
         private IStartRecordingObjectEventReceiver[] _startRecordingObjectEventReceivers;
         private IStopRecordingObjectEventReceiver[] _stopRecordingObjectEventReceivers;
 
+        private readonly SamplePoolManager _samplePoolManager = new();
+        
         public bool IsRecording { get; private set; }
 
         public new void Awake()
@@ -80,7 +83,7 @@ namespace PLUME
             var recordFilepath =
                 Path.Join(recordDirectory, FormatFilename(recordPrefix, "gz"));
 
-            _recordWriter = new ThreadedRecordWriter(recordFilepath, recordIdentifier);
+            _recordWriter = new ThreadedRecordWriter(_samplePoolManager, recordFilepath, recordIdentifier);
 
             if (!Stopwatch.IsHighResolution)
             {
@@ -249,12 +252,23 @@ namespace PLUME
 
             if (time < 0)
                 time = 0;
+
+            UnpackedSample unpackedSample;
             
-            var header = new SampleHeader();
-            header.Seq = _nextProtobufSampleSeq++;
-            header.Time = (ulong) time;
-            var sample = UnpackedSample.InstantiateUnpackedSample(header, samplePayload);
-            _recordWriter.Write(sample);
+            if (enableSamplePooling)
+            {
+                unpackedSample = _samplePoolManager.GetUnpackedSample();
+            }
+            else
+            {
+                unpackedSample = new UnpackedSample();
+                unpackedSample.Header = new SampleHeader();
+            }
+            
+            unpackedSample.Header.Seq = _nextProtobufSampleSeq++;
+            unpackedSample.Header.Time = (ulong) time;
+            unpackedSample.Payload = samplePayload;
+            _recordWriter.Write(unpackedSample);
         }
 
         public ulong GetTimeInNanoseconds()
@@ -265,6 +279,11 @@ namespace PLUME
             }
 
             return (ulong) _recorderClock.ElapsedTicks * (ulong) (1_000_000_000 / Stopwatch.Frequency);
+        }
+
+        public SamplePoolManager GetSamplePoolManager()
+        {
+            return _samplePoolManager;
         }
 
         public void Dispose()

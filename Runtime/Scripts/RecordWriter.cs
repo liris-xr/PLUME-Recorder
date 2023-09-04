@@ -36,24 +36,14 @@ namespace PLUME
             _filepath = filepath;
             _createdAt = DateTime.UtcNow;
             _recordIdentifier = recordIdentifier;
-            _tmpFilepath = Path.Combine(Directory.GetCurrentDirectory(), GenerateTmpFileName());
+            _tmpFilepath = Path.Combine(Application.persistentDataPath, GenerateTmpFileName(recordIdentifier));
             _tmpStream = new FileStream(_tmpFilepath, FileMode.CreateNew, FileAccess.ReadWrite);
             _leaveOpen = leaveOpen;
         }
 
-        public RecordWriter(Stream outputStream, string recordIdentifier, bool leaveOpen = false)
+        private static string GenerateTmpFileName(string recordIdentifier)
         {
-            _createdAt = DateTime.UtcNow;
-            _recordIdentifier = recordIdentifier;
-            _tmpFilepath = Path.Combine(Directory.GetCurrentDirectory(), GenerateTmpFileName());
-            _tmpStream = new FileStream(_tmpFilepath, FileMode.CreateNew, FileAccess.ReadWrite);
-            _customOutputStream = outputStream;
-            _leaveOpen = leaveOpen;
-        }
-
-        private static string GenerateTmpFileName()
-        {
-            return $"plume_tmp_{Guid.NewGuid().ToString()}.tmp";
+            return $"plume_tmp_{recordIdentifier}.tmp";
         }
 
         public void WriteSample(PackedSample sample)

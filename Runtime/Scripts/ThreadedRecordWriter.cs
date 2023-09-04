@@ -30,15 +30,6 @@ namespace PLUME
             _thread.Start();
         }
 
-        public ThreadedRecordWriter(SamplePoolManager samplePoolManager, Stream outputStream, string recordIdentifier, bool leaveOpen = false)
-        {
-            _samplePoolManager = samplePoolManager;
-            _writer = new RecordWriter(outputStream, recordIdentifier, leaveOpen);
-            _unpackedSamples = new ConcurrentQueue<UnpackedSample>();
-            _thread = new Thread(PackSamples);
-            _thread.Start();
-        }
-
         public void Write(UnpackedSample unpackedSample)
         {
             if (_stopThread)

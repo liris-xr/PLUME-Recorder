@@ -65,14 +65,28 @@ namespace PLUME
                 RendererEvents.OnSetSharedMaterial.Invoke(__instance, value);
         }
     }
+    
+    public static class PatchInstantiateCommon {
+        public static void OnInstantiateObject(Object obj)
+        {
+            if (ObjectEvents.OnCreate == null) return;
+            ObjectEvents.OnCreate.Invoke(obj);
+            if (obj is not GameObject go) return;
+            foreach (var childObj in go.GetComponentsInChildren<Component>())
+            {
+                if (childObj is Transform t)
+                    ObjectEvents.OnCreate.Invoke(t.gameObject);
+                ObjectEvents.OnCreate.Invoke(childObj);
+            }
+        }
+    }
 
     [HarmonyPatch(typeof(Object), nameof(Object.Instantiate), typeof(Object), typeof(Vector3), typeof(Quaternion))]
     public class PatchGameObjectInstantiate01
     {
         public static void Postfix(Object __result)
         {
-            if (ObjectEvents.OnCreate != null)
-                ObjectEvents.OnCreate.Invoke(__result);
+            PatchInstantiateCommon.OnInstantiateObject(__result);
         }
     }
 
@@ -85,8 +99,7 @@ namespace PLUME
             // If parent is null, Object.Instantiate(original, position, rotation) is called instead. We don't want the event to be fired twice.
             if (parent != null)
             {
-                if (ObjectEvents.OnCreate != null)
-                    ObjectEvents.OnCreate.Invoke(__result);
+                PatchInstantiateCommon.OnInstantiateObject(__result);
             }
         }
     }
@@ -96,8 +109,7 @@ namespace PLUME
     {
         public static void Postfix(Object __result)
         {
-            if (ObjectEvents.OnCreate != null)
-                ObjectEvents.OnCreate?.Invoke(__result);
+            PatchInstantiateCommon.OnInstantiateObject(__result);
         }
     }
 
@@ -109,8 +121,7 @@ namespace PLUME
             // If parent is null, Object.Instantiate(original) is called instead. We don't want the event to be fired twice.
             if (parent != null)
             {
-                if (ObjectEvents.OnCreate != null)
-                    ObjectEvents.OnCreate.Invoke(__result);
+                PatchInstantiateCommon.OnInstantiateObject(__result);
             }
         }
     }
@@ -130,8 +141,7 @@ namespace PLUME
 
         public static void Postfix(Object __result)
         {
-            if (ObjectEvents.OnCreate != null)
-                ObjectEvents.OnCreate.Invoke(__result);
+            PatchInstantiateCommon.OnInstantiateObject(__result);
         }
     }
 

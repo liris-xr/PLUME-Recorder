@@ -20,8 +20,9 @@ namespace PLUME
         public string recordIdentifier = Guid.NewGuid().ToString();
 
         public bool autoStart = true;
-        
         public bool enableSamplePooling = true;
+
+        public int recordWriterBufferSize = 4096; // in bytes
         
         private Stopwatch _recorderClock;
 
@@ -83,7 +84,7 @@ namespace PLUME
             var recordFilepath =
                 Path.Join(recordDirectory, FormatFilename(recordPrefix, "gz"));
 
-            _recordWriter = new ThreadedRecordWriter(_samplePoolManager, recordFilepath, recordIdentifier);
+            _recordWriter = new ThreadedRecordWriter(_samplePoolManager, recordFilepath, recordIdentifier, recordWriterBufferSize);
 
             if (!Stopwatch.IsHighResolution)
             {

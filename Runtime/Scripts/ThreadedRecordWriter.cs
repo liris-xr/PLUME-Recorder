@@ -21,10 +21,10 @@ namespace PLUME
 
         private readonly SamplePoolManager _samplePoolManager;
 
-        public ThreadedRecordWriter(SamplePoolManager samplePoolManager, string filepath, string recordIdentifier, bool leaveOpen = false)
+        public ThreadedRecordWriter(SamplePoolManager samplePoolManager, string filepath, string recordIdentifier, int bufferSize = 4096, bool leaveOpen = false)
         {
             _samplePoolManager = samplePoolManager;
-            _writer = new RecordWriter(filepath, recordIdentifier, leaveOpen);
+            _writer = new RecordWriter(filepath, recordIdentifier, bufferSize, leaveOpen);
             _unpackedSamples = new ConcurrentQueue<UnpackedSample>();
             _thread = new Thread(PackSamples);
             _thread.Start();

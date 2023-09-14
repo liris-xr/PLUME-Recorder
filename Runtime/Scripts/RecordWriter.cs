@@ -31,13 +31,13 @@ namespace PLUME
 
         private bool _closed;
 
-        public RecordWriter(string filepath, string recordIdentifier, bool leaveOpen = false)
+        public RecordWriter(string filepath, string recordIdentifier, int bufferSize = 4096, bool leaveOpen = false)
         {
             _filepath = filepath;
             _createdAt = DateTime.UtcNow;
             _recordIdentifier = recordIdentifier;
             _tmpFilepath = Path.Combine(Application.persistentDataPath, GenerateTmpFileName(recordIdentifier));
-            _tmpStream = new FileStream(_tmpFilepath, FileMode.CreateNew, FileAccess.ReadWrite);
+            _tmpStream = new FileStream(_tmpFilepath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Read, bufferSize);
             _leaveOpen = leaveOpen;
         }
 

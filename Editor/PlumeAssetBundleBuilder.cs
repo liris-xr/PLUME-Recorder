@@ -17,7 +17,7 @@ namespace PLUME.Editor
             var scenes = GetScenesIncludedInBuild();
             var scenePaths = scenes.Select(scene => scene.path).ToArray();
             var scenesAssetsDependencies = GetFilteredScenesDependencies(scenePaths);
-
+            
             var assetBundleBuild = new AssetBundleBuild
             {
                 assetBundleName = "plume_asset_bundle_windows",

@@ -170,7 +170,7 @@ namespace PLUME
             var lightUpdateFlare = new LightUpdateFlare
             {
                 Id = lightIdentifier,
-                FlareId = light.flare == null ? null : light.flare.ToAssetIdentifierPayload(),
+                FlareId = light.flare == null ? null : light.flare.ToAssetIdentifierPayload()
             };
 
             var lightUpdateEnabled = new LightUpdateEnabled

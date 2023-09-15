@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Google.Protobuf;
+using PLUME.Guid;
 using PLUME.Sample;
 using PLUME.Sample.Common;
 using UnityEngine;
@@ -15,9 +16,11 @@ namespace PLUME
     [DisallowMultipleComponent]
     public class Recorder : SingletonMonoBehaviour<Recorder>, IDisposable
     {
+        public AssetsGuidRegistry assetsGuidRegistry;
+        
         public string recordDirectory;
         public string recordPrefix = "record";
-        public string recordIdentifier = Guid.NewGuid().ToString();
+        public string recordIdentifier = System.Guid.NewGuid().ToString();
 
         public bool autoStart = true;
         public bool enableSamplePooling = true;
@@ -38,7 +41,7 @@ namespace PLUME
         private IStopRecordingObjectEventReceiver[] _stopRecordingObjectEventReceivers;
 
         private readonly SamplePoolManager _samplePoolManager = new();
-        
+
         public bool IsRecording { get; private set; }
 
         public new void Awake()

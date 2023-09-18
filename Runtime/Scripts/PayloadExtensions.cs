@@ -23,14 +23,13 @@ namespace PLUME
     {
         public static AssetIdentifier ToAssetIdentifierPayload(this Object obj)
         {
-            var guidRegistry = Recorder.Instance.assetsGuidRegistry;
+            var guidRegistry = AssetsGuidRegistry.Get();
             var guidRegistryEntry = guidRegistry.GetOrCreate(obj);
             
             return new AssetIdentifier
             {
                 Id = guidRegistryEntry.guid,
-                Path = guidRegistryEntry.assetBundlePath,
-                Hash = obj.GetRecorderHash()
+                Path = guidRegistryEntry.assetBundlePath
             };
         }
 

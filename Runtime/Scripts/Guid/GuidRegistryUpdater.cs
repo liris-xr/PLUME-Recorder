@@ -1,21 +1,24 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
-using PLUME.Guid;
+
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEditor.SceneManagement;
+#endif
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using Object = UnityEngine.Object;
 
 namespace PLUME.Guid
 {
     [InitializeOnLoad]
-    public static class PlayModeStateChangedInjector
+    public static class GuidRegistryEditorUpdater
     {
-        static PlayModeStateChangedInjector()
+        static GuidRegistryEditorUpdater()
         {
             EditorApplication.playModeStateChanged += state =>
             {
@@ -44,7 +47,8 @@ namespace PLUME.Guid
         {
             var activeScenePath = SceneManager.GetActiveScene().path;
 
-            var assetsGuidRegistry = AssetDatabase.LoadAssetAtPath<AssetsGuidRegistry>(AssetsGuidRegistry.AssetPath);
+            var assetsGuidRegistry = AssetsGuidRegistry.Get();
+            
             var prevAssetsGuid = assetsGuidRegistry.Copy();
 
             assetsGuidRegistry.Clear();
@@ -56,8 +60,8 @@ namespace PLUME.Guid
                 var scene = EditorSceneManager.OpenScene(scenePath);
                 var objects = new List<Object>();
 
-                // EditorSceneManager.OpenScene might unload the AssetGuidRegistry. We ensure that we keep it loaded.
-                assetsGuidRegistry = AssetDatabase.LoadAssetAtPath<AssetsGuidRegistry>(AssetsGuidRegistry.AssetPath);
+                // // EditorSceneManager.OpenScene might unload the AssetGuidRegistry. We ensure that we keep it loaded.
+                // assetsGuidRegistry = AssetDatabase.LoadAssetAtPath<AssetsGuidRegistry>(AssetsGuidRegistry.AssetPath);
 
                 var sceneObjectsGuidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(scene);
                 var prevSceneObjectsGuid = sceneObjectsGuidRegistry.Copy();

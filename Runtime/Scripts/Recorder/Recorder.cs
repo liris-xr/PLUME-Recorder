@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Google.Protobuf;
-using PLUME.Guid;
 using PLUME.Sample;
 using PLUME.Sample.Common;
 using UnityEngine;
@@ -16,8 +15,6 @@ namespace PLUME
     [DisallowMultipleComponent]
     public class Recorder : SingletonMonoBehaviour<Recorder>, IDisposable
     {
-        public AssetsGuidRegistry assetsGuidRegistry;
-        
         public string recordDirectory;
         public string recordPrefix = "record";
         public string recordIdentifier = System.Guid.NewGuid().ToString();
@@ -26,6 +23,8 @@ namespace PLUME
         public bool enableSamplePooling = true;
 
         public int recordWriterBufferSize = 4096; // in bytes
+
+        public bool useCompression = true;
         
         private Stopwatch _recorderClock;
 
@@ -85,9 +84,9 @@ namespace PLUME
                 Directory.CreateDirectory(recordDirectory);
 
             var recordFilepath =
-                Path.Join(recordDirectory, FormatFilename(recordPrefix, "gz"));
+                Path.Join(recordDirectory, GetRecordFilePath(recordPrefix, useCompression ? "gz" : "dat"));
 
-            _recordWriter = new ThreadedRecordWriter(_samplePoolManager, recordFilepath, recordIdentifier, recordWriterBufferSize);
+            _recordWriter = new ThreadedRecordWriter(_samplePoolManager, recordFilepath, useCompression, recordIdentifier, recordWriterBufferSize);
 
             if (!Stopwatch.IsHighResolution)
             {
@@ -123,7 +122,7 @@ namespace PLUME
             return true;
         }
 
-        private string FormatFilename(string prefix, string extension)
+        private string GetRecordFilePath(string prefix, string extension)
         {
             var formattedDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH-mm-sszz");
             var filenameBase = $"{prefix}_{formattedDateTime}";

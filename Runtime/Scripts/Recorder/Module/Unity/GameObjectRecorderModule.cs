@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PLUME.Guid;
 using PLUME.Sample.Unity;
 using UnityEngine;
 
@@ -6,46 +7,57 @@ namespace PLUME
 {
     public class GameObjectRecorderModule : RecorderModule,
         IStartRecordingObjectEventReceiver,
-        IStopRecordingObjectEventReceiver
+        IStopRecordingObjectEventReceiver,
+        IStartRecordingEventReceiver,
+        IStopRecordingEventReceiver
     {
         private readonly Dictionary<int, GameObject> _recordedGameObjects = new();
-        private readonly Dictionary<int, TransformGameObjectIdentifier> _cachedIdentifiers = new();
+        private readonly Dictionary<int, string> _cachedGameObjectIdentifiers = new();
+        private readonly Dictionary<int, string> _cachedTransformIdentifiers = new();
         private readonly Dictionary<int, bool> _lastGameObjectActive = new();
 
         protected override void ResetCache()
         {
             _recordedGameObjects.Clear();
-            _cachedIdentifiers.Clear();
             _lastGameObjectActive.Clear();
+            _cachedGameObjectIdentifiers.Clear();
+            _cachedTransformIdentifiers.Clear();
+        }
+
+        public new void OnStartRecording()
+        {
+            base.OnStartRecording();
+            ObjectEvents.OnSetName += OnObjectSetNameCallback;
+        }
+
+        public void OnStopRecording()
+        {
+            ObjectEvents.OnSetName -= OnObjectSetNameCallback;
         }
 
         public void OnStartRecordingObject(Object obj)
         {
-            ObjectEvents.OnSetName += OnObjectSetNameCallback;
+            if (obj is not GameObject go) return;
+            if (_recordedGameObjects.ContainsKey(go.GetInstanceID())) return;
 
-            if (obj is GameObject go)
-            {
-                var goInstanceId = go.GetInstanceID();
+            var goInstanceId = go.GetInstanceID();
 
-                if (!_recordedGameObjects.ContainsKey(goInstanceId))
-                {
-                    _recordedGameObjects.Add(goInstanceId, go);
-                    _cachedIdentifiers.Add(goInstanceId, go.ToIdentifierPayload());
-                    _lastGameObjectActive.Add(goInstanceId, go.activeSelf);
-                    RecordCreation(go);
-                }
-            }
+            var guidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(go.scene);
+            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreate(go);
+            var transformGuidRegistryEntry = guidRegistry.GetOrCreate(go.transform);
+
+            _recordedGameObjects.Add(goInstanceId, go);
+            _cachedGameObjectIdentifiers.Add(goInstanceId, gameObjectGuidRegistryEntry.guid);
+            _cachedTransformIdentifiers.Add(goInstanceId, transformGuidRegistryEntry.guid);
+            _lastGameObjectActive.Add(goInstanceId, go.activeSelf);
+            RecordCreation(go);
         }
 
         public void OnStopRecordingObject(int objectInstanceId)
         {
-            ObjectEvents.OnSetName -= OnObjectSetNameCallback;
-
-            if (_recordedGameObjects.ContainsKey(objectInstanceId))
-            {
-                RecordDestruction(objectInstanceId);
-                RemoveFromCache(objectInstanceId);
-            }
+            if (!_recordedGameObjects.ContainsKey(objectInstanceId)) return;
+            RecordDestruction(objectInstanceId);
+            RemoveFromCache(objectInstanceId);
         }
 
         private void OnObjectSetNameCallback(Object obj, string value)
@@ -53,7 +65,7 @@ namespace PLUME
             if (obj is GameObject go)
             {
                 var goInstanceId = go.GetInstanceID();
-                
+
                 if (_recordedGameObjects.ContainsKey(goInstanceId))
                 {
                     var gameObjectUpdateName = new GameObjectUpdateName
@@ -103,13 +115,14 @@ namespace PLUME
         private void RemoveFromCache(int gameObjectInstanceId)
         {
             _recordedGameObjects.Remove(gameObjectInstanceId);
-            _cachedIdentifiers.Remove(gameObjectInstanceId);
             _lastGameObjectActive.Remove(gameObjectInstanceId);
+            _cachedTransformIdentifiers.Remove(gameObjectInstanceId);
+            _cachedGameObjectIdentifiers.Remove(gameObjectInstanceId);
         }
 
         private void RecordCreation(GameObject go)
         {
-            var gameObjectCreation = new GameObjectCreate {Id = go.ToIdentifierPayload()};
+            var gameObjectCreation = new GameObjectCreate { Id = go.ToIdentifierPayload() };
 
             var gameObjectUpdateName = new GameObjectUpdateName
             {
@@ -151,7 +164,14 @@ namespace PLUME
 
         private void RecordDestruction(int gameObjectInstanceId)
         {
-            var gameObjectDestroy = new GameObjectDestroy {Id = _cachedIdentifiers[gameObjectInstanceId]};
+            var gameObjectDestroy = new GameObjectDestroy
+            {
+                Id = new TransformGameObjectIdentifier
+                {
+                    TransformId = _cachedTransformIdentifiers[gameObjectInstanceId],
+                    GameObjectId = _cachedGameObjectIdentifiers[gameObjectInstanceId]
+                }
+            };
             recorder.RecordSample(gameObjectDestroy);
         }
     }

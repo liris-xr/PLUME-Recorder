@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEditor;
+using System.IO;
 using UnityEngine;
 using Object = UnityEngine.Object;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace PLUME.Guid
 {
     [Serializable]
     public class AssetsGuidRegistry : ScriptableObject
     {
-        public const string AssetPath =
-            "Packages/fr.liris.plume.recorder/ScriptableObjects/AssetsGuidRegistry.asset";
+        private const string RegistryResourcePath = "PlumeAssetsGuidRegistry.asset";
 
         [SerializeField] private GuidRegistry<AssetGuidRegistryEntry> registry = new();
+
+        private static bool _loaded;
+        private static AssetsGuidRegistry _loadedInstance;
 
         public int Count => registry.Count;
 
@@ -43,7 +48,7 @@ namespace PLUME.Guid
             registry.TryAdd(assetGuidRegistryEntry);
             return assetGuidRegistryEntry;
         }
-        
+
         public static AssetGuidRegistryEntry CreateNewEntry(Object obj)
         {
             return new AssetGuidRegistryEntry
@@ -69,12 +74,42 @@ namespace PLUME.Guid
 
             var path = AssetDatabase.GetAssetPath(asset);
 
-            // TODO: differentiate two assets of same type inside a .obj or .fbx (ex: .obj containing two Material)
-            if (path.Equals(builtinResourcesPath) || path.Equals(builtinExtraResourcesPath))
-                return $"Builtin:{asset.GetType().Name}:{path}/{asset.name}";
+            var prefix = path.Equals(builtinResourcesPath) || path.Equals(builtinExtraResourcesPath)
+                ? "Builtin"
+                : "Custom";
 
-            return $"Custom:{asset.GetType().Name}:{path}";
+            return $"{prefix}:{asset.GetType().FullName}:{path}:{asset.name}";
         }
 #endif
+
+        public static AssetsGuidRegistry Get()
+        {
+            if (_loaded && _loadedInstance != null)
+                return _loadedInstance;
+
+#if UNITY_EDITOR
+            var assetPath = Path.Join("Assets/Resources", RegistryResourcePath);
+            var asset = AssetDatabase.LoadAssetAtPath<AssetsGuidRegistry>(assetPath);
+            
+            if (asset == null)
+            {
+                Directory.CreateDirectory(Path.Join(Application.dataPath, "Resources"));
+                asset = CreateInstance<AssetsGuidRegistry>();
+                AssetDatabase.CreateAsset(asset, assetPath);
+                Debug.Log($"Created Assets GUID registry at '{assetPath}'");
+            }
+#endif
+
+            asset = Resources.Load<AssetsGuidRegistry>(RegistryResourcePath.Replace(".asset", ""));
+
+            if (asset == null)
+            {
+                throw new Exception($"Assets GUID registry not found at 'Assets/Resources/{RegistryResourcePath}'");
+            }
+            
+            _loaded = true;
+            _loadedInstance = asset;
+            return _loadedInstance;
+        }
     }
 }

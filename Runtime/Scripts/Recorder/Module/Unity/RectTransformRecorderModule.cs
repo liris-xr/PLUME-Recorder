@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using PLUME.Guid;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using Quaternion = PLUME.Sample.Common.Quaternion;
@@ -13,7 +14,8 @@ namespace PLUME
         IStopRecordingObjectEventReceiver
     {
         private readonly Dictionary<int, RectTransform> _recordedRectTransforms = new();
-        private readonly Dictionary<int, TransformGameObjectIdentifier> _cachedIdentifiers = new();
+        private readonly Dictionary<int, string> _cachedGameObjectIdentifiers = new();
+        private readonly Dictionary<int, string> _cachedTransformIdentifiers = new();
         private readonly Dictionary<int, int> _lastSiblingIndex = new();
         private readonly Dictionary<int, int?> _lastParentTransformId = new();
 
@@ -27,20 +29,21 @@ namespace PLUME
 
         public void OnStartRecordingObject(Object obj)
         {
-            if (obj is RectTransform rectTransform)
-            {
-                var rectTransformInstanceId = rectTransform.GetInstanceID();
-
-                if (!_recordedRectTransforms.ContainsKey(rectTransformInstanceId))
-                {
-                    _recordedRectTransforms.Add(rectTransformInstanceId, rectTransform);
-                    _cachedIdentifiers.Add(rectTransformInstanceId, rectTransform.ToIdentifierPayload());
-                    _lastSiblingIndex.Add(rectTransformInstanceId, rectTransform.GetSiblingIndex());
-                    _lastParentTransformId.Add(rectTransformInstanceId,
-                        rectTransform.parent == null ? null : rectTransform.parent.GetInstanceID());
-                    RecordCreation(rectTransform);
-                }
-            }
+            if (obj is not RectTransform rectTransform) return;
+            if (_recordedRectTransforms.ContainsKey(rectTransform.GetInstanceID())) return;
+            
+            var guidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(rectTransform.gameObject.scene);
+            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreate(rectTransform.gameObject);
+            var transformGuidRegistryEntry = guidRegistry.GetOrCreate(rectTransform.gameObject.transform);
+            var rectTransformInstanceId = rectTransform.GetInstanceID();
+            
+            _recordedRectTransforms.Add(rectTransformInstanceId, rectTransform);
+            _cachedGameObjectIdentifiers.Add(rectTransformInstanceId, gameObjectGuidRegistryEntry.guid);
+            _cachedTransformIdentifiers.Add(rectTransformInstanceId, transformGuidRegistryEntry.guid);
+            _lastSiblingIndex.Add(rectTransformInstanceId, rectTransform.GetSiblingIndex());
+            _lastParentTransformId.Add(rectTransformInstanceId,
+                rectTransform.parent == null ? null : rectTransform.parent.GetInstanceID());
+            RecordCreation(rectTransform);
         }
 
         public void OnStopRecordingObject(int objectInstanceId)
@@ -55,7 +58,11 @@ namespace PLUME
         private void RecordCreation(RectTransform rt)
         {
             var rectTransformInstanceId = rt.GetInstanceID();
-            var rectTransformCreate = new RectTransformCreate {Id = _cachedIdentifiers[rectTransformInstanceId]};
+            var rectTransformCreate = new RectTransformCreate {Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            }};
             var rectTransformUpdateParent = CreateTransformUpdateParent(rt);
             var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(rt);
 
@@ -70,14 +77,22 @@ namespace PLUME
 
             var rectTransformUpdatePosition = new RectTransformUpdatePosition
             {
-                Id = _cachedIdentifiers[rectTransformInstanceId],
+                Id = new TransformGameObjectIdentifier
+                {
+                    TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                    GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+                },
                 LocalPosition = new Vector3 {X = localPosition.x, Y = localPosition.y, Z = localPosition.z},
                 WorldPosition = new Vector3 {X = position.x, Y = position.y, Z = position.z}
             };
 
             var rectTransformUpdateRotation = new RectTransformUpdateRotation
             {
-                Id = _cachedIdentifiers[rectTransformInstanceId],
+                Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            },
                 LocalRotation = new Quaternion
                     {X = localRotation.x, Y = localRotation.y, Z = localRotation.z, W = localRotation.w},
                 WorldRotation = new Quaternion {X = rotation.x, Y = rotation.y, Z = rotation.z, W = rotation.w}
@@ -85,27 +100,43 @@ namespace PLUME
 
             var rectTransformUpdateScale = new RectTransformUpdateScale
             {
-                Id = _cachedIdentifiers[rectTransformInstanceId],
+                Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            },
                 LocalScale = new Vector3 {X = localScale.x, Y = localScale.y, Z = localScale.z},
                 WorldScale = new Vector3 {X = lossyScale.x, Y = lossyScale.y, Z = lossyScale.z}
             };
 
             var rectTransformUpdateAnchors = new RectTransformUpdateAnchors
             {
-                Id = _cachedIdentifiers[rectTransformInstanceId],
+                Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            },
                 AnchorMin = new Vector2 {X = anchorMin.x, Y = anchorMin.y},
                 AnchorMax = new Vector2 {X = anchorMax.x, Y = anchorMax.y}
             };
 
             var rectTransformUpdateSize = new RectTransformUpdateSize
             {
-                Id = _cachedIdentifiers[rectTransformInstanceId],
+                Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            },
                 SizeDelta = new Vector2 {X = sizeDelta.x, Y = sizeDelta.y}
             };
 
             var rectTransformUpdatePivot = new RectTransformUpdatePivot
             {
-                Id = _cachedIdentifiers[rectTransformInstanceId],
+                Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            },
                 Pivot = new Vector2 {X = pivot.x, Y = pivot.y}
             };
 
@@ -119,7 +150,11 @@ namespace PLUME
 
         private void RecordDestruction(int rectTransformInstanceId)
         {
-            var rectTransformDestroy = new RectTransformDestroy {Id = _cachedIdentifiers[rectTransformInstanceId]};
+            var rectTransformDestroy = new RectTransformDestroy {Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            }};
             recorder.RecordSample(rectTransformDestroy);
         }
 
@@ -169,14 +204,22 @@ namespace PLUME
 
                     var rectTransformUpdatePosition = new RectTransformUpdatePosition
                     {
-                        Id = _cachedIdentifiers[rectTransformInstanceId],
+                        Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            },
                         LocalPosition = new Vector3 {X = localPosition.x, Y = localPosition.y, Z = localPosition.z},
                         WorldPosition = new Vector3 {X = position.x, Y = position.y, Z = position.z}
                     };
 
                     var rectTransformUpdateRotation = new RectTransformUpdateRotation
                     {
-                        Id = _cachedIdentifiers[rectTransformInstanceId],
+                        Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            },
                         LocalRotation = new Quaternion
                             {X = localRotation.x, Y = localRotation.y, Z = localRotation.z, W = localRotation.w},
                         WorldRotation = new Quaternion {X = rotation.x, Y = rotation.y, Z = rotation.z, W = rotation.w}
@@ -184,27 +227,43 @@ namespace PLUME
 
                     var rectTransformUpdateScale = new RectTransformUpdateScale
                     {
-                        Id = _cachedIdentifiers[rectTransformInstanceId],
+                        Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            },
                         LocalScale = new Vector3 {X = localScale.x, Y = localScale.y, Z = localScale.z},
                         WorldScale = new Vector3 {X = lossyScale.x, Y = lossyScale.y, Z = lossyScale.z}
                     };
 
                     var rectTransformUpdateAnchors = new RectTransformUpdateAnchors
                     {
-                        Id = _cachedIdentifiers[rectTransformInstanceId],
+                        Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            },
                         AnchorMin = new Vector2 {X = anchorMin.x, Y = anchorMin.y},
                         AnchorMax = new Vector2 {X = anchorMax.x, Y = anchorMax.y}
                     };
 
                     var rectTransformUpdateSize = new RectTransformUpdateSize
                     {
-                        Id = _cachedIdentifiers[rectTransformInstanceId],
+                        Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+            },
                         SizeDelta = new Vector2 {X = sizeDelta.x, Y = sizeDelta.y}
                     };
 
                     var rectTransformUpdatePivot = new RectTransformUpdatePivot
                     {
-                        Id = _cachedIdentifiers[rectTransformInstanceId],
+                        Id = new TransformGameObjectIdentifier
+                        {
+                            TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
+                            GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
+                        },
                         Pivot = new Vector2 {X = pivot.x, Y = pivot.y}
                     };
 
@@ -237,7 +296,8 @@ namespace PLUME
         private void RemoveFromCache(int transformInstanceId)
         {
             _recordedRectTransforms.Remove(transformInstanceId);
-            _cachedIdentifiers.Remove(transformInstanceId);
+            _cachedTransformIdentifiers.Remove(transformInstanceId);
+            _cachedGameObjectIdentifiers.Remove(transformInstanceId);
             _lastParentTransformId.Remove(transformInstanceId);
             _lastSiblingIndex.Remove(transformInstanceId);
         }
@@ -247,7 +307,11 @@ namespace PLUME
             var transformId = t.GetInstanceID();
             var rectTransformUpdateSiblingIndex = new RectTransformUpdateSiblingIndex
             {
-                Id = _cachedIdentifiers[transformId],
+                Id = new TransformGameObjectIdentifier
+                {
+                    TransformId = _cachedTransformIdentifiers[transformId],
+                    GameObjectId = _cachedGameObjectIdentifiers[transformId]
+                },
                 SiblingIndex = t.GetSiblingIndex()
             };
 
@@ -264,14 +328,30 @@ namespace PLUME
             {
                 var parentInstanceId = parent.GetInstanceID();
 
-                parentIdentifier = _cachedIdentifiers.ContainsKey(parentInstanceId)
-                    ? _cachedIdentifiers[parentInstanceId]
-                    : parent.ToIdentifierPayload();
+                if (_cachedGameObjectIdentifiers.TryGetValue(parentInstanceId, out var cachedGameObjectIdentifier)
+                    && _cachedTransformIdentifiers.TryGetValue(parentInstanceId, out var cachedTransformIdentifier))
+                {
+                    parentIdentifier = new TransformGameObjectIdentifier
+                    {
+                        TransformId = cachedTransformIdentifier,
+                        GameObjectId = cachedGameObjectIdentifier,
+                    };
+                }
+                else
+                {
+                    parentIdentifier = parent.ToIdentifierPayload();
+                }
             }
 
+            var transformId = t.GetInstanceID();
+            
             var rectTransformUpdateParent = new RectTransformUpdateParent
             {
-                Id = _cachedIdentifiers[t.GetInstanceID()],
+                Id = new TransformGameObjectIdentifier
+                {
+                    TransformId = _cachedTransformIdentifiers[transformId],
+                    GameObjectId = _cachedGameObjectIdentifiers[transformId]
+                },
                 ParentId = parentIdentifier
             };
 
@@ -281,7 +361,8 @@ namespace PLUME
         protected override void ResetCache()
         {
             _recordedRectTransforms.Clear();
-            _cachedIdentifiers.Clear();
+            _cachedTransformIdentifiers.Clear();
+            _cachedGameObjectIdentifiers.Clear();
             _lastParentTransformId.Clear();
             _lastSiblingIndex.Clear();
         }

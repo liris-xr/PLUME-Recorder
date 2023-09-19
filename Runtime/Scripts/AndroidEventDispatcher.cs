@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using PLUME;
 using UnityEngine;
 
+// TODO: send event for material and mesh changes
 public class AndroidEventDispatcher : MonoBehaviour
 {
     private readonly Dictionary<int, Object> _allObjectsById = new();

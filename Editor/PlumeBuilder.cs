@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -9,15 +11,41 @@ using UnityEngine.SceneManagement;
 namespace PLUME.Editor
 {
     [InitializeOnLoad]
-    public class PlumeAssetBundleBuilder
+    public class PlumeBuilder
     {
-        static PlumeAssetBundleBuilder()
+        static PlumeBuilder()
         {
+            EditorApplication.playModeStateChanged += state =>
+            {
+                if (state != PlayModeStateChange.ExitingEditMode) return;
+                SetBatchingForPlatform(EditorUserBuildSettings.activeBuildTarget, 0, 0);
+            };
+            
             BuildPlayerWindow.RegisterBuildPlayerHandler(buildPlayerOptions =>
             {
+                SetBatchingForPlatform(buildPlayerOptions.target, 0, 0);
                 BuildAssetBundle();
                 BuildPlayerWindow.DefaultBuildMethods.BuildPlayer(buildPlayerOptions);
             });
+        }
+
+        private static void SetBatchingForPlatform(BuildTarget platform, int staticBatching, int dynamicBatching)
+        {
+            var method = typeof(PlayerSettings).GetMethod("SetBatchingForPlatform", BindingFlags.Static | BindingFlags.Default | BindingFlags.NonPublic);
+   
+            if (method == null)
+            {
+                throw new NotSupportedException("Setting batching per platform is not supported");
+            }
+ 
+            var args = new object[]
+            {
+                platform,
+                staticBatching,
+                dynamicBatching
+            };
+ 
+            method.Invoke(null, args);
         }
 
         [MenuItem("PLUME/Build Asset Bundle")]

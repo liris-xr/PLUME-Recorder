@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Google.Protobuf;
+using NUnit.Framework;
 using PLUME.Sample;
 using PLUME.Sample.Common;
 using UnityEngine;
@@ -15,13 +18,23 @@ namespace PLUME
     [DisallowMultipleComponent]
     public class Recorder : SingletonMonoBehaviour<Recorder>, IDisposable
     {
+        public static readonly RecorderVersion Version = new()
+        {
+            Name = "PLUME",
+            Major = "alpha-1",
+            Minor = "0",
+            Patch = "0"
+        };
+        
         public string recordDirectory;
         public string recordPrefix = "record";
         public string recordIdentifier = System.Guid.NewGuid().ToString();
-
+        
         public bool autoStart = true;
         public bool enableSamplePooling = true;
 
+        public ExtraMetadata[] extraMetadata;
+        
         public int recordWriterBufferSize = 4096; // in bytes
 
         public bool useCompression = true;
@@ -43,6 +56,23 @@ namespace PLUME
 
         public bool IsRecording { get; private set; }
 
+        [RuntimeInitializeOnLoadMethod]
+        public static void OnInitialize()
+        {
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
+#if UNITY_STANDALONE_WIN
+            Patcher.DoPatching();
+#else
+            // Android platforms can't be patched using Harmony because of IL2CPP
+            var go = new GameObject();
+            go.name = "Android event dispatcher";
+            Object.DontDestroyOnLoad(go);
+#endif
+        }
+        
         public new void Awake()
         {
             base.Awake();
@@ -64,7 +94,7 @@ namespace PLUME
         public void Start()
         {
             if (autoStart)
-                StartRecording(recordIdentifier);
+                StartRecording();
         }
 
         public void OnDestroy()
@@ -72,7 +102,7 @@ namespace PLUME
             StopRecording();
         }
 
-        public bool StartRecording(string recordIdentifier)
+        public bool StartRecording()
         {
             if (IsRecording)
                 return false;
@@ -86,7 +116,7 @@ namespace PLUME
             var recordFilepath =
                 Path.Join(recordDirectory, GetRecordFilePath(recordPrefix, useCompression ? "gz" : "dat"));
 
-            _recordWriter = new ThreadedRecordWriter(_samplePoolManager, recordFilepath, useCompression, recordIdentifier, recordWriterBufferSize);
+            _recordWriter = new ThreadedRecordWriter(_samplePoolManager, recordFilepath, recordIdentifier, extraMetadata, useCompression, recordWriterBufferSize);
 
             if (!Stopwatch.IsHighResolution)
             {
@@ -118,7 +148,7 @@ namespace PLUME
             ObjectEvents.OnDestroy += TryStopRecordingObject;
 
             Debug.Log(
-                $"Started recording using {Plume.Version.Name} Version {Plume.Version.Major}.{Plume.Version.Minor}.{Plume.Version.Patch}");
+                $"Started recording using {Version.Name} Version {Version.Major}.{Version.Minor}.{Version.Patch}");
             return true;
         }
 

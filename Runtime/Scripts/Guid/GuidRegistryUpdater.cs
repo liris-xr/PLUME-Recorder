@@ -1,35 +1,32 @@
 ﻿#if UNITY_EDITOR
+
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
-
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEditor.SceneManagement;
 #endif
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace PLUME.Guid
 {
     [InitializeOnLoad]
-    public static class GuidRegistryEditorUpdater
+    public class GuidRegistryUpdater : IPreprocessBuildWithReport
     {
-        static GuidRegistryEditorUpdater()
+        static GuidRegistryUpdater()
         {
             EditorApplication.playModeStateChanged += state =>
             {
                 if (state != PlayModeStateChange.ExitingEditMode) return;
-                GuidRegistryUpdater.UpdateGuidRegistries(new[] { SceneManager.GetActiveScene().path });
+                UpdateGuidRegistries(new[] { SceneManager.GetActiveScene().path });
             };
         }
-    }
 
-    public class GuidRegistryUpdater : IPreprocessBuildWithReport
-    {
         public int callbackOrder => int.MaxValue;
 
         public void OnPreprocessBuild(BuildReport report)
@@ -46,22 +43,20 @@ namespace PLUME.Guid
         public static void UpdateGuidRegistries(IEnumerable<string> scenePaths)
         {
             var activeScenePath = SceneManager.GetActiveScene().path;
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
 
-            var assetsGuidRegistry = AssetsGuidRegistry.Get();
-            
+            var assetsGuidRegistry = AssetsGuidRegistry.Instance;
+
             var prevAssetsGuid = assetsGuidRegistry.Copy();
 
             assetsGuidRegistry.Clear();
-            EditorUtility.SetDirty(assetsGuidRegistry);
-            AssetDatabase.SaveAssetIfDirty(assetsGuidRegistry);
+            AssetsGuidRegistry.CommitRegistry(assetsGuidRegistry);
 
             foreach (var scenePath in scenePaths)
             {
                 var scene = EditorSceneManager.OpenScene(scenePath);
                 var objects = new List<Object>();
-
-                // // EditorSceneManager.OpenScene might unload the AssetGuidRegistry. We ensure that we keep it loaded.
-                // assetsGuidRegistry = AssetDatabase.LoadAssetAtPath<AssetsGuidRegistry>(AssetsGuidRegistry.AssetPath);
 
                 var sceneObjectsGuidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(scene);
                 var prevSceneObjectsGuid = sceneObjectsGuidRegistry.Copy();
@@ -73,8 +68,51 @@ namespace PLUME.Guid
                 objects.AddRange(scene.GetRootGameObjects());
                 objects.AddRange(EditorUtility.CollectDependencies(scene.GetRootGameObjects()));
 
+                // Lighting settings
+                var lightingSettings = Lightmapping.GetLightingSettingsForScene(scene);
+                if (lightingSettings != null)
+                {
+                    objects.Add(lightingSettings);
+                    objects.AddRange(EditorUtility.CollectDependencies(new[] { lightingSettings }));
+                }
+
+                var lightingDataAsset = Lightmapping.lightingDataAsset;
+                if (lightingDataAsset != null)
+                {
+                    objects.Add(lightingDataAsset);
+                    objects.AddRange(EditorUtility.CollectDependencies(new[] { lightingDataAsset }));
+                }
+
+                // Render Settings dependencies
+                objects.Add(RenderSettings.skybox);
+                objects.Add(RenderSettings.sun);
+                objects.Add(RenderSettings.customReflection);
+
+#if UNITY_2022_1_OR_NEWER
+                objects.Add(RenderSettings.customReflectionTexture);
+#else
+                objects.Add(RenderSettings.customReflection);
+#endif
+                
+                objects.Add(GraphicsSettings.currentRenderPipeline);
+
+                // Add any missing dependencies
+                // This can happen for properties that are not visible by the EditorUtility.CollectDependencies,
+                // like reflection probes cubemaps.
+                var dependencies = AssetDatabase.GetDependencies(scene.path, true);
+                foreach (var dependency in dependencies)
+                {
+                    var asset = AssetDatabase.LoadAssetAtPath<Object>(dependency);
+                    if (objects.Contains(asset)) continue;
+                    if (asset is SceneAsset) continue;
+                    objects.Add(asset);
+                }
+
                 foreach (var obj in objects)
                 {
+                    if (obj == null)
+                        continue;
+
                     var isAsset = AssetDatabase.Contains(obj);
 
                     if (isAsset)
@@ -85,6 +123,19 @@ namespace PLUME.Guid
                     }
                     else
                     {
+                        // Do not add Recorder and its 
+                        if (obj is GameObject go && (go.GetComponent<Recorder>() != null ||
+                                                     go.GetComponentInParent<Recorder>() != null))
+                        {
+                            continue;
+                        }
+
+                        if (obj is Component comp && (comp.gameObject.GetComponent<Recorder>() != null ||
+                                                      comp.GetComponentInParent<Recorder>() != null))
+                        {
+                            continue;
+                        }
+
                         sceneObjectsGuidRegistry.TryAdd(
                             prevSceneObjectsGuid.TryGetValue(obj, out var prevSceneObjectGuid)
                                 ? prevSceneObjectGuid
@@ -95,8 +146,7 @@ namespace PLUME.Guid
                 EditorSceneManager.MarkSceneDirty(scene);
                 EditorSceneManager.SaveScene(scene);
 
-                EditorUtility.SetDirty(assetsGuidRegistry);
-                AssetDatabase.SaveAssetIfDirty(assetsGuidRegistry);
+                AssetsGuidRegistry.CommitRegistry(assetsGuidRegistry);
             }
 
             EditorSceneManager.OpenScene(activeScenePath);

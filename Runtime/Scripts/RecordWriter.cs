@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.IO.Compression;
-using System.Text;
 using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 using PLUME.Sample;
 using UnityEngine;
 
@@ -11,40 +11,37 @@ namespace PLUME
     public class RecordWriter : IDisposable
     {
         private readonly DateTime _createdAt;
+        private readonly ExtraMetadata[] _extraMetadata;
         private readonly string _recordIdentifier;
 
         private readonly string _tmpFilepath;
         private readonly FileStream _tmpStream;
 
         private readonly string _filepath;
-        private readonly Stream _customOutputStream;
 
         private readonly bool _leaveOpen;
 
-        private int _samplesCount;
-        private ulong _duration;
+        private long _samplesCount;
+        private long _duration;
 
         private bool _closed;
 
         private bool _useCompression;
 
-        public RecordWriter(string filepath, string recordIdentifier, bool useCompression, int bufferSize = 4096,
+        public RecordWriter(string filepath, string recordIdentifier, ExtraMetadata[] extraMetadata,
+            bool useCompression, int bufferSize = 4096,
             bool leaveOpen = false)
         {
             _filepath = filepath;
             _createdAt = DateTime.UtcNow;
+            _extraMetadata = extraMetadata;
             _recordIdentifier = recordIdentifier;
             _tmpFilepath = GetTmpFilePath();
             _tmpStream = File.Create(_tmpFilepath, bufferSize);
             _leaveOpen = leaveOpen;
             _useCompression = useCompression;
-            WriteFileSignature(_tmpStream);
-        }
 
-        private static void WriteFileSignature(Stream stream)
-        {
-            var fileSignature = Encoding.ASCII.GetBytes("PLUME_RAW");
-            stream.Write(fileSignature);
+            WriteMetadata(Recorder.Version, _createdAt, recordIdentifier, false, extraMetadata);
         }
 
         private static string GetTmpFilePath()
@@ -52,28 +49,66 @@ namespace PLUME
             return Path.Combine(Application.persistentDataPath, $"plume_tmp_{System.Guid.NewGuid().ToString()}.tmp");
         }
 
+        private void WriteMetadata(RecorderVersion recorderVersion, DateTime creationTime, string recordIdentifier,
+            bool sequential, ExtraMetadata[] extraMetadata, long sampleCount = -1, long duration = -1)
+        {
+            var metadata = new RecordMetadata();
+            metadata.RecorderVersion = recorderVersion;
+            metadata.CreatedAt = Timestamp.FromDateTime(creationTime.ToUniversalTime());
+            metadata.Identifier = recordIdentifier;
+            metadata.Sequential = sequential;
+
+            if (extraMetadata != null)
+            {
+                foreach (var extraMetadataEntry in extraMetadata)
+                {
+                    metadata.ExtraMetadata.Add(extraMetadataEntry.Key, extraMetadataEntry.Value);
+                }
+            }
+
+            // 0 values are not serialized. We ensure that the values != 0 to keep a constant message size for overwriting placeholder values at the end of the record.
+            if (sampleCount == 0)
+                sampleCount = -1;
+            if (duration == 0)
+                duration = -1;
+
+            metadata.SamplesCount = sampleCount;
+            metadata.Duration = duration;
+
+            metadata.WriteDelimitedTo(_tmpStream);
+        }
+
         public void WriteSample(PackedSample sample)
         {
             sample.WriteDelimitedTo(_tmpStream);
             _samplesCount++;
-            _duration = Math.Max(_duration, sample.Header.Time);
+            _duration = Math.Max(_duration, (long)sample.Header.Time);
         }
 
         public void Close()
         {
             _tmpStream.Flush(true);
-            
+
             if (_closed)
                 return;
 
-            if (_customOutputStream != null)
+            // Overwrite samples count and duration placeholders.
+            _tmpStream.Seek(0, SeekOrigin.Begin);
+            WriteMetadata(Recorder.Version, _createdAt, _recordIdentifier, false, _extraMetadata, _samplesCount,
+                _duration);
+
+            if (_useCompression)
             {
                 try
                 {
-                    _tmpStream.CopyTo(_customOutputStream);
+                    var outputStream = new GZipStream(File.Create(_filepath), CompressionMode.Compress);
+                    _tmpStream.Seek(0, SeekOrigin.Begin);
+                    _tmpStream.CopyTo(outputStream);
                     _tmpStream.Close();
+
                     if (!_leaveOpen)
-                        _customOutputStream.Close();
+                        outputStream.Close();
+
                     File.Delete(_tmpFilepath);
                 }
                 catch (IOException e)
@@ -85,24 +120,8 @@ namespace PLUME
             {
                 try
                 {
-                    if (_useCompression)
-                    {
-                        using var outputStream = File.Create(_filepath);
-                        using var gzip = new GZipStream(outputStream, CompressionMode.Compress);
-                        _tmpStream.Position = 0;
-                        _tmpStream.CopyTo(gzip);
-                        _tmpStream.Close();
-                        gzip.Close();
-                        File.Delete(_tmpFilepath);
-                    }
-                    else
-                    {
-                        _tmpStream.Close();
-                        File.Move(_tmpFilepath, _filepath);
-                    }
-                    
-                    var info = new FileInfo(_filepath);
-                    Debug.Log($"File size: {GetSizeString(info.Length)}");
+                    _tmpStream.Close();
+                    File.Move(_tmpFilepath, _filepath);
                 }
                 catch (IOException e)
                 {
@@ -111,23 +130,6 @@ namespace PLUME
             }
 
             _closed = true;
-        }
-
-        private static void CopyBytes(Stream srcStream, Stream outStream, long srcStart, long nBytes)
-        {
-            var readBytes = 0;
-            var buffer = new byte[64 * 1024];
-
-            do
-            {
-                var toRead = Math.Min(nBytes - readBytes, buffer.Length);
-                srcStream.Seek(srcStart, SeekOrigin.Begin);
-                var readNow = srcStream.Read(buffer, 0, (int)toRead);
-                if (readNow == 0)
-                    break; // End of stream
-                outStream.Write(buffer, 0, readNow);
-                readBytes += readNow;
-            } while (readBytes < nBytes);
         }
 
         public void Dispose()

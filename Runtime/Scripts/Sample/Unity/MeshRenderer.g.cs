@@ -25,21 +25,28 @@ namespace PLUME.Sample.Unity {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Chl1bml0eS9tZXNoX3JlbmRlcmVyLnByb3RvEhJwbHVtZS5zYW1wbGUudW5p",
-            "dHkaF3VuaXR5L2lkZW50aWZpZXJzLnByb3RvIkkKEk1lc2hSZW5kZXJlckNy",
-            "ZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25l",
-            "bnRJZGVudGlmaWVyImEKGU1lc2hSZW5kZXJlclVwZGF0ZUVuYWJsZWQSMwoC",
-            "aWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRp",
-            "ZmllchIPCgdlbmFibGVkGAIgASgIIo4BChtNZXNoUmVuZGVyZXJVcGRhdGVN",
-            "YXRlcmlhbHMSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29t",
-            "cG9uZW50SWRlbnRpZmllchI6Cg1tYXRlcmlhbHNfaWRzGAIgAygLMiMucGx1",
-            "bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckIVqgISUExVTUUuU2Ft",
-            "cGxlLlVuaXR5YgZwcm90bzM="));
+            "dHkaF3VuaXR5L2lkZW50aWZpZXJzLnByb3RvGhRjb21tb24vdmVjdG9yNC5w",
+            "cm90byJJChJNZXNoUmVuZGVyZXJDcmVhdGUSMwoCaWQYASABKAsyJy5wbHVt",
+            "ZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciJhChlNZXNoUmVu",
+            "ZGVyZXJVcGRhdGVFbmFibGVkEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxl",
+            "LnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISDwoHZW5hYmxlZBgCIAEoCCKO",
+            "AQobTWVzaFJlbmRlcmVyVXBkYXRlTWF0ZXJpYWxzEjMKAmlkGAEgASgLMicu",
+            "cGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISOgoNbWF0",
+            "ZXJpYWxzX2lkcxgCIAMoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElk",
+            "ZW50aWZpZXIijQIKGk1lc2hSZW5kZXJlclVwZGF0ZUxpZ2h0bWFwEjMKAmlk",
+            "GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
+            "ZXISFgoObGlnaHRtYXBfaW5kZXgYAiABKAUSOwoVbGlnaHRtYXBfc2NhbGVf",
+            "b2Zmc2V0GAMgASgLMhwucGx1bWUuc2FtcGxlLmNvbW1vbi5WZWN0b3I0Eh8K",
+            "F3JlYWx0aW1lX2xpZ2h0bWFwX2luZGV4GAQgASgFEkQKHnJlYWx0aW1lX2xp",
+            "Z2h0bWFwX3NjYWxlX29mZnNldBgFIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21t",
+            "b24uVmVjdG9yNEIVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererCreate), global::PLUME.Sample.Unity.MeshRendererCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererUpdateEnabled), global::PLUME.Sample.Unity.MeshRendererUpdateEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererUpdateMaterials), global::PLUME.Sample.Unity.MeshRendererUpdateMaterials.Parser, new[]{ "Id", "MaterialsIds" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererUpdateMaterials), global::PLUME.Sample.Unity.MeshRendererUpdateMaterials.Parser, new[]{ "Id", "MaterialsIds" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererUpdateLightmap), global::PLUME.Sample.Unity.MeshRendererUpdateLightmap.Parser, new[]{ "Id", "LightmapIndex", "LightmapScaleOffset", "RealtimeLightmapIndex", "RealtimeLightmapScaleOffset" }, null, null, null, null)
           }));
     }
     #endregion
@@ -694,6 +701,370 @@ namespace PLUME.Sample.Unity {
           }
           case 18: {
             materialsIds_.AddEntriesFrom(ref input, _repeated_materialsIds_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class MeshRendererUpdateLightmap : pb::IMessage<MeshRendererUpdateLightmap>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MeshRendererUpdateLightmap> _parser = new pb::MessageParser<MeshRendererUpdateLightmap>(() => new MeshRendererUpdateLightmap());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MeshRendererUpdateLightmap> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.MeshRendererReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MeshRendererUpdateLightmap() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MeshRendererUpdateLightmap(MeshRendererUpdateLightmap other) : this() {
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      lightmapIndex_ = other.lightmapIndex_;
+      lightmapScaleOffset_ = other.lightmapScaleOffset_ != null ? other.lightmapScaleOffset_.Clone() : null;
+      realtimeLightmapIndex_ = other.realtimeLightmapIndex_;
+      realtimeLightmapScaleOffset_ = other.realtimeLightmapScaleOffset_ != null ? other.realtimeLightmapScaleOffset_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MeshRendererUpdateLightmap Clone() {
+      return new MeshRendererUpdateLightmap(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "lightmap_index" field.</summary>
+    public const int LightmapIndexFieldNumber = 2;
+    private int lightmapIndex_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int LightmapIndex {
+      get { return lightmapIndex_; }
+      set {
+        lightmapIndex_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "lightmap_scale_offset" field.</summary>
+    public const int LightmapScaleOffsetFieldNumber = 3;
+    private global::PLUME.Sample.Common.Vector4 lightmapScaleOffset_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Vector4 LightmapScaleOffset {
+      get { return lightmapScaleOffset_; }
+      set {
+        lightmapScaleOffset_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "realtime_lightmap_index" field.</summary>
+    public const int RealtimeLightmapIndexFieldNumber = 4;
+    private int realtimeLightmapIndex_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RealtimeLightmapIndex {
+      get { return realtimeLightmapIndex_; }
+      set {
+        realtimeLightmapIndex_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "realtime_lightmap_scale_offset" field.</summary>
+    public const int RealtimeLightmapScaleOffsetFieldNumber = 5;
+    private global::PLUME.Sample.Common.Vector4 realtimeLightmapScaleOffset_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Vector4 RealtimeLightmapScaleOffset {
+      get { return realtimeLightmapScaleOffset_; }
+      set {
+        realtimeLightmapScaleOffset_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MeshRendererUpdateLightmap);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MeshRendererUpdateLightmap other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      if (LightmapIndex != other.LightmapIndex) return false;
+      if (!object.Equals(LightmapScaleOffset, other.LightmapScaleOffset)) return false;
+      if (RealtimeLightmapIndex != other.RealtimeLightmapIndex) return false;
+      if (!object.Equals(RealtimeLightmapScaleOffset, other.RealtimeLightmapScaleOffset)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (LightmapIndex != 0) hash ^= LightmapIndex.GetHashCode();
+      if (lightmapScaleOffset_ != null) hash ^= LightmapScaleOffset.GetHashCode();
+      if (RealtimeLightmapIndex != 0) hash ^= RealtimeLightmapIndex.GetHashCode();
+      if (realtimeLightmapScaleOffset_ != null) hash ^= RealtimeLightmapScaleOffset.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (LightmapIndex != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(LightmapIndex);
+      }
+      if (lightmapScaleOffset_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(LightmapScaleOffset);
+      }
+      if (RealtimeLightmapIndex != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(RealtimeLightmapIndex);
+      }
+      if (realtimeLightmapScaleOffset_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(RealtimeLightmapScaleOffset);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (LightmapIndex != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(LightmapIndex);
+      }
+      if (lightmapScaleOffset_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(LightmapScaleOffset);
+      }
+      if (RealtimeLightmapIndex != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(RealtimeLightmapIndex);
+      }
+      if (realtimeLightmapScaleOffset_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(RealtimeLightmapScaleOffset);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (LightmapIndex != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LightmapIndex);
+      }
+      if (lightmapScaleOffset_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LightmapScaleOffset);
+      }
+      if (RealtimeLightmapIndex != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RealtimeLightmapIndex);
+      }
+      if (realtimeLightmapScaleOffset_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(RealtimeLightmapScaleOffset);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MeshRendererUpdateLightmap other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      if (other.LightmapIndex != 0) {
+        LightmapIndex = other.LightmapIndex;
+      }
+      if (other.lightmapScaleOffset_ != null) {
+        if (lightmapScaleOffset_ == null) {
+          LightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
+        }
+        LightmapScaleOffset.MergeFrom(other.LightmapScaleOffset);
+      }
+      if (other.RealtimeLightmapIndex != 0) {
+        RealtimeLightmapIndex = other.RealtimeLightmapIndex;
+      }
+      if (other.realtimeLightmapScaleOffset_ != null) {
+        if (realtimeLightmapScaleOffset_ == null) {
+          RealtimeLightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
+        }
+        RealtimeLightmapScaleOffset.MergeFrom(other.RealtimeLightmapScaleOffset);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+          case 16: {
+            LightmapIndex = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            if (lightmapScaleOffset_ == null) {
+              LightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
+            }
+            input.ReadMessage(LightmapScaleOffset);
+            break;
+          }
+          case 32: {
+            RealtimeLightmapIndex = input.ReadInt32();
+            break;
+          }
+          case 42: {
+            if (realtimeLightmapScaleOffset_ == null) {
+              RealtimeLightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
+            }
+            input.ReadMessage(RealtimeLightmapScaleOffset);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+          case 16: {
+            LightmapIndex = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            if (lightmapScaleOffset_ == null) {
+              LightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
+            }
+            input.ReadMessage(LightmapScaleOffset);
+            break;
+          }
+          case 32: {
+            RealtimeLightmapIndex = input.ReadInt32();
+            break;
+          }
+          case 42: {
+            if (realtimeLightmapScaleOffset_ == null) {
+              RealtimeLightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
+            }
+            input.ReadMessage(RealtimeLightmapScaleOffset);
             break;
           }
         }

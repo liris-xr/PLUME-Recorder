@@ -112,12 +112,22 @@ namespace PLUME
                 Id = skinnedMeshRenderer.ToIdentifierPayload(),
                 Enabled = skinnedMeshRenderer.enabled
             };
+            
+            var skinnedMeshRendererUpdateLightmap = new SkinnedMeshRendererUpdateLightmap
+            {
+                Id = skinnedMeshRenderer.ToIdentifierPayload(),
+                LightmapIndex = skinnedMeshRenderer.lightmapIndex,
+                LightmapScaleOffset = skinnedMeshRenderer.lightmapScaleOffset.ToPayload(),
+                RealtimeLightmapIndex = skinnedMeshRenderer.realtimeLightmapIndex,
+                RealtimeLightmapScaleOffset = skinnedMeshRenderer.realtimeLightmapScaleOffset.ToPayload()
+            };
 
             recorder.RecordSample(skinnedMeshRendererCreate);
             recorder.RecordSample(skinnedMeshRendererUpdateSharedMesh);
             recorder.RecordSample(skinnedMeshRendererUpdateBones);
             recorder.RecordSample(skinnedMeshRendererUpdateMaterials);
             recorder.RecordSample(skinnedMeshRendererUpdateEnabled);
+            recorder.RecordSample(skinnedMeshRendererUpdateLightmap);
         }
 
         private void RecordDestruction(int skinnedMeshRendererInstanceId)

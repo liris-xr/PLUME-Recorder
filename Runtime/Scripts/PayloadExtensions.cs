@@ -6,6 +6,8 @@ using UnityEngine;
 using Bounds = PLUME.Sample.Common.Bounds;
 using Color = PLUME.Sample.Common.Color;
 using FogMode = PLUME.Sample.Unity.FogMode;
+using LightmapData = PLUME.Sample.Unity.LightmapData;
+using LightmapsMode = PLUME.Sample.Unity.LightmapsMode;
 using LightShadowCasterMode = PLUME.Sample.Unity.LightShadowCasterMode;
 using LightShadows = PLUME.Sample.Unity.LightShadows;
 using LightShape = PLUME.Sample.Unity.LightShape;
@@ -23,9 +25,9 @@ namespace PLUME
     {
         public static AssetIdentifier ToAssetIdentifierPayload(this Object obj)
         {
-            var guidRegistry = AssetsGuidRegistry.Get();
+            var guidRegistry = AssetsGuidRegistry.Instance;
             var guidRegistryEntry = guidRegistry.GetOrCreate(obj);
-            
+
             return new AssetIdentifier
             {
                 Id = guidRegistryEntry.guid,
@@ -37,7 +39,7 @@ namespace PLUME
         {
             var guidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(component.gameObject.scene);
             var guidRegistryEntry = guidRegistry.GetOrCreate(component);
-            
+
             return new ComponentIdentifier
             {
                 Id = guidRegistryEntry.guid,
@@ -50,7 +52,7 @@ namespace PLUME
             var guidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(go.scene);
             var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreate(go);
             var transformGuidRegistryEntry = guidRegistry.GetOrCreate(go.transform);
-            
+
             return new TransformGameObjectIdentifier
             {
                 TransformId = transformGuidRegistryEntry.guid,
@@ -62,7 +64,7 @@ namespace PLUME
         {
             return t.gameObject.ToIdentifierPayload();
         }
-        
+
         public static Vector2 ToPayload(this UnityEngine.Vector2 vec)
         {
             return new Vector2
@@ -92,7 +94,7 @@ namespace PLUME
                 W = vec.w
             };
         }
-        
+
         public static Quaternion ToPayload(this UnityEngine.Quaternion vec)
         {
             return new Quaternion
@@ -210,7 +212,7 @@ namespace PLUME
                 _ => throw new ArgumentOutOfRangeException(nameof(lightShadowCasterMode), lightShadowCasterMode, null)
             };
         }
-        
+
         public static FogMode ToPayload(this UnityEngine.FogMode fogMode)
         {
             return fogMode switch
@@ -251,6 +253,79 @@ namespace PLUME
             {
                 Center = bounds.center.ToPayload(),
                 Extents = bounds.extents.ToPayload()
+            };
+        }
+
+        public static LightmapData ToPayload(this UnityEngine.LightmapData lightmapData)
+        {
+            return new LightmapData
+            {
+                LightmapColorTextureId = lightmapData.lightmapColor == null ? null : lightmapData.lightmapColor.ToAssetIdentifierPayload(),
+                LightmapDirTextureId = lightmapData.lightmapDir == null ? null : lightmapData.lightmapDir.ToAssetIdentifierPayload(),
+                LightmapShadowMaskTextureId = lightmapData.shadowMask == null ? null : lightmapData.shadowMask.ToAssetIdentifierPayload()
+            };
+        }
+
+        public static LightmapsMode ToPayload(this UnityEngine.LightmapsMode lightmapsMode)
+        {
+            return lightmapsMode switch
+            {
+                UnityEngine.LightmapsMode.NonDirectional => LightmapsMode.NonDirectional,
+                UnityEngine.LightmapsMode.CombinedDirectional => LightmapsMode.CombinedDirectional,
+                _ => throw new ArgumentOutOfRangeException(nameof(lightmapsMode), lightmapsMode, null)
+            };
+        }
+
+        public static ReflectionProbeMode ToPayload(this UnityEngine.Rendering.ReflectionProbeMode reflectionProbeMode)
+        {
+            return reflectionProbeMode switch
+            {
+                UnityEngine.Rendering.ReflectionProbeMode.Custom => ReflectionProbeMode.Custom,
+                UnityEngine.Rendering.ReflectionProbeMode.Baked => ReflectionProbeMode.Baked,
+                UnityEngine.Rendering.ReflectionProbeMode.Realtime => ReflectionProbeMode.Realtime,
+                _ => throw new ArgumentOutOfRangeException(nameof(reflectionProbeMode), reflectionProbeMode, null)
+            };
+        }
+
+        public static ReflectionProbeRefreshMode ToPayload(
+            this UnityEngine.Rendering.ReflectionProbeRefreshMode reflectionProbeRefreshMode)
+        {
+            return reflectionProbeRefreshMode switch
+            {
+                UnityEngine.Rendering.ReflectionProbeRefreshMode.EveryFrame => ReflectionProbeRefreshMode.EveryFrame,
+                UnityEngine.Rendering.ReflectionProbeRefreshMode.OnAwake => ReflectionProbeRefreshMode.OnAwake,
+                UnityEngine.Rendering.ReflectionProbeRefreshMode.ViaScripting =>
+                    ReflectionProbeRefreshMode.ViaScripting,
+                _ => throw new ArgumentOutOfRangeException(nameof(reflectionProbeRefreshMode),
+                    reflectionProbeRefreshMode, null)
+            };
+        }
+
+        public static ReflectionProbeTimeSlicingMode ToPayload(
+            this UnityEngine.Rendering.ReflectionProbeTimeSlicingMode reflectionProbeTimeSlicingMode)
+        {
+            return reflectionProbeTimeSlicingMode switch
+            {
+                UnityEngine.Rendering.ReflectionProbeTimeSlicingMode.NoTimeSlicing => ReflectionProbeTimeSlicingMode
+                    .NoTimeSlicing,
+                UnityEngine.Rendering.ReflectionProbeTimeSlicingMode.IndividualFaces => ReflectionProbeTimeSlicingMode
+                    .IndividualFaces,
+                UnityEngine.Rendering.ReflectionProbeTimeSlicingMode.AllFacesAtOnce => ReflectionProbeTimeSlicingMode
+                    .AllFacesAtOnce,
+                _ => throw new ArgumentOutOfRangeException(nameof(reflectionProbeTimeSlicingMode),
+                    reflectionProbeTimeSlicingMode, null)
+            };
+        }
+
+        public static ReflectionProbeClearFlags ToPayload(
+            this UnityEngine.Rendering.ReflectionProbeClearFlags reflectionProbeClearFlags)
+        {
+            return reflectionProbeClearFlags switch
+            {
+                UnityEngine.Rendering.ReflectionProbeClearFlags.Skybox => ReflectionProbeClearFlags.Skybox,
+                UnityEngine.Rendering.ReflectionProbeClearFlags.SolidColor => ReflectionProbeClearFlags.SolidColor,
+                _ => throw new ArgumentOutOfRangeException(nameof(reflectionProbeClearFlags), reflectionProbeClearFlags,
+                    null)
             };
         }
 

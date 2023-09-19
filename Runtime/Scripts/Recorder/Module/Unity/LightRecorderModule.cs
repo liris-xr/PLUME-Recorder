@@ -178,7 +178,7 @@ namespace PLUME
                 Id = light.ToIdentifierPayload(),
                 Enabled = light.enabled
             };
-
+            
             recorder.RecordSample(lightCreate);
             recorder.RecordSample(lightUpdateType);
             recorder.RecordSample(lightUpdateIntensity);

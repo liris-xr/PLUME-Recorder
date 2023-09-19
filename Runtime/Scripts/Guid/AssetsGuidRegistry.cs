@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 #if UNITY_EDITOR
@@ -12,15 +13,101 @@ namespace PLUME.Guid
     [Serializable]
     public class AssetsGuidRegistry : ScriptableObject
     {
-        private const string RegistryResourcePath = "PlumeAssetsGuidRegistry.asset";
-
         [SerializeField] private GuidRegistry<AssetGuidRegistryEntry> registry = new();
+        
+        private static AssetsGuidRegistry _instance;
 
-        private static bool _loaded;
-        private static AssetsGuidRegistry _loadedInstance;
+        public static AssetsGuidRegistry Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = GetRegistry();
+                }
 
-        public int Count => registry.Count;
+                return _instance;
+            }
+        }
 
+        private void OnEnable()
+        {
+            _instance = this;
+        }
+        
+#if UNITY_EDITOR
+        private static string GetRegistryAssetPath()
+        {
+            var resourcesPath = Path.Combine(Application.dataPath, "Resources");
+            if (!Directory.Exists(resourcesPath))
+            {
+                Directory.CreateDirectory(resourcesPath);
+            }
+
+            var registryAssetPath = Path.GetFullPath(Path.Combine(resourcesPath, "PlumeAssetsGuidRegistry.asset"));
+            var configUri = new Uri(registryAssetPath);
+            var projectUri = new Uri(Application.dataPath);
+            var relativeUri = projectUri.MakeRelativeUri(configUri);
+            return relativeUri.ToString();
+        }
+        
+        public static void CommitRegistry(AssetsGuidRegistry registry)
+        {
+            var registryAssetPath = GetRegistryAssetPath();
+            if (AssetDatabase.GetAssetPath(registry) != registryAssetPath)
+            {
+                Debug.LogWarningFormat("The asset path of AssetsGuidRegistry is wrong. Expect {0}, get {1}",
+                    registryAssetPath, AssetDatabase.GetAssetPath(registry));
+            }
+
+            EditorUtility.SetDirty(registry);
+        }
+        
+        internal void AddToPreloadedAssets()
+        {
+            var preloadedAssets = PlayerSettings.GetPreloadedAssets().ToList();
+
+            if (!preloadedAssets.Contains(this))
+            {
+                preloadedAssets.Add(this);
+                PlayerSettings.SetPreloadedAssets(preloadedAssets.ToArray());
+            }
+        }
+#endif
+        
+        public static AssetsGuidRegistry GetRegistry()
+        {
+            AssetsGuidRegistry registry = null;
+#if UNITY_EDITOR
+            var registryAssetPath = GetRegistryAssetPath();
+            try
+            {
+                registry =
+                    AssetDatabase.LoadAssetAtPath(registryAssetPath, typeof(AssetsGuidRegistry)) as
+                        AssetsGuidRegistry;
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarningFormat("Unable to load AssetsGuidRegistry from {0}, error {1}", registryAssetPath,
+                    e.Message);
+            }
+
+            if (registry == null && !BuildPipeline.isBuildingPlayer)
+            {
+                registry = CreateInstance<AssetsGuidRegistry>();
+                AssetDatabase.CreateAsset(registry, registryAssetPath);
+            }
+#else
+        registry = Resources.Load<AssetsGuidRegistry>("PlumeAssetsGuidRegistry");
+        if (registry == null)
+        {
+            Debug.LogWarning("Failed to load assets GUID registry. Using default registry instead.");
+            registry = ScriptableObject.CreateInstance<AssetsGuidRegistry>();
+        }
+#endif
+            return registry;
+        }
+        
         public bool TryAdd(AssetGuidRegistryEntry guidEntry)
         {
             return registry.TryAdd(guidEntry);
@@ -70,7 +157,7 @@ namespace PLUME.Guid
             const string builtinExtraResourcesPath = "Library/unity default resources";
 
             if (!AssetDatabase.Contains(asset))
-                return null;
+                return "";
 
             var path = AssetDatabase.GetAssetPath(asset);
 
@@ -81,35 +168,5 @@ namespace PLUME.Guid
             return $"{prefix}:{asset.GetType().FullName}:{path}:{asset.name}";
         }
 #endif
-
-        public static AssetsGuidRegistry Get()
-        {
-            if (_loaded && _loadedInstance != null)
-                return _loadedInstance;
-
-#if UNITY_EDITOR
-            var assetPath = Path.Join("Assets/Resources", RegistryResourcePath);
-            var asset = AssetDatabase.LoadAssetAtPath<AssetsGuidRegistry>(assetPath);
-            
-            if (asset == null)
-            {
-                Directory.CreateDirectory(Path.Join(Application.dataPath, "Resources"));
-                asset = CreateInstance<AssetsGuidRegistry>();
-                AssetDatabase.CreateAsset(asset, assetPath);
-                Debug.Log($"Created Assets GUID registry at '{assetPath}'");
-            }
-#endif
-
-            asset = Resources.Load<AssetsGuidRegistry>(RegistryResourcePath.Replace(".asset", ""));
-
-            if (asset == null)
-            {
-                throw new Exception($"Assets GUID registry not found at 'Assets/Resources/{RegistryResourcePath}'");
-            }
-            
-            _loaded = true;
-            _loadedInstance = asset;
-            return _loadedInstance;
-        }
     }
 }

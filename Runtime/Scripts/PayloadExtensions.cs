@@ -329,6 +329,32 @@ namespace PLUME
             };
         }
 
+        public static ShadowCastingMode ToPayload(this UnityEngine.Rendering.ShadowCastingMode shadowCastingMode)
+        {
+            return shadowCastingMode switch
+            {
+                UnityEngine.Rendering.ShadowCastingMode.Off => ShadowCastingMode.Off,
+                UnityEngine.Rendering.ShadowCastingMode.On => ShadowCastingMode.On,
+                UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly => ShadowCastingMode.ShadowsOnly,
+                UnityEngine.Rendering.ShadowCastingMode.TwoSided => ShadowCastingMode.TwoSided,
+                _ => throw new ArgumentOutOfRangeException(nameof(shadowCastingMode), shadowCastingMode,
+                    null)
+            };
+        }
+        
+        public static ReflectionProbeUsage ToPayload(this UnityEngine.Rendering.ReflectionProbeUsage reflectionProbeUsage)
+        {
+            return reflectionProbeUsage switch
+            {
+                UnityEngine.Rendering.ReflectionProbeUsage.Off => ReflectionProbeUsage.Off,
+                UnityEngine.Rendering.ReflectionProbeUsage.BlendProbes => ReflectionProbeUsage.BlendProbes,
+                UnityEngine.Rendering.ReflectionProbeUsage.BlendProbesAndSkybox => ReflectionProbeUsage.BlendProbesAndSkybox,
+                UnityEngine.Rendering.ReflectionProbeUsage.Simple => ReflectionProbeUsage.Simple,
+                _ => throw new ArgumentOutOfRangeException(nameof(reflectionProbeUsage), reflectionProbeUsage,
+                    null)
+            };
+        }
+        
         public static Matrix4x4 ToPayload(this UnityEngine.Matrix4x4 mtx)
         {
             return new Matrix4x4

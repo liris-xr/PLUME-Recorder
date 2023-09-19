@@ -92,7 +92,7 @@ namespace PLUME.Guid
                     e.Message);
             }
 
-            if (registry == null && !BuildPipeline.isBuildingPlayer)
+            if (registry == null)
             {
                 registry = CreateInstance<AssetsGuidRegistry>();
                 AssetDatabase.CreateAsset(registry, registryAssetPath);
@@ -165,7 +165,9 @@ namespace PLUME.Guid
                 ? "Builtin"
                 : "Custom";
 
-            return $"{prefix}:{asset.GetType().FullName}:{path}:{asset.name}";
+            var assetType = asset.GetType().FullName + ", " + asset.GetType().Assembly.GetName().Name;
+            
+            return $"{prefix}:{assetType}:{path}:{asset.name}";
         }
 #endif
     }

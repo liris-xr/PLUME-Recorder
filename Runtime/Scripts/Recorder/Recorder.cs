@@ -69,7 +69,8 @@ namespace PLUME
             // Android platforms can't be patched using Harmony because of IL2CPP
             var go = new GameObject();
             go.name = "Android event dispatcher";
-            Object.DontDestroyOnLoad(go);
+            go.AddComponent<AndroidEventDispatcher>();
+            DontDestroyOnLoad(go);
 #endif
         }
         

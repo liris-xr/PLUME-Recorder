@@ -55,7 +55,17 @@ namespace PLUME.Guid
             _guids.Clear();
             foreach (var entry in entries.Where(entry => entry != null && entry.@object != null))
             {
-                _guids.Add(entry.@object, entry);
+                if (entry.@object != null)
+                {
+                    try
+                    {
+                        _guids.Add(entry.@object, entry);
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
+                }
             }
         }
     }

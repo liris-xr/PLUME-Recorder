@@ -6,6 +6,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 namespace PLUME.Editor
@@ -58,22 +59,32 @@ namespace PLUME.Editor
 
             var scenesAssetsDependencies = GetFilteredScenesDependencies(scenePaths);
 
+            if (GraphicsSettings.currentRenderPipeline != null)
+            {
+                var currentRenderPipelineAssetPath = AssetDatabase.GetAssetPath(GraphicsSettings.currentRenderPipeline);
+
+                if (!scenesAssetsDependencies.Contains(currentRenderPipelineAssetPath))
+                {
+                    scenesAssetsDependencies.Add(currentRenderPipelineAssetPath);
+                }
+            }
+
             var assetBundleBuild = new AssetBundleBuild
             {
                 assetBundleName = "plume_asset_bundle_windows",
-                assetNames = scenesAssetsDependencies
+                assetNames = scenesAssetsDependencies.ToArray()
             };
 
             if (!Directory.Exists(Application.streamingAssetsPath))
                 Directory.CreateDirectory(Application.streamingAssetsPath);
 
-            BuildPipeline.BuildAssetBundles(Application.streamingAssetsPath, new[] { assetBundleBuild }, BuildAssetBundleOptions.StrictMode, BuildTarget.StandaloneWindows);
+            BuildPipeline.BuildAssetBundles(Application.streamingAssetsPath, new[] { assetBundleBuild }, BuildAssetBundleOptions.StrictMode, BuildTarget.StandaloneWindows64);
             Debug.Log("Finished building asset bundle.");
         }
 
-        private static string[] GetFilteredScenesDependencies(string[] scenePaths)
+        private static List<string> GetFilteredScenesDependencies(string[] scenePaths)
         {
-            var filteredDependencyPaths = new List<string>(scenePaths.Length);
+            var filteredDependencyPaths = new List<string>();
 
             var dependencies = AssetDatabase.GetDependencies(scenePaths, true);
 
@@ -94,7 +105,7 @@ namespace PLUME.Editor
                 filteredDependencyPaths.Add(dependencyPath);
             }
 
-            return filteredDependencyPaths.ToArray();
+            return filteredDependencyPaths;
         }
     }
 }

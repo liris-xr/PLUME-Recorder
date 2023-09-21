@@ -109,8 +109,11 @@ namespace PLUME
                                     bufferedInlet =
                                         new BufferedInlet<sbyte>(streamInfo, PickNextLslStreamId());
                                     break;
-                                case channel_format_t.cf_undefined:
                                 case channel_format_t.cf_int64:
+                                    bufferedInlet =
+                                        new BufferedInlet<long>(streamInfo, PickNextLslStreamId());
+                                    break;
+                                case channel_format_t.cf_undefined:
                                 default:
                                     throw new Exception($"Unsupported channel format {streamInfo.channel_format()}");
                             }

@@ -1,103 +1,114 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using PLUME.Sample;
 using UnityEngine;
-using UnityEngine.Profiling;
-using UnityEngine.Rendering;
-using CompressionLevel = System.IO.Compression.CompressionLevel;
 
 namespace PLUME
 {
     public class RecordWriter : IDisposable
     {
         private readonly DateTime _createdAt;
+        private readonly ExtraMetadata[] _extraMetadata;
         private readonly string _recordIdentifier;
 
         private readonly string _tmpFilepath;
         private readonly FileStream _tmpStream;
-        private readonly List<TemporaryStreamSampleInfo> _tmpSamplesInfos = new();
 
         private readonly string _filepath;
-        private readonly Stream _customOutputStream;
 
         private readonly bool _leaveOpen;
 
-        private int _samplesCount;
-        private ulong _duration;
+        private long _samplesCount;
+        private long _duration;
 
         private bool _closed;
 
-        public RecordWriter(string filepath, string recordIdentifier, int bufferSize = 4096, bool leaveOpen = false)
+        private bool _useCompression;
+
+        public RecordWriter(string filepath, string recordIdentifier, ExtraMetadata[] extraMetadata,
+            bool useCompression, int bufferSize = 4096,
+            bool leaveOpen = false)
         {
             _filepath = filepath;
             _createdAt = DateTime.UtcNow;
+            _extraMetadata = extraMetadata;
             _recordIdentifier = recordIdentifier;
-            _tmpFilepath = Path.Combine(Application.persistentDataPath, GenerateTmpFileName(recordIdentifier));
-            _tmpStream = new FileStream(_tmpFilepath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Read, bufferSize);
+            _tmpFilepath = GetTmpFilePath();
+            _tmpStream = File.Create(_tmpFilepath, bufferSize);
             _leaveOpen = leaveOpen;
+            _useCompression = useCompression;
+
+            WriteMetadata(Recorder.Version, _createdAt, recordIdentifier, false, extraMetadata);
         }
 
-        private static string GenerateTmpFileName(string recordIdentifier)
+        private static string GetTmpFilePath()
         {
-            return $"plume_tmp_{recordIdentifier}.tmp";
+            return Path.Combine(Application.persistentDataPath, $"plume_tmp_{System.Guid.NewGuid().ToString()}.tmp");
+        }
+
+        private void WriteMetadata(RecorderVersion recorderVersion, DateTime creationTime, string recordIdentifier,
+            bool sequential, ExtraMetadata[] extraMetadata, long sampleCount = -1, long duration = -1)
+        {
+            var metadata = new RecordMetadata();
+            metadata.RecorderVersion = recorderVersion;
+            metadata.CreatedAt = Timestamp.FromDateTime(creationTime.ToUniversalTime());
+            metadata.Identifier = recordIdentifier;
+            metadata.Sequential = sequential;
+
+            if (extraMetadata != null)
+            {
+                foreach (var extraMetadataEntry in extraMetadata)
+                {
+                    metadata.ExtraMetadata.Add(extraMetadataEntry.Key, extraMetadataEntry.Value);
+                }
+            }
+
+            // 0 values are not serialized. We ensure that the values != 0 to keep a constant message size for overwriting placeholder values at the end of the record.
+            if (sampleCount == 0)
+                sampleCount = -1;
+            if (duration == 0)
+                duration = -1;
+
+            metadata.SamplesCount = sampleCount;
+            metadata.Duration = duration;
+
+            metadata.WriteDelimitedTo(_tmpStream);
         }
 
         public void WriteSample(PackedSample sample)
         {
-            var startPos = _tmpStream.Position;
             sample.WriteDelimitedTo(_tmpStream);
-            var endPos = _tmpStream.Position;
-
-            _tmpSamplesInfos.Add(new TemporaryStreamSampleInfo
-            {
-                seq = sample.Header.Seq,
-                timestamp = sample.Header.Time,
-                byteStartPos = startPos,
-                byteEndPos = endPos
-            });
-
             _samplesCount++;
-            _duration = Math.Max(_duration, sample.Header.Time);
+            _duration = Math.Max(_duration, (long)sample.Header.Time);
         }
 
         public void Close()
         {
+            _tmpStream.Flush(true);
+
             if (_closed)
                 return;
 
-            Profiler.BeginSample("Merging tmp files");
+            // Overwrite samples count and duration placeholders.
+            _tmpStream.Seek(0, SeekOrigin.Begin);
+            WriteMetadata(Recorder.Version, _createdAt, _recordIdentifier, false, _extraMetadata, _samplesCount,
+                _duration);
 
-            var header = new RecordHeader();
-            header.Version = Plume.Version;
-            header.CreatedAt = Timestamp.FromDateTime(_createdAt);
-            header.Identifier = _recordIdentifier;
-            header.SamplesCount = _samplesCount;
-            header.Duration = _duration;
-            header.RenderingPipeline = GraphicsSettings.currentRenderPipeline == null
-                ? "Built-in Render Pipeline"
-                : GraphicsSettings.currentRenderPipeline.name;
-            header.ExtraMetadata = "";
-
-            _tmpSamplesInfos.Sort(new TemporaryStreamSampleInfoComparer());
-            
-            if (_customOutputStream != null)
+            if (_useCompression)
             {
                 try
                 {
-                    header.WriteDelimitedTo(_customOutputStream);
-                    
-                    foreach (var tmpSampleInfo in _tmpSamplesInfos)
-                    {
-                        CopyBytes(_tmpStream, _customOutputStream, tmpSampleInfo.byteStartPos, tmpSampleInfo.byteEndPos - tmpSampleInfo.byteStartPos);
-                    }
-                    
+                    var outputStream = new GZipStream(File.Create(_filepath), CompressionMode.Compress);
+                    _tmpStream.Seek(0, SeekOrigin.Begin);
+                    _tmpStream.CopyTo(outputStream);
                     _tmpStream.Close();
+
                     if (!_leaveOpen)
-                        _customOutputStream.Close();
+                        outputStream.Close();
+
                     File.Delete(_tmpFilepath);
                 }
                 catch (IOException e)
@@ -109,20 +120,8 @@ namespace PLUME
             {
                 try
                 {
-                    Debug.Log("Merging temporary files and compressing data.");
-                    using var dstStream =
-                        new GZipStream(new FileStream(_filepath, FileMode.CreateNew, FileAccess.Write),
-                            CompressionLevel.Optimal);
-                    header.WriteDelimitedTo(dstStream);
-                    
-                    foreach (var tmpSampleInfo in _tmpSamplesInfos)
-                    {
-                        CopyBytes(_tmpStream, dstStream, tmpSampleInfo.byteStartPos, tmpSampleInfo.byteEndPos - tmpSampleInfo.byteStartPos);
-                    }
-                    
                     _tmpStream.Close();
-                    Debug.Log($"Final output file size is {GetSizeString(dstStream.BaseStream.Length)}.");
-                    File.Delete(_tmpFilepath);
+                    File.Move(_tmpFilepath, _filepath);
                 }
                 catch (IOException e)
                 {
@@ -130,26 +129,7 @@ namespace PLUME
                 }
             }
 
-            Profiler.EndSample();
-
             _closed = true;
-        }
-
-        private static void CopyBytes(Stream srcStream, Stream outStream, long srcStart, long nBytes)
-        {
-            var readBytes = 0;
-            var buffer = new byte[64*1024];
-            
-            do
-            {
-                var toRead = Math.Min(nBytes - readBytes, buffer.Length);
-                srcStream.Seek(srcStart, SeekOrigin.Begin);
-                var readNow = srcStream.Read(buffer, 0, (int) toRead);
-                if (readNow == 0)
-                    break; // End of stream
-                outStream.Write(buffer, 0, readNow);
-                readBytes += readNow;
-            } while (readBytes < nBytes);
         }
 
         public void Dispose()
@@ -170,46 +150,24 @@ namespace PLUME
             switch (length)
             {
                 case >= tb:
-                    size = Math.Round((double) length / tb, 2);
+                    size = Math.Round((double)length / tb, 2);
                     suffix = "TB";
                     break;
                 case >= gb:
-                    size = Math.Round((double) length / gb, 2);
+                    size = Math.Round((double)length / gb, 2);
                     suffix = "GB";
                     break;
                 case >= mb:
-                    size = Math.Round((double) length / mb, 2);
+                    size = Math.Round((double)length / mb, 2);
                     suffix = "MB";
                     break;
                 case >= kb:
-                    size = Math.Round((double) length / kb, 2);
+                    size = Math.Round((double)length / kb, 2);
                     suffix = "KB";
                     break;
             }
 
             return $"{size}{suffix}";
-        }
-    }
-    
-    public class TemporaryStreamSampleInfo
-    {
-        public ulong seq;
-        public ulong timestamp;
-        public long byteStartPos;
-        public long byteEndPos;
-    }
-
-    public class TemporaryStreamSampleInfoComparer : IComparer<TemporaryStreamSampleInfo>
-    {
-        public int Compare(TemporaryStreamSampleInfo x, TemporaryStreamSampleInfo y)
-        {
-            if (ReferenceEquals(x, y)) return 0;
-            if (ReferenceEquals(null, y)) return 1;
-            if (ReferenceEquals(null, x)) return -1;
-            // First order by timestamp, then by sequence id
-            var timestampComparison = x.timestamp.CompareTo(y.timestamp);
-            var seqComparison = x.seq.CompareTo(y.seq);
-            return timestampComparison != 0 ? timestampComparison : seqComparison;
         }
     }
 }

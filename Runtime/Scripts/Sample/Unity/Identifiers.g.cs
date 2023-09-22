@@ -30,15 +30,16 @@ namespace PLUME.Sample.Unity {
             "bnRJZGVudGlmaWVyEgoKAmlkGAEgASgJEkQKCXBhcmVudF9pZBgCIAEoCzIx",
             "LnBsdW1lLnNhbXBsZS51bml0eS5UcmFuc2Zvcm1HYW1lT2JqZWN0SWRlbnRp",
             "ZmllciIoChpDb21wb25lbnREZXN0cm95SWRlbnRpZmllchIKCgJpZBgBIAEo",
-            "CSIrCg9Bc3NldElkZW50aWZpZXISCgoCaWQYASABKAkSDAoEaGFzaBgCIAEo",
-            "BUIVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
+            "CSI5Cg9Bc3NldElkZW50aWZpZXISCgoCaWQYASABKAkSDAoEcGF0aBgCIAEo",
+            "CRIMCgRoYXNoGAMgASgFQhWqAhJQTFVNRS5TYW1wbGUuVW5pdHliBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformGameObjectIdentifier), global::PLUME.Sample.Unity.TransformGameObjectIdentifier.Parser, new[]{ "TransformId", "GameObjectId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ComponentIdentifier), global::PLUME.Sample.Unity.ComponentIdentifier.Parser, new[]{ "Id", "ParentId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ComponentDestroyIdentifier), global::PLUME.Sample.Unity.ComponentDestroyIdentifier.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AssetIdentifier), global::PLUME.Sample.Unity.AssetIdentifier.Parser, new[]{ "Id", "Hash" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AssetIdentifier), global::PLUME.Sample.Unity.AssetIdentifier.Parser, new[]{ "Id", "Path", "Hash" }, null, null, null, null)
           }));
     }
     #endregion
@@ -730,6 +731,7 @@ namespace PLUME.Sample.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AssetIdentifier(AssetIdentifier other) : this() {
       id_ = other.id_;
+      path_ = other.path_;
       hash_ = other.hash_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -752,8 +754,20 @@ namespace PLUME.Sample.Unity {
       }
     }
 
+    /// <summary>Field number for the "path" field.</summary>
+    public const int PathFieldNumber = 2;
+    private string path_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Path {
+      get { return path_; }
+      set {
+        path_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "hash" field.</summary>
-    public const int HashFieldNumber = 2;
+    public const int HashFieldNumber = 3;
     private int hash_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -780,6 +794,7 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (Id != other.Id) return false;
+      if (Path != other.Path) return false;
       if (Hash != other.Hash) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -789,6 +804,7 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (Path.Length != 0) hash ^= Path.GetHashCode();
       if (Hash != 0) hash ^= Hash.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -812,8 +828,12 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteString(Id);
       }
+      if (Path.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Path);
+      }
       if (Hash != 0) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(24);
         output.WriteInt32(Hash);
       }
       if (_unknownFields != null) {
@@ -830,8 +850,12 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteString(Id);
       }
+      if (Path.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Path);
+      }
       if (Hash != 0) {
-        output.WriteRawTag(16);
+        output.WriteRawTag(24);
         output.WriteInt32(Hash);
       }
       if (_unknownFields != null) {
@@ -846,6 +870,9 @@ namespace PLUME.Sample.Unity {
       int size = 0;
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (Path.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Path);
       }
       if (Hash != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Hash);
@@ -864,6 +891,9 @@ namespace PLUME.Sample.Unity {
       }
       if (other.Id.Length != 0) {
         Id = other.Id;
+      }
+      if (other.Path.Length != 0) {
+        Path = other.Path;
       }
       if (other.Hash != 0) {
         Hash = other.Hash;
@@ -887,7 +917,11 @@ namespace PLUME.Sample.Unity {
             Id = input.ReadString();
             break;
           }
-          case 16: {
+          case 18: {
+            Path = input.ReadString();
+            break;
+          }
+          case 24: {
             Hash = input.ReadInt32();
             break;
           }
@@ -910,7 +944,11 @@ namespace PLUME.Sample.Unity {
             Id = input.ReadString();
             break;
           }
-          case 16: {
+          case 18: {
+            Path = input.ReadString();
+            break;
+          }
+          case 24: {
             Hash = input.ReadInt32();
             break;
           }

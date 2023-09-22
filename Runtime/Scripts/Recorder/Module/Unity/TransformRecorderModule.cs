@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using PLUME.Guid;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -11,23 +12,9 @@ namespace PLUME
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-        public struct CachedTransformGameObjectIdentifier
-        {
-            public string TransformId;
-            public string GameObjectId;
-
-            public TransformGameObjectIdentifier ToPayload()
-            {
-                return new TransformGameObjectIdentifier
-                {
-                    TransformId = TransformId,
-                    GameObjectId = GameObjectId
-                };
-            }
-        }
-        
         private readonly Dictionary<int, Transform> _recordedTransforms = new();
-        private readonly Dictionary<int, CachedTransformGameObjectIdentifier> _cachedIdentifiers = new();
+        private readonly Dictionary<int, string> _cachedGameObjectIdentifiers = new();
+        private readonly Dictionary<int, string> _cachedTransformIdentifiers = new();
 
         private readonly Dictionary<int, int> _lastSiblingIndex = new();
         private readonly Dictionary<int, int?> _lastParentTransformId = new();
@@ -75,7 +62,8 @@ namespace PLUME
         protected override void ResetCache()
         {
             _recordedTransforms.Clear();
-            _cachedIdentifiers.Clear();
+            _cachedGameObjectIdentifiers.Clear();
+            _cachedTransformIdentifiers.Clear();
             _lastSiblingIndex.Clear();
             _lastParentTransformId.Clear();
             _lastScale.Clear();
@@ -103,39 +91,31 @@ namespace PLUME
 
         public void OnStartRecordingObject(Object obj)
         {
-            if (obj is Transform t and not RectTransform)
-            {
-                if (!_recordedTransforms.ContainsKey(t.GetInstanceID()))
-                {
-                    var transformId = t.GetInstanceID();
-                    _recordedTransforms.Add(transformId, t);
-                    _cachedIdentifiers.Add(transformId, new CachedTransformGameObjectIdentifier
-                    {
-                        TransformId = t.GetInstanceID().ToString(),
-                        GameObjectId = t.gameObject.GetInstanceID().ToString()
-                    });
-                    _lastSiblingIndex.Add(transformId, t.GetSiblingIndex());
-                    _lastParentTransformId.Add(transformId, t.parent == null ? null : t.parent.GetInstanceID());
-                    _lastScale.Add(transformId, t.transform.lossyScale);
-                    _lastPosition.Add(transformId, t.transform.position);
-                    _lastRotation.Add(transformId, t.transform.rotation);
-                    RecordCreation(t);
-                }
-            }
+            if (obj is not (Transform t and not RectTransform)) return;
+            if (_recordedTransforms.ContainsKey(t.GetInstanceID())) return;
+            
+            var guidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(t.gameObject.scene);
+            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreate(t.gameObject);
+            var transformGuidRegistryEntry = guidRegistry.GetOrCreate(t.gameObject.transform);
+            var transformId = t.GetInstanceID();
+            
+            _recordedTransforms.Add(transformId, t);
+            _cachedGameObjectIdentifiers.Add(transformId, gameObjectGuidRegistryEntry.guid);
+            _cachedTransformIdentifiers.Add(transformId, transformGuidRegistryEntry.guid);
+            _lastSiblingIndex.Add(transformId, t.GetSiblingIndex());
+            _lastParentTransformId.Add(transformId, t.parent == null ? null : t.parent.GetInstanceID());
+            _lastScale.Add(transformId, t.transform.lossyScale);
+            _lastPosition.Add(transformId, t.transform.position);
+            _lastRotation.Add(transformId, t.transform.rotation);
+            RecordCreation(t);
         }
 
         public void OnStopRecordingObject(int objectInstanceId)
         {
-            if (_recordedTransforms.ContainsKey(objectInstanceId))
-            {
-                var t = _recordedTransforms[objectInstanceId];
-
-                if (t != null)
-                {
-                    RecordDestruction(objectInstanceId);
-                    RemoveFromCache(objectInstanceId);
-                }
-            }
+            if (!_recordedTransforms.TryGetValue(objectInstanceId, out var t)) return;
+            if (t == null) return;
+            RecordDestruction(objectInstanceId);
+            RemoveFromCache(objectInstanceId);
         }
 
         private void RemoveFromCache(int transformInstanceId)
@@ -146,13 +126,18 @@ namespace PLUME
             _lastScale.Remove(transformInstanceId);
             _lastPosition.Remove(transformInstanceId);
             _lastRotation.Remove(transformInstanceId);
-            _cachedIdentifiers.Remove(transformInstanceId);
+            _cachedGameObjectIdentifiers.Remove(transformInstanceId);
+            _cachedTransformIdentifiers.Remove(transformInstanceId);
         }
 
         private void RecordCreation(Transform t)
         {
             var transformId = t.GetInstanceID();
-            var transformCreate = new TransformCreate {Id = _cachedIdentifiers[transformId].ToPayload()};
+            var transformCreate = new TransformCreate {Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[transformId],
+                GameObjectId = _cachedGameObjectIdentifiers[transformId]
+            }};
             var transformUpdateParent = CreateTransformUpdateParent(t);
             var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(t);
 
@@ -163,7 +148,11 @@ namespace PLUME
 
             var transformUpdatePosition = new TransformUpdatePosition
             {
-                Id = _cachedIdentifiers[transformId].ToPayload(),
+                Id = new TransformGameObjectIdentifier
+                {
+                    TransformId = _cachedTransformIdentifiers[transformId],
+                    GameObjectId = _cachedGameObjectIdentifiers[transformId]
+                },
                 LocalPosition = new Sample.Common.Vector3
                     {X = localPosition.x, Y = localPosition.y, Z = localPosition.z},
                 WorldPosition = new Sample.Common.Vector3 {X = position.x, Y = position.y, Z = position.z},
@@ -171,7 +160,11 @@ namespace PLUME
 
             var transformUpdateRotation = new TransformUpdateRotation
             {
-                Id = _cachedIdentifiers[transformId].ToPayload(),
+                Id = new TransformGameObjectIdentifier
+                {
+                    TransformId = _cachedTransformIdentifiers[transformId],
+                    GameObjectId = _cachedGameObjectIdentifiers[transformId]
+                },
                 LocalRotation = new Sample.Common.Quaternion
                     {X = localRotation.x, Y = localRotation.y, Z = localRotation.z, W = localRotation.w},
                 WorldRotation = new Sample.Common.Quaternion
@@ -180,7 +173,11 @@ namespace PLUME
 
             var transformUpdateScale = new TransformUpdateScale
             {
-                Id = _cachedIdentifiers[transformId].ToPayload(),
+                Id = new TransformGameObjectIdentifier
+                {
+                    TransformId = _cachedTransformIdentifiers[transformId],
+                    GameObjectId = _cachedGameObjectIdentifiers[transformId]
+                },
                 LocalScale = new Sample.Common.Vector3 {X = localScale.x, Y = localScale.y, Z = localScale.z},
                 WorldScale = new Sample.Common.Vector3 {X = lossyScale.x, Y = lossyScale.y, Z = lossyScale.z}
             };
@@ -195,7 +192,11 @@ namespace PLUME
 
         private void RecordDestruction(int transformId)
         {
-            var transformDestroy = new TransformDestroy {Id = _cachedIdentifiers[transformId].ToPayload()};
+            var transformDestroy = new TransformDestroy {Id = new TransformGameObjectIdentifier
+            {
+                TransformId = _cachedTransformIdentifiers[transformId],
+                GameObjectId = _cachedGameObjectIdentifiers[transformId]
+            }};
             recorder.RecordSample(transformDestroy);
         }
 
@@ -241,8 +242,6 @@ namespace PLUME
                     {
                         t.GetLocalPositionAndRotation(out var localPosition, out var localRotation);
                         
-                        var cachedIdentifier = _cachedIdentifiers[transformId];
-
                         TransformUpdatePosition positionSample;
                         TransformUpdateRotation rotationSample;
                         
@@ -264,8 +263,8 @@ namespace PLUME
                             rotationSample.Id = new TransformGameObjectIdentifier();
                         }
 
-                        positionSample.Id.TransformId = cachedIdentifier.TransformId;
-                        positionSample.Id.GameObjectId = cachedIdentifier.GameObjectId;
+                        positionSample.Id.TransformId = _cachedTransformIdentifiers[transformId];
+                        positionSample.Id.GameObjectId = _cachedGameObjectIdentifiers[transformId];
                         positionSample.LocalPosition.X = localPosition.x;
                         positionSample.LocalPosition.Y = localPosition.y;
                         positionSample.LocalPosition.Z = localPosition.z;
@@ -275,8 +274,8 @@ namespace PLUME
                         
                         recorder.RecordSample(positionSample);
 
-                        rotationSample.Id.TransformId = cachedIdentifier.TransformId;
-                        rotationSample.Id.GameObjectId = cachedIdentifier.GameObjectId;
+                        rotationSample.Id.TransformId = _cachedTransformIdentifiers[transformId];
+                        rotationSample.Id.GameObjectId = _cachedGameObjectIdentifiers[transformId];
                         rotationSample.LocalRotation.X = localRotation.x;
                         rotationSample.LocalRotation.Y = localRotation.y;
                         rotationSample.LocalRotation.Z = localRotation.z;
@@ -295,8 +294,6 @@ namespace PLUME
                     {
                         var localPosition = t.localPosition;
                         
-                        var cachedIdentifier = _cachedIdentifiers[transformId];
-
                         TransformUpdatePosition positionSample;
                         
                         if (recorder.enableSamplePooling)
@@ -311,8 +308,8 @@ namespace PLUME
                             positionSample.Id = new TransformGameObjectIdentifier();
                         }
                         
-                        positionSample.Id.TransformId = cachedIdentifier.TransformId;
-                        positionSample.Id.GameObjectId = cachedIdentifier.GameObjectId;
+                        positionSample.Id.TransformId = _cachedTransformIdentifiers[transformId];
+                        positionSample.Id.GameObjectId = _cachedGameObjectIdentifiers[transformId];
                         positionSample.LocalPosition.X = localPosition.x;
                         positionSample.LocalPosition.Y = localPosition.y;
                         positionSample.LocalPosition.Z = localPosition.z;
@@ -327,7 +324,6 @@ namespace PLUME
                     else if (lastRotation != rotation)
                     {
                         var localRotation = t.localRotation;   
-                        var cachedIdentifier = _cachedIdentifiers[transformId];
 
                         TransformUpdateRotation rotationSample;
                         
@@ -343,8 +339,8 @@ namespace PLUME
                             rotationSample.Id = new TransformGameObjectIdentifier();
                         }
 
-                        rotationSample.Id.TransformId = cachedIdentifier.TransformId;
-                        rotationSample.Id.GameObjectId = cachedIdentifier.GameObjectId;
+                        rotationSample.Id.TransformId = _cachedTransformIdentifiers[transformId];
+                        rotationSample.Id.GameObjectId = _cachedGameObjectIdentifiers[transformId];
                         rotationSample.LocalRotation.X = localRotation.x;
                         rotationSample.LocalRotation.Y = localRotation.y;
                         rotationSample.LocalRotation.Z = localRotation.z;
@@ -362,7 +358,6 @@ namespace PLUME
                     if (lastScale != scale)
                     {
                         var localScale = t.localScale;
-                        var cachedIdentifier = _cachedIdentifiers[transformId];
                         
                         TransformUpdateScale scaleSample;
                         
@@ -378,8 +373,8 @@ namespace PLUME
                             scaleSample.Id = new TransformGameObjectIdentifier();
                         }
                         
-                        scaleSample.Id.TransformId = cachedIdentifier.TransformId;
-                        scaleSample.Id.GameObjectId = cachedIdentifier.GameObjectId;
+                        scaleSample.Id.TransformId = _cachedTransformIdentifiers[transformId];
+                        scaleSample.Id.GameObjectId = _cachedGameObjectIdentifiers[transformId];
                         scaleSample.LocalScale.X = localScale.x;
                         scaleSample.LocalScale.Y = localScale.y;
                         scaleSample.LocalScale.Z = localScale.z;
@@ -420,8 +415,8 @@ namespace PLUME
             {
                 Id = new TransformGameObjectIdentifier
                 {
-                    TransformId = _cachedIdentifiers[transformId].TransformId,
-                    GameObjectId = _cachedIdentifiers[transformId].GameObjectId
+                    TransformId = _cachedTransformIdentifiers[transformId],
+                    GameObjectId = _cachedGameObjectIdentifiers[transformId]
                 },
                 SiblingIndex = t.GetSiblingIndex()
             };
@@ -439,16 +434,30 @@ namespace PLUME
             {
                 var parentId = parent.GetInstanceID();
 
-                parentIdentifier = _cachedIdentifiers.TryGetValue(parentId, out var cachedIdentifier)
-                    ? cachedIdentifier.ToPayload()
-                    : parent.ToIdentifierPayload();
+                if (_cachedGameObjectIdentifiers.TryGetValue(parentId, out var cachedGameObjectIdentifier)
+                    && _cachedTransformIdentifiers.TryGetValue(parentId, out var cachedTransformIdentifier))
+                {
+                    parentIdentifier = new TransformGameObjectIdentifier
+                    {
+                        TransformId = cachedTransformIdentifier,
+                        GameObjectId = cachedGameObjectIdentifier,
+                    };
+                }
+                else
+                {
+                    parentIdentifier = parent.ToIdentifierPayload();
+                }
             }
 
             var transformId = t.GetInstanceID();
 
             var transformUpdateParent = new TransformUpdateParent
             {
-                Id = _cachedIdentifiers[transformId].ToPayload(),
+                Id = new TransformGameObjectIdentifier
+                {
+                    GameObjectId = _cachedGameObjectIdentifiers[transformId],
+                    TransformId = _cachedTransformIdentifiers[transformId]
+                },
                 ParentId = parentIdentifier
             };
 

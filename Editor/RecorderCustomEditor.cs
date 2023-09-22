@@ -19,7 +19,11 @@ namespace PLUME.Editor
             }
             else
             {
-                if (GUILayout.Button("Start recording")) recorder.StartRecording(Guid.NewGuid().ToString());
+                if (GUILayout.Button("Start recording"))
+                {
+                    recorder.recordIdentifier = System.Guid.NewGuid().ToString();
+                    recorder.StartRecording();
+                }
             }
         }
     }

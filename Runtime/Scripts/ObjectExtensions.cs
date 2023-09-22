@@ -6,20 +6,10 @@ namespace PLUME
 {
     public static class ObjectExtensions
     {
-        private static readonly ObjectHasher ObjectHasher = new();
-
         private static readonly MethodInfo FindObjectFromInstanceIDMethod =
             typeof(Object).GetMethod("FindObjectFromInstanceID", BindingFlags.NonPublic | BindingFlags.Static);
 
         private static readonly Dictionary<int, Object> CachedObjectFromInstanceId = new();
-
-        /**
-         * Return a hash used to discriminate assets from one another in the record.
-         */
-        public static int GetRecorderHash(this Object obj)
-        {
-            return ObjectHasher.Hash(obj);
-        }
 
         /**
          * Forces an invocation of OnCreate event. Should be called *after* the creation of the object.

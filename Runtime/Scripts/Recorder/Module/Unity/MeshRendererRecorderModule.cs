@@ -34,7 +34,7 @@ namespace PLUME
                 {
                     _lastEnabled[meshRendererInstanceId] = meshRenderer.enabled;
 
-                    var meshRendererUpdateEnabled = new MeshRendererUpdateEnabled()
+                    var meshRendererUpdateEnabled = new MeshRendererUpdateEnabled
                     {
                         Id = meshRenderer.ToIdentifierPayload(),
                         Enabled = meshRenderer.enabled
@@ -118,15 +118,25 @@ namespace PLUME
                 MaterialsIds = {meshRenderer.sharedMaterials.Select(m => m.ToAssetIdentifierPayload())}
             };
 
-            var meshRendererUpdateEnabled = new MeshRendererUpdateEnabled()
+            var meshRendererUpdateEnabled = new MeshRendererUpdateEnabled
             {
                 Id = meshRenderer.ToIdentifierPayload(),
                 Enabled = meshRenderer.enabled
+            };
+            
+            var meshRendererUpdateLightmap = new MeshRendererUpdateLightmap
+            {
+                Id = meshRenderer.ToIdentifierPayload(),
+                LightmapIndex = meshRenderer.lightmapIndex,
+                LightmapScaleOffset = meshRenderer.lightmapScaleOffset.ToPayload(),
+                RealtimeLightmapIndex = meshRenderer.realtimeLightmapIndex,
+                RealtimeLightmapScaleOffset = meshRenderer.realtimeLightmapScaleOffset.ToPayload()
             };
 
             recorder.RecordSample(meshRendererCreate);
             recorder.RecordSample(meshRendererUpdateInstanceMaterials);
             recorder.RecordSample(meshRendererUpdateEnabled);
+            recorder.RecordSample(meshRendererUpdateLightmap);
         }
 
         private void RemoveFromCache(int meshRendererInstanceId)

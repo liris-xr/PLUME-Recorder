@@ -7,6 +7,7 @@ namespace PLUME
 {
     public class SamplePoolManager
     {
+        private readonly ThreadSafeObjectPool<PackedSample> _packedSamplePool;
         private readonly ThreadSafeObjectPool<UnpackedSample> _unpackedSamplePool;
 
         private readonly Dictionary<Type, SamplePayloadPool> _samplePayloadPools;
@@ -15,6 +16,13 @@ namespace PLUME
         {
             _samplePayloadPools = new Dictionary<Type, SamplePayloadPool>();
 
+            _packedSamplePool = new ThreadSafeObjectPool<PackedSample>(() =>
+            {
+                var packedSample = new PackedSample();
+                packedSample.Header = new SampleHeader();
+                return packedSample;
+            });
+            
             _unpackedSamplePool = new ThreadSafeObjectPool<UnpackedSample>(() =>
             {
                 var unpackedSample = new UnpackedSample();
@@ -40,7 +48,17 @@ namespace PLUME
         {
             return _unpackedSamplePool.Get();
         }
+        
+        public PackedSample GetPackedSample()
+        {
+            return _packedSamplePool.Get();
+        }
 
+        public void ReleasePackedSample(PackedSample packedSample)
+        {
+            _packedSamplePool.Release(packedSample);
+        }
+        
         public void ReleaseUnpackedSample(UnpackedSample unpackedSample)
         {
             _unpackedSamplePool.Release(unpackedSample);

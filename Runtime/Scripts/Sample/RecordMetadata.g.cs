@@ -27,20 +27,17 @@ namespace PLUME.Sample {
             "ChVyZWNvcmRfbWV0YWRhdGEucHJvdG8SDHBsdW1lLnNhbXBsZRofZ29vZ2xl",
             "L3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90byJMCg9SZWNvcmRlclZlcnNpb24S",
             "DAoEbmFtZRgBIAEoCRINCgVtYWpvchgCIAEoCRINCgVtaW5vchgDIAEoCRIN",
-            "CgVwYXRjaBgEIAEoCSLJAgoOUmVjb3JkTWV0YWRhdGESNwoQcmVjb3JkZXJf",
+            "CgVwYXRjaBgEIAEoCSLiAQoOUmVjb3JkTWV0YWRhdGESNwoQcmVjb3JkZXJf",
             "dmVyc2lvbhgBIAEoCzIdLnBsdW1lLnNhbXBsZS5SZWNvcmRlclZlcnNpb24S",
             "LgoKY3JlYXRlZF9hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3Rh",
-            "bXASEgoKaWRlbnRpZmllchgDIAEoCRISCgpzZXF1ZW50aWFsGAQgASgIEkcK",
-            "DmV4dHJhX21ldGFkYXRhGAUgAygLMi8ucGx1bWUuc2FtcGxlLlJlY29yZE1l",
-            "dGFkYXRhLkV4dHJhTWV0YWRhdGFFbnRyeRIVCg1zYW1wbGVzX2NvdW50GAYg",
-            "ASgQEhAKCGR1cmF0aW9uGAcgASgQGjQKEkV4dHJhTWV0YWRhdGFFbnRyeRIL",
-            "CgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBQg+qAgxQTFVNRS5TYW1w",
-            "bGViBnByb3RvMw=="));
+            "bXASEgoKaWRlbnRpZmllchgDIAEoCRISCgpzZXF1ZW50aWFsGAQgASgIEhYK",
+            "DmV4dHJhX21ldGFkYXRhGAUgASgJEhUKDXNhbXBsZXNfY291bnQYBiABKAYS",
+            "EAoIZHVyYXRpb24YByABKAZCD6oCDFBMVU1FLlNhbXBsZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.RecorderVersion), global::PLUME.Sample.RecorderVersion.Parser, new[]{ "Name", "Major", "Minor", "Patch" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.RecordMetadata), global::PLUME.Sample.RecordMetadata.Parser, new[]{ "RecorderVersion", "CreatedAt", "Identifier", "Sequential", "ExtraMetadata", "SamplesCount", "Duration" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.RecordMetadata), global::PLUME.Sample.RecordMetadata.Parser, new[]{ "RecorderVersion", "CreatedAt", "Identifier", "Sequential", "ExtraMetadata", "SamplesCount", "Duration" }, null, null, null, null)
           }));
     }
     #endregion
@@ -385,7 +382,7 @@ namespace PLUME.Sample {
       createdAt_ = other.createdAt_ != null ? other.createdAt_.Clone() : null;
       identifier_ = other.identifier_;
       sequential_ = other.sequential_;
-      extraMetadata_ = other.extraMetadata_.Clone();
+      extraMetadata_ = other.extraMetadata_;
       samplesCount_ = other.samplesCount_;
       duration_ = other.duration_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -450,26 +447,22 @@ namespace PLUME.Sample {
 
     /// <summary>Field number for the "extra_metadata" field.</summary>
     public const int ExtraMetadataFieldNumber = 5;
-    private static readonly pbc::MapField<string, string>.Codec _map_extraMetadata_codec
-        = new pbc::MapField<string, string>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForString(18, ""), 42);
-    private readonly pbc::MapField<string, string> extraMetadata_ = new pbc::MapField<string, string>();
+    private string extraMetadata_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::MapField<string, string> ExtraMetadata {
+    public string ExtraMetadata {
       get { return extraMetadata_; }
+      set {
+        extraMetadata_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
     }
 
     /// <summary>Field number for the "samples_count" field.</summary>
     public const int SamplesCountFieldNumber = 6;
-    private long samplesCount_;
-    /// <summary>
-    /// Using a fixed size integer so that the placeholder value
-    /// can be replaced without changing the length of the serialized message.
-    /// Value should be -1 if not set because 0 values are not serialized.
-    /// </summary>
+    private ulong samplesCount_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long SamplesCount {
+    public ulong SamplesCount {
       get { return samplesCount_; }
       set {
         samplesCount_ = value;
@@ -478,15 +471,10 @@ namespace PLUME.Sample {
 
     /// <summary>Field number for the "duration" field.</summary>
     public const int DurationFieldNumber = 7;
-    private long duration_;
-    /// <summary>
-    /// Using a fixed size integer so that the placeholder value
-    /// can be replaced without changing the length of the serialized message.
-    /// Value should be -1 if not set because 0 values are not serialized.
-    /// </summary>
+    private ulong duration_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long Duration {
+    public ulong Duration {
       get { return duration_; }
       set {
         duration_ = value;
@@ -512,7 +500,7 @@ namespace PLUME.Sample {
       if (!object.Equals(CreatedAt, other.CreatedAt)) return false;
       if (Identifier != other.Identifier) return false;
       if (Sequential != other.Sequential) return false;
-      if (!ExtraMetadata.Equals(other.ExtraMetadata)) return false;
+      if (ExtraMetadata != other.ExtraMetadata) return false;
       if (SamplesCount != other.SamplesCount) return false;
       if (Duration != other.Duration) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -526,9 +514,9 @@ namespace PLUME.Sample {
       if (createdAt_ != null) hash ^= CreatedAt.GetHashCode();
       if (Identifier.Length != 0) hash ^= Identifier.GetHashCode();
       if (Sequential != false) hash ^= Sequential.GetHashCode();
-      hash ^= ExtraMetadata.GetHashCode();
-      if (SamplesCount != 0L) hash ^= SamplesCount.GetHashCode();
-      if (Duration != 0L) hash ^= Duration.GetHashCode();
+      if (ExtraMetadata.Length != 0) hash ^= ExtraMetadata.GetHashCode();
+      if (SamplesCount != 0UL) hash ^= SamplesCount.GetHashCode();
+      if (Duration != 0UL) hash ^= Duration.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -563,14 +551,17 @@ namespace PLUME.Sample {
         output.WriteRawTag(32);
         output.WriteBool(Sequential);
       }
-      extraMetadata_.WriteTo(output, _map_extraMetadata_codec);
-      if (SamplesCount != 0L) {
-        output.WriteRawTag(49);
-        output.WriteSFixed64(SamplesCount);
+      if (ExtraMetadata.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(ExtraMetadata);
       }
-      if (Duration != 0L) {
+      if (SamplesCount != 0UL) {
+        output.WriteRawTag(49);
+        output.WriteFixed64(SamplesCount);
+      }
+      if (Duration != 0UL) {
         output.WriteRawTag(57);
-        output.WriteSFixed64(Duration);
+        output.WriteFixed64(Duration);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -598,14 +589,17 @@ namespace PLUME.Sample {
         output.WriteRawTag(32);
         output.WriteBool(Sequential);
       }
-      extraMetadata_.WriteTo(ref output, _map_extraMetadata_codec);
-      if (SamplesCount != 0L) {
-        output.WriteRawTag(49);
-        output.WriteSFixed64(SamplesCount);
+      if (ExtraMetadata.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(ExtraMetadata);
       }
-      if (Duration != 0L) {
+      if (SamplesCount != 0UL) {
+        output.WriteRawTag(49);
+        output.WriteFixed64(SamplesCount);
+      }
+      if (Duration != 0UL) {
         output.WriteRawTag(57);
-        output.WriteSFixed64(Duration);
+        output.WriteFixed64(Duration);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -629,11 +623,13 @@ namespace PLUME.Sample {
       if (Sequential != false) {
         size += 1 + 1;
       }
-      size += extraMetadata_.CalculateSize(_map_extraMetadata_codec);
-      if (SamplesCount != 0L) {
+      if (ExtraMetadata.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ExtraMetadata);
+      }
+      if (SamplesCount != 0UL) {
         size += 1 + 8;
       }
-      if (Duration != 0L) {
+      if (Duration != 0UL) {
         size += 1 + 8;
       }
       if (_unknownFields != null) {
@@ -666,11 +662,13 @@ namespace PLUME.Sample {
       if (other.Sequential != false) {
         Sequential = other.Sequential;
       }
-      extraMetadata_.MergeFrom(other.extraMetadata_);
-      if (other.SamplesCount != 0L) {
+      if (other.ExtraMetadata.Length != 0) {
+        ExtraMetadata = other.ExtraMetadata;
+      }
+      if (other.SamplesCount != 0UL) {
         SamplesCount = other.SamplesCount;
       }
-      if (other.Duration != 0L) {
+      if (other.Duration != 0UL) {
         Duration = other.Duration;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -711,15 +709,15 @@ namespace PLUME.Sample {
             break;
           }
           case 42: {
-            extraMetadata_.AddEntriesFrom(input, _map_extraMetadata_codec);
+            ExtraMetadata = input.ReadString();
             break;
           }
           case 49: {
-            SamplesCount = input.ReadSFixed64();
+            SamplesCount = input.ReadFixed64();
             break;
           }
           case 57: {
-            Duration = input.ReadSFixed64();
+            Duration = input.ReadFixed64();
             break;
           }
         }
@@ -760,15 +758,15 @@ namespace PLUME.Sample {
             break;
           }
           case 42: {
-            extraMetadata_.AddEntriesFrom(ref input, _map_extraMetadata_codec);
+            ExtraMetadata = input.ReadString();
             break;
           }
           case 49: {
-            SamplesCount = input.ReadSFixed64();
+            SamplesCount = input.ReadFixed64();
             break;
           }
           case 57: {
-            Duration = input.ReadSFixed64();
+            Duration = input.ReadFixed64();
             break;
           }
         }

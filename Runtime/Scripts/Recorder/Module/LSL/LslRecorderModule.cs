@@ -171,7 +171,7 @@ namespace PLUME
         {
             var lslTimestamp = Lsl.local_clock();
             var lslClockOffset = inlet.TimeCorrection();
-            var plumeTimestamp = recorder.GetTimeInNanoseconds();
+            var plumeTimestamp = recorder.Clock.GetTimeInNanoseconds();
             var streamOpen = new StreamOpen();
             streamOpen.StreamInfo = new PLUME.Sample.LSL.StreamInfo();
             streamOpen.StreamInfo.PlumeRawTimestamp = plumeTimestamp;
@@ -192,7 +192,7 @@ namespace PLUME
                 var values = samples.ElementAt(sampleIdx);
                 var lslTimestamp = timestamps.ElementAt(sampleIdx);
                 var lslClockOffset = inlet.TimeCorrection();
-                var plumeTimestamp = recorder.GetTimeInNanoseconds();
+                var plumeTimestamp = recorder.Clock.GetTimeInNanoseconds();
 
                 var streamSample = new StreamSample();
                 streamSample.StreamInfo = new PLUME.Sample.LSL.StreamInfo();
@@ -258,7 +258,7 @@ namespace PLUME
             
             var lslTimestamp = Lsl.local_clock();
             var lslClockOffset = inlet.TimeCorrection();
-            var plumeTimestamp = recorder.GetTimeInNanoseconds();
+            var plumeTimestamp = recorder.Clock.GetTimeInNanoseconds();
             var timestampOffsetNanoseconds = (long) (lslClockOffset * 1_000_000_000);
             streamClose.StreamInfo.PlumeRawTimestamp = plumeTimestamp;
             streamClose.StreamInfo.LslStreamId = inlet.StreamId.ToString();

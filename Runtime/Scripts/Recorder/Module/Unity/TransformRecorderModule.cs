@@ -25,9 +25,6 @@ namespace PLUME
         private SamplePayloadPool<TransformUpdatePosition> _updatePositionPayloadPool;
         private SamplePayloadPool<TransformUpdateRotation> _updateRotationPayloadPool;
         private SamplePayloadPool<TransformUpdateScale> _updateScalePayloadPool;
-
-        private int nUpdates = 0;
-        private double time = 0;
         
         public void Start()
         {
@@ -75,18 +72,7 @@ namespace PLUME
         {
             if (_recordedTransforms.Count == 0)
                 return;
-
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
             RecordUpdate();
-            stopwatch.Stop();
-            time += stopwatch.Elapsed.TotalMilliseconds;
-            nUpdates++;
-
-            if (nUpdates % 1000 == 0)
-            {
-                Debug.Log("Avg time: " + time / nUpdates + "ms");
-            }
         }
 
         public void OnStartRecordingObject(Object obj)

@@ -6,10 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using Google.Protobuf;
-using NUnit.Framework;
+using Google.Protobuf.WellKnownTypes;
 using PLUME.Sample;
 using PLUME.Sample.Common;
 using UnityEngine;
+using CompressionLevel = System.IO.Compression.CompressionLevel;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
@@ -33,19 +34,17 @@ namespace PLUME
         public bool autoStart = true;
         public bool enableSamplePooling = true;
 
-        public ExtraMetadata[] extraMetadata;
+        public string extraMetadata;
         
         public int recordWriterBufferSize = 4096; // in bytes
 
-        public bool useCompression = true;
+        public CompressionLevel compressionLevel;
         
-        private Stopwatch _recorderClock;
-
         private readonly HashSet<int> _recordedObjectsInstanceIds = new();
 
         private uint _nextProtobufSampleSeq;
 
-        private ThreadedRecordWriter _recordWriter;
+        private RecordWriter _recordWriter;
 
         private IStartRecordingEventReceiver[] _startRecordingEventReceivers;
         private IStopRecordingEventReceiver[] _stopRecordingEventReceivers;
@@ -55,6 +54,7 @@ namespace PLUME
         private readonly SamplePoolManager _samplePoolManager = new();
 
         public bool IsRecording { get; private set; }
+        public RecorderClock Clock { get; } = new();
 
         [RuntimeInitializeOnLoadMethod]
         public static void OnInitialize()
@@ -77,9 +77,7 @@ namespace PLUME
         public new void Awake()
         {
             base.Awake();
-
-            _recorderClock = new Stopwatch();
-
+            
             _startRecordingEventReceivers =
                 FindObjectsOfType<Object>(true).OfType<IStartRecordingEventReceiver>().ToArray();
             _stopRecordingEventReceivers =
@@ -114,10 +112,17 @@ namespace PLUME
             if (!Directory.Exists(recordDirectory))
                 Directory.CreateDirectory(recordDirectory);
 
-            var recordFilepath =
-                Path.Join(recordDirectory, GetRecordFilePath(recordPrefix, useCompression ? "gz" : "dat"));
+            var recordFilepath = NewRecordFilePath(recordDirectory, recordPrefix);
 
-            _recordWriter = new ThreadedRecordWriter(_samplePoolManager, recordFilepath, recordIdentifier, extraMetadata, useCompression, recordWriterBufferSize);
+            var recordMetadata = new RecordMetadata
+            {
+                Identifier = recordIdentifier,
+                CreatedAt = Timestamp.FromDateTime(DateTime.UtcNow),
+                RecorderVersion = Version,
+                ExtraMetadata = extraMetadata
+            };
+
+            _recordWriter = new RecordWriter(Clock, _samplePoolManager, recordFilepath, compressionLevel, recordMetadata, recordWriterBufferSize);
 
             if (!Stopwatch.IsHighResolution)
             {
@@ -126,9 +131,8 @@ namespace PLUME
             }
 
             IsRecording = true;
-            _recorderClock.Reset();
-            _recorderClock.Start();
-
+            Clock.Restart();
+            
             foreach (var startRecordingEventReceiver in _startRecordingEventReceivers)
                 startRecordingEventReceiver.OnStartRecording();
 
@@ -153,26 +157,24 @@ namespace PLUME
             return true;
         }
 
-        private string GetRecordFilePath(string prefix, string extension)
+        private static string NewRecordFilePath(string recordDirectory, string prefix)
         {
             var formattedDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH-mm-sszz");
             var filenameBase = $"{prefix}_{formattedDateTime}";
-            var fileName = $"{filenameBase}.{extension}";
+            var fileName = $"{filenameBase}.plm";
 
-            if (!File.Exists(fileName)) return fileName;
-
-            Debug.LogWarning($"File '{fileName}' already exists. Adding a suffix.");
-
+            if (!File.Exists(fileName)) return Path.Join(recordDirectory, fileName);
+            
             string suffixedFilename;
             var i = 1;
 
             do
             {
-                suffixedFilename = $"{filenameBase}_{i}.{extension}";
+                suffixedFilename = $"{filenameBase}_{i}.plm";
                 ++i;
             } while (File.Exists(suffixedFilename));
 
-            return suffixedFilename;
+            return Path.Join(recordDirectory, suffixedFilename);
         }
 
         public bool StopRecording()
@@ -198,9 +200,8 @@ namespace PLUME
             {
                 TryStopRecordingObject(go.GetInstanceID());
             }
-
-            _recorderClock.Stop();
             
+            Clock.Stop();
             _recordWriter.Close();
 
             IsRecording = false;
@@ -281,8 +282,8 @@ namespace PLUME
         {
             if (!IsRecording)
                 throw new Exception($"Recording sample but {nameof(Recorder)} is not running.");
-
-            var time = (long) GetTimeInNanoseconds() + timestampOffset;
+            
+            var time = (long) Clock.GetTimeInNanoseconds() + timestampOffset;
 
             if (time < 0)
                 time = 0;
@@ -303,16 +304,6 @@ namespace PLUME
             unpackedSample.Header.Time = (ulong) time;
             unpackedSample.Payload = samplePayload;
             _recordWriter.Write(unpackedSample);
-        }
-
-        public ulong GetTimeInNanoseconds()
-        {
-            if (!_recorderClock.IsRunning)
-            {
-                throw new Exception("Recorder clock is not running.");
-            }
-
-            return (ulong) _recorderClock.ElapsedTicks * (ulong) (1_000_000_000 / Stopwatch.Frequency);
         }
 
         public SamplePoolManager GetSamplePoolManager()

@@ -67,16 +67,21 @@ namespace PLUME
             
             do
             {
+                if (_stopThread)
+                {
+                    Debug.Log($"{_orderedPackedSamples.Count} samples left to write.");
+                }
+                
                 while (!_orderedPackedSamples.IsEmpty())
                 {
                     var shouldWriteSample = _stopThread ||
                                             (_recorderClock.GetTimeInNanoseconds() > SampleWriteDelay
-                                             && _orderedPackedSamples.Peek().Header.Time >=
+                                             && _orderedPackedSamples.Peek().Header.Time <=
                                              _recorderClock.GetTimeInNanoseconds() - SampleWriteDelay);
-            
+                    
                     if (!shouldWriteSample)
                         break;
-            
+
                     _orderedPackedSamples.TryTake(out var sampleToWrite);
                     
                     if (sampleToWrite.Header.Time < writtenSampleMaxTimestamp && _recordMetadata.Sequential)
@@ -84,7 +89,7 @@ namespace PLUME
                         _recordMetadata.Sequential = false;
                     }
                     sampleToWrite.WriteDelimitedTo(samples);
-            
+
                     writtenSampleCount++;
                     writtenSampleMaxTimestamp = Math.Max(writtenSampleMaxTimestamp, sampleToWrite.Header.Time);
                     _samplePoolManager.ReleasePackedSample(sampleToWrite);
@@ -94,13 +99,10 @@ namespace PLUME
                     UpdateMetadata(_recordMetadata, metadata);
                 }
             } while (!_stopThread || _orderedPackedSamples.Count > 0);
-            
+
             _recordMetadata.SamplesCount = writtenSampleCount;
             _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
             UpdateMetadata(_recordMetadata, metadata);
-            
-            metadata.Flush();
-            samples.Flush();
         }
         
         private static void UpdateMetadata(RecordMetadata recordMetadata, Stream headerStream)

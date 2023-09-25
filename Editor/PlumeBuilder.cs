@@ -32,6 +32,7 @@ namespace PLUME.Editor
 
         private static void SetBatchingForPlatform(BuildTarget platform, int staticBatching, int dynamicBatching)
         {
+            Debug.Log("Disabling static and dynamic batching for PLUME.");
             var method = typeof(PlayerSettings).GetMethod("SetBatchingForPlatform", BindingFlags.Static | BindingFlags.Default | BindingFlags.NonPublic);
    
             if (method == null)

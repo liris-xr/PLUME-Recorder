@@ -59,8 +59,8 @@ namespace PLUME
             ulong writtenSampleCount = 0;
             ulong writtenSampleMaxTimestamp = 0;
             
-            using var metadataStream = new GZipStream(File.Create(_path, _bufferSize, FileOptions.RandomAccess), _compressionLevel);
-            using var samplesStream = new GZipStream(File.Create(_path, _bufferSize, FileOptions.SequentialScan), _compressionLevel);
+            using var metadataStream = File.Create(_metadataPath, _bufferSize, FileOptions.RandomAccess);
+            using var samplesStream = new GZipStream(File.Create(_path, _bufferSize), _compressionLevel);
             
             _recordMetadata.Sequential = true;
             UpdateMetadata(_recordMetadata, metadataStream);
@@ -93,11 +93,14 @@ namespace PLUME
                     writtenSampleCount++;
                     writtenSampleMaxTimestamp = Math.Max(writtenSampleMaxTimestamp, sampleToWrite.Header.Time);
                     _samplePoolManager.ReleasePackedSample(sampleToWrite);
-                    
-                    _recordMetadata.SamplesCount = writtenSampleCount;
-                    _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
-                    UpdateMetadata(_recordMetadata, metadataStream);
                 }
+                
+                _recordMetadata.SamplesCount = writtenSampleCount;
+                _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
+                UpdateMetadata(_recordMetadata, metadataStream);
+                
+                Thread.Sleep(100);
+                
             } while (!_stopThread || _orderedPackedSamples.Count > 0);
 
             _recordMetadata.SamplesCount = writtenSampleCount;

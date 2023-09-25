@@ -11,7 +11,7 @@ namespace PLUME
 
         private readonly Thread[] _packingThreads;
         private readonly IProducerConsumerCollection<PackedSample> _packedSamples;
-        private readonly ConcurrentQueue<UnpackedSample> _unpackedSamples = new();
+        private readonly BlockingCollection<UnpackedSample> _unpackedSamples = new();
 
         private bool _shouldStop;
 
@@ -31,7 +31,7 @@ namespace PLUME
 
         public void Enqueue(UnpackedSample sample)
         {
-            _unpackedSamples.Enqueue(sample);
+            _unpackedSamples.Add(sample);
         }
 
         public void Stop()
@@ -51,7 +51,7 @@ namespace PLUME
         {
             do
             {
-                if (!_unpackedSamples.TryDequeue(out var unpackedSample)) continue;
+                if (!_unpackedSamples.TryTake(out var unpackedSample, 100)) continue;
                 var packedSample = _samplePoolManager.GetPackedSample();
                 packedSample.Header.Seq = unpackedSample.Header.Seq;
                 packedSample.Header.Time = unpackedSample.Header.Time;

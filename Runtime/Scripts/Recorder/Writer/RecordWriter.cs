@@ -18,6 +18,7 @@ namespace PLUME
 
         private readonly int _bufferSize;
         private readonly string _path;
+        private readonly string _metadataPath;
 
         private CompressionLevel _compressionLevel;
 
@@ -42,6 +43,7 @@ namespace PLUME
             _samplePoolManager = samplePoolManager;
             
             _path = path;
+            _metadataPath = path + ".meta";
             _bufferSize = bufferSize;
             _compressionLevel = compressionLevel;
 
@@ -57,13 +59,11 @@ namespace PLUME
             ulong writtenSampleCount = 0;
             ulong writtenSampleMaxTimestamp = 0;
             
-            using var stream = File.Create(_path, _bufferSize, FileOptions.RandomAccess);
-            using var archive = new ZipArchive(stream, ZipArchiveMode.Update);
-            using var metadata = archive.CreateEntry("metadata", _compressionLevel).Open();
-            using var samples = archive.CreateEntry("samples", _compressionLevel).Open();
+            using var metadataStream = new GZipStream(File.Create(_path, _bufferSize, FileOptions.RandomAccess), _compressionLevel);
+            using var samplesStream = new GZipStream(File.Create(_path, _bufferSize, FileOptions.SequentialScan), _compressionLevel);
             
             _recordMetadata.Sequential = true;
-            UpdateMetadata(_recordMetadata, metadata);
+            UpdateMetadata(_recordMetadata, metadataStream);
             
             do
             {
@@ -88,7 +88,7 @@ namespace PLUME
                     {
                         _recordMetadata.Sequential = false;
                     }
-                    sampleToWrite.WriteDelimitedTo(samples);
+                    sampleToWrite.WriteDelimitedTo(samplesStream);
 
                     writtenSampleCount++;
                     writtenSampleMaxTimestamp = Math.Max(writtenSampleMaxTimestamp, sampleToWrite.Header.Time);
@@ -96,13 +96,13 @@ namespace PLUME
                     
                     _recordMetadata.SamplesCount = writtenSampleCount;
                     _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
-                    UpdateMetadata(_recordMetadata, metadata);
+                    UpdateMetadata(_recordMetadata, metadataStream);
                 }
             } while (!_stopThread || _orderedPackedSamples.Count > 0);
 
             _recordMetadata.SamplesCount = writtenSampleCount;
             _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
-            UpdateMetadata(_recordMetadata, metadata);
+            UpdateMetadata(_recordMetadata, metadataStream);
         }
         
         private static void UpdateMetadata(RecordMetadata recordMetadata, Stream headerStream)

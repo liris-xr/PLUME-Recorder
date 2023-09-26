@@ -10,16 +10,16 @@ namespace PLUME
         private readonly SamplePoolManager _samplePoolManager;
 
         private readonly Thread[] _packingThreads;
-        private readonly IProducerConsumerCollection<PackedSample> _packedSamples;
-        private readonly ConcurrentQueue<UnpackedSample> _unpackedSamples = new();
+        private readonly IProducerConsumerCollection<SampleStamped> _samplesStamped;
+        private readonly ConcurrentQueue<UnpackedSampleStamped> _unpackedSamplesStamped = new();
 
         private bool _shouldStop;
 
         public SamplePacker(SamplePoolManager samplePoolManager,
-            IProducerConsumerCollection<PackedSample> packedSamples, int nPackerThreads = 4)
+            IProducerConsumerCollection<SampleStamped> samplesStamped, int nPackerThreads = 4)
         {
             _samplePoolManager = samplePoolManager;
-            _packedSamples = packedSamples;
+            _samplesStamped = samplesStamped;
 
             _packingThreads = new Thread[nPackerThreads];
             for (var i = 0; i < nPackerThreads; i++)
@@ -29,9 +29,9 @@ namespace PLUME
             }
         }
 
-        public void Enqueue(UnpackedSample sample)
+        public void Enqueue(UnpackedSampleStamped sampleStamped)
         {
-            _unpackedSamples.Enqueue(sample);
+            _unpackedSamplesStamped.Enqueue(sampleStamped);
         }
 
         public void Stop()
@@ -51,15 +51,15 @@ namespace PLUME
         {
             do
             {
-                if (!_unpackedSamples.TryDequeue(out var unpackedSample)) continue;
-                var packedSample = _samplePoolManager.GetPackedSample();
-                packedSample.Header.Seq = unpackedSample.Header.Seq;
-                packedSample.Header.Time = unpackedSample.Header.Time;
-                packedSample.Payload = Any.Pack(unpackedSample.Payload);
-                _packedSamples.TryAdd(packedSample);
+                if (!_unpackedSamplesStamped.TryDequeue(out var unpackedSample)) continue;
+                var sampleStamped = _samplePoolManager.GetSampleStamped();
+                sampleStamped.Header.Seq = unpackedSample.Header.Seq;
+                sampleStamped.Header.Time = unpackedSample.Header.Time;
+                sampleStamped.Payload = Any.Pack(unpackedSample.Payload);
+                _samplesStamped.TryAdd(sampleStamped);
                 _samplePoolManager.ReleaseSamplePayload(unpackedSample.Payload);
                 _samplePoolManager.ReleaseUnpackedSample(unpackedSample);
-            } while (!_shouldStop || _unpackedSamples.Count > 0);
+            } while (!_shouldStop || _unpackedSamplesStamped.Count > 0);
         }
     }
 }

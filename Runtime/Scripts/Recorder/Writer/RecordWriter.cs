@@ -21,7 +21,7 @@ namespace PLUME
 
         private CompressionLevel _compressionLevel;
 
-        private readonly OrderedPackedSampleList _orderedPackedSamples;
+        private readonly OrderedPackedSampleList _orderedSamples;
         private readonly SamplePacker _samplePacker;
 
         private bool _closed;
@@ -45,8 +45,8 @@ namespace PLUME
             _bufferSize = bufferSize;
             _compressionLevel = compressionLevel;
 
-            _orderedPackedSamples = new OrderedPackedSampleList();
-            _samplePacker = new SamplePacker(samplePoolManager, _orderedPackedSamples);
+            _orderedSamples = new OrderedPackedSampleList();
+            _samplePacker = new SamplePacker(samplePoolManager, _orderedSamples);
             
             _thread = new Thread(Run);
             _thread.Start();
@@ -67,17 +67,17 @@ namespace PLUME
             
             do
             {
-                while (!_orderedPackedSamples.IsEmpty())
+                while (!_orderedSamples.IsEmpty())
                 {
                     var shouldWriteSample = _stopThread ||
                                             (_recorderClock.GetTimeInNanoseconds() > SampleWriteDelay
-                                             && _orderedPackedSamples.Peek().Header.Time >=
+                                             && _orderedSamples.Peek().Header.Time >=
                                              _recorderClock.GetTimeInNanoseconds() - SampleWriteDelay);
             
                     if (!shouldWriteSample)
                         break;
             
-                    _orderedPackedSamples.TryTake(out var sampleToWrite);
+                    _orderedSamples.TryTake(out var sampleToWrite);
                     
                     if (sampleToWrite.Header.Time < writtenSampleMaxTimestamp && _recordMetadata.Sequential)
                     {
@@ -87,13 +87,13 @@ namespace PLUME
             
                     writtenSampleCount++;
                     writtenSampleMaxTimestamp = Math.Max(writtenSampleMaxTimestamp, sampleToWrite.Header.Time);
-                    _samplePoolManager.ReleasePackedSample(sampleToWrite);
+                    _samplePoolManager.ReleaseSampleStamped(sampleToWrite);
                     
                     _recordMetadata.SamplesCount = writtenSampleCount;
                     _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
                     UpdateMetadata(_recordMetadata, metadata);
                 }
-            } while (!_stopThread || _orderedPackedSamples.Count > 0);
+            } while (!_stopThread || _orderedSamples.Count > 0);
             
             _recordMetadata.SamplesCount = writtenSampleCount;
             _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
@@ -110,12 +110,12 @@ namespace PLUME
             recordMetadata.WriteDelimitedTo(headerStream);
         }
 
-        public void Write(UnpackedSample unpackedSample)
+        public void Write(UnpackedSampleStamped unpackedSampleStamped)
         {
             if (_closed)
                 throw new Exception("Can't record samples when the record writer is closed.");
 
-            _samplePacker.Enqueue(unpackedSample);
+            _samplePacker.Enqueue(unpackedSampleStamped);
         }
 
         public void Close()
@@ -128,7 +128,7 @@ namespace PLUME
             _samplePacker.Join();
 
             _stopThread = true;
-            Debug.Log($"Waiting for the writing thread to write {_orderedPackedSamples.Count} samples to disk.");
+            Debug.Log($"Waiting for the writing thread to write {_orderedSamples.Count} samples to disk.");
             _thread.Join();
 
             var fileInfo = new FileInfo(_path);

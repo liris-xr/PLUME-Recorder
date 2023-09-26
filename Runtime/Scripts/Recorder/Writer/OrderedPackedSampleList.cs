@@ -19,11 +19,11 @@ namespace PLUME
         }
     }
     
-    public class OrderedPackedSampleList : IProducerConsumerCollection<PackedSample>
+    public class OrderedPackedSampleList : IProducerConsumerCollection<SampleStamped>
     {
-        private readonly SortedList<PackedSampleKey, PackedSample> _sortedList = new();
+        private readonly SortedList<PackedSampleKey, SampleStamped> _sortedList = new();
         
-        public IEnumerator<PackedSample> GetEnumerator()
+        public IEnumerator<SampleStamped> GetEnumerator()
         {
             lock (SyncRoot)
             {
@@ -43,7 +43,7 @@ namespace PLUME
         {
             lock (SyncRoot)
             {
-                _sortedList.Values.CopyTo(array as PackedSample[] ?? Array.Empty<PackedSample>(), index);
+                _sortedList.Values.CopyTo(array as SampleStamped[] ?? Array.Empty<SampleStamped>(), index);
             }
         }
 
@@ -61,7 +61,7 @@ namespace PLUME
         public bool IsSynchronized => true;
         public object SyncRoot { get; } = new();
 
-        public void CopyTo(PackedSample[] array, int index)
+        public void CopyTo(SampleStamped[] array, int index)
         {
             lock (SyncRoot)
             {
@@ -69,7 +69,7 @@ namespace PLUME
             }
         }
 
-        public PackedSample[] ToArray()
+        public SampleStamped[] ToArray()
         {
             lock (SyncRoot)
             {
@@ -77,7 +77,7 @@ namespace PLUME
             }
         }
 
-        public PackedSample Peek()
+        public SampleStamped Peek()
         {
             lock (SyncRoot)
             {
@@ -93,7 +93,7 @@ namespace PLUME
             }
         }
         
-        public bool Peek(out PackedSample sample)
+        public bool Peek(out SampleStamped sample)
         {
             lock (SyncRoot)
             {
@@ -107,7 +107,7 @@ namespace PLUME
             }
         }
         
-        public bool TryAdd(PackedSample item)
+        public bool TryAdd(SampleStamped item)
         {
             lock (SyncRoot)
             {
@@ -116,7 +116,7 @@ namespace PLUME
             }
         }
 
-        public bool TryTake(out PackedSample item)
+        public bool TryTake(out SampleStamped item)
         {
             lock (SyncRoot)
             {

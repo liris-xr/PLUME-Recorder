@@ -7,8 +7,8 @@ namespace PLUME
 {
     public class SamplePoolManager
     {
-        private readonly ThreadSafeObjectPool<PackedSample> _packedSamplePool;
-        private readonly ThreadSafeObjectPool<UnpackedSample> _unpackedSamplePool;
+        private readonly ThreadSafeObjectPool<SampleStamped> _sampleStampedPool;
+        private readonly ThreadSafeObjectPool<UnpackedSampleStamped> _unpackedSampleStampedPool;
 
         private readonly Dictionary<Type, SamplePayloadPool> _samplePayloadPools;
 
@@ -16,18 +16,18 @@ namespace PLUME
         {
             _samplePayloadPools = new Dictionary<Type, SamplePayloadPool>();
 
-            _packedSamplePool = new ThreadSafeObjectPool<PackedSample>(() =>
+            _sampleStampedPool = new ThreadSafeObjectPool<SampleStamped>(() =>
             {
-                var packedSample = new PackedSample();
-                packedSample.Header = new SampleHeader();
-                return packedSample;
+                var sampleStamped = new SampleStamped();
+                sampleStamped.Header = new SampleHeader();
+                return sampleStamped;
             });
             
-            _unpackedSamplePool = new ThreadSafeObjectPool<UnpackedSample>(() =>
+            _unpackedSampleStampedPool = new ThreadSafeObjectPool<UnpackedSampleStamped>(() =>
             {
-                var unpackedSample = new UnpackedSample();
-                unpackedSample.Header = new SampleHeader();
-                return unpackedSample;
+                var unpackedSampleStamped = new UnpackedSampleStamped();
+                unpackedSampleStamped.Header = new SampleHeader();
+                return unpackedSampleStamped;
             });
         }
 
@@ -44,24 +44,24 @@ namespace PLUME
             return pool;
         }
 
-        public UnpackedSample GetUnpackedSample()
+        public UnpackedSampleStamped GetUnpackedSample()
         {
-            return _unpackedSamplePool.Get();
+            return _unpackedSampleStampedPool.Get();
         }
         
-        public PackedSample GetPackedSample()
+        public SampleStamped GetSampleStamped()
         {
-            return _packedSamplePool.Get();
+            return _sampleStampedPool.Get();
         }
 
-        public void ReleasePackedSample(PackedSample packedSample)
+        public void ReleaseSampleStamped(SampleStamped sampleStamped)
         {
-            _packedSamplePool.Release(packedSample);
+            _sampleStampedPool.Release(sampleStamped);
         }
         
-        public void ReleaseUnpackedSample(UnpackedSample unpackedSample)
+        public void ReleaseUnpackedSample(UnpackedSampleStamped unpackedSampleStamped)
         {
-            _unpackedSamplePool.Release(unpackedSample);
+            _unpackedSampleStampedPool.Release(unpackedSampleStamped);
         }
 
         public void ReleaseSamplePayload(IMessage sample)

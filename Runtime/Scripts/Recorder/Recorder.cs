@@ -288,22 +288,22 @@ namespace PLUME
             if (time < 0)
                 time = 0;
 
-            UnpackedSample unpackedSample;
+            UnpackedSampleStamped unpackedSampleStamped;
             
             if (enableSamplePooling)
             {
-                unpackedSample = _samplePoolManager.GetUnpackedSample();
+                unpackedSampleStamped = _samplePoolManager.GetUnpackedSample();
             }
             else
             {
-                unpackedSample = new UnpackedSample();
-                unpackedSample.Header = new SampleHeader();
+                unpackedSampleStamped = new UnpackedSampleStamped();
+                unpackedSampleStamped.Header = new SampleHeader();
             }
             
-            unpackedSample.Header.Seq = _nextProtobufSampleSeq++;
-            unpackedSample.Header.Time = (ulong) time;
-            unpackedSample.Payload = samplePayload;
-            _recordWriter.Write(unpackedSample);
+            unpackedSampleStamped.Header.Seq = _nextProtobufSampleSeq++;
+            unpackedSampleStamped.Header.Time = (ulong) time;
+            unpackedSampleStamped.Payload = samplePayload;
+            _recordWriter.Write(unpackedSampleStamped);
         }
 
         public SamplePoolManager GetSamplePoolManager()

@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using Google.Protobuf;
+using System.Text;
 using PLUME.Sample;
+using UnityEngine;
 
 namespace PLUME
 {
@@ -26,19 +27,19 @@ namespace PLUME
 
         public int CompareTo(SampleKey other)
         {
-            if (other.Header == null)
-                return Header == null ? 0 : -1;
             if (Header == null)
-                return 1;
+                return -1;
+            if (other.Header == null)
+                return Header == null ? 0 : 1;
             return Header.CompareTo(other.Header);
         }
     }
 
-    public class OrderedSampleList : IProducerConsumerCollection<IMessage>
+    public class OrderedSampleList : IProducerConsumerCollection<PackedSample>
     {
-        private readonly SortedList<SampleKey, IMessage> _sortedList = new();
+        private readonly SortedList<SampleKey, PackedSample> _sortedList = new();
 
-        public IEnumerator<IMessage> GetEnumerator()
+        public IEnumerator<PackedSample> GetEnumerator()
         {
             lock (SyncRoot)
             {
@@ -58,7 +59,7 @@ namespace PLUME
         {
             lock (SyncRoot)
             {
-                _sortedList.Values.CopyTo(array as IMessage[] ?? Array.Empty<IMessage>(), index);
+                _sortedList.Values.CopyTo(array as PackedSample[] ?? Array.Empty<PackedSample>(), index);
             }
         }
 
@@ -76,7 +77,7 @@ namespace PLUME
         public bool IsSynchronized => true;
         public object SyncRoot { get; } = new();
 
-        public void CopyTo(IMessage[] array, int index)
+        public void CopyTo(PackedSample[] array, int index)
         {
             lock (SyncRoot)
             {
@@ -84,7 +85,7 @@ namespace PLUME
             }
         }
 
-        public IMessage[] ToArray()
+        public PackedSample[] ToArray()
         {
             lock (SyncRoot)
             {
@@ -92,7 +93,7 @@ namespace PLUME
             }
         }
 
-        public IMessage Peek()
+        public PackedSample Peek()
         {
             lock (SyncRoot)
             {
@@ -108,7 +109,7 @@ namespace PLUME
             }
         }
 
-        public bool Peek(out IMessage sample)
+        public bool Peek(out PackedSample sample)
         {
             lock (SyncRoot)
             {
@@ -123,18 +124,18 @@ namespace PLUME
             }
         }
 
-        public bool TryAdd(IMessage item)
+        public bool TryAdd(PackedSample item)
         {
             lock (SyncRoot)
             {
-                if (item is SampleStamped sampleStamped)
+                if (item.Header != null)
                 {
                     _sortedList.Add(new SampleKey
                     {
                         Header = new SampleHeaderKey
                         {
-                            Time = sampleStamped.Header.Time,
-                            Seq = sampleStamped.Header.Seq
+                            Time = item.Header.Time,
+                            Seq = item.Header.Seq
                         }
                     }, item);
                 }
@@ -145,12 +146,12 @@ namespace PLUME
                         Header = null
                     }, item);
                 }
-
+                
                 return true;
             }
         }
 
-        public bool TryTake(out IMessage item)
+        public bool TryTake(out PackedSample item)
         {
             lock (SyncRoot)
             {

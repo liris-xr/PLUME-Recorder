@@ -1,26 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using Google.Protobuf;
+using JetBrains.Annotations;
 
 namespace PLUME.Sample
 {
-    public class UnpackedSampleStamped : UnpackedSampleStamped<IMessage>
+    public class UnpackedSample : UnpackedSample<IMessage>
     {
-        public UnpackedSampleStamped()
-        {
-        }
     }
 
-    public class UnpackedSampleStamped<T> where T : IMessage
+    public class UnpackedSample<T> where T : IMessage
     {
-        public SampleHeader Header;
+        [CanBeNull] public SampleHeader Header;
         public T Payload;
 
-        public UnpackedSampleStamped()
-        {
-        }
-
-        protected bool Equals(UnpackedSampleStamped<T> other)
+        private bool Equals(UnpackedSample<T> other)
         {
             return Equals(Header, other.Header) && EqualityComparer<T>.Default.Equals(Payload, other.Payload);
         }
@@ -29,8 +23,7 @@ namespace PLUME.Sample
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((UnpackedSampleStamped<T>) obj);
+            return obj.GetType() == GetType() && Equals((UnpackedSample<T>)obj);
         }
 
         public override int GetHashCode()

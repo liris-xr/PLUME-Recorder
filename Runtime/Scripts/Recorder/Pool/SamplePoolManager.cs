@@ -7,8 +7,10 @@ namespace PLUME
 {
     public class SamplePoolManager
     {
-        private readonly ThreadSafeObjectPool<SampleStamped> _sampleStampedPool;
-        private readonly ThreadSafeObjectPool<UnpackedSampleStamped> _unpackedSampleStampedPool;
+        private readonly ThreadSafeObjectPool<PackedSample> _sampleStampedPool;
+        private readonly ThreadSafeObjectPool<PackedSample> _samplePool;
+        private readonly ThreadSafeObjectPool<UnpackedSample> _unpackedSampleStampedPool;
+        private readonly ThreadSafeObjectPool<UnpackedSample> _unpackedSamplePool;
 
         private readonly Dictionary<Type, SamplePayloadPool> _samplePayloadPools;
 
@@ -16,17 +18,29 @@ namespace PLUME
         {
             _samplePayloadPools = new Dictionary<Type, SamplePayloadPool>();
 
-            _sampleStampedPool = new ThreadSafeObjectPool<SampleStamped>(() =>
+            _sampleStampedPool = new ThreadSafeObjectPool<PackedSample>(() =>
             {
-                var sampleStamped = new SampleStamped();
+                var sampleStamped = new PackedSample();
                 sampleStamped.Header = new SampleHeader();
                 return sampleStamped;
             });
             
-            _unpackedSampleStampedPool = new ThreadSafeObjectPool<UnpackedSampleStamped>(() =>
+            _samplePool = new ThreadSafeObjectPool<PackedSample>(() =>
             {
-                var unpackedSampleStamped = new UnpackedSampleStamped();
+                var sampleStamped = new PackedSample();
+                return sampleStamped;
+            });
+            
+            _unpackedSampleStampedPool = new ThreadSafeObjectPool<UnpackedSample>(() =>
+            {
+                var unpackedSampleStamped = new UnpackedSample();
                 unpackedSampleStamped.Header = new SampleHeader();
+                return unpackedSampleStamped;
+            });
+            
+            _unpackedSamplePool = new ThreadSafeObjectPool<UnpackedSample>(() =>
+            {
+                var unpackedSampleStamped = new UnpackedSample();
                 return unpackedSampleStamped;
             });
         }
@@ -43,25 +57,49 @@ namespace PLUME
             _samplePayloadPools.Add(typeof(T), pool);
             return pool;
         }
-
-        public UnpackedSampleStamped GetUnpackedSample()
+        
+        public UnpackedSample GetUnpackedSample()
+        {
+            return _unpackedSamplePool.Get();
+        }
+        
+        public UnpackedSample GetUnpackedSampleStamped()
         {
             return _unpackedSampleStampedPool.Get();
         }
         
-        public SampleStamped GetSampleStamped()
+        public PackedSample GetPackedSample()
+        {
+            return _samplePool.Get();
+        }
+        
+        public PackedSample GetPackedSampleStamped()
         {
             return _sampleStampedPool.Get();
         }
-
-        public void ReleaseSampleStamped(SampleStamped sampleStamped)
+        
+        public void ReleasePackedSample(PackedSample sample)
         {
-            _sampleStampedPool.Release(sampleStamped);
+            sample.Header = null;
+            _samplePool.Release(sample);
+        }
+
+        public void ReleasePackedSampleStamped(PackedSample sample)
+        {
+            sample.Header ??= new SampleHeader();
+            _sampleStampedPool.Release(sample);
         }
         
-        public void ReleaseUnpackedSample(UnpackedSampleStamped unpackedSampleStamped)
+        public void ReleaseUnpackedSample(UnpackedSample unpackedSample)
         {
-            _unpackedSampleStampedPool.Release(unpackedSampleStamped);
+            unpackedSample.Header = null;
+            _unpackedSamplePool.Release(unpackedSample);
+        }
+        
+        public void ReleaseUnpackedSampleStamped(UnpackedSample unpackedSample)
+        {
+            unpackedSample.Header ??= new SampleHeader();
+            _unpackedSampleStampedPool.Release(unpackedSample);
         }
 
         public void ReleaseSamplePayload(IMessage sample)

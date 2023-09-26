@@ -23,7 +23,7 @@ namespace PLUME
         private readonly CompressionLevel _compressionLevel;
 
         private readonly OrderedSampleList _orderedSamples;
-        private readonly SampleStampedPacker _sampleStampedPacker;
+        private readonly SamplePacker _samplePacker;
 
         private bool _closed;
 
@@ -49,7 +49,7 @@ namespace PLUME
             _compressionLevel = compressionLevel;
 
             _orderedSamples = new OrderedSampleList();
-            _sampleStampedPacker = new SampleStampedPacker(samplePoolManager, _orderedSamples);
+            _samplePacker = new SamplePacker(samplePoolManager, _orderedSamples);
 
             _thread = new Thread(Run);
             _thread.Start();
@@ -76,37 +76,35 @@ namespace PLUME
                 while (!_orderedSamples.IsEmpty())
                 {
                     var sample = _orderedSamples.Peek();
-                    var sampleStamped = sample as SampleStamped;
 
-                    var shouldWriteSample = true;
-
-                    if (sampleStamped != null)
-                    {
-                        shouldWriteSample = _stopThread ||
+                    var shouldWriteSample = _stopThread || sample.Header == null ||
                                             _recorderClock.GetTimeInNanoseconds() > SampleWriteDelay
-                                            && sampleStamped.Header.Time <=
+                                            && sample.Header.Time <=
                                             _recorderClock.GetTimeInNanoseconds() - SampleWriteDelay;
-                    }
 
                     if (!shouldWriteSample)
                         break;
-
+                    
                     _orderedSamples.TryTake(out var sampleToWrite);
 
                     sampleToWrite.WriteDelimitedTo(samplesStream);
 
                     writtenSampleCount++;
 
-                    if (sampleStamped != null)
+                    if (sample.Header != null)
                     {
-                        if (sampleStamped.Header.Time < writtenSampleMaxTimestamp && _recordMetadata.Sequential)
+                        if (sample.Header.Time < writtenSampleMaxTimestamp && _recordMetadata.Sequential)
                         {
                             Debug.LogWarning("Record is no longer sequential.");
                             _recordMetadata.Sequential = false;
                         }
 
-                        writtenSampleMaxTimestamp = Math.Max(writtenSampleMaxTimestamp, sampleStamped.Header.Time);
-                        _samplePoolManager.ReleaseSampleStamped(sampleStamped);
+                        writtenSampleMaxTimestamp = Math.Max(writtenSampleMaxTimestamp, sample.Header.Time);
+                        _samplePoolManager.ReleasePackedSampleStamped(sample);
+                    }
+                    else
+                    {
+                        _samplePoolManager.ReleasePackedSample(sample);
                     }
                 }
                 
@@ -129,20 +127,12 @@ namespace PLUME
             recordMetadata.WriteDelimitedTo(headerStream);
         }
 
-        public void Write(UnpackedSampleStamped unpackedSampleStamped)
+        public void Write(UnpackedSample unpackedSample)
         {
             if (_closed)
                 throw new Exception("Can't record samples when the record writer is closed.");
 
-            _sampleStampedPacker.Enqueue(unpackedSampleStamped);
-        }
-
-        public void Write(IMessage sample)
-        {
-            if (_closed)
-                throw new Exception("Can't record samples when the record writer is closed.");
-
-            _orderedSamples.TryAdd(sample);
+            _samplePacker.Enqueue(unpackedSample);
         }
 
         public void Close()
@@ -151,8 +141,8 @@ namespace PLUME
                 return;
             _closed = true;
 
-            _sampleStampedPacker.Stop();
-            _sampleStampedPacker.Join();
+            _samplePacker.Stop();
+            _samplePacker.Join();
 
             _stopThread = true;
             Debug.Log($"Waiting for the writing thread to write {_orderedSamples.Count} samples to disk.");

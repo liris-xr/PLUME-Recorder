@@ -300,15 +300,15 @@ namespace PLUME
             if (time < 0)
                 time = 0;
 
-            UnpackedSampleStamped unpackedSampleStamped;
+            UnpackedSample unpackedSampleStamped;
             
             if (enableSamplePooling)
             {
-                unpackedSampleStamped = _samplePoolManager.GetUnpackedSample();
+                unpackedSampleStamped = _samplePoolManager.GetUnpackedSampleStamped();
             }
             else
             {
-                unpackedSampleStamped = new UnpackedSampleStamped();
+                unpackedSampleStamped = new UnpackedSample();
                 unpackedSampleStamped.Header = new SampleHeader();
             }
             
@@ -318,11 +318,11 @@ namespace PLUME
             _recordWriter.Write(unpackedSampleStamped);
         }
         
-        public bool TryRecordSample(IMessage sample)
+        public bool TryRecordSample(IMessage samplePayload)
         {
             try
             {
-                RecordSample(sample);
+                RecordSample(samplePayload);
                 return true;
             }
             catch (Exception)
@@ -335,8 +335,20 @@ namespace PLUME
         {
             if (!IsRecording)
                 throw new Exception($"Recording sample but {nameof(Recorder)} is not running.");
+
+            UnpackedSample unpackedSample;
             
-            _recordWriter.Write(samplePayload);
+            if (enableSamplePooling)
+            {
+                unpackedSample = _samplePoolManager.GetUnpackedSample();
+            }
+            else
+            {
+                unpackedSample = new UnpackedSample();
+            }
+            
+            unpackedSample.Payload = samplePayload;
+            _recordWriter.Write(unpackedSample);
         }
 
         public SamplePoolManager GetSamplePoolManager()

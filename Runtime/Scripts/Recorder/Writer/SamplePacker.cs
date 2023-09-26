@@ -11,7 +11,7 @@ namespace PLUME
 
         private readonly Thread[] _packingThreads;
         private readonly IProducerConsumerCollection<SampleStamped> _samplesStamped;
-        private readonly ConcurrentQueue<UnpackedSampleStamped> _unpackedSamplesStamped = new();
+        private readonly BlockingCollection<UnpackedSampleStamped> _unpackedSamplesStamped = new();
 
         private bool _shouldStop;
 
@@ -29,9 +29,9 @@ namespace PLUME
             }
         }
 
-        public void Enqueue(UnpackedSampleStamped sampleStamped)
+        public void Enqueue(UnpackedSampleStamped unpackedSampleStamped)
         {
-            _unpackedSamplesStamped.Enqueue(sampleStamped);
+            _unpackedSamplesStamped.Add(unpackedSampleStamped);
         }
 
         public void Stop()
@@ -51,7 +51,7 @@ namespace PLUME
         {
             do
             {
-                if (!_unpackedSamplesStamped.TryDequeue(out var unpackedSample)) continue;
+                if (!_unpackedSamplesStamped.TryTake(out var unpackedSample, 100)) continue;
                 var sampleStamped = _samplePoolManager.GetSampleStamped();
                 sampleStamped.Header.Seq = unpackedSample.Header.Seq;
                 sampleStamped.Header.Time = unpackedSample.Header.Time;

@@ -18,8 +18,9 @@ namespace PLUME
 
         private readonly int _bufferSize;
         private readonly string _path;
+        private readonly string _metadataPath;
 
-        private CompressionLevel _compressionLevel;
+        private readonly CompressionLevel _compressionLevel;
 
         private readonly OrderedPackedSampleList _orderedSamples;
         private readonly SamplePacker _samplePacker;
@@ -42,6 +43,7 @@ namespace PLUME
             _samplePoolManager = samplePoolManager;
             
             _path = path;
+            _metadataPath = path + ".meta";
             _bufferSize = bufferSize;
             _compressionLevel = compressionLevel;
 
@@ -57,23 +59,26 @@ namespace PLUME
             ulong writtenSampleCount = 0;
             ulong writtenSampleMaxTimestamp = 0;
             
-            using var stream = File.Create(_path, _bufferSize, FileOptions.RandomAccess);
-            using var archive = new ZipArchive(stream, ZipArchiveMode.Update);
-            using var metadata = archive.CreateEntry("metadata", _compressionLevel).Open();
-            using var samples = archive.CreateEntry("samples", _compressionLevel).Open();
+            using var metadataStream = File.Create(_metadataPath, _bufferSize, FileOptions.RandomAccess);
+            using var samplesStream = new GZipStream(File.Create(_path, _bufferSize), _compressionLevel);
             
             _recordMetadata.Sequential = true;
-            UpdateMetadata(_recordMetadata, metadata);
+            UpdateMetadata(_recordMetadata, metadataStream);
             
             do
             {
+                if (_stopThread)
+                {
+                    Debug.Log($"{_orderedSamples.Count} samples left to write.");
+                }
+                
                 while (!_orderedSamples.IsEmpty())
                 {
                     var shouldWriteSample = _stopThread ||
                                             (_recorderClock.GetTimeInNanoseconds() > SampleWriteDelay
-                                             && _orderedSamples.Peek().Header.Time >=
+                                             && _orderedSamples.Peek().Header.Time <=
                                              _recorderClock.GetTimeInNanoseconds() - SampleWriteDelay);
-            
+                    
                     if (!shouldWriteSample)
                         break;
             
@@ -83,24 +88,25 @@ namespace PLUME
                     {
                         _recordMetadata.Sequential = false;
                     }
-                    sampleToWrite.WriteDelimitedTo(samples);
-            
+                    sampleToWrite.WriteDelimitedTo(samplesStream);
+
                     writtenSampleCount++;
                     writtenSampleMaxTimestamp = Math.Max(writtenSampleMaxTimestamp, sampleToWrite.Header.Time);
+
                     _samplePoolManager.ReleaseSampleStamped(sampleToWrite);
-                    
-                    _recordMetadata.SamplesCount = writtenSampleCount;
-                    _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
-                    UpdateMetadata(_recordMetadata, metadata);
                 }
+                
+                _recordMetadata.SamplesCount = writtenSampleCount;
+                _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
+                UpdateMetadata(_recordMetadata, metadataStream);
+                
+                Thread.Sleep(100);
+                
             } while (!_stopThread || _orderedSamples.Count > 0);
-            
+
             _recordMetadata.SamplesCount = writtenSampleCount;
             _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
-            UpdateMetadata(_recordMetadata, metadata);
-            
-            metadata.Flush();
-            samples.Flush();
+            UpdateMetadata(_recordMetadata, metadataStream);
         }
         
         private static void UpdateMetadata(RecordMetadata recordMetadata, Stream headerStream)

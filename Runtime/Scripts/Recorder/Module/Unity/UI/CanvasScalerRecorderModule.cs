@@ -46,15 +46,15 @@ namespace PLUME.UI
                 ReferencePixelsPerUnit = canvasScaler.referencePixelsPerUnit,
             };
 
-            recorder.RecordSample(canvasScalerCreate);
-            recorder.RecordSample(canvasScalerUpdate);
+            recorder.RecordSampleStamped(canvasScalerCreate);
+            recorder.RecordSampleStamped(canvasScalerUpdate);
         }
 
         private void RecordDestruction(int canvasScalerInstanceId)
         {
             var canvasDestroy = new ComponentDestroy
                 {Id = new ComponentDestroyIdentifier {Id = canvasScalerInstanceId.ToString()}};
-            recorder.RecordSample(canvasDestroy);
+            recorder.RecordSampleStamped(canvasDestroy);
         }
 
         protected override void ResetCache()

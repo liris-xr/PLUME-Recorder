@@ -181,7 +181,7 @@ namespace PLUME
             streamOpen.XmlHeader = inlet.Info().as_xml();
             
             var timestampOffsetNanoseconds = (long) (lslClockOffset * 1_000_000_000);
-            recorder.RecordSample(streamOpen, timestampOffsetNanoseconds);
+            recorder.RecordSampleStamped(streamOpen, timestampOffsetNanoseconds);
         }
 
         private void RecordStreamSampleChunk(BufferedInlet inlet, ICollection<ICollection> samples,
@@ -247,7 +247,7 @@ namespace PLUME
                 }
 
                 var timestampOffsetNanoseconds = (long) (lslClockOffset * 1_000_000_000);
-                recorder.RecordSample(streamSample, timestampOffsetNanoseconds);
+                recorder.RecordSampleStamped(streamSample, timestampOffsetNanoseconds);
             }
         }
 
@@ -264,7 +264,7 @@ namespace PLUME
             streamClose.StreamInfo.LslStreamId = inlet.StreamId.ToString();
             streamClose.StreamInfo.LslTimestamp = lslTimestamp;
             streamClose.StreamInfo.LslClockOffset = lslClockOffset;
-            recorder.RecordSample(streamClose, timestampOffsetNanoseconds);
+            recorder.RecordSampleStamped(streamClose, timestampOffsetNanoseconds);
         }
     }
 }

@@ -40,7 +40,7 @@ namespace PLUME
                         Enabled = meshRenderer.enabled
                     };
 
-                    recorder.RecordSample(meshRendererUpdateEnabled);
+                    recorder.RecordSampleStamped(meshRendererUpdateEnabled);
                 }
             }
 
@@ -84,7 +84,7 @@ namespace PLUME
                     MaterialsIds = {meshRenderer.sharedMaterials.Select(m => m.ToAssetIdentifierPayload())}
                 };
 
-                recorder.RecordSample(meshRendererUpdateMaterials);
+                recorder.RecordSampleStamped(meshRendererUpdateMaterials);
             }
         }
 
@@ -133,10 +133,10 @@ namespace PLUME
                 RealtimeLightmapScaleOffset = meshRenderer.realtimeLightmapScaleOffset.ToPayload()
             };
 
-            recorder.RecordSample(meshRendererCreate);
-            recorder.RecordSample(meshRendererUpdateInstanceMaterials);
-            recorder.RecordSample(meshRendererUpdateEnabled);
-            recorder.RecordSample(meshRendererUpdateLightmap);
+            recorder.RecordSampleStamped(meshRendererCreate);
+            recorder.RecordSampleStamped(meshRendererUpdateInstanceMaterials);
+            recorder.RecordSampleStamped(meshRendererUpdateEnabled);
+            recorder.RecordSampleStamped(meshRendererUpdateLightmap);
         }
 
         private void RemoveFromCache(int meshRendererInstanceId)
@@ -149,7 +149,7 @@ namespace PLUME
         {
             var meshRendererDestroy = new ComponentDestroy
                 {Id = new ComponentDestroyIdentifier {Id = meshRendererInstanceId.ToString()}};
-            recorder.RecordSample(meshRendererDestroy);
+            recorder.RecordSampleStamped(meshRendererDestroy);
         }
     }
 }

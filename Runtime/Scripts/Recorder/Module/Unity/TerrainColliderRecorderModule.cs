@@ -66,7 +66,7 @@ namespace PLUME
                         Enabled = terrainCollider.enabled
                     };
 
-                    recorder.RecordSample(terrainColliderUpdateEnabled);
+                    recorder.RecordSampleStamped(terrainColliderUpdateEnabled);
                 }
             }
 
@@ -96,16 +96,16 @@ namespace PLUME
                 Enabled = terrainCollider.enabled
             };
 
-            recorder.RecordSample(terrainColliderCreate);
-            recorder.RecordSample(terrainColliderUpdate);
-            recorder.RecordSample(terrainColliderUpdateEnabled);
+            recorder.RecordSampleStamped(terrainColliderCreate);
+            recorder.RecordSampleStamped(terrainColliderUpdate);
+            recorder.RecordSampleStamped(terrainColliderUpdateEnabled);
         }
 
         private void RecordDestruction(int terrainColliderInstanceId)
         {
             var terrainColliderDestroy = new ComponentDestroy
                 { Id = new ComponentDestroyIdentifier { Id = terrainColliderInstanceId.ToString() } };
-            recorder.RecordSample(terrainColliderDestroy);
+            recorder.RecordSampleStamped(terrainColliderDestroy);
         }
     }
 }

@@ -140,12 +140,12 @@ namespace PLUME
                 Pivot = new Vector2 {X = pivot.x, Y = pivot.y}
             };
 
-            recorder.RecordSample(rectTransformUpdatePosition);
-            recorder.RecordSample(rectTransformUpdateRotation);
-            recorder.RecordSample(rectTransformUpdateScale);
-            recorder.RecordSample(rectTransformUpdateAnchors);
-            recorder.RecordSample(rectTransformUpdateSize);
-            recorder.RecordSample(rectTransformUpdatePivot);
+            recorder.RecordSampleStamped(rectTransformUpdatePosition);
+            recorder.RecordSampleStamped(rectTransformUpdateRotation);
+            recorder.RecordSampleStamped(rectTransformUpdateScale);
+            recorder.RecordSampleStamped(rectTransformUpdateAnchors);
+            recorder.RecordSampleStamped(rectTransformUpdateSize);
+            recorder.RecordSampleStamped(rectTransformUpdatePivot);
         }
 
         private void RecordDestruction(int rectTransformInstanceId)
@@ -155,7 +155,7 @@ namespace PLUME
                 TransformId = _cachedTransformIdentifiers[rectTransformInstanceId],
                 GameObjectId = _cachedGameObjectIdentifiers[rectTransformInstanceId]
             }};
-            recorder.RecordSample(rectTransformDestroy);
+            recorder.RecordSampleStamped(rectTransformDestroy);
         }
 
         private void RecordUpdate()
@@ -190,7 +190,7 @@ namespace PLUME
                         var transformUpdateParent = CreateTransformUpdateParent(rt);
                         _lastParentTransformId[rectTransformInstanceId] =
                             rt.parent == null ? null : rt.parent.GetInstanceID();
-                        recorder.RecordSample(transformUpdateParent);
+                        recorder.RecordSampleStamped(transformUpdateParent);
                     }
 
                     rt.GetPositionAndRotation(out var position, out var rotation);
@@ -267,12 +267,12 @@ namespace PLUME
                         Pivot = new Vector2 {X = pivot.x, Y = pivot.y}
                     };
 
-                    recorder.RecordSample(rectTransformUpdatePosition);
-                    recorder.RecordSample(rectTransformUpdateRotation);
-                    recorder.RecordSample(rectTransformUpdateScale);
-                    recorder.RecordSample(rectTransformUpdateAnchors);
-                    recorder.RecordSample(rectTransformUpdateSize);
-                    recorder.RecordSample(rectTransformUpdatePivot);
+                    recorder.RecordSampleStamped(rectTransformUpdatePosition);
+                    recorder.RecordSampleStamped(rectTransformUpdateRotation);
+                    recorder.RecordSampleStamped(rectTransformUpdateScale);
+                    recorder.RecordSampleStamped(rectTransformUpdateAnchors);
+                    recorder.RecordSampleStamped(rectTransformUpdateSize);
+                    recorder.RecordSampleStamped(rectTransformUpdatePivot);
                     rt.hasChanged = false;
                 }
 
@@ -282,7 +282,7 @@ namespace PLUME
                 {
                     _lastSiblingIndex[rectTransformInstanceId] = rt.GetSiblingIndex();
                     var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(rt);
-                    recorder.RecordSample(transformUpdateSiblingIndex);
+                    recorder.RecordSampleStamped(transformUpdateSiblingIndex);
                 }
             }
 

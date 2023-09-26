@@ -67,7 +67,7 @@ namespace PLUME
                         Enabled = light.enabled
                     };
 
-                    recorder.RecordSample(lightUpdateEnabled);
+                    recorder.RecordSampleStamped(lightUpdateEnabled);
                 }
             }
 
@@ -179,27 +179,27 @@ namespace PLUME
                 Enabled = light.enabled
             };
             
-            recorder.RecordSample(lightCreate);
-            recorder.RecordSample(lightUpdateType);
-            recorder.RecordSample(lightUpdateIntensity);
-            recorder.RecordSample(lightUpdateRange);
-            recorder.RecordSample(lightUpdateColor);
-            recorder.RecordSample(lightUpdateShape);
-            recorder.RecordSample(lightUpdateBounceIntensity);
-            recorder.RecordSample(lightUpdateSpotAngle);
-            recorder.RecordSample(lightUpdateRenderingLayerMask);
-            recorder.RecordSample(lightUpdateCulling);
-            recorder.RecordSample(lightUpdateShadows);
-            recorder.RecordSample(lightUpdateCookie);
-            recorder.RecordSample(lightUpdateFlare);
-            recorder.RecordSample(lightUpdateEnabled);
+            recorder.RecordSampleStamped(lightCreate);
+            recorder.RecordSampleStamped(lightUpdateType);
+            recorder.RecordSampleStamped(lightUpdateIntensity);
+            recorder.RecordSampleStamped(lightUpdateRange);
+            recorder.RecordSampleStamped(lightUpdateColor);
+            recorder.RecordSampleStamped(lightUpdateShape);
+            recorder.RecordSampleStamped(lightUpdateBounceIntensity);
+            recorder.RecordSampleStamped(lightUpdateSpotAngle);
+            recorder.RecordSampleStamped(lightUpdateRenderingLayerMask);
+            recorder.RecordSampleStamped(lightUpdateCulling);
+            recorder.RecordSampleStamped(lightUpdateShadows);
+            recorder.RecordSampleStamped(lightUpdateCookie);
+            recorder.RecordSampleStamped(lightUpdateFlare);
+            recorder.RecordSampleStamped(lightUpdateEnabled);
         }
 
         private void RecordDestruction(int lightInstanceId)
         {
             var lightDestroy = new ComponentDestroy
                 {Id = new ComponentDestroyIdentifier {Id = lightInstanceId.ToString()}};
-            recorder.RecordSample(lightDestroy);
+            recorder.RecordSampleStamped(lightDestroy);
         }
     }
 }

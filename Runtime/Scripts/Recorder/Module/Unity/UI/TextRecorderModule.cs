@@ -65,11 +65,11 @@ namespace PLUME.UI
                 ResizeTextMaxSize = text.resizeTextMaxSize,
             };
 
-            recorder.RecordSample(textCreate);
-            recorder.RecordSample(textUpdateValue);
-            recorder.RecordSample(textUpdateFont);
-            recorder.RecordSample(textUpdateColor);
-            recorder.RecordSample(textUpdateExtras);
+            recorder.RecordSampleStamped(textCreate);
+            recorder.RecordSampleStamped(textUpdateValue);
+            recorder.RecordSampleStamped(textUpdateFont);
+            recorder.RecordSampleStamped(textUpdateColor);
+            recorder.RecordSampleStamped(textUpdateExtras);
         }
 
         private void RemoveFromCache(int textInstanceId)
@@ -81,7 +81,7 @@ namespace PLUME.UI
         {
             var textDestroy = new ComponentDestroy
                 {Id = new ComponentDestroyIdentifier {Id = textInstanceId.ToString()}};
-            recorder.RecordSample(textDestroy);
+            recorder.RecordSampleStamped(textDestroy);
         }
 
         protected override void ResetCache()

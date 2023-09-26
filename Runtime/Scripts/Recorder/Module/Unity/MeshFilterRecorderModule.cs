@@ -48,7 +48,7 @@ namespace PLUME
                             : meshFilter.sharedMesh.ToAssetIdentifierPayload()
                     };
                     _lastMeshInstanceIds[meshFilterInstanceId] = sharedMeshId;
-                    recorder.RecordSample(meshFilterUpdateSharedMesh);
+                    recorder.RecordSampleStamped(meshFilterUpdateSharedMesh);
                 }
             }
 
@@ -86,14 +86,14 @@ namespace PLUME
         private void RecordCreation(MeshFilter meshFilter)
         {
             var meshFilterCreate = new MeshFilterCreate {Id = meshFilter.ToIdentifierPayload()};
-            recorder.RecordSample(meshFilterCreate);
+            recorder.RecordSampleStamped(meshFilterCreate);
         }
 
         private void RecordDestruction(int meshFilterInstanceId)
         {
             var meshFilterDestroy = new ComponentDestroy
                 {Id = new ComponentDestroyIdentifier {Id = meshFilterInstanceId.ToString()}};
-            recorder.RecordSample(meshFilterDestroy);
+            recorder.RecordSampleStamped(meshFilterDestroy);
         }
     }
 }

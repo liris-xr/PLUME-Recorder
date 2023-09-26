@@ -44,14 +44,14 @@ namespace PLUME.UI
                 RenderMode = (int) canvas.renderMode
             };
 
-            recorder.RecordSample(canvasCreate);
-            recorder.RecordSample(canvasUpdate);
+            recorder.RecordSampleStamped(canvasCreate);
+            recorder.RecordSampleStamped(canvasUpdate);
         }
 
         private void RecordDestruction(int canvasInstanceId)
         {
             var canvasDestroy = new ComponentDestroy {Id = new ComponentDestroyIdentifier { Id = canvasInstanceId.ToString() }};
-            recorder.RecordSample(canvasDestroy);
+            recorder.RecordSampleStamped(canvasDestroy);
         }
 
         protected override void ResetCache()

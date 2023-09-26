@@ -68,7 +68,7 @@ namespace PLUME
                         Enabled = skinnedMeshRenderer.enabled
                     };
 
-                    recorder.RecordSample(skinnedMeshRendererUpdateEnabled);
+                    recorder.RecordSampleStamped(skinnedMeshRendererUpdateEnabled);
                 }
             }
 
@@ -122,19 +122,19 @@ namespace PLUME
                 RealtimeLightmapScaleOffset = skinnedMeshRenderer.realtimeLightmapScaleOffset.ToPayload()
             };
 
-            recorder.RecordSample(skinnedMeshRendererCreate);
-            recorder.RecordSample(skinnedMeshRendererUpdateSharedMesh);
-            recorder.RecordSample(skinnedMeshRendererUpdateBones);
-            recorder.RecordSample(skinnedMeshRendererUpdateMaterials);
-            recorder.RecordSample(skinnedMeshRendererUpdateEnabled);
-            recorder.RecordSample(skinnedMeshRendererUpdateLightmap);
+            recorder.RecordSampleStamped(skinnedMeshRendererCreate);
+            recorder.RecordSampleStamped(skinnedMeshRendererUpdateSharedMesh);
+            recorder.RecordSampleStamped(skinnedMeshRendererUpdateBones);
+            recorder.RecordSampleStamped(skinnedMeshRendererUpdateMaterials);
+            recorder.RecordSampleStamped(skinnedMeshRendererUpdateEnabled);
+            recorder.RecordSampleStamped(skinnedMeshRendererUpdateLightmap);
         }
 
         private void RecordDestruction(int skinnedMeshRendererInstanceId)
         {
             var skinnedMeshRendererDestroy = new ComponentDestroy
                 {Id = new ComponentDestroyIdentifier {Id = skinnedMeshRendererInstanceId.ToString()}};
-            recorder.RecordSample(skinnedMeshRendererDestroy);
+            recorder.RecordSampleStamped(skinnedMeshRendererDestroy);
         }
     }
 }

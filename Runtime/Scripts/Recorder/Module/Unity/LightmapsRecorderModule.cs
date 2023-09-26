@@ -19,7 +19,7 @@ namespace PLUME
                 lightmapsUpdate.LightmapsData.Add(lightmapData.ToPayload());
             }
 
-            recorder.RecordSample(lightmapsUpdate);
+            recorder.RecordSampleStamped(lightmapsUpdate);
         }
 
         protected override void ResetCache()

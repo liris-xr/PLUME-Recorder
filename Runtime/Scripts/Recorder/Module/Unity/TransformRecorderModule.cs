@@ -168,12 +168,12 @@ namespace PLUME
                 WorldScale = new Sample.Common.Vector3 {X = lossyScale.x, Y = lossyScale.y, Z = lossyScale.z}
             };
 
-            recorder.RecordSample(transformCreate);
-            recorder.RecordSample(transformUpdateParent);
-            recorder.RecordSample(transformUpdateSiblingIndex);
-            recorder.RecordSample(transformUpdatePosition);
-            recorder.RecordSample(transformUpdateRotation);
-            recorder.RecordSample(transformUpdateScale);
+            recorder.RecordSampleStamped(transformCreate);
+            recorder.RecordSampleStamped(transformUpdateParent);
+            recorder.RecordSampleStamped(transformUpdateSiblingIndex);
+            recorder.RecordSampleStamped(transformUpdatePosition);
+            recorder.RecordSampleStamped(transformUpdateRotation);
+            recorder.RecordSampleStamped(transformUpdateScale);
         }
 
         private void RecordDestruction(int transformId)
@@ -183,7 +183,7 @@ namespace PLUME
                 TransformId = _cachedTransformIdentifiers[transformId],
                 GameObjectId = _cachedGameObjectIdentifiers[transformId]
             }};
-            recorder.RecordSample(transformDestroy);
+            recorder.RecordSampleStamped(transformDestroy);
         }
 
         private void RecordUpdate()
@@ -217,7 +217,7 @@ namespace PLUME
                     if (parentHasChanged)
                     {
                         var transformUpdateParent = CreateTransformUpdateParent(t);
-                        recorder.RecordSample(transformUpdateParent);
+                        recorder.RecordSampleStamped(transformUpdateParent);
                         _lastParentTransformId[transformId] = t.parent == null ? null : t.parent.GetInstanceID();
                     }
                     
@@ -258,7 +258,7 @@ namespace PLUME
                         positionSample.WorldPosition.Y = position.y;
                         positionSample.WorldPosition.Z = position.z;
                         
-                        recorder.RecordSample(positionSample);
+                        recorder.RecordSampleStamped(positionSample);
 
                         rotationSample.Id.TransformId = _cachedTransformIdentifiers[transformId];
                         rotationSample.Id.GameObjectId = _cachedGameObjectIdentifiers[transformId];
@@ -271,7 +271,7 @@ namespace PLUME
                         rotationSample.WorldRotation.Z = rotation.z;
                         rotationSample.WorldRotation.W = rotation.w;
 
-                        recorder.RecordSample(rotationSample);
+                        recorder.RecordSampleStamped(rotationSample);
 
                         _lastPosition[transformId] = position;
                         _lastRotation[transformId] = rotation;
@@ -303,7 +303,7 @@ namespace PLUME
                         positionSample.WorldPosition.Y = position.y;
                         positionSample.WorldPosition.Z = position.z;
 
-                        recorder.RecordSample(positionSample);
+                        recorder.RecordSampleStamped(positionSample);
                         
                         _lastPosition[transformId] = position;
                     }
@@ -336,7 +336,7 @@ namespace PLUME
                         rotationSample.WorldRotation.Z = rotation.z;
                         rotationSample.WorldRotation.W = rotation.w;
 
-                        recorder.RecordSample(rotationSample);
+                        recorder.RecordSampleStamped(rotationSample);
 
                         _lastRotation[transformId] = rotation;
                     }
@@ -368,7 +368,7 @@ namespace PLUME
                         scaleSample.WorldScale.Y = scale.y;
                         scaleSample.WorldScale.Z = scale.z;
 
-                        recorder.RecordSample(scaleSample);
+                        recorder.RecordSampleStamped(scaleSample);
                         
                         _lastScale[transformId] = scale;
                     }
@@ -381,7 +381,7 @@ namespace PLUME
                 if (hasSiblingIndexChanged)
                 {
                     var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(t);
-                    recorder.RecordSample(transformUpdateSiblingIndex);
+                    recorder.RecordSampleStamped(transformUpdateSiblingIndex);
                     _lastSiblingIndex[transformId] = t.GetSiblingIndex();
                 }
             }

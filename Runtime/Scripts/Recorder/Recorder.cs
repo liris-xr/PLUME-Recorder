@@ -114,10 +114,12 @@ namespace PLUME
 
             var recordFilepath = NewRecordFilePath(recordDirectory, recordPrefix);
 
+            var createdAt = Timestamp.FromDateTime(DateTime.UtcNow);
+            
             var recordMetadata = new RecordMetadata
             {
                 Identifier = recordIdentifier,
-                CreatedAt = Timestamp.FromDateTime(DateTime.UtcNow),
+                CreatedAt = createdAt,
                 RecorderVersion = Version,
                 ExtraMetadata = extraMetadata
             };
@@ -132,6 +134,16 @@ namespace PLUME
 
             IsRecording = true;
             Clock.Restart();
+            
+            var recordHeader = new RecordHeader
+            {
+                Identifier = recordIdentifier,
+                CreatedAt = createdAt,
+                RecorderVersion = Version,
+                ExtraMetadata = extraMetadata
+            };
+
+            RecordSample(recordHeader);
             
             foreach (var startRecordingEventReceiver in _startRecordingEventReceivers)
                 startRecordingEventReceiver.OnStartRecording();
@@ -255,21 +267,21 @@ namespace PLUME
         public bool TryRecordMaker(string label)
         {
             var marker = new Marker {Label = label};
-            var success = TryRecordSample(marker);
+            var success = TryRecordSampleStamped(marker);
             return success;
         }
 
         public void RecordMarker(string label)
         {
             var marker = new Marker {Label = label};
-            RecordSample(marker);
+            RecordSampleStamped(marker);
         }
         
-        public bool TryRecordSample(IMessage samplePayload, long timestampOffset = 0)
+        public bool TryRecordSampleStamped(IMessage samplePayload, long timestampOffset = 0)
         {
             try
             {
-                RecordSample(samplePayload, timestampOffset);
+                RecordSampleStamped(samplePayload, timestampOffset);
                 return true;
             }
             catch (Exception)
@@ -278,7 +290,7 @@ namespace PLUME
             }
         }
         
-        public void RecordSample(IMessage samplePayload, long timestampOffset = 0)
+        public void RecordSampleStamped(IMessage samplePayload, long timestampOffset = 0)
         {
             if (!IsRecording)
                 throw new Exception($"Recording sample but {nameof(Recorder)} is not running.");
@@ -304,6 +316,27 @@ namespace PLUME
             unpackedSampleStamped.Header.Time = (ulong) time;
             unpackedSampleStamped.Payload = samplePayload;
             _recordWriter.Write(unpackedSampleStamped);
+        }
+        
+        public bool TryRecordSample(IMessage sample)
+        {
+            try
+            {
+                RecordSample(sample);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        
+        public void RecordSample(IMessage samplePayload)
+        {
+            if (!IsRecording)
+                throw new Exception($"Recording sample but {nameof(Recorder)} is not running.");
+            
+            _recordWriter.Write(samplePayload);
         }
 
         public SamplePoolManager GetSamplePoolManager()

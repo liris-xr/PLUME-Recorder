@@ -44,7 +44,7 @@ namespace PLUME
                 SunId = RenderSettings.sun == null ? null : RenderSettings.sun.ToIdentifierPayload()
             };
 
-            recorder.RecordSample(renderSettingsUpdate);
+            recorder.RecordSampleStamped(renderSettingsUpdate);
         }
 
         protected override void ResetCache()

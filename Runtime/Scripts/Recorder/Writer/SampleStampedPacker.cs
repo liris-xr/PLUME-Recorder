@@ -5,21 +5,20 @@ using PLUME.Sample;
 
 namespace PLUME
 {
-    public class SamplePacker
+    public class SampleStampedPacker
     {
         private readonly SamplePoolManager _samplePoolManager;
 
         private readonly Thread[] _packingThreads;
-        private readonly IProducerConsumerCollection<SampleStamped> _samplesStamped;
+        private readonly OrderedSampleList _samples;
         private readonly BlockingCollection<UnpackedSampleStamped> _unpackedSamplesStamped = new();
 
         private bool _shouldStop;
 
-        public SamplePacker(SamplePoolManager samplePoolManager,
-            IProducerConsumerCollection<SampleStamped> samplesStamped, int nPackerThreads = 4)
+        public SampleStampedPacker(SamplePoolManager samplePoolManager, OrderedSampleList samples, int nPackerThreads = 4)
         {
             _samplePoolManager = samplePoolManager;
-            _samplesStamped = samplesStamped;
+            _samples = samples;
 
             _packingThreads = new Thread[nPackerThreads];
             for (var i = 0; i < nPackerThreads; i++)
@@ -56,7 +55,7 @@ namespace PLUME
                 sampleStamped.Header.Seq = unpackedSample.Header.Seq;
                 sampleStamped.Header.Time = unpackedSample.Header.Time;
                 sampleStamped.Payload = Any.Pack(unpackedSample.Payload);
-                _samplesStamped.TryAdd(sampleStamped);
+                _samples.TryAdd(sampleStamped);
                 _samplePoolManager.ReleaseSamplePayload(unpackedSample.Payload);
                 _samplePoolManager.ReleaseUnpackedSample(unpackedSample);
             } while (!_shouldStop || _unpackedSamplesStamped.Count > 0);

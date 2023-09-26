@@ -37,14 +37,14 @@ namespace PLUME
         private void RecordCreation(Camera camera)
         {
             var cameraCreate = new CameraCreate {Id = camera.ToIdentifierPayload()};
-            recorder.RecordSample(cameraCreate);
+            recorder.RecordSampleStamped(cameraCreate);
         }
 
         private void RecordDestruction(int cameraInstanceId)
         {
             var cameraDestroy = new ComponentDestroy
                 {Id = new ComponentDestroyIdentifier {Id = cameraInstanceId.ToString()}};
-            recorder.RecordSample(cameraDestroy);
+            recorder.RecordSampleStamped(cameraDestroy);
         }
 
         protected override void ResetCache()

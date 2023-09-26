@@ -46,9 +46,9 @@ namespace PLUME.UI
                 SpriteId = image.sprite.ToAssetIdentifierPayload(),
             };
 
-            recorder.RecordSample(imageCreate);
-            recorder.RecordSample(imageUpdateColor);
-            recorder.RecordSample(imageUpdateSprite);
+            recorder.RecordSampleStamped(imageCreate);
+            recorder.RecordSampleStamped(imageUpdateColor);
+            recorder.RecordSampleStamped(imageUpdateSprite);
         }
 
         private void RemoveFromCache(int imageInstanceId)
@@ -60,7 +60,7 @@ namespace PLUME.UI
         {
             var imageDestroy = new ComponentDestroy
                 {Id = new ComponentDestroyIdentifier {Id = imageInstanceId.ToString()}};
-            recorder.RecordSample(imageDestroy);
+            recorder.RecordSampleStamped(imageDestroy);
         }
 
         protected override void ResetCache()

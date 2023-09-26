@@ -74,7 +74,7 @@ namespace PLUME
                         Name = go.name
                     };
 
-                    recorder.RecordSample(gameObjectUpdateName);
+                    recorder.RecordSampleStamped(gameObjectUpdateName);
                 }
             }
         }
@@ -102,7 +102,7 @@ namespace PLUME
                         Active = go.activeSelf
                     };
 
-                    recorder.RecordSample(gameObjectUpdateActiveSelf);
+                    recorder.RecordSampleStamped(gameObjectUpdateActiveSelf);
                 }
             }
 
@@ -154,12 +154,12 @@ namespace PLUME
                 Active = go.activeSelf
             };
 
-            recorder.RecordSample(gameObjectCreation);
-            recorder.RecordSample(gameObjectUpdateName);
-            recorder.RecordSample(gameObjectUpdateLayer);
-            recorder.RecordSample(gameObjectUpdateTag);
-            recorder.RecordSample(gameObjectUpdateScene);
-            recorder.RecordSample(gameObjectUpdateActiveSelf);
+            recorder.RecordSampleStamped(gameObjectCreation);
+            recorder.RecordSampleStamped(gameObjectUpdateName);
+            recorder.RecordSampleStamped(gameObjectUpdateLayer);
+            recorder.RecordSampleStamped(gameObjectUpdateTag);
+            recorder.RecordSampleStamped(gameObjectUpdateScene);
+            recorder.RecordSampleStamped(gameObjectUpdateActiveSelf);
         }
 
         private void RecordDestruction(int gameObjectInstanceId)
@@ -172,7 +172,7 @@ namespace PLUME
                     GameObjectId = _cachedGameObjectIdentifiers[gameObjectInstanceId]
                 }
             };
-            recorder.RecordSample(gameObjectDestroy);
+            recorder.RecordSampleStamped(gameObjectDestroy);
         }
     }
 }

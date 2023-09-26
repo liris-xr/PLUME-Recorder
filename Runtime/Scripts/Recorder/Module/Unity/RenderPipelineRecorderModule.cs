@@ -21,7 +21,7 @@ namespace PLUME
                 AssetId = renderPipelineAsset == null ? null : renderPipelineAsset.ToAssetIdentifierPayload()
             };
 
-            recorder.RecordSample(renderPipelineUpdate);
+            recorder.RecordSampleStamped(renderPipelineUpdate);
         }
 
         protected override void ResetCache()

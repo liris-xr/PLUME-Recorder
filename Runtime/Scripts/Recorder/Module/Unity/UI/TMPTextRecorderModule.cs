@@ -70,11 +70,11 @@ namespace PLUME.UI
                 Margin = tmpText.margin.ToPayload()
             };
 
-            recorder.RecordSample(tmpTextCreate);
-            recorder.RecordSample(tmpTextUpdateValue);
-            recorder.RecordSample(tmpTextUpdateColor);
-            recorder.RecordSample(tmpTextUpdateFont);
-            recorder.RecordSample(tmpTextUpdateExtras);
+            recorder.RecordSampleStamped(tmpTextCreate);
+            recorder.RecordSampleStamped(tmpTextUpdateValue);
+            recorder.RecordSampleStamped(tmpTextUpdateColor);
+            recorder.RecordSampleStamped(tmpTextUpdateFont);
+            recorder.RecordSampleStamped(tmpTextUpdateExtras);
         }
 
         private void RemoveFromCache(int tmpTextInstanceId)
@@ -86,7 +86,7 @@ namespace PLUME.UI
         {
             var tmpTextDestroy = new ComponentDestroy
                 {Id = new ComponentDestroyIdentifier {Id = tmpTextInstanceId.ToString()}};
-            recorder.RecordSample(tmpTextDestroy);
+            recorder.RecordSampleStamped(tmpTextDestroy);
         }
 
         protected override void ResetCache()

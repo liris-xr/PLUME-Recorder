@@ -94,16 +94,16 @@ namespace PLUME
                 BakedTextureId = reflectionProbe.bakedTexture == null ? null : reflectionProbe.bakedTexture.ToAssetIdentifierPayload()
             };
 
-            recorder.RecordSample(reflectionProbeCreate);
-            recorder.RecordSample(reflectionProbeUpdateEnabled);
-            recorder.RecordSample(reflectionProbeUpdate);
+            recorder.RecordSampleStamped(reflectionProbeCreate);
+            recorder.RecordSampleStamped(reflectionProbeUpdateEnabled);
+            recorder.RecordSampleStamped(reflectionProbeUpdate);
         }
 
         private void RecordDestruction(int reflectionProbeInstanceId)
         {
             var reflectionProbeDestroy = new ComponentDestroy
                 { Id = new ComponentDestroyIdentifier { Id = reflectionProbeInstanceId.ToString() } };
-            recorder.RecordSample(reflectionProbeDestroy);
+            recorder.RecordSampleStamped(reflectionProbeDestroy);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace PLUME
 
         private readonly Thread[] _packingThreads;
         private readonly OrderedSampleList _samples;
-        private readonly BlockingCollection<UnpackedSample> _unpackedSamples = new();
+        private readonly ConcurrentQueue<UnpackedSample> _unpackedSamples = new ();
 
         private bool _shouldStop;
 
@@ -30,7 +30,7 @@ namespace PLUME
 
         public void Enqueue(UnpackedSample unpackedSample)
         {
-            _unpackedSamples.Add(unpackedSample);
+            _unpackedSamples.Enqueue(unpackedSample);
         }
 
         public void Stop()
@@ -50,7 +50,7 @@ namespace PLUME
         {
             do
             {
-                if (!_unpackedSamples.TryTake(out var unpackedSample, 100)) continue;
+                if (!_unpackedSamples.TryDequeue(out var unpackedSample)) continue;
 
                 if (unpackedSample.Header != null)
                 {

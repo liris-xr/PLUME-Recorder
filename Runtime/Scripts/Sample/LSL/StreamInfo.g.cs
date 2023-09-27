@@ -24,15 +24,15 @@ namespace PLUME.Sample.LSL {
     static StreamInfoReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChVsc2wvc3RyZWFtX2luZm8ucHJvdG8SEHBsdW1lLnNhbXBsZS5sc2wicQoK",
-            "U3RyZWFtSW5mbxIbChNwbHVtZV9yYXdfdGltZXN0YW1wGAEgASgEEhUKDWxz",
-            "bF90aW1lc3RhbXAYAiABKAESGAoQbHNsX2Nsb2NrX29mZnNldBgDIAEoARIV",
-            "Cg1sc2xfc3RyZWFtX2lkGAQgASgJQhOqAhBQTFVNRS5TYW1wbGUuTFNMYgZw",
-            "cm90bzM="));
+            "ChVsc2wvc3RyZWFtX2luZm8ucHJvdG8SEHBsdW1lLnNhbXBsZS5sc2wiiwEK",
+            "ClN0cmVhbUluZm8SGwoTcGx1bWVfcmF3X3RpbWVzdGFtcBgBIAEoBBIYChBs",
+            "c2xfcGx1bWVfb2Zmc2V0GAIgASgDEhUKDWxzbF90aW1lc3RhbXAYAyABKAES",
+            "GAoQbHNsX2Nsb2NrX29mZnNldBgEIAEoARIVCg1sc2xfc3RyZWFtX2lkGAUg",
+            "ASgJQhOqAhBQTFVNRS5TYW1wbGUuTFNMYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.LSL.StreamInfo), global::PLUME.Sample.LSL.StreamInfo.Parser, new[]{ "PlumeRawTimestamp", "LslTimestamp", "LslClockOffset", "LslStreamId" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.LSL.StreamInfo), global::PLUME.Sample.LSL.StreamInfo.Parser, new[]{ "PlumeRawTimestamp", "LslPlumeOffset", "LslTimestamp", "LslClockOffset", "LslStreamId" }, null, null, null, null)
           }));
     }
     #endregion
@@ -74,6 +74,7 @@ namespace PLUME.Sample.LSL {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public StreamInfo(StreamInfo other) : this() {
       plumeRawTimestamp_ = other.plumeRawTimestamp_;
+      lslPlumeOffset_ = other.lslPlumeOffset_;
       lslTimestamp_ = other.lslTimestamp_;
       lslClockOffset_ = other.lslClockOffset_;
       lslStreamId_ = other.lslStreamId_;
@@ -103,11 +104,26 @@ namespace PLUME.Sample.LSL {
       }
     }
 
+    /// <summary>Field number for the "lsl_plume_offset" field.</summary>
+    public const int LslPlumeOffsetFieldNumber = 2;
+    private long lslPlumeOffset_;
+    /// <summary>
+    /// Local offset between the PLUME recorder clock and LSL clock, in nanoseconds
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long LslPlumeOffset {
+      get { return lslPlumeOffset_; }
+      set {
+        lslPlumeOffset_ = value;
+      }
+    }
+
     /// <summary>Field number for the "lsl_timestamp" field.</summary>
-    public const int LslTimestampFieldNumber = 2;
+    public const int LslTimestampFieldNumber = 3;
     private double lslTimestamp_;
     /// <summary>
-    /// Timestamp given by the LSL dll in seconds
+    /// Timestamp of the sample provided by the machine emitting the samples.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -119,8 +135,11 @@ namespace PLUME.Sample.LSL {
     }
 
     /// <summary>Field number for the "lsl_clock_offset" field.</summary>
-    public const int LslClockOffsetFieldNumber = 3;
+    public const int LslClockOffsetFieldNumber = 4;
     private double lslClockOffset_;
+    /// <summary>
+    /// Estimated time correction between the local LSL clock (inlet) and the sample emitter (outlet)
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double LslClockOffset {
@@ -131,7 +150,7 @@ namespace PLUME.Sample.LSL {
     }
 
     /// <summary>Field number for the "lsl_stream_id" field.</summary>
-    public const int LslStreamIdFieldNumber = 4;
+    public const int LslStreamIdFieldNumber = 5;
     private string lslStreamId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -158,6 +177,7 @@ namespace PLUME.Sample.LSL {
         return true;
       }
       if (PlumeRawTimestamp != other.PlumeRawTimestamp) return false;
+      if (LslPlumeOffset != other.LslPlumeOffset) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(LslTimestamp, other.LslTimestamp)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(LslClockOffset, other.LslClockOffset)) return false;
       if (LslStreamId != other.LslStreamId) return false;
@@ -169,6 +189,7 @@ namespace PLUME.Sample.LSL {
     public override int GetHashCode() {
       int hash = 1;
       if (PlumeRawTimestamp != 0UL) hash ^= PlumeRawTimestamp.GetHashCode();
+      if (LslPlumeOffset != 0L) hash ^= LslPlumeOffset.GetHashCode();
       if (LslTimestamp != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(LslTimestamp);
       if (LslClockOffset != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(LslClockOffset);
       if (LslStreamId.Length != 0) hash ^= LslStreamId.GetHashCode();
@@ -194,16 +215,20 @@ namespace PLUME.Sample.LSL {
         output.WriteRawTag(8);
         output.WriteUInt64(PlumeRawTimestamp);
       }
+      if (LslPlumeOffset != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(LslPlumeOffset);
+      }
       if (LslTimestamp != 0D) {
-        output.WriteRawTag(17);
+        output.WriteRawTag(25);
         output.WriteDouble(LslTimestamp);
       }
       if (LslClockOffset != 0D) {
-        output.WriteRawTag(25);
+        output.WriteRawTag(33);
         output.WriteDouble(LslClockOffset);
       }
       if (LslStreamId.Length != 0) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(42);
         output.WriteString(LslStreamId);
       }
       if (_unknownFields != null) {
@@ -220,16 +245,20 @@ namespace PLUME.Sample.LSL {
         output.WriteRawTag(8);
         output.WriteUInt64(PlumeRawTimestamp);
       }
+      if (LslPlumeOffset != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(LslPlumeOffset);
+      }
       if (LslTimestamp != 0D) {
-        output.WriteRawTag(17);
+        output.WriteRawTag(25);
         output.WriteDouble(LslTimestamp);
       }
       if (LslClockOffset != 0D) {
-        output.WriteRawTag(25);
+        output.WriteRawTag(33);
         output.WriteDouble(LslClockOffset);
       }
       if (LslStreamId.Length != 0) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(42);
         output.WriteString(LslStreamId);
       }
       if (_unknownFields != null) {
@@ -244,6 +273,9 @@ namespace PLUME.Sample.LSL {
       int size = 0;
       if (PlumeRawTimestamp != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PlumeRawTimestamp);
+      }
+      if (LslPlumeOffset != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(LslPlumeOffset);
       }
       if (LslTimestamp != 0D) {
         size += 1 + 8;
@@ -268,6 +300,9 @@ namespace PLUME.Sample.LSL {
       }
       if (other.PlumeRawTimestamp != 0UL) {
         PlumeRawTimestamp = other.PlumeRawTimestamp;
+      }
+      if (other.LslPlumeOffset != 0L) {
+        LslPlumeOffset = other.LslPlumeOffset;
       }
       if (other.LslTimestamp != 0D) {
         LslTimestamp = other.LslTimestamp;
@@ -297,15 +332,19 @@ namespace PLUME.Sample.LSL {
             PlumeRawTimestamp = input.ReadUInt64();
             break;
           }
-          case 17: {
-            LslTimestamp = input.ReadDouble();
+          case 16: {
+            LslPlumeOffset = input.ReadInt64();
             break;
           }
           case 25: {
+            LslTimestamp = input.ReadDouble();
+            break;
+          }
+          case 33: {
             LslClockOffset = input.ReadDouble();
             break;
           }
-          case 34: {
+          case 42: {
             LslStreamId = input.ReadString();
             break;
           }
@@ -328,15 +367,19 @@ namespace PLUME.Sample.LSL {
             PlumeRawTimestamp = input.ReadUInt64();
             break;
           }
-          case 17: {
-            LslTimestamp = input.ReadDouble();
+          case 16: {
+            LslPlumeOffset = input.ReadInt64();
             break;
           }
           case 25: {
+            LslTimestamp = input.ReadDouble();
+            break;
+          }
+          case 33: {
             LslClockOffset = input.ReadDouble();
             break;
           }
-          case 34: {
+          case 42: {
             LslStreamId = input.ReadString();
             break;
           }

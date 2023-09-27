@@ -11,6 +11,8 @@ namespace PLUME
 
         private readonly Thread[] _packingThreads;
         private readonly OrderedSampleList _samples;
+        
+        // TODO: prioritize packing by timestamp
         private readonly ConcurrentQueue<UnpackedSample> _unpackedSamples = new ();
 
         private bool _shouldStop;

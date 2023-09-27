@@ -5,6 +5,7 @@ using System.Linq;
 using LSL;
 using PLUME.Sample.LSL;
 using UnityEngine;
+using StreamInfo = PLUME.Sample.LSL.StreamInfo;
 
 namespace PLUME
 {
@@ -22,6 +23,9 @@ namespace PLUME
 
         private readonly List<BufferedInlet> _recordedStreams = new();
 
+        // Offset (in nanoseconds) between the LSL clock and PLUME clock
+        private long _lslPlumeOffset;
+
         public uint PickNextLslStreamId()
         {
             return _nextLslStreamId++;
@@ -31,7 +35,7 @@ namespace PLUME
         {
             _streamResolver = new ContinuousResolver(resolverPredicate, forgetAfter);
         }
-        
+
         protected override void ResetCache()
         {
             _nextLslStreamId = 1;
@@ -40,13 +44,14 @@ namespace PLUME
             {
                 recordedStream.Close();
             }
-            
+
             _recordedStreams.Clear();
         }
 
         public new void OnStartRecording()
         {
             base.OnStartRecording();
+            _lslPlumeOffset = (long)recorder.Clock.GetTimeInNanoseconds() - (long)(Lsl.local_clock() * 1_000_000_000);
             StartCoroutine(ResolveStreams());
         }
 
@@ -172,19 +177,23 @@ namespace PLUME
 
         private void RecordOpenStream(BufferedInlet inlet)
         {
-            var lslTimestamp = Lsl.local_clock();
+            var plumeRawTimestamp = recorder.Clock.GetTimeInNanoseconds();
+            var lslTimestamp = inlet.Info().created_at();
             var lslClockOffset = inlet.TimeCorrection();
-            var plumeTimestamp = recorder.Clock.GetTimeInNanoseconds();
+            var correctedLslTimestamp = lslTimestamp + lslClockOffset;
+            var correctedPlumeTimestamp = (long)(correctedLslTimestamp * 1_000_000_000 + _lslPlumeOffset);
+            var plumeTimestampOffset = correctedPlumeTimestamp - (long)plumeRawTimestamp;
+            
             var streamOpen = new StreamOpen();
-            streamOpen.StreamInfo = new PLUME.Sample.LSL.StreamInfo();
-            streamOpen.StreamInfo.PlumeRawTimestamp = plumeTimestamp;
+            streamOpen.StreamInfo = new StreamInfo();
+            streamOpen.StreamInfo.PlumeRawTimestamp = plumeRawTimestamp;
+            streamOpen.StreamInfo.LslPlumeOffset = _lslPlumeOffset;
             streamOpen.StreamInfo.LslStreamId = inlet.StreamId.ToString();
             streamOpen.StreamInfo.LslTimestamp = lslTimestamp;
             streamOpen.StreamInfo.LslClockOffset = lslClockOffset;
             streamOpen.XmlHeader = inlet.Info().as_xml();
-            
-            var timestampOffsetNanoseconds = (long) (lslClockOffset * 1_000_000_000);
-            recorder.RecordSampleStamped(streamOpen, timestampOffsetNanoseconds);
+
+            recorder.RecordSampleStamped(streamOpen, plumeTimestampOffset);
         }
 
         private void RecordStreamSampleChunk(BufferedInlet inlet, ICollection<ICollection> samples,
@@ -193,16 +202,8 @@ namespace PLUME
             for (var sampleIdx = 0; sampleIdx < samples.Count; ++sampleIdx)
             {
                 var values = samples.ElementAt(sampleIdx);
-                var lslTimestamp = timestamps.ElementAt(sampleIdx);
-                var lslClockOffset = inlet.TimeCorrection();
-                var plumeTimestamp = recorder.Clock.GetTimeInNanoseconds();
-
+                
                 var streamSample = new StreamSample();
-                streamSample.StreamInfo = new PLUME.Sample.LSL.StreamInfo();
-                streamSample.StreamInfo.PlumeRawTimestamp = plumeTimestamp;
-                streamSample.StreamInfo.LslStreamId = inlet.StreamId.ToString();
-                streamSample.StreamInfo.LslTimestamp = lslTimestamp;
-                streamSample.StreamInfo.LslClockOffset = lslClockOffset;
 
                 switch (inlet.Info().channel_format())
                 {
@@ -249,25 +250,37 @@ namespace PLUME
                         throw new ArgumentOutOfRangeException();
                 }
 
-                var timestampOffsetNanoseconds = (long) (lslClockOffset * 1_000_000_000);
-                recorder.RecordSampleStamped(streamSample, timestampOffsetNanoseconds);
+                var plumeRawTimestamp = recorder.Clock.GetTimeInNanoseconds();
+                var lslTimestamp = timestamps.ElementAt(sampleIdx);
+                var lslClockOffset = inlet.TimeCorrection();
+                var correctedLslTimestamp = lslTimestamp + lslClockOffset;
+                var correctedPlumeTimestamp = (long)(correctedLslTimestamp * 1_000_000_000 + _lslPlumeOffset);
+                var plumeTimestampOffset = correctedPlumeTimestamp - (long)plumeRawTimestamp;
+                streamSample.StreamInfo = new StreamInfo();
+                streamSample.StreamInfo.PlumeRawTimestamp = plumeRawTimestamp;
+                streamSample.StreamInfo.LslPlumeOffset = _lslPlumeOffset;
+                streamSample.StreamInfo.LslStreamId = inlet.StreamId.ToString();
+                streamSample.StreamInfo.LslTimestamp = lslTimestamp;
+                streamSample.StreamInfo.LslClockOffset = lslClockOffset;
+                
+                recorder.RecordSampleStamped(streamSample, plumeTimestampOffset);
             }
         }
 
         private void RecordCloseStream(BufferedInlet inlet)
         {
             var streamClose = new StreamClose();
-            streamClose.StreamInfo = new PLUME.Sample.LSL.StreamInfo();
-            
+            streamClose.StreamInfo = new StreamInfo();
+
+            var plumeRawTimestamp = recorder.Clock.GetTimeInNanoseconds();
             var lslTimestamp = Lsl.local_clock();
-            var lslClockOffset = inlet.TimeCorrection();
-            var plumeTimestamp = recorder.Clock.GetTimeInNanoseconds();
-            var timestampOffsetNanoseconds = (long) (lslClockOffset * 1_000_000_000);
-            streamClose.StreamInfo.PlumeRawTimestamp = plumeTimestamp;
+
+            streamClose.StreamInfo.PlumeRawTimestamp = plumeRawTimestamp;
+            streamClose.StreamInfo.LslPlumeOffset = _lslPlumeOffset;
             streamClose.StreamInfo.LslStreamId = inlet.StreamId.ToString();
             streamClose.StreamInfo.LslTimestamp = lslTimestamp;
-            streamClose.StreamInfo.LslClockOffset = lslClockOffset;
-            recorder.RecordSampleStamped(streamClose, timestampOffsetNanoseconds);
+            streamClose.StreamInfo.LslClockOffset = 0;
+            recorder.RecordSampleStamped(streamClose);
         }
     }
 }

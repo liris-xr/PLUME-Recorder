@@ -60,7 +60,7 @@ namespace PLUME
 
     public class BufferedInlet<T> : BufferedInlet, IDisposable
     {
-        private readonly T[,] _dataBuffer;
+        private readonly T[] _dataBuffer;
         private readonly double[] _timestampBuffer;
 
         /**
@@ -71,7 +71,7 @@ namespace PLUME
         {
             var bufSamples = (int) Mathf.Ceil((float) (info.nominal_srate() * maxChunkDuration));
             var nChannels = info.channel_count();
-            _dataBuffer = new T[bufSamples, nChannels];
+            _dataBuffer = new T[bufSamples * nChannels];
             _timestampBuffer = new double[bufSamples];
         }
 
@@ -97,7 +97,7 @@ namespace PLUME
 
                         for (var channelIdx = 0; channelIdx < nChannels; channelIdx++)
                         {
-                            values[sampleIdx][channelIdx] = _dataBuffer[sampleIdx, channelIdx];
+                            values[sampleIdx][channelIdx] = _dataBuffer[sampleIdx * Info().channel_count() + channelIdx];
                         }
                     }
 

@@ -3,6 +3,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Threading;
 using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 using PLUME.Sample;
 using UnityEngine;
 using CompressionLevel = System.IO.Compression.CompressionLevel;
@@ -21,9 +22,8 @@ namespace PLUME
         private readonly string _metadataPath;
 
         private readonly CompressionLevel _compressionLevel;
-
-        private readonly OrderedSampleList _orderedSamples;
-        private readonly SamplePacker _samplePacker;
+        
+        private readonly ConcurrentSortedList<SampleKey, UnpackedSample> _unpackedSamples;
 
         private bool _closed;
 
@@ -34,7 +34,7 @@ namespace PLUME
          * Delay before writing samples to disk in nanoseconds. This allows samples arriving late to still be sorted in order
          * to keep the record file sequential (ordered by ascending timestamp).
          */
-        private const ulong SampleWriteDelay = 5_000_000_000;
+        public const ulong SampleWriteDelay = 5_000_000_000;
 
         public RecordWriter(RecorderClock recorderClock, SamplePoolManager samplePoolManager, string path,
             CompressionLevel compressionLevel, RecordMetadata recordMetadata, int bufferSize = 4096)
@@ -48,8 +48,7 @@ namespace PLUME
             _bufferSize = bufferSize;
             _compressionLevel = compressionLevel;
 
-            _orderedSamples = new OrderedSampleList();
-            _samplePacker = new SamplePacker(samplePoolManager, _orderedSamples);
+            _unpackedSamples = new ConcurrentSortedList<SampleKey, UnpackedSample>();
 
             _thread = new Thread(Run);
             _thread.Start();
@@ -70,50 +69,75 @@ namespace PLUME
             {
                 if (_stopThread)
                 {
-                    Debug.Log($"{_orderedSamples.Count} samples left to write.");
+                    Debug.Log($"{_unpackedSamples.Count} samples left to write.");
                 }
 
-                while (!_orderedSamples.IsEmpty())
+                while (true)
                 {
-                    var sample = _orderedSamples.Peek();
+                    var nullablePeekEntry = _unpackedSamples.Peek();
 
-                    var shouldWriteSample = _stopThread || sample.Header == null ||
+                    if (!nullablePeekEntry.HasValue)
+                        break;
+
+                    var peekEntry = nullablePeekEntry.Value;
+                    var peekEntryHeader = peekEntry.Value.Header;
+                    
+                    var shouldWriteSample = _stopThread || peekEntryHeader == null ||
                                             _recorderClock.GetTimeInNanoseconds() > SampleWriteDelay
-                                            && sample.Header.Time <=
+                                            && peekEntryHeader.Time <=
                                             _recorderClock.GetTimeInNanoseconds() - SampleWriteDelay;
 
                     if (!shouldWriteSample)
                         break;
                     
-                    _orderedSamples.TryTake(out var sampleToWrite);
+                    _unpackedSamples.TryTake(out var entry);
 
-                    sampleToWrite.WriteDelimitedTo(samplesStream);
+                    var unpackedSample = entry.Value;
+                    PackedSample packedSample;
+                    
+                    if (unpackedSample.Header != null)
+                    {
+                        packedSample = _samplePoolManager.GetPackedSampleStamped();
+                        packedSample.Header.Time = unpackedSample.Header.Time;
+                        packedSample.Header.Seq = unpackedSample.Header.Seq;
+                        packedSample.Payload = Any.Pack(unpackedSample.Payload);
+                        packedSample.WriteDelimitedTo(samplesStream);
+                        _samplePoolManager.ReleaseSamplePayload(unpackedSample.Payload);
+                        _samplePoolManager.ReleaseUnpackedSampleStamped(unpackedSample);
+                    }
+                    else
+                    {
+                        packedSample = _samplePoolManager.GetPackedSample();
+                        packedSample.Payload = Any.Pack(unpackedSample.Payload);
+                        packedSample.WriteDelimitedTo(samplesStream);
+                        _samplePoolManager.ReleaseSamplePayload(unpackedSample.Payload);
+                        _samplePoolManager.ReleaseUnpackedSample(unpackedSample);
+                    }
 
                     writtenSampleCount++;
 
-                    if (sample.Header != null)
+                    if (packedSample.Header != null)
                     {
-                        if (sample.Header.Time < writtenSampleMaxTimestamp && _recordMetadata.Sequential)
+                        if (packedSample.Header.Time < writtenSampleMaxTimestamp && _recordMetadata.Sequential)
                         {
+                            Debug.Log(packedSample.Header.Time + " " + writtenSampleMaxTimestamp);
                             Debug.LogWarning("Record is no longer sequential.");
                             _recordMetadata.Sequential = false;
                         }
 
-                        writtenSampleMaxTimestamp = Math.Max(writtenSampleMaxTimestamp, sample.Header.Time);
-                        _samplePoolManager.ReleasePackedSampleStamped(sample);
+                        writtenSampleMaxTimestamp = Math.Max(writtenSampleMaxTimestamp, packedSample.Header.Time);
+                        _samplePoolManager.ReleasePackedSampleStamped(packedSample);
                     }
                     else
                     {
-                        _samplePoolManager.ReleasePackedSample(sample);
+                        _samplePoolManager.ReleasePackedSample(packedSample);
                     }
                 }
                 
                 _recordMetadata.SamplesCount = writtenSampleCount;
                 _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
                 UpdateMetadata(_recordMetadata, metadataStream);
-
-                Thread.Sleep(100);
-            } while (!_stopThread || _orderedSamples.Count > 0);
+            } while (!_stopThread || _unpackedSamples.Count > 0);
 
             _recordMetadata.SamplesCount = writtenSampleCount;
             _recordMetadata.Duration = Math.Max(writtenSampleMaxTimestamp, _recorderClock.GetTimeInNanoseconds());
@@ -132,7 +156,8 @@ namespace PLUME
             if (_closed)
                 throw new Exception("Can't record samples when the record writer is closed.");
 
-            _samplePacker.Enqueue(unpackedSample);
+            var sampleKey = unpackedSample.Header == null ? new SampleKey(null) : new SampleKey(new SampleHeaderKey(unpackedSample.Header.Time, unpackedSample.Header.Seq));
+            _unpackedSamples.Add(sampleKey, unpackedSample);
         }
 
         public void Close()
@@ -141,11 +166,8 @@ namespace PLUME
                 return;
             _closed = true;
 
-            _samplePacker.Stop();
-            _samplePacker.Join();
-
             _stopThread = true;
-            Debug.Log($"Waiting for the writing thread to write {_orderedSamples.Count} samples to disk.");
+            Debug.Log($"Waiting for the writing thread to write {_unpackedSamples.Count} samples to disk.");
             _thread.Join();
 
             var fileInfo = new FileInfo(_path);

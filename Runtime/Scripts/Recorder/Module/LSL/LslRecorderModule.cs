@@ -166,9 +166,9 @@ namespace PLUME
         {
             foreach (var recordedStream in _recordedStreams)
             {
-                var chunk = recordedStream.PullChunk();
-
-                if (chunk != null)
+                SampleChunk chunk;
+                
+                while ((chunk = recordedStream.PullChunk()) != null)
                 {
                     RecordStreamSampleChunk(recordedStream, chunk.Values, chunk.Timestamps);
                 }
@@ -267,6 +267,11 @@ namespace PLUME
                 if ((long) plumeRawTimestamp + plumeTimestampOffset >= 0)
                 {
                     recorder.RecordSampleStamped(streamSample, plumeTimestampOffset);
+                }
+
+                if (plumeTimestampOffset < -(long) RecordWriter.SampleWriteDelay)
+                {
+                    Debug.LogWarning("The LSL buffer is filling up quicker than it is being consumed.");
                 }
             }
         }

@@ -262,8 +262,12 @@ namespace PLUME
                 streamSample.StreamInfo.LslStreamId = inlet.StreamId.ToString();
                 streamSample.StreamInfo.LslTimestamp = lslTimestamp;
                 streamSample.StreamInfo.LslClockOffset = lslClockOffset;
-                
-                recorder.RecordSampleStamped(streamSample, plumeTimestampOffset);
+
+                // Discard any sample where the timestamp lands before t=0
+                if ((long) plumeRawTimestamp + plumeTimestampOffset >= 0)
+                {
+                    recorder.RecordSampleStamped(streamSample, plumeTimestampOffset);
+                }
             }
         }
 

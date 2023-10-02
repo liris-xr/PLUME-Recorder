@@ -79,13 +79,13 @@ namespace PLUME
             base.Awake();
             
             _startRecordingEventReceivers =
-                FindObjectsOfType<Object>(true).OfType<IStartRecordingEventReceiver>().ToArray();
+                FindObjectsOfType<Object>().OfType<IStartRecordingEventReceiver>().ToArray();
             _stopRecordingEventReceivers =
-                FindObjectsOfType<Object>(true).OfType<IStopRecordingEventReceiver>().ToArray();
+                FindObjectsOfType<Object>().OfType<IStopRecordingEventReceiver>().ToArray();
             _startRecordingObjectEventReceivers =
-                FindObjectsOfType<Object>(true).OfType<IStartRecordingObjectEventReceiver>().ToArray();
+                FindObjectsOfType<Object>().OfType<IStartRecordingObjectEventReceiver>().ToArray();
             _stopRecordingObjectEventReceivers =
-                FindObjectsOfType<Object>(true).OfType<IStopRecordingObjectEventReceiver>().ToArray();
+                FindObjectsOfType<Object>().OfType<IStopRecordingObjectEventReceiver>().ToArray();
 
             recordDirectory = Application.persistentDataPath;
         }

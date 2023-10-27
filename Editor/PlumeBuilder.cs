@@ -60,13 +60,27 @@ namespace PLUME.Editor
 
             var scenesAssetsDependencies = GetFilteredScenesDependencies(scenePaths);
 
-            if (GraphicsSettings.currentRenderPipeline != null)
+            if (GraphicsSettings.defaultRenderPipeline != null)
             {
-                var currentRenderPipelineAssetPath = AssetDatabase.GetAssetPath(GraphicsSettings.currentRenderPipeline);
+                var defaultRenderPipelineAssetPath = AssetDatabase.GetAssetPath(GraphicsSettings.defaultRenderPipeline);
 
-                if (!scenesAssetsDependencies.Contains(currentRenderPipelineAssetPath))
+                if (!scenesAssetsDependencies.Contains(defaultRenderPipelineAssetPath))
                 {
-                    scenesAssetsDependencies.Add(currentRenderPipelineAssetPath);
+                    scenesAssetsDependencies.Add(defaultRenderPipelineAssetPath);
+                }
+            }
+
+            for (var qualityLevel = 0; qualityLevel < QualitySettings.names.Length; qualityLevel++)
+            {
+                var qualityLevelRenderPipeline = QualitySettings.GetRenderPipelineAssetAt(qualityLevel);
+                
+                if (qualityLevelRenderPipeline == null) continue;
+                
+                var qualityLevelRenderPipelineAssetPath = AssetDatabase.GetAssetPath(qualityLevelRenderPipeline);
+
+                if (!scenesAssetsDependencies.Contains(qualityLevelRenderPipelineAssetPath))
+                {
+                    scenesAssetsDependencies.Add(qualityLevelRenderPipelineAssetPath);
                 }
             }
 

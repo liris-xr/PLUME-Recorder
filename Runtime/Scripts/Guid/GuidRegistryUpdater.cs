@@ -123,7 +123,7 @@ namespace PLUME.Guid
                     }
                     else
                     {
-                        // Do not add Recorder and its 
+                        // Do not add Recorder and its children
                         if (obj is GameObject go && (go.GetComponent<Recorder>() != null ||
                                                      go.GetComponentInParent<Recorder>() != null))
                         {

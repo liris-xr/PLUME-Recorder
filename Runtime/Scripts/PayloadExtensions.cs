@@ -2,9 +2,13 @@
 using PLUME.Guid;
 using PLUME.Sample.Common;
 using PLUME.Sample.Unity;
+using PLUME.Sample.Unity.URP;
 using UnityEngine;
 using Bounds = PLUME.Sample.Common.Bounds;
+using CameraClearFlags = PLUME.Sample.Unity.CameraClearFlags;
+using CameraType = PLUME.Sample.Unity.CameraType;
 using Color = PLUME.Sample.Common.Color;
+using DepthTextureMode = PLUME.Sample.Unity.DepthTextureMode;
 using FogMode = PLUME.Sample.Unity.FogMode;
 using LightmapData = PLUME.Sample.Unity.LightmapData;
 using LightmapsMode = PLUME.Sample.Unity.LightmapsMode;
@@ -15,6 +19,9 @@ using LightType = PLUME.Sample.Unity.LightType;
 using Matrix4x4 = PLUME.Sample.Common.Matrix4x4;
 using Object = UnityEngine.Object;
 using Quaternion = PLUME.Sample.Common.Quaternion;
+using Rect = PLUME.Sample.Common.Rect;
+using RenderingPath = PLUME.Sample.Unity.RenderingPath;
+using TransparencySortMode = PLUME.Sample.Unity.TransparencySortMode;
 using Vector2 = PLUME.Sample.Common.Vector2;
 using Vector3 = PLUME.Sample.Common.Vector3;
 using Vector4 = PLUME.Sample.Common.Vector4;
@@ -114,6 +121,17 @@ namespace PLUME
                 G = color.g,
                 B = color.b,
                 A = color.a
+            };
+        }
+        
+        public static Rect ToPayload(this UnityEngine.Rect rect)
+        {
+            return new Rect
+            {
+                X = rect.xMin,
+                Y = rect.yMin,
+                Width = rect.width,
+                Height = rect.height
             };
         }
 
@@ -377,5 +395,159 @@ namespace PLUME
                 M33 = mtx.m33
             };
         }
+        
+        public static OpaqueSortMode ToPayload(this UnityEngine.Rendering.OpaqueSortMode opaqueSortMode)
+        {
+            return opaqueSortMode switch
+            {
+                UnityEngine.Rendering.OpaqueSortMode.Default => OpaqueSortMode.Default,
+                UnityEngine.Rendering.OpaqueSortMode.NoDistanceSort => OpaqueSortMode.NoDistanceSort,
+                UnityEngine.Rendering.OpaqueSortMode.FrontToBack => OpaqueSortMode.FrontToBack,
+                _ => throw new ArgumentOutOfRangeException(nameof(opaqueSortMode), opaqueSortMode,
+                    null)
+            };
+        }
+        
+        public static TransparencySortMode ToPayload(this UnityEngine.TransparencySortMode transparencySortMode)
+        {
+            return transparencySortMode switch
+            {
+                UnityEngine.TransparencySortMode.Default => TransparencySortMode.Default,
+                UnityEngine.TransparencySortMode.Orthographic => TransparencySortMode.Orthographic,
+                UnityEngine.TransparencySortMode.Perspective => TransparencySortMode.Perspective,
+                UnityEngine.TransparencySortMode.CustomAxis => TransparencySortMode.CustomAxis,
+                _ => throw new ArgumentOutOfRangeException(nameof(transparencySortMode), transparencySortMode,
+                    null)
+            };
+        }
+        
+        public static RenderingPath ToPayload(this UnityEngine.RenderingPath renderingPath)
+        {
+            return renderingPath switch
+            {
+                UnityEngine.RenderingPath.DeferredLighting => RenderingPath.DeferredLighting,
+                UnityEngine.RenderingPath.DeferredShading => RenderingPath.DeferredShading,
+                UnityEngine.RenderingPath.Forward => RenderingPath.Forward,
+                UnityEngine.RenderingPath.VertexLit => RenderingPath.VertexLit,
+                UnityEngine.RenderingPath.UsePlayerSettings => RenderingPath.UsePlayerSettings,
+                _ => throw new ArgumentOutOfRangeException(nameof(renderingPath), renderingPath,
+                    null)
+            };
+        }
+        
+        public static CameraType ToPayload(this UnityEngine.CameraType cameraType)
+        {
+            return cameraType switch
+            {
+                UnityEngine.CameraType.Reflection => CameraType.Reflection,
+                UnityEngine.CameraType.Game => CameraType.Game,
+                UnityEngine.CameraType.Preview => CameraType.Preview,
+                UnityEngine.CameraType.SceneView => CameraType.SceneView,
+                UnityEngine.CameraType.VR => CameraType.Vr,
+                _ => throw new ArgumentOutOfRangeException(nameof(cameraType), cameraType,
+                    null)
+            };
+        }
+        
+        public static CameraGateFitMode ToPayload(this Camera.GateFitMode gateFitMode)
+        {
+            return gateFitMode switch
+            {
+                Camera.GateFitMode.None => CameraGateFitMode.None,
+                Camera.GateFitMode.Fill => CameraGateFitMode.Fill,
+                Camera.GateFitMode.Horizontal => CameraGateFitMode.Horizontal,
+                Camera.GateFitMode.Vertical => CameraGateFitMode.Vertical,
+                Camera.GateFitMode.Overscan => CameraGateFitMode.Overscan,
+                _ => throw new ArgumentOutOfRangeException(nameof(gateFitMode), gateFitMode,
+                    null)
+            };
+        }
+        public static CameraClearFlags ToPayload(this UnityEngine.CameraClearFlags cameraClearFlags)
+        {
+            return cameraClearFlags switch
+            {
+                UnityEngine.CameraClearFlags.Nothing => CameraClearFlags.Nothing,
+                UnityEngine.CameraClearFlags.Skybox => CameraClearFlags.Skybox,
+                UnityEngine.CameraClearFlags.SolidColor => CameraClearFlags.SolidColor,
+                UnityEngine.CameraClearFlags.Depth => CameraClearFlags.Depth,
+                _ => throw new ArgumentOutOfRangeException(nameof(cameraClearFlags), cameraClearFlags,
+                    null)
+            };
+        }
+        
+        public static DepthTextureMode ToPayload(this UnityEngine.DepthTextureMode depthTextureMode)
+        {
+            return depthTextureMode switch
+            {
+                UnityEngine.DepthTextureMode.None => DepthTextureMode.None,
+                UnityEngine.DepthTextureMode.Depth => DepthTextureMode.Depth,
+                UnityEngine.DepthTextureMode.DepthNormals => DepthTextureMode.DepthNormals,
+                UnityEngine.DepthTextureMode.MotionVectors => DepthTextureMode.MotionVectors,
+                _ => throw new ArgumentOutOfRangeException(nameof(depthTextureMode), depthTextureMode,
+                    null)
+            };
+        }
+     
+        public static CameraStereoTargetEyeMask ToPayload(this StereoTargetEyeMask stereoTargetEyeMask)
+        {
+            return stereoTargetEyeMask switch
+            {
+                StereoTargetEyeMask.None => CameraStereoTargetEyeMask.None,
+                StereoTargetEyeMask.Both => CameraStereoTargetEyeMask.Both,
+                StereoTargetEyeMask.Left => CameraStereoTargetEyeMask.Left,
+                StereoTargetEyeMask.Right => CameraStereoTargetEyeMask.Right,
+                _ => throw new ArgumentOutOfRangeException(nameof(stereoTargetEyeMask), stereoTargetEyeMask,
+                    null)
+            };
+        }
+
+#if URP_ENABLED
+        public static CameraOverrideOption ToPayload(this UnityEngine.Rendering.Universal.CameraOverrideOption cameraOverrideOption)
+        {
+            return cameraOverrideOption switch
+            {
+                UnityEngine.Rendering.Universal.CameraOverrideOption.Off => CameraOverrideOption.Off,
+                UnityEngine.Rendering.Universal.CameraOverrideOption.On => CameraOverrideOption.On ,
+                UnityEngine.Rendering.Universal.CameraOverrideOption.UsePipelineSettings => CameraOverrideOption.UsePipelineSettings,
+                _ => throw new ArgumentOutOfRangeException(nameof(cameraOverrideOption), cameraOverrideOption,
+                    null)
+            };
+        }
+        
+        public static CameraRenderType ToPayload(this UnityEngine.Rendering.Universal.CameraRenderType cameraRenderType)
+        {
+            return cameraRenderType switch
+            {
+                UnityEngine.Rendering.Universal.CameraRenderType.Base => CameraRenderType.Base,
+                UnityEngine.Rendering.Universal.CameraRenderType.Overlay => CameraRenderType.Overlay,
+                _ => throw new ArgumentOutOfRangeException(nameof(cameraRenderType), cameraRenderType,
+                    null)
+            };
+        }
+        
+        public static AntialiasingMode ToPayload(this UnityEngine.Rendering.Universal.AntialiasingMode antialiasingMode)
+        {
+            return antialiasingMode switch
+            {
+                UnityEngine.Rendering.Universal.AntialiasingMode.None => AntialiasingMode.None,
+                UnityEngine.Rendering.Universal.AntialiasingMode.FastApproximateAntialiasing => AntialiasingMode.FastApproximateAntialiasing,
+                UnityEngine.Rendering.Universal.AntialiasingMode.SubpixelMorphologicalAntiAliasing => AntialiasingMode.SubpixelMorphologicalAntiAliasing,
+                _ => throw new ArgumentOutOfRangeException(nameof(antialiasingMode), antialiasingMode,
+                    null)
+            };
+        }
+        
+        public static AntialiasingQuality ToPayload(this UnityEngine.Rendering.Universal.AntialiasingQuality antialiasingQuality)
+        {
+            return antialiasingQuality switch
+            {
+                UnityEngine.Rendering.Universal.AntialiasingQuality.Low => AntialiasingQuality.Low,
+                UnityEngine.Rendering.Universal.AntialiasingQuality.Medium => AntialiasingQuality.Medium,
+                UnityEngine.Rendering.Universal.AntialiasingQuality.High => AntialiasingQuality.High,
+                _ => throw new ArgumentOutOfRangeException(nameof(antialiasingQuality), antialiasingQuality,
+                    null)
+            };
+        }
+#endif
     }
 }

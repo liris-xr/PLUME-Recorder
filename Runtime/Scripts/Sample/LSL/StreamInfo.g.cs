@@ -109,6 +109,7 @@ namespace PLUME.Sample.LSL {
     private long lslPlumeOffset_;
     /// <summary>
     /// Local offset between the PLUME recorder clock and LSL clock, in nanoseconds
+    /// Add the PLUME timestamp to this offset to get the timestamp in the LSL frame of reference
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

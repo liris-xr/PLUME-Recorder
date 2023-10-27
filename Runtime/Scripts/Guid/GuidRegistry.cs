@@ -25,6 +25,8 @@ namespace PLUME.Guid
 
         public bool TryAdd(T guidEntry)
         {
+            if (guidEntry == null || guidEntry.@object == null)
+                return false;
             return _guids.TryAdd(guidEntry.@object, guidEntry);
         }
 
@@ -35,6 +37,12 @@ namespace PLUME.Guid
 
         public bool TryGetValue(Object obj, out T entry)
         {
+            if (obj == null)
+            {
+                entry = null;
+                return false;
+            }
+
             return _guids.TryGetValue(obj, out entry);
         }
         

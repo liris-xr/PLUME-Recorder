@@ -25,21 +25,126 @@ namespace PLUME.Sample.Unity {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChJ1bml0eS9jYW1lcmEucHJvdG8SEnBsdW1lLnNhbXBsZS51bml0eRoXdW5p",
-            "dHkvaWRlbnRpZmllcnMucHJvdG8iQwoMQ2FtZXJhQ3JlYXRlEjMKAmlkGAEg",
-            "ASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIi",
-            "QwoMQ2FtZXJhVXBkYXRlEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVu",
-            "aXR5LkNvbXBvbmVudElkZW50aWZpZXJCFaoCElBMVU1FLlNhbXBsZS5Vbml0",
-            "eWIGcHJvdG8z"));
+            "dHkvaWRlbnRpZmllcnMucHJvdG8aFXVuaXR5L3JlbmRlcmluZy5wcm90bxoU",
+            "Y29tbW9uL3ZlY3RvcjIucHJvdG8aFGNvbW1vbi92ZWN0b3IzLnByb3RvGhZj",
+            "b21tb24vbWF0cml4NHg0LnByb3RvGhJjb21tb24vY29sb3IucHJvdG8aEWNv",
+            "bW1vbi9yZWN0LnByb3RvIkMKDENhbWVyYUNyZWF0ZRIzCgJpZBgBIAEoCzIn",
+            "LnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIokQCgxD",
+            "YW1lcmFVcGRhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
+            "Q29tcG9uZW50SWRlbnRpZmllchIXCg9uZWFyX2NsaXBfcGxhbmUYAiABKAIS",
+            "FgoOZmFyX2NsaXBfcGxhbmUYAyABKAISFQoNZmllbGRfb2ZfdmlldxgEIAEo",
+            "AhI5Cg5yZW5kZXJpbmdfcGF0aBgFIAEoDjIhLnBsdW1lLnNhbXBsZS51bml0",
+            "eS5SZW5kZXJpbmdQYXRoEhEKCWFsbG93X2hkchgGIAEoCBISCgphbGxvd19t",
+            "c2FhGAcgASgIEiAKGGFsbG93X2R5bmFtaWNfcmVzb2x1dGlvbhgIIAEoCBIh",
+            "Chlmb3JjZV9pbnRvX3JlbmRlcl90ZXh0dXJlGAkgASgIEhkKEW9ydGhvZ3Jh",
+            "cGhpY19zaXplGAogASgCEhQKDG9ydGhvZ3JhcGhpYxgLIAEoCBI8ChBvcGFx",
+            "dWVfc29ydF9tb2RlGAwgASgOMiIucGx1bWUuc2FtcGxlLnVuaXR5Lk9wYXF1",
+            "ZVNvcnRNb2RlEkgKFnRyYW5zcGFyZW5jeV9zb3J0X21vZGUYDSABKA4yKC5w",
+            "bHVtZS5zYW1wbGUudW5pdHkuVHJhbnNwYXJlbmN5U29ydE1vZGUSPAoWdHJh",
+            "bnNwYXJlbmN5X3NvcnRfYXhpcxgOIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21t",
+            "b24uVmVjdG9yMxINCgVkZXB0aBgPIAEoAhIOCgZhc3BlY3QYECABKAISLgoI",
+            "dmVsb2NpdHkYESABKAsyHC5wbHVtZS5zYW1wbGUuY29tbW9uLlZlY3RvcjMS",
+            "FAoMY3VsbGluZ19tYXNrGBIgASgFEhIKCmV2ZW50X21hc2sYEyABKAUSHAoU",
+            "bGF5ZXJfY3VsbF9zcGhlcmljYWwYFCABKAgSMwoLY2FtZXJhX3R5cGUYFSAB",
+            "KA4yHi5wbHVtZS5zYW1wbGUudW5pdHkuQ2FtZXJhVHlwZRIcChRsYXllcl9j",
+            "dWxsX2Rpc3RhbmNlcxgWIAMoAhIdChV1c2Vfb2NjbHVzaW9uX2N1bGxpbmcY",
+            "FyABKAgSNgoOY3VsbGluZ19tYXRyaXgYGCABKAsyHi5wbHVtZS5zYW1wbGUu",
+            "Y29tbW9uLk1hdHJpeDR4NBI0ChBiYWNrZ3JvdW5kX2NvbG9yGBkgASgLMhou",
+            "cGx1bWUuc2FtcGxlLmNvbW1vbi5Db2xvchI5CgtjbGVhcl9mbGFncxgaIAEo",
+            "DjIkLnBsdW1lLnNhbXBsZS51bml0eS5DYW1lcmFDbGVhckZsYWdzEkAKEmRl",
+            "cHRoX3RleHR1cmVfbW9kZRgbIAEoDjIkLnBsdW1lLnNhbXBsZS51bml0eS5E",
+            "ZXB0aFRleHR1cmVNb2RlEikKIWNsZWFyX3N0ZW5jaWxfYWZ0ZXJfbGlnaHRp",
+            "bmdfcGFzcxgcIAEoCBIfChd1c2VfcGh5c2ljYWxfcHJvcGVydGllcxgdIAEo",
+            "CBIxCgtzZW5zb3Jfc2l6ZRgeIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21tb24u",
+            "VmVjdG9yMhIwCgpsZW5zX3NoaWZ0GB8gASgLMhwucGx1bWUuc2FtcGxlLmNv",
+            "bW1vbi5WZWN0b3IyEhQKDGZvY2FsX2xlbmd0aBggIAEoAhI3CghnYXRlX2Zp",
+            "dBghIAEoDjIlLnBsdW1lLnNhbXBsZS51bml0eS5DYW1lcmFHYXRlRml0TW9k",
+            "ZRInCgRyZWN0GCIgASgLMhkucGx1bWUuc2FtcGxlLmNvbW1vbi5SZWN0Ei0K",
+            "CnBpeGVsX3JlY3QYIyABKAsyGS5wbHVtZS5zYW1wbGUuY29tbW9uLlJlY3QS",
+            "EwoLcGl4ZWxfd2lkdGgYJCABKAUSFAoMcGl4ZWxfaGVpZ2h0GCUgASgFEhoK",
+            "EnNjYWxlZF9waXhlbF93aWR0aBgmIAEoBRIbChNzY2FsZWRfcGl4ZWxfaGVp",
+            "Z2h0GCcgASgFEh4KEXRhcmdldF90ZXh0dXJlX2lkGCggASgJSACIAQESHgoR",
+            "YWN0aXZlX3RleHR1cmVfaWQYKSABKAlIAYgBARIWCg50YXJnZXRfZGlzcGxh",
+            "eRgqIAEoBRI+ChZ3b3JsZF90b19jYW1lcmFfbWF0cml4GCsgASgLMh4ucGx1",
+            "bWUuc2FtcGxlLmNvbW1vbi5NYXRyaXg0eDQSOQoRcHJvamVjdGlvbl9tYXRy",
+            "aXgYLCABKAsyHi5wbHVtZS5zYW1wbGUuY29tbW9uLk1hdHJpeDR4NBJGCh5u",
+            "b25faml0dGVyZWRfcHJvamVjdGlvbl9tYXRyaXgYLSABKAsyHi5wbHVtZS5z",
+            "YW1wbGUuY29tbW9uLk1hdHJpeDR4NBJACjh1c2Vfaml0dGVyZWRfcHJvamVj",
+            "dGlvbl9tYXRyaXhfZm9yX3RyYW5zcGFyZW50X3JlbmRlcmluZxguIAEoCBIW",
+            "CglzY2VuZV9pZHgYLyABKAVIAogBARIZChFzdGVyZW9fc2VwYXJhdGlvbhgw",
+            "IAEoAhIaChJzdGVyZW9fY29udmVyZ2VuY2UYMSABKAISSAoRc3RlcmVvX3Rh",
+            "cmdldF9leWUYMiABKA4yLS5wbHVtZS5zYW1wbGUudW5pdHkuQ2FtZXJhU3Rl",
+            "cmVvVGFyZ2V0RXllTWFza0IUChJfdGFyZ2V0X3RleHR1cmVfaWRCFAoSX2Fj",
+            "dGl2ZV90ZXh0dXJlX2lkQgwKCl9zY2VuZV9pZHgqhwEKCkNhbWVyYVR5cGUS",
+            "FAoQQ0FNRVJBX1RZUEVfR0FNRRAAEhoKFkNBTUVSQV9UWVBFX1NDRU5FX1ZJ",
+            "RVcQARIXChNDQU1FUkFfVFlQRV9QUkVWSUVXEAISEgoOQ0FNRVJBX1RZUEVf",
+            "VlIQAxIaChZDQU1FUkFfVFlQRV9SRUZMRUNUSU9OEAQqkwEKEENhbWVyYUNs",
+            "ZWFyRmxhZ3MSHQoZQ0FNRVJBX0NMRUFSX0ZMQUdTX1NLWUJPWBAAEiIKHkNB",
+            "TUVSQV9DTEVBUl9GTEFHU19TT0xJRF9DT0xPUhABEhwKGENBTUVSQV9DTEVB",
+            "Ul9GTEFHU19ERVBUSBACEh4KGkNBTUVSQV9DTEVBUl9GTEFHU19OT1RISU5H",
+            "EAMqvAEKEUNhbWVyYUdhdGVGaXRNb2RlEh0KGUNBTUVSQV9HQVRFX0ZJVF9N",
+            "T0RFX05PTkUQABIhCh1DQU1FUkFfR0FURV9GSVRfTU9ERV9WRVJUSUNBTBAB",
+            "EiMKH0NBTUVSQV9HQVRFX0ZJVF9NT0RFX0hPUklaT05UQUwQAhIdChlDQU1F",
+            "UkFfR0FURV9GSVRfTU9ERV9GSUxMEAMSIQodQ0FNRVJBX0dBVEVfRklUX01P",
+            "REVfT1ZFUlNDQU4QBCq8AQoZQ2FtZXJhU3RlcmVvVGFyZ2V0RXllTWFzaxIm",
+            "CiJDQU1FUkFfU1RFUkVPX1RBUkdFVF9FWUVfTUFTS19OT05FEAASJgoiQ0FN",
+            "RVJBX1NURVJFT19UQVJHRVRfRVlFX01BU0tfTEVGVBABEicKI0NBTUVSQV9T",
+            "VEVSRU9fVEFSR0VUX0VZRV9NQVNLX1JJR0hUEAISJgoiQ0FNRVJBX1NURVJF",
+            "T19UQVJHRVRfRVlFX01BU0tfQk9USBADKpoBChBEZXB0aFRleHR1cmVNb2Rl",
+            "EhsKF0RFUFRIX1RFWFRVUkVfTU9ERV9OT05FEAASHAoYREVQVEhfVEVYVFVS",
+            "RV9NT0RFX0RFUFRIEAESJAogREVQVEhfVEVYVFVSRV9NT0RFX0RFUFRIX05P",
+            "Uk1BTFMQAhIlCiFERVBUSF9URVhUVVJFX01PREVfTU9USU9OX1ZFQ1RPUlMQ",
+            "A0IVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Unity.RenderingReflection.Descriptor, global::PLUME.Sample.Common.Vector2Reflection.Descriptor, global::PLUME.Sample.Common.Vector3Reflection.Descriptor, global::PLUME.Sample.Common.Matrix4X4Reflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, global::PLUME.Sample.Common.RectReflection.Descriptor, },
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.CameraType), typeof(global::PLUME.Sample.Unity.CameraClearFlags), typeof(global::PLUME.Sample.Unity.CameraGateFitMode), typeof(global::PLUME.Sample.Unity.CameraStereoTargetEyeMask), typeof(global::PLUME.Sample.Unity.DepthTextureMode), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.CameraCreate), global::PLUME.Sample.Unity.CameraCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.CameraUpdate), global::PLUME.Sample.Unity.CameraUpdate.Parser, new[]{ "Id" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.CameraUpdate), global::PLUME.Sample.Unity.CameraUpdate.Parser, new[]{ "Id", "NearClipPlane", "FarClipPlane", "FieldOfView", "RenderingPath", "AllowHdr", "AllowMsaa", "AllowDynamicResolution", "ForceIntoRenderTexture", "OrthographicSize", "Orthographic", "OpaqueSortMode", "TransparencySortMode", "TransparencySortAxis", "Depth", "Aspect", "Velocity", "CullingMask", "EventMask", "LayerCullSpherical", "CameraType", "LayerCullDistances", "UseOcclusionCulling", "CullingMatrix", "BackgroundColor", "ClearFlags", "DepthTextureMode", "ClearStencilAfterLightingPass", "UsePhysicalProperties", "SensorSize", "LensShift", "FocalLength", "GateFit", "Rect", "PixelRect", "PixelWidth", "PixelHeight", "ScaledPixelWidth", "ScaledPixelHeight", "TargetTextureId", "ActiveTextureId", "TargetDisplay", "WorldToCameraMatrix", "ProjectionMatrix", "NonJitteredProjectionMatrix", "UseJitteredProjectionMatrixForTransparentRendering", "SceneIdx", "StereoSeparation", "StereoConvergence", "StereoTargetEye" }, new[]{ "TargetTextureId", "ActiveTextureId", "SceneIdx" }, null, null, null)
           }));
     }
     #endregion
 
   }
+  #region Enums
+  public enum CameraType {
+    [pbr::OriginalName("CAMERA_TYPE_GAME")] Game = 0,
+    [pbr::OriginalName("CAMERA_TYPE_SCENE_VIEW")] SceneView = 1,
+    [pbr::OriginalName("CAMERA_TYPE_PREVIEW")] Preview = 2,
+    [pbr::OriginalName("CAMERA_TYPE_VR")] Vr = 3,
+    [pbr::OriginalName("CAMERA_TYPE_REFLECTION")] Reflection = 4,
+  }
+
+  public enum CameraClearFlags {
+    [pbr::OriginalName("CAMERA_CLEAR_FLAGS_SKYBOX")] Skybox = 0,
+    [pbr::OriginalName("CAMERA_CLEAR_FLAGS_SOLID_COLOR")] SolidColor = 1,
+    [pbr::OriginalName("CAMERA_CLEAR_FLAGS_DEPTH")] Depth = 2,
+    [pbr::OriginalName("CAMERA_CLEAR_FLAGS_NOTHING")] Nothing = 3,
+  }
+
+  public enum CameraGateFitMode {
+    [pbr::OriginalName("CAMERA_GATE_FIT_MODE_NONE")] None = 0,
+    [pbr::OriginalName("CAMERA_GATE_FIT_MODE_VERTICAL")] Vertical = 1,
+    [pbr::OriginalName("CAMERA_GATE_FIT_MODE_HORIZONTAL")] Horizontal = 2,
+    [pbr::OriginalName("CAMERA_GATE_FIT_MODE_FILL")] Fill = 3,
+    [pbr::OriginalName("CAMERA_GATE_FIT_MODE_OVERSCAN")] Overscan = 4,
+  }
+
+  public enum CameraStereoTargetEyeMask {
+    [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_NONE")] None = 0,
+    [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_LEFT")] Left = 1,
+    [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_RIGHT")] Right = 2,
+    [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_BOTH")] Both = 3,
+  }
+
+  public enum DepthTextureMode {
+    [pbr::OriginalName("DEPTH_TEXTURE_MODE_NONE")] None = 0,
+    [pbr::OriginalName("DEPTH_TEXTURE_MODE_DEPTH")] Depth = 1,
+    [pbr::OriginalName("DEPTH_TEXTURE_MODE_DEPTH_NORMALS")] DepthNormals = 2,
+    [pbr::OriginalName("DEPTH_TEXTURE_MODE_MOTION_VECTORS")] MotionVectors = 3,
+  }
+
+  #endregion
+
   #region Messages
   public sealed partial class CameraCreate : pb::IMessage<CameraCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -246,6 +351,7 @@ namespace PLUME.Sample.Unity {
   {
     private static readonly pb::MessageParser<CameraUpdate> _parser = new pb::MessageParser<CameraUpdate>(() => new CameraUpdate());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<CameraUpdate> Parser { get { return _parser; } }
@@ -273,7 +379,57 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public CameraUpdate(CameraUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
+      nearClipPlane_ = other.nearClipPlane_;
+      farClipPlane_ = other.farClipPlane_;
+      fieldOfView_ = other.fieldOfView_;
+      renderingPath_ = other.renderingPath_;
+      allowHdr_ = other.allowHdr_;
+      allowMsaa_ = other.allowMsaa_;
+      allowDynamicResolution_ = other.allowDynamicResolution_;
+      forceIntoRenderTexture_ = other.forceIntoRenderTexture_;
+      orthographicSize_ = other.orthographicSize_;
+      orthographic_ = other.orthographic_;
+      opaqueSortMode_ = other.opaqueSortMode_;
+      transparencySortMode_ = other.transparencySortMode_;
+      transparencySortAxis_ = other.transparencySortAxis_ != null ? other.transparencySortAxis_.Clone() : null;
+      depth_ = other.depth_;
+      aspect_ = other.aspect_;
+      velocity_ = other.velocity_ != null ? other.velocity_.Clone() : null;
+      cullingMask_ = other.cullingMask_;
+      eventMask_ = other.eventMask_;
+      layerCullSpherical_ = other.layerCullSpherical_;
+      cameraType_ = other.cameraType_;
+      layerCullDistances_ = other.layerCullDistances_.Clone();
+      useOcclusionCulling_ = other.useOcclusionCulling_;
+      cullingMatrix_ = other.cullingMatrix_ != null ? other.cullingMatrix_.Clone() : null;
+      backgroundColor_ = other.backgroundColor_ != null ? other.backgroundColor_.Clone() : null;
+      clearFlags_ = other.clearFlags_;
+      depthTextureMode_ = other.depthTextureMode_;
+      clearStencilAfterLightingPass_ = other.clearStencilAfterLightingPass_;
+      usePhysicalProperties_ = other.usePhysicalProperties_;
+      sensorSize_ = other.sensorSize_ != null ? other.sensorSize_.Clone() : null;
+      lensShift_ = other.lensShift_ != null ? other.lensShift_.Clone() : null;
+      focalLength_ = other.focalLength_;
+      gateFit_ = other.gateFit_;
+      rect_ = other.rect_ != null ? other.rect_.Clone() : null;
+      pixelRect_ = other.pixelRect_ != null ? other.pixelRect_.Clone() : null;
+      pixelWidth_ = other.pixelWidth_;
+      pixelHeight_ = other.pixelHeight_;
+      scaledPixelWidth_ = other.scaledPixelWidth_;
+      scaledPixelHeight_ = other.scaledPixelHeight_;
+      targetTextureId_ = other.targetTextureId_;
+      activeTextureId_ = other.activeTextureId_;
+      targetDisplay_ = other.targetDisplay_;
+      worldToCameraMatrix_ = other.worldToCameraMatrix_ != null ? other.worldToCameraMatrix_.Clone() : null;
+      projectionMatrix_ = other.projectionMatrix_ != null ? other.projectionMatrix_.Clone() : null;
+      nonJitteredProjectionMatrix_ = other.nonJitteredProjectionMatrix_ != null ? other.nonJitteredProjectionMatrix_.Clone() : null;
+      useJitteredProjectionMatrixForTransparentRendering_ = other.useJitteredProjectionMatrixForTransparentRendering_;
+      sceneIdx_ = other.sceneIdx_;
+      stereoSeparation_ = other.stereoSeparation_;
+      stereoConvergence_ = other.stereoConvergence_;
+      stereoTargetEye_ = other.stereoTargetEye_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -295,6 +451,636 @@ namespace PLUME.Sample.Unity {
       }
     }
 
+    /// <summary>Field number for the "near_clip_plane" field.</summary>
+    public const int NearClipPlaneFieldNumber = 2;
+    private float nearClipPlane_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float NearClipPlane {
+      get { return nearClipPlane_; }
+      set {
+        nearClipPlane_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "far_clip_plane" field.</summary>
+    public const int FarClipPlaneFieldNumber = 3;
+    private float farClipPlane_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float FarClipPlane {
+      get { return farClipPlane_; }
+      set {
+        farClipPlane_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "field_of_view" field.</summary>
+    public const int FieldOfViewFieldNumber = 4;
+    private float fieldOfView_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float FieldOfView {
+      get { return fieldOfView_; }
+      set {
+        fieldOfView_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "rendering_path" field.</summary>
+    public const int RenderingPathFieldNumber = 5;
+    private global::PLUME.Sample.Unity.RenderingPath renderingPath_ = global::PLUME.Sample.Unity.RenderingPath.UsePlayerSettings;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.RenderingPath RenderingPath {
+      get { return renderingPath_; }
+      set {
+        renderingPath_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "allow_hdr" field.</summary>
+    public const int AllowHdrFieldNumber = 6;
+    private bool allowHdr_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool AllowHdr {
+      get { return allowHdr_; }
+      set {
+        allowHdr_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "allow_msaa" field.</summary>
+    public const int AllowMsaaFieldNumber = 7;
+    private bool allowMsaa_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool AllowMsaa {
+      get { return allowMsaa_; }
+      set {
+        allowMsaa_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "allow_dynamic_resolution" field.</summary>
+    public const int AllowDynamicResolutionFieldNumber = 8;
+    private bool allowDynamicResolution_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool AllowDynamicResolution {
+      get { return allowDynamicResolution_; }
+      set {
+        allowDynamicResolution_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "force_into_render_texture" field.</summary>
+    public const int ForceIntoRenderTextureFieldNumber = 9;
+    private bool forceIntoRenderTexture_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool ForceIntoRenderTexture {
+      get { return forceIntoRenderTexture_; }
+      set {
+        forceIntoRenderTexture_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "orthographic_size" field.</summary>
+    public const int OrthographicSizeFieldNumber = 10;
+    private float orthographicSize_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float OrthographicSize {
+      get { return orthographicSize_; }
+      set {
+        orthographicSize_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "orthographic" field.</summary>
+    public const int OrthographicFieldNumber = 11;
+    private bool orthographic_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Orthographic {
+      get { return orthographic_; }
+      set {
+        orthographic_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "opaque_sort_mode" field.</summary>
+    public const int OpaqueSortModeFieldNumber = 12;
+    private global::PLUME.Sample.Unity.OpaqueSortMode opaqueSortMode_ = global::PLUME.Sample.Unity.OpaqueSortMode.Default;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.OpaqueSortMode OpaqueSortMode {
+      get { return opaqueSortMode_; }
+      set {
+        opaqueSortMode_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "transparency_sort_mode" field.</summary>
+    public const int TransparencySortModeFieldNumber = 13;
+    private global::PLUME.Sample.Unity.TransparencySortMode transparencySortMode_ = global::PLUME.Sample.Unity.TransparencySortMode.Default;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.TransparencySortMode TransparencySortMode {
+      get { return transparencySortMode_; }
+      set {
+        transparencySortMode_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "transparency_sort_axis" field.</summary>
+    public const int TransparencySortAxisFieldNumber = 14;
+    private global::PLUME.Sample.Common.Vector3 transparencySortAxis_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Vector3 TransparencySortAxis {
+      get { return transparencySortAxis_; }
+      set {
+        transparencySortAxis_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "depth" field.</summary>
+    public const int DepthFieldNumber = 15;
+    private float depth_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float Depth {
+      get { return depth_; }
+      set {
+        depth_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "aspect" field.</summary>
+    public const int AspectFieldNumber = 16;
+    private float aspect_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float Aspect {
+      get { return aspect_; }
+      set {
+        aspect_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "velocity" field.</summary>
+    public const int VelocityFieldNumber = 17;
+    private global::PLUME.Sample.Common.Vector3 velocity_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Vector3 Velocity {
+      get { return velocity_; }
+      set {
+        velocity_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "culling_mask" field.</summary>
+    public const int CullingMaskFieldNumber = 18;
+    private int cullingMask_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CullingMask {
+      get { return cullingMask_; }
+      set {
+        cullingMask_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "event_mask" field.</summary>
+    public const int EventMaskFieldNumber = 19;
+    private int eventMask_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int EventMask {
+      get { return eventMask_; }
+      set {
+        eventMask_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "layer_cull_spherical" field.</summary>
+    public const int LayerCullSphericalFieldNumber = 20;
+    private bool layerCullSpherical_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool LayerCullSpherical {
+      get { return layerCullSpherical_; }
+      set {
+        layerCullSpherical_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "camera_type" field.</summary>
+    public const int CameraTypeFieldNumber = 21;
+    private global::PLUME.Sample.Unity.CameraType cameraType_ = global::PLUME.Sample.Unity.CameraType.Game;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.CameraType CameraType {
+      get { return cameraType_; }
+      set {
+        cameraType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "layer_cull_distances" field.</summary>
+    public const int LayerCullDistancesFieldNumber = 22;
+    private static readonly pb::FieldCodec<float> _repeated_layerCullDistances_codec
+        = pb::FieldCodec.ForFloat(178);
+    private readonly pbc::RepeatedField<float> layerCullDistances_ = new pbc::RepeatedField<float>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<float> LayerCullDistances {
+      get { return layerCullDistances_; }
+    }
+
+    /// <summary>Field number for the "use_occlusion_culling" field.</summary>
+    public const int UseOcclusionCullingFieldNumber = 23;
+    private bool useOcclusionCulling_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool UseOcclusionCulling {
+      get { return useOcclusionCulling_; }
+      set {
+        useOcclusionCulling_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "culling_matrix" field.</summary>
+    public const int CullingMatrixFieldNumber = 24;
+    private global::PLUME.Sample.Common.Matrix4x4 cullingMatrix_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Matrix4x4 CullingMatrix {
+      get { return cullingMatrix_; }
+      set {
+        cullingMatrix_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "background_color" field.</summary>
+    public const int BackgroundColorFieldNumber = 25;
+    private global::PLUME.Sample.Common.Color backgroundColor_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Color BackgroundColor {
+      get { return backgroundColor_; }
+      set {
+        backgroundColor_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "clear_flags" field.</summary>
+    public const int ClearFlagsFieldNumber = 26;
+    private global::PLUME.Sample.Unity.CameraClearFlags clearFlags_ = global::PLUME.Sample.Unity.CameraClearFlags.Skybox;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.CameraClearFlags ClearFlags {
+      get { return clearFlags_; }
+      set {
+        clearFlags_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "depth_texture_mode" field.</summary>
+    public const int DepthTextureModeFieldNumber = 27;
+    private global::PLUME.Sample.Unity.DepthTextureMode depthTextureMode_ = global::PLUME.Sample.Unity.DepthTextureMode.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.DepthTextureMode DepthTextureMode {
+      get { return depthTextureMode_; }
+      set {
+        depthTextureMode_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "clear_stencil_after_lighting_pass" field.</summary>
+    public const int ClearStencilAfterLightingPassFieldNumber = 28;
+    private bool clearStencilAfterLightingPass_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool ClearStencilAfterLightingPass {
+      get { return clearStencilAfterLightingPass_; }
+      set {
+        clearStencilAfterLightingPass_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "use_physical_properties" field.</summary>
+    public const int UsePhysicalPropertiesFieldNumber = 29;
+    private bool usePhysicalProperties_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool UsePhysicalProperties {
+      get { return usePhysicalProperties_; }
+      set {
+        usePhysicalProperties_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "sensor_size" field.</summary>
+    public const int SensorSizeFieldNumber = 30;
+    private global::PLUME.Sample.Common.Vector2 sensorSize_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Vector2 SensorSize {
+      get { return sensorSize_; }
+      set {
+        sensorSize_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "lens_shift" field.</summary>
+    public const int LensShiftFieldNumber = 31;
+    private global::PLUME.Sample.Common.Vector2 lensShift_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Vector2 LensShift {
+      get { return lensShift_; }
+      set {
+        lensShift_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "focal_length" field.</summary>
+    public const int FocalLengthFieldNumber = 32;
+    private float focalLength_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float FocalLength {
+      get { return focalLength_; }
+      set {
+        focalLength_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "gate_fit" field.</summary>
+    public const int GateFitFieldNumber = 33;
+    private global::PLUME.Sample.Unity.CameraGateFitMode gateFit_ = global::PLUME.Sample.Unity.CameraGateFitMode.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.CameraGateFitMode GateFit {
+      get { return gateFit_; }
+      set {
+        gateFit_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "rect" field.</summary>
+    public const int RectFieldNumber = 34;
+    private global::PLUME.Sample.Common.Rect rect_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Rect Rect {
+      get { return rect_; }
+      set {
+        rect_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "pixel_rect" field.</summary>
+    public const int PixelRectFieldNumber = 35;
+    private global::PLUME.Sample.Common.Rect pixelRect_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Rect PixelRect {
+      get { return pixelRect_; }
+      set {
+        pixelRect_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "pixel_width" field.</summary>
+    public const int PixelWidthFieldNumber = 36;
+    private int pixelWidth_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PixelWidth {
+      get { return pixelWidth_; }
+      set {
+        pixelWidth_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "pixel_height" field.</summary>
+    public const int PixelHeightFieldNumber = 37;
+    private int pixelHeight_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PixelHeight {
+      get { return pixelHeight_; }
+      set {
+        pixelHeight_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "scaled_pixel_width" field.</summary>
+    public const int ScaledPixelWidthFieldNumber = 38;
+    private int scaledPixelWidth_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ScaledPixelWidth {
+      get { return scaledPixelWidth_; }
+      set {
+        scaledPixelWidth_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "scaled_pixel_height" field.</summary>
+    public const int ScaledPixelHeightFieldNumber = 39;
+    private int scaledPixelHeight_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ScaledPixelHeight {
+      get { return scaledPixelHeight_; }
+      set {
+        scaledPixelHeight_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "target_texture_id" field.</summary>
+    public const int TargetTextureIdFieldNumber = 40;
+    private readonly static string TargetTextureIdDefaultValue = "";
+
+    private string targetTextureId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string TargetTextureId {
+      get { return targetTextureId_ ?? TargetTextureIdDefaultValue; }
+      set {
+        targetTextureId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "target_texture_id" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTargetTextureId {
+      get { return targetTextureId_ != null; }
+    }
+    /// <summary>Clears the value of the "target_texture_id" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTargetTextureId() {
+      targetTextureId_ = null;
+    }
+
+    /// <summary>Field number for the "active_texture_id" field.</summary>
+    public const int ActiveTextureIdFieldNumber = 41;
+    private readonly static string ActiveTextureIdDefaultValue = "";
+
+    private string activeTextureId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string ActiveTextureId {
+      get { return activeTextureId_ ?? ActiveTextureIdDefaultValue; }
+      set {
+        activeTextureId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "active_texture_id" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasActiveTextureId {
+      get { return activeTextureId_ != null; }
+    }
+    /// <summary>Clears the value of the "active_texture_id" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearActiveTextureId() {
+      activeTextureId_ = null;
+    }
+
+    /// <summary>Field number for the "target_display" field.</summary>
+    public const int TargetDisplayFieldNumber = 42;
+    private int targetDisplay_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int TargetDisplay {
+      get { return targetDisplay_; }
+      set {
+        targetDisplay_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "world_to_camera_matrix" field.</summary>
+    public const int WorldToCameraMatrixFieldNumber = 43;
+    private global::PLUME.Sample.Common.Matrix4x4 worldToCameraMatrix_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Matrix4x4 WorldToCameraMatrix {
+      get { return worldToCameraMatrix_; }
+      set {
+        worldToCameraMatrix_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "projection_matrix" field.</summary>
+    public const int ProjectionMatrixFieldNumber = 44;
+    private global::PLUME.Sample.Common.Matrix4x4 projectionMatrix_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Matrix4x4 ProjectionMatrix {
+      get { return projectionMatrix_; }
+      set {
+        projectionMatrix_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "non_jittered_projection_matrix" field.</summary>
+    public const int NonJitteredProjectionMatrixFieldNumber = 45;
+    private global::PLUME.Sample.Common.Matrix4x4 nonJitteredProjectionMatrix_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Matrix4x4 NonJitteredProjectionMatrix {
+      get { return nonJitteredProjectionMatrix_; }
+      set {
+        nonJitteredProjectionMatrix_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "use_jittered_projection_matrix_for_transparent_rendering" field.</summary>
+    public const int UseJitteredProjectionMatrixForTransparentRenderingFieldNumber = 46;
+    private bool useJitteredProjectionMatrixForTransparentRendering_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool UseJitteredProjectionMatrixForTransparentRendering {
+      get { return useJitteredProjectionMatrixForTransparentRendering_; }
+      set {
+        useJitteredProjectionMatrixForTransparentRendering_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "scene_idx" field.</summary>
+    public const int SceneIdxFieldNumber = 47;
+    private readonly static int SceneIdxDefaultValue = 0;
+
+    private int sceneIdx_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int SceneIdx {
+      get { if ((_hasBits0 & 1) != 0) { return sceneIdx_; } else { return SceneIdxDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        sceneIdx_ = value;
+      }
+    }
+    /// <summary>Gets whether the "scene_idx" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSceneIdx {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "scene_idx" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSceneIdx() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "stereo_separation" field.</summary>
+    public const int StereoSeparationFieldNumber = 48;
+    private float stereoSeparation_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float StereoSeparation {
+      get { return stereoSeparation_; }
+      set {
+        stereoSeparation_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "stereo_convergence" field.</summary>
+    public const int StereoConvergenceFieldNumber = 49;
+    private float stereoConvergence_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float StereoConvergence {
+      get { return stereoConvergence_; }
+      set {
+        stereoConvergence_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "stereo_target_eye" field.</summary>
+    public const int StereoTargetEyeFieldNumber = 50;
+    private global::PLUME.Sample.Unity.CameraStereoTargetEyeMask stereoTargetEye_ = global::PLUME.Sample.Unity.CameraStereoTargetEyeMask.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.CameraStereoTargetEyeMask StereoTargetEye {
+      get { return stereoTargetEye_; }
+      set {
+        stereoTargetEye_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -311,6 +1097,55 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(NearClipPlane, other.NearClipPlane)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FarClipPlane, other.FarClipPlane)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FieldOfView, other.FieldOfView)) return false;
+      if (RenderingPath != other.RenderingPath) return false;
+      if (AllowHdr != other.AllowHdr) return false;
+      if (AllowMsaa != other.AllowMsaa) return false;
+      if (AllowDynamicResolution != other.AllowDynamicResolution) return false;
+      if (ForceIntoRenderTexture != other.ForceIntoRenderTexture) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(OrthographicSize, other.OrthographicSize)) return false;
+      if (Orthographic != other.Orthographic) return false;
+      if (OpaqueSortMode != other.OpaqueSortMode) return false;
+      if (TransparencySortMode != other.TransparencySortMode) return false;
+      if (!object.Equals(TransparencySortAxis, other.TransparencySortAxis)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Depth, other.Depth)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Aspect, other.Aspect)) return false;
+      if (!object.Equals(Velocity, other.Velocity)) return false;
+      if (CullingMask != other.CullingMask) return false;
+      if (EventMask != other.EventMask) return false;
+      if (LayerCullSpherical != other.LayerCullSpherical) return false;
+      if (CameraType != other.CameraType) return false;
+      if(!layerCullDistances_.Equals(other.layerCullDistances_)) return false;
+      if (UseOcclusionCulling != other.UseOcclusionCulling) return false;
+      if (!object.Equals(CullingMatrix, other.CullingMatrix)) return false;
+      if (!object.Equals(BackgroundColor, other.BackgroundColor)) return false;
+      if (ClearFlags != other.ClearFlags) return false;
+      if (DepthTextureMode != other.DepthTextureMode) return false;
+      if (ClearStencilAfterLightingPass != other.ClearStencilAfterLightingPass) return false;
+      if (UsePhysicalProperties != other.UsePhysicalProperties) return false;
+      if (!object.Equals(SensorSize, other.SensorSize)) return false;
+      if (!object.Equals(LensShift, other.LensShift)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FocalLength, other.FocalLength)) return false;
+      if (GateFit != other.GateFit) return false;
+      if (!object.Equals(Rect, other.Rect)) return false;
+      if (!object.Equals(PixelRect, other.PixelRect)) return false;
+      if (PixelWidth != other.PixelWidth) return false;
+      if (PixelHeight != other.PixelHeight) return false;
+      if (ScaledPixelWidth != other.ScaledPixelWidth) return false;
+      if (ScaledPixelHeight != other.ScaledPixelHeight) return false;
+      if (TargetTextureId != other.TargetTextureId) return false;
+      if (ActiveTextureId != other.ActiveTextureId) return false;
+      if (TargetDisplay != other.TargetDisplay) return false;
+      if (!object.Equals(WorldToCameraMatrix, other.WorldToCameraMatrix)) return false;
+      if (!object.Equals(ProjectionMatrix, other.ProjectionMatrix)) return false;
+      if (!object.Equals(NonJitteredProjectionMatrix, other.NonJitteredProjectionMatrix)) return false;
+      if (UseJitteredProjectionMatrixForTransparentRendering != other.UseJitteredProjectionMatrixForTransparentRendering) return false;
+      if (SceneIdx != other.SceneIdx) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(StereoSeparation, other.StereoSeparation)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(StereoConvergence, other.StereoConvergence)) return false;
+      if (StereoTargetEye != other.StereoTargetEye) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -319,6 +1154,55 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
+      if (NearClipPlane != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NearClipPlane);
+      if (FarClipPlane != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FarClipPlane);
+      if (FieldOfView != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FieldOfView);
+      if (RenderingPath != global::PLUME.Sample.Unity.RenderingPath.UsePlayerSettings) hash ^= RenderingPath.GetHashCode();
+      if (AllowHdr != false) hash ^= AllowHdr.GetHashCode();
+      if (AllowMsaa != false) hash ^= AllowMsaa.GetHashCode();
+      if (AllowDynamicResolution != false) hash ^= AllowDynamicResolution.GetHashCode();
+      if (ForceIntoRenderTexture != false) hash ^= ForceIntoRenderTexture.GetHashCode();
+      if (OrthographicSize != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(OrthographicSize);
+      if (Orthographic != false) hash ^= Orthographic.GetHashCode();
+      if (OpaqueSortMode != global::PLUME.Sample.Unity.OpaqueSortMode.Default) hash ^= OpaqueSortMode.GetHashCode();
+      if (TransparencySortMode != global::PLUME.Sample.Unity.TransparencySortMode.Default) hash ^= TransparencySortMode.GetHashCode();
+      if (transparencySortAxis_ != null) hash ^= TransparencySortAxis.GetHashCode();
+      if (Depth != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Depth);
+      if (Aspect != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Aspect);
+      if (velocity_ != null) hash ^= Velocity.GetHashCode();
+      if (CullingMask != 0) hash ^= CullingMask.GetHashCode();
+      if (EventMask != 0) hash ^= EventMask.GetHashCode();
+      if (LayerCullSpherical != false) hash ^= LayerCullSpherical.GetHashCode();
+      if (CameraType != global::PLUME.Sample.Unity.CameraType.Game) hash ^= CameraType.GetHashCode();
+      hash ^= layerCullDistances_.GetHashCode();
+      if (UseOcclusionCulling != false) hash ^= UseOcclusionCulling.GetHashCode();
+      if (cullingMatrix_ != null) hash ^= CullingMatrix.GetHashCode();
+      if (backgroundColor_ != null) hash ^= BackgroundColor.GetHashCode();
+      if (ClearFlags != global::PLUME.Sample.Unity.CameraClearFlags.Skybox) hash ^= ClearFlags.GetHashCode();
+      if (DepthTextureMode != global::PLUME.Sample.Unity.DepthTextureMode.None) hash ^= DepthTextureMode.GetHashCode();
+      if (ClearStencilAfterLightingPass != false) hash ^= ClearStencilAfterLightingPass.GetHashCode();
+      if (UsePhysicalProperties != false) hash ^= UsePhysicalProperties.GetHashCode();
+      if (sensorSize_ != null) hash ^= SensorSize.GetHashCode();
+      if (lensShift_ != null) hash ^= LensShift.GetHashCode();
+      if (FocalLength != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FocalLength);
+      if (GateFit != global::PLUME.Sample.Unity.CameraGateFitMode.None) hash ^= GateFit.GetHashCode();
+      if (rect_ != null) hash ^= Rect.GetHashCode();
+      if (pixelRect_ != null) hash ^= PixelRect.GetHashCode();
+      if (PixelWidth != 0) hash ^= PixelWidth.GetHashCode();
+      if (PixelHeight != 0) hash ^= PixelHeight.GetHashCode();
+      if (ScaledPixelWidth != 0) hash ^= ScaledPixelWidth.GetHashCode();
+      if (ScaledPixelHeight != 0) hash ^= ScaledPixelHeight.GetHashCode();
+      if (HasTargetTextureId) hash ^= TargetTextureId.GetHashCode();
+      if (HasActiveTextureId) hash ^= ActiveTextureId.GetHashCode();
+      if (TargetDisplay != 0) hash ^= TargetDisplay.GetHashCode();
+      if (worldToCameraMatrix_ != null) hash ^= WorldToCameraMatrix.GetHashCode();
+      if (projectionMatrix_ != null) hash ^= ProjectionMatrix.GetHashCode();
+      if (nonJitteredProjectionMatrix_ != null) hash ^= NonJitteredProjectionMatrix.GetHashCode();
+      if (UseJitteredProjectionMatrixForTransparentRendering != false) hash ^= UseJitteredProjectionMatrixForTransparentRendering.GetHashCode();
+      if (HasSceneIdx) hash ^= SceneIdx.GetHashCode();
+      if (StereoSeparation != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(StereoSeparation);
+      if (StereoConvergence != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(StereoConvergence);
+      if (StereoTargetEye != global::PLUME.Sample.Unity.CameraStereoTargetEyeMask.None) hash ^= StereoTargetEye.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -341,6 +1225,199 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
+      if (NearClipPlane != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(NearClipPlane);
+      }
+      if (FarClipPlane != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(FarClipPlane);
+      }
+      if (FieldOfView != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(FieldOfView);
+      }
+      if (RenderingPath != global::PLUME.Sample.Unity.RenderingPath.UsePlayerSettings) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) RenderingPath);
+      }
+      if (AllowHdr != false) {
+        output.WriteRawTag(48);
+        output.WriteBool(AllowHdr);
+      }
+      if (AllowMsaa != false) {
+        output.WriteRawTag(56);
+        output.WriteBool(AllowMsaa);
+      }
+      if (AllowDynamicResolution != false) {
+        output.WriteRawTag(64);
+        output.WriteBool(AllowDynamicResolution);
+      }
+      if (ForceIntoRenderTexture != false) {
+        output.WriteRawTag(72);
+        output.WriteBool(ForceIntoRenderTexture);
+      }
+      if (OrthographicSize != 0F) {
+        output.WriteRawTag(85);
+        output.WriteFloat(OrthographicSize);
+      }
+      if (Orthographic != false) {
+        output.WriteRawTag(88);
+        output.WriteBool(Orthographic);
+      }
+      if (OpaqueSortMode != global::PLUME.Sample.Unity.OpaqueSortMode.Default) {
+        output.WriteRawTag(96);
+        output.WriteEnum((int) OpaqueSortMode);
+      }
+      if (TransparencySortMode != global::PLUME.Sample.Unity.TransparencySortMode.Default) {
+        output.WriteRawTag(104);
+        output.WriteEnum((int) TransparencySortMode);
+      }
+      if (transparencySortAxis_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(TransparencySortAxis);
+      }
+      if (Depth != 0F) {
+        output.WriteRawTag(125);
+        output.WriteFloat(Depth);
+      }
+      if (Aspect != 0F) {
+        output.WriteRawTag(133, 1);
+        output.WriteFloat(Aspect);
+      }
+      if (velocity_ != null) {
+        output.WriteRawTag(138, 1);
+        output.WriteMessage(Velocity);
+      }
+      if (CullingMask != 0) {
+        output.WriteRawTag(144, 1);
+        output.WriteInt32(CullingMask);
+      }
+      if (EventMask != 0) {
+        output.WriteRawTag(152, 1);
+        output.WriteInt32(EventMask);
+      }
+      if (LayerCullSpherical != false) {
+        output.WriteRawTag(160, 1);
+        output.WriteBool(LayerCullSpherical);
+      }
+      if (CameraType != global::PLUME.Sample.Unity.CameraType.Game) {
+        output.WriteRawTag(168, 1);
+        output.WriteEnum((int) CameraType);
+      }
+      layerCullDistances_.WriteTo(output, _repeated_layerCullDistances_codec);
+      if (UseOcclusionCulling != false) {
+        output.WriteRawTag(184, 1);
+        output.WriteBool(UseOcclusionCulling);
+      }
+      if (cullingMatrix_ != null) {
+        output.WriteRawTag(194, 1);
+        output.WriteMessage(CullingMatrix);
+      }
+      if (backgroundColor_ != null) {
+        output.WriteRawTag(202, 1);
+        output.WriteMessage(BackgroundColor);
+      }
+      if (ClearFlags != global::PLUME.Sample.Unity.CameraClearFlags.Skybox) {
+        output.WriteRawTag(208, 1);
+        output.WriteEnum((int) ClearFlags);
+      }
+      if (DepthTextureMode != global::PLUME.Sample.Unity.DepthTextureMode.None) {
+        output.WriteRawTag(216, 1);
+        output.WriteEnum((int) DepthTextureMode);
+      }
+      if (ClearStencilAfterLightingPass != false) {
+        output.WriteRawTag(224, 1);
+        output.WriteBool(ClearStencilAfterLightingPass);
+      }
+      if (UsePhysicalProperties != false) {
+        output.WriteRawTag(232, 1);
+        output.WriteBool(UsePhysicalProperties);
+      }
+      if (sensorSize_ != null) {
+        output.WriteRawTag(242, 1);
+        output.WriteMessage(SensorSize);
+      }
+      if (lensShift_ != null) {
+        output.WriteRawTag(250, 1);
+        output.WriteMessage(LensShift);
+      }
+      if (FocalLength != 0F) {
+        output.WriteRawTag(133, 2);
+        output.WriteFloat(FocalLength);
+      }
+      if (GateFit != global::PLUME.Sample.Unity.CameraGateFitMode.None) {
+        output.WriteRawTag(136, 2);
+        output.WriteEnum((int) GateFit);
+      }
+      if (rect_ != null) {
+        output.WriteRawTag(146, 2);
+        output.WriteMessage(Rect);
+      }
+      if (pixelRect_ != null) {
+        output.WriteRawTag(154, 2);
+        output.WriteMessage(PixelRect);
+      }
+      if (PixelWidth != 0) {
+        output.WriteRawTag(160, 2);
+        output.WriteInt32(PixelWidth);
+      }
+      if (PixelHeight != 0) {
+        output.WriteRawTag(168, 2);
+        output.WriteInt32(PixelHeight);
+      }
+      if (ScaledPixelWidth != 0) {
+        output.WriteRawTag(176, 2);
+        output.WriteInt32(ScaledPixelWidth);
+      }
+      if (ScaledPixelHeight != 0) {
+        output.WriteRawTag(184, 2);
+        output.WriteInt32(ScaledPixelHeight);
+      }
+      if (HasTargetTextureId) {
+        output.WriteRawTag(194, 2);
+        output.WriteString(TargetTextureId);
+      }
+      if (HasActiveTextureId) {
+        output.WriteRawTag(202, 2);
+        output.WriteString(ActiveTextureId);
+      }
+      if (TargetDisplay != 0) {
+        output.WriteRawTag(208, 2);
+        output.WriteInt32(TargetDisplay);
+      }
+      if (worldToCameraMatrix_ != null) {
+        output.WriteRawTag(218, 2);
+        output.WriteMessage(WorldToCameraMatrix);
+      }
+      if (projectionMatrix_ != null) {
+        output.WriteRawTag(226, 2);
+        output.WriteMessage(ProjectionMatrix);
+      }
+      if (nonJitteredProjectionMatrix_ != null) {
+        output.WriteRawTag(234, 2);
+        output.WriteMessage(NonJitteredProjectionMatrix);
+      }
+      if (UseJitteredProjectionMatrixForTransparentRendering != false) {
+        output.WriteRawTag(240, 2);
+        output.WriteBool(UseJitteredProjectionMatrixForTransparentRendering);
+      }
+      if (HasSceneIdx) {
+        output.WriteRawTag(248, 2);
+        output.WriteInt32(SceneIdx);
+      }
+      if (StereoSeparation != 0F) {
+        output.WriteRawTag(133, 3);
+        output.WriteFloat(StereoSeparation);
+      }
+      if (StereoConvergence != 0F) {
+        output.WriteRawTag(141, 3);
+        output.WriteFloat(StereoConvergence);
+      }
+      if (StereoTargetEye != global::PLUME.Sample.Unity.CameraStereoTargetEyeMask.None) {
+        output.WriteRawTag(144, 3);
+        output.WriteEnum((int) StereoTargetEye);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -355,6 +1432,199 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
+      if (NearClipPlane != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(NearClipPlane);
+      }
+      if (FarClipPlane != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(FarClipPlane);
+      }
+      if (FieldOfView != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(FieldOfView);
+      }
+      if (RenderingPath != global::PLUME.Sample.Unity.RenderingPath.UsePlayerSettings) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) RenderingPath);
+      }
+      if (AllowHdr != false) {
+        output.WriteRawTag(48);
+        output.WriteBool(AllowHdr);
+      }
+      if (AllowMsaa != false) {
+        output.WriteRawTag(56);
+        output.WriteBool(AllowMsaa);
+      }
+      if (AllowDynamicResolution != false) {
+        output.WriteRawTag(64);
+        output.WriteBool(AllowDynamicResolution);
+      }
+      if (ForceIntoRenderTexture != false) {
+        output.WriteRawTag(72);
+        output.WriteBool(ForceIntoRenderTexture);
+      }
+      if (OrthographicSize != 0F) {
+        output.WriteRawTag(85);
+        output.WriteFloat(OrthographicSize);
+      }
+      if (Orthographic != false) {
+        output.WriteRawTag(88);
+        output.WriteBool(Orthographic);
+      }
+      if (OpaqueSortMode != global::PLUME.Sample.Unity.OpaqueSortMode.Default) {
+        output.WriteRawTag(96);
+        output.WriteEnum((int) OpaqueSortMode);
+      }
+      if (TransparencySortMode != global::PLUME.Sample.Unity.TransparencySortMode.Default) {
+        output.WriteRawTag(104);
+        output.WriteEnum((int) TransparencySortMode);
+      }
+      if (transparencySortAxis_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(TransparencySortAxis);
+      }
+      if (Depth != 0F) {
+        output.WriteRawTag(125);
+        output.WriteFloat(Depth);
+      }
+      if (Aspect != 0F) {
+        output.WriteRawTag(133, 1);
+        output.WriteFloat(Aspect);
+      }
+      if (velocity_ != null) {
+        output.WriteRawTag(138, 1);
+        output.WriteMessage(Velocity);
+      }
+      if (CullingMask != 0) {
+        output.WriteRawTag(144, 1);
+        output.WriteInt32(CullingMask);
+      }
+      if (EventMask != 0) {
+        output.WriteRawTag(152, 1);
+        output.WriteInt32(EventMask);
+      }
+      if (LayerCullSpherical != false) {
+        output.WriteRawTag(160, 1);
+        output.WriteBool(LayerCullSpherical);
+      }
+      if (CameraType != global::PLUME.Sample.Unity.CameraType.Game) {
+        output.WriteRawTag(168, 1);
+        output.WriteEnum((int) CameraType);
+      }
+      layerCullDistances_.WriteTo(ref output, _repeated_layerCullDistances_codec);
+      if (UseOcclusionCulling != false) {
+        output.WriteRawTag(184, 1);
+        output.WriteBool(UseOcclusionCulling);
+      }
+      if (cullingMatrix_ != null) {
+        output.WriteRawTag(194, 1);
+        output.WriteMessage(CullingMatrix);
+      }
+      if (backgroundColor_ != null) {
+        output.WriteRawTag(202, 1);
+        output.WriteMessage(BackgroundColor);
+      }
+      if (ClearFlags != global::PLUME.Sample.Unity.CameraClearFlags.Skybox) {
+        output.WriteRawTag(208, 1);
+        output.WriteEnum((int) ClearFlags);
+      }
+      if (DepthTextureMode != global::PLUME.Sample.Unity.DepthTextureMode.None) {
+        output.WriteRawTag(216, 1);
+        output.WriteEnum((int) DepthTextureMode);
+      }
+      if (ClearStencilAfterLightingPass != false) {
+        output.WriteRawTag(224, 1);
+        output.WriteBool(ClearStencilAfterLightingPass);
+      }
+      if (UsePhysicalProperties != false) {
+        output.WriteRawTag(232, 1);
+        output.WriteBool(UsePhysicalProperties);
+      }
+      if (sensorSize_ != null) {
+        output.WriteRawTag(242, 1);
+        output.WriteMessage(SensorSize);
+      }
+      if (lensShift_ != null) {
+        output.WriteRawTag(250, 1);
+        output.WriteMessage(LensShift);
+      }
+      if (FocalLength != 0F) {
+        output.WriteRawTag(133, 2);
+        output.WriteFloat(FocalLength);
+      }
+      if (GateFit != global::PLUME.Sample.Unity.CameraGateFitMode.None) {
+        output.WriteRawTag(136, 2);
+        output.WriteEnum((int) GateFit);
+      }
+      if (rect_ != null) {
+        output.WriteRawTag(146, 2);
+        output.WriteMessage(Rect);
+      }
+      if (pixelRect_ != null) {
+        output.WriteRawTag(154, 2);
+        output.WriteMessage(PixelRect);
+      }
+      if (PixelWidth != 0) {
+        output.WriteRawTag(160, 2);
+        output.WriteInt32(PixelWidth);
+      }
+      if (PixelHeight != 0) {
+        output.WriteRawTag(168, 2);
+        output.WriteInt32(PixelHeight);
+      }
+      if (ScaledPixelWidth != 0) {
+        output.WriteRawTag(176, 2);
+        output.WriteInt32(ScaledPixelWidth);
+      }
+      if (ScaledPixelHeight != 0) {
+        output.WriteRawTag(184, 2);
+        output.WriteInt32(ScaledPixelHeight);
+      }
+      if (HasTargetTextureId) {
+        output.WriteRawTag(194, 2);
+        output.WriteString(TargetTextureId);
+      }
+      if (HasActiveTextureId) {
+        output.WriteRawTag(202, 2);
+        output.WriteString(ActiveTextureId);
+      }
+      if (TargetDisplay != 0) {
+        output.WriteRawTag(208, 2);
+        output.WriteInt32(TargetDisplay);
+      }
+      if (worldToCameraMatrix_ != null) {
+        output.WriteRawTag(218, 2);
+        output.WriteMessage(WorldToCameraMatrix);
+      }
+      if (projectionMatrix_ != null) {
+        output.WriteRawTag(226, 2);
+        output.WriteMessage(ProjectionMatrix);
+      }
+      if (nonJitteredProjectionMatrix_ != null) {
+        output.WriteRawTag(234, 2);
+        output.WriteMessage(NonJitteredProjectionMatrix);
+      }
+      if (UseJitteredProjectionMatrixForTransparentRendering != false) {
+        output.WriteRawTag(240, 2);
+        output.WriteBool(UseJitteredProjectionMatrixForTransparentRendering);
+      }
+      if (HasSceneIdx) {
+        output.WriteRawTag(248, 2);
+        output.WriteInt32(SceneIdx);
+      }
+      if (StereoSeparation != 0F) {
+        output.WriteRawTag(133, 3);
+        output.WriteFloat(StereoSeparation);
+      }
+      if (StereoConvergence != 0F) {
+        output.WriteRawTag(141, 3);
+        output.WriteFloat(StereoConvergence);
+      }
+      if (StereoTargetEye != global::PLUME.Sample.Unity.CameraStereoTargetEyeMask.None) {
+        output.WriteRawTag(144, 3);
+        output.WriteEnum((int) StereoTargetEye);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -367,6 +1637,151 @@ namespace PLUME.Sample.Unity {
       int size = 0;
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (NearClipPlane != 0F) {
+        size += 1 + 4;
+      }
+      if (FarClipPlane != 0F) {
+        size += 1 + 4;
+      }
+      if (FieldOfView != 0F) {
+        size += 1 + 4;
+      }
+      if (RenderingPath != global::PLUME.Sample.Unity.RenderingPath.UsePlayerSettings) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RenderingPath);
+      }
+      if (AllowHdr != false) {
+        size += 1 + 1;
+      }
+      if (AllowMsaa != false) {
+        size += 1 + 1;
+      }
+      if (AllowDynamicResolution != false) {
+        size += 1 + 1;
+      }
+      if (ForceIntoRenderTexture != false) {
+        size += 1 + 1;
+      }
+      if (OrthographicSize != 0F) {
+        size += 1 + 4;
+      }
+      if (Orthographic != false) {
+        size += 1 + 1;
+      }
+      if (OpaqueSortMode != global::PLUME.Sample.Unity.OpaqueSortMode.Default) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) OpaqueSortMode);
+      }
+      if (TransparencySortMode != global::PLUME.Sample.Unity.TransparencySortMode.Default) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) TransparencySortMode);
+      }
+      if (transparencySortAxis_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(TransparencySortAxis);
+      }
+      if (Depth != 0F) {
+        size += 1 + 4;
+      }
+      if (Aspect != 0F) {
+        size += 2 + 4;
+      }
+      if (velocity_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Velocity);
+      }
+      if (CullingMask != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(CullingMask);
+      }
+      if (EventMask != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(EventMask);
+      }
+      if (LayerCullSpherical != false) {
+        size += 2 + 1;
+      }
+      if (CameraType != global::PLUME.Sample.Unity.CameraType.Game) {
+        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) CameraType);
+      }
+      size += layerCullDistances_.CalculateSize(_repeated_layerCullDistances_codec);
+      if (UseOcclusionCulling != false) {
+        size += 2 + 1;
+      }
+      if (cullingMatrix_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(CullingMatrix);
+      }
+      if (backgroundColor_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(BackgroundColor);
+      }
+      if (ClearFlags != global::PLUME.Sample.Unity.CameraClearFlags.Skybox) {
+        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) ClearFlags);
+      }
+      if (DepthTextureMode != global::PLUME.Sample.Unity.DepthTextureMode.None) {
+        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) DepthTextureMode);
+      }
+      if (ClearStencilAfterLightingPass != false) {
+        size += 2 + 1;
+      }
+      if (UsePhysicalProperties != false) {
+        size += 2 + 1;
+      }
+      if (sensorSize_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(SensorSize);
+      }
+      if (lensShift_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(LensShift);
+      }
+      if (FocalLength != 0F) {
+        size += 2 + 4;
+      }
+      if (GateFit != global::PLUME.Sample.Unity.CameraGateFitMode.None) {
+        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) GateFit);
+      }
+      if (rect_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Rect);
+      }
+      if (pixelRect_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(PixelRect);
+      }
+      if (PixelWidth != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(PixelWidth);
+      }
+      if (PixelHeight != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(PixelHeight);
+      }
+      if (ScaledPixelWidth != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(ScaledPixelWidth);
+      }
+      if (ScaledPixelHeight != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(ScaledPixelHeight);
+      }
+      if (HasTargetTextureId) {
+        size += 2 + pb::CodedOutputStream.ComputeStringSize(TargetTextureId);
+      }
+      if (HasActiveTextureId) {
+        size += 2 + pb::CodedOutputStream.ComputeStringSize(ActiveTextureId);
+      }
+      if (TargetDisplay != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(TargetDisplay);
+      }
+      if (worldToCameraMatrix_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(WorldToCameraMatrix);
+      }
+      if (projectionMatrix_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(ProjectionMatrix);
+      }
+      if (nonJitteredProjectionMatrix_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(NonJitteredProjectionMatrix);
+      }
+      if (UseJitteredProjectionMatrixForTransparentRendering != false) {
+        size += 2 + 1;
+      }
+      if (HasSceneIdx) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(SceneIdx);
+      }
+      if (StereoSeparation != 0F) {
+        size += 2 + 4;
+      }
+      if (StereoConvergence != 0F) {
+        size += 2 + 4;
+      }
+      if (StereoTargetEye != global::PLUME.Sample.Unity.CameraStereoTargetEyeMask.None) {
+        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) StereoTargetEye);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -385,6 +1800,184 @@ namespace PLUME.Sample.Unity {
           Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         Id.MergeFrom(other.Id);
+      }
+      if (other.NearClipPlane != 0F) {
+        NearClipPlane = other.NearClipPlane;
+      }
+      if (other.FarClipPlane != 0F) {
+        FarClipPlane = other.FarClipPlane;
+      }
+      if (other.FieldOfView != 0F) {
+        FieldOfView = other.FieldOfView;
+      }
+      if (other.RenderingPath != global::PLUME.Sample.Unity.RenderingPath.UsePlayerSettings) {
+        RenderingPath = other.RenderingPath;
+      }
+      if (other.AllowHdr != false) {
+        AllowHdr = other.AllowHdr;
+      }
+      if (other.AllowMsaa != false) {
+        AllowMsaa = other.AllowMsaa;
+      }
+      if (other.AllowDynamicResolution != false) {
+        AllowDynamicResolution = other.AllowDynamicResolution;
+      }
+      if (other.ForceIntoRenderTexture != false) {
+        ForceIntoRenderTexture = other.ForceIntoRenderTexture;
+      }
+      if (other.OrthographicSize != 0F) {
+        OrthographicSize = other.OrthographicSize;
+      }
+      if (other.Orthographic != false) {
+        Orthographic = other.Orthographic;
+      }
+      if (other.OpaqueSortMode != global::PLUME.Sample.Unity.OpaqueSortMode.Default) {
+        OpaqueSortMode = other.OpaqueSortMode;
+      }
+      if (other.TransparencySortMode != global::PLUME.Sample.Unity.TransparencySortMode.Default) {
+        TransparencySortMode = other.TransparencySortMode;
+      }
+      if (other.transparencySortAxis_ != null) {
+        if (transparencySortAxis_ == null) {
+          TransparencySortAxis = new global::PLUME.Sample.Common.Vector3();
+        }
+        TransparencySortAxis.MergeFrom(other.TransparencySortAxis);
+      }
+      if (other.Depth != 0F) {
+        Depth = other.Depth;
+      }
+      if (other.Aspect != 0F) {
+        Aspect = other.Aspect;
+      }
+      if (other.velocity_ != null) {
+        if (velocity_ == null) {
+          Velocity = new global::PLUME.Sample.Common.Vector3();
+        }
+        Velocity.MergeFrom(other.Velocity);
+      }
+      if (other.CullingMask != 0) {
+        CullingMask = other.CullingMask;
+      }
+      if (other.EventMask != 0) {
+        EventMask = other.EventMask;
+      }
+      if (other.LayerCullSpherical != false) {
+        LayerCullSpherical = other.LayerCullSpherical;
+      }
+      if (other.CameraType != global::PLUME.Sample.Unity.CameraType.Game) {
+        CameraType = other.CameraType;
+      }
+      layerCullDistances_.Add(other.layerCullDistances_);
+      if (other.UseOcclusionCulling != false) {
+        UseOcclusionCulling = other.UseOcclusionCulling;
+      }
+      if (other.cullingMatrix_ != null) {
+        if (cullingMatrix_ == null) {
+          CullingMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+        }
+        CullingMatrix.MergeFrom(other.CullingMatrix);
+      }
+      if (other.backgroundColor_ != null) {
+        if (backgroundColor_ == null) {
+          BackgroundColor = new global::PLUME.Sample.Common.Color();
+        }
+        BackgroundColor.MergeFrom(other.BackgroundColor);
+      }
+      if (other.ClearFlags != global::PLUME.Sample.Unity.CameraClearFlags.Skybox) {
+        ClearFlags = other.ClearFlags;
+      }
+      if (other.DepthTextureMode != global::PLUME.Sample.Unity.DepthTextureMode.None) {
+        DepthTextureMode = other.DepthTextureMode;
+      }
+      if (other.ClearStencilAfterLightingPass != false) {
+        ClearStencilAfterLightingPass = other.ClearStencilAfterLightingPass;
+      }
+      if (other.UsePhysicalProperties != false) {
+        UsePhysicalProperties = other.UsePhysicalProperties;
+      }
+      if (other.sensorSize_ != null) {
+        if (sensorSize_ == null) {
+          SensorSize = new global::PLUME.Sample.Common.Vector2();
+        }
+        SensorSize.MergeFrom(other.SensorSize);
+      }
+      if (other.lensShift_ != null) {
+        if (lensShift_ == null) {
+          LensShift = new global::PLUME.Sample.Common.Vector2();
+        }
+        LensShift.MergeFrom(other.LensShift);
+      }
+      if (other.FocalLength != 0F) {
+        FocalLength = other.FocalLength;
+      }
+      if (other.GateFit != global::PLUME.Sample.Unity.CameraGateFitMode.None) {
+        GateFit = other.GateFit;
+      }
+      if (other.rect_ != null) {
+        if (rect_ == null) {
+          Rect = new global::PLUME.Sample.Common.Rect();
+        }
+        Rect.MergeFrom(other.Rect);
+      }
+      if (other.pixelRect_ != null) {
+        if (pixelRect_ == null) {
+          PixelRect = new global::PLUME.Sample.Common.Rect();
+        }
+        PixelRect.MergeFrom(other.PixelRect);
+      }
+      if (other.PixelWidth != 0) {
+        PixelWidth = other.PixelWidth;
+      }
+      if (other.PixelHeight != 0) {
+        PixelHeight = other.PixelHeight;
+      }
+      if (other.ScaledPixelWidth != 0) {
+        ScaledPixelWidth = other.ScaledPixelWidth;
+      }
+      if (other.ScaledPixelHeight != 0) {
+        ScaledPixelHeight = other.ScaledPixelHeight;
+      }
+      if (other.HasTargetTextureId) {
+        TargetTextureId = other.TargetTextureId;
+      }
+      if (other.HasActiveTextureId) {
+        ActiveTextureId = other.ActiveTextureId;
+      }
+      if (other.TargetDisplay != 0) {
+        TargetDisplay = other.TargetDisplay;
+      }
+      if (other.worldToCameraMatrix_ != null) {
+        if (worldToCameraMatrix_ == null) {
+          WorldToCameraMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+        }
+        WorldToCameraMatrix.MergeFrom(other.WorldToCameraMatrix);
+      }
+      if (other.projectionMatrix_ != null) {
+        if (projectionMatrix_ == null) {
+          ProjectionMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+        }
+        ProjectionMatrix.MergeFrom(other.ProjectionMatrix);
+      }
+      if (other.nonJitteredProjectionMatrix_ != null) {
+        if (nonJitteredProjectionMatrix_ == null) {
+          NonJitteredProjectionMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+        }
+        NonJitteredProjectionMatrix.MergeFrom(other.NonJitteredProjectionMatrix);
+      }
+      if (other.UseJitteredProjectionMatrixForTransparentRendering != false) {
+        UseJitteredProjectionMatrixForTransparentRendering = other.UseJitteredProjectionMatrixForTransparentRendering;
+      }
+      if (other.HasSceneIdx) {
+        SceneIdx = other.SceneIdx;
+      }
+      if (other.StereoSeparation != 0F) {
+        StereoSeparation = other.StereoSeparation;
+      }
+      if (other.StereoConvergence != 0F) {
+        StereoConvergence = other.StereoConvergence;
+      }
+      if (other.StereoTargetEye != global::PLUME.Sample.Unity.CameraStereoTargetEyeMask.None) {
+        StereoTargetEye = other.StereoTargetEye;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -408,6 +2001,236 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
+          case 21: {
+            NearClipPlane = input.ReadFloat();
+            break;
+          }
+          case 29: {
+            FarClipPlane = input.ReadFloat();
+            break;
+          }
+          case 37: {
+            FieldOfView = input.ReadFloat();
+            break;
+          }
+          case 40: {
+            RenderingPath = (global::PLUME.Sample.Unity.RenderingPath) input.ReadEnum();
+            break;
+          }
+          case 48: {
+            AllowHdr = input.ReadBool();
+            break;
+          }
+          case 56: {
+            AllowMsaa = input.ReadBool();
+            break;
+          }
+          case 64: {
+            AllowDynamicResolution = input.ReadBool();
+            break;
+          }
+          case 72: {
+            ForceIntoRenderTexture = input.ReadBool();
+            break;
+          }
+          case 85: {
+            OrthographicSize = input.ReadFloat();
+            break;
+          }
+          case 88: {
+            Orthographic = input.ReadBool();
+            break;
+          }
+          case 96: {
+            OpaqueSortMode = (global::PLUME.Sample.Unity.OpaqueSortMode) input.ReadEnum();
+            break;
+          }
+          case 104: {
+            TransparencySortMode = (global::PLUME.Sample.Unity.TransparencySortMode) input.ReadEnum();
+            break;
+          }
+          case 114: {
+            if (transparencySortAxis_ == null) {
+              TransparencySortAxis = new global::PLUME.Sample.Common.Vector3();
+            }
+            input.ReadMessage(TransparencySortAxis);
+            break;
+          }
+          case 125: {
+            Depth = input.ReadFloat();
+            break;
+          }
+          case 133: {
+            Aspect = input.ReadFloat();
+            break;
+          }
+          case 138: {
+            if (velocity_ == null) {
+              Velocity = new global::PLUME.Sample.Common.Vector3();
+            }
+            input.ReadMessage(Velocity);
+            break;
+          }
+          case 144: {
+            CullingMask = input.ReadInt32();
+            break;
+          }
+          case 152: {
+            EventMask = input.ReadInt32();
+            break;
+          }
+          case 160: {
+            LayerCullSpherical = input.ReadBool();
+            break;
+          }
+          case 168: {
+            CameraType = (global::PLUME.Sample.Unity.CameraType) input.ReadEnum();
+            break;
+          }
+          case 178:
+          case 181: {
+            layerCullDistances_.AddEntriesFrom(input, _repeated_layerCullDistances_codec);
+            break;
+          }
+          case 184: {
+            UseOcclusionCulling = input.ReadBool();
+            break;
+          }
+          case 194: {
+            if (cullingMatrix_ == null) {
+              CullingMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+            }
+            input.ReadMessage(CullingMatrix);
+            break;
+          }
+          case 202: {
+            if (backgroundColor_ == null) {
+              BackgroundColor = new global::PLUME.Sample.Common.Color();
+            }
+            input.ReadMessage(BackgroundColor);
+            break;
+          }
+          case 208: {
+            ClearFlags = (global::PLUME.Sample.Unity.CameraClearFlags) input.ReadEnum();
+            break;
+          }
+          case 216: {
+            DepthTextureMode = (global::PLUME.Sample.Unity.DepthTextureMode) input.ReadEnum();
+            break;
+          }
+          case 224: {
+            ClearStencilAfterLightingPass = input.ReadBool();
+            break;
+          }
+          case 232: {
+            UsePhysicalProperties = input.ReadBool();
+            break;
+          }
+          case 242: {
+            if (sensorSize_ == null) {
+              SensorSize = new global::PLUME.Sample.Common.Vector2();
+            }
+            input.ReadMessage(SensorSize);
+            break;
+          }
+          case 250: {
+            if (lensShift_ == null) {
+              LensShift = new global::PLUME.Sample.Common.Vector2();
+            }
+            input.ReadMessage(LensShift);
+            break;
+          }
+          case 261: {
+            FocalLength = input.ReadFloat();
+            break;
+          }
+          case 264: {
+            GateFit = (global::PLUME.Sample.Unity.CameraGateFitMode) input.ReadEnum();
+            break;
+          }
+          case 274: {
+            if (rect_ == null) {
+              Rect = new global::PLUME.Sample.Common.Rect();
+            }
+            input.ReadMessage(Rect);
+            break;
+          }
+          case 282: {
+            if (pixelRect_ == null) {
+              PixelRect = new global::PLUME.Sample.Common.Rect();
+            }
+            input.ReadMessage(PixelRect);
+            break;
+          }
+          case 288: {
+            PixelWidth = input.ReadInt32();
+            break;
+          }
+          case 296: {
+            PixelHeight = input.ReadInt32();
+            break;
+          }
+          case 304: {
+            ScaledPixelWidth = input.ReadInt32();
+            break;
+          }
+          case 312: {
+            ScaledPixelHeight = input.ReadInt32();
+            break;
+          }
+          case 322: {
+            TargetTextureId = input.ReadString();
+            break;
+          }
+          case 330: {
+            ActiveTextureId = input.ReadString();
+            break;
+          }
+          case 336: {
+            TargetDisplay = input.ReadInt32();
+            break;
+          }
+          case 346: {
+            if (worldToCameraMatrix_ == null) {
+              WorldToCameraMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+            }
+            input.ReadMessage(WorldToCameraMatrix);
+            break;
+          }
+          case 354: {
+            if (projectionMatrix_ == null) {
+              ProjectionMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+            }
+            input.ReadMessage(ProjectionMatrix);
+            break;
+          }
+          case 362: {
+            if (nonJitteredProjectionMatrix_ == null) {
+              NonJitteredProjectionMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+            }
+            input.ReadMessage(NonJitteredProjectionMatrix);
+            break;
+          }
+          case 368: {
+            UseJitteredProjectionMatrixForTransparentRendering = input.ReadBool();
+            break;
+          }
+          case 376: {
+            SceneIdx = input.ReadInt32();
+            break;
+          }
+          case 389: {
+            StereoSeparation = input.ReadFloat();
+            break;
+          }
+          case 397: {
+            StereoConvergence = input.ReadFloat();
+            break;
+          }
+          case 400: {
+            StereoTargetEye = (global::PLUME.Sample.Unity.CameraStereoTargetEyeMask) input.ReadEnum();
+            break;
+          }
         }
       }
     #endif
@@ -428,6 +2251,236 @@ namespace PLUME.Sample.Unity {
               Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(Id);
+            break;
+          }
+          case 21: {
+            NearClipPlane = input.ReadFloat();
+            break;
+          }
+          case 29: {
+            FarClipPlane = input.ReadFloat();
+            break;
+          }
+          case 37: {
+            FieldOfView = input.ReadFloat();
+            break;
+          }
+          case 40: {
+            RenderingPath = (global::PLUME.Sample.Unity.RenderingPath) input.ReadEnum();
+            break;
+          }
+          case 48: {
+            AllowHdr = input.ReadBool();
+            break;
+          }
+          case 56: {
+            AllowMsaa = input.ReadBool();
+            break;
+          }
+          case 64: {
+            AllowDynamicResolution = input.ReadBool();
+            break;
+          }
+          case 72: {
+            ForceIntoRenderTexture = input.ReadBool();
+            break;
+          }
+          case 85: {
+            OrthographicSize = input.ReadFloat();
+            break;
+          }
+          case 88: {
+            Orthographic = input.ReadBool();
+            break;
+          }
+          case 96: {
+            OpaqueSortMode = (global::PLUME.Sample.Unity.OpaqueSortMode) input.ReadEnum();
+            break;
+          }
+          case 104: {
+            TransparencySortMode = (global::PLUME.Sample.Unity.TransparencySortMode) input.ReadEnum();
+            break;
+          }
+          case 114: {
+            if (transparencySortAxis_ == null) {
+              TransparencySortAxis = new global::PLUME.Sample.Common.Vector3();
+            }
+            input.ReadMessage(TransparencySortAxis);
+            break;
+          }
+          case 125: {
+            Depth = input.ReadFloat();
+            break;
+          }
+          case 133: {
+            Aspect = input.ReadFloat();
+            break;
+          }
+          case 138: {
+            if (velocity_ == null) {
+              Velocity = new global::PLUME.Sample.Common.Vector3();
+            }
+            input.ReadMessage(Velocity);
+            break;
+          }
+          case 144: {
+            CullingMask = input.ReadInt32();
+            break;
+          }
+          case 152: {
+            EventMask = input.ReadInt32();
+            break;
+          }
+          case 160: {
+            LayerCullSpherical = input.ReadBool();
+            break;
+          }
+          case 168: {
+            CameraType = (global::PLUME.Sample.Unity.CameraType) input.ReadEnum();
+            break;
+          }
+          case 178:
+          case 181: {
+            layerCullDistances_.AddEntriesFrom(ref input, _repeated_layerCullDistances_codec);
+            break;
+          }
+          case 184: {
+            UseOcclusionCulling = input.ReadBool();
+            break;
+          }
+          case 194: {
+            if (cullingMatrix_ == null) {
+              CullingMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+            }
+            input.ReadMessage(CullingMatrix);
+            break;
+          }
+          case 202: {
+            if (backgroundColor_ == null) {
+              BackgroundColor = new global::PLUME.Sample.Common.Color();
+            }
+            input.ReadMessage(BackgroundColor);
+            break;
+          }
+          case 208: {
+            ClearFlags = (global::PLUME.Sample.Unity.CameraClearFlags) input.ReadEnum();
+            break;
+          }
+          case 216: {
+            DepthTextureMode = (global::PLUME.Sample.Unity.DepthTextureMode) input.ReadEnum();
+            break;
+          }
+          case 224: {
+            ClearStencilAfterLightingPass = input.ReadBool();
+            break;
+          }
+          case 232: {
+            UsePhysicalProperties = input.ReadBool();
+            break;
+          }
+          case 242: {
+            if (sensorSize_ == null) {
+              SensorSize = new global::PLUME.Sample.Common.Vector2();
+            }
+            input.ReadMessage(SensorSize);
+            break;
+          }
+          case 250: {
+            if (lensShift_ == null) {
+              LensShift = new global::PLUME.Sample.Common.Vector2();
+            }
+            input.ReadMessage(LensShift);
+            break;
+          }
+          case 261: {
+            FocalLength = input.ReadFloat();
+            break;
+          }
+          case 264: {
+            GateFit = (global::PLUME.Sample.Unity.CameraGateFitMode) input.ReadEnum();
+            break;
+          }
+          case 274: {
+            if (rect_ == null) {
+              Rect = new global::PLUME.Sample.Common.Rect();
+            }
+            input.ReadMessage(Rect);
+            break;
+          }
+          case 282: {
+            if (pixelRect_ == null) {
+              PixelRect = new global::PLUME.Sample.Common.Rect();
+            }
+            input.ReadMessage(PixelRect);
+            break;
+          }
+          case 288: {
+            PixelWidth = input.ReadInt32();
+            break;
+          }
+          case 296: {
+            PixelHeight = input.ReadInt32();
+            break;
+          }
+          case 304: {
+            ScaledPixelWidth = input.ReadInt32();
+            break;
+          }
+          case 312: {
+            ScaledPixelHeight = input.ReadInt32();
+            break;
+          }
+          case 322: {
+            TargetTextureId = input.ReadString();
+            break;
+          }
+          case 330: {
+            ActiveTextureId = input.ReadString();
+            break;
+          }
+          case 336: {
+            TargetDisplay = input.ReadInt32();
+            break;
+          }
+          case 346: {
+            if (worldToCameraMatrix_ == null) {
+              WorldToCameraMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+            }
+            input.ReadMessage(WorldToCameraMatrix);
+            break;
+          }
+          case 354: {
+            if (projectionMatrix_ == null) {
+              ProjectionMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+            }
+            input.ReadMessage(ProjectionMatrix);
+            break;
+          }
+          case 362: {
+            if (nonJitteredProjectionMatrix_ == null) {
+              NonJitteredProjectionMatrix = new global::PLUME.Sample.Common.Matrix4x4();
+            }
+            input.ReadMessage(NonJitteredProjectionMatrix);
+            break;
+          }
+          case 368: {
+            UseJitteredProjectionMatrixForTransparentRendering = input.ReadBool();
+            break;
+          }
+          case 376: {
+            SceneIdx = input.ReadInt32();
+            break;
+          }
+          case 389: {
+            StereoSeparation = input.ReadFloat();
+            break;
+          }
+          case 397: {
+            StereoConvergence = input.ReadFloat();
+            break;
+          }
+          case 400: {
+            StereoTargetEye = (global::PLUME.Sample.Unity.CameraStereoTargetEyeMask) input.ReadEnum();
             break;
           }
         }

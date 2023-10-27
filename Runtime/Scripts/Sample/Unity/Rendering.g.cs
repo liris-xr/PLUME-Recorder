@@ -32,11 +32,28 @@ namespace PLUME.Sample.Unity {
             "RUZMRUNUSU9OX1BST0JFX1VTQUdFX09GRhAAEicKI1JFRkxFQ1RJT05fUFJP",
             "QkVfVVNBR0VfQkxFTkRfUFJPQkVTEAESMgouUkVGTEVDVElPTl9QUk9CRV9V",
             "U0FHRV9CTEVORF9QUk9CRVNfQU5EX1NLWUJPWBACEiEKHVJFRkxFQ1RJT05f",
-            "UFJPQkVfVVNBR0VfU0lNUExFEANCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIG",
-            "cHJvdG8z"));
+            "UFJPQkVfVVNBR0VfU0lNUExFEAMqnwEKEEFudGlhbGlhc2luZ01vZGUSGgoW",
+            "QU5USUFMSUFTSU5HX01PREVfTk9ORRAAEjMKL0FOVElBTElBU0lOR19NT0RF",
+            "X0ZBU1RfQVBQUk9YSU1BVEVfQU5USUFMSUFTSU5HEAESOgo2QU5USUFMSUFT",
+            "SU5HX01PREVfU1VCUElYRUxfTU9SUEhPTE9HSUNBTF9BTlRJX0FMSUFTSU5H",
+            "EAIqcwoTQW50aWFsaWFzaW5nUXVhbGl0eRIcChhBTlRJQUxJQVNJTkdfUVVB",
+            "TElUWV9MT1cQABIfChtBTlRJQUxJQVNJTkdfUVVBTElUWV9NRURJVU0QARId",
+            "ChlBTlRJQUxJQVNJTkdfUVVBTElUWV9ISUdIEAIqvQEKDVJlbmRlcmluZ1Bh",
+            "dGgSJgoiUkVOREVSSU5HX1BBVEhfVVNFX1BMQVlFUl9TRVRUSU5HUxAAEh0K",
+            "GVJFTkRFUklOR19QQVRIX1ZFUlRFWF9MSVQQARIaChZSRU5ERVJJTkdfUEFU",
+            "SF9GT1JXQVJEEAISJAogUkVOREVSSU5HX1BBVEhfREVGRVJSRURfTElHSFRJ",
+            "TkcQAxIjCh9SRU5ERVJJTkdfUEFUSF9ERUZFUlJFRF9TSEFESU5HEAQqeQoO",
+            "T3BhcXVlU29ydE1vZGUSHAoYT1BBUVVFX1NPUlRfTU9ERV9ERUZBVUxUEAAS",
+            "IgoeT1BBUVVFX1NPUlRfTU9ERV9GUk9OVF9UT19CQUNLEAESJQohT1BBUVVF",
+            "X1NPUlRfTU9ERV9OT19ESVNUQU5DRV9TT1JUEAIqswEKFFRyYW5zcGFyZW5j",
+            "eVNvcnRNb2RlEiIKHlRSQU5TUEFSRU5DWV9TT1JUX01PREVfREVGQVVMVBAA",
+            "EiYKIlRSQU5TUEFSRU5DWV9TT1JUX01PREVfUEVSU1BFQ1RJVkUQARInCiNU",
+            "UkFOU1BBUkVOQ1lfU09SVF9NT0RFX09SVEhPR1JBUEhJQxACEiYKIlRSQU5T",
+            "UEFSRU5DWV9TT1JUX01PREVfQ1VTVE9NX0FYSVMQA0IVqgISUExVTUUuU2Ft",
+            "cGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.ShadowCastingMode), typeof(global::PLUME.Sample.Unity.ReflectionProbeUsage), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.ShadowCastingMode), typeof(global::PLUME.Sample.Unity.ReflectionProbeUsage), typeof(global::PLUME.Sample.Unity.AntialiasingMode), typeof(global::PLUME.Sample.Unity.AntialiasingQuality), typeof(global::PLUME.Sample.Unity.RenderingPath), typeof(global::PLUME.Sample.Unity.OpaqueSortMode), typeof(global::PLUME.Sample.Unity.TransparencySortMode), }, null, null));
     }
     #endregion
 
@@ -54,6 +71,39 @@ namespace PLUME.Sample.Unity {
     [pbr::OriginalName("REFLECTION_PROBE_USAGE_BLEND_PROBES")] BlendProbes = 1,
     [pbr::OriginalName("REFLECTION_PROBE_USAGE_BLEND_PROBES_AND_SKYBOX")] BlendProbesAndSkybox = 2,
     [pbr::OriginalName("REFLECTION_PROBE_USAGE_SIMPLE")] Simple = 3,
+  }
+
+  public enum AntialiasingMode {
+    [pbr::OriginalName("ANTIALIASING_MODE_NONE")] None = 0,
+    [pbr::OriginalName("ANTIALIASING_MODE_FAST_APPROXIMATE_ANTIALIASING")] FastApproximateAntialiasing = 1,
+    [pbr::OriginalName("ANTIALIASING_MODE_SUBPIXEL_MORPHOLOGICAL_ANTI_ALIASING")] SubpixelMorphologicalAntiAliasing = 2,
+  }
+
+  public enum AntialiasingQuality {
+    [pbr::OriginalName("ANTIALIASING_QUALITY_LOW")] Low = 0,
+    [pbr::OriginalName("ANTIALIASING_QUALITY_MEDIUM")] Medium = 1,
+    [pbr::OriginalName("ANTIALIASING_QUALITY_HIGH")] High = 2,
+  }
+
+  public enum RenderingPath {
+    [pbr::OriginalName("RENDERING_PATH_USE_PLAYER_SETTINGS")] UsePlayerSettings = 0,
+    [pbr::OriginalName("RENDERING_PATH_VERTEX_LIT")] VertexLit = 1,
+    [pbr::OriginalName("RENDERING_PATH_FORWARD")] Forward = 2,
+    [pbr::OriginalName("RENDERING_PATH_DEFERRED_LIGHTING")] DeferredLighting = 3,
+    [pbr::OriginalName("RENDERING_PATH_DEFERRED_SHADING")] DeferredShading = 4,
+  }
+
+  public enum OpaqueSortMode {
+    [pbr::OriginalName("OPAQUE_SORT_MODE_DEFAULT")] Default = 0,
+    [pbr::OriginalName("OPAQUE_SORT_MODE_FRONT_TO_BACK")] FrontToBack = 1,
+    [pbr::OriginalName("OPAQUE_SORT_MODE_NO_DISTANCE_SORT")] NoDistanceSort = 2,
+  }
+
+  public enum TransparencySortMode {
+    [pbr::OriginalName("TRANSPARENCY_SORT_MODE_DEFAULT")] Default = 0,
+    [pbr::OriginalName("TRANSPARENCY_SORT_MODE_PERSPECTIVE")] Perspective = 1,
+    [pbr::OriginalName("TRANSPARENCY_SORT_MODE_ORTHOGRAPHIC")] Orthographic = 2,
+    [pbr::OriginalName("TRANSPARENCY_SORT_MODE_CUSTOM_AXIS")] CustomAxis = 3,
   }
 
   #endregion

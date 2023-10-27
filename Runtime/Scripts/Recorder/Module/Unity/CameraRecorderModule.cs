@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PLUME.Guid;
 using PLUME.Sample.Unity;
 using UnityEngine;
 
@@ -36,14 +37,72 @@ namespace PLUME
 
         private void RecordCreation(Camera camera)
         {
-            var cameraCreate = new CameraCreate {Id = camera.ToIdentifierPayload()};
+            var identifier = camera.ToIdentifierPayload();
+            var cameraCreate = new CameraCreate { Id = identifier };
+            var cameraUpdate = new CameraUpdate
+            {
+                Id = identifier,
+                NearClipPlane = camera.nearClipPlane,
+                FarClipPlane = camera.farClipPlane,
+                FieldOfView = camera.fieldOfView,
+                RenderingPath = camera.renderingPath.ToPayload(),
+                AllowHdr = camera.allowHDR,
+                AllowMsaa = camera.allowMSAA,
+                AllowDynamicResolution = camera.allowDynamicResolution,
+                ForceIntoRenderTexture = camera.forceIntoRenderTexture,
+                OrthographicSize = camera.orthographicSize,
+                Orthographic = camera.orthographic,
+                OpaqueSortMode = camera.opaqueSortMode.ToPayload(),
+                TransparencySortMode = camera.transparencySortMode.ToPayload(),
+                TransparencySortAxis = camera.transparencySortAxis.ToPayload(),
+                Depth = camera.depth,
+                Aspect = camera.aspect,
+                Velocity = camera.velocity.ToPayload(),
+                CullingMask = camera.cullingMask,
+                EventMask = camera.eventMask,
+                LayerCullSpherical = camera.layerCullSpherical,
+                CameraType = camera.cameraType.ToPayload(),
+                UseOcclusionCulling = camera.useOcclusionCulling,
+                CullingMatrix = camera.cullingMatrix.ToPayload(),
+                BackgroundColor = camera.backgroundColor.ToPayload(),
+                ClearFlags = camera.clearFlags.ToPayload(),
+                DepthTextureMode = camera.depthTextureMode.ToPayload(),
+                ClearStencilAfterLightingPass = camera.clearStencilAfterLightingPass,
+                UsePhysicalProperties = camera.usePhysicalProperties,
+                SensorSize = camera.sensorSize.ToPayload(),
+                LensShift = camera.lensShift.ToPayload(),
+                FocalLength = camera.focalLength,
+                GateFit = camera.gateFit.ToPayload(),
+                Rect = camera.rect.ToPayload(),
+                PixelRect = camera.pixelRect.ToPayload(),
+                PixelWidth = camera.pixelWidth,
+                PixelHeight = camera.pixelHeight,
+                ScaledPixelWidth = camera.scaledPixelWidth,
+                ScaledPixelHeight = camera.scaledPixelHeight,
+                TargetTextureId = camera.targetTexture == null ? "" : SceneObjectsGuidRegistry.GetOrCreateInScene(camera.gameObject.scene).GetOrCreate(camera.targetTexture).guid,
+                ActiveTextureId = camera.activeTexture == null ? "" : SceneObjectsGuidRegistry.GetOrCreateInScene(camera.gameObject.scene).GetOrCreate(camera.activeTexture).guid,
+                TargetDisplay = camera.targetDisplay,
+                WorldToCameraMatrix = camera.worldToCameraMatrix.ToPayload(),
+                ProjectionMatrix = camera.projectionMatrix.ToPayload(),
+                NonJitteredProjectionMatrix = camera.nonJitteredProjectionMatrix.ToPayload(),
+                UseJitteredProjectionMatrixForTransparentRendering =
+                    camera.useJitteredProjectionMatrixForTransparentRendering,
+                SceneIdx = camera.scene.buildIndex,
+                StereoSeparation = camera.stereoSeparation,
+                StereoConvergence = camera.stereoConvergence,
+                StereoTargetEye = camera.stereoTargetEye.ToPayload()
+            };
+            
+            cameraUpdate.LayerCullDistances.AddRange(camera.layerCullDistances);
+
             recorder.RecordSampleStamped(cameraCreate);
+            recorder.RecordSampleStamped(cameraUpdate);
         }
 
         private void RecordDestruction(int cameraInstanceId)
         {
             var cameraDestroy = new ComponentDestroy
-                {Id = new ComponentDestroyIdentifier {Id = cameraInstanceId.ToString()}};
+                { Id = new ComponentDestroyIdentifier { Id = cameraInstanceId.ToString() } };
             recorder.RecordSampleStamped(cameraDestroy);
         }
 

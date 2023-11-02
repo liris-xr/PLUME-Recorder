@@ -29,7 +29,7 @@ namespace PLUME.Sample.Unity {
             "Y29tbW9uL3ZlY3RvcjIucHJvdG8aFGNvbW1vbi92ZWN0b3IzLnByb3RvGhZj",
             "b21tb24vbWF0cml4NHg0LnByb3RvGhJjb21tb24vY29sb3IucHJvdG8aEWNv",
             "bW1vbi9yZWN0LnByb3RvIkMKDENhbWVyYUNyZWF0ZRIzCgJpZBgBIAEoCzIn",
-            "LnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIokQCgxD",
+            "LnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIr8OCgxD",
             "YW1lcmFVcGRhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
             "Q29tcG9uZW50SWRlbnRpZmllchIXCg9uZWFyX2NsaXBfcGxhbmUYAiABKAIS",
             "FgoOZmFyX2NsaXBfcGxhbmUYAyABKAISFQoNZmllbGRfb2ZfdmlldxgEIAEo",
@@ -42,64 +42,60 @@ namespace PLUME.Sample.Unity {
             "ZVNvcnRNb2RlEkgKFnRyYW5zcGFyZW5jeV9zb3J0X21vZGUYDSABKA4yKC5w",
             "bHVtZS5zYW1wbGUudW5pdHkuVHJhbnNwYXJlbmN5U29ydE1vZGUSPAoWdHJh",
             "bnNwYXJlbmN5X3NvcnRfYXhpcxgOIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21t",
-            "b24uVmVjdG9yMxINCgVkZXB0aBgPIAEoAhIOCgZhc3BlY3QYECABKAISLgoI",
-            "dmVsb2NpdHkYESABKAsyHC5wbHVtZS5zYW1wbGUuY29tbW9uLlZlY3RvcjMS",
-            "FAoMY3VsbGluZ19tYXNrGBIgASgFEhIKCmV2ZW50X21hc2sYEyABKAUSHAoU",
-            "bGF5ZXJfY3VsbF9zcGhlcmljYWwYFCABKAgSMwoLY2FtZXJhX3R5cGUYFSAB",
-            "KA4yHi5wbHVtZS5zYW1wbGUudW5pdHkuQ2FtZXJhVHlwZRIcChRsYXllcl9j",
-            "dWxsX2Rpc3RhbmNlcxgWIAMoAhIdChV1c2Vfb2NjbHVzaW9uX2N1bGxpbmcY",
-            "FyABKAgSNgoOY3VsbGluZ19tYXRyaXgYGCABKAsyHi5wbHVtZS5zYW1wbGUu",
-            "Y29tbW9uLk1hdHJpeDR4NBI0ChBiYWNrZ3JvdW5kX2NvbG9yGBkgASgLMhou",
-            "cGx1bWUuc2FtcGxlLmNvbW1vbi5Db2xvchI5CgtjbGVhcl9mbGFncxgaIAEo",
-            "DjIkLnBsdW1lLnNhbXBsZS51bml0eS5DYW1lcmFDbGVhckZsYWdzEkAKEmRl",
-            "cHRoX3RleHR1cmVfbW9kZRgbIAEoDjIkLnBsdW1lLnNhbXBsZS51bml0eS5E",
-            "ZXB0aFRleHR1cmVNb2RlEikKIWNsZWFyX3N0ZW5jaWxfYWZ0ZXJfbGlnaHRp",
-            "bmdfcGFzcxgcIAEoCBIfChd1c2VfcGh5c2ljYWxfcHJvcGVydGllcxgdIAEo",
-            "CBIxCgtzZW5zb3Jfc2l6ZRgeIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21tb24u",
-            "VmVjdG9yMhIwCgpsZW5zX3NoaWZ0GB8gASgLMhwucGx1bWUuc2FtcGxlLmNv",
-            "bW1vbi5WZWN0b3IyEhQKDGZvY2FsX2xlbmd0aBggIAEoAhI3CghnYXRlX2Zp",
-            "dBghIAEoDjIlLnBsdW1lLnNhbXBsZS51bml0eS5DYW1lcmFHYXRlRml0TW9k",
-            "ZRInCgRyZWN0GCIgASgLMhkucGx1bWUuc2FtcGxlLmNvbW1vbi5SZWN0Ei0K",
-            "CnBpeGVsX3JlY3QYIyABKAsyGS5wbHVtZS5zYW1wbGUuY29tbW9uLlJlY3QS",
-            "EwoLcGl4ZWxfd2lkdGgYJCABKAUSFAoMcGl4ZWxfaGVpZ2h0GCUgASgFEhoK",
-            "EnNjYWxlZF9waXhlbF93aWR0aBgmIAEoBRIbChNzY2FsZWRfcGl4ZWxfaGVp",
-            "Z2h0GCcgASgFEh4KEXRhcmdldF90ZXh0dXJlX2lkGCggASgJSACIAQESHgoR",
-            "YWN0aXZlX3RleHR1cmVfaWQYKSABKAlIAYgBARIWCg50YXJnZXRfZGlzcGxh",
-            "eRgqIAEoBRI+ChZ3b3JsZF90b19jYW1lcmFfbWF0cml4GCsgASgLMh4ucGx1",
+            "b24uVmVjdG9yMxINCgVkZXB0aBgPIAEoAhIOCgZhc3BlY3QYECABKAISFAoM",
+            "Y3VsbGluZ19tYXNrGBEgASgFEhIKCmV2ZW50X21hc2sYEiABKAUSHAoUbGF5",
+            "ZXJfY3VsbF9zcGhlcmljYWwYEyABKAgSMwoLY2FtZXJhX3R5cGUYFCABKA4y",
+            "Hi5wbHVtZS5zYW1wbGUudW5pdHkuQ2FtZXJhVHlwZRIcChRsYXllcl9jdWxs",
+            "X2Rpc3RhbmNlcxgVIAMoAhIdChV1c2Vfb2NjbHVzaW9uX2N1bGxpbmcYFiAB",
+            "KAgSNgoOY3VsbGluZ19tYXRyaXgYFyABKAsyHi5wbHVtZS5zYW1wbGUuY29t",
+            "bW9uLk1hdHJpeDR4NBI0ChBiYWNrZ3JvdW5kX2NvbG9yGBggASgLMhoucGx1",
+            "bWUuc2FtcGxlLmNvbW1vbi5Db2xvchI5CgtjbGVhcl9mbGFncxgZIAEoDjIk",
+            "LnBsdW1lLnNhbXBsZS51bml0eS5DYW1lcmFDbGVhckZsYWdzEkAKEmRlcHRo",
+            "X3RleHR1cmVfbW9kZRgaIAEoDjIkLnBsdW1lLnNhbXBsZS51bml0eS5EZXB0",
+            "aFRleHR1cmVNb2RlEikKIWNsZWFyX3N0ZW5jaWxfYWZ0ZXJfbGlnaHRpbmdf",
+            "cGFzcxgbIAEoCBIfChd1c2VfcGh5c2ljYWxfcHJvcGVydGllcxgcIAEoCBIx",
+            "CgtzZW5zb3Jfc2l6ZRgdIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21tb24uVmVj",
+            "dG9yMhIwCgpsZW5zX3NoaWZ0GB4gASgLMhwucGx1bWUuc2FtcGxlLmNvbW1v",
+            "bi5WZWN0b3IyEhQKDGZvY2FsX2xlbmd0aBgfIAEoAhI3CghnYXRlX2ZpdBgg",
+            "IAEoDjIlLnBsdW1lLnNhbXBsZS51bml0eS5DYW1lcmFHYXRlRml0TW9kZRIn",
+            "CgRyZWN0GCEgASgLMhkucGx1bWUuc2FtcGxlLmNvbW1vbi5SZWN0Ei0KCnBp",
+            "eGVsX3JlY3QYIiABKAsyGS5wbHVtZS5zYW1wbGUuY29tbW9uLlJlY3QSHgoR",
+            "dGFyZ2V0X3RleHR1cmVfaWQYIyABKAlIAIgBARIWCg50YXJnZXRfZGlzcGxh",
+            "eRgkIAEoBRI+ChZ3b3JsZF90b19jYW1lcmFfbWF0cml4GCUgASgLMh4ucGx1",
             "bWUuc2FtcGxlLmNvbW1vbi5NYXRyaXg0eDQSOQoRcHJvamVjdGlvbl9tYXRy",
-            "aXgYLCABKAsyHi5wbHVtZS5zYW1wbGUuY29tbW9uLk1hdHJpeDR4NBJGCh5u",
-            "b25faml0dGVyZWRfcHJvamVjdGlvbl9tYXRyaXgYLSABKAsyHi5wbHVtZS5z",
+            "aXgYJiABKAsyHi5wbHVtZS5zYW1wbGUuY29tbW9uLk1hdHJpeDR4NBJGCh5u",
+            "b25faml0dGVyZWRfcHJvamVjdGlvbl9tYXRyaXgYJyABKAsyHi5wbHVtZS5z",
             "YW1wbGUuY29tbW9uLk1hdHJpeDR4NBJACjh1c2Vfaml0dGVyZWRfcHJvamVj",
-            "dGlvbl9tYXRyaXhfZm9yX3RyYW5zcGFyZW50X3JlbmRlcmluZxguIAEoCBIW",
-            "CglzY2VuZV9pZHgYLyABKAVIAogBARIZChFzdGVyZW9fc2VwYXJhdGlvbhgw",
-            "IAEoAhIaChJzdGVyZW9fY29udmVyZ2VuY2UYMSABKAISSAoRc3RlcmVvX3Rh",
-            "cmdldF9leWUYMiABKA4yLS5wbHVtZS5zYW1wbGUudW5pdHkuQ2FtZXJhU3Rl",
-            "cmVvVGFyZ2V0RXllTWFza0IUChJfdGFyZ2V0X3RleHR1cmVfaWRCFAoSX2Fj",
-            "dGl2ZV90ZXh0dXJlX2lkQgwKCl9zY2VuZV9pZHgqhwEKCkNhbWVyYVR5cGUS",
-            "FAoQQ0FNRVJBX1RZUEVfR0FNRRAAEhoKFkNBTUVSQV9UWVBFX1NDRU5FX1ZJ",
-            "RVcQARIXChNDQU1FUkFfVFlQRV9QUkVWSUVXEAISEgoOQ0FNRVJBX1RZUEVf",
-            "VlIQAxIaChZDQU1FUkFfVFlQRV9SRUZMRUNUSU9OEAQqkwEKEENhbWVyYUNs",
-            "ZWFyRmxhZ3MSHQoZQ0FNRVJBX0NMRUFSX0ZMQUdTX1NLWUJPWBAAEiIKHkNB",
-            "TUVSQV9DTEVBUl9GTEFHU19TT0xJRF9DT0xPUhABEhwKGENBTUVSQV9DTEVB",
-            "Ul9GTEFHU19ERVBUSBACEh4KGkNBTUVSQV9DTEVBUl9GTEFHU19OT1RISU5H",
-            "EAMqvAEKEUNhbWVyYUdhdGVGaXRNb2RlEh0KGUNBTUVSQV9HQVRFX0ZJVF9N",
-            "T0RFX05PTkUQABIhCh1DQU1FUkFfR0FURV9GSVRfTU9ERV9WRVJUSUNBTBAB",
-            "EiMKH0NBTUVSQV9HQVRFX0ZJVF9NT0RFX0hPUklaT05UQUwQAhIdChlDQU1F",
-            "UkFfR0FURV9GSVRfTU9ERV9GSUxMEAMSIQodQ0FNRVJBX0dBVEVfRklUX01P",
-            "REVfT1ZFUlNDQU4QBCq8AQoZQ2FtZXJhU3RlcmVvVGFyZ2V0RXllTWFzaxIm",
-            "CiJDQU1FUkFfU1RFUkVPX1RBUkdFVF9FWUVfTUFTS19OT05FEAASJgoiQ0FN",
-            "RVJBX1NURVJFT19UQVJHRVRfRVlFX01BU0tfTEVGVBABEicKI0NBTUVSQV9T",
-            "VEVSRU9fVEFSR0VUX0VZRV9NQVNLX1JJR0hUEAISJgoiQ0FNRVJBX1NURVJF",
-            "T19UQVJHRVRfRVlFX01BU0tfQk9USBADKpoBChBEZXB0aFRleHR1cmVNb2Rl",
-            "EhsKF0RFUFRIX1RFWFRVUkVfTU9ERV9OT05FEAASHAoYREVQVEhfVEVYVFVS",
-            "RV9NT0RFX0RFUFRIEAESJAogREVQVEhfVEVYVFVSRV9NT0RFX0RFUFRIX05P",
-            "Uk1BTFMQAhIlCiFERVBUSF9URVhUVVJFX01PREVfTU9USU9OX1ZFQ1RPUlMQ",
-            "A0IVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
+            "dGlvbl9tYXRyaXhfZm9yX3RyYW5zcGFyZW50X3JlbmRlcmluZxgoIAEoCBIW",
+            "CglzY2VuZV9pZHgYKSABKAVIAYgBARIZChFzdGVyZW9fc2VwYXJhdGlvbhgq",
+            "IAEoAhIaChJzdGVyZW9fY29udmVyZ2VuY2UYKyABKAISSAoRc3RlcmVvX3Rh",
+            "cmdldF9leWUYLCABKA4yLS5wbHVtZS5zYW1wbGUudW5pdHkuQ2FtZXJhU3Rl",
+            "cmVvVGFyZ2V0RXllTWFza0IUChJfdGFyZ2V0X3RleHR1cmVfaWRCDAoKX3Nj",
+            "ZW5lX2lkeCqHAQoKQ2FtZXJhVHlwZRIUChBDQU1FUkFfVFlQRV9HQU1FEAAS",
+            "GgoWQ0FNRVJBX1RZUEVfU0NFTkVfVklFVxABEhcKE0NBTUVSQV9UWVBFX1BS",
+            "RVZJRVcQAhISCg5DQU1FUkFfVFlQRV9WUhADEhoKFkNBTUVSQV9UWVBFX1JF",
+            "RkxFQ1RJT04QBCqTAQoQQ2FtZXJhQ2xlYXJGbGFncxIdChlDQU1FUkFfQ0xF",
+            "QVJfRkxBR1NfU0tZQk9YEAASIgoeQ0FNRVJBX0NMRUFSX0ZMQUdTX1NPTElE",
+            "X0NPTE9SEAESHAoYQ0FNRVJBX0NMRUFSX0ZMQUdTX0RFUFRIEAISHgoaQ0FN",
+            "RVJBX0NMRUFSX0ZMQUdTX05PVEhJTkcQAyq8AQoRQ2FtZXJhR2F0ZUZpdE1v",
+            "ZGUSHQoZQ0FNRVJBX0dBVEVfRklUX01PREVfTk9ORRAAEiEKHUNBTUVSQV9H",
+            "QVRFX0ZJVF9NT0RFX1ZFUlRJQ0FMEAESIwofQ0FNRVJBX0dBVEVfRklUX01P",
+            "REVfSE9SSVpPTlRBTBACEh0KGUNBTUVSQV9HQVRFX0ZJVF9NT0RFX0ZJTEwQ",
+            "AxIhCh1DQU1FUkFfR0FURV9GSVRfTU9ERV9PVkVSU0NBThAEKrwBChlDYW1l",
+            "cmFTdGVyZW9UYXJnZXRFeWVNYXNrEiYKIkNBTUVSQV9TVEVSRU9fVEFSR0VU",
+            "X0VZRV9NQVNLX05PTkUQABImCiJDQU1FUkFfU1RFUkVPX1RBUkdFVF9FWUVf",
+            "TUFTS19MRUZUEAESJwojQ0FNRVJBX1NURVJFT19UQVJHRVRfRVlFX01BU0tf",
+            "UklHSFQQAhImCiJDQU1FUkFfU1RFUkVPX1RBUkdFVF9FWUVfTUFTS19CT1RI",
+            "EAMqmgEKEERlcHRoVGV4dHVyZU1vZGUSGwoXREVQVEhfVEVYVFVSRV9NT0RF",
+            "X05PTkUQABIcChhERVBUSF9URVhUVVJFX01PREVfREVQVEgQARIkCiBERVBU",
+            "SF9URVhUVVJFX01PREVfREVQVEhfTk9STUFMUxACEiUKIURFUFRIX1RFWFRV",
+            "UkVfTU9ERV9NT1RJT05fVkVDVE9SUxADQhWqAhJQTFVNRS5TYW1wbGUuVW5p",
+            "dHliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Unity.RenderingReflection.Descriptor, global::PLUME.Sample.Common.Vector2Reflection.Descriptor, global::PLUME.Sample.Common.Vector3Reflection.Descriptor, global::PLUME.Sample.Common.Matrix4X4Reflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, global::PLUME.Sample.Common.RectReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.CameraType), typeof(global::PLUME.Sample.Unity.CameraClearFlags), typeof(global::PLUME.Sample.Unity.CameraGateFitMode), typeof(global::PLUME.Sample.Unity.CameraStereoTargetEyeMask), typeof(global::PLUME.Sample.Unity.DepthTextureMode), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.CameraCreate), global::PLUME.Sample.Unity.CameraCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.CameraUpdate), global::PLUME.Sample.Unity.CameraUpdate.Parser, new[]{ "Id", "NearClipPlane", "FarClipPlane", "FieldOfView", "RenderingPath", "AllowHdr", "AllowMsaa", "AllowDynamicResolution", "ForceIntoRenderTexture", "OrthographicSize", "Orthographic", "OpaqueSortMode", "TransparencySortMode", "TransparencySortAxis", "Depth", "Aspect", "Velocity", "CullingMask", "EventMask", "LayerCullSpherical", "CameraType", "LayerCullDistances", "UseOcclusionCulling", "CullingMatrix", "BackgroundColor", "ClearFlags", "DepthTextureMode", "ClearStencilAfterLightingPass", "UsePhysicalProperties", "SensorSize", "LensShift", "FocalLength", "GateFit", "Rect", "PixelRect", "PixelWidth", "PixelHeight", "ScaledPixelWidth", "ScaledPixelHeight", "TargetTextureId", "ActiveTextureId", "TargetDisplay", "WorldToCameraMatrix", "ProjectionMatrix", "NonJitteredProjectionMatrix", "UseJitteredProjectionMatrixForTransparentRendering", "SceneIdx", "StereoSeparation", "StereoConvergence", "StereoTargetEye" }, new[]{ "TargetTextureId", "ActiveTextureId", "SceneIdx" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.CameraUpdate), global::PLUME.Sample.Unity.CameraUpdate.Parser, new[]{ "Id", "NearClipPlane", "FarClipPlane", "FieldOfView", "RenderingPath", "AllowHdr", "AllowMsaa", "AllowDynamicResolution", "ForceIntoRenderTexture", "OrthographicSize", "Orthographic", "OpaqueSortMode", "TransparencySortMode", "TransparencySortAxis", "Depth", "Aspect", "CullingMask", "EventMask", "LayerCullSpherical", "CameraType", "LayerCullDistances", "UseOcclusionCulling", "CullingMatrix", "BackgroundColor", "ClearFlags", "DepthTextureMode", "ClearStencilAfterLightingPass", "UsePhysicalProperties", "SensorSize", "LensShift", "FocalLength", "GateFit", "Rect", "PixelRect", "TargetTextureId", "TargetDisplay", "WorldToCameraMatrix", "ProjectionMatrix", "NonJitteredProjectionMatrix", "UseJitteredProjectionMatrixForTransparentRendering", "SceneIdx", "StereoSeparation", "StereoConvergence", "StereoTargetEye" }, new[]{ "TargetTextureId", "SceneIdx" }, null, null, null)
           }));
     }
     #endregion
@@ -396,7 +392,6 @@ namespace PLUME.Sample.Unity {
       transparencySortAxis_ = other.transparencySortAxis_ != null ? other.transparencySortAxis_.Clone() : null;
       depth_ = other.depth_;
       aspect_ = other.aspect_;
-      velocity_ = other.velocity_ != null ? other.velocity_.Clone() : null;
       cullingMask_ = other.cullingMask_;
       eventMask_ = other.eventMask_;
       layerCullSpherical_ = other.layerCullSpherical_;
@@ -415,12 +410,7 @@ namespace PLUME.Sample.Unity {
       gateFit_ = other.gateFit_;
       rect_ = other.rect_ != null ? other.rect_.Clone() : null;
       pixelRect_ = other.pixelRect_ != null ? other.pixelRect_.Clone() : null;
-      pixelWidth_ = other.pixelWidth_;
-      pixelHeight_ = other.pixelHeight_;
-      scaledPixelWidth_ = other.scaledPixelWidth_;
-      scaledPixelHeight_ = other.scaledPixelHeight_;
       targetTextureId_ = other.targetTextureId_;
-      activeTextureId_ = other.activeTextureId_;
       targetDisplay_ = other.targetDisplay_;
       worldToCameraMatrix_ = other.worldToCameraMatrix_ != null ? other.worldToCameraMatrix_.Clone() : null;
       projectionMatrix_ = other.projectionMatrix_ != null ? other.projectionMatrix_.Clone() : null;
@@ -631,20 +621,8 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "velocity" field.</summary>
-    public const int VelocityFieldNumber = 17;
-    private global::PLUME.Sample.Common.Vector3 velocity_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Vector3 Velocity {
-      get { return velocity_; }
-      set {
-        velocity_ = value;
-      }
-    }
-
     /// <summary>Field number for the "culling_mask" field.</summary>
-    public const int CullingMaskFieldNumber = 18;
+    public const int CullingMaskFieldNumber = 17;
     private int cullingMask_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -656,7 +634,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "event_mask" field.</summary>
-    public const int EventMaskFieldNumber = 19;
+    public const int EventMaskFieldNumber = 18;
     private int eventMask_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -668,7 +646,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "layer_cull_spherical" field.</summary>
-    public const int LayerCullSphericalFieldNumber = 20;
+    public const int LayerCullSphericalFieldNumber = 19;
     private bool layerCullSpherical_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -680,7 +658,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "camera_type" field.</summary>
-    public const int CameraTypeFieldNumber = 21;
+    public const int CameraTypeFieldNumber = 20;
     private global::PLUME.Sample.Unity.CameraType cameraType_ = global::PLUME.Sample.Unity.CameraType.Game;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -692,9 +670,9 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "layer_cull_distances" field.</summary>
-    public const int LayerCullDistancesFieldNumber = 22;
+    public const int LayerCullDistancesFieldNumber = 21;
     private static readonly pb::FieldCodec<float> _repeated_layerCullDistances_codec
-        = pb::FieldCodec.ForFloat(178);
+        = pb::FieldCodec.ForFloat(170);
     private readonly pbc::RepeatedField<float> layerCullDistances_ = new pbc::RepeatedField<float>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -703,7 +681,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "use_occlusion_culling" field.</summary>
-    public const int UseOcclusionCullingFieldNumber = 23;
+    public const int UseOcclusionCullingFieldNumber = 22;
     private bool useOcclusionCulling_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -715,7 +693,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "culling_matrix" field.</summary>
-    public const int CullingMatrixFieldNumber = 24;
+    public const int CullingMatrixFieldNumber = 23;
     private global::PLUME.Sample.Common.Matrix4x4 cullingMatrix_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -727,7 +705,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "background_color" field.</summary>
-    public const int BackgroundColorFieldNumber = 25;
+    public const int BackgroundColorFieldNumber = 24;
     private global::PLUME.Sample.Common.Color backgroundColor_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -739,7 +717,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "clear_flags" field.</summary>
-    public const int ClearFlagsFieldNumber = 26;
+    public const int ClearFlagsFieldNumber = 25;
     private global::PLUME.Sample.Unity.CameraClearFlags clearFlags_ = global::PLUME.Sample.Unity.CameraClearFlags.Skybox;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -751,7 +729,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "depth_texture_mode" field.</summary>
-    public const int DepthTextureModeFieldNumber = 27;
+    public const int DepthTextureModeFieldNumber = 26;
     private global::PLUME.Sample.Unity.DepthTextureMode depthTextureMode_ = global::PLUME.Sample.Unity.DepthTextureMode.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -763,7 +741,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "clear_stencil_after_lighting_pass" field.</summary>
-    public const int ClearStencilAfterLightingPassFieldNumber = 28;
+    public const int ClearStencilAfterLightingPassFieldNumber = 27;
     private bool clearStencilAfterLightingPass_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -775,7 +753,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "use_physical_properties" field.</summary>
-    public const int UsePhysicalPropertiesFieldNumber = 29;
+    public const int UsePhysicalPropertiesFieldNumber = 28;
     private bool usePhysicalProperties_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -787,7 +765,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "sensor_size" field.</summary>
-    public const int SensorSizeFieldNumber = 30;
+    public const int SensorSizeFieldNumber = 29;
     private global::PLUME.Sample.Common.Vector2 sensorSize_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -799,7 +777,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "lens_shift" field.</summary>
-    public const int LensShiftFieldNumber = 31;
+    public const int LensShiftFieldNumber = 30;
     private global::PLUME.Sample.Common.Vector2 lensShift_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -811,7 +789,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "focal_length" field.</summary>
-    public const int FocalLengthFieldNumber = 32;
+    public const int FocalLengthFieldNumber = 31;
     private float focalLength_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -823,7 +801,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "gate_fit" field.</summary>
-    public const int GateFitFieldNumber = 33;
+    public const int GateFitFieldNumber = 32;
     private global::PLUME.Sample.Unity.CameraGateFitMode gateFit_ = global::PLUME.Sample.Unity.CameraGateFitMode.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -835,7 +813,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "rect" field.</summary>
-    public const int RectFieldNumber = 34;
+    public const int RectFieldNumber = 33;
     private global::PLUME.Sample.Common.Rect rect_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -847,7 +825,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "pixel_rect" field.</summary>
-    public const int PixelRectFieldNumber = 35;
+    public const int PixelRectFieldNumber = 34;
     private global::PLUME.Sample.Common.Rect pixelRect_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -858,56 +836,8 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "pixel_width" field.</summary>
-    public const int PixelWidthFieldNumber = 36;
-    private int pixelWidth_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int PixelWidth {
-      get { return pixelWidth_; }
-      set {
-        pixelWidth_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "pixel_height" field.</summary>
-    public const int PixelHeightFieldNumber = 37;
-    private int pixelHeight_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int PixelHeight {
-      get { return pixelHeight_; }
-      set {
-        pixelHeight_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "scaled_pixel_width" field.</summary>
-    public const int ScaledPixelWidthFieldNumber = 38;
-    private int scaledPixelWidth_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int ScaledPixelWidth {
-      get { return scaledPixelWidth_; }
-      set {
-        scaledPixelWidth_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "scaled_pixel_height" field.</summary>
-    public const int ScaledPixelHeightFieldNumber = 39;
-    private int scaledPixelHeight_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int ScaledPixelHeight {
-      get { return scaledPixelHeight_; }
-      set {
-        scaledPixelHeight_ = value;
-      }
-    }
-
     /// <summary>Field number for the "target_texture_id" field.</summary>
-    public const int TargetTextureIdFieldNumber = 40;
+    public const int TargetTextureIdFieldNumber = 35;
     private readonly static string TargetTextureIdDefaultValue = "";
 
     private string targetTextureId_;
@@ -932,34 +862,8 @@ namespace PLUME.Sample.Unity {
       targetTextureId_ = null;
     }
 
-    /// <summary>Field number for the "active_texture_id" field.</summary>
-    public const int ActiveTextureIdFieldNumber = 41;
-    private readonly static string ActiveTextureIdDefaultValue = "";
-
-    private string activeTextureId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string ActiveTextureId {
-      get { return activeTextureId_ ?? ActiveTextureIdDefaultValue; }
-      set {
-        activeTextureId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-    /// <summary>Gets whether the "active_texture_id" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasActiveTextureId {
-      get { return activeTextureId_ != null; }
-    }
-    /// <summary>Clears the value of the "active_texture_id" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearActiveTextureId() {
-      activeTextureId_ = null;
-    }
-
     /// <summary>Field number for the "target_display" field.</summary>
-    public const int TargetDisplayFieldNumber = 42;
+    public const int TargetDisplayFieldNumber = 36;
     private int targetDisplay_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -971,7 +875,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "world_to_camera_matrix" field.</summary>
-    public const int WorldToCameraMatrixFieldNumber = 43;
+    public const int WorldToCameraMatrixFieldNumber = 37;
     private global::PLUME.Sample.Common.Matrix4x4 worldToCameraMatrix_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -983,7 +887,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "projection_matrix" field.</summary>
-    public const int ProjectionMatrixFieldNumber = 44;
+    public const int ProjectionMatrixFieldNumber = 38;
     private global::PLUME.Sample.Common.Matrix4x4 projectionMatrix_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -995,7 +899,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "non_jittered_projection_matrix" field.</summary>
-    public const int NonJitteredProjectionMatrixFieldNumber = 45;
+    public const int NonJitteredProjectionMatrixFieldNumber = 39;
     private global::PLUME.Sample.Common.Matrix4x4 nonJitteredProjectionMatrix_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1007,7 +911,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "use_jittered_projection_matrix_for_transparent_rendering" field.</summary>
-    public const int UseJitteredProjectionMatrixForTransparentRenderingFieldNumber = 46;
+    public const int UseJitteredProjectionMatrixForTransparentRenderingFieldNumber = 40;
     private bool useJitteredProjectionMatrixForTransparentRendering_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1019,7 +923,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "scene_idx" field.</summary>
-    public const int SceneIdxFieldNumber = 47;
+    public const int SceneIdxFieldNumber = 41;
     private readonly static int SceneIdxDefaultValue = 0;
 
     private int sceneIdx_;
@@ -1046,7 +950,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "stereo_separation" field.</summary>
-    public const int StereoSeparationFieldNumber = 48;
+    public const int StereoSeparationFieldNumber = 42;
     private float stereoSeparation_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1058,7 +962,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "stereo_convergence" field.</summary>
-    public const int StereoConvergenceFieldNumber = 49;
+    public const int StereoConvergenceFieldNumber = 43;
     private float stereoConvergence_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1070,7 +974,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "stereo_target_eye" field.</summary>
-    public const int StereoTargetEyeFieldNumber = 50;
+    public const int StereoTargetEyeFieldNumber = 44;
     private global::PLUME.Sample.Unity.CameraStereoTargetEyeMask stereoTargetEye_ = global::PLUME.Sample.Unity.CameraStereoTargetEyeMask.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1112,7 +1016,6 @@ namespace PLUME.Sample.Unity {
       if (!object.Equals(TransparencySortAxis, other.TransparencySortAxis)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Depth, other.Depth)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Aspect, other.Aspect)) return false;
-      if (!object.Equals(Velocity, other.Velocity)) return false;
       if (CullingMask != other.CullingMask) return false;
       if (EventMask != other.EventMask) return false;
       if (LayerCullSpherical != other.LayerCullSpherical) return false;
@@ -1131,12 +1034,7 @@ namespace PLUME.Sample.Unity {
       if (GateFit != other.GateFit) return false;
       if (!object.Equals(Rect, other.Rect)) return false;
       if (!object.Equals(PixelRect, other.PixelRect)) return false;
-      if (PixelWidth != other.PixelWidth) return false;
-      if (PixelHeight != other.PixelHeight) return false;
-      if (ScaledPixelWidth != other.ScaledPixelWidth) return false;
-      if (ScaledPixelHeight != other.ScaledPixelHeight) return false;
       if (TargetTextureId != other.TargetTextureId) return false;
-      if (ActiveTextureId != other.ActiveTextureId) return false;
       if (TargetDisplay != other.TargetDisplay) return false;
       if (!object.Equals(WorldToCameraMatrix, other.WorldToCameraMatrix)) return false;
       if (!object.Equals(ProjectionMatrix, other.ProjectionMatrix)) return false;
@@ -1169,7 +1067,6 @@ namespace PLUME.Sample.Unity {
       if (transparencySortAxis_ != null) hash ^= TransparencySortAxis.GetHashCode();
       if (Depth != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Depth);
       if (Aspect != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Aspect);
-      if (velocity_ != null) hash ^= Velocity.GetHashCode();
       if (CullingMask != 0) hash ^= CullingMask.GetHashCode();
       if (EventMask != 0) hash ^= EventMask.GetHashCode();
       if (LayerCullSpherical != false) hash ^= LayerCullSpherical.GetHashCode();
@@ -1188,12 +1085,7 @@ namespace PLUME.Sample.Unity {
       if (GateFit != global::PLUME.Sample.Unity.CameraGateFitMode.None) hash ^= GateFit.GetHashCode();
       if (rect_ != null) hash ^= Rect.GetHashCode();
       if (pixelRect_ != null) hash ^= PixelRect.GetHashCode();
-      if (PixelWidth != 0) hash ^= PixelWidth.GetHashCode();
-      if (PixelHeight != 0) hash ^= PixelHeight.GetHashCode();
-      if (ScaledPixelWidth != 0) hash ^= ScaledPixelWidth.GetHashCode();
-      if (ScaledPixelHeight != 0) hash ^= ScaledPixelHeight.GetHashCode();
       if (HasTargetTextureId) hash ^= TargetTextureId.GetHashCode();
-      if (HasActiveTextureId) hash ^= ActiveTextureId.GetHashCode();
       if (TargetDisplay != 0) hash ^= TargetDisplay.GetHashCode();
       if (worldToCameraMatrix_ != null) hash ^= WorldToCameraMatrix.GetHashCode();
       if (projectionMatrix_ != null) hash ^= ProjectionMatrix.GetHashCode();
@@ -1285,137 +1177,113 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(133, 1);
         output.WriteFloat(Aspect);
       }
-      if (velocity_ != null) {
-        output.WriteRawTag(138, 1);
-        output.WriteMessage(Velocity);
-      }
       if (CullingMask != 0) {
-        output.WriteRawTag(144, 1);
+        output.WriteRawTag(136, 1);
         output.WriteInt32(CullingMask);
       }
       if (EventMask != 0) {
-        output.WriteRawTag(152, 1);
+        output.WriteRawTag(144, 1);
         output.WriteInt32(EventMask);
       }
       if (LayerCullSpherical != false) {
-        output.WriteRawTag(160, 1);
+        output.WriteRawTag(152, 1);
         output.WriteBool(LayerCullSpherical);
       }
       if (CameraType != global::PLUME.Sample.Unity.CameraType.Game) {
-        output.WriteRawTag(168, 1);
+        output.WriteRawTag(160, 1);
         output.WriteEnum((int) CameraType);
       }
       layerCullDistances_.WriteTo(output, _repeated_layerCullDistances_codec);
       if (UseOcclusionCulling != false) {
-        output.WriteRawTag(184, 1);
+        output.WriteRawTag(176, 1);
         output.WriteBool(UseOcclusionCulling);
       }
       if (cullingMatrix_ != null) {
-        output.WriteRawTag(194, 1);
+        output.WriteRawTag(186, 1);
         output.WriteMessage(CullingMatrix);
       }
       if (backgroundColor_ != null) {
-        output.WriteRawTag(202, 1);
+        output.WriteRawTag(194, 1);
         output.WriteMessage(BackgroundColor);
       }
       if (ClearFlags != global::PLUME.Sample.Unity.CameraClearFlags.Skybox) {
-        output.WriteRawTag(208, 1);
+        output.WriteRawTag(200, 1);
         output.WriteEnum((int) ClearFlags);
       }
       if (DepthTextureMode != global::PLUME.Sample.Unity.DepthTextureMode.None) {
-        output.WriteRawTag(216, 1);
+        output.WriteRawTag(208, 1);
         output.WriteEnum((int) DepthTextureMode);
       }
       if (ClearStencilAfterLightingPass != false) {
-        output.WriteRawTag(224, 1);
+        output.WriteRawTag(216, 1);
         output.WriteBool(ClearStencilAfterLightingPass);
       }
       if (UsePhysicalProperties != false) {
-        output.WriteRawTag(232, 1);
+        output.WriteRawTag(224, 1);
         output.WriteBool(UsePhysicalProperties);
       }
       if (sensorSize_ != null) {
-        output.WriteRawTag(242, 1);
+        output.WriteRawTag(234, 1);
         output.WriteMessage(SensorSize);
       }
       if (lensShift_ != null) {
-        output.WriteRawTag(250, 1);
+        output.WriteRawTag(242, 1);
         output.WriteMessage(LensShift);
       }
       if (FocalLength != 0F) {
-        output.WriteRawTag(133, 2);
+        output.WriteRawTag(253, 1);
         output.WriteFloat(FocalLength);
       }
       if (GateFit != global::PLUME.Sample.Unity.CameraGateFitMode.None) {
-        output.WriteRawTag(136, 2);
+        output.WriteRawTag(128, 2);
         output.WriteEnum((int) GateFit);
       }
       if (rect_ != null) {
-        output.WriteRawTag(146, 2);
+        output.WriteRawTag(138, 2);
         output.WriteMessage(Rect);
       }
       if (pixelRect_ != null) {
-        output.WriteRawTag(154, 2);
+        output.WriteRawTag(146, 2);
         output.WriteMessage(PixelRect);
       }
-      if (PixelWidth != 0) {
-        output.WriteRawTag(160, 2);
-        output.WriteInt32(PixelWidth);
-      }
-      if (PixelHeight != 0) {
-        output.WriteRawTag(168, 2);
-        output.WriteInt32(PixelHeight);
-      }
-      if (ScaledPixelWidth != 0) {
-        output.WriteRawTag(176, 2);
-        output.WriteInt32(ScaledPixelWidth);
-      }
-      if (ScaledPixelHeight != 0) {
-        output.WriteRawTag(184, 2);
-        output.WriteInt32(ScaledPixelHeight);
-      }
       if (HasTargetTextureId) {
-        output.WriteRawTag(194, 2);
+        output.WriteRawTag(154, 2);
         output.WriteString(TargetTextureId);
       }
-      if (HasActiveTextureId) {
-        output.WriteRawTag(202, 2);
-        output.WriteString(ActiveTextureId);
-      }
       if (TargetDisplay != 0) {
-        output.WriteRawTag(208, 2);
+        output.WriteRawTag(160, 2);
         output.WriteInt32(TargetDisplay);
       }
       if (worldToCameraMatrix_ != null) {
-        output.WriteRawTag(218, 2);
+        output.WriteRawTag(170, 2);
         output.WriteMessage(WorldToCameraMatrix);
       }
       if (projectionMatrix_ != null) {
-        output.WriteRawTag(226, 2);
+        output.WriteRawTag(178, 2);
         output.WriteMessage(ProjectionMatrix);
       }
       if (nonJitteredProjectionMatrix_ != null) {
-        output.WriteRawTag(234, 2);
+        output.WriteRawTag(186, 2);
         output.WriteMessage(NonJitteredProjectionMatrix);
       }
       if (UseJitteredProjectionMatrixForTransparentRendering != false) {
-        output.WriteRawTag(240, 2);
+        output.WriteRawTag(192, 2);
         output.WriteBool(UseJitteredProjectionMatrixForTransparentRendering);
       }
       if (HasSceneIdx) {
-        output.WriteRawTag(248, 2);
+        output.WriteRawTag(200, 2);
         output.WriteInt32(SceneIdx);
       }
       if (StereoSeparation != 0F) {
-        output.WriteRawTag(133, 3);
+        output.WriteRawTag(213, 2);
         output.WriteFloat(StereoSeparation);
       }
       if (StereoConvergence != 0F) {
-        output.WriteRawTag(141, 3);
+        output.WriteRawTag(221, 2);
         output.WriteFloat(StereoConvergence);
       }
       if (StereoTargetEye != global::PLUME.Sample.Unity.CameraStereoTargetEyeMask.None) {
-        output.WriteRawTag(144, 3);
+        output.WriteRawTag(224, 2);
         output.WriteEnum((int) StereoTargetEye);
       }
       if (_unknownFields != null) {
@@ -1492,137 +1360,113 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(133, 1);
         output.WriteFloat(Aspect);
       }
-      if (velocity_ != null) {
-        output.WriteRawTag(138, 1);
-        output.WriteMessage(Velocity);
-      }
       if (CullingMask != 0) {
-        output.WriteRawTag(144, 1);
+        output.WriteRawTag(136, 1);
         output.WriteInt32(CullingMask);
       }
       if (EventMask != 0) {
-        output.WriteRawTag(152, 1);
+        output.WriteRawTag(144, 1);
         output.WriteInt32(EventMask);
       }
       if (LayerCullSpherical != false) {
-        output.WriteRawTag(160, 1);
+        output.WriteRawTag(152, 1);
         output.WriteBool(LayerCullSpherical);
       }
       if (CameraType != global::PLUME.Sample.Unity.CameraType.Game) {
-        output.WriteRawTag(168, 1);
+        output.WriteRawTag(160, 1);
         output.WriteEnum((int) CameraType);
       }
       layerCullDistances_.WriteTo(ref output, _repeated_layerCullDistances_codec);
       if (UseOcclusionCulling != false) {
-        output.WriteRawTag(184, 1);
+        output.WriteRawTag(176, 1);
         output.WriteBool(UseOcclusionCulling);
       }
       if (cullingMatrix_ != null) {
-        output.WriteRawTag(194, 1);
+        output.WriteRawTag(186, 1);
         output.WriteMessage(CullingMatrix);
       }
       if (backgroundColor_ != null) {
-        output.WriteRawTag(202, 1);
+        output.WriteRawTag(194, 1);
         output.WriteMessage(BackgroundColor);
       }
       if (ClearFlags != global::PLUME.Sample.Unity.CameraClearFlags.Skybox) {
-        output.WriteRawTag(208, 1);
+        output.WriteRawTag(200, 1);
         output.WriteEnum((int) ClearFlags);
       }
       if (DepthTextureMode != global::PLUME.Sample.Unity.DepthTextureMode.None) {
-        output.WriteRawTag(216, 1);
+        output.WriteRawTag(208, 1);
         output.WriteEnum((int) DepthTextureMode);
       }
       if (ClearStencilAfterLightingPass != false) {
-        output.WriteRawTag(224, 1);
+        output.WriteRawTag(216, 1);
         output.WriteBool(ClearStencilAfterLightingPass);
       }
       if (UsePhysicalProperties != false) {
-        output.WriteRawTag(232, 1);
+        output.WriteRawTag(224, 1);
         output.WriteBool(UsePhysicalProperties);
       }
       if (sensorSize_ != null) {
-        output.WriteRawTag(242, 1);
+        output.WriteRawTag(234, 1);
         output.WriteMessage(SensorSize);
       }
       if (lensShift_ != null) {
-        output.WriteRawTag(250, 1);
+        output.WriteRawTag(242, 1);
         output.WriteMessage(LensShift);
       }
       if (FocalLength != 0F) {
-        output.WriteRawTag(133, 2);
+        output.WriteRawTag(253, 1);
         output.WriteFloat(FocalLength);
       }
       if (GateFit != global::PLUME.Sample.Unity.CameraGateFitMode.None) {
-        output.WriteRawTag(136, 2);
+        output.WriteRawTag(128, 2);
         output.WriteEnum((int) GateFit);
       }
       if (rect_ != null) {
-        output.WriteRawTag(146, 2);
+        output.WriteRawTag(138, 2);
         output.WriteMessage(Rect);
       }
       if (pixelRect_ != null) {
-        output.WriteRawTag(154, 2);
+        output.WriteRawTag(146, 2);
         output.WriteMessage(PixelRect);
       }
-      if (PixelWidth != 0) {
-        output.WriteRawTag(160, 2);
-        output.WriteInt32(PixelWidth);
-      }
-      if (PixelHeight != 0) {
-        output.WriteRawTag(168, 2);
-        output.WriteInt32(PixelHeight);
-      }
-      if (ScaledPixelWidth != 0) {
-        output.WriteRawTag(176, 2);
-        output.WriteInt32(ScaledPixelWidth);
-      }
-      if (ScaledPixelHeight != 0) {
-        output.WriteRawTag(184, 2);
-        output.WriteInt32(ScaledPixelHeight);
-      }
       if (HasTargetTextureId) {
-        output.WriteRawTag(194, 2);
+        output.WriteRawTag(154, 2);
         output.WriteString(TargetTextureId);
       }
-      if (HasActiveTextureId) {
-        output.WriteRawTag(202, 2);
-        output.WriteString(ActiveTextureId);
-      }
       if (TargetDisplay != 0) {
-        output.WriteRawTag(208, 2);
+        output.WriteRawTag(160, 2);
         output.WriteInt32(TargetDisplay);
       }
       if (worldToCameraMatrix_ != null) {
-        output.WriteRawTag(218, 2);
+        output.WriteRawTag(170, 2);
         output.WriteMessage(WorldToCameraMatrix);
       }
       if (projectionMatrix_ != null) {
-        output.WriteRawTag(226, 2);
+        output.WriteRawTag(178, 2);
         output.WriteMessage(ProjectionMatrix);
       }
       if (nonJitteredProjectionMatrix_ != null) {
-        output.WriteRawTag(234, 2);
+        output.WriteRawTag(186, 2);
         output.WriteMessage(NonJitteredProjectionMatrix);
       }
       if (UseJitteredProjectionMatrixForTransparentRendering != false) {
-        output.WriteRawTag(240, 2);
+        output.WriteRawTag(192, 2);
         output.WriteBool(UseJitteredProjectionMatrixForTransparentRendering);
       }
       if (HasSceneIdx) {
-        output.WriteRawTag(248, 2);
+        output.WriteRawTag(200, 2);
         output.WriteInt32(SceneIdx);
       }
       if (StereoSeparation != 0F) {
-        output.WriteRawTag(133, 3);
+        output.WriteRawTag(213, 2);
         output.WriteFloat(StereoSeparation);
       }
       if (StereoConvergence != 0F) {
-        output.WriteRawTag(141, 3);
+        output.WriteRawTag(221, 2);
         output.WriteFloat(StereoConvergence);
       }
       if (StereoTargetEye != global::PLUME.Sample.Unity.CameraStereoTargetEyeMask.None) {
-        output.WriteRawTag(144, 3);
+        output.WriteRawTag(224, 2);
         output.WriteEnum((int) StereoTargetEye);
       }
       if (_unknownFields != null) {
@@ -1683,9 +1527,6 @@ namespace PLUME.Sample.Unity {
       if (Aspect != 0F) {
         size += 2 + 4;
       }
-      if (velocity_ != null) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Velocity);
-      }
       if (CullingMask != 0) {
         size += 2 + pb::CodedOutputStream.ComputeInt32Size(CullingMask);
       }
@@ -1738,23 +1579,8 @@ namespace PLUME.Sample.Unity {
       if (pixelRect_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PixelRect);
       }
-      if (PixelWidth != 0) {
-        size += 2 + pb::CodedOutputStream.ComputeInt32Size(PixelWidth);
-      }
-      if (PixelHeight != 0) {
-        size += 2 + pb::CodedOutputStream.ComputeInt32Size(PixelHeight);
-      }
-      if (ScaledPixelWidth != 0) {
-        size += 2 + pb::CodedOutputStream.ComputeInt32Size(ScaledPixelWidth);
-      }
-      if (ScaledPixelHeight != 0) {
-        size += 2 + pb::CodedOutputStream.ComputeInt32Size(ScaledPixelHeight);
-      }
       if (HasTargetTextureId) {
         size += 2 + pb::CodedOutputStream.ComputeStringSize(TargetTextureId);
-      }
-      if (HasActiveTextureId) {
-        size += 2 + pb::CodedOutputStream.ComputeStringSize(ActiveTextureId);
       }
       if (TargetDisplay != 0) {
         size += 2 + pb::CodedOutputStream.ComputeInt32Size(TargetDisplay);
@@ -1849,12 +1675,6 @@ namespace PLUME.Sample.Unity {
       if (other.Aspect != 0F) {
         Aspect = other.Aspect;
       }
-      if (other.velocity_ != null) {
-        if (velocity_ == null) {
-          Velocity = new global::PLUME.Sample.Common.Vector3();
-        }
-        Velocity.MergeFrom(other.Velocity);
-      }
       if (other.CullingMask != 0) {
         CullingMask = other.CullingMask;
       }
@@ -1925,23 +1745,8 @@ namespace PLUME.Sample.Unity {
         }
         PixelRect.MergeFrom(other.PixelRect);
       }
-      if (other.PixelWidth != 0) {
-        PixelWidth = other.PixelWidth;
-      }
-      if (other.PixelHeight != 0) {
-        PixelHeight = other.PixelHeight;
-      }
-      if (other.ScaledPixelWidth != 0) {
-        ScaledPixelWidth = other.ScaledPixelWidth;
-      }
-      if (other.ScaledPixelHeight != 0) {
-        ScaledPixelHeight = other.ScaledPixelHeight;
-      }
       if (other.HasTargetTextureId) {
         TargetTextureId = other.TargetTextureId;
-      }
-      if (other.HasActiveTextureId) {
-        ActiveTextureId = other.ActiveTextureId;
       }
       if (other.TargetDisplay != 0) {
         TargetDisplay = other.TargetDisplay;
@@ -2064,170 +1869,143 @@ namespace PLUME.Sample.Unity {
             Aspect = input.ReadFloat();
             break;
           }
-          case 138: {
-            if (velocity_ == null) {
-              Velocity = new global::PLUME.Sample.Common.Vector3();
-            }
-            input.ReadMessage(Velocity);
-            break;
-          }
-          case 144: {
+          case 136: {
             CullingMask = input.ReadInt32();
             break;
           }
-          case 152: {
+          case 144: {
             EventMask = input.ReadInt32();
             break;
           }
-          case 160: {
+          case 152: {
             LayerCullSpherical = input.ReadBool();
             break;
           }
-          case 168: {
+          case 160: {
             CameraType = (global::PLUME.Sample.Unity.CameraType) input.ReadEnum();
             break;
           }
-          case 178:
-          case 181: {
+          case 170:
+          case 173: {
             layerCullDistances_.AddEntriesFrom(input, _repeated_layerCullDistances_codec);
             break;
           }
-          case 184: {
+          case 176: {
             UseOcclusionCulling = input.ReadBool();
             break;
           }
-          case 194: {
+          case 186: {
             if (cullingMatrix_ == null) {
               CullingMatrix = new global::PLUME.Sample.Common.Matrix4x4();
             }
             input.ReadMessage(CullingMatrix);
             break;
           }
-          case 202: {
+          case 194: {
             if (backgroundColor_ == null) {
               BackgroundColor = new global::PLUME.Sample.Common.Color();
             }
             input.ReadMessage(BackgroundColor);
             break;
           }
-          case 208: {
+          case 200: {
             ClearFlags = (global::PLUME.Sample.Unity.CameraClearFlags) input.ReadEnum();
             break;
           }
-          case 216: {
+          case 208: {
             DepthTextureMode = (global::PLUME.Sample.Unity.DepthTextureMode) input.ReadEnum();
             break;
           }
-          case 224: {
+          case 216: {
             ClearStencilAfterLightingPass = input.ReadBool();
             break;
           }
-          case 232: {
+          case 224: {
             UsePhysicalProperties = input.ReadBool();
             break;
           }
-          case 242: {
+          case 234: {
             if (sensorSize_ == null) {
               SensorSize = new global::PLUME.Sample.Common.Vector2();
             }
             input.ReadMessage(SensorSize);
             break;
           }
-          case 250: {
+          case 242: {
             if (lensShift_ == null) {
               LensShift = new global::PLUME.Sample.Common.Vector2();
             }
             input.ReadMessage(LensShift);
             break;
           }
-          case 261: {
+          case 253: {
             FocalLength = input.ReadFloat();
             break;
           }
-          case 264: {
+          case 256: {
             GateFit = (global::PLUME.Sample.Unity.CameraGateFitMode) input.ReadEnum();
             break;
           }
-          case 274: {
+          case 266: {
             if (rect_ == null) {
               Rect = new global::PLUME.Sample.Common.Rect();
             }
             input.ReadMessage(Rect);
             break;
           }
-          case 282: {
+          case 274: {
             if (pixelRect_ == null) {
               PixelRect = new global::PLUME.Sample.Common.Rect();
             }
             input.ReadMessage(PixelRect);
             break;
           }
-          case 288: {
-            PixelWidth = input.ReadInt32();
-            break;
-          }
-          case 296: {
-            PixelHeight = input.ReadInt32();
-            break;
-          }
-          case 304: {
-            ScaledPixelWidth = input.ReadInt32();
-            break;
-          }
-          case 312: {
-            ScaledPixelHeight = input.ReadInt32();
-            break;
-          }
-          case 322: {
+          case 282: {
             TargetTextureId = input.ReadString();
             break;
           }
-          case 330: {
-            ActiveTextureId = input.ReadString();
-            break;
-          }
-          case 336: {
+          case 288: {
             TargetDisplay = input.ReadInt32();
             break;
           }
-          case 346: {
+          case 298: {
             if (worldToCameraMatrix_ == null) {
               WorldToCameraMatrix = new global::PLUME.Sample.Common.Matrix4x4();
             }
             input.ReadMessage(WorldToCameraMatrix);
             break;
           }
-          case 354: {
+          case 306: {
             if (projectionMatrix_ == null) {
               ProjectionMatrix = new global::PLUME.Sample.Common.Matrix4x4();
             }
             input.ReadMessage(ProjectionMatrix);
             break;
           }
-          case 362: {
+          case 314: {
             if (nonJitteredProjectionMatrix_ == null) {
               NonJitteredProjectionMatrix = new global::PLUME.Sample.Common.Matrix4x4();
             }
             input.ReadMessage(NonJitteredProjectionMatrix);
             break;
           }
-          case 368: {
+          case 320: {
             UseJitteredProjectionMatrixForTransparentRendering = input.ReadBool();
             break;
           }
-          case 376: {
+          case 328: {
             SceneIdx = input.ReadInt32();
             break;
           }
-          case 389: {
+          case 341: {
             StereoSeparation = input.ReadFloat();
             break;
           }
-          case 397: {
+          case 349: {
             StereoConvergence = input.ReadFloat();
             break;
           }
-          case 400: {
+          case 352: {
             StereoTargetEye = (global::PLUME.Sample.Unity.CameraStereoTargetEyeMask) input.ReadEnum();
             break;
           }
@@ -2316,170 +2094,143 @@ namespace PLUME.Sample.Unity {
             Aspect = input.ReadFloat();
             break;
           }
-          case 138: {
-            if (velocity_ == null) {
-              Velocity = new global::PLUME.Sample.Common.Vector3();
-            }
-            input.ReadMessage(Velocity);
-            break;
-          }
-          case 144: {
+          case 136: {
             CullingMask = input.ReadInt32();
             break;
           }
-          case 152: {
+          case 144: {
             EventMask = input.ReadInt32();
             break;
           }
-          case 160: {
+          case 152: {
             LayerCullSpherical = input.ReadBool();
             break;
           }
-          case 168: {
+          case 160: {
             CameraType = (global::PLUME.Sample.Unity.CameraType) input.ReadEnum();
             break;
           }
-          case 178:
-          case 181: {
+          case 170:
+          case 173: {
             layerCullDistances_.AddEntriesFrom(ref input, _repeated_layerCullDistances_codec);
             break;
           }
-          case 184: {
+          case 176: {
             UseOcclusionCulling = input.ReadBool();
             break;
           }
-          case 194: {
+          case 186: {
             if (cullingMatrix_ == null) {
               CullingMatrix = new global::PLUME.Sample.Common.Matrix4x4();
             }
             input.ReadMessage(CullingMatrix);
             break;
           }
-          case 202: {
+          case 194: {
             if (backgroundColor_ == null) {
               BackgroundColor = new global::PLUME.Sample.Common.Color();
             }
             input.ReadMessage(BackgroundColor);
             break;
           }
-          case 208: {
+          case 200: {
             ClearFlags = (global::PLUME.Sample.Unity.CameraClearFlags) input.ReadEnum();
             break;
           }
-          case 216: {
+          case 208: {
             DepthTextureMode = (global::PLUME.Sample.Unity.DepthTextureMode) input.ReadEnum();
             break;
           }
-          case 224: {
+          case 216: {
             ClearStencilAfterLightingPass = input.ReadBool();
             break;
           }
-          case 232: {
+          case 224: {
             UsePhysicalProperties = input.ReadBool();
             break;
           }
-          case 242: {
+          case 234: {
             if (sensorSize_ == null) {
               SensorSize = new global::PLUME.Sample.Common.Vector2();
             }
             input.ReadMessage(SensorSize);
             break;
           }
-          case 250: {
+          case 242: {
             if (lensShift_ == null) {
               LensShift = new global::PLUME.Sample.Common.Vector2();
             }
             input.ReadMessage(LensShift);
             break;
           }
-          case 261: {
+          case 253: {
             FocalLength = input.ReadFloat();
             break;
           }
-          case 264: {
+          case 256: {
             GateFit = (global::PLUME.Sample.Unity.CameraGateFitMode) input.ReadEnum();
             break;
           }
-          case 274: {
+          case 266: {
             if (rect_ == null) {
               Rect = new global::PLUME.Sample.Common.Rect();
             }
             input.ReadMessage(Rect);
             break;
           }
-          case 282: {
+          case 274: {
             if (pixelRect_ == null) {
               PixelRect = new global::PLUME.Sample.Common.Rect();
             }
             input.ReadMessage(PixelRect);
             break;
           }
-          case 288: {
-            PixelWidth = input.ReadInt32();
-            break;
-          }
-          case 296: {
-            PixelHeight = input.ReadInt32();
-            break;
-          }
-          case 304: {
-            ScaledPixelWidth = input.ReadInt32();
-            break;
-          }
-          case 312: {
-            ScaledPixelHeight = input.ReadInt32();
-            break;
-          }
-          case 322: {
+          case 282: {
             TargetTextureId = input.ReadString();
             break;
           }
-          case 330: {
-            ActiveTextureId = input.ReadString();
-            break;
-          }
-          case 336: {
+          case 288: {
             TargetDisplay = input.ReadInt32();
             break;
           }
-          case 346: {
+          case 298: {
             if (worldToCameraMatrix_ == null) {
               WorldToCameraMatrix = new global::PLUME.Sample.Common.Matrix4x4();
             }
             input.ReadMessage(WorldToCameraMatrix);
             break;
           }
-          case 354: {
+          case 306: {
             if (projectionMatrix_ == null) {
               ProjectionMatrix = new global::PLUME.Sample.Common.Matrix4x4();
             }
             input.ReadMessage(ProjectionMatrix);
             break;
           }
-          case 362: {
+          case 314: {
             if (nonJitteredProjectionMatrix_ == null) {
               NonJitteredProjectionMatrix = new global::PLUME.Sample.Common.Matrix4x4();
             }
             input.ReadMessage(NonJitteredProjectionMatrix);
             break;
           }
-          case 368: {
+          case 320: {
             UseJitteredProjectionMatrixForTransparentRendering = input.ReadBool();
             break;
           }
-          case 376: {
+          case 328: {
             SceneIdx = input.ReadInt32();
             break;
           }
-          case 389: {
+          case 341: {
             StereoSeparation = input.ReadFloat();
             break;
           }
-          case 397: {
+          case 349: {
             StereoConvergence = input.ReadFloat();
             break;
           }
-          case 400: {
+          case 352: {
             StereoTargetEye = (global::PLUME.Sample.Unity.CameraStereoTargetEyeMask) input.ReadEnum();
             break;
           }

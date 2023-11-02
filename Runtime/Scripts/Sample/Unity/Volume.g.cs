@@ -27,21 +27,21 @@ namespace PLUME.Sample.Unity {
             "ChJ1bml0eS92b2x1bWUucHJvdG8SEnBsdW1lLnNhbXBsZS51bml0eRoXdW5p",
             "dHkvaWRlbnRpZmllcnMucHJvdG8iQwoMVm9sdW1lQ3JlYXRlEjMKAmlkGAEg",
             "ASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIi",
-            "pQIKDFZvbHVtZVVwZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51",
+            "qwIKDFZvbHVtZVVwZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51",
             "bml0eS5Db21wb25lbnRJZGVudGlmaWVyEhEKCWlzX2dsb2JhbBgCIAEoCBI+",
             "Cg1jb2xsaWRlcnNfaWRzGAMgAygLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNv",
             "bXBvbmVudElkZW50aWZpZXISFgoOYmxlbmRfZGlzdGFuY2UYBCABKAISDgoG",
-            "d2VpZ2h0GAUgASgCEhAKCHByaW9yaXR5GAYgASgCEkAKDnNoYXJlZF9wcm9m",
-            "aWxlGAcgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmll",
-            "ckgAiAEBQhEKD19zaGFyZWRfcHJvZmlsZSJbChNWb2x1bWVVcGRhdGVFbmFi",
-            "bGVkEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVu",
-            "dElkZW50aWZpZXISDwoHZW5hYmxlZBgCIAEoCEIVqgISUExVTUUuU2FtcGxl",
-            "LlVuaXR5YgZwcm90bzM="));
+            "d2VpZ2h0GAUgASgCEhAKCHByaW9yaXR5GAYgASgCEkMKEXNoYXJlZF9wcm9m",
+            "aWxlX2lkGAcgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRp",
+            "ZmllckgAiAEBQhQKEl9zaGFyZWRfcHJvZmlsZV9pZCJbChNWb2x1bWVVcGRh",
+            "dGVFbmFibGVkEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNv",
+            "bXBvbmVudElkZW50aWZpZXISDwoHZW5hYmxlZBgCIAEoCEIVqgISUExVTUUu",
+            "U2FtcGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.VolumeCreate), global::PLUME.Sample.Unity.VolumeCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.VolumeUpdate), global::PLUME.Sample.Unity.VolumeUpdate.Parser, new[]{ "Id", "IsGlobal", "CollidersIds", "BlendDistance", "Weight", "Priority", "SharedProfile" }, new[]{ "SharedProfile" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.VolumeUpdate), global::PLUME.Sample.Unity.VolumeUpdate.Parser, new[]{ "Id", "IsGlobal", "CollidersIds", "BlendDistance", "Weight", "Priority", "SharedProfileId" }, new[]{ "SharedProfileId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.VolumeUpdateEnabled), global::PLUME.Sample.Unity.VolumeUpdateEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null)
           }));
     }
@@ -287,7 +287,7 @@ namespace PLUME.Sample.Unity {
       blendDistance_ = other.blendDistance_;
       weight_ = other.weight_;
       priority_ = other.priority_;
-      sharedProfile_ = other.sharedProfile_ != null ? other.sharedProfile_.Clone() : null;
+      sharedProfileId_ = other.sharedProfileId_ != null ? other.sharedProfileId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -368,15 +368,15 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "shared_profile" field.</summary>
-    public const int SharedProfileFieldNumber = 7;
-    private global::PLUME.Sample.Unity.AssetIdentifier sharedProfile_;
+    /// <summary>Field number for the "shared_profile_id" field.</summary>
+    public const int SharedProfileIdFieldNumber = 7;
+    private global::PLUME.Sample.Unity.AssetIdentifier sharedProfileId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.AssetIdentifier SharedProfile {
-      get { return sharedProfile_; }
+    public global::PLUME.Sample.Unity.AssetIdentifier SharedProfileId {
+      get { return sharedProfileId_; }
       set {
-        sharedProfile_ = value;
+        sharedProfileId_ = value;
       }
     }
 
@@ -401,7 +401,7 @@ namespace PLUME.Sample.Unity {
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(BlendDistance, other.BlendDistance)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Weight, other.Weight)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Priority, other.Priority)) return false;
-      if (!object.Equals(SharedProfile, other.SharedProfile)) return false;
+      if (!object.Equals(SharedProfileId, other.SharedProfileId)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -415,7 +415,7 @@ namespace PLUME.Sample.Unity {
       if (BlendDistance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(BlendDistance);
       if (Weight != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Weight);
       if (Priority != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Priority);
-      if (sharedProfile_ != null) hash ^= SharedProfile.GetHashCode();
+      if (sharedProfileId_ != null) hash ^= SharedProfileId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -455,9 +455,9 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(53);
         output.WriteFloat(Priority);
       }
-      if (sharedProfile_ != null) {
+      if (sharedProfileId_ != null) {
         output.WriteRawTag(58);
-        output.WriteMessage(SharedProfile);
+        output.WriteMessage(SharedProfileId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -490,9 +490,9 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(53);
         output.WriteFloat(Priority);
       }
-      if (sharedProfile_ != null) {
+      if (sharedProfileId_ != null) {
         output.WriteRawTag(58);
-        output.WriteMessage(SharedProfile);
+        output.WriteMessage(SharedProfileId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -520,8 +520,8 @@ namespace PLUME.Sample.Unity {
       if (Priority != 0F) {
         size += 1 + 4;
       }
-      if (sharedProfile_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SharedProfile);
+      if (sharedProfileId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SharedProfileId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -554,11 +554,11 @@ namespace PLUME.Sample.Unity {
       if (other.Priority != 0F) {
         Priority = other.Priority;
       }
-      if (other.sharedProfile_ != null) {
-        if (sharedProfile_ == null) {
-          SharedProfile = new global::PLUME.Sample.Unity.AssetIdentifier();
+      if (other.sharedProfileId_ != null) {
+        if (sharedProfileId_ == null) {
+          SharedProfileId = new global::PLUME.Sample.Unity.AssetIdentifier();
         }
-        SharedProfile.MergeFrom(other.SharedProfile);
+        SharedProfileId.MergeFrom(other.SharedProfileId);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -603,10 +603,10 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 58: {
-            if (sharedProfile_ == null) {
-              SharedProfile = new global::PLUME.Sample.Unity.AssetIdentifier();
+            if (sharedProfileId_ == null) {
+              SharedProfileId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
-            input.ReadMessage(SharedProfile);
+            input.ReadMessage(SharedProfileId);
             break;
           }
         }
@@ -652,10 +652,10 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 58: {
-            if (sharedProfile_ == null) {
-              SharedProfile = new global::PLUME.Sample.Unity.AssetIdentifier();
+            if (sharedProfileId_ == null) {
+              SharedProfileId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
-            input.ReadMessage(SharedProfile);
+            input.ReadMessage(SharedProfileId);
             break;
           }
         }

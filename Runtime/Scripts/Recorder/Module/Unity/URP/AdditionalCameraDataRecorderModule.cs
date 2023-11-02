@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.URP;
 using UnityEngine;
@@ -9,11 +8,15 @@ using UnityEngine.Rendering.Universal;
 
 namespace PLUME.URP
 {
+#if !URP_ENABLED
+    public class AdditionalCameraDataRecorderModule : MonoBehaviour
+    {
+    }
+#else
     public class AdditionalCameraDataRecorderModule : RecorderModule,
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
     {
-#if URP_ENABLED
         private readonly Dictionary<int, UniversalAdditionalCameraData> _recordedAdditionalCameraData = new();
 
         public void OnStartRecordingObject(Object obj)
@@ -52,13 +55,10 @@ namespace PLUME.URP
                 RequiresDepthOption = camData.requiresDepthOption.ToPayload(),
                 RequiresColorOption = camData.requiresColorOption.ToPayload(),
                 RenderType = camData.renderType.ToPayload(),
-                ClearDepth = camData.clearDepth,
                 RequiresDepthTexture = camData.requiresDepthTexture,
                 RequiresColorTexture = camData.requiresColorTexture,
                 VolumeLayerMask = camData.volumeLayerMask,
-                VolumeTrigger = camData.volumeTrigger.ToIdentifierPayload(),
-                RequiresVolumeFrameworkUpdate = camData.requiresVolumeFrameworkUpdate,
-                // VolumeStack = camData.volumeStack,
+                VolumeTriggerId = camData.volumeTrigger.ToIdentifierPayload(),
                 RenderPostProcessing = camData.renderPostProcessing,
                 Antialiasing = camData.antialiasing.ToPayload(),
                 AntialiasingQuality = camData.antialiasingQuality.ToPayload(),
@@ -66,9 +66,7 @@ namespace PLUME.URP
                 Dithering = camData.dithering,
                 AllowXrRendering = camData.allowXRRendering
             };
-            
-            cameraDataUpdate.CameraStackIds.AddRange(camData.cameraStack.Select(cam => cam.ToIdentifierPayload()));
-            
+
             recorder.RecordSampleStamped(cameraDataCreate);
             recorder.RecordSampleStamped(cameraDataUpdate);
         }
@@ -84,19 +82,6 @@ namespace PLUME.URP
         {
             _recordedAdditionalCameraData.Clear();
         }
-
-#else
-        protected override void ResetCache()
-        {
-        }
-
-        public void OnStartRecordingObject(Object obj)
-        {
-        }
-
-        public void OnStopRecordingObject(int objectInstanceId)
-        {
-        }
-#endif
     }
+#endif
 }

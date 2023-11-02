@@ -86,7 +86,6 @@ namespace PLUME.Guid
                 // Render Settings dependencies
                 objects.Add(RenderSettings.skybox);
                 objects.Add(RenderSettings.sun);
-                objects.Add(RenderSettings.customReflection);
 
 #if UNITY_2022_1_OR_NEWER
                 objects.Add(RenderSettings.customReflectionTexture);

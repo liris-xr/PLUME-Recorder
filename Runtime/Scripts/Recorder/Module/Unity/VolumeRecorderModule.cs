@@ -83,7 +83,7 @@ namespace PLUME.URP
                 BlendDistance = volume.blendDistance,
                 Weight = volume.weight,
                 Priority = volume.priority,
-                SharedProfile = volume.sharedProfile == null ? null : volume.sharedProfile.ToAssetIdentifierPayload()
+                SharedProfileId = volume.sharedProfile == null ? null : volume.sharedProfile.ToAssetIdentifierPayload()
             };
             
             var volumeUpdateEnabled = new VolumeUpdateEnabled

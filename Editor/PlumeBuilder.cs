@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -58,36 +59,31 @@ namespace PLUME.Editor
                 .Select(s => s.path)
                 .DefaultIfEmpty(SceneManager.GetActiveScene().path).ToArray();
 
-            var scenesAssetsDependencies = GetFilteredScenesDependencies(scenePaths);
+            var assetPaths = new List<string>();
 
+            foreach (var scenePath in scenePaths)
+            {
+                AddAssetWithDependencies(assetPaths, scenePath);
+            }
+            
             if (GraphicsSettings.defaultRenderPipeline != null)
             {
                 var defaultRenderPipelineAssetPath = AssetDatabase.GetAssetPath(GraphicsSettings.defaultRenderPipeline);
-
-                if (!scenesAssetsDependencies.Contains(defaultRenderPipelineAssetPath))
-                {
-                    scenesAssetsDependencies.Add(defaultRenderPipelineAssetPath);
-                }
+                AddAssetWithDependencies(assetPaths, defaultRenderPipelineAssetPath);
             }
 
             for (var qualityLevel = 0; qualityLevel < QualitySettings.names.Length; qualityLevel++)
             {
                 var qualityLevelRenderPipeline = QualitySettings.GetRenderPipelineAssetAt(qualityLevel);
-                
                 if (qualityLevelRenderPipeline == null) continue;
-                
                 var qualityLevelRenderPipelineAssetPath = AssetDatabase.GetAssetPath(qualityLevelRenderPipeline);
-
-                if (!scenesAssetsDependencies.Contains(qualityLevelRenderPipelineAssetPath))
-                {
-                    scenesAssetsDependencies.Add(qualityLevelRenderPipelineAssetPath);
-                }
+                AddAssetWithDependencies(assetPaths, qualityLevelRenderPipelineAssetPath);
             }
 
             var assetBundleBuild = new AssetBundleBuild
             {
                 assetBundleName = "plume_asset_bundle_windows",
-                assetNames = scenesAssetsDependencies.ToArray()
+                assetNames = assetPaths.ToArray()
             };
 
             if (!Directory.Exists(Application.streamingAssetsPath))
@@ -97,30 +93,35 @@ namespace PLUME.Editor
             Debug.Log("Finished building asset bundle.");
         }
 
-        private static List<string> GetFilteredScenesDependencies(string[] scenePaths)
+        private static bool CanAddAsset(ICollection<string> assetPaths, string assetPath)
         {
-            var filteredDependencyPaths = new List<string>();
+            if (assetPaths.Contains(assetPath))
+                return false;
 
-            var dependencies = AssetDatabase.GetDependencies(scenePaths, true);
+            var assetType = AssetDatabase.GetMainAssetTypeAtPath(assetPath);
 
-            foreach (var dependencyPath in dependencies)
+            if (assetType == null)
+                return false;
+            
+            return assetType.Namespace == null || !assetType.Namespace.StartsWith("UnityEditor");
+        }
+        
+        private static void AddAssetWithDependencies(ICollection<string> assetPaths, string assetPath)
+        {
+            if (CanAddAsset(assetPaths, assetPath))
             {
-                if (dependencyPath.StartsWith("Packages/com.unity.inputsystem/InputSystem/Editor/"))
-                    continue;
-
-                var assetType = AssetDatabase.GetMainAssetTypeAtPath(dependencyPath);
-                var assetExtension = Path.GetExtension(dependencyPath);
-
-                var excludedTypes = new[] { typeof(SceneAsset), typeof(MonoScript), typeof(AnimatorController) };
-                var excludedExtensions = new[] { ".inputactions" };
-
-                if (excludedTypes.Contains(assetType) || excludedExtensions.Contains(assetExtension))
-                    continue;
-
-                filteredDependencyPaths.Add(dependencyPath);
+                assetPaths.Add(assetPath);
             }
+            
+            var dependenciesPaths = AssetDatabase.GetDependencies(assetPath, true);
 
-            return filteredDependencyPaths;
+            foreach (var dependencyPath in dependenciesPaths)
+            {
+                if (CanAddAsset(assetPaths, dependencyPath))
+                {
+                    assetPaths.Add(dependencyPath);
+                }
+            }
         }
     }
 }

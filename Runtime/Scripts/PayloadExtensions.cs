@@ -425,7 +425,6 @@ namespace PLUME
         {
             return renderingPath switch
             {
-                UnityEngine.RenderingPath.DeferredLighting => RenderingPath.DeferredLighting,
                 UnityEngine.RenderingPath.DeferredShading => RenderingPath.DeferredShading,
                 UnityEngine.RenderingPath.Forward => RenderingPath.Forward,
                 UnityEngine.RenderingPath.VertexLit => RenderingPath.VertexLit,

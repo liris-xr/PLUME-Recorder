@@ -1,4 +1,5 @@
 using System;
+using Prefabs;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,8 +10,7 @@ namespace PLUME.Editor
     {
         private const int MenuPriority = -50;
 
-        private const string PrefabManagerPath =
-            "Packages/fr.liris.plume.recorder/ScriptableObjects/EditorExtensions/PlumePrefabManager.asset";
+        private const string PrefabManagerPath = "Packages/fr.liris.plume.recorder/Editor/PlumePrefabManager.asset";
 
         private static PlumePrefabManager LocatePrefabManager()
         {

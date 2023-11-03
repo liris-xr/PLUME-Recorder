@@ -2,9 +2,9 @@
     "name": "fr.liris.plume.recorder.editor",
     "rootNamespace": "PLUME",
     "references": [
-        "GUID:7337036dbbf0a8c4a99ad3544b02ffdd",
+        "GUID:34c5aa7ff2e4f2b498e77f83bdc79ebe",
         "GUID:78b8f45ffa70db540bc27e0012b1024c",
-        "GUID:0c3632c8870c7f348a85769973f0d4fb"
+        "GUID:7337036dbbf0a8c4a99ad3544b02ffdd"
     ],
     "includePlatforms": [
         "Editor"

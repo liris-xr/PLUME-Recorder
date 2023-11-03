@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01252528a927088498beac7da6ff82c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 07da2e2dfa7d4af2b59e0b05d0bd828d, type: 3}
   m_Name: PlumePrefabManager
   m_EditorClassIdentifier: 
   recorderPrefab: {fileID: 968354323925130013, guid: d990d7b08da731a4fa765ed20cd6181d, type: 3}

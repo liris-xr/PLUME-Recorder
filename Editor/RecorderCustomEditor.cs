@@ -11,7 +11,7 @@ namespace PLUME.Editor
         {
             base.OnInspectorGUI();
 
-            var recorder = (Recorder) target;
+            var recorder = (Recorder)target;
 
             if (recorder.IsRecording)
             {
@@ -21,7 +21,7 @@ namespace PLUME.Editor
             {
                 if (GUILayout.Button("Start recording"))
                 {
-                    recorder.recordIdentifier = System.Guid.NewGuid().ToString();
+                    recorder.recordIdentifier = Guid.NewGuid().ToString();
                     recorder.StartRecording();
                 }
             }

@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
+using UnityEditor.Build.Pipeline;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityRuntimeGuid.Editor;
+using CompressionLevel = System.IO.Compression.CompressionLevel;
 
 namespace PLUME.Editor
 {
@@ -63,7 +66,7 @@ namespace PLUME.Editor
  
             method.Invoke(null, args);
         }
-
+        
         [MenuItem("PLUME/Build Asset Bundle")]
         private static void BuildAssetBundle()
         {
@@ -72,17 +75,17 @@ namespace PLUME.Editor
                 .Select(s => s.path)
                 .DefaultIfEmpty(SceneManager.GetActiveScene().path).ToArray();
 
-            var assetPaths = new List<string>();
+            var assetsPaths = new List<string>();
 
             foreach (var scenePath in scenePaths)
             {
-                AddAssetWithDependencies(assetPaths, scenePath);
+                AddAssetWithDependencies(assetsPaths, scenePath);
             }
             
             if (GraphicsSettings.defaultRenderPipeline != null)
             {
                 var defaultRenderPipelineAssetPath = AssetDatabase.GetAssetPath(GraphicsSettings.defaultRenderPipeline);
-                AddAssetWithDependencies(assetPaths, defaultRenderPipelineAssetPath);
+                AddAssetWithDependencies(assetsPaths, defaultRenderPipelineAssetPath);
             }
 
             for (var qualityLevel = 0; qualityLevel < QualitySettings.names.Length; qualityLevel++)
@@ -90,20 +93,31 @@ namespace PLUME.Editor
                 var qualityLevelRenderPipeline = QualitySettings.GetRenderPipelineAssetAt(qualityLevel);
                 if (qualityLevelRenderPipeline == null) continue;
                 var qualityLevelRenderPipelineAssetPath = AssetDatabase.GetAssetPath(qualityLevelRenderPipeline);
-                AddAssetWithDependencies(assetPaths, qualityLevelRenderPipelineAssetPath);
+                AddAssetWithDependencies(assetsPaths, qualityLevelRenderPipelineAssetPath);
             }
-
-            var assetBundleBuild = new AssetBundleBuild
+            
+            var assetsBuild = new AssetBundleBuild
             {
-                assetBundleName = "plume_asset_bundle_windows",
-                assetNames = assetPaths.ToArray()
+                assetBundleName = "plume_assets",
+                assetNames = assetsPaths.ToArray()
             };
-
-            if (!Directory.Exists(Application.streamingAssetsPath))
-                Directory.CreateDirectory(Application.streamingAssetsPath);
-
-            BuildPipeline.BuildAssetBundles(Application.streamingAssetsPath, new[] { assetBundleBuild }, BuildAssetBundleOptions.StrictMode, BuildTarget.StandaloneWindows64);
-            Debug.Log("Finished building asset bundle.");
+            
+            var scenesBuild = new AssetBundleBuild
+            {
+                assetBundleName = "plume_scenes",
+                assetNames = scenePaths.ToArray()
+            };
+            
+            var outputPath = Path.Join(Application.dataPath, "AssetBundles/plume_bundle/");
+            var zipOutputPath = Path.Join(Application.streamingAssetsPath, "plume_bundle.zip");
+            var builds = new[] { assetsBuild, scenesBuild };
+            const BuildAssetBundleOptions options = BuildAssetBundleOptions.ChunkBasedCompression;
+            const BuildTarget target = BuildTarget.StandaloneWindows;
+            
+            CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, options, target);
+            
+            File.Delete(zipOutputPath);
+            ZipFile.CreateFromDirectory(outputPath, zipOutputPath, CompressionLevel.Optimal, false);
         }
 
         private static bool CanAddAsset(ICollection<string> assetPaths, string assetPath)

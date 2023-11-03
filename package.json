@@ -10,7 +10,8 @@
   "licensesUrl": "",
   "dependencies": {
     "com.unity.test-framework": "2.0.1-pre.18",
-    "fr.liris.unity-runtime-guid": "git+https://github.com/liris-xr/Unity-Runtime-GUID.git"
+    "fr.liris.unity-runtime-guid": "git+https://github.com/liris-xr/Unity-Runtime-GUID.git",
+    "com.unity.scriptablebuildpipeline": "2.0.1"
   },
   "keywords": [
     "Behavior",

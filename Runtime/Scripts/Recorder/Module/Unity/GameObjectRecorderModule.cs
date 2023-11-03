@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using PLUME.Guid;
 using PLUME.Sample.Unity;
 using UnityEngine;
+using UnityRuntimeGuid;
 
 namespace PLUME
 {
@@ -42,9 +42,9 @@ namespace PLUME
 
             var goInstanceId = go.GetInstanceID();
 
-            var guidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(go.scene);
-            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreate(go);
-            var transformGuidRegistryEntry = guidRegistry.GetOrCreate(go.transform);
+            var guidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
+            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go);
+            var transformGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go.transform);
 
             _recordedGameObjects.Add(goInstanceId, go);
             _cachedGameObjectIdentifiers.Add(goInstanceId, gameObjectGuidRegistryEntry.guid);

@@ -1,9 +1,9 @@
 ﻿using System;
-using PLUME.Guid;
 using PLUME.Sample.Common;
 using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.URP;
 using UnityEngine;
+using UnityRuntimeGuid;
 using Bounds = PLUME.Sample.Common.Bounds;
 using CameraClearFlags = PLUME.Sample.Unity.CameraClearFlags;
 using CameraType = PLUME.Sample.Unity.CameraType;
@@ -32,8 +32,8 @@ namespace PLUME
     {
         public static AssetIdentifier ToAssetIdentifierPayload(this Object obj)
         {
-            var guidRegistry = AssetsGuidRegistry.Instance;
-            var guidRegistryEntry = guidRegistry.GetOrCreate(obj);
+            var guidRegistry = AssetsGuidRegistry.GetOrCreate();
+            var guidRegistryEntry = guidRegistry.GetOrCreateEntry(obj);
 
             return new AssetIdentifier
             {
@@ -44,8 +44,8 @@ namespace PLUME
 
         public static ComponentIdentifier ToIdentifierPayload(this Component component)
         {
-            var guidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(component.gameObject.scene);
-            var guidRegistryEntry = guidRegistry.GetOrCreate(component);
+            var guidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
+            var guidRegistryEntry = guidRegistry.GetOrCreateEntry(component);
 
             return new ComponentIdentifier
             {
@@ -56,9 +56,9 @@ namespace PLUME
 
         public static TransformGameObjectIdentifier ToIdentifierPayload(this GameObject go)
         {
-            var guidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(go.scene);
-            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreate(go);
-            var transformGuidRegistryEntry = guidRegistry.GetOrCreate(go.transform);
+            var guidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
+            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go);
+            var transformGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go.transform);
 
             return new TransformGameObjectIdentifier
             {

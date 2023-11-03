@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
-using PLUME.Guid;
 using PLUME.Sample.Unity;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
+using UnityRuntimeGuid;
 
 namespace PLUME
 {
@@ -80,9 +78,9 @@ namespace PLUME
             if (obj is not (Transform t and not RectTransform)) return;
             if (_recordedTransforms.ContainsKey(t.GetInstanceID())) return;
             
-            var guidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(t.gameObject.scene);
-            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreate(t.gameObject);
-            var transformGuidRegistryEntry = guidRegistry.GetOrCreate(t.gameObject.transform);
+            var guidRegistry = SceneGuidRegistry.GetOrCreate(t.gameObject.scene);
+            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreateEntry(t.gameObject);
+            var transformGuidRegistryEntry = guidRegistry.GetOrCreateEntry(t.gameObject.transform);
             var transformId = t.GetInstanceID();
             
             _recordedTransforms.Add(transformId, t);

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using PLUME.Guid;
 using PLUME.Sample.Unity;
 using UnityEngine;
+using UnityRuntimeGuid;
 
 namespace PLUME
 {
@@ -74,7 +74,7 @@ namespace PLUME
                 GateFit = camera.gateFit.ToPayload(),
                 Rect = camera.rect.ToPayload(),
                 PixelRect = camera.pixelRect.ToPayload(),
-                TargetTextureId = camera.targetTexture == null ? "" : SceneObjectsGuidRegistry.GetOrCreateInScene(camera.gameObject.scene).GetOrCreate(camera.targetTexture).guid,
+                TargetTextureId = camera.targetTexture == null ? "" : SceneGuidRegistry.GetOrCreate(camera.gameObject.scene).GetOrCreateEntry(camera.targetTexture).guid,
                 TargetDisplay = camera.targetDisplay,
                 WorldToCameraMatrix = camera.worldToCameraMatrix.ToPayload(),
                 ProjectionMatrix = camera.projectionMatrix.ToPayload(),

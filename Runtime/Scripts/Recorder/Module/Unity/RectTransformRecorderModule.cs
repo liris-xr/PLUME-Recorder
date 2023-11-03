@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using PLUME.Guid;
 using PLUME.Sample.Unity;
 using UnityEngine;
+using UnityRuntimeGuid;
 using Quaternion = PLUME.Sample.Common.Quaternion;
 using Vector2 = PLUME.Sample.Common.Vector2;
 using Vector3 = PLUME.Sample.Common.Vector3;
@@ -32,9 +32,9 @@ namespace PLUME
             if (obj is not RectTransform rectTransform) return;
             if (_recordedRectTransforms.ContainsKey(rectTransform.GetInstanceID())) return;
             
-            var guidRegistry = SceneObjectsGuidRegistry.GetOrCreateInScene(rectTransform.gameObject.scene);
-            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreate(rectTransform.gameObject);
-            var transformGuidRegistryEntry = guidRegistry.GetOrCreate(rectTransform.gameObject.transform);
+            var guidRegistry = SceneGuidRegistry.GetOrCreate(rectTransform.gameObject.scene);
+            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreateEntry(rectTransform.gameObject);
+            var transformGuidRegistryEntry = guidRegistry.GetOrCreateEntry(rectTransform.gameObject.transform);
             var rectTransformInstanceId = rectTransform.GetInstanceID();
             
             _recordedRectTransforms.Add(rectTransformInstanceId, rectTransform);

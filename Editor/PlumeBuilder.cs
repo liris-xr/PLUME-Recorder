@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using NUnit.Framework;
 using UnityEditor;
-using UnityEditor.Animations;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityRuntimeGuid.Editor;
 
 namespace PLUME.Editor
 {
@@ -20,11 +20,24 @@ namespace PLUME.Editor
             EditorApplication.playModeStateChanged += state =>
             {
                 if (state != PlayModeStateChange.ExitingEditMode) return;
+                
                 SetBatchingForPlatform(EditorUserBuildSettings.activeBuildTarget, 0, 0);
+                
+                var activeScene = SceneManager.GetActiveScene();
+                EditorSceneManager.MarkSceneDirty(activeScene);
+                EditorSceneManager.SaveScene(activeScene);
+
+                // Update the registries when entering play mode in the Editor
+                GuidRegistryUpdater.UpdateAssetsGuidRegistry(GuidRegistryUpdater.GetAllScenePaths(true));
+                GuidRegistryUpdater.UpdateScenesGuidRegistry(GuidRegistryUpdater.GetAllScenePaths(true));
             };
             
             BuildPlayerWindow.RegisterBuildPlayerHandler(buildPlayerOptions =>
             {
+                // Update the registries when building the application
+                GuidRegistryUpdater.UpdateAssetsGuidRegistry(GuidRegistryUpdater.GetAllScenePaths(false));
+                GuidRegistryUpdater.UpdateScenesGuidRegistry(GuidRegistryUpdater.GetAllScenePaths(false));
+                
                 SetBatchingForPlatform(buildPlayerOptions.target, 0, 0);
                 BuildAssetBundle();
                 BuildPlayerWindow.DefaultBuildMethods.BuildPlayer(buildPlayerOptions);

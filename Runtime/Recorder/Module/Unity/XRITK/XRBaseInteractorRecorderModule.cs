@@ -9,8 +9,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace PLUME
 {
 #if !XRITK_ENABLED
-    public class XRBaseInteractorRecorderModule : MonoBehaviour
+    public class XRBaseInteractorRecorderModule : RecorderModule
     {
+        protected override void ResetCache() {}
     }
 #else
     public class XRBaseInteractorRecorderModule : RecorderModule, IStartRecordingObjectEventReceiver,

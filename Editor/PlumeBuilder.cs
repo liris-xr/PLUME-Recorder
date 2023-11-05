@@ -113,7 +113,8 @@ namespace PLUME.Editor
             var builds = new[] { assetsBuild, scenesBuild };
             const BuildAssetBundleOptions options = BuildAssetBundleOptions.ChunkBasedCompression;
             const BuildTarget target = BuildTarget.StandaloneWindows;
-            
+
+            Directory.CreateDirectory(outputPath);
             CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, options, target);
             
             File.Delete(zipOutputPath);

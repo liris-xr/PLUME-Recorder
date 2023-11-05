@@ -171,7 +171,7 @@ namespace PLUME
             _thread.Join();
 
             var fileInfo = new FileInfo(_path);
-            Debug.Log("Final file size: " + GetSizeString(fileInfo.Length));
+            Debug.LogFormat("Finished writing record at {0} ({1})", _path, GetSizeString(fileInfo.Length));
         }
 
         public void Dispose()

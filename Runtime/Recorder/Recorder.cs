@@ -29,7 +29,7 @@ namespace PLUME
         
         public string recordDirectory;
         public string recordPrefix = "record";
-        public string recordIdentifier = System.Guid.NewGuid().ToString();
+        public string recordIdentifier = Guid.NewGuid().ToString();
         
         public bool autoStart = true;
         public bool enableSamplePooling = true;
@@ -79,13 +79,13 @@ namespace PLUME
             base.Awake();
             
             _startRecordingEventReceivers =
-                FindObjectsOfType<Object>().OfType<IStartRecordingEventReceiver>().ToArray();
+                FindObjectsOfType<Object>().OfType<IStartRecordingEventReceiver>().OrderBy(r => r.ExecutionPriority()).ToArray();
             _stopRecordingEventReceivers =
-                FindObjectsOfType<Object>().OfType<IStopRecordingEventReceiver>().ToArray();
+                FindObjectsOfType<Object>().OfType<IStopRecordingEventReceiver>().OrderBy(r => r.ExecutionPriority()).ToArray();
             _startRecordingObjectEventReceivers =
-                FindObjectsOfType<Object>().OfType<IStartRecordingObjectEventReceiver>().ToArray();
+                FindObjectsOfType<Object>().OfType<IStartRecordingObjectEventReceiver>().OrderBy(r => r.ExecutionPriority()).ToArray();
             _stopRecordingObjectEventReceivers =
-                FindObjectsOfType<Object>().OfType<IStopRecordingObjectEventReceiver>().ToArray();
+                FindObjectsOfType<Object>().OfType<IStopRecordingObjectEventReceiver>().OrderBy(r => r.ExecutionPriority()).ToArray();
 
             recordDirectory = Application.persistentDataPath;
         }

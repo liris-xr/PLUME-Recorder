@@ -9,8 +9,9 @@ using UnityEngine.Rendering.Universal;
 namespace PLUME.URP
 {
 #if !URP_ENABLED
-    public class AdditionalCameraDataRecorderModule : MonoBehaviour
+    public class AdditionalCameraDataRecorderModule : RecorderModule
     {
+        protected override void ResetCache() {}
     }
 #else
     public class AdditionalCameraDataRecorderModule : RecorderModule,
@@ -58,7 +59,7 @@ namespace PLUME.URP
                 RequiresDepthTexture = camData.requiresDepthTexture,
                 RequiresColorTexture = camData.requiresColorTexture,
                 VolumeLayerMask = camData.volumeLayerMask,
-                VolumeTriggerId = camData.volumeTrigger.ToIdentifierPayload(),
+                VolumeTriggerId = camData.volumeTrigger == null ? null : camData.volumeTrigger.ToIdentifierPayload(),
                 RenderPostProcessing = camData.renderPostProcessing,
                 Antialiasing = camData.antialiasing.ToPayload(),
                 AntialiasingQuality = camData.antialiasingQuality.ToPayload(),

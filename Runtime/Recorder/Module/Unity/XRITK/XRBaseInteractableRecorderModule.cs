@@ -10,7 +10,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace PLUME.XRITK
 {
 #if !XRITK_ENABLED
-    public class XRBaseInteractableRecorderModule : MonoBehaviour {}
+    public class XRBaseInteractableRecorderModule : RecorderModule {
+        protected override void ResetCache() {}
+    }
 #else
     public class XRBaseInteractableRecorderModule : RecorderModule, IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver

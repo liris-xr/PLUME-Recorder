@@ -3,6 +3,7 @@ using PLUME.Sample.Common;
 using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.URP;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityRuntimeGuid;
 using Bounds = PLUME.Sample.Common.Bounds;
 using CameraClearFlags = PLUME.Sample.Unity.CameraClearFlags;
@@ -16,6 +17,7 @@ using LightShadowCasterMode = PLUME.Sample.Unity.LightShadowCasterMode;
 using LightShadows = PLUME.Sample.Unity.LightShadows;
 using LightShape = PLUME.Sample.Unity.LightShape;
 using LightType = PLUME.Sample.Unity.LightType;
+using LoadSceneMode = PLUME.Sample.Unity.LoadSceneMode;
 using Matrix4x4 = PLUME.Sample.Common.Matrix4x4;
 using Object = UnityEngine.Object;
 using Quaternion = PLUME.Sample.Common.Quaternion;
@@ -42,6 +44,16 @@ namespace PLUME
             };
         }
 
+        public static SceneIdentifier ToIdentifierPayload(this Scene scene)
+        {
+            var guidRegistry = SceneGuidRegistry.GetOrCreate(scene);
+
+            return new SceneIdentifier
+            {
+                Id = guidRegistry.SceneGuid
+            };
+        }
+        
         public static ComponentIdentifier ToIdentifierPayload(this Component component)
         {
             var guidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
@@ -497,6 +509,16 @@ namespace PLUME
                 StereoTargetEyeMask.Right => CameraStereoTargetEyeMask.Right,
                 _ => throw new ArgumentOutOfRangeException(nameof(stereoTargetEyeMask), stereoTargetEyeMask,
                     null)
+            };
+        }
+        
+        public static LoadSceneMode ToPayload(this UnityEngine.SceneManagement.LoadSceneMode loadSceneMode)
+        {
+            return loadSceneMode switch
+            {
+                UnityEngine.SceneManagement.LoadSceneMode.Additive => LoadSceneMode.Additive,
+                UnityEngine.SceneManagement.LoadSceneMode.Single => LoadSceneMode.Single,
+                _ => throw new ArgumentOutOfRangeException(nameof(loadSceneMode), loadSceneMode,null)
             };
         }
 

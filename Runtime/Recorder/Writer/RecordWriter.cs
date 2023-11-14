@@ -23,7 +23,7 @@ namespace PLUME
 
         private readonly CompressionLevel _compressionLevel;
         
-        private readonly ConcurrentSortedList<SampleKey, UnpackedSample> _unpackedSamples;
+        private readonly ConcurrentSortedList<UnpackedSample> _unpackedSamples;
 
         private bool _closed;
 
@@ -48,7 +48,7 @@ namespace PLUME
             _bufferSize = bufferSize;
             _compressionLevel = compressionLevel;
 
-            _unpackedSamples = new ConcurrentSortedList<SampleKey, UnpackedSample>();
+            _unpackedSamples = new ConcurrentSortedList<UnpackedSample>(new UnpackedSampleComparer());
 
             _thread = new Thread(Run);
             _thread.Start();
@@ -74,13 +74,12 @@ namespace PLUME
 
                 while (true)
                 {
-                    var nullablePeekEntry = _unpackedSamples.Peek();
+                    var peekEntry = _unpackedSamples.Peek();
 
-                    if (!nullablePeekEntry.HasValue)
+                    if (peekEntry == null)
                         break;
 
-                    var peekEntry = nullablePeekEntry.Value;
-                    var peekEntryHeader = peekEntry.Value.Header;
+                    var peekEntryHeader = peekEntry.Header;
                     
                     var shouldWriteSample = _stopThread || peekEntryHeader == null ||
                                             _recorderClock.GetTimeInNanoseconds() > SampleWriteDelay
@@ -92,7 +91,7 @@ namespace PLUME
                     
                     _unpackedSamples.TryTake(out var entry);
 
-                    var unpackedSample = entry.Value;
+                    var unpackedSample = entry;
                     PackedSample packedSample;
                     
                     if (unpackedSample.Header != null)
@@ -156,8 +155,7 @@ namespace PLUME
             if (_closed)
                 throw new Exception("Can't record samples when the record writer is closed.");
 
-            var sampleKey = unpackedSample.Header == null ? new SampleKey(null) : new SampleKey(new SampleHeaderKey(unpackedSample.Header.Time, unpackedSample.Header.Seq));
-            _unpackedSamples.Add(sampleKey, unpackedSample);
+            _unpackedSamples.Add(unpackedSample);
         }
 
         public void Close()

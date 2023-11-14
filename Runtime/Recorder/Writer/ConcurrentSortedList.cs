@@ -5,17 +5,27 @@ using System.Linq;
 
 namespace PLUME
 {
-    public class ConcurrentSortedList<TK, TV> : IEnumerable
+    public class ConcurrentSortedList<T> : IEnumerable
     {
         public bool IsSynchronized => true;
         public object SyncRoot { get; } = new();
-        private readonly SortedList<TK, TV> _sortedList = new();
+        private readonly List<T> _list = new();
+        private readonly IComparer<T> _comparer;
 
-        public IEnumerator<TV> GetEnumerator()
+        public ConcurrentSortedList()
+        {
+        }
+
+        public ConcurrentSortedList(IComparer<T> comparer)
+        {
+            _comparer = comparer;
+        }
+        
+        public IEnumerator<T> GetEnumerator()
         {
             lock (SyncRoot)
             {
-                return _sortedList.Values.GetEnumerator();
+                return _list.GetEnumerator();
             }
         }
 
@@ -23,7 +33,7 @@ namespace PLUME
         {
             lock (SyncRoot)
             {
-                return _sortedList.Values.GetEnumerator();
+                return _list.GetEnumerator();
             }
         }
 
@@ -31,7 +41,7 @@ namespace PLUME
         {
             lock (SyncRoot)
             {
-                _sortedList.Values.CopyTo(array as TV[] ?? Array.Empty<TV>(), index);
+                _list.CopyTo(array as T[] ?? Array.Empty<T>(), index);
             }
         }
 
@@ -41,16 +51,16 @@ namespace PLUME
             {
                 lock (SyncRoot)
                 {
-                    return _sortedList.Count;
+                    return _list.Count;
                 }
             }
         }
 
-        public KeyValuePair<TK, TV>? Peek()
+        public T Peek()
         {
             lock (SyncRoot)
             {
-                return _sortedList.Count == 0 ? null : _sortedList.FirstOrDefault();
+                return _list.FirstOrDefault();
             }
         }
 
@@ -58,45 +68,46 @@ namespace PLUME
         {
             lock (SyncRoot)
             {
-                return _sortedList.Count == 0;
+                return _list.Count == 0;
             }
         }
 
-        public bool Peek(out KeyValuePair<TK, TV> sample)
+        public bool Peek(out T sample)
         {
             lock (SyncRoot)
             {
-                if (_sortedList.Count == 0)
+                if (_list.Count == 0)
                 {
                     sample = default;
                     return false;
                 }
 
-                sample = _sortedList.First();
+                sample = _list.First();
                 return true;
             }
         }
 
-        public void Add(TK key, TV item)
+        public void Add(T item)
         {
             lock (SyncRoot)
             {
-                _sortedList.Add(key, item);
+                var idx = _comparer == null ? _list.BinarySearch(item) : _list.BinarySearch(item, _comparer);
+                _list.Insert(idx >= 0 ? idx : ~idx, item);
             }
         }
 
-        public bool TryTake(out KeyValuePair<TK, TV> item)
+        public bool TryTake(out T item)
         {
             lock (SyncRoot)
             {
-                if (_sortedList.Count == 0)
+                if (_list.Count == 0)
                 {
                     item = default;
                     return false;
                 }
 
-                item = _sortedList.ElementAt(0);
-                _sortedList.RemoveAt(0);
+                item = _list.ElementAt(0);
+                _list.RemoveAt(0);
                 return true;
             }
         }

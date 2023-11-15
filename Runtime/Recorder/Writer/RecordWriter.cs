@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Threading;
@@ -156,6 +157,14 @@ namespace PLUME
                 throw new Exception("Can't record samples when the record writer is closed.");
 
             _unpackedSamples.Add(unpackedSample);
+        }
+        
+        public void WriteAll(IEnumerable<UnpackedSample> unpackedSamples)
+        {
+            if (_closed)
+                throw new Exception("Can't record samples when the record writer is closed.");
+
+            _unpackedSamples.AddRange(unpackedSamples);
         }
 
         public void Close()

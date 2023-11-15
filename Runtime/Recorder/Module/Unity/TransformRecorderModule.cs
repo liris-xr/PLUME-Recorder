@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Google.Protobuf;
+using PLUME.Sample;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityRuntimeGuid;
@@ -190,6 +192,8 @@ namespace PLUME
             // This can happen if the object is not destroyed by calling Destroy or DestroyImmediate (in Editor or internal C++ engine)
             var nullTransformInstanceIds = new List<int>();
 
+            var recordedSamples = new List<UnpackedSample>();
+
             foreach (var (transformId, t) in _recordedTransforms)
             {
                 if (t == null)
@@ -255,8 +259,8 @@ namespace PLUME
                         positionSample.WorldPosition.X = position.x;
                         positionSample.WorldPosition.Y = position.y;
                         positionSample.WorldPosition.Z = position.z;
-                        
-                        recorder.RecordSampleStamped(positionSample);
+
+                        recordedSamples.Add(recorder.GetUnpackedSampleStamped(positionSample));
 
                         rotationSample.Id.TransformId = _cachedTransformIdentifiers[transformId];
                         rotationSample.Id.GameObjectId = _cachedGameObjectIdentifiers[transformId];
@@ -269,7 +273,7 @@ namespace PLUME
                         rotationSample.WorldRotation.Z = rotation.z;
                         rotationSample.WorldRotation.W = rotation.w;
 
-                        recorder.RecordSampleStamped(rotationSample);
+                        recordedSamples.Add(recorder.GetUnpackedSampleStamped(rotationSample));
 
                         _lastPosition[transformId] = position;
                         _lastRotation[transformId] = rotation;
@@ -301,7 +305,7 @@ namespace PLUME
                         positionSample.WorldPosition.Y = position.y;
                         positionSample.WorldPosition.Z = position.z;
 
-                        recorder.RecordSampleStamped(positionSample);
+                        recordedSamples.Add(recorder.GetUnpackedSampleStamped(positionSample));
                         
                         _lastPosition[transformId] = position;
                     }
@@ -334,7 +338,7 @@ namespace PLUME
                         rotationSample.WorldRotation.Z = rotation.z;
                         rotationSample.WorldRotation.W = rotation.w;
 
-                        recorder.RecordSampleStamped(rotationSample);
+                        recordedSamples.Add(recorder.GetUnpackedSampleStamped(rotationSample));
 
                         _lastRotation[transformId] = rotation;
                     }
@@ -366,7 +370,7 @@ namespace PLUME
                         scaleSample.WorldScale.Y = scale.y;
                         scaleSample.WorldScale.Z = scale.z;
 
-                        recorder.RecordSampleStamped(scaleSample);
+                        recordedSamples.Add(recorder.GetUnpackedSampleStamped(scaleSample));
                         
                         _lastScale[transformId] = scale;
                     }
@@ -379,10 +383,12 @@ namespace PLUME
                 if (hasSiblingIndexChanged)
                 {
                     var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(t);
-                    recorder.RecordSampleStamped(transformUpdateSiblingIndex);
+                    recordedSamples.Add(recorder.GetUnpackedSampleStamped(transformUpdateSiblingIndex));
                     _lastSiblingIndex[transformId] = t.GetSiblingIndex();
                 }
             }
+            
+            recorder.RecordUnpackedSamples(recordedSamples);
 
             foreach (var nullTransformInstanceId in nullTransformInstanceIds)
             {

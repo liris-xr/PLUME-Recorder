@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using PLUME.Sample;
 
 namespace PLUME
@@ -10,66 +12,108 @@ namespace PLUME
     {
         private readonly List<UnpackedSample> _list = new();
         private readonly IComparer<UnpackedSample> _comparer = new UnpackedSampleComparer();
+        private object _lock = new();
 
         public IEnumerator<UnpackedSample> GetEnumerator()
         {
-            return _list.GetEnumerator();
+            lock (_lock)
+            {
+                return _list.GetEnumerator();
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _list.GetEnumerator();
+            lock (_lock)
+            {
+                return _list.GetEnumerator();
+            }
         }
 
         public void CopyTo(Array array, int index)
         {
-            _list.CopyTo(array as UnpackedSample[] ?? Array.Empty<UnpackedSample>(), index);
+            lock (_lock)
+            {
+                _list.CopyTo(array as UnpackedSample[] ?? Array.Empty<UnpackedSample>(), index);
+            }
         }
 
         public int Count
         {
-            get { return _list.Count; }
+            get
+            {
+                lock (_lock)
+                {
+                    return _list.Count;
+                }
+            }
         }
 
         public UnpackedSample Peek()
         {
-            return _list.FirstOrDefault();
+            lock (_lock)
+            {
+                return _list.FirstOrDefault();
+            }
         }
 
         public bool IsEmpty()
         {
-            return _list.Count == 0;
+            lock (_lock)
+            {
+                return _list.Count == 0;
+            }
         }
 
         public bool Peek(out UnpackedSample sample)
         {
-            if (_list.Count == 0)
+            lock (_lock)
             {
-                sample = default;
-                return false;
+                if (_list.Count == 0)
+                {
+                    sample = default;
+                    return false;
+                }
+                sample = _list.First();
+                return true;
             }
-
-            sample = _list.First();
-            return true;
         }
 
         public void Add(UnpackedSample sample)
         {
-            var idx = _comparer == null ? _list.BinarySearch(sample) : _list.BinarySearch(sample, _comparer);
-            _list.Insert(idx >= 0 ? idx : ~idx, sample);
+            lock (_lock)
+            {
+                var idx = _list.BinarySearch(sample, _comparer);
+                _list.Insert(idx >= 0 ? idx : ~idx, sample);
+            }
+        }
+
+        public void AddRange(IEnumerable<UnpackedSample> samples)
+        {
+            lock (_lock)
+            {
+                foreach (var sample in samples)
+                {
+                    var idx = _list.BinarySearch(sample, _comparer);
+                    _list.Insert(idx >= 0 ? idx : ~idx, sample);
+                }
+            }
         }
 
         public bool TryTake(out UnpackedSample sample)
         {
-            if (_list.Count == 0)
+            lock (_lock)
             {
-                sample = default;
-                return false;
-            }
+                if (_list.Count == 0)
+                {
+                    sample = default;
+                    return false;
+                }
 
-            sample = _list.ElementAt(0);
-            _list.RemoveAt(0);
-            return true;
+                sample = _list.ElementAt(0);
+                _list.RemoveAt(0);
+                return true;
+            }
         }
     }
 }

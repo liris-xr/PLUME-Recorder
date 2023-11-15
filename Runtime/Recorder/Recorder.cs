@@ -289,17 +289,17 @@ namespace PLUME
                 return false;
             }
         }
-        
-        public void RecordSampleStamped(IMessage samplePayload, long timestampOffset = 0)
+
+        public UnpackedSample GetUnpackedSampleStamped(IMessage samplePayload, long timestampOffset = 0)
         {
             if (!IsRecording)
-                throw new Exception($"Recording sample but {nameof(Recorder)} is not running.");
+                throw new Exception($"Retrieving unpacked sample but {nameof(Recorder)} is not running.");
             
             var time = (long) Clock.GetTimeInNanoseconds() + timestampOffset;
 
             if (time < 0)
                 time = 0;
-
+            
             UnpackedSample unpackedSampleStamped;
             
             if (enableSamplePooling)
@@ -315,6 +315,25 @@ namespace PLUME
             unpackedSampleStamped.Header.Seq = _nextProtobufSampleSeq++;
             unpackedSampleStamped.Header.Time = (ulong) time;
             unpackedSampleStamped.Payload = samplePayload;
+            return unpackedSampleStamped;
+        }
+
+        public void RecordUnpackedSample(UnpackedSample unpackedSample)
+        {
+            _recordWriter.Write(unpackedSample);
+        }
+        
+        public void RecordUnpackedSamples(IEnumerable<UnpackedSample> unpackedSamples)
+        {
+            _recordWriter.WriteAll(unpackedSamples);
+        }
+
+        public void RecordSampleStamped(IMessage samplePayload, long timestampOffset = 0)
+        {
+            if (!IsRecording)
+                throw new Exception($"Recording sample but {nameof(Recorder)} is not running.");
+
+            var unpackedSampleStamped = GetUnpackedSampleStamped(samplePayload, timestampOffset);
             _recordWriter.Write(unpackedSampleStamped);
         }
         

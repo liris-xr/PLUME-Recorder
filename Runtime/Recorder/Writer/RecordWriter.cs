@@ -23,7 +23,7 @@ namespace PLUME
 
         private readonly CompressionLevel _compressionLevel;
         
-        private readonly ConcurrentSortedList<UnpackedSample> _unpackedSamples;
+        private readonly UnpackedSampleSortedList _unpackedSamples;
 
         private bool _closed;
 
@@ -48,7 +48,7 @@ namespace PLUME
             _bufferSize = bufferSize;
             _compressionLevel = compressionLevel;
 
-            _unpackedSamples = new ConcurrentSortedList<UnpackedSample>(new UnpackedSampleComparer());
+            _unpackedSamples = new UnpackedSampleSortedList();
 
             _thread = new Thread(Run);
             _thread.Start();

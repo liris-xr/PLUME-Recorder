@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using PLUME.Sample;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityRuntimeGuid;
@@ -163,6 +164,11 @@ namespace PLUME
             // Keep track of any transforms destroyed (ref == null) that were not picked up by the system.
             // This can happen if the object is not destroyed by calling Destroy or DestroyImmediate (in Editor or internal C++ engine)
             var nullTransformInstanceIds = new List<int>();
+            var recordedSamples = new List<UnpackedSample>();
+            UnityEngine.Vector3 position;
+            UnityEngine.Vector3 localPosition;
+            UnityEngine.Quaternion rotation;
+            UnityEngine.Quaternion localRotation;
 
             foreach (var (rectTransformInstanceId, rt) in _recordedRectTransforms)
             {
@@ -193,9 +199,9 @@ namespace PLUME
                         recorder.RecordSampleStamped(transformUpdateParent);
                     }
 
-                    rt.GetPositionAndRotation(out var position, out var rotation);
+                    rt.GetPositionAndRotation(out position, out rotation);
                     var lossyScale = rt.lossyScale;
-                    rt.GetLocalPositionAndRotation(out var localPosition, out var localRotation);
+                    rt.GetLocalPositionAndRotation(out localPosition, out localRotation);
                     var localScale = rt.localScale;
                     var sizeDelta = rt.sizeDelta;
                     var anchorMin = rt.anchorMin;
@@ -267,12 +273,12 @@ namespace PLUME
                         Pivot = new Vector2 {X = pivot.x, Y = pivot.y}
                     };
 
-                    recorder.RecordSampleStamped(rectTransformUpdatePosition);
-                    recorder.RecordSampleStamped(rectTransformUpdateRotation);
-                    recorder.RecordSampleStamped(rectTransformUpdateScale);
-                    recorder.RecordSampleStamped(rectTransformUpdateAnchors);
-                    recorder.RecordSampleStamped(rectTransformUpdateSize);
-                    recorder.RecordSampleStamped(rectTransformUpdatePivot);
+                    recordedSamples.Add(recorder.GetUnpackedSampleStamped(rectTransformUpdatePosition));
+                    recordedSamples.Add(recorder.GetUnpackedSampleStamped(rectTransformUpdateRotation));
+                    recordedSamples.Add(recorder.GetUnpackedSampleStamped(rectTransformUpdateScale));
+                    recordedSamples.Add(recorder.GetUnpackedSampleStamped(rectTransformUpdateAnchors));
+                    recordedSamples.Add(recorder.GetUnpackedSampleStamped(rectTransformUpdateSize));
+                    recordedSamples.Add(recorder.GetUnpackedSampleStamped(rectTransformUpdatePivot));
                     rt.hasChanged = false;
                 }
 
@@ -282,9 +288,11 @@ namespace PLUME
                 {
                     _lastSiblingIndex[rectTransformInstanceId] = rt.GetSiblingIndex();
                     var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(rt);
-                    recorder.RecordSampleStamped(transformUpdateSiblingIndex);
+                    recordedSamples.Add(recorder.GetUnpackedSampleStamped(transformUpdateSiblingIndex));
                 }
             }
+            
+            recorder.RecordUnpackedSamples(recordedSamples);
 
             foreach (var nullTransformInstanceId in nullTransformInstanceIds)
             {

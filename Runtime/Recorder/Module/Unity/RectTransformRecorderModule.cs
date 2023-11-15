@@ -66,7 +66,11 @@ namespace PLUME
             }};
             var rectTransformUpdateParent = CreateTransformUpdateParent(rt);
             var transformUpdateSiblingIndex = CreateTransformUpdateSiblingIndex(rt);
-
+            
+            recorder.RecordSampleStamped(rectTransformCreate);
+            recorder.RecordSampleStamped(rectTransformUpdateParent);
+            recorder.RecordSampleStamped(transformUpdateSiblingIndex);
+            
             rt.GetPositionAndRotation(out var position, out var rotation);
             var lossyScale = rt.lossyScale;
             rt.GetLocalPositionAndRotation(out var localPosition, out var localRotation);

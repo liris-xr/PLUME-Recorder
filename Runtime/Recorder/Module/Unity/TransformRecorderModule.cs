@@ -3,6 +3,7 @@ using Google.Protobuf;
 using PLUME.Sample;
 using PLUME.Sample.Unity;
 using UnityEngine;
+using UnityEngine.Profiling;
 using UnityRuntimeGuid;
 
 namespace PLUME
@@ -35,7 +36,7 @@ namespace PLUME
                 updatePositionSample.WorldPosition = new Sample.Common.Vector3();
                 updatePositionSample.Id = new TransformGameObjectIdentifier();
                 return updatePositionSample;
-            });
+            }, 1000);
 
             _updateRotationPayloadPool = recorder.GetSamplePoolManager().CreateSamplePayloadPool(() =>
             {
@@ -44,7 +45,7 @@ namespace PLUME
                 updateRotationSample.WorldRotation = new Sample.Common.Quaternion();
                 updateRotationSample.Id = new TransformGameObjectIdentifier();
                 return updateRotationSample;
-            });
+            }, 1000);
 
             _updateScalePayloadPool = recorder.GetSamplePoolManager().CreateSamplePayloadPool(() =>
             {
@@ -53,7 +54,7 @@ namespace PLUME
                 updateScaleSample.WorldScale = new Sample.Common.Vector3();
                 updateScaleSample.Id = new TransformGameObjectIdentifier();
                 return updateScaleSample;
-            });
+            }, 1000);
         }
 
         protected override void ResetCache()
@@ -198,6 +199,7 @@ namespace PLUME
             Quaternion rotation;
             Quaternion localRotation;
 
+            Profiler.BeginSample("Loop");
             foreach (var (transformId, t) in _recordedTransforms)
             {
                 if (t == null)
@@ -223,12 +225,14 @@ namespace PLUME
                     if (parentHasChanged)
                     {
                         var transformUpdateParent = CreateTransformUpdateParent(t);
-                        recorder.RecordSampleStamped(transformUpdateParent);
+                        recordedSamples.Add(recorder.GetUnpackedSampleStamped(transformUpdateParent));
                         _lastParentTransformId[transformId] = t.parent == null ? null : t.parent.GetInstanceID();
                     }
                     
+                    Profiler.BeginSample("GetPositionAndRotation");
                     t.GetPositionAndRotation(out position, out rotation);
                     var scale = t.lossyScale;
+                    Profiler.EndSample();
 
                     if (lastPosition != position && lastRotation != rotation)
                     {
@@ -279,25 +283,35 @@ namespace PLUME
 
                         recordedSamples.Add(recorder.GetUnpackedSampleStamped(rotationSample));
 
-                        _lastPosition[transformId] = position;
-                        _lastRotation[transformId] = rotation;
+                        lastPosition.x = position.x;
+                        lastPosition.y = position.y;
+                        lastPosition.z = position.z;
+                        lastRotation.x = lastRotation.x;
+                        lastRotation.y = lastRotation.y;
+                        lastRotation.z = lastRotation.z;
+                        lastRotation.w = lastRotation.w;
                     }
                     else if (lastPosition != position)
                     {
+                        Profiler.BeginSample("PositionChange");
                         localPosition = t.localPosition;
                         
                         TransformUpdatePosition positionSample;
                         
                         if (recorder.enableSamplePooling)
                         {
+                            Profiler.BeginSample("GetFromPool");
                             positionSample = _updatePositionPayloadPool.Get();
+                            Profiler.EndSample();
                         }
                         else
                         {
+                            Profiler.BeginSample("CreateNew");
                             positionSample = new TransformUpdatePosition();
                             positionSample.LocalPosition = new Sample.Common.Vector3();
                             positionSample.WorldPosition = new Sample.Common.Vector3();
                             positionSample.Id = new TransformGameObjectIdentifier();
+                            Profiler.EndSample();
                         }
                         
                         positionSample.Id.TransformId = _cachedTransformIdentifiers[transformId];
@@ -309,9 +323,14 @@ namespace PLUME
                         positionSample.WorldPosition.Y = position.y;
                         positionSample.WorldPosition.Z = position.z;
 
+                        Profiler.BeginSample("CreateSample");
                         recordedSamples.Add(recorder.GetUnpackedSampleStamped(positionSample));
+                        lastPosition.x = position.x;
+                        lastPosition.y = position.y;
+                        lastPosition.z = position.z;
+                        Profiler.EndSample();
                         
-                        _lastPosition[transformId] = position;
+                        Profiler.EndSample();
                     }
                     else if (lastRotation != rotation)
                     {
@@ -344,7 +363,10 @@ namespace PLUME
 
                         recordedSamples.Add(recorder.GetUnpackedSampleStamped(rotationSample));
 
-                        _lastRotation[transformId] = rotation;
+                        lastRotation.x = lastRotation.x;
+                        lastRotation.y = lastRotation.y;
+                        lastRotation.z = lastRotation.z;
+                        lastRotation.w = lastRotation.w;
                     }
 
                     if (lastScale != scale)
@@ -376,7 +398,9 @@ namespace PLUME
 
                         recordedSamples.Add(recorder.GetUnpackedSampleStamped(scaleSample));
                         
-                        _lastScale[transformId] = scale;
+                        lastScale.x = scale.x;
+                        lastScale.y = scale.y;
+                        lastScale.z = scale.z;
                     }
 
                     t.hasChanged = false;
@@ -391,6 +415,7 @@ namespace PLUME
                     _lastSiblingIndex[transformId] = t.GetSiblingIndex();
                 }
             }
+            Profiler.EndSample();
             
             recorder.RecordUnpackedSamples(recordedSamples);
 

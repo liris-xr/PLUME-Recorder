@@ -193,6 +193,10 @@ namespace PLUME
             var nullTransformInstanceIds = new List<int>();
 
             var recordedSamples = new List<UnpackedSample>();
+            Vector3 position;
+            Vector3 localPosition;
+            Quaternion rotation;
+            Quaternion localRotation;
 
             foreach (var (transformId, t) in _recordedTransforms)
             {
@@ -223,12 +227,12 @@ namespace PLUME
                         _lastParentTransformId[transformId] = t.parent == null ? null : t.parent.GetInstanceID();
                     }
                     
-                    t.GetPositionAndRotation(out var position, out var rotation);
+                    t.GetPositionAndRotation(out position, out rotation);
                     var scale = t.lossyScale;
 
                     if (lastPosition != position && lastRotation != rotation)
                     {
-                        t.GetLocalPositionAndRotation(out var localPosition, out var localRotation);
+                        t.GetLocalPositionAndRotation(out localPosition, out localRotation);
                         
                         TransformUpdatePosition positionSample;
                         TransformUpdateRotation rotationSample;
@@ -280,7 +284,7 @@ namespace PLUME
                     }
                     else if (lastPosition != position)
                     {
-                        var localPosition = t.localPosition;
+                        localPosition = t.localPosition;
                         
                         TransformUpdatePosition positionSample;
                         
@@ -311,7 +315,7 @@ namespace PLUME
                     }
                     else if (lastRotation != rotation)
                     {
-                        var localRotation = t.localRotation;   
+                        localRotation = t.localRotation;   
 
                         TransformUpdateRotation rotationSample;
                         

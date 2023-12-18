@@ -112,7 +112,7 @@ namespace PLUME.Editor
             var zipOutputPath = Path.Join(Application.streamingAssetsPath, "plume_bundle.zip");
             var builds = new[] { assetsBuild, scenesBuild };
             const BuildAssetBundleOptions options = BuildAssetBundleOptions.ChunkBasedCompression;
-            const BuildTarget target = BuildTarget.StandaloneWindows;
+            const BuildTarget target = BuildTarget.StandaloneWindows64;
 
             Directory.CreateDirectory(outputPath);
             CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, options, target);

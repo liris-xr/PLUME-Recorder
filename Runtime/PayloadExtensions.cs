@@ -4,6 +4,7 @@ using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.URP;
 using UnityEngine;
 using UnityRuntimeGuid;
+using AnimationCurve = PLUME.Sample.Common.AnimationCurve;
 using Bounds = PLUME.Sample.Common.Bounds;
 using CameraClearFlags = PLUME.Sample.Unity.CameraClearFlags;
 using CameraType = PLUME.Sample.Unity.CameraType;
@@ -25,6 +26,7 @@ using TransparencySortMode = PLUME.Sample.Unity.TransparencySortMode;
 using Vector2 = PLUME.Sample.Common.Vector2;
 using Vector3 = PLUME.Sample.Common.Vector3;
 using Vector4 = PLUME.Sample.Common.Vector4;
+using WeightedMode = PLUME.Sample.Common.WeightedMode;
 
 namespace PLUME
 {
@@ -507,6 +509,40 @@ namespace PLUME
                 UnityEngine.SceneManagement.LoadSceneMode.Additive => LoadSceneMode.Additive,
                 UnityEngine.SceneManagement.LoadSceneMode.Single => LoadSceneMode.Single,
                 _ => throw new ArgumentOutOfRangeException(nameof(loadSceneMode), loadSceneMode,null)
+            };
+        }
+        
+        public static AnimationCurve ToPayload(this UnityEngine.AnimationCurve animationCurve)
+        {
+            var animationCurvePayload = new AnimationCurve();
+
+            foreach (var keyframe in animationCurve.keys)
+            {
+                animationCurvePayload.Keyframes.Add(new AnimationCurveKeyFrame
+                {
+                    Time = keyframe.time,
+                    Value = keyframe.value,
+                    InTangent = keyframe.inTangent,
+                    OutTangent = keyframe.outTangent,
+                    WeightedMode = keyframe.weightedMode.ToPayload(),
+                    InWeight = keyframe.inWeight,
+                    OutWeight = keyframe.outWeight
+                });
+            }
+            
+            return animationCurvePayload;
+        }
+        
+        public static WeightedMode ToPayload(this UnityEngine.WeightedMode weightedMode)
+        {
+            return weightedMode switch
+            {
+                UnityEngine.WeightedMode.None => WeightedMode.None,
+                UnityEngine.WeightedMode.In => WeightedMode.In,
+                UnityEngine.WeightedMode.Out => WeightedMode.Out,
+                UnityEngine.WeightedMode.Both => WeightedMode.Both,
+                _ => throw new ArgumentOutOfRangeException(nameof(weightedMode), weightedMode,
+                    null)
             };
         }
 

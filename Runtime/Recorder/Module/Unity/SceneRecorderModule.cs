@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityRuntimeGuid;
 using LoadSceneMode = UnityEngine.SceneManagement.LoadSceneMode;
 
 namespace PLUME
@@ -87,18 +88,39 @@ namespace PLUME
             RecordChangeActiveScene(newActive);
             _lastActiveScene = newActive;
         }
+        
+        private static int GetSceneRuntimeIndex(Scene scene)
+        {
+            for (var sceneIdx = 0; sceneIdx < SceneManager.sceneCount; ++sceneIdx)
+            {
+                if (SceneManager.GetSceneAt(sceneIdx) == scene)
+                    return sceneIdx;
+            }
 
+            return -1;
+        }
+        
         private void RecordLoadScene(Scene scene, LoadSceneMode mode)
         {
-            var sceneIdentifier = scene.ToIdentifierPayload();
+            var guidRegistry = SceneGuidRegistry.GetOrCreate(scene);
+
+            var sceneRuntimeIndex = GetSceneRuntimeIndex(scene);
+            
+            var sceneIdentifier = new SceneIdentifier
+            {
+                Id = guidRegistry.SceneGuid,
+                BuildIndex = scene.buildIndex,
+                RuntimeIndex = sceneRuntimeIndex.ToString(),
+                Path = scene.path,
+                Mode = mode.ToPayload(),
+                Name = scene.name
+            };
+            
             _cachedSceneIdentifiers[scene] = sceneIdentifier;
             
             var loadSceneSample = new LoadScene
             {
-                Id = sceneIdentifier,
-                Path = scene.path,
-                BuildIndex = scene.buildIndex,
-                LoadMode = mode.ToPayload()
+                Id = sceneIdentifier
             };
 
             Recorder.Instance.RecordSampleStamped(loadSceneSample);
@@ -122,7 +144,7 @@ namespace PLUME
             
             var changeActiveScene = new ChangeActiveScene
             {
-                ActiveSceneId = sceneIdentifier
+                Id = sceneIdentifier
             };
 
             Recorder.Instance.RecordSampleStamped(changeActiveScene);

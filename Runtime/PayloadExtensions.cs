@@ -3,7 +3,6 @@ using PLUME.Sample.Common;
 using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.URP;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityRuntimeGuid;
 using Bounds = PLUME.Sample.Common.Bounds;
 using CameraClearFlags = PLUME.Sample.Unity.CameraClearFlags;
@@ -17,7 +16,6 @@ using LightShadowCasterMode = PLUME.Sample.Unity.LightShadowCasterMode;
 using LightShadows = PLUME.Sample.Unity.LightShadows;
 using LightShape = PLUME.Sample.Unity.LightShape;
 using LightType = PLUME.Sample.Unity.LightType;
-using LoadSceneMode = PLUME.Sample.Unity.LoadSceneMode;
 using Matrix4x4 = PLUME.Sample.Common.Matrix4x4;
 using Object = UnityEngine.Object;
 using Quaternion = PLUME.Sample.Common.Quaternion;
@@ -41,16 +39,6 @@ namespace PLUME
             {
                 Id = guidRegistryEntry.guid,
                 Path = guidRegistryEntry.assetBundlePath
-            };
-        }
-
-        public static SceneIdentifier ToIdentifierPayload(this Scene scene)
-        {
-            var guidRegistry = SceneGuidRegistry.GetOrCreate(scene);
-
-            return new SceneIdentifier
-            {
-                Id = guidRegistry.SceneGuid
             };
         }
         

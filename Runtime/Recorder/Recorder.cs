@@ -31,6 +31,12 @@ namespace PLUME
         public string recordPrefix = "record";
         public string recordIdentifier = Guid.NewGuid().ToString();
         
+        public string RecordFilePath
+        {
+            get;
+            private set;
+        }
+
         public bool autoStart = true;
         public bool enableSamplePooling = true;
 
@@ -112,7 +118,7 @@ namespace PLUME
             if (!Directory.Exists(recordDirectory))
                 Directory.CreateDirectory(recordDirectory);
 
-            var recordFilepath = NewRecordFilePath(recordDirectory, recordPrefix);
+            RecordFilePath = NewRecordFilePath(recordDirectory, recordPrefix);
 
             var createdAt = Timestamp.FromDateTime(DateTime.UtcNow);
             
@@ -124,7 +130,7 @@ namespace PLUME
                 ExtraMetadata = extraMetadata
             };
 
-            _recordWriter = new RecordWriter(Clock, _samplePoolManager, recordFilepath, compressionLevel, recordMetadata, recordWriterBufferSize);
+            _recordWriter = new RecordWriter(Clock, _samplePoolManager, RecordFilePath, compressionLevel, recordMetadata, recordWriterBufferSize);
 
             if (!Stopwatch.IsHighResolution)
             {
@@ -217,6 +223,7 @@ namespace PLUME
             _recordWriter.Close();
 
             IsRecording = false;
+            RecordFilePath = null;
             return true;
         }
 

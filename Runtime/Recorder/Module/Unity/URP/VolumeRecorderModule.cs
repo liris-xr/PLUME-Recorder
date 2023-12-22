@@ -5,6 +5,13 @@ using UnityEngine.Rendering;
 
 namespace PLUME.URP
 {
+#if !URP_ENABLED
+    public class VolumeRecorderModule : RecorderModule
+    {
+        protected override void ResetCache() {}
+    }
+#else    
+
     public class VolumeRecorderModule : RecorderModule,
         IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver
@@ -110,4 +117,5 @@ namespace PLUME.URP
             _lastEnabled.Clear();
         }
     }
+#endif
 }

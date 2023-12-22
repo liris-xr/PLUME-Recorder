@@ -363,10 +363,10 @@ namespace PLUME
 
                         recordedSamples.Add(recorder.GetUnpackedSampleStamped(rotationSample));
 
-                        lastRotation.x = lastRotation.x;
-                        lastRotation.y = lastRotation.y;
-                        lastRotation.z = lastRotation.z;
-                        lastRotation.w = lastRotation.w;
+                        lastRotation.x = rotation.x;
+                        lastRotation.y = rotation.y;
+                        lastRotation.z = rotation.z;
+                        lastRotation.w = rotation.w;
                     }
 
                     if (lastScale != scale)

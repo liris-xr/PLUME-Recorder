@@ -286,10 +286,10 @@ namespace PLUME
                         lastPosition.x = position.x;
                         lastPosition.y = position.y;
                         lastPosition.z = position.z;
-                        lastRotation.x = lastRotation.x;
-                        lastRotation.y = lastRotation.y;
-                        lastRotation.z = lastRotation.z;
-                        lastRotation.w = lastRotation.w;
+                        lastRotation.x = rotation.x;
+                        lastRotation.y = rotation.y;
+                        lastRotation.z = rotation.z;
+                        lastRotation.w = rotation.w;
                     }
                     else if (lastPosition != position)
                     {

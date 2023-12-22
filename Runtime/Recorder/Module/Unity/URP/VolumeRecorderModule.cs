@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using PLUME.Sample.Unity;
+using PLUME.Sample.Unity.URP;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -10,7 +11,7 @@ namespace PLUME.URP
     {
         protected override void ResetCache() {}
     }
-#else    
+#else
 
     public class VolumeRecorderModule : RecorderModule,
         IStartRecordingObjectEventReceiver,
@@ -48,7 +49,7 @@ namespace PLUME.URP
         public void FixedUpdate()
         {
             var nullVolumesInstanceIds = new List<int>();
-            
+
             foreach (var (volumeInstanceId, volume) in _recordedVolumes)
             {
                 if (volume == null)
@@ -56,7 +57,7 @@ namespace PLUME.URP
                     nullVolumesInstanceIds.Add(volumeInstanceId);
                     continue;
                 }
-                
+
                 if (_lastEnabled[volumeInstanceId] != volume.enabled)
                 {
                     _lastEnabled[volumeInstanceId] = volume.enabled;
@@ -77,11 +78,11 @@ namespace PLUME.URP
                 RemoveFromCache(nullVolumeInstanceId);
             }
         }
-        
+
         private void RecordCreation(Volume volume)
         {
             var identifier = volume.ToIdentifierPayload();
-            
+
             var volumeCreate = new VolumeCreate { Id = identifier };
             var volumeUpdate = new VolumeUpdate
             {
@@ -92,13 +93,13 @@ namespace PLUME.URP
                 Priority = volume.priority,
                 SharedProfileId = volume.sharedProfile == null ? null : volume.sharedProfile.ToAssetIdentifierPayload()
             };
-            
+
             var volumeUpdateEnabled = new VolumeUpdateEnabled
             {
                 Id = identifier,
                 Enabled = volume.enabled
             };
-            
+
             recorder.RecordSampleStamped(volumeCreate);
             recorder.RecordSampleStamped(volumeUpdate);
             recorder.RecordSampleStamped(volumeUpdateEnabled);

@@ -16,6 +16,8 @@ namespace PLUME
 
         private int _sampleRate; // in Hz
         private int _channels; // 1 for mono, 2 for stereo, etc
+
+        private int _nPerChannelSampleCount;
         
         public WavWriter(Stream stream, int sampleRate, int channels)
         {
@@ -29,6 +31,11 @@ namespace PLUME
 
             _sampleRate = sampleRate;
             _channels = channels;
+        }
+        
+        public double GetDuration()
+        {
+            return _nPerChannelSampleCount / (double) _sampleRate;
         }
         
         public void WriteWaveData(float[] buffer)
@@ -53,6 +60,8 @@ namespace PLUME
             // write to stream
             _stream.Write(result, 0, result.Length);
 
+            _nPerChannelSampleCount += buffer.Length / _channels;
+            
             // Update Header
             UpdateHeader();
         }

@@ -80,7 +80,7 @@ namespace PLUME {
                     var updateClip = new AudioSourceUpdateClip
                     {
                         Id = audioSource.ToIdentifierPayload(),
-                        AudioClipId = audioSource.clip.ToAssetIdentifierPayload()
+                        AudioClipId = audioSource.clip == null ? null : audioSource.clip.ToAssetIdentifierPayload()
                     };
                     
                     recordedSamples.Add(recorder.GetUnpackedSampleStamped(updateClip));
@@ -106,12 +106,12 @@ namespace PLUME {
             var updateClip = new AudioSourceUpdateClip
             {
                 Id = identifier,
-                AudioClipId = audioSource.clip.ToAssetIdentifierPayload()
+                AudioClipId = audioSource.clip == null ? null : audioSource.clip.ToAssetIdentifierPayload()
             };
             var updateMixer = new AudioSourceUpdateMixer
             {
                 Id = identifier,
-                AudioMixerGroupId = audioSource.outputAudioMixerGroup.ToAssetIdentifierPayload()
+                AudioMixerGroupId = audioSource.outputAudioMixerGroup == null ? null : audioSource.outputAudioMixerGroup.ToAssetIdentifierPayload()
             };
             var updatePlayStatus = new AudioSourceUpdatePlayStatus
             {
@@ -216,6 +216,7 @@ namespace PLUME {
 
         protected override void ResetCache()
         {
+            Debug.Log("reset cache");
             _recordedAudioSources.Clear();
             _lastPlayingStatus.Clear();
             _lastTimeSamples.Clear();

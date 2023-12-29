@@ -65,8 +65,8 @@ namespace PLUME
             // No DSP update thus no new audio samples, skipping.
             if (dtDsp <= 0) return;
             
-            var totalBufferSize = Mathf.ClosestPowerOfTwo((int)(dtDsp * AudioSettings.outputSampleRate * _channelCount));
-            var singleChannelBufferSize = Mathf.ClosestPowerOfTwo((int)(dtDsp * AudioSettings.outputSampleRate));
+            var totalBufferSize = Mathf.NextPowerOfTwo((int)(dtDsp * AudioSettings.outputSampleRate * _channelCount));
+            var singleChannelBufferSize = Mathf.NextPowerOfTwo((int)(dtDsp * AudioSettings.outputSampleRate));
 
             if(totalBufferSize != _samplesBuffer.Length)
                 _samplesBuffer = new float[totalBufferSize];
@@ -81,7 +81,7 @@ namespace PLUME
                     _samplesBuffer[i * _channelCount + channelIdx] = _singleChannelSamplesBuffer[i];
                 }
             }
-                
+            
             _audioFileWriter.WriteWaveData(_samplesBuffer);
         }
         

@@ -3,16 +3,26 @@
   "version": "1.0.0",
   "displayName": "PLUME-Recorder",
   "description": "PLUME: PLugin for Unity to Monitor Experiments",
-  "unity": "2021.3",
-  "unityRelease": "17f1",
+  "unity": "2022.3",
+  "unityRelease": "2f1",
   "documentationUrl": "",
   "changelogUrl": "",
   "licensesUrl": "",
   "dependencies": {
     "com.unity.test-framework": "2.0.1-pre.18",
-    "fr.liris.unity-runtime-guid": "git+https://github.com/liris-xr/Unity-Runtime-GUID.git",
-    "com.unity.scriptablebuildpipeline": "2.0.1"
+    "com.unity.scriptablebuildpipeline": "2.0.1",
+    "com.unity.burst": "1.8.4",
+    "com.unity.collections": "2.1.4"
   },
+  "scopedRegistries": [
+    {
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.cysharp.unitask"
+      ]
+    }
+  ],
   "keywords": [
     "Behavior",
     "Record",

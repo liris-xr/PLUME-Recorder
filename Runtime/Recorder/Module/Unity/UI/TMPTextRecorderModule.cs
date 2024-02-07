@@ -4,7 +4,7 @@ using PLUME.Sample.Unity.UI;
 using TMPro;
 using UnityEngine;
 
-namespace PLUME.UI
+namespace PLUME.Recorder.Module.Unity.UI
 {
     [DisallowMultipleComponent]
     public class TMPTextRecorderModule : RecorderModule,

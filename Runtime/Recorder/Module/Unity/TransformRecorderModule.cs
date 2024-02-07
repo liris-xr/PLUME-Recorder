@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using Google.Protobuf;
+using PLUME.Recorder.Pool;
 using PLUME.Sample;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityEngine.Profiling;
 using UnityRuntimeGuid;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.Unity
 {
     [DisallowMultipleComponent]
     public class TransformRecorderModule : RecorderModule,

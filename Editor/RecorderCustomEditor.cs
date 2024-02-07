@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace PLUME.Editor
 {
-    [CustomEditor(typeof(Recorder))]
+    [CustomEditor(typeof(Recorder.Recorder))]
     public class RecorderCustomEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            var recorder = (Recorder)target;
+            var recorder = (Recorder.Recorder)target;
 
             if (recorder.IsRecording)
             {

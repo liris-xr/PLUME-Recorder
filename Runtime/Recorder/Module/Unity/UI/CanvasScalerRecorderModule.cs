@@ -4,7 +4,7 @@ using PLUME.Sample.Unity.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PLUME.UI
+namespace PLUME.Recorder.Module.Unity.UI
 {
     [DisallowMultipleComponent]
     public class CanvasScalerRecorderModule : RecorderModule,

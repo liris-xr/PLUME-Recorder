@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using PLUME.Sample;
 
-namespace PLUME
+namespace PLUME.Recorder.Writer
 {
     public class UnpackedSampleComparer : IComparer<UnpackedSample>
     {

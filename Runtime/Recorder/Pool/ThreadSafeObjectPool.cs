@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 
-namespace PLUME
+namespace PLUME.Recorder.Pool
 {
     public class ThreadSafeObjectPool<T> : ThreadSafeObjectPool where T : class
     {

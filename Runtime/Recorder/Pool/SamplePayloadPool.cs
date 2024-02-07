@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using Google.Protobuf;
 
-namespace PLUME
+namespace PLUME.Recorder.Pool
 {
     public class SamplePayloadPool<T> : SamplePayloadPool where T : class, IMessage
     {

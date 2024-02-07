@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Vector4 = PLUME.Sample.Common.Vector4;
 
-namespace PLUME.UI
+namespace PLUME.Recorder.Module.Unity.UI
 {
     [DisallowMultipleComponent]
     public class ImageRecorderModule : RecorderModule,

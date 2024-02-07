@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PLUME
+namespace PLUME.Recorder
 {
     public abstract class RecorderModule : MonoBehaviour, IStartRecordingEventReceiver
     {

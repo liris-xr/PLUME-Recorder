@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
+using PLUME.Recorder.Pool;
+using PLUME.Recorder.Writer;
 using PLUME.Sample;
 using PLUME.Sample.Common;
 using UnityEngine;
@@ -14,7 +16,7 @@ using CompressionLevel = System.IO.Compression.CompressionLevel;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
-namespace PLUME
+namespace PLUME.Recorder
 {
     [DisallowMultipleComponent]
     public class Recorder : SingletonMonoBehaviour<Recorder>, IDisposable

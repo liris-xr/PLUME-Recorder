@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using PLUME.Sample.Unity;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityRuntimeGuid;
 using LoadSceneMode = UnityEngine.SceneManagement.LoadSceneMode;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.Unity
 {
     // TODO: handle procedural scene creation by attaching a hook on SceneManager.CreateScene()
     public class SceneRecorderModule : RecorderModule, IStartRecordingEventReceiver, IStopRecordingEventReceiver

@@ -2,12 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using LSL;
+using PLUME.Recorder.Writer;
 using PLUME.Sample.LSL;
 using UnityEngine;
-using StreamInfo = PLUME.Sample.LSL.StreamInfo;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.LSL
 {
     public class LslRecorderModule : RecorderModule, IStartRecordingEventReceiver, IStopRecordingEventReceiver
     {
@@ -185,7 +184,7 @@ namespace PLUME
             var plumeTimestampOffset = correctedPlumeTimestamp - (long)plumeRawTimestamp;
             
             var streamOpen = new StreamOpen();
-            streamOpen.StreamInfo = new StreamInfo();
+            streamOpen.StreamInfo = new Sample.LSL.StreamInfo();
             streamOpen.StreamInfo.PlumeRawTimestamp = plumeRawTimestamp;
             streamOpen.StreamInfo.LslPlumeOffset = _lslPlumeOffset;
             streamOpen.StreamInfo.LslStreamId = inlet.StreamId.ToString();
@@ -256,7 +255,7 @@ namespace PLUME
                 var correctedLslTimestamp = lslTimestamp + lslClockOffset;
                 var correctedPlumeTimestamp = (long)(correctedLslTimestamp * 1_000_000_000 + _lslPlumeOffset);
                 var plumeTimestampOffset = correctedPlumeTimestamp - (long)plumeRawTimestamp;
-                streamSample.StreamInfo = new StreamInfo();
+                streamSample.StreamInfo = new Sample.LSL.StreamInfo();
                 streamSample.StreamInfo.PlumeRawTimestamp = plumeRawTimestamp;
                 streamSample.StreamInfo.LslPlumeOffset = _lslPlumeOffset;
                 streamSample.StreamInfo.LslStreamId = inlet.StreamId.ToString();
@@ -279,7 +278,7 @@ namespace PLUME
         private void RecordCloseStream(BufferedInlet inlet)
         {
             var streamClose = new StreamClose();
-            streamClose.StreamInfo = new StreamInfo();
+            streamClose.StreamInfo = new Sample.LSL.StreamInfo();
 
             var plumeRawTimestamp = recorder.Clock.GetTimeInNanoseconds();
             var lslTimestamp = Lsl.local_clock();

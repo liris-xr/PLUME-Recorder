@@ -5,12 +5,12 @@ using System.IO.Compression;
 using System.Threading;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
+using PLUME.Recorder.Pool;
 using PLUME.Sample;
 using UnityEngine;
 using CompressionLevel = System.IO.Compression.CompressionLevel;
-using pb = Google.Protobuf;
 
-namespace PLUME
+namespace PLUME.Recorder.Writer
 {
     public class RecordWriter : IDisposable
     {

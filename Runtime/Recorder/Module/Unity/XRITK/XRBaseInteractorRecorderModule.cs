@@ -2,11 +2,9 @@ using System.Collections.Generic;
 using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.XRITK;
 using UnityEngine;
-#if XRITK_ENABLED
 using UnityEngine.XR.Interaction.Toolkit;
-#endif
 
-namespace PLUME
+namespace PLUME.Recorder.Module.Unity.XRITK
 {
 #if !XRITK_ENABLED
     public class XRBaseInteractorRecorderModule : RecorderModule

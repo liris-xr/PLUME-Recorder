@@ -1,9 +1,8 @@
 ﻿using System;
 using PLUME.Sample.Unity;
 using UnityEngine;
-using UnityEngine.Rendering;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.Unity
 {
     public class QualitySettingsRecorderModule : RecorderModule, IStartRecordingEventReceiver
     {

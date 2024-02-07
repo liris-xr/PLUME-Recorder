@@ -2,11 +2,9 @@ using System.Collections.Generic;
 using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.URP;
 using UnityEngine;
-#if URP_ENABLED
 using UnityEngine.Rendering.Universal;
-#endif
 
-namespace PLUME.URP
+namespace PLUME.Recorder.Module.Unity.URP
 {
 #if !URP_ENABLED
     public class AdditionalCameraDataRecorderModule : RecorderModule

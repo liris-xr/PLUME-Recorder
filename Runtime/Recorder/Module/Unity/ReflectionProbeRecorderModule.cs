@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using PLUME.Sample.Unity;
 using UnityEngine;
-using UnityEngine.Rendering;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.Unity
 {
     [DisallowMultipleComponent]
     public class ReflectionProbeRecorderModule : RecorderModule,

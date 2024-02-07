@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace PLUME
+namespace PLUME.Recorder
 {
     public class RecorderClock
     {

@@ -1,4 +1,4 @@
-﻿namespace PLUME
+﻿namespace PLUME.Recorder
 {
     public interface IStopRecordingObjectEventReceiver
     {

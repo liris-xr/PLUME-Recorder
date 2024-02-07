@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Google.Protobuf;
 using PLUME.Sample;
 
-namespace PLUME
+namespace PLUME.Recorder.Pool
 {
     public class SamplePoolManager
     {

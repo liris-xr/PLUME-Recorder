@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using PLUME.Sample.Unity;
 using UnityEngine;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.Unity
 {
     public class TerrainColliderRecorderModule : RecorderModule, IStartRecordingObjectEventReceiver,
         IStopRecordingObjectEventReceiver

@@ -3,7 +3,7 @@ using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityRuntimeGuid;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.Unity
 {
     public class GameObjectRecorderModule : RecorderModule,
         IStartRecordingObjectEventReceiver,

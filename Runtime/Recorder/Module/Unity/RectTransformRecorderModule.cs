@@ -7,7 +7,7 @@ using Quaternion = PLUME.Sample.Common.Quaternion;
 using Vector2 = PLUME.Sample.Common.Vector2;
 using Vector3 = PLUME.Sample.Common.Vector3;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.Unity
 {
     [DisallowMultipleComponent]
     public class RectTransformRecorderModule : RecorderModule,

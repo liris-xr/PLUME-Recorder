@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using LSL;
 using UnityEngine;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.LSL
 {
     public abstract class BufferedInlet
     {

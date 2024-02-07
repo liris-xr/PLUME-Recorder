@@ -3,7 +3,7 @@ using System.Linq;
 using PLUME.Sample.Unity;
 using UnityEngine;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.Unity
 {
     [DisallowMultipleComponent]
     public class MeshRendererRecorderModule : RecorderModule,

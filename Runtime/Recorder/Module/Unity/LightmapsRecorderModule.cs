@@ -1,7 +1,7 @@
 ﻿using PLUME.Sample.Unity;
 using UnityEngine;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.Unity
 {
     public class LightmapsRecorderModule : RecorderModule, IStartRecordingEventReceiver
     {

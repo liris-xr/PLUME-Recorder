@@ -1,7 +1,7 @@
 ﻿using PLUME.Sample.Unity;
 using UnityEngine.Rendering;
 
-namespace PLUME
+namespace PLUME.Recorder.Module.Unity
 {
     public class GraphicsSettingsRecorderModule : RecorderModule, IStartRecordingEventReceiver
     {

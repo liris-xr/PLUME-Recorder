@@ -1,19 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Google.Protobuf.Collections;
 using PLUME.Sample.Unity.XRITK;
 using UnityEngine;
-
-#if XRITK_ENABLED
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
+#if XRITK_ENABLED
 using InputAction = UnityEngine.InputSystem.InputAction;
 using InputActionType = UnityEngine.InputSystem.InputActionType;
 #endif
 
-namespace PLUME.XRITK
+namespace PLUME.Recorder.Module.Unity.XRITK
 {
 #if !XRITK_ENABLED
     public class InputActionsRecorderModule : MonoBehaviour {}

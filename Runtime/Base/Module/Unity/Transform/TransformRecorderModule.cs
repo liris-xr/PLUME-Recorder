@@ -20,19 +20,20 @@ namespace PLUME.Base.Module.Unity.Transform
     {
         private readonly DynamicTransformAccessArray _transformAccessArray = new();
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
-        private SampleTypeUrlIndex _transformUpdatePositionSampleTypeUrlIndex;
+        private SampleTypeUrlIndex _updatePosSampleTypeUrlIndex;
 
-        private readonly ObjectPool<TransformUpdatePosition> _transformUpdatePositionPool = new(() => new TransformUpdatePosition
-        {
-            Id = new TransformGameObjectIdentifier(),
-            LocalPosition = new Vector3(),
-            WorldPosition = new Vector3()
-        });
+        private readonly ObjectPool<TransformUpdatePosition> _transformUpdatePositionPool = new(() =>
+            new TransformUpdatePosition
+            {
+                Id = new TransformGameObjectIdentifier(),
+                LocalPosition = new Vector3(),
+                WorldPosition = new Vector3()
+            });
 
         protected override void OnCreate()
         {
             _lastStates = new NativeHashMap<ObjectIdentifier, TransformState>(1000, Allocator.Persistent);
-            _transformUpdatePositionSampleTypeUrlIndex =
+            _updatePosSampleTypeUrlIndex =
                 SampleTypeUrlManager.GetTypeUrlIndex("fr.liris.plume/" + TransformUpdatePosition.Descriptor.FullName);
         }
 
@@ -91,13 +92,15 @@ namespace PLUME.Base.Module.Unity.Transform
                 transformUpdatePositionSample.LocalPosition.X = localPositions[idx].x;
                 transformUpdatePositionSample.LocalPosition.Y = localPositions[idx].y;
                 transformUpdatePositionSample.LocalPosition.Z = localPositions[idx].z;
-                transformUpdatePositionSample.SerializeSampleToBuffer(_transformUpdatePositionSampleTypeUrlIndex, buffer);
+                transformUpdatePositionSample.SerializeSampleToBuffer(_updatePosSampleTypeUrlIndex, buffer);
             }
 
             lock (_transformUpdatePositionPool)
             {
                 _transformUpdatePositionPool.Release(transformUpdatePositionSample);
             }
+
+            await UniTask.SwitchToMainThread();
 
             identifiers.Dispose();
             localPositions.Dispose();

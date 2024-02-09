@@ -5,7 +5,16 @@ namespace PLUME.Core.Utils
 {
     public static class PlayerLoopUtils
     {
-        public static bool AppendToPlayerLoopList(Type updateType, PlayerLoopSystem.UpdateFunction updateFunction,
+        public static bool InjectUpdateInCurrentLoop(Type updateType, PlayerLoopSystem.UpdateFunction updateFunction,
+            Type playerLoopSystemType)
+        {
+            var playerLoop = PlayerLoop.GetCurrentPlayerLoop();
+            var success = InjectUpdateInLoop(updateType, updateFunction, ref playerLoop, playerLoopSystemType);
+            PlayerLoop.SetPlayerLoop(playerLoop);
+            return success;
+        }
+
+        public static bool InjectUpdateInLoop(Type updateType, PlayerLoopSystem.UpdateFunction updateFunction,
             ref PlayerLoopSystem playerLoop, Type playerLoopSystemType)
         {
             if (updateType == null || updateFunction == null || playerLoopSystemType == null)
@@ -36,7 +45,7 @@ namespace PLUME.Core.Utils
 
             for (var i = 0; i < playerLoop.subSystemList.Length; ++i)
             {
-                if (AppendToPlayerLoopList(updateType, updateFunction, ref playerLoop.subSystemList[i],
+                if (InjectUpdateInLoop(updateType, updateFunction, ref playerLoop.subSystemList[i],
                         playerLoopSystemType))
                     return true;
             }

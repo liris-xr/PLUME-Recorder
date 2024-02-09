@@ -9,38 +9,50 @@ namespace PLUME.Core.Recorder
     {
         private bool _isRecording;
 
+        private readonly Clock _clock;
         private readonly FrameRecorder _frameRecorder;
         private readonly IRecorderModule[] _recorderModules;
 
         public Recorder(IRecorderModule[] recorderModules)
         {
+            _clock = new Clock();
             _recorderModules = recorderModules;
             var frameRecorderModules = recorderModules.OfType<IFrameRecorderModule>().ToArray();
             var asyncFrameRecorderModules = recorderModules.OfType<IFrameRecorderModuleAsync>().ToArray();
-            _frameRecorder = new FrameRecorder(frameRecorderModules, asyncFrameRecorderModules);
+            _frameRecorder = new FrameRecorder(_clock, frameRecorderModules, asyncFrameRecorderModules);
         }
 
+        internal void Initialize()
+        {
+            _frameRecorder.Initialize();
+        }
+        
         public void Start()
         {
+            if (_isRecording)
+                throw new System.InvalidOperationException("Recorder is already recording");
+            
+            _clock.Reset();
             foreach (var module in _recorderModules)
                 module.Start();
-
+            
+            _frameRecorder.Start();
+            _clock.Start();
             _isRecording = true;
         }
 
         public void Stop()
         {
-            _isRecording = false;
+            if (!_isRecording)
+                throw new System.InvalidOperationException("Recorder is not recording");
+            
+            _clock.Stop();
 
             foreach (var module in _recorderModules)
                 module.Stop();
 
-            _frameRecorder.CompleteTasks();
-        }
-
-        public void Initialize()
-        {
-            _frameRecorder.Initialize();
+            _frameRecorder.Stop();
+            _isRecording = false;
         }
 
         public bool TryStartRecordingObject<T>(ObjectSafeRef<T> objectSafeRef, bool markCreated) where T : UnityObject

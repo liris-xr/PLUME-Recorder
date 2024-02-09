@@ -6,59 +6,41 @@ using PLUME.Core.Utils;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.LowLevel;
+using UnityEngine.PlayerLoop;
 using UnityObject = UnityEngine.Object;
 
 namespace PLUME.Core.Recorder
 {
     public class FrameRecorder
     {
+        private bool _isRecording;
+        private readonly Clock _clock;
+
         private readonly IFrameRecorderModule[] _frameRecorderModules;
         private readonly IFrameRecorderModuleAsync[] _asyncFrameRecorderModules;
 
         private readonly HashSet<FrameRecorderTask> _tasks = new();
 
-        public FrameRecorder(IFrameRecorderModule[] frameRecorderModules,
+        public FrameRecorder(Clock clock, IFrameRecorderModule[] frameRecorderModules,
             IFrameRecorderModuleAsync[] asyncFrameRecorderModules)
         {
+            _clock = clock;
             _frameRecorderModules = frameRecorderModules;
             _asyncFrameRecorderModules = asyncFrameRecorderModules;
         }
 
-        public void Initialize()
+        internal void Initialize()
         {
-            InjectUpdateLoop();
-        }
-
-        public void CompleteTasks()
-        {
-            // Wait for all the frame recording tasks to finish.
-            lock (_tasks)
-            {
-                if (_tasks.Any())
-                    Debug.Log("Waiting for " + _tasks.Count + " frame recording tasks to finish");
-
-                foreach (var recordTask in _tasks)
-                {
-                    recordTask.Task.AsTask().Wait();
-                }
-
-                _tasks.Clear();
-            }
-        }
-
-        private void InjectUpdateLoop()
-        {
-            var playerLoop = PlayerLoop.GetCurrentPlayerLoop();
-            var updateType = typeof(Recorder);
-            var playerLoopSystemType = typeof(PlayerLoopSystem);
-            PlayerLoopUtils.AppendToPlayerLoopList(updateType, Update, ref playerLoop, playerLoopSystemType);
-            PlayerLoop.SetPlayerLoop(playerLoop);
+            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(Recorder), Update, typeof(PostLateUpdate));
         }
 
         internal async void Update()
         {
-            var timestamp = 0L;
-            var frame = 0;
+            if (!_isRecording)
+                return;
+
+            var timestamp = _clock.ElapsedNanoseconds;
+            var frame = Time.frameCount;
             var task = RecordFrameAsync(timestamp, frame);
             var recordFrameTask = new FrameRecorderTask(frame, task);
 
@@ -105,6 +87,34 @@ namespace PLUME.Core.Recorder
             {
                 await asyncTask.Task;
                 frameDataBuffer.Merge(asyncTask.Buffer);
+            }
+        }
+        
+        public void Start()
+        {
+            _isRecording = true;
+        }
+
+        public void Stop()
+        {
+            CompleteTasks();
+            _isRecording = false;
+        }
+
+        public void CompleteTasks()
+        {
+            // Wait for all the frame recording tasks to finish.
+            lock (_tasks)
+            {
+                if (_tasks.Any())
+                    Debug.Log("Waiting for " + _tasks.Count + " frame recording tasks to finish");
+
+                foreach (var recordTask in _tasks)
+                {
+                    recordTask.Task.AsTask().Wait();
+                }
+
+                _tasks.Clear();
             }
         }
     }

@@ -5,7 +5,7 @@ using Unity.Collections;
 
 namespace PLUME.Core.Recorder
 {
-    public static class SampleTypeUrlManager
+    public static class SampleTypeUrlRegistry
     {
         private static int _nextId;
         // TODO: add multiple bin depending on the size of the string. This would enable burst compiled sample packing for most of the samples

@@ -1,25 +1,37 @@
+using System.Diagnostics.CodeAnalysis;
+using Cysharp.Threading.Tasks;
+using PLUME.Sample.Unity;
 using Unity.Burst;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Jobs;
+using UnityEngine.Pool;
+using Vector3 = PLUME.Sample.Common.Vector3;
 
 namespace PLUME.Recorder.Module.Unity.Transform
 {
-    public class TransformRecorderModule : UnityObjectRecorderModule<UnityEngine.Transform>
+    public class TransformRecorderModule : UnityObjectFrameRecorderModuleAsync<UnityEngine.Transform>
     {
         private readonly DynamicTransformAccessArray _transformAccessArray = new();
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
+        private TypeUrlIndex _transformUpdatePositionTypeUrlIndex;
+
+        private readonly ObjectPool<TransformUpdatePosition> _transformUpdatePositionPool = new(() => new TransformUpdatePosition
+        {
+            Id = new TransformGameObjectIdentifier(),
+            LocalPosition = new Vector3(),
+            WorldPosition = new Vector3()
+        });
 
         protected override void OnCreate()
         {
-            base.OnCreate();
             _lastStates = new NativeHashMap<ObjectIdentifier, TransformState>(1000, Allocator.Persistent);
+            _transformUpdatePositionTypeUrlIndex =
+                TypeUrlManager.GetTypeUrlIndex("fr.liris.plume/" + TransformUpdatePosition.Descriptor.FullName);
         }
 
         protected override void OnDestroy()
         {
-            base.OnDestroy();
-
             if (_lastStates.IsCreated)
             {
                 _lastStates.Dispose();
@@ -28,53 +40,61 @@ namespace PLUME.Recorder.Module.Unity.Transform
 
         protected override void OnStartRecording(ObjectSafeRef<UnityEngine.Transform> objSafeRef, bool markCreated)
         {
-            base.OnStartRecording(objSafeRef, markCreated);
             _transformAccessArray.TryAdd(objSafeRef);
             _lastStates[objSafeRef.ObjectIdentifier] = TransformState.Null;
         }
 
         protected override void OnStopRecording(ObjectSafeRef<UnityEngine.Transform> objSafeRef, bool markDestroyed)
         {
-            base.OnStopRecording(objSafeRef, markDestroyed);
             _transformAccessArray.RemoveSwapBack(objSafeRef);
             _lastStates.Remove(objSafeRef.ObjectIdentifier);
         }
 
         protected override void OnReset()
         {
-            base.OnReset();
             _transformAccessArray.Clear();
             _lastStates.Clear();
         }
 
-        protected override void OnRecordFrame(FrameData frameData)
+        [SuppressMessage("ReSharper", "ForCanBeConvertedToForeach")]
+        protected override async UniTask OnRecordFrame(FrameDataBuffer buffer)
         {
-            base.OnRecordFrame(frameData);
+            var identifiers = new NativeList<ObjectIdentifier>(RecordedObjects.Count, Allocator.Persistent);
+            var localPositions = new NativeList<UnityEngine.Vector3>(RecordedObjects.Count, Allocator.Persistent);
 
-            foreach (var transformSafeRef in CreatedObjects)
+            for (var idx = 0; idx < RecordedObjects.Count; ++idx)
             {
-                frameData.AddSample(new TransformCreatedState(transformSafeRef.GetInstanceId()));
+                var recordedObject = RecordedObjects[idx];
+                var t = recordedObject.TypedObject;
+                identifiers.Add(recordedObject.ObjectIdentifier);
+                // localPositions.Add(t.localPosition);
+                localPositions.Add(UnityEngine.Vector3.one);
             }
 
-            foreach (var transformSafeRef in DestroyedObjects)
+            await UniTask.SwitchToThreadPool();
+            
+            TransformUpdatePosition transformUpdatePositionSample;
+
+            lock (_transformUpdatePositionPool)
             {
-                frameData.AddSample(new TransformDestroyedState(transformSafeRef.GetInstanceId()));
+                transformUpdatePositionSample = _transformUpdatePositionPool.Get();
             }
 
-            var dirtySamples = new NativeList<TransformState>(Allocator.TempJob);
-            dirtySamples.SetCapacity(_transformAccessArray.Length);
-
-            var pollTransformStatesJob = new PollTransformStatesJob
+            for (var idx = 0; idx < RecordedObjects.Count; ++idx)
             {
-                AlignedIdentifiers = _transformAccessArray.GetAlignedIdentifiers(),
-                DirtySamples = dirtySamples.AsParallelWriter(),
-                LastSamples = _lastStates
-            };
+                transformUpdatePositionSample.LocalPosition.X = localPositions[idx].x;
+                transformUpdatePositionSample.LocalPosition.Y = localPositions[idx].y;
+                transformUpdatePositionSample.LocalPosition.Z = localPositions[idx].z;
+                transformUpdatePositionSample.SerializeSampleToBuffer(_transformUpdatePositionTypeUrlIndex, buffer);
+            }
 
-            var pollTransformStatesJobHandle = pollTransformStatesJob.ScheduleReadOnly(_transformAccessArray, 64);
-            pollTransformStatesJobHandle.Complete();
-            frameData.AddSamples(dirtySamples.AsArray().AsReadOnlySpan());
-            dirtySamples.Dispose();
+            lock (_transformUpdatePositionPool)
+            {
+                _transformUpdatePositionPool.Release(transformUpdatePositionSample);
+            }
+
+            identifiers.Dispose();
+            localPositions.Dispose();
         }
 
         [BurstCompile]

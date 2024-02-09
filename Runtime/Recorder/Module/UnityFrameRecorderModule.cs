@@ -1,12 +1,12 @@
 namespace PLUME.Recorder.Module
 {
-    public abstract class UnityRecorderModule : IUnityRecorderModule
+    public abstract class UnityFrameRecorderModule : IUnityFrameRecorderModule
     {
         void IRecorderModule.Create()
         {
             OnCreate();
         }
-        
+
         void IRecorderModule.Destroy()
         {
             OnDestroy();
@@ -27,15 +27,15 @@ namespace PLUME.Recorder.Module
             OnReset();
         }
 
-        void IUnityRecorderModule.RecordFrame(FrameData frameData)
+        void IUnityFrameRecorderModule.RecordFrame(FrameDataBuffer buffer)
         {
-            OnRecordFrame(frameData);
+            OnRecordFrame(buffer);
         }
-        
+
         protected virtual void OnCreate()
         {
         }
-        
+
         protected virtual void OnDestroy()
         {
         }
@@ -51,8 +51,8 @@ namespace PLUME.Recorder.Module
         protected virtual void OnReset()
         {
         }
-        
-        protected virtual void OnRecordFrame(FrameData frameData)
+
+        protected virtual void OnRecordFrame(FrameDataBuffer buffer)
         {
         }
     }

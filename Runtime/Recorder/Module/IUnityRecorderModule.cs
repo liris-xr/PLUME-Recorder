@@ -1,7 +1,7 @@
 namespace PLUME.Recorder.Module
 {
-    public interface IUnityRecorderModule : IRecorderModule
+    public interface IUnityFrameRecorderModule : IRecorderModule
     {
-        internal void RecordFrame(FrameData frameData);
+        internal void RecordFrame(FrameDataBuffer buffer);
     }
 }

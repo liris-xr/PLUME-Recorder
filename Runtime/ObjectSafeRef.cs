@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityObject = UnityEngine.Object;
 
@@ -7,8 +6,6 @@ namespace PLUME
 {
     public readonly struct ObjectSafeRef<TObject> : IObjectSafeRef where TObject : UnityObject
     {
-        public static IEqualityComparer<ObjectSafeRef<TObject>> Comparer { get; } = new InstanceIdEqualityComparer();
-
         public readonly ObjectIdentifier ObjectIdentifier;
         public readonly TObject TypedObject;
 
@@ -54,19 +51,6 @@ namespace PLUME
         public UnityObject GetObject()
         {
             return TypedObject;
-        }
-
-        private sealed class InstanceIdEqualityComparer : IEqualityComparer<ObjectSafeRef<TObject>>
-        {
-            public bool Equals(ObjectSafeRef<TObject> x, ObjectSafeRef<TObject> y)
-            {
-                return x.ObjectIdentifier.InstanceId == y.ObjectIdentifier.InstanceId;
-            }
-
-            public int GetHashCode(ObjectSafeRef<TObject> obj)
-            {
-                return obj.ObjectIdentifier.InstanceId;
-            }
         }
 
         public int GetInstanceId()

@@ -1,77 +1,89 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace PLUME.Recorder.Module
 {
     public abstract class UnityObjectRecorderModule<TObject> : IUnityObjectRecorderModule where TObject : Object
     {
-        private bool _running;
+        private bool _started;
 
-        private readonly HashSet<ObjectSafeRef<TObject>> _recordedObjects = new(ObjectSafeRef<TObject>.Comparer);
-        private readonly HashSet<ObjectSafeRef<TObject>> _createdObjects = new(ObjectSafeRef<TObject>.Comparer);
-        private readonly HashSet<ObjectSafeRef<TObject>> _destroyedObjects = new(ObjectSafeRef<TObject>.Comparer);
+        private readonly UnityObjectCollection<TObject> _recordedObjects = new();
+        private readonly UnityObjectCollection<TObject> _createdObjects = new();
+        private readonly UnityObjectCollection<TObject> _destroyedObjects = new();
 
-        protected IReadOnlyCollection<ObjectSafeRef<TObject>> RecordedObjects => _recordedObjects;
-        protected IReadOnlyCollection<ObjectSafeRef<TObject>> CreatedObjects => _createdObjects;
-        protected IReadOnlyCollection<ObjectSafeRef<TObject>> DestroyedObjects => _destroyedObjects;
+        protected IReadOnlyList<ObjectSafeRef<TObject>> RecordedObjects => _recordedObjects.AsReadOnly();
+        protected IReadOnlyList<ObjectSafeRef<TObject>> CreatedObjects => _createdObjects.AsReadOnly();
+        protected IReadOnlyList<ObjectSafeRef<TObject>> DestroyedObjects => _destroyedObjects.AsReadOnly();
 
-        void IUnityRecorderModule.RecordFrame(FrameData frameData)
+        public bool TryStartRecordingObject(ObjectSafeRef<TObject> objectSafeRef, bool markCreated)
         {
-            OnRecordFrame(frameData);
+            if (!_started)
+                return false;
+
+            if (!_recordedObjects.TryAdd(objectSafeRef))
+                return false;
+
+            OnStartRecording(objectSafeRef, markCreated);
+
+            if (!markCreated)
+                return true;
+
+            var successfullyMarkedCreated = _createdObjects.TryAdd(objectSafeRef);
+            _destroyedObjects.TryRemove(objectSafeRef);
+
+            if (successfullyMarkedCreated)
+                OnMarkedCreated(objectSafeRef);
+
+            return true;
+        }
+
+        public bool TryStopRecordingObject(ObjectSafeRef<TObject> objSafeRef, bool markDestroyed)
+        {
+            if (!_started)
+                return false;
+
+            if (!_recordedObjects.TryRemove(objSafeRef))
+                return false;
+
+            OnStopRecording(objSafeRef, markDestroyed);
+
+            if (!markDestroyed)
+                return true;
+
+            var successfullyMarkedDestroyed = _destroyedObjects.TryRemove(objSafeRef);
+            _createdObjects.TryRemove(objSafeRef);
+
+            if (successfullyMarkedDestroyed)
+                OnMarkedDestroyed(objSafeRef);
+            return true;
+        }
+        
+        protected void ClearCreatedObjects()
+        {
             _createdObjects.Clear();
+        }
+        
+        protected void ClearDestroyedObjects()
+        {
             _destroyedObjects.Clear();
         }
-
-        public bool TryStartRecording(IObjectSafeRef objSafeRef, bool markCreated)
+        
+        public bool TryStartRecordingObject(IObjectSafeRef objSafeRef, bool markCreated)
         {
-            if (!_running)
-                return false;
-
-            if (objSafeRef is not ObjectSafeRef<TObject> typedObjSafeRef)
-                return false;
-
-            if (!_recordedObjects.Add(typedObjSafeRef))
-                return false;
-
-            if (markCreated)
-            {
-                _destroyedObjects.Remove(typedObjSafeRef);
-                _createdObjects.Add(typedObjSafeRef);
-                OnMarkedCreated(typedObjSafeRef);
-            }
-
-            OnStartRecording(typedObjSafeRef, markCreated);
-            return true;
+            return objSafeRef is ObjectSafeRef<TObject> tObjSafeRef && TryStartRecordingObject(tObjSafeRef, markCreated);
         }
-
-        public bool TryStopRecording(IObjectSafeRef objSafeRef, bool markDestroyed)
+        
+        public bool TryStopRecordingObject(IObjectSafeRef objSafeRef, bool markCreated)
         {
-            if (!_running)
-                return false;
-
-            if (objSafeRef is not ObjectSafeRef<TObject> typedObjSafeRef)
-                return false;
-
-            if (!_recordedObjects.Remove(typedObjSafeRef))
-                return false;
-
-            if (markDestroyed)
-            {
-                _createdObjects.Remove(typedObjSafeRef);
-                _destroyedObjects.Add(typedObjSafeRef);
-                _recordedObjects.Remove(typedObjSafeRef);
-                OnMarkedDestroyed(typedObjSafeRef);
-            }
-
-            OnStopRecording(typedObjSafeRef, markDestroyed);
-            return true;
+            return objSafeRef is ObjectSafeRef<TObject> tObjSafeRef && TryStopRecordingObject(tObjSafeRef, markCreated);
         }
 
         void IRecorderModule.Create()
         {
             OnCreate();
         }
-        
+
         void IRecorderModule.Destroy()
         {
             OnDestroy();
@@ -79,13 +91,13 @@ namespace PLUME.Recorder.Module
 
         void IRecorderModule.Start()
         {
-            _running = true;
+            _started = true;
             OnStart();
         }
 
         void IRecorderModule.Stop()
         {
-            _running = false;
+            _started = false;
             OnStop();
         }
 
@@ -100,7 +112,7 @@ namespace PLUME.Recorder.Module
         protected virtual void OnCreate()
         {
         }
-        
+
         protected virtual void OnDestroy()
         {
         }
@@ -114,10 +126,6 @@ namespace PLUME.Recorder.Module
         }
 
         protected virtual void OnReset()
-        {
-        }
-
-        protected virtual void OnRecordFrame(FrameData frameData)
         {
         }
 

@@ -26,9 +26,6 @@ namespace PLUME.Recorder
             _clock.Reset();
         }
 
-        public ulong GetTimeInNanoseconds()
-        {
-            return (ulong)_clock.ElapsedTicks * (ulong)(1_000_000_000 / Stopwatch.Frequency);
-        }
+        public long ElapsedNanoseconds => _clock.ElapsedTicks * (1_000_000_000 / Stopwatch.Frequency);
     }
 }

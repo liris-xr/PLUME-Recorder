@@ -1,61 +1,24 @@
 using System;
-using System.Collections.Generic;
-using PLUME.Recorder.Module;
+using Unity.Collections;
 
 namespace PLUME.Recorder
 {
-    public class FrameData
+    public struct FrameData : IDisposable
     {
-        internal long Timestamp;
-        internal readonly Dictionary<Type, IStateCollection> SamplesByType = new();
+        internal readonly long Timestamp;
+        internal readonly int Frame;
+        internal FrameDataBuffer Buffer;
 
-        public FrameData()
-        {
-        }
-
-        public FrameData(long timestamp)
+        public FrameData(Allocator allocator, long timestamp, int frame)
         {
             Timestamp = timestamp;
+            Frame = frame;
+            Buffer = new FrameDataBuffer(allocator);
         }
 
-        internal void SetTimestamp(long timestamp)
+        public void Dispose()
         {
-            Timestamp = timestamp;
-        }
-
-        internal void Clear()
-        {
-            foreach (var (_, frameSamplesList) in SamplesByType)
-            {
-                frameSamplesList.Clear();
-            }
-        }
-
-        public void AddSample<T>(T sample) where T : IUnityObjectState
-        {
-            if (!SamplesByType.TryGetValue(typeof(T), out var samplesBin))
-            {
-                samplesBin = new StateCollection<T>();
-                SamplesByType[typeof(T)] = samplesBin;
-            }
-
-            ((StateCollection<T>)samplesBin).Add(sample);
-        }
-        
-        public void AddSamples<T>(ReadOnlyMemory<T> samples) where T : IUnityObjectState
-        {
-            AddSamples(samples.Span);
-        }
-        
-        public void AddSamples<T>(ReadOnlySpan<T> samples) where T : IUnityObjectState
-        {
-            if (!SamplesByType.TryGetValue(typeof(T), out var samplesBin))
-            {
-                samplesBin = new StateCollection<T>();
-                SamplesByType[typeof(T)] = samplesBin;
-            }
-
-            ((StateCollection<T>)samplesBin).AddRange(samples);
+            Buffer.Dispose();
         }
     }
 }

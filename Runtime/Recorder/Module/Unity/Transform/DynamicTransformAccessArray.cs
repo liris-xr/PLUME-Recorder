@@ -40,7 +40,7 @@ namespace PLUME.Recorder.Module.Unity.Transform
 
         public void Add(ObjectSafeRef<UnityEngine.Transform> objRef)
         {
-            EnsureCapacity(_transformAccessArray.capacity + 1);
+            EnsureCapacity(_transformAccessArray.length + 1);
 
             if (Contains(objRef))
                 throw new InvalidOperationException($"Transform {objRef.TypedObject.name} is already in the list");

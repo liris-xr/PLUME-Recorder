@@ -1,9 +1,9 @@
 namespace PLUME.Recorder.Module
 {
-    public interface IUnityObjectRecorderModule : IUnityRecorderModule
+    public interface IUnityObjectRecorderModule : IRecorderModule
     {
-        public bool TryStartRecording(IObjectSafeRef obj, bool markCreated = true);
+        public bool TryStartRecordingObject(IObjectSafeRef obj, bool markCreated = true);
 
-        public bool TryStopRecording(IObjectSafeRef obj, bool markDestroyed = true);
+        public bool TryStopRecordingObject(IObjectSafeRef obj, bool markDestroyed = true);
     }
 }

@@ -1,7 +1,12 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
+using PLUME.Recorder.Module;
+using UnityEngine;
 using UnityEngine.LowLevel;
 using UnityEngine.PlayerLoop;
+using Object = UnityEngine.Object;
 
 namespace PLUME.Recorder
 {
@@ -9,28 +14,48 @@ namespace PLUME.Recorder
     {
         private bool _isRecording;
 
-        private readonly List<UniTask> _serializationTasks;
-        private readonly UnityFrameRecorder _unityFrameRecorder;
-        private readonly UnityFrameSerializer _unityFrameSerializer;
+        private readonly IRecorderModule[] _modules;
 
-        public Recorder(UnityFrameRecorder unityFrameRecorder, UnityFrameSerializer unityFrameSerializer)
+        private readonly FrameRecorder _frameRecorder;
+        private readonly List<UniTask> _recordFrameTasks = new();
+
+        public Recorder(IRecorderModule[] modules)
         {
-            _serializationTasks = new List<UniTask>();
-            _unityFrameRecorder = unityFrameRecorder;
-            _unityFrameSerializer = unityFrameSerializer;
+            _modules = modules;
+
+            var frameRecorderModules = _modules
+                .Where(m => m is IUnityFrameRecorderModule)
+                .Cast<IUnityFrameRecorderModule>().ToArray();
+            var frameRecorderAsyncModules = _modules
+                .Where(m => m is IUnityFrameRecorderModuleAsync)
+                .Cast<IUnityFrameRecorderModuleAsync>().ToArray();
+            _frameRecorder = new FrameRecorder(frameRecorderModules, frameRecorderAsyncModules);
         }
 
         public void Start()
         {
-            _unityFrameRecorder.Start();
+            Array.ForEach(_modules, m => m.Start());
             _isRecording = true;
         }
 
         public void Stop()
         {
             _isRecording = false;
-            _unityFrameRecorder.Stop();
-            lock (_serializationTasks) UniTask.WhenAll(_serializationTasks).AsTask().Wait();
+            Array.ForEach(_modules, m => m.Stop());
+
+            // Wait for all the frame recording tasks to finish.
+            lock (_recordFrameTasks)
+            {
+                if(_recordFrameTasks.Count > 0)
+                    Debug.Log("Waiting for " + _recordFrameTasks.Count + " frame recording tasks to finish");
+                
+                foreach (var task in _recordFrameTasks)
+                {
+                    task.AsTask().Wait();
+                }
+
+                _recordFrameTasks.Clear();
+            }
         }
 
         public void Initialize()
@@ -46,20 +71,65 @@ namespace PLUME.Recorder
             PlayerLoop.SetPlayerLoop(loop);
         }
 
-        private void Update()
+        internal void Update()
         {
             if (!_isRecording) return;
 
-            // TODO: get timestamp from clock
-            var frameData = _unityFrameRecorder.RecordFrame(42);
-            var frameSerializeTask = _unityFrameSerializer.SerializeFrameAsync(frameData, null);
-
-            frameSerializeTask.ContinueWith(() =>
+            var recordFrameTask = _frameRecorder.RecordFrameAsync(0L, Time.frameCount);
+            var finalizeRecordFrameTask = recordFrameTask.ContinueWith(frameData =>
             {
-                lock (_serializationTasks) _serializationTasks.Remove(frameSerializeTask);
+                Debug.Log("Pushing frame data to recorder: Frame " + frameData.Frame + ", " +
+                          frameData.Buffer.Data.Length + " bytes");
             });
 
-            lock (_serializationTasks) _serializationTasks.Add(frameSerializeTask);
+            // Remove the task from the list when it's done.
+            finalizeRecordFrameTask.ContinueWith(() =>
+            {
+                lock (_recordFrameTasks)
+                {
+                    _recordFrameTasks.Remove(finalizeRecordFrameTask);
+                }
+            });
+
+            lock (_recordFrameTasks)
+            {
+                _recordFrameTasks.Add(finalizeRecordFrameTask);
+            }
+        }
+
+        public bool TryStartRecordingObject<T>(ObjectSafeRef<T> objectSafeRef, bool markCreated)
+            where T : Object
+        {
+            var started = false;
+
+            foreach (var module in _modules)
+            {
+                if (module is IUnityObjectRecorderModule objectRecorderModule)
+                {
+                    started |= objectRecorderModule.TryStartRecordingObject(objectSafeRef, markCreated);
+                }
+            }
+
+            return started;
+        }
+
+        public bool TryStopRecordingObject<T>(ObjectSafeRef<T> objectSafeRef) where T : Object
+        {
+            var stopped = false;
+
+            foreach (var module in _modules)
+            {
+                if (module is IUnityObjectRecorderModule objectRecorderModule)
+                {
+                    stopped |= objectRecorderModule.TryStopRecordingObject(objectSafeRef);
+                }
+            }
+
+            return stopped;
+        }
+
+        private struct PlumeRecorderUpdateLoop
+        {
         }
     }
 }

@@ -24,7 +24,7 @@ namespace PLUME.Tests
 
             try
             {
-                TypeUrlManager.RegisterTypeUrl("fr.liris.plume/" + TransformUpdatePosition.Descriptor.FullName);
+                SampleTypeUrlManager.RegisterTypeUrl("fr.liris.plume/" + TransformUpdatePosition.Descriptor.FullName);
             }
             catch (Exception)
             {

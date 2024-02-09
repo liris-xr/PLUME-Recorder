@@ -14,7 +14,7 @@ namespace PLUME.Recorder.Module.Unity.Transform
     {
         private readonly DynamicTransformAccessArray _transformAccessArray = new();
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
-        private TypeUrlIndex _transformUpdatePositionTypeUrlIndex;
+        private SampleTypeUrlIndex _transformUpdatePositionSampleTypeUrlIndex;
 
         private readonly ObjectPool<TransformUpdatePosition> _transformUpdatePositionPool = new(() => new TransformUpdatePosition
         {
@@ -26,8 +26,8 @@ namespace PLUME.Recorder.Module.Unity.Transform
         protected override void OnCreate()
         {
             _lastStates = new NativeHashMap<ObjectIdentifier, TransformState>(1000, Allocator.Persistent);
-            _transformUpdatePositionTypeUrlIndex =
-                TypeUrlManager.GetTypeUrlIndex("fr.liris.plume/" + TransformUpdatePosition.Descriptor.FullName);
+            _transformUpdatePositionSampleTypeUrlIndex =
+                SampleTypeUrlManager.GetTypeUrlIndex("fr.liris.plume/" + TransformUpdatePosition.Descriptor.FullName);
         }
 
         protected override void OnDestroy()
@@ -85,7 +85,7 @@ namespace PLUME.Recorder.Module.Unity.Transform
                 transformUpdatePositionSample.LocalPosition.X = localPositions[idx].x;
                 transformUpdatePositionSample.LocalPosition.Y = localPositions[idx].y;
                 transformUpdatePositionSample.LocalPosition.Z = localPositions[idx].z;
-                transformUpdatePositionSample.SerializeSampleToBuffer(_transformUpdatePositionTypeUrlIndex, buffer);
+                transformUpdatePositionSample.SerializeSampleToBuffer(_transformUpdatePositionSampleTypeUrlIndex, buffer);
             }
 
             lock (_transformUpdatePositionPool)

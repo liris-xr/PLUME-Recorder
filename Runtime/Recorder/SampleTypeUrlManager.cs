@@ -5,12 +5,12 @@ using Unity.Collections;
 
 namespace PLUME.Recorder
 {
-    public static class TypeUrlManager
+    public static class SampleTypeUrlManager
     {
         private static int _nextId;
         // TODO: add multiple bin depending on the size of the string. This would enable burst compiled sample packing for most of the samples
-        private static readonly Dictionary<FixedString128Bytes, TypeUrlIndex> TypeUrlToIndex = new();
-        private static readonly Dictionary<TypeUrlIndex, FixedString128Bytes> IndexToTypeUrl = new();
+        private static readonly Dictionary<FixedString128Bytes, SampleTypeUrlIndex> TypeUrlToIndex = new();
+        private static readonly Dictionary<SampleTypeUrlIndex, FixedString128Bytes> IndexToTypeUrl = new();
 
         [BurstCompile]
         internal static void RegisterTypeUrl(FixedString128Bytes typeUrl)
@@ -20,13 +20,13 @@ namespace PLUME.Recorder
                 throw new InvalidOperationException($"TypeUrl {typeUrl} is already registered with index {index}");
             }
 
-            index = new TypeUrlIndex(_nextId++);
+            index = new SampleTypeUrlIndex(_nextId++);
             TypeUrlToIndex.Add(typeUrl, index);
             IndexToTypeUrl.Add(index, typeUrl);
         }
 
         [BurstCompile]
-        public static TypeUrlIndex GetTypeUrlIndex(FixedString128Bytes typeUrl)
+        public static SampleTypeUrlIndex GetTypeUrlIndex(FixedString128Bytes typeUrl)
         {
             if (!TypeUrlToIndex.TryGetValue(typeUrl, out var index))
             {
@@ -37,7 +37,7 @@ namespace PLUME.Recorder
         }
 
         [BurstCompile]
-        public static FixedString128Bytes GetTypeUrlFromIndex(TypeUrlIndex index)
+        public static FixedString128Bytes GetTypeUrlFromIndex(SampleTypeUrlIndex index)
         {
             if (!IndexToTypeUrl.TryGetValue(index, out var typeUrl))
             {

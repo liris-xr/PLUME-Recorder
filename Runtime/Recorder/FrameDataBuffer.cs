@@ -7,13 +7,13 @@ namespace PLUME.Recorder
     {
         internal NativeList<byte> Data;
         internal NativeList<int> Lengths;
-        internal NativeList<TypeUrlIndex> TypeUrlIndices;
+        internal NativeList<SampleTypeUrlIndex> TypeUrlIndices;
 
         public FrameDataBuffer(Allocator allocator)
         {
             Data = new NativeList<byte>(allocator);
             Lengths = new NativeList<int>(allocator);
-            TypeUrlIndices = new NativeList<TypeUrlIndex>(allocator);
+            TypeUrlIndices = new NativeList<SampleTypeUrlIndex>(allocator);
         }
 
         public void Merge(FrameDataBuffer other)
@@ -23,7 +23,7 @@ namespace PLUME.Recorder
             TypeUrlIndices.AddRange(other.TypeUrlIndices.AsArray());
         }
 
-        public void AddSerializedSample(TypeUrlIndex typeUrlIndex, ReadOnlySpan<byte> data)
+        public void AddSerializedSample(SampleTypeUrlIndex sampleTypeUrlIndex, ReadOnlySpan<byte> data)
         {
             unsafe
             {
@@ -33,11 +33,11 @@ namespace PLUME.Recorder
                 }
 
                 Lengths.Add(data.Length);
-                TypeUrlIndices.Add(typeUrlIndex);
+                TypeUrlIndices.Add(sampleTypeUrlIndex);
             }
         }
 
-        public void AddSerializedSamples(TypeUrlIndex typeUrlIndex, ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths)
+        public void AddSerializedSamples(SampleTypeUrlIndex sampleTypeUrlIndex, ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths)
         {
             unsafe
             {
@@ -53,11 +53,11 @@ namespace PLUME.Recorder
                     Lengths.AddRange(ptr, lengths.Length);
                 }
 
-                TypeUrlIndices.AddReplicate(typeUrlIndex, lengths.Length);
+                TypeUrlIndices.AddReplicate(sampleTypeUrlIndex, lengths.Length);
             }
         }
 
-        public void AddSerializedSamples(ReadOnlySpan<TypeUrlIndex> typeUrlIndices, ReadOnlySpan<byte> data,
+        public void AddSerializedSamples(ReadOnlySpan<SampleTypeUrlIndex> typeUrlIndices, ReadOnlySpan<byte> data,
             ReadOnlySpan<int> lengths)
         {
             if (typeUrlIndices.Length != lengths.Length)
@@ -76,7 +76,7 @@ namespace PLUME.Recorder
                     Lengths.AddRange(ptr, lengths.Length);
                 }
 
-                fixed (TypeUrlIndex* ptr = typeUrlIndices)
+                fixed (SampleTypeUrlIndex* ptr = typeUrlIndices)
                 {
                     TypeUrlIndices.AddRange(ptr, typeUrlIndices.Length);
                 }

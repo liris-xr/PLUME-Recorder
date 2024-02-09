@@ -6,13 +6,13 @@ namespace PLUME.Recorder
 {
     public static class MessageExtensions
     {
-        public static unsafe void SerializeSampleToBuffer(this IMessage message, TypeUrlIndex typeUrlIndex,
+        public static unsafe void SerializeSampleToBuffer(this IMessage message, SampleTypeUrlIndex sampleTypeUrlIndex,
             FrameDataBuffer buffer)
         {
             var size = message.CalculateSize();
             Span<byte> bytes = stackalloc byte[size];
             message.WriteTo(bytes);
-            buffer.AddSerializedSample(typeUrlIndex, bytes);
+            buffer.AddSerializedSample(sampleTypeUrlIndex, bytes);
         }
 
         public static unsafe Span<byte> ToSpan(this IMessage message)

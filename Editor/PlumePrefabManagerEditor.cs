@@ -1,7 +1,9 @@
-using Prefabs;
 using UnityEditor;
 
-[CustomEditor(typeof(PlumePrefabManager))]
-public class PlumePrefabManagerEditor : Editor
+namespace PLUME.Editor
 {
+    [CustomEditor(typeof(PlumePrefabManager))]
+    public class PlumePrefabManagerEditor : UnityEditor.Editor
+    {
+    }
 }

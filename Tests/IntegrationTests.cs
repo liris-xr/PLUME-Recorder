@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using Cysharp.Threading.Tasks;
-using PLUME.Recorder;
-using PLUME.Recorder.Module;
-using PLUME.Recorder.Module.Unity.Transform;
+using PLUME.Base.Module.Unity.Transform;
+using PLUME.Core;
+using PLUME.Core.Object;
+using PLUME.Core.Object.SafeRef;
+using PLUME.Core.Recorder;
+using PLUME.Core.Recorder.Module;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -34,7 +37,7 @@ namespace PLUME.Tests
             var transformRecorderModule = new TransformRecorderModule();
             var recorderModules = new IRecorderModule[] { transformRecorderModule };
 
-            var recorder = new Recorder.Recorder(recorderModules);
+            var recorder = new Recorder(recorderModules);
 
             ((IRecorderModule)transformRecorderModule).Create();
             recorder.Start();

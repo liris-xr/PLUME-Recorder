@@ -1,10 +1,10 @@
-namespace PLUME.Core.Recorder.Module
+namespace PLUME.Core.Recorder.Module.Frame
 {
-    public abstract class FrameRecorderModule : IFrameRecorderModule
+    public abstract class FrameDataRecorderModule : IFrameDataRecorderModule
     {
-        void IRecorderModule.Create()
+        void IRecorderModule.Create(PlumeRecorder recorder)
         {
-            OnCreate();
+            OnCreate(recorder);
         }
 
         void IRecorderModule.Destroy()
@@ -27,12 +27,12 @@ namespace PLUME.Core.Recorder.Module
             OnReset();
         }
 
-        void IFrameRecorderModule.RecordFrameData(FrameDataBuffer buffer)
+        void IFrameDataRecorderModule.RecordFrameData(SerializedSamplesBuffer buffer)
         {
             OnRecordFrameData(buffer);
         }
 
-        protected virtual void OnCreate()
+        protected virtual void OnCreate(PlumeRecorder recorder)
         {
         }
 
@@ -52,7 +52,7 @@ namespace PLUME.Core.Recorder.Module
         {
         }
 
-        protected virtual void OnRecordFrameData(FrameDataBuffer buffer)
+        protected virtual void OnRecordFrameData(SerializedSamplesBuffer buffer)
         {
         }
     }

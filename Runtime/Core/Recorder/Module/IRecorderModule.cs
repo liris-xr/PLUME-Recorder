@@ -2,7 +2,7 @@ namespace PLUME.Core.Recorder.Module
 {
     public interface IRecorderModule
     {
-        internal void Create();
+        internal void Create(PlumeRecorder recorder);
         
         internal void Destroy();
         

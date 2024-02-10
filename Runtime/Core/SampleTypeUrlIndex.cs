@@ -1,6 +1,6 @@
 using System;
 
-namespace PLUME.Core.Recorder
+namespace PLUME.Core
 {
     public readonly struct SampleTypeUrlIndex : IEquatable<SampleTypeUrlIndex>
     {

@@ -1,12 +1,12 @@
 using Cysharp.Threading.Tasks;
 
-namespace PLUME.Core.Recorder.Module
+namespace PLUME.Core.Recorder.Module.Frame
 {
-    public abstract class FrameRecorderModuleAsync : IFrameRecorderModuleAsync
+    public abstract class FrameDataRecorderModuleAsync : IFrameDataRecorderModuleAsync
     {
-        void IRecorderModule.Create()
+        void IRecorderModule.Create(PlumeRecorder recorder)
         {
-            OnCreate();
+            OnCreate(recorder);
         }
 
         void IRecorderModule.Destroy()
@@ -29,12 +29,12 @@ namespace PLUME.Core.Recorder.Module
             OnReset();
         }
 
-        UniTask IFrameRecorderModuleAsync.RecordFrameDataAsync(FrameDataBuffer buffer)
+        UniTask IFrameDataRecorderModuleAsync.RecordFrameDataAsync(SerializedSamplesBuffer buffer)
         {
             return OnRecordFrameData(buffer);
         }
 
-        protected virtual void OnCreate()
+        protected virtual void OnCreate(PlumeRecorder recorder)
         {
         }
 
@@ -54,7 +54,7 @@ namespace PLUME.Core.Recorder.Module
         {
         }
 
-        protected virtual UniTask OnRecordFrameData(FrameDataBuffer buffer)
+        protected virtual UniTask OnRecordFrameData(SerializedSamplesBuffer buffer)
         {
             return UniTask.CompletedTask;
         }

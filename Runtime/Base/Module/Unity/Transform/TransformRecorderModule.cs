@@ -4,7 +4,7 @@ using PLUME.Core;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
-using PLUME.Core.Recorder.Module;
+using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Utils.Sample;
 using PLUME.Sample.Unity;
 using Unity.Burst;
@@ -12,11 +12,13 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Jobs;
 using UnityEngine.Pool;
+using UnityEngine.Scripting;
 using Vector3 = PLUME.Sample.Common.Vector3;
 
 namespace PLUME.Base.Module.Unity.Transform
 {
-    public class TransformRecorderModule : ObjectFrameRecorderModuleAsync<UnityEngine.Transform>
+    [Preserve]
+    internal class TransformRecorderModule : ObjectFrameDataRecorderModuleAsync<UnityEngine.Transform>
     {
         private readonly DynamicTransformAccessArray _transformAccessArray = new();
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
@@ -29,12 +31,12 @@ namespace PLUME.Base.Module.Unity.Transform
                 LocalPosition = new Vector3(),
                 WorldPosition = new Vector3()
             });
-
-        protected override void OnCreate()
+        
+        protected override void OnCreate(PlumeRecorder recorder)
         {
             _lastStates = new NativeHashMap<ObjectIdentifier, TransformState>(1000, Allocator.Persistent);
             _updatePosSampleTypeUrlIndex =
-                SampleTypeUrlManager.GetTypeUrlIndex("fr.liris.plume/" + TransformUpdatePosition.Descriptor.FullName);
+                SampleTypeUrlRegistry.GetOrCreateTypeUrlIndex("fr.liris.plume", TransformUpdatePosition.Descriptor);
         }
 
         protected override void OnDestroy()
@@ -64,7 +66,7 @@ namespace PLUME.Base.Module.Unity.Transform
         }
 
         [SuppressMessage("ReSharper", "ForCanBeConvertedToForeach")]
-        protected override async UniTask OnRecordFrameData(FrameDataBuffer buffer)
+        protected override async UniTask OnRecordFrameData(SerializedSamplesBuffer buffer)
         {
             var identifiers = new NativeList<ObjectIdentifier>(RecordedObjects.Count, Allocator.Persistent);
             var localPositions = new NativeList<UnityEngine.Vector3>(RecordedObjects.Count, Allocator.Persistent);
@@ -79,7 +81,7 @@ namespace PLUME.Base.Module.Unity.Transform
             }
 
             await UniTask.SwitchToThreadPool();
-            
+
             TransformUpdatePosition transformUpdatePositionSample;
 
             lock (_transformUpdatePositionPool)

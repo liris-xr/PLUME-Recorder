@@ -1,11 +1,16 @@
+using System;
 using PLUME.Core.Object.SafeRef;
 
 namespace PLUME.Core.Recorder.Module
 {
     public interface IObjectRecorderModule : IRecorderModule
     {
-        public bool TryStartRecordingObject(IObjectSafeRef obj, bool markCreated = true);
+        public Type SupportedObjectType { get; }
 
-        public bool TryStopRecordingObject(IObjectSafeRef obj, bool markDestroyed = true);
+        public void StartRecordingObject(IObjectSafeRef objSafeRef, bool markCreated = true);
+
+        public void StopRecordingObject(IObjectSafeRef objSafeRef, bool markDestroyed = true);
+
+        public bool IsRecordingObject(IObjectSafeRef objSafeRef);
     }
 }

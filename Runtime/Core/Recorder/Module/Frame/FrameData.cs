@@ -1,19 +1,19 @@
 using System;
 using Unity.Collections;
 
-namespace PLUME.Core.Recorder
+namespace PLUME.Core.Recorder.Module.Frame
 {
     public struct FrameData : IDisposable
     {
         internal readonly long Timestamp;
         internal readonly int Frame;
-        internal FrameDataBuffer Buffer;
+        internal SerializedSamplesBuffer Buffer;
 
         public FrameData(Allocator allocator, long timestamp, int frame)
         {
             Timestamp = timestamp;
             Frame = frame;
-            Buffer = new FrameDataBuffer(allocator);
+            Buffer = new SerializedSamplesBuffer(allocator);
         }
 
         public void Dispose()

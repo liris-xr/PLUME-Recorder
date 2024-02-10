@@ -1,13 +1,13 @@
 using Cysharp.Threading.Tasks;
 
-namespace PLUME.Core.Recorder
+namespace PLUME.Core.Recorder.Module.Frame
 {
-    public readonly struct FrameRecorderTask
+    public readonly struct FrameRecorderModuleTask
     {
         public readonly int Frame;
         public readonly UniTask Task;
 
-        public FrameRecorderTask(int frame, UniTask task)
+        public FrameRecorderModuleTask(int frame, UniTask task)
         {
             Frame = frame;
             Task = task;

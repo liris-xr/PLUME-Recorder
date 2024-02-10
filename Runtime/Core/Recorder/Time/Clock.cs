@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 
-namespace PLUME.Core.Recorder
+namespace PLUME.Core.Recorder.Time
 {
-    public class Clock
+    public class Clock : IReadOnlyClock
     {
         private readonly Stopwatch _clock = new();
 
@@ -26,6 +26,11 @@ namespace PLUME.Core.Recorder
             _clock.Reset();
         }
 
+        public bool IsRunning()
+        {
+            return _clock.IsRunning;
+        }
+        
         public long ElapsedNanoseconds => _clock.ElapsedTicks * (1_000_000_000 / Stopwatch.Frequency);
     }
 }

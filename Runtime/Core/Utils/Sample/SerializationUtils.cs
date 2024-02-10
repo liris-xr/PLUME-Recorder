@@ -8,7 +8,7 @@ namespace PLUME.Core.Utils.Sample
     public static class SerializationUtils
     {
         public static unsafe void SerializeSampleToBuffer(this IMessage message, SampleTypeUrlIndex sampleTypeUrlIndex,
-            FrameDataBuffer buffer)
+            SerializedSamplesBuffer buffer)
         {
             var size = message.CalculateSize();
             Span<byte> bytes = stackalloc byte[size];

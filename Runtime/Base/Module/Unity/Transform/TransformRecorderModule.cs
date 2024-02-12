@@ -35,7 +35,7 @@ namespace PLUME.Base.Module.Unity.Transform
         {
             _lastStates = new NativeHashMap<ObjectIdentifier, TransformState>(1000, Allocator.Persistent);
             _updatePosSampleTypeUrlIndex =
-                SampleTypeUrlRegistry.GetOrCreateTypeUrlIndex("fr.liris.plume", TransformUpdateLocalPosition.Descriptor);
+                SampleTypeUrlRegistry.Instance.GetOrCreateTypeUrlIndex("fr.liris.plume", TransformUpdateLocalPosition.Descriptor);
         }
 
         protected override void OnDestroy()
@@ -69,7 +69,7 @@ namespace PLUME.Base.Module.Unity.Transform
         {
             var identifiers = new NativeList<ObjectIdentifier>(RecordedObjects.Count, Allocator.Persistent);
             var localPositions = new NativeList<UnityEngine.Vector3>(RecordedObjects.Count, Allocator.Persistent);
-
+            
             for (var idx = 0; idx < RecordedObjects.Count; ++idx)
             {
                 var recordedObject = RecordedObjects[idx];
@@ -82,12 +82,12 @@ namespace PLUME.Base.Module.Unity.Transform
             await UniTask.SwitchToThreadPool();
 
             TransformUpdateLocalPosition transformUpdatePositionSample;
-
+            
             lock (_transformUpdatePositionPool)
             {
                 transformUpdatePositionSample = _transformUpdatePositionPool.Get();
             }
-
+            
             for (var idx = 0; idx < RecordedObjects.Count; ++idx)
             {
                 transformUpdatePositionSample.LocalPosition.X = localPositions[idx].x;
@@ -95,7 +95,7 @@ namespace PLUME.Base.Module.Unity.Transform
                 transformUpdatePositionSample.LocalPosition.Z = localPositions[idx].z;
                 transformUpdatePositionSample.SerializeSampleToBuffer(_updatePosSampleTypeUrlIndex, buffer);
             }
-
+            
             lock (_transformUpdatePositionPool)
             {
                 _transformUpdatePositionPool.Release(transformUpdatePositionSample);

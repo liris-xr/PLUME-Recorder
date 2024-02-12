@@ -3,12 +3,12 @@ using Unity.Collections;
 
 namespace PLUME.Core.Recorder
 {
-    // TODO: create an interface for this, and provide a concurrent version
     public struct SerializedSamplesBuffer : IDisposable
     {
         private NativeList<byte> _data;
         private NativeList<int> _lengths;
         private NativeList<SampleTypeUrlIndex> _sampleTypeUrlIndices;
+        public int ChunkCount => _lengths.Length;
 
         public SerializedSamplesBuffer(Allocator allocator)
         {
@@ -85,19 +85,24 @@ namespace PLUME.Core.Recorder
             }
         }
 
-        public NativeArray<byte>.ReadOnly GetData()
+        public NativeArray<byte> GetData()
         {
-            return _data.AsArray().AsReadOnly();
+            return _data.AsArray();
         }
 
-        public NativeArray<int>.ReadOnly GetLengths()
+        public NativeArray<byte> GetData(int start, int length)
         {
-            return _lengths.AsArray().AsReadOnly();
+            return _data.AsArray().GetSubArray(start, length);
         }
 
-        public NativeArray<SampleTypeUrlIndex>.ReadOnly GetSampleTypeUrlIndices()
+        public NativeArray<int> GetLengths()
         {
-            return _sampleTypeUrlIndices.AsArray().AsReadOnly();
+            return _lengths.AsArray();
+        }
+
+        public NativeArray<SampleTypeUrlIndex> GetSampleTypeUrlIndices()
+        {
+            return _sampleTypeUrlIndices.AsArray();
         }
 
         public void Dispose()

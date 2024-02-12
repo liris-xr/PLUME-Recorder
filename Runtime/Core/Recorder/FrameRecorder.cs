@@ -25,6 +25,8 @@ namespace PLUME.Core.Recorder
         private readonly IFrameDataRecorderModule[] _frameDataRecorderModules;
         private readonly IFrameDataRecorderModuleAsync[] _asyncFrameDataRecorderModules;
 
+        private readonly FrameSamplePacker _frameSamplePacker;
+        
         /// <summary>
         /// List of tasks that are currently running and serializing frames data.
         /// Tasks are added in the <see cref="Update"/> method and automatically removed when they finish.
@@ -39,11 +41,13 @@ namespace PLUME.Core.Recorder
 
         public FrameRecorder(IReadOnlyClock clock,
             IFrameDataRecorderModule[] modules,
-            IFrameDataRecorderModuleAsync[] asyncModules)
+            IFrameDataRecorderModuleAsync[] asyncModules,
+            FrameSamplePacker frameSamplePacker)
         {
             _clock = clock;
             _frameDataRecorderModules = modules;
             _asyncFrameDataRecorderModules = asyncModules;
+            _frameSamplePacker = frameSamplePacker;
         }
 
         /// <summary>
@@ -89,14 +93,16 @@ namespace PLUME.Core.Recorder
         }
 
         // TODO: add an output parameter, make this public
-        internal async UniTask RecordFrameAsync(long timestamp, int frame)
+        internal async UniTask RecordFrameAsync(long timestamp, int frameNumber)
         {
             var frameDataBuffer = new SerializedSamplesBuffer(Allocator.Persistent);
             await RecordFrameDataAsync(frameDataBuffer);
             
-            // TODO: Pack frame data (convert payload to Any and add header)
-            Debug.Log("Pushing frame data to recorder: Frame " + frame + ", " + frameDataBuffer.GetData().Length +
-                      " bytes");
+            var data = new NativeList<byte>(Allocator.Temp);
+            _frameSamplePacker.WritePackedFrameSample(timestamp, frameNumber, ref frameDataBuffer, ref data);
+            // Debug.Log("Frame " + frameNumber + ", " + data.Length + " bytes");
+            // TODO: push data to writer
+            data.Dispose();
             frameDataBuffer.Dispose();
         }
 

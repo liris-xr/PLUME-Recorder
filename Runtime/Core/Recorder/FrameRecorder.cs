@@ -1,30 +1,48 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
+using PLUME.Core.Recorder.Time;
 using PLUME.Core.Utils;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
-using UnityEngine.Scripting;
 
 namespace PLUME.Core.Recorder
 {
-    [Preserve]
-    public class FrameRecorderModule : RecorderModule
+    public class FrameRecorder
     {
-        private IFrameDataRecorderModule[] _frameDataRecorderModules;
-        private IFrameDataRecorderModuleAsync[] _asyncFrameDataRecorderModules;
+        public bool IsRecording { get; private set; }
+
+        private readonly Clock _clock;
+        private readonly IFrameDataRecorderModule[] _frameDataRecorderModules;
+        private readonly IFrameDataRecorderModuleAsync[] _asyncFrameDataRecorderModules;
 
         private readonly HashSet<FrameRecorderModuleTask> _tasks = new();
 
-        protected override void OnCreate(PlumeRecorder recorder)
+        public FrameRecorder(Clock clock,
+            IFrameDataRecorderModule[] modules,
+            IFrameDataRecorderModuleAsync[] asyncModules)
         {
-            var recorderModules = recorder.GetRecorderModules();
-            _frameDataRecorderModules = recorderModules.OfType<IFrameDataRecorderModule>().ToArray();
-            _asyncFrameDataRecorderModules = recorderModules.OfType<IFrameDataRecorderModuleAsync>().ToArray();
-            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(FrameRecorderModule), Update, typeof(PostLateUpdate));
+            _clock = clock;
+            _frameDataRecorderModules = modules;
+            _asyncFrameDataRecorderModules = asyncModules;
+        }
+
+        internal void InjectUpdateInCurrentLoop()
+        {
+            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(FrameRecorder), Update, typeof(PostLateUpdate));
+        }
+
+        public void Start()
+        {
+            IsRecording = true;
+        }
+
+        public void Stop()
+        {
+            IsRecording = false;
+            CompleteTasks();
         }
 
         private async void Update()
@@ -32,7 +50,7 @@ namespace PLUME.Core.Recorder
             if (!IsRecording)
                 return;
 
-            var timestamp = PlumeRecorder.Instance.Clock.ElapsedNanoseconds;
+            var timestamp = _clock.ElapsedNanoseconds;
             var frame = UnityEngine.Time.frameCount;
             var task = RecordFrameAsync(timestamp, frame);
             var recordFrameTask = new FrameRecorderModuleTask(frame, task);
@@ -82,11 +100,6 @@ namespace PLUME.Core.Recorder
                 await asyncTask.Task;
                 serializedSamplesBuffer.Merge(asyncTask.Buffer);
             }
-        }
-
-        protected override void OnStop()
-        {
-            CompleteTasks();
         }
 
         public void CompleteTasks()

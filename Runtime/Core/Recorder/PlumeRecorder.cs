@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using PLUME.Core.Recorder.Module;
+using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Recorder.Time;
 using UnityEngine;
 
@@ -21,13 +22,17 @@ namespace PLUME.Core.Recorder
         public IReadOnlyClock Clock => _clock;
 
         private readonly Clock _clock;
+        private readonly IRecorderModule[] _recorderModules;
 
-        private IRecorderModule[] _recorderModules;
-        private Dictionary<Type, IRecorderModule> _recorderModulesByType;
-        
-        private PlumeRecorder(Clock clock)
+        private readonly FrameRecorder _frameRecorder;
+
+        private PlumeRecorder(Clock clock, IRecorderModule[] recorderModules)
         {
             _clock = clock;
+            _recorderModules = recorderModules;
+            var frameDataRecorderModules = recorderModules.OfType<IFrameDataRecorderModule>().ToArray();
+            var asyncFrameDataRecorderModules = recorderModules.OfType<IFrameDataRecorderModuleAsync>().ToArray();
+            _frameRecorder = new FrameRecorder(clock, frameDataRecorderModules, asyncFrameDataRecorderModules);
         }
 
         ~PlumeRecorder()
@@ -47,13 +52,13 @@ namespace PLUME.Core.Recorder
             _instance = Instantiate(new Clock(), recorderModules);
         }
 
-        internal static PlumeRecorder Instantiate(Clock clock, IRecorderModule[] recorderModules)
+        internal static PlumeRecorder Instantiate(Clock clock, IRecorderModule[] recorderModules,
+            bool injectUpdateInCurrentLoop = true)
         {
-            var instance = new PlumeRecorder(clock)
-            {
-                _recorderModules = recorderModules,
-                _recorderModulesByType = recorderModules.ToDictionary(module => module.GetType())
-            };
+            var instance = new PlumeRecorder(clock, recorderModules);
+
+            if (injectUpdateInCurrentLoop)
+                instance._frameRecorder.InjectUpdateInCurrentLoop();
 
             foreach (var recorderModule in recorderModules)
             {
@@ -69,6 +74,9 @@ namespace PLUME.Core.Recorder
                 throw new InvalidOperationException("Recorder is already recording");
 
             _clock.Reset();
+
+            _frameRecorder.Start();
+
             foreach (var module in _recorderModules)
                 module.Start();
 
@@ -82,6 +90,8 @@ namespace PLUME.Core.Recorder
                 throw new InvalidOperationException("Recorder is not recording");
 
             _clock.Stop();
+
+            _frameRecorder.Stop();
 
             foreach (var module in _recorderModules)
                 module.Stop();
@@ -102,16 +112,11 @@ namespace PLUME.Core.Recorder
 
         public bool TryGetRecorderModule<T>(out T module) where T : IRecorderModule
         {
-            if (_recorderModulesByType.TryGetValue(typeof(T), out var m))
-            {
-                module = (T)m;
-                return true;
-            }
-
-            module = default;
-            return false;
+            var recorderModule = _recorderModules.OfType<T>();
+            module = recorderModule.FirstOrDefault();
+            return module != null;
         }
-        
+
         public static PlumeRecorder Instance
         {
             get

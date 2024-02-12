@@ -24,19 +24,18 @@ namespace PLUME.Base.Module.Unity.Transform
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
         private SampleTypeUrlIndex _updatePosSampleTypeUrlIndex;
 
-        private readonly ObjectPool<TransformUpdatePosition> _transformUpdatePositionPool = new(() =>
-            new TransformUpdatePosition
+        private readonly ObjectPool<TransformUpdateLocalPosition> _transformUpdatePositionPool = new(() =>
+            new TransformUpdateLocalPosition
             {
                 Id = new TransformGameObjectIdentifier(),
-                LocalPosition = new Vector3(),
-                WorldPosition = new Vector3()
+                LocalPosition = new Vector3()
             });
         
         protected override void OnCreate()
         {
             _lastStates = new NativeHashMap<ObjectIdentifier, TransformState>(1000, Allocator.Persistent);
             _updatePosSampleTypeUrlIndex =
-                SampleTypeUrlRegistry.GetOrCreateTypeUrlIndex("fr.liris.plume", TransformUpdatePosition.Descriptor);
+                SampleTypeUrlRegistry.GetOrCreateTypeUrlIndex("fr.liris.plume", TransformUpdateLocalPosition.Descriptor);
         }
 
         protected override void OnDestroy()
@@ -82,7 +81,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
             await UniTask.SwitchToThreadPool();
 
-            TransformUpdatePosition transformUpdatePositionSample;
+            TransformUpdateLocalPosition transformUpdatePositionSample;
 
             lock (_transformUpdatePositionPool)
             {

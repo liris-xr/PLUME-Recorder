@@ -93,6 +93,7 @@ namespace PLUME.Core.Recorder
         {
             var frameDataBuffer = new SerializedSamplesBuffer(Allocator.Persistent);
             await RecordFrameDataAsync(frameDataBuffer);
+            
             // TODO: Pack frame data (convert payload to Any and add header)
             Debug.Log("Pushing frame data to recorder: Frame " + frame + ", " + frameDataBuffer.GetData().Length +
                       " bytes");

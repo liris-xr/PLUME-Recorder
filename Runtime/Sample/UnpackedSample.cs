@@ -11,12 +11,12 @@ namespace PLUME.Sample
 
     public class UnpackedSample<T> where T : IMessage
     {
-        [CanBeNull] public SampleHeader Header;
+        [CanBeNull] public long? Timestamp;
         public T Payload;
 
         private bool Equals(UnpackedSample<T> other)
         {
-            return Equals(Header, other.Header) && EqualityComparer<T>.Default.Equals(Payload, other.Payload);
+            return Equals(Timestamp, other.Timestamp) && EqualityComparer<T>.Default.Equals(Payload, other.Payload);
         }
 
         public override bool Equals(object obj)
@@ -28,7 +28,7 @@ namespace PLUME.Sample
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Header, Payload);
+            return HashCode.Combine(Timestamp, Payload);
         }
     }
 }

@@ -50,13 +50,13 @@ namespace PLUME.Base.Module.Unity.Transform
         protected override void OnStartRecording(ObjectSafeRef<UnityEngine.Transform> objSafeRef, bool markCreated)
         {
             _transformAccessArray.TryAdd(objSafeRef);
-            _lastStates[objSafeRef.ObjectIdentifier] = TransformState.Null;
+            _lastStates[objSafeRef.Identifier] = TransformState.Null;
         }
 
         protected override void OnStopRecording(ObjectSafeRef<UnityEngine.Transform> objSafeRef, bool markDestroyed)
         {
             _transformAccessArray.RemoveSwapBack(objSafeRef);
-            _lastStates.Remove(objSafeRef.ObjectIdentifier);
+            _lastStates.Remove(objSafeRef.Identifier);
         }
 
         protected override void OnReset()
@@ -75,7 +75,7 @@ namespace PLUME.Base.Module.Unity.Transform
             {
                 var recordedObject = RecordedObjects[idx];
                 var t = recordedObject.TypedObject;
-                identifiers.Add(recordedObject.ObjectIdentifier);
+                identifiers.Add(recordedObject.Identifier);
                 // localPositions.Add(t.localPosition);
                 localPositions.Add(UnityEngine.Vector3.one);
             }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Recorder.Time;
@@ -18,6 +19,8 @@ namespace PLUME.Core.Recorder
         private static PlumeRecorder _instance;
 
         public bool IsRecording { get; private set; }
+        
+        public readonly ObjectSafeRefProvider ObjectSafeRefProvider;
 
         /// <summary>
         /// Clock used by the recorder to timestamp the samples.
@@ -32,10 +35,11 @@ namespace PLUME.Core.Recorder
         /// </summary>
         private readonly FrameRecorder _frameRecorder;
 
-        private PlumeRecorder(Clock clock, IRecorderModule[] recorderModules)
+        private PlumeRecorder(Clock clock, IRecorderModule[] recorderModules, ObjectSafeRefProvider objSafeRefProvider)
         {
             _clock = clock;
             _recorderModules = recorderModules;
+            ObjectSafeRefProvider = objSafeRefProvider;
             var frameDataRecorderModules = recorderModules.OfType<IFrameDataRecorderModule>().ToArray();
             var asyncFrameDataRecorderModules = recorderModules.OfType<IFrameDataRecorderModuleAsync>().ToArray();
             _frameRecorder = new FrameRecorder(clock, frameDataRecorderModules, asyncFrameDataRecorderModules);
@@ -60,7 +64,9 @@ namespace PLUME.Core.Recorder
         {
             var recorderModuleTypes = RecorderModuleManager.GetRecorderModulesTypesFromAllAssemblies();
             var recorderModules = RecorderModuleManager.InstantiateRecorderModulesFromTypes(recorderModuleTypes);
-            _instance = Instantiate(new Clock(), recorderModules, true);
+            var clock = new Clock();
+            var objSafeRefProvider = new ObjectSafeRefProvider();
+            _instance = Instantiate(clock, recorderModules, objSafeRefProvider, true);
         }
 
         /// <summary>
@@ -69,12 +75,13 @@ namespace PLUME.Core.Recorder
         /// </summary>
         /// <param name="clock">The clock used by the recorder to timestamp the samples.</param>
         /// <param name="recorderModules">The recorder modules attached to the recorder.</param>
+        /// <param name="objSafeRefProvider">The object safe reference provider used by the recorder.</param>
         /// <param name="injectUpdateInCurrentLoop">If true, injects the <see cref="FrameRecorder"/> update method in the player loop.</param>
         /// <returns>The new instance of the recorder.</returns>
         internal static PlumeRecorder Instantiate(Clock clock, IRecorderModule[] recorderModules,
-            bool injectUpdateInCurrentLoop)
+            ObjectSafeRefProvider objSafeRefProvider, bool injectUpdateInCurrentLoop)
         {
-            var instance = new PlumeRecorder(clock, recorderModules);
+            var instance = new PlumeRecorder(clock, recorderModules, objSafeRefProvider);
 
             if (injectUpdateInCurrentLoop)
                 instance._frameRecorder.InjectUpdateInCurrentLoop();

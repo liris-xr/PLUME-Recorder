@@ -10,21 +10,25 @@ namespace PLUME.Core.Object
 
         public bool TryAdd(ObjectSafeRef<TObject> objSafeRef)
         {
-            if (!_objectsIdentifiers.Add(objSafeRef.ObjectIdentifier)) return false;
+            if (!_objectsIdentifiers.Add(objSafeRef.Identifier))
+                return false;
+            
             _objects.Add(objSafeRef);
             return true;
         }
         
         public bool TryRemove(ObjectSafeRef<TObject> objSafeRef)
         {
-            if (!_objectsIdentifiers.Remove(objSafeRef.ObjectIdentifier)) return false;
+            if (!_objectsIdentifiers.Remove(objSafeRef.Identifier))
+                return false;
+            
             _objects.Remove(objSafeRef);
             return true;
         }
         
         public bool Contains(ObjectSafeRef<TObject> objSafeRef)
         {
-            return _objectsIdentifiers.Contains(objSafeRef.ObjectIdentifier);
+            return _objectsIdentifiers.Contains(objSafeRef.Identifier);
         }
         
         public void Clear()

@@ -9,12 +9,12 @@ namespace PLUME.Core.Object.SafeRef
         
         public bool Equals(ObjectSafeRef<TObject> x, ObjectSafeRef<TObject> y)
         {
-            return ObjectIdentifierComparer.Instance.Equals(x.ObjectIdentifier, y.ObjectIdentifier);
+            return ObjectIdentifierComparer.Instance.Equals(x.Identifier, y.Identifier);
         }
 
         public int GetHashCode(ObjectSafeRef<TObject> obj)
         {
-            return ObjectIdentifierComparer.Instance.GetHashCode(obj.ObjectIdentifier);
+            return ObjectIdentifierComparer.Instance.GetHashCode(obj.Identifier);
         }
     }
 }

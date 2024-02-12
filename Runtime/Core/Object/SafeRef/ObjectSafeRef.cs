@@ -4,28 +4,39 @@ using UnityObject = UnityEngine.Object;
 
 namespace PLUME.Core.Object.SafeRef
 {
+    /// <summary>
+    /// Stores a reference to a Unity object along with its cached <see cref="Identifier"/>. When the object is
+    /// destroyed, the identifier is still valid and can be used to identify the object. This is useful for recording
+    /// data about objects that have been destroyed and for which the reference is no longer valid.
+    /// </summary>
+    /// <typeparam name="TObject">The type of the Unity object to reference.</typeparam>
     public readonly struct ObjectSafeRef<TObject> : IObjectSafeRef where TObject : UnityObject
     {
-        public readonly ObjectIdentifier ObjectIdentifier;
+        public static ObjectSafeRef<TObject> Null { get; } = new(ObjectIdentifier.Null);
+        
+        public Type ObjectType => typeof(TObject);
+
+        public ObjectIdentifier Identifier { get; }
+
         public readonly TObject TypedObject;
 
-        public static ObjectSafeRef<TObject> Null { get; } = new(ObjectIdentifier.Null);
+        public UnityObject Object => TypedObject;
 
         private ObjectSafeRef(ObjectIdentifier identifier)
         {
-            ObjectIdentifier = identifier;
+            Identifier = identifier;
             TypedObject = null;
         }
 
         public ObjectSafeRef(TObject @object, Hash128 guid)
         {
-            ObjectIdentifier = new ObjectIdentifier(@object.GetInstanceID(), guid);
+            Identifier = new ObjectIdentifier(@object.GetInstanceID(), guid);
             TypedObject = @object;
         }
 
         public bool Equals(ObjectSafeRef<TObject> other)
         {
-            return ObjectIdentifier.InstanceId == other.ObjectIdentifier.InstanceId;
+            return Identifier.InstanceId == other.Identifier.InstanceId;
         }
 
         public override bool Equals(object obj)
@@ -35,37 +46,12 @@ namespace PLUME.Core.Object.SafeRef
 
         public override int GetHashCode()
         {
-            return ObjectIdentifier.InstanceId;
-        }
-
-        public Type GetObjectType()
-        {
-            return typeof(TObject);
-        }
-
-        public ObjectIdentifier GetObjectIdentifier()
-        {
-            return ObjectIdentifier;
-        }
-
-        public UnityObject GetObject()
-        {
-            return TypedObject;
-        }
-
-        public int GetInstanceId()
-        {
-            return ObjectIdentifier.InstanceId;
-        }
-
-        public Hash128 GetGlobalId()
-        {
-            return ObjectIdentifier.GlobalId;
+            return Identifier.InstanceId;
         }
 
         public override string ToString()
         {
-            return (TypedObject == null ? "null" : TypedObject.name) + $" ({typeof(TObject)}): {ObjectIdentifier}";
+            return (TypedObject == null ? "null" : TypedObject.name) + $" ({typeof(TObject)}): {Identifier}";
         }
     }
 }

@@ -5,11 +5,11 @@ namespace PLUME.Core.Object.SafeRef
 {
     public interface IObjectSafeRef
     {
-        Type GetObjectType();
+        Type ObjectType { get; }
 
-        ObjectIdentifier GetObjectIdentifier();
+        ObjectIdentifier Identifier { get; }
 
-        UnityObject GetObject();
+        UnityObject Object { get; }
 
         string ToString();
     }

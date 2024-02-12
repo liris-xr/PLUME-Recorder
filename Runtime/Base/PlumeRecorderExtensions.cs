@@ -24,7 +24,7 @@ namespace PLUME.Base
                 if (module is not IObjectRecorderModule objectRecorderModule)
                     continue;
 
-                if (objectRecorderModule.SupportedObjectType != objectSafeRef.GetObjectType())
+                if (objectRecorderModule.SupportedObjectType != objectSafeRef.ObjectType)
                     continue;
 
                 if (objectRecorderModule.IsRecordingObject(objectSafeRef))
@@ -44,7 +44,7 @@ namespace PLUME.Base
                 if (module is not IObjectRecorderModule objectRecorderModule)
                     continue;
                 
-                if (objectRecorderModule.SupportedObjectType != objectSafeRef.GetObjectType())
+                if (objectRecorderModule.SupportedObjectType != objectSafeRef.ObjectType)
                     continue;
                 
                 if (!objectRecorderModule.IsRecordingObject(objectSafeRef))

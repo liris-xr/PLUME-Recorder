@@ -14,15 +14,6 @@
     "com.unity.burst": "1.8.4",
     "com.unity.collections": "2.1.4"
   },
-  "scopedRegistries": [
-    {
-      "name": "OpenUPM",
-      "url": "https://package.openupm.com",
-      "scopes": [
-        "com.cysharp.unitask"
-      ]
-    }
-  ],
   "keywords": [
     "Behavior",
     "Record",

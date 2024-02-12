@@ -5,31 +5,25 @@ using System.Linq;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Time;
 using UnityEngine;
-using UnityObject = UnityEngine.Object;
 
 namespace PLUME.Core.Recorder
 {
+    /// <summary>
+    /// The main class of the PLUME recorder. It is responsible for managing the recording process (start/stop) and the recorder modules.
+    /// It is a singleton and should be accessed through the <see cref="Instance"/> property. The instance is created automatically
+    /// after the assemblies are loaded by the application.
+    /// </summary>
     public sealed class PlumeRecorder
     {
         private static PlumeRecorder _instance;
 
-        private bool _isRecording;
+        public bool IsRecording { get; private set; }
+        public IReadOnlyClock Clock => _clock;
 
         private readonly Clock _clock;
 
         private IRecorderModule[] _recorderModules;
         private Dictionary<Type, IRecorderModule> _recorderModulesByType;
-
-        public static PlumeRecorder Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    Instantiate();
-
-                return _instance;
-            }
-        }
         
         private PlumeRecorder(Clock clock)
         {
@@ -38,7 +32,7 @@ namespace PLUME.Core.Recorder
 
         ~PlumeRecorder()
         {
-            if (_isRecording)
+            if (IsRecording)
                 Stop();
 
             foreach (var module in _recorderModules)
@@ -71,7 +65,7 @@ namespace PLUME.Core.Recorder
 
         public void Start()
         {
-            if (_isRecording)
+            if (IsRecording)
                 throw new InvalidOperationException("Recorder is already recording");
 
             _clock.Reset();
@@ -79,12 +73,12 @@ namespace PLUME.Core.Recorder
                 module.Start();
 
             _clock.Start();
-            _isRecording = true;
+            IsRecording = true;
         }
 
         public void Stop()
         {
-            if (!_isRecording)
+            if (!IsRecording)
                 throw new InvalidOperationException("Recorder is not recording");
 
             _clock.Stop();
@@ -92,12 +86,12 @@ namespace PLUME.Core.Recorder
             foreach (var module in _recorderModules)
                 module.Stop();
 
-            _isRecording = false;
+            IsRecording = false;
         }
 
         internal void EnsureIsRecording()
         {
-            if (!_isRecording)
+            if (!IsRecording)
                 throw new InvalidOperationException("Recorder is not recording");
         }
 
@@ -117,10 +111,16 @@ namespace PLUME.Core.Recorder
             module = default;
             return false;
         }
-
-        public IReadOnlyClock GetClock()
+        
+        public static PlumeRecorder Instance
         {
-            return _clock;
+            get
+            {
+                if (_instance == null)
+                    Instantiate();
+
+                return _instance;
+            }
         }
     }
 }

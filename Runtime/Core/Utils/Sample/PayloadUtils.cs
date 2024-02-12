@@ -2,6 +2,7 @@
 using PLUME.Sample.Common;
 using PLUME.Sample.Unity;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityRuntimeGuid;
 using Bounds = PLUME.Sample.Common.Bounds;
 using CameraClearFlags = PLUME.Sample.Unity.CameraClearFlags;
@@ -23,6 +24,11 @@ using TransparencySortMode = PLUME.Sample.Unity.TransparencySortMode;
 using Vector2 = PLUME.Sample.Common.Vector2;
 using Vector3 = PLUME.Sample.Common.Vector3;
 using Vector4 = PLUME.Sample.Common.Vector4;
+
+#if URP_ENABLED
+using AntialiasingMode = PLUME.Sample.Unity.AntialiasingMode;
+using AntialiasingQuality = PLUME.Sample.Unity.AntialiasingQuality;
+#endif
 
 namespace PLUME.Core.Utils.Sample
 {

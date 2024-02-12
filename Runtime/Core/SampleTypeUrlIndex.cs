@@ -2,6 +2,11 @@ using System;
 
 namespace PLUME.Core
 {
+    /// <summary>
+    /// A unique identifier associated to a ProtoBuf sample type URL (eg. "type.googleapis.com/google.protobuf.Any").
+    /// This is used in <see cref="SampleTypeUrlRegistry"/> to map this unique identifier to a sample type URL string and
+    /// thus prevent storing a full string for each sample stored in a <see cref="Recorder.SerializedSamplesBuffer"/>.
+    /// </summary>
     public readonly struct SampleTypeUrlIndex : IEquatable<SampleTypeUrlIndex>
     {
         private readonly int _index;

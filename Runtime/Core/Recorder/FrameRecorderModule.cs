@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using PLUME.Core.Recorder.Module;
+using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Utils;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Scripting;
 
-namespace PLUME.Core.Recorder.Module.Frame
+namespace PLUME.Core.Recorder
 {
     [Preserve]
     public class FrameRecorderModule : RecorderModule
@@ -30,7 +32,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             if (!IsRecording)
                 return;
 
-            var timestamp = PlumeRecorder.Instance.GetClock().ElapsedNanoseconds;
+            var timestamp = PlumeRecorder.Instance.Clock.ElapsedNanoseconds;
             var frame = UnityEngine.Time.frameCount;
             var task = RecordFrameAsync(timestamp, frame);
             var recordFrameTask = new FrameRecorderModuleTask(frame, task);

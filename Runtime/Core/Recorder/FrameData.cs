@@ -1,7 +1,7 @@
 using System;
 using Unity.Collections;
 
-namespace PLUME.Core.Recorder.Module.Frame
+namespace PLUME.Core.Recorder
 {
     public struct FrameData : IDisposable
     {

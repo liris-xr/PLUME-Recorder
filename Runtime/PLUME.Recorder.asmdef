@@ -1,5 +1,5 @@
 {
-    "name": "PLUME.Recorder.Runtime",
+    "name": "PLUME.Recorder",
     "rootNamespace": "PLUME",
     "references": [
         "GUID:7337036dbbf0a8c4a99ad3544b02ffdd",

@@ -5,12 +5,12 @@ namespace PLUME.Core.Recorder.Module
     public abstract class RecorderModule : IRecorderModule
     {
         public bool IsRecording { get; private set; }
-        
-        void IRecorderModule.Create(PlumeRecorder recorder)
+
+        void IRecorderModule.Create()
         {
-            OnCreate(recorder);
+            OnCreate();
         }
-        
+
         void IRecorderModule.Destroy()
         {
             OnDestroy();
@@ -32,7 +32,7 @@ namespace PLUME.Core.Recorder.Module
         {
             OnReset();
         }
-        
+
         protected void EnsureIsRecording()
         {
             if (!IsRecording)
@@ -40,11 +40,11 @@ namespace PLUME.Core.Recorder.Module
                 throw new InvalidOperationException("Recorder module is not recording.");
             }
         }
-        
-        protected virtual void OnCreate(PlumeRecorder recorder)
+
+        protected virtual void OnCreate()
         {
         }
-        
+
         protected virtual void OnDestroy()
         {
         }

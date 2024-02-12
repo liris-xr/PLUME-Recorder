@@ -32,7 +32,7 @@ namespace PLUME.Base.Module.Unity.Transform
                 WorldPosition = new Vector3()
             });
         
-        protected override void OnCreate(PlumeRecorder recorder)
+        protected override void OnCreate()
         {
             _lastStates = new NativeHashMap<ObjectIdentifier, TransformState>(1000, Allocator.Persistent);
             _updatePosSampleTypeUrlIndex =

@@ -33,8 +33,10 @@ namespace PLUME.Core.Recorder.Module
                     Debug.LogWarning($"Type {moduleType} does not have a default constructor. Skipping.");
                     continue;
                 }
-
-                modules.Add((IRecorderModule)Activator.CreateInstance(moduleType));
+                
+                var recorderModule = (IRecorderModule)Activator.CreateInstance(moduleType);
+                recorderModule.Create();
+                modules.Add(recorderModule);
             }
 
             return modules.ToArray();

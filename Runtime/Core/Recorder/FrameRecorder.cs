@@ -10,17 +10,33 @@ using UnityEngine.PlayerLoop;
 
 namespace PLUME.Core.Recorder
 {
+    /// <summary>
+    /// The frame recorder is responsible for recording data associated with Unity frames.
+    /// It automatically runs after <see cref="PostLateUpdate"/> if <see cref="InjectUpdateInCurrentLoop"/> was called (automatically called by <see cref="PlumeRecorder"/> when the instance is created).
+    /// It is responsible for running the <see cref="IFrameDataRecorderModule.RecordFrameData"/> and <see cref="IFrameDataRecorderModuleAsync.RecordFrameDataAsync"/> on <see cref="IFrameDataRecorderModule"/> and <see cref="IFrameDataRecorderModuleAsync"/> modules respectively.
+    /// </summary>
     public class FrameRecorder
     {
-        public bool IsRecording { get; private set; }
+        /// <summary>
+        /// Clock used by the frame recorder to timestamp the frames. The frame recorder is not responsible for starting and stopping the clock (this is typically done by the <see cref="PlumeRecorder"/>).
+        /// </summary>
+        private readonly IReadOnlyClock _clock;
 
-        private readonly Clock _clock;
         private readonly IFrameDataRecorderModule[] _frameDataRecorderModules;
         private readonly IFrameDataRecorderModuleAsync[] _asyncFrameDataRecorderModules;
 
+        /// <summary>
+        /// List of tasks that are currently running and serializing frames data.
+        /// Tasks may queue up if the serialization process is slow. This list is used to wait for all the tasks to finish before stopping the recorder (see <see cref="CompleteTasks"/>).
+        /// </summary>
         private readonly HashSet<FrameRecorderModuleTask> _tasks = new();
 
-        public FrameRecorder(Clock clock,
+        /// <summary>
+        /// Whether the frame recorder should run the update loop. This is automatically set to true when the recorder starts and false when it stops.
+        /// </summary>
+        private bool _shouldRunUpdateLoop;
+
+        public FrameRecorder(IReadOnlyClock clock,
             IFrameDataRecorderModule[] modules,
             IFrameDataRecorderModuleAsync[] asyncModules)
         {
@@ -29,25 +45,36 @@ namespace PLUME.Core.Recorder
             _asyncFrameDataRecorderModules = asyncModules;
         }
 
+        /// <summary>
+        /// Injects the <see cref="Update"/> method in the current player loop. Called automatically by <see cref="PlumeRecorder.Instantiate()"/> when the instance is created.
+        /// </summary>
         internal void InjectUpdateInCurrentLoop()
         {
             PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(FrameRecorder), Update, typeof(PostLateUpdate));
         }
 
-        public void Start()
+        /// <summary>
+        /// Starts the frame recorder. Called automatically by <see cref="PlumeRecorder.Start"/> when the recorder starts.
+        /// For internal use only. Use <see cref="PlumeRecorder.Start"/> to start the recorder.
+        /// </summary>
+        internal void Start()
         {
-            IsRecording = true;
+            _shouldRunUpdateLoop = true;
         }
 
-        public void Stop()
+        /// <summary>
+        /// Stops the frame recorder. Called automatically by <see cref="PlumeRecorder.Stop"/> when the recorder stops.
+        /// For internal use only. Use <see cref="PlumeRecorder.Stop"/> to stop the recorder.
+        /// </summary>
+        internal void Stop()
         {
-            IsRecording = false;
+            _shouldRunUpdateLoop = false;
             CompleteTasks();
         }
 
         private async void Update()
         {
-            if (!IsRecording)
+            if (!_shouldRunUpdateLoop)
                 return;
 
             var timestamp = _clock.ElapsedNanoseconds;
@@ -102,6 +129,9 @@ namespace PLUME.Core.Recorder
             }
         }
 
+        /// <summary>
+        /// Waits synchronously for all the frame recording tasks to finish. This method is called automatically by <see cref="PlumeRecorder.Stop"/> when the recorder stops.
+        /// </summary>
         public void CompleteTasks()
         {
             // Wait for all the frame recording tasks to finish.
@@ -112,6 +142,7 @@ namespace PLUME.Core.Recorder
 
                 foreach (var recordTask in _tasks)
                 {
+                    // TODO: ensure that this doesn't create a deadlock
                     recordTask.Task.AsTask().Wait();
                 }
 

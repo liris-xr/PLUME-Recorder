@@ -4,9 +4,9 @@ namespace PLUME.Core.Recorder.Module.Frame
 {
     public abstract class FrameDataRecorderModuleAsync : IFrameDataRecorderModuleAsync
     {
-        void IRecorderModule.Create(PlumeRecorder recorder)
+        void IRecorderModule.Create()
         {
-            OnCreate(recorder);
+            OnCreate();
         }
 
         void IRecorderModule.Destroy()
@@ -34,7 +34,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             return OnRecordFrameData(buffer);
         }
 
-        protected virtual void OnCreate(PlumeRecorder recorder)
+        protected virtual void OnCreate()
         {
         }
 

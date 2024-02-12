@@ -10,7 +10,7 @@ namespace PLUME.Base
     {
         public static void RecordMarker(this PlumeRecorder recorder, string label)
         {
-            if (recorder.TryGetRecorderModule<MarkerRecorderModule>(out var module))
+            if (recorder.TryGetModule<MarkerRecorderModule>(out var module))
                 module.RecordMarker(label);
         }
 
@@ -19,7 +19,7 @@ namespace PLUME.Base
         {
             recorder.EnsureIsRecording();
 
-            foreach (var module in recorder.GetRecorderModules())
+            foreach (var module in recorder.Modules)
             {
                 if (module is not IObjectRecorderModule objectRecorderModule)
                     continue;
@@ -39,7 +39,7 @@ namespace PLUME.Base
         {
             recorder.EnsureIsRecording();
 
-            foreach (var module in recorder.GetRecorderModules())
+            foreach (var module in recorder.Modules)
             {
                 if (module is not IObjectRecorderModule objectRecorderModule)
                     continue;

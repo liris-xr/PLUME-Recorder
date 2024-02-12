@@ -29,11 +29,11 @@ namespace PLUME.Core.Recorder
             return Frame;
         }
     }
-    
+
     public class FrameRecorderModuleTaskComparer : IEqualityComparer<FrameRecorderTask>
     {
         public static readonly FrameRecorderModuleTaskComparer Instance = new();
-            
+
         public bool Equals(FrameRecorderTask x, FrameRecorderTask y)
         {
             return x.Frame == y.Frame;

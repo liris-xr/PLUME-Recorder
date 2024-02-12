@@ -11,7 +11,7 @@ namespace PLUME.Core.Object.SafeRef
     {
         private readonly Dictionary<int, IObjectSafeRef> _cachedRefs = new();
 
-        public ObjectSafeRef<TObject> GetOrCreateTypedObjectSafeRef<TObject>(TObject obj) where TObject : UnityEngine.Object
+        public ObjectSafeRef<TObject> GetOrCreateTypedObjectSafeRef<TObject>(TObject obj) where TObject : UnityObject
         {
             return (ObjectSafeRef<TObject>) GetOrCreateObjectSafeRef(obj);
         }

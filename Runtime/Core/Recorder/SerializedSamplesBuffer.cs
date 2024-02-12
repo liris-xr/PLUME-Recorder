@@ -38,7 +38,8 @@ namespace PLUME.Core.Recorder
             }
         }
 
-        public void AddSerializedSamples(SampleTypeUrlIndex sampleTypeUrlIndex, ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths)
+        public void AddSerializedSamples(SampleTypeUrlIndex sampleTypeUrlIndex, ReadOnlySpan<byte> data,
+            ReadOnlySpan<int> lengths)
         {
             unsafe
             {
@@ -88,17 +89,17 @@ namespace PLUME.Core.Recorder
         {
             return _data.AsArray().AsReadOnly();
         }
-        
+
         public NativeArray<int>.ReadOnly GetLengths()
         {
             return _lengths.AsArray().AsReadOnly();
         }
-        
+
         public NativeArray<SampleTypeUrlIndex>.ReadOnly GetSampleTypeUrlIndices()
         {
             return _sampleTypeUrlIndices.AsArray().AsReadOnly();
         }
-        
+
         public void Dispose()
         {
             _data.Dispose();

@@ -24,7 +24,6 @@ using TransparencySortMode = PLUME.Sample.Unity.TransparencySortMode;
 using Vector2 = PLUME.Sample.Common.Vector2;
 using Vector3 = PLUME.Sample.Common.Vector3;
 using Vector4 = PLUME.Sample.Common.Vector4;
-
 #if URP_ENABLED
 using AntialiasingMode = PLUME.Sample.Unity.AntialiasingMode;
 using AntialiasingQuality = PLUME.Sample.Unity.AntialiasingQuality;
@@ -515,24 +514,24 @@ namespace PLUME.Core.Utils.Sample
         }
 
 #if URP_ENABLED
-        public static CameraOverrideOption ToPayload(this UnityEngine.Rendering.Universal.CameraOverrideOption cameraOverrideOption)
+        public static CameraOverrideOption ToPayload(this CameraOverrideOption cameraOverrideOption)
         {
             return cameraOverrideOption switch
             {
-                UnityEngine.Rendering.Universal.CameraOverrideOption.Off => CameraOverrideOption.Off,
-                UnityEngine.Rendering.Universal.CameraOverrideOption.On => CameraOverrideOption.On ,
-                UnityEngine.Rendering.Universal.CameraOverrideOption.UsePipelineSettings => CameraOverrideOption.UsePipelineSettings,
+                CameraOverrideOption.Off => CameraOverrideOption.Off,
+                CameraOverrideOption.On => CameraOverrideOption.On ,
+                CameraOverrideOption.UsePipelineSettings => CameraOverrideOption.UsePipelineSettings,
                 _ => throw new ArgumentOutOfRangeException(nameof(cameraOverrideOption), cameraOverrideOption,
                     null)
             };
         }
         
-        public static CameraRenderType ToPayload(this UnityEngine.Rendering.Universal.CameraRenderType cameraRenderType)
+        public static CameraRenderType ToPayload(this CameraRenderType cameraRenderType)
         {
             return cameraRenderType switch
             {
-                UnityEngine.Rendering.Universal.CameraRenderType.Base => CameraRenderType.Base,
-                UnityEngine.Rendering.Universal.CameraRenderType.Overlay => CameraRenderType.Overlay,
+                CameraRenderType.Base => CameraRenderType.Base,
+                CameraRenderType.Overlay => CameraRenderType.Overlay,
                 _ => throw new ArgumentOutOfRangeException(nameof(cameraRenderType), cameraRenderType,
                     null)
             };

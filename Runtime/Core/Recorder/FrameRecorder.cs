@@ -27,9 +27,10 @@ namespace PLUME.Core.Recorder
 
         /// <summary>
         /// List of tasks that are currently running and serializing frames data.
+        /// Tasks are added in the <see cref="Update"/> method and automatically removed when they finish.
         /// Tasks may queue up if the serialization process is slow. This list is used to wait for all the tasks to finish before stopping the recorder (see <see cref="CompleteTasks"/>).
         /// </summary>
-        private readonly HashSet<FrameRecorderModuleTask> _tasks = new();
+        private readonly HashSet<FrameRecorderTask> _tasks = new(FrameRecorderModuleTaskComparer.Instance);
 
         /// <summary>
         /// Whether the frame recorder should run the update loop. This is automatically set to true when the recorder starts and false when it stops.
@@ -80,7 +81,7 @@ namespace PLUME.Core.Recorder
             var timestamp = _clock.ElapsedNanoseconds;
             var frame = UnityEngine.Time.frameCount;
             var task = RecordFrameAsync(timestamp, frame);
-            var recordFrameTask = new FrameRecorderModuleTask(frame, task);
+            var recordFrameTask = new FrameRecorderTask(frame, task);
 
             lock (_tasks) _tasks.Add(recordFrameTask);
             await task;

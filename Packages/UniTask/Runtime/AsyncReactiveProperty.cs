@@ -27,10 +27,7 @@ namespace Cysharp.Threading.Tasks
 
         public T Value
         {
-            get
-            {
-                return latestValue;
-            }
+            get { return latestValue; }
             set
             {
                 this.latestValue = value;
@@ -104,7 +101,8 @@ namespace Cysharp.Threading.Tasks
             {
             }
 
-            public static IUniTaskSource<T> Create(AsyncReactiveProperty<T> parent, CancellationToken cancellationToken, out short token)
+            public static IUniTaskSource<T> Create(AsyncReactiveProperty<T> parent, CancellationToken cancellationToken,
+                out short token)
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
@@ -121,7 +119,8 @@ namespace Cysharp.Threading.Tasks
 
                 if (cancellationToken.CanBeCanceled)
                 {
-                    result.cancellationTokenRegistration = cancellationToken.RegisterWithoutCaptureExecutionContext(cancellationCallback, result);
+                    result.cancellationTokenRegistration =
+                        cancellationToken.RegisterWithoutCaptureExecutionContext(cancellationCallback, result);
                 }
 
                 result.parent.triggerEvent.Add(result);
@@ -237,7 +236,8 @@ namespace Cysharp.Threading.Tasks
             bool isDisposed;
             bool firstCall;
 
-            public Enumerator(AsyncReactiveProperty<T> parent, CancellationToken cancellationToken, bool publishCurrentValue)
+            public Enumerator(AsyncReactiveProperty<T> parent, CancellationToken cancellationToken,
+                bool publishCurrentValue)
             {
                 this.parent = parent;
                 this.cancellationToken = cancellationToken;
@@ -248,7 +248,8 @@ namespace Cysharp.Threading.Tasks
 
                 if (cancellationToken.CanBeCanceled)
                 {
-                    cancellationTokenRegistration = cancellationToken.RegisterWithoutCaptureExecutionContext(cancellationCallback, this);
+                    cancellationTokenRegistration =
+                        cancellationToken.RegisterWithoutCaptureExecutionContext(cancellationCallback, this);
                 }
             }
 
@@ -280,6 +281,7 @@ namespace Cysharp.Threading.Tasks
                     completionSource.TrySetCanceled(cancellationToken);
                     parent.triggerEvent.Remove(this);
                 }
+
                 return default;
             }
 
@@ -321,13 +323,11 @@ namespace Cysharp.Threading.Tasks
 
         public T Value
         {
-            get
-            {
-                return latestValue;
-            }
+            get { return latestValue; }
         }
 
-        public ReadOnlyAsyncReactiveProperty(T initialValue, IUniTaskAsyncEnumerable<T> source, CancellationToken cancellationToken)
+        public ReadOnlyAsyncReactiveProperty(T initialValue, IUniTaskAsyncEnumerable<T> source,
+            CancellationToken cancellationToken)
         {
             latestValue = initialValue;
             ConsumeEnumerator(source, cancellationToken).Forget();
@@ -422,7 +422,8 @@ namespace Cysharp.Threading.Tasks
             {
             }
 
-            public static IUniTaskSource<T> Create(ReadOnlyAsyncReactiveProperty<T> parent, CancellationToken cancellationToken, out short token)
+            public static IUniTaskSource<T> Create(ReadOnlyAsyncReactiveProperty<T> parent,
+                CancellationToken cancellationToken, out short token)
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
@@ -439,7 +440,8 @@ namespace Cysharp.Threading.Tasks
 
                 if (cancellationToken.CanBeCanceled)
                 {
-                    result.cancellationTokenRegistration = cancellationToken.RegisterWithoutCaptureExecutionContext(cancellationCallback, result);
+                    result.cancellationTokenRegistration =
+                        cancellationToken.RegisterWithoutCaptureExecutionContext(cancellationCallback, result);
                 }
 
                 result.parent.triggerEvent.Add(result);
@@ -555,7 +557,8 @@ namespace Cysharp.Threading.Tasks
             bool isDisposed;
             bool firstCall;
 
-            public Enumerator(ReadOnlyAsyncReactiveProperty<T> parent, CancellationToken cancellationToken, bool publishCurrentValue)
+            public Enumerator(ReadOnlyAsyncReactiveProperty<T> parent, CancellationToken cancellationToken,
+                bool publishCurrentValue)
             {
                 this.parent = parent;
                 this.cancellationToken = cancellationToken;
@@ -566,7 +569,8 @@ namespace Cysharp.Threading.Tasks
 
                 if (cancellationToken.CanBeCanceled)
                 {
-                    cancellationTokenRegistration = cancellationToken.RegisterWithoutCaptureExecutionContext(cancellationCallback, this);
+                    cancellationTokenRegistration =
+                        cancellationToken.RegisterWithoutCaptureExecutionContext(cancellationCallback, this);
                 }
             }
 
@@ -597,6 +601,7 @@ namespace Cysharp.Threading.Tasks
                     completionSource.TrySetCanceled(cancellationToken);
                     parent.triggerEvent.Remove(this);
                 }
+
                 return default;
             }
 
@@ -631,12 +636,14 @@ namespace Cysharp.Threading.Tasks
 
     public static class StateExtensions
     {
-        public static ReadOnlyAsyncReactiveProperty<T> ToReadOnlyAsyncReactiveProperty<T>(this IUniTaskAsyncEnumerable<T> source, CancellationToken cancellationToken)
+        public static ReadOnlyAsyncReactiveProperty<T> ToReadOnlyAsyncReactiveProperty<T>(
+            this IUniTaskAsyncEnumerable<T> source, CancellationToken cancellationToken)
         {
             return new ReadOnlyAsyncReactiveProperty<T>(source, cancellationToken);
         }
 
-        public static ReadOnlyAsyncReactiveProperty<T> ToReadOnlyAsyncReactiveProperty<T>(this IUniTaskAsyncEnumerable<T> source, T initialValue, CancellationToken cancellationToken)
+        public static ReadOnlyAsyncReactiveProperty<T> ToReadOnlyAsyncReactiveProperty<T>(
+            this IUniTaskAsyncEnumerable<T> source, T initialValue, CancellationToken cancellationToken)
         {
             return new ReadOnlyAsyncReactiveProperty<T>(initialValue, source, cancellationToken);
         }

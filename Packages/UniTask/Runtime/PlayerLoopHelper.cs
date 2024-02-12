@@ -22,49 +22,140 @@ namespace Cysharp.Threading.Tasks
 {
     public static class UniTaskLoopRunners
     {
-        public struct UniTaskLoopRunnerInitialization { };
-        public struct UniTaskLoopRunnerEarlyUpdate { };
-        public struct UniTaskLoopRunnerFixedUpdate { };
-        public struct UniTaskLoopRunnerPreUpdate { };
-        public struct UniTaskLoopRunnerUpdate { };
-        public struct UniTaskLoopRunnerPreLateUpdate { };
-        public struct UniTaskLoopRunnerPostLateUpdate { };
+        public struct UniTaskLoopRunnerInitialization
+        {
+        };
+
+        public struct UniTaskLoopRunnerEarlyUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerFixedUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerPreUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerPreLateUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerPostLateUpdate
+        {
+        };
 
         // Last
 
-        public struct UniTaskLoopRunnerLastInitialization { };
-        public struct UniTaskLoopRunnerLastEarlyUpdate { };
-        public struct UniTaskLoopRunnerLastFixedUpdate { };
-        public struct UniTaskLoopRunnerLastPreUpdate { };
-        public struct UniTaskLoopRunnerLastUpdate { };
-        public struct UniTaskLoopRunnerLastPreLateUpdate { };
-        public struct UniTaskLoopRunnerLastPostLateUpdate { };
+        public struct UniTaskLoopRunnerLastInitialization
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastEarlyUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastFixedUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastPreUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastPreLateUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastPostLateUpdate
+        {
+        };
 
         // Yield
 
-        public struct UniTaskLoopRunnerYieldInitialization { };
-        public struct UniTaskLoopRunnerYieldEarlyUpdate { };
-        public struct UniTaskLoopRunnerYieldFixedUpdate { };
-        public struct UniTaskLoopRunnerYieldPreUpdate { };
-        public struct UniTaskLoopRunnerYieldUpdate { };
-        public struct UniTaskLoopRunnerYieldPreLateUpdate { };
-        public struct UniTaskLoopRunnerYieldPostLateUpdate { };
+        public struct UniTaskLoopRunnerYieldInitialization
+        {
+        };
+
+        public struct UniTaskLoopRunnerYieldEarlyUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerYieldFixedUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerYieldPreUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerYieldUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerYieldPreLateUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerYieldPostLateUpdate
+        {
+        };
 
         // Yield Last
 
-        public struct UniTaskLoopRunnerLastYieldInitialization { };
-        public struct UniTaskLoopRunnerLastYieldEarlyUpdate { };
-        public struct UniTaskLoopRunnerLastYieldFixedUpdate { };
-        public struct UniTaskLoopRunnerLastYieldPreUpdate { };
-        public struct UniTaskLoopRunnerLastYieldUpdate { };
-        public struct UniTaskLoopRunnerLastYieldPreLateUpdate { };
-        public struct UniTaskLoopRunnerLastYieldPostLateUpdate { };
+        public struct UniTaskLoopRunnerLastYieldInitialization
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastYieldEarlyUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastYieldFixedUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastYieldPreUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastYieldUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastYieldPreLateUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastYieldPostLateUpdate
+        {
+        };
 
 #if UNITY_2020_2_OR_NEWER
-        public struct UniTaskLoopRunnerTimeUpdate { };
-        public struct UniTaskLoopRunnerLastTimeUpdate { };
-        public struct UniTaskLoopRunnerYieldTimeUpdate { };
-        public struct UniTaskLoopRunnerLastYieldTimeUpdate { };
+        public struct UniTaskLoopRunnerTimeUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastTimeUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerYieldTimeUpdate
+        {
+        };
+
+        public struct UniTaskLoopRunnerLastYieldTimeUpdate
+        {
+        };
 #endif
     }
 
@@ -132,7 +223,7 @@ namespace Cysharp.Threading.Tasks
 #if UNITY_2020_2_OR_NEWER
             | TimeUpdate
 #endif
-            ,
+        ,
 
         /// <summary>
         /// Preset: Minimum pattern, Update | FixedUpdate | LastPostLateUpdate
@@ -165,6 +256,7 @@ namespace Cysharp.Threading.Tasks
 
 #if UNITY_2020_2_OR_NEWER
         ,
+
         // Unity 2020.2 added TimeUpdate https://docs.unity3d.com/2020.2/Documentation/ScriptReference/PlayerLoop.TimeUpdate.html
         TimeUpdate = 16384,
         LastTimeUpdate = 32768
@@ -178,8 +270,11 @@ namespace Cysharp.Threading.Tasks
 
     public static class PlayerLoopHelper
     {
-        static readonly ContinuationQueue ThrowMarkerContinuationQueue = new ContinuationQueue(PlayerLoopTiming.Initialization);
-        static readonly PlayerLoopRunner ThrowMarkerPlayerLoopRunner = new PlayerLoopRunner(PlayerLoopTiming.Initialization);
+        static readonly ContinuationQueue ThrowMarkerContinuationQueue =
+            new ContinuationQueue(PlayerLoopTiming.Initialization);
+
+        static readonly PlayerLoopRunner ThrowMarkerPlayerLoopRunner =
+            new PlayerLoopRunner(PlayerLoopTiming.Initialization);
 
         public static SynchronizationContext UnitySynchronizationContext => unitySynchronizationContext;
         public static int MainThreadId => mainThreadId;
@@ -193,12 +288,12 @@ namespace Cysharp.Threading.Tasks
         static ContinuationQueue[] yielders;
         static PlayerLoopRunner[] runners;
         internal static bool IsEditorApplicationQuitting { get; private set; }
+
         static PlayerLoopSystem[] InsertRunner(PlayerLoopSystem loopSystem,
             bool injectOnFirst,
             Type loopRunnerYieldType, ContinuationQueue cq,
             Type loopRunnerType, PlayerLoopRunner runner)
         {
-
 #if UNITY_EDITOR
             EditorApplication.playModeStateChanged += (state) =>
             {
@@ -211,11 +306,13 @@ namespace Cysharp.Threading.Tasks
                         runner.Run();
                         runner.Clear();
                     }
+
                     if (cq != null)
                     {
                         cq.Run();
                         cq.Clear();
                     }
+
                     IsEditorApplicationQuitting = false;
                 }
             };
@@ -252,7 +349,8 @@ namespace Cysharp.Threading.Tasks
             return dest;
         }
 
-        static PlayerLoopSystem[] RemoveRunner(PlayerLoopSystem loopSystem, Type loopRunnerYieldType, Type loopRunnerType)
+        static PlayerLoopSystem[] RemoveRunner(PlayerLoopSystem loopSystem, Type loopRunnerYieldType,
+            Type loopRunnerType)
         {
             return loopSystem.subSystemList
                 .Where(ls => ls.type != loopRunnerYieldType && ls.type != loopRunnerType)
@@ -286,7 +384,7 @@ namespace Cysharp.Threading.Tasks
         }
 
 #if UNITY_2020_1_OR_NEWER
-		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
 #else
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 #endif
@@ -299,13 +397,16 @@ namespace Cysharp.Threading.Tasks
             {
                 applicationDataPath = Application.dataPath;
             }
-            catch { }
+            catch
+            {
+            }
 
 #if UNITY_EDITOR && UNITY_2019_3_OR_NEWER
             // When domain reload is disabled, re-initialization is required when entering play mode; 
             // otherwise, pending tasks will leak between play mode sessions.
             var domainReloadDisabled = UnityEditor.EditorSettings.enterPlayModeOptionsEnabled &&
-                UnityEditor.EditorSettings.enterPlayModeOptions.HasFlag(UnityEditor.EnterPlayModeOptions.DisableDomainReload);
+                                       UnityEditor.EditorSettings.enterPlayModeOptions.HasFlag(UnityEditor
+                                           .EnterPlayModeOptions.DisableDomainReload);
             if (!domainReloadDisabled && runners != null) return;
 #else
             if (runners != null) return; // already initialized
@@ -336,7 +437,8 @@ namespace Cysharp.Threading.Tasks
 
         private static void ForceEditorPlayerLoopUpdate()
         {
-            if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling || EditorApplication.isUpdating)
+            if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling ||
+                EditorApplication.isUpdating)
             {
                 // Not in Edit mode, don't interfere
                 return;
@@ -379,8 +481,10 @@ namespace Cysharp.Threading.Tasks
             throw new Exception("Target PlayerLoopSystem does not found. Type:" + systemType.FullName);
         }
 
-        static void InsertLoop(PlayerLoopSystem[] copyList, InjectPlayerLoopTimings injectTimings, Type loopType, InjectPlayerLoopTimings targetTimings,
-            int index, bool injectOnFirst, Type loopRunnerYieldType, Type loopRunnerType, PlayerLoopTiming playerLoopTiming)
+        static void InsertLoop(PlayerLoopSystem[] copyList, InjectPlayerLoopTimings injectTimings, Type loopType,
+            InjectPlayerLoopTimings targetTimings,
+            int index, bool injectOnFirst, Type loopRunnerYieldType, Type loopRunnerType,
+            PlayerLoopTiming playerLoopTiming)
         {
             var i = FindLoopSystemIndex(copyList, loopType);
             if ((injectTimings & targetTimings) == targetTimings)
@@ -395,7 +499,8 @@ namespace Cysharp.Threading.Tasks
             }
         }
 
-        public static void Initialize(ref PlayerLoopSystem playerLoop, InjectPlayerLoopTimings injectTimings = InjectPlayerLoopTimings.All)
+        public static void Initialize(ref PlayerLoopSystem playerLoop,
+            InjectPlayerLoopTimings injectTimings = InjectPlayerLoopTimings.All)
         {
 #if UNITY_2020_2_OR_NEWER
             yielders = new ContinuationQueue[16];
@@ -410,75 +515,91 @@ namespace Cysharp.Threading.Tasks
             // Initialization
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.Initialization),
                 InjectPlayerLoopTimings.Initialization, 0, true,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldInitialization), typeof(UniTaskLoopRunners.UniTaskLoopRunnerInitialization), PlayerLoopTiming.Initialization);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldInitialization),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerInitialization), PlayerLoopTiming.Initialization);
 
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.Initialization),
                 InjectPlayerLoopTimings.LastInitialization, 1, false,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldInitialization), typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastInitialization), PlayerLoopTiming.LastInitialization);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldInitialization),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastInitialization), PlayerLoopTiming.LastInitialization);
 
             // EarlyUpdate
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.EarlyUpdate),
                 InjectPlayerLoopTimings.EarlyUpdate, 2, true,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldEarlyUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerEarlyUpdate), PlayerLoopTiming.EarlyUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldEarlyUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerEarlyUpdate), PlayerLoopTiming.EarlyUpdate);
 
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.EarlyUpdate),
                 InjectPlayerLoopTimings.LastEarlyUpdate, 3, false,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldEarlyUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastEarlyUpdate), PlayerLoopTiming.LastEarlyUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldEarlyUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastEarlyUpdate), PlayerLoopTiming.LastEarlyUpdate);
 
             // FixedUpdate
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.FixedUpdate),
                 InjectPlayerLoopTimings.FixedUpdate, 4, true,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldFixedUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerFixedUpdate), PlayerLoopTiming.FixedUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldFixedUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerFixedUpdate), PlayerLoopTiming.FixedUpdate);
 
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.FixedUpdate),
                 InjectPlayerLoopTimings.LastFixedUpdate, 5, false,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldFixedUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastFixedUpdate), PlayerLoopTiming.LastFixedUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldFixedUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastFixedUpdate), PlayerLoopTiming.LastFixedUpdate);
 
             // PreUpdate
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.PreUpdate),
                 InjectPlayerLoopTimings.PreUpdate, 6, true,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldPreUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerPreUpdate), PlayerLoopTiming.PreUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldPreUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerPreUpdate), PlayerLoopTiming.PreUpdate);
 
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.PreUpdate),
                 InjectPlayerLoopTimings.LastPreUpdate, 7, false,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldPreUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastPreUpdate), PlayerLoopTiming.LastPreUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldPreUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastPreUpdate), PlayerLoopTiming.LastPreUpdate);
 
             // Update
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.Update),
                 InjectPlayerLoopTimings.Update, 8, true,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerUpdate), PlayerLoopTiming.Update);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerUpdate), PlayerLoopTiming.Update);
 
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.Update),
                 InjectPlayerLoopTimings.LastUpdate, 9, false,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastUpdate), PlayerLoopTiming.LastUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastUpdate), PlayerLoopTiming.LastUpdate);
 
             // PreLateUpdate
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.PreLateUpdate),
                 InjectPlayerLoopTimings.PreLateUpdate, 10, true,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldPreLateUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerPreLateUpdate), PlayerLoopTiming.PreLateUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldPreLateUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerPreLateUpdate), PlayerLoopTiming.PreLateUpdate);
 
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.PreLateUpdate),
                 InjectPlayerLoopTimings.LastPreLateUpdate, 11, false,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldPreLateUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastPreLateUpdate), PlayerLoopTiming.LastPreLateUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldPreLateUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastPreLateUpdate), PlayerLoopTiming.LastPreLateUpdate);
 
             // PostLateUpdate
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.PostLateUpdate),
                 InjectPlayerLoopTimings.PostLateUpdate, 12, true,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldPostLateUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerPostLateUpdate), PlayerLoopTiming.PostLateUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldPostLateUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerPostLateUpdate), PlayerLoopTiming.PostLateUpdate);
 
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.PostLateUpdate),
                 InjectPlayerLoopTimings.LastPostLateUpdate, 13, false,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldPostLateUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastPostLateUpdate), PlayerLoopTiming.LastPostLateUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldPostLateUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastPostLateUpdate), PlayerLoopTiming.LastPostLateUpdate);
 
 #if UNITY_2020_2_OR_NEWER
             // TimeUpdate
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.TimeUpdate),
                 InjectPlayerLoopTimings.TimeUpdate, 14, true,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldTimeUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerTimeUpdate), PlayerLoopTiming.TimeUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerYieldTimeUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerTimeUpdate), PlayerLoopTiming.TimeUpdate);
 
             InsertLoop(copyList, injectTimings, typeof(PlayerLoopType.TimeUpdate),
                 InjectPlayerLoopTimings.LastTimeUpdate, 15, false,
-                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldTimeUpdate), typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastTimeUpdate), PlayerLoopTiming.LastTimeUpdate);
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastYieldTimeUpdate),
+                typeof(UniTaskLoopRunners.UniTaskLoopRunnerLastTimeUpdate), PlayerLoopTiming.LastTimeUpdate);
 #endif
 
             // Insert UniTaskSynchronizationContext to Update loop
@@ -496,12 +617,15 @@ namespace Cysharp.Threading.Tasks
             {
                 ThrowInvalidLoopTiming(timing);
             }
+
             runner.AddAction(action);
         }
 
         static void ThrowInvalidLoopTiming(PlayerLoopTiming playerLoopTiming)
         {
-            throw new InvalidOperationException("Target playerLoopTiming is not injected. Please check PlayerLoopHelper.Initialize. PlayerLoopTiming:" + playerLoopTiming);
+            throw new InvalidOperationException(
+                "Target playerLoopTiming is not injected. Please check PlayerLoopHelper.Initialize. PlayerLoopTiming:" +
+                playerLoopTiming);
         }
 
         public static void AddContinuation(PlayerLoopTiming timing, Action continuation)
@@ -511,6 +635,7 @@ namespace Cysharp.Threading.Tasks
             {
                 ThrowInvalidLoopTiming(timing);
             }
+
             q.Enqueue(continuation);
         }
 
@@ -528,8 +653,8 @@ namespace Cysharp.Threading.Tasks
             {
                 sb.AppendFormat("------{0}------", header.type.Name);
                 sb.AppendLine();
-                
-                if (header.subSystemList is null) 
+
+                if (header.subSystemList is null)
                 {
                     sb.AppendFormat("{0} has no subsystems!", header.ToString());
                     sb.AppendLine();
@@ -557,11 +682,11 @@ namespace Cysharp.Threading.Tasks
 
             foreach (var header in playerLoop.subSystemList)
             {
-                if (header.subSystemList is null) 
-                { 
+                if (header.subSystemList is null)
+                {
                     continue;
                 }
-                
+
                 foreach (var subSystem in header.subSystemList)
                 {
                     if (subSystem.type == typeof(UniTaskLoopRunners.UniTaskLoopRunnerInitialization))
@@ -575,7 +700,5 @@ namespace Cysharp.Threading.Tasks
         }
 
 #endif
-
     }
 }
-

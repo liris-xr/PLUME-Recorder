@@ -148,7 +148,9 @@ namespace Cysharp.Threading.Tasks
         {
             int completeCount;
             int tasksLength;
-            UniTaskCompletionSourceCore<AsyncUnit> core; // don't reset(called after GetResult, will invoke TrySetException.)
+
+            UniTaskCompletionSourceCore<AsyncUnit>
+                core; // don't reset(called after GetResult, will invoke TrySetException.)
 
             public WhenAllPromise(UniTask[] tasks, int tasksLength)
             {

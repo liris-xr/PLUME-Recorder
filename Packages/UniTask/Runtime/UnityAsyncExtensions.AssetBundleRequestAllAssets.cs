@@ -19,22 +19,31 @@ namespace Cysharp.Threading.Tasks
             return new AssetBundleRequestAllAssetsAwaiter(asyncOperation);
         }
 
-        public static UniTask<UnityEngine.Object[]> AwaitForAllAssets(this AssetBundleRequest asyncOperation, CancellationToken cancellationToken)
+        public static UniTask<UnityEngine.Object[]> AwaitForAllAssets(this AssetBundleRequest asyncOperation,
+            CancellationToken cancellationToken)
         {
-            return AwaitForAllAssets(asyncOperation, null, PlayerLoopTiming.Update, cancellationToken: cancellationToken);
+            return AwaitForAllAssets(asyncOperation, null, PlayerLoopTiming.Update,
+                cancellationToken: cancellationToken);
         }
 
-        public static UniTask<UnityEngine.Object[]> AwaitForAllAssets(this AssetBundleRequest asyncOperation, CancellationToken cancellationToken, bool cancelImmediately)
+        public static UniTask<UnityEngine.Object[]> AwaitForAllAssets(this AssetBundleRequest asyncOperation,
+            CancellationToken cancellationToken, bool cancelImmediately)
         {
-            return AwaitForAllAssets(asyncOperation, progress: null, cancellationToken: cancellationToken, cancelImmediately: cancelImmediately);
+            return AwaitForAllAssets(asyncOperation, progress: null, cancellationToken: cancellationToken,
+                cancelImmediately: cancelImmediately);
         }
 
-        public static UniTask<UnityEngine.Object[]> AwaitForAllAssets(this AssetBundleRequest asyncOperation, IProgress<float> progress = null, PlayerLoopTiming timing = PlayerLoopTiming.Update, CancellationToken cancellationToken = default(CancellationToken), bool cancelImmediately = false)
+        public static UniTask<UnityEngine.Object[]> AwaitForAllAssets(this AssetBundleRequest asyncOperation,
+            IProgress<float> progress = null, PlayerLoopTiming timing = PlayerLoopTiming.Update,
+            CancellationToken cancellationToken = default(CancellationToken), bool cancelImmediately = false)
         {
             Error.ThrowArgumentNullException(asyncOperation, nameof(asyncOperation));
-            if (cancellationToken.IsCancellationRequested) return UniTask.FromCanceled<UnityEngine.Object[]>(cancellationToken);
+            if (cancellationToken.IsCancellationRequested)
+                return UniTask.FromCanceled<UnityEngine.Object[]>(cancellationToken);
             if (asyncOperation.isDone) return UniTask.FromResult(asyncOperation.allAssets);
-            return new UniTask<UnityEngine.Object[]>(AssetBundleRequestAllAssetsConfiguredSource.Create(asyncOperation, timing, progress, cancellationToken, cancelImmediately, out var token), token);
+            return new UniTask<UnityEngine.Object[]>(
+                AssetBundleRequestAllAssetsConfiguredSource.Create(asyncOperation, timing, progress, cancellationToken,
+                    cancelImmediately, out var token), token);
         }
 
         public struct AssetBundleRequestAllAssetsAwaiter : ICriticalNotifyCompletion
@@ -86,7 +95,8 @@ namespace Cysharp.Threading.Tasks
             }
         }
 
-        sealed class AssetBundleRequestAllAssetsConfiguredSource : IUniTaskSource<UnityEngine.Object[]>, IPlayerLoopItem, ITaskPoolNode<AssetBundleRequestAllAssetsConfiguredSource>
+        sealed class AssetBundleRequestAllAssetsConfiguredSource : IUniTaskSource<UnityEngine.Object[]>,
+            IPlayerLoopItem, ITaskPoolNode<AssetBundleRequestAllAssetsConfiguredSource>
         {
             static TaskPool<AssetBundleRequestAllAssetsConfiguredSource> pool;
             AssetBundleRequestAllAssetsConfiguredSource nextNode;
@@ -112,11 +122,14 @@ namespace Cysharp.Threading.Tasks
                 continuationAction = Continuation;
             }
 
-            public static IUniTaskSource<UnityEngine.Object[]> Create(AssetBundleRequest asyncOperation, PlayerLoopTiming timing, IProgress<float> progress, CancellationToken cancellationToken, bool cancelImmediately, out short token)
+            public static IUniTaskSource<UnityEngine.Object[]> Create(AssetBundleRequest asyncOperation,
+                PlayerLoopTiming timing, IProgress<float> progress, CancellationToken cancellationToken,
+                bool cancelImmediately, out short token)
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    return AutoResetUniTaskCompletionSource<UnityEngine.Object[]>.CreateFromCanceled(cancellationToken, out token);
+                    return AutoResetUniTaskCompletionSource<UnityEngine.Object[]>.CreateFromCanceled(cancellationToken,
+                        out token);
                 }
 
                 if (!pool.TryPop(out var result))
@@ -133,11 +146,12 @@ namespace Cysharp.Threading.Tasks
 
                 if (cancelImmediately && cancellationToken.CanBeCanceled)
                 {
-                    result.cancellationTokenRegistration = cancellationToken.RegisterWithoutCaptureExecutionContext(state =>
-                    {
-                        var source = (AssetBundleRequestAllAssetsConfiguredSource)state;
-                        source.core.TrySetCanceled(source.cancellationToken);
-                    }, result);
+                    result.cancellationTokenRegistration = cancellationToken.RegisterWithoutCaptureExecutionContext(
+                        state =>
+                        {
+                            var source = (AssetBundleRequestAllAssetsConfiguredSource)state;
+                            source.core.TrySetCanceled(source.cancellationToken);
+                        }, result);
                 }
 
                 TaskTracker.TrackActiveTask(result, 3);
@@ -187,7 +201,7 @@ namespace Cysharp.Threading.Tasks
                 {
                     return false;
                 }
-                
+
                 if (cancellationToken.IsCancellationRequested)
                 {
                     core.TrySetCanceled(cancellationToken);
@@ -218,7 +232,7 @@ namespace Cysharp.Threading.Tasks
                 cancellationTokenRegistration.Dispose();
                 return pool.TryPush(this);
             }
-            
+
             void Continuation(AsyncOperation _)
             {
                 if (completed)

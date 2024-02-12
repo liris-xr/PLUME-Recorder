@@ -43,7 +43,6 @@ namespace Cysharp.Threading.Tasks
         }
 
 #if (UNITASK_NETCORE && NETSTANDARD2_0)
-
         class UniTaskValueTaskSource : IValueTaskSource
         {
             readonly UniTask task;

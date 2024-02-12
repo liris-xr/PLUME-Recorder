@@ -245,6 +245,7 @@ namespace Cysharp.Threading.Tasks
                         {
                             status = UniTaskStatus.Faulted;
                         }
+
                         throw;
                     }
                     finally
@@ -302,10 +303,7 @@ namespace Cysharp.Threading.Tasks
             {
                 [DebuggerHidden]
                 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-                get
-                {
-                    return task.Status.IsCompleted();
-                }
+                get { return task.Status.IsCompleted(); }
             }
 
             [DebuggerHidden]
@@ -396,10 +394,7 @@ namespace Cysharp.Threading.Tasks
         {
             [DebuggerHidden]
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get
-            {
-                return (source == null) ? UniTaskStatus.Succeeded : source.GetStatus(token);
-            }
+            get { return (source == null) ? UniTaskStatus.Succeeded : source.GetStatus(token); }
         }
 
         [DebuggerHidden]
@@ -477,8 +472,9 @@ namespace Cysharp.Threading.Tasks
 
         public override string ToString()
         {
-            return (this.source == null) ? result?.ToString()
-                 : "(" + this.source.UnsafeGetStatus() + ")";
+            return (this.source == null)
+                ? result?.ToString()
+                : "(" + this.source.UnsafeGetStatus() + ")";
         }
 
         sealed class IsCanceledSource : IUniTaskSource<(bool, T)>
@@ -554,6 +550,7 @@ namespace Cysharp.Threading.Tasks
                     {
                         exception.Throw();
                     }
+
                     return result;
                 }
                 else
@@ -575,6 +572,7 @@ namespace Cysharp.Threading.Tasks
                         {
                             status = UniTaskStatus.Faulted;
                         }
+
                         throw;
                     }
                     finally
@@ -637,10 +635,7 @@ namespace Cysharp.Threading.Tasks
             {
                 [DebuggerHidden]
                 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-                get
-                {
-                    return task.Status.IsCompleted();
-                }
+                get { return task.Status.IsCompleted(); }
             }
 
             [DebuggerHidden]
@@ -708,4 +703,3 @@ namespace Cysharp.Threading.Tasks
         }
     }
 }
-

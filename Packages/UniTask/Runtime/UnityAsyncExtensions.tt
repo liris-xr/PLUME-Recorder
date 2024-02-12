@@ -11,14 +11,18 @@
         ("ResourceRequest", "UnityEngine.Object", "asset"),
         ("AssetBundleRequest", "UnityEngine.Object", "asset"), // allAssets?
         ("AssetBundleCreateRequest", "AssetBundle", "assetBundle"),
-        ("UnityWebRequestAsyncOperation", "UnityWebRequest", "webRequest") // -> #if ENABLE_UNITYWEBREQUEST && (!UNITY_2019_1_OR_NEWER || UNITASK_WEBREQUEST_SUPPORT)
+        ("UnityWebRequestAsyncOperation", "UnityWebRequest", "webRequest")
+        // -> #if ENABLE_UNITYWEBREQUEST && (!UNITY_2019_1_OR_NEWER || UNITASK_WEBREQUEST_SUPPORT)
     };
 
     Func<string, string> ToUniTaskReturnType = x => (x == "void") ? "UniTask" : $"UniTask<{x}>";
     Func<string, string> ToIUniTaskSourceReturnType = x => (x == "void") ? "IUniTaskSource" : $"IUniTaskSource<{x}>";
-    Func<(string typeName, string returnType, string returnField), bool> IsAsyncOperationBase = x => x.typeName == "AsyncOperation";
-    Func<(string typeName, string returnType, string returnField), bool> IsUnityWebRequest = x => x.returnType == "UnityWebRequest";
-    Func<(string typeName, string returnType, string returnField), bool> IsAssetBundleModule = x => x.typeName == "AssetBundleRequest" || x.typeName == "AssetBundleCreateRequest";
+    Func<(string typeName, string returnType, string returnField), bool> IsAsyncOperationBase =
+        x => x.typeName == "AsyncOperation";
+    Func<(string typeName, string returnType, string returnField), bool> IsUnityWebRequest =
+        x => x.returnType == "UnityWebRequest";
+    Func<(string typeName, string returnType, string returnField), bool> IsAssetBundleModule =
+        x => x.typeName == "AssetBundleRequest" || x.typeName == "AssetBundleCreateRequest";
     Func<(string typeName, string returnType, string returnField), bool> IsVoid = x => x.returnType == "void";
 #>
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -36,26 +40,48 @@ namespace Cysharp.Threading.Tasks
 {
     public static partial class UnityAsyncExtensions
     {
-<# foreach(var t in types) { #>
-<# if(IsUnityWebRequest(t)) { #>
+<#
+    foreach (var t in types)
+    {
+#>
+<#
+        if (IsUnityWebRequest(t))
+        {
+#>
 #if ENABLE_UNITYWEBREQUEST && (!UNITY_2019_1_OR_NEWER || UNITASK_WEBREQUEST_SUPPORT)
-<# } else if(IsAssetBundleModule(t)) { #>
+<#
+        }
+        else if (IsAssetBundleModule(t))
+        {
+#>
 #if UNITASK_ASSETBUNDLE_SUPPORT
-<# } #>
+<#
+        }
+#>
         #region <#= t.typeName #>
 
-<# if (IsAsyncOperationBase(t))  { #>
+<#
+        if (IsAsyncOperationBase(t))
+        {
+#>
 #if !UNITY_2023_1_OR_NEWER
         // from Unity2023.1.0a15, AsyncOperationAwaitableExtensions.GetAwaiter is defined in UnityEngine.
-<# } #>
+<#
+        }
+#>
         public static <#= t.typeName #>Awaiter GetAwaiter(this <#= t.typeName #> asyncOperation)
         {
             Error.ThrowArgumentNullException(asyncOperation, nameof(asyncOperation));
             return new <#= t.typeName #>Awaiter(asyncOperation);
         }
-<# if (IsAsyncOperationBase(t))  { #>
+<#
+        if (IsAsyncOperationBase(t))
+        {
+#>
 #endif
-<# } #>
+<#
+        }
+#>
 
         public static <#= ToUniTaskReturnType(t.returnType) #> WithCancellation(this <#= t.typeName #> asyncOperation, CancellationToken cancellationToken)
         {
@@ -71,7 +97,10 @@ namespace Cysharp.Threading.Tasks
         {
             Error.ThrowArgumentNullException(asyncOperation, nameof(asyncOperation));
             if (cancellationToken.IsCancellationRequested) return UniTask.FromCanceled<#= IsVoid(t) ? "" : "<" + t.returnType + ">" #>(cancellationToken);
-<# if(IsUnityWebRequest(t)) { #>
+<#
+        if (IsUnityWebRequest(t))
+        {
+#>
             if (asyncOperation.isDone)
             {
                 if (asyncOperation.webRequest.IsError())
@@ -80,9 +109,16 @@ namespace Cysharp.Threading.Tasks
                 }
                 return UniTask.FromResult(asyncOperation.webRequest);
             }
-<# } else { #>
-            if (asyncOperation.isDone) return <#= IsVoid(t) ? "UniTask.CompletedTask" : $"UniTask.FromResult(asyncOperation.{t.returnField})" #>;
-<# } #>
+<#
+        }
+        else
+        {
+#>
+            if (asyncOperation.isDone) return <#=
+                    IsVoid(t) ? "UniTask.CompletedTask" : $"UniTask.FromResult(asyncOperation.{t.returnField})" #>;
+<#
+        }
+#>
             return new <#= ToUniTaskReturnType(t.returnType) #>(<#= t.typeName #>ConfiguredSource.Create(asyncOperation, timing, progress, cancellationToken, cancelImmediately, out var token), token);
         }
 
@@ -105,35 +141,63 @@ namespace Cysharp.Threading.Tasks
                 {
                     asyncOperation.completed -= continuationAction;
                     continuationAction = null;
-<# if (!IsVoid(t)) { #>
+<#
+        if (!IsVoid(t))
+        {
+#>
                     var result = <#= $"asyncOperation.{t.returnField}" #>;
                     asyncOperation = null;
-<# if(IsUnityWebRequest(t)) { #>
+<#
+            if (IsUnityWebRequest(t))
+            {
+#>
                     if (result.IsError())
                     {
                         throw new UnityWebRequestException(result);
                     }
-<# } #>
+<#
+            }
+#>
                     return result;
-<# } else { #>
+<#
+        }
+        else
+        {
+#>
                     asyncOperation = null;
-<# } #>
+<#
+        }
+#>
                 }
                 else
                 {
-<# if (!IsVoid(t)) { #>
+<#
+        if (!IsVoid(t))
+        {
+#>
                     var result = <#= $"asyncOperation.{t.returnField}" #>;
                     asyncOperation = null;
-<# if(IsUnityWebRequest(t)) { #>
+<#
+            if (IsUnityWebRequest(t))
+            {
+#>
                     if (result.IsError())
                     {
                         throw new UnityWebRequestException(result);
                     }
-<# } #>
+<#
+            }
+#>
                     return result;
-<# } else { #>
+<#
+        }
+        else
+        {
+#>
                     asyncOperation = null;
-<# } #>
+<#
+        }
+#>
                 }
             }
 
@@ -200,9 +264,14 @@ namespace Cysharp.Threading.Tasks
                     result.cancellationTokenRegistration = cancellationToken.RegisterWithoutCaptureExecutionContext(state =>
                     {
                         var source = (<#= t.typeName #>ConfiguredSource)state;
-<# if(IsUnityWebRequest(t)) { #>
+<#
+        if (IsUnityWebRequest(t))
+        {
+#>
                         source.asyncOperation.webRequest.Abort();
-<# } #>
+<#
+        }
+#>
                         source.core.TrySetCanceled(source.cancellationToken);
                     }, result);
                 }
@@ -219,11 +288,20 @@ namespace Cysharp.Threading.Tasks
             {
                 try
                 {
-<# if (!IsVoid(t)) { #>
+<#
+        if (!IsVoid(t))
+        {
+#>
                     return core.GetResult(token);
-<# } else { #>
+<#
+        }
+        else
+        {
+#>
                     core.GetResult(token);
-<# } #>
+<#
+        }
+#>
                 }
                 finally
                 {
@@ -231,12 +309,17 @@ namespace Cysharp.Threading.Tasks
                 }
             }
 
-<# if (!IsVoid(t)) { #>
+<#
+        if (!IsVoid(t))
+        {
+#>
             void IUniTaskSource.GetResult(short token)
             {
                 GetResult(token);
             }
-<# } #>
+<#
+        }
+#>
 
             public UniTaskStatus GetStatus(short token)
             {
@@ -263,9 +346,14 @@ namespace Cysharp.Threading.Tasks
 
                 if (cancellationToken.IsCancellationRequested)
                 {
-<# if(IsUnityWebRequest(t)) { #>
+<#
+        if (IsUnityWebRequest(t))
+        {
+#>
                     asyncOperation.webRequest.Abort();
-<# } #>
+<#
+        }
+#>
                     core.TrySetCanceled(cancellationToken);
                     return false;
                 }
@@ -277,7 +365,10 @@ namespace Cysharp.Threading.Tasks
 
                 if (asyncOperation.isDone)
                 {
-<# if(IsUnityWebRequest(t)) { #>
+<#
+        if (IsUnityWebRequest(t))
+        {
+#>
                     if (asyncOperation.webRequest.IsError())
                     {
                         core.TrySetException(new UnityWebRequestException(asyncOperation.webRequest));
@@ -286,9 +377,16 @@ namespace Cysharp.Threading.Tasks
                     {
                         core.TrySetResult(asyncOperation.webRequest);
                     }
-<# } else { #>
-                    core.TrySetResult(<#= IsVoid(t) ? "AsyncUnit.Default" : $"asyncOperation.{t.returnField}" #>);
-<# } #>
+<#
+        }
+        else
+        {
+#>
+                    core.TrySetResult(<#=
+                    IsVoid(t) ? "AsyncUnit.Default" : $"asyncOperation.{t.returnField}" #>);
+<#
+        }
+#>
                     return false;
                 }
 
@@ -320,7 +418,10 @@ namespace Cysharp.Threading.Tasks
                     {
                         core.TrySetCanceled(cancellationToken);
                     }
-<# if(IsUnityWebRequest(t)) { #>
+<#
+        if (IsUnityWebRequest(t))
+        {
+#>
                     else if (asyncOperation.webRequest.IsError())
                     {
                         core.TrySetException(new UnityWebRequestException(asyncOperation.webRequest));
@@ -329,21 +430,35 @@ namespace Cysharp.Threading.Tasks
                     {
                         core.TrySetResult(asyncOperation.webRequest);
                     }
-<# } else { #>
+<#
+        }
+        else
+        {
+#>
                     else
                     {
-                        core.TrySetResult(<#= IsVoid(t) ? "AsyncUnit.Default" : $"asyncOperation.{t.returnField}" #>);
+                        core.TrySetResult(<#=
+                    IsVoid(t) ? "AsyncUnit.Default" : $"asyncOperation.{t.returnField}" #>);
                     }
-<# } #>
+<#
+        }
+#>
                 }
             }
         }
 
         #endregion
-<# if(IsUnityWebRequest(t) || IsAssetBundleModule(t)) { #>
+<#
+        if (IsUnityWebRequest(t) || IsAssetBundleModule(t))
+        {
+#>
 #endif
-<# } #>
+<#
+        }
+#>
 
-<# } #>
+<#
+    }
+#>
     }
 }

@@ -31,7 +31,6 @@ namespace Cysharp.Threading.Tasks
 
             NullProgress()
             {
-
             }
 
             public void Report(T value)

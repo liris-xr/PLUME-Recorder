@@ -132,7 +132,8 @@ namespace Cysharp.Threading.Tasks
         /// <summary>
         /// helper of create add UniTaskVoid to delegate.
         /// </summary>
-        public static Action Action(Func<CancellationToken, UniTaskVoid> asyncAction, CancellationToken cancellationToken)
+        public static Action Action(Func<CancellationToken, UniTaskVoid> asyncAction,
+            CancellationToken cancellationToken)
         {
             return () => asyncAction(cancellationToken).Forget();
         }
@@ -152,7 +153,8 @@ namespace Cysharp.Threading.Tasks
         /// Create async void(UniTaskVoid) UnityAction.
         /// For exampe: onClick.AddListener(UniTask.UnityAction(FooAsync, this.GetCancellationTokenOnDestroy()))
         /// </summary>
-        public static UnityEngine.Events.UnityAction UnityAction(Func<CancellationToken, UniTaskVoid> asyncAction, CancellationToken cancellationToken)
+        public static UnityEngine.Events.UnityAction UnityAction(Func<CancellationToken, UniTaskVoid> asyncAction,
+            CancellationToken cancellationToken)
         {
             return () => asyncAction(cancellationToken).Forget();
         }
@@ -208,6 +210,7 @@ namespace Cysharp.Threading.Tasks
                     calledGet = true;
                     GC.SuppressFinalize(this);
                 }
+
                 exception.Throw();
             }
 
@@ -252,6 +255,7 @@ namespace Cysharp.Threading.Tasks
                     calledGet = true;
                     GC.SuppressFinalize(this);
                 }
+
                 exception.Throw();
                 return default;
             }
@@ -263,6 +267,7 @@ namespace Cysharp.Threading.Tasks
                     calledGet = true;
                     GC.SuppressFinalize(this);
                 }
+
                 exception.Throw();
             }
 
@@ -489,7 +494,9 @@ namespace Cysharp.Threading.Tasks
 
     internal static class CompletedTasks
     {
-        public static readonly UniTask<AsyncUnit> AsyncUnit = UniTask.FromResult(Cysharp.Threading.Tasks.AsyncUnit.Default);
+        public static readonly UniTask<AsyncUnit> AsyncUnit =
+            UniTask.FromResult(Cysharp.Threading.Tasks.AsyncUnit.Default);
+
         public static readonly UniTask<bool> True = UniTask.FromResult(true);
         public static readonly UniTask<bool> False = UniTask.FromResult(false);
         public static readonly UniTask<int> Zero = UniTask.FromResult(0);

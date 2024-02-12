@@ -33,23 +33,29 @@ namespace Cysharp.Threading.Tasks
             return UniTask.WhenAll(tasks).GetAwaiter();
         }
 
-<# for(var i = 2; i <= 15; i++ ) {
-    var range = Enumerable.Range(1, i);
-    var t = string.Join(", ", range.Select(x => "T" + x));
-    var args = string.Join(", ", range.Select(x => $"UniTask<T{x}> task{x}"));
-    var titems = string.Join(", ", range.Select(x => $"tasks.Item{x}"));
+<#
+    for (var i = 2; i <= 15; i++)
+    {
+        var range = Enumerable.Range(1, i);
+        var t = string.Join(", ", range.Select(x => "T" + x));
+        var args = string.Join(", ", range.Select(x => $"UniTask<T{x}> task{x}"));
+        var titems = string.Join(", ", range.Select(x => $"tasks.Item{x}"));
 #>
         public static UniTask<(<#= t #>)>.Awaiter GetAwaiter<<#= t #>>(this (<#= args #>) tasks)
         {
             return UniTask.WhenAll(<#= titems #>).GetAwaiter();
         }
 
-<# } #>
+<#
+    }
+#>
 
-<# for(var i = 2; i <= 15; i++ ) {
-    var range = Enumerable.Range(1, i);
-    var args = string.Join(", ", range.Select(x => $"UniTask task{x}"));
-    var titems = string.Join(", ", range.Select(x => $"tasks.Item{x}"));
+<#
+    for (var i = 2; i <= 15; i++)
+    {
+        var range = Enumerable.Range(1, i);
+        var args = string.Join(", ", range.Select(x => $"UniTask task{x}"));
+        var titems = string.Join(", ", range.Select(x => $"tasks.Item{x}"));
 #>
 
         public static UniTask.Awaiter GetAwaiter(this (<#= args #>) tasks)
@@ -57,7 +63,9 @@ namespace Cysharp.Threading.Tasks
             return UniTask.WhenAll(<#= titems #>).GetAwaiter();
         }
 
-<# } #>
+<#
+    }
+#>
 
     }
 }

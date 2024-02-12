@@ -13,7 +13,8 @@ namespace Cysharp.Threading.Tasks
 
     public sealed class TimeoutController : IDisposable
     {
-        readonly static Action<object> CancelCancellationTokenSourceStateDelegate = new Action<object>(CancelCancellationTokenSourceState);
+        readonly static Action<object> CancelCancellationTokenSourceStateDelegate =
+            new Action<object>(CancelCancellationTokenSourceState);
 
         static void CancelCancellationTokenSourceState(object state)
         {
@@ -30,7 +31,8 @@ namespace Cysharp.Threading.Tasks
         readonly PlayerLoopTiming delayTiming;
         readonly CancellationTokenSource originalLinkCancellationTokenSource;
 
-        public TimeoutController(DelayType delayType = DelayType.DeltaTime, PlayerLoopTiming delayTiming = PlayerLoopTiming.Update)
+        public TimeoutController(DelayType delayType = DelayType.DeltaTime,
+            PlayerLoopTiming delayTiming = PlayerLoopTiming.Update)
         {
             this.timeoutSource = new CancellationTokenSource();
             this.originalLinkCancellationTokenSource = null;
@@ -39,11 +41,13 @@ namespace Cysharp.Threading.Tasks
             this.delayTiming = delayTiming;
         }
 
-        public TimeoutController(CancellationTokenSource linkCancellationTokenSource, DelayType delayType = DelayType.DeltaTime, PlayerLoopTiming delayTiming = PlayerLoopTiming.Update)
+        public TimeoutController(CancellationTokenSource linkCancellationTokenSource,
+            DelayType delayType = DelayType.DeltaTime, PlayerLoopTiming delayTiming = PlayerLoopTiming.Update)
         {
             this.timeoutSource = new CancellationTokenSource();
             this.originalLinkCancellationTokenSource = linkCancellationTokenSource;
-            this.linkedSource = CancellationTokenSource.CreateLinkedTokenSource(timeoutSource.Token, linkCancellationTokenSource.Token);
+            this.linkedSource =
+                CancellationTokenSource.CreateLinkedTokenSource(timeoutSource.Token, linkCancellationTokenSource.Token);
             this.delayType = delayType;
             this.delayTiming = delayTiming;
         }
@@ -55,7 +59,8 @@ namespace Cysharp.Threading.Tasks
 
         public CancellationToken Timeout(TimeSpan timeout)
         {
-            if (originalLinkCancellationTokenSource != null && originalLinkCancellationTokenSource.IsCancellationRequested)
+            if (originalLinkCancellationTokenSource != null &&
+                originalLinkCancellationTokenSource.IsCancellationRequested)
             {
                 return originalLinkCancellationTokenSource.Token;
             }
@@ -69,7 +74,8 @@ namespace Cysharp.Threading.Tasks
                 {
                     this.linkedSource.Cancel();
                     this.linkedSource.Dispose();
-                    this.linkedSource = CancellationTokenSource.CreateLinkedTokenSource(timeoutSource.Token, originalLinkCancellationTokenSource.Token);
+                    this.linkedSource = CancellationTokenSource.CreateLinkedTokenSource(timeoutSource.Token,
+                        originalLinkCancellationTokenSource.Token);
                 }
 
                 timer?.Dispose();
@@ -82,7 +88,8 @@ namespace Cysharp.Threading.Tasks
             {
                 // Timer complete => timeoutSource.Cancel() -> linkedSource will be canceled.
                 // (linked)token is canceled => stop timer
-                timer = PlayerLoopTimer.StartNew(timeout, false, delayType, delayTiming, token, CancelCancellationTokenSourceStateDelegate, timeoutSource);
+                timer = PlayerLoopTimer.StartNew(timeout, false, delayType, delayTiming, token,
+                    CancelCancellationTokenSourceStateDelegate, timeoutSource);
             }
             else
             {

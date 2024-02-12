@@ -1,22 +1,22 @@
 {
-    "name": "PLUME.Recorder.Editor",
-    "rootNamespace": "PLUME",
-    "references": [
-        "GUID:34c5aa7ff2e4f2b498e77f83bdc79ebe",
-        "GUID:78b8f45ffa70db540bc27e0012b1024c",
-        "GUID:7337036dbbf0a8c4a99ad3544b02ffdd",
-        "GUID:5c1ff9bd975acec488150743d53a93ca",
-        "GUID:c5ecc461727906345a35491a0440694f"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "PLUME.Recorder.Editor",
+  "rootNamespace": "PLUME",
+  "references": [
+    "GUID:34c5aa7ff2e4f2b498e77f83bdc79ebe",
+    "GUID:78b8f45ffa70db540bc27e0012b1024c",
+    "GUID:7337036dbbf0a8c4a99ad3544b02ffdd",
+    "GUID:5c1ff9bd975acec488150743d53a93ca",
+    "GUID:c5ecc461727906345a35491a0440694f"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }

@@ -15,14 +15,17 @@ namespace Cysharp.Threading.Tasks
 {
     public partial struct UniTask
     {
-<# for(var i = 2; i <= 15; i++ ) {
-    var range = Enumerable.Range(1, i);
-    var t = string.Join(", ", range.Select(x => "T" + x));
-    var args = string.Join(", ", range.Select(x => $"UniTask<T{x}> task{x}"));
-    var targs = string.Join(", ", range.Select(x => $"task{x}"));
-    var tresult = string.Join(", ", range.Select(x => $"task{x}.GetAwaiter().GetResult()"));
-    var completedSuccessfullyAnd = string.Join(" && ", range.Select(x => $"task{x}.Status.IsCompletedSuccessfully()"));
-    var tfield = string.Join(", ", range.Select(x => $"self.t{x}"));
+<#
+    for (var i = 2; i <= 15; i++)
+    {
+        var range = Enumerable.Range(1, i);
+        var t = string.Join(", ", range.Select(x => "T" + x));
+        var args = string.Join(", ", range.Select(x => $"UniTask<T{x}> task{x}"));
+        var targs = string.Join(", ", range.Select(x => $"task{x}"));
+        var tresult = string.Join(", ", range.Select(x => $"task{x}.GetAwaiter().GetResult()"));
+        var completedSuccessfullyAnd = string.Join(" && ",
+            range.Select(x => $"task{x}.Status.IsCompletedSuccessfully()"));
+        var tfield = string.Join(", ", range.Select(x => $"self.t{x}"));
 #>
         
         public static UniTask<(<#= t #>)> WhenAll<<#= t #>>(<#= args #>)
@@ -37,9 +40,14 @@ namespace Cysharp.Threading.Tasks
 
         sealed class WhenAllPromise<<#= t #>> : IUniTaskSource<(<#= t #>)>
         {
-<# for(var j = 1; j <= i; j++) { #>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
             T<#= j #> t<#= j #> = default;
-<# } #>
+<#
+        }
+#>
             int completedCount;
             UniTaskCompletionSourceCore<(<#= t #>)> core;
 
@@ -48,7 +56,10 @@ namespace Cysharp.Threading.Tasks
                 TaskTracker.TrackActiveTask(this, 3);
 
                 this.completedCount = 0;
-<# for(var j = 1; j <= i; j++) { #>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
                 {
                     var awaiter = task<#= j #>.GetAwaiter();
                     if (awaiter.IsCompleted)
@@ -66,10 +77,15 @@ namespace Cysharp.Threading.Tasks
                         }, StateTuple.Create(this, awaiter));
                     }
                 }
-<# } #>
+<#
+        }
+#>
             }
 
-<# for(var j = 1; j <= i; j++) { #>
+<#
+        for (var j = 1; j <= i; j++)
+        {
+#>
             static void TryInvokeContinuationT<#= j #>(WhenAllPromise<<#= t #>> self, in UniTask<T<#= j #>>.Awaiter awaiter)
             {
                 try
@@ -88,7 +104,9 @@ namespace Cysharp.Threading.Tasks
                 }
             }
 
-<# } #>
+<#
+        }
+#>
 
             public (<#= t #>) GetResult(short token)
             {
@@ -117,6 +135,8 @@ namespace Cysharp.Threading.Tasks
                 core.OnCompleted(continuation, state, token);
             }
         }
-<# } #>
+<#
+    }
+#>
     }
 }

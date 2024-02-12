@@ -23,9 +23,14 @@ namespace Cysharp.Threading.Tasks
 
     public interface IUniTaskOrderedAsyncEnumerable<TElement> : IUniTaskAsyncEnumerable<TElement>
     {
-        IUniTaskOrderedAsyncEnumerable<TElement> CreateOrderedEnumerable<TKey>(Func<TElement, TKey> keySelector, IComparer<TKey> comparer, bool descending);
-        IUniTaskOrderedAsyncEnumerable<TElement> CreateOrderedEnumerable<TKey>(Func<TElement, UniTask<TKey>> keySelector, IComparer<TKey> comparer, bool descending);
-        IUniTaskOrderedAsyncEnumerable<TElement> CreateOrderedEnumerable<TKey>(Func<TElement, CancellationToken, UniTask<TKey>> keySelector, IComparer<TKey> comparer, bool descending);
+        IUniTaskOrderedAsyncEnumerable<TElement> CreateOrderedEnumerable<TKey>(Func<TElement, TKey> keySelector,
+            IComparer<TKey> comparer, bool descending);
+
+        IUniTaskOrderedAsyncEnumerable<TElement> CreateOrderedEnumerable<TKey>(
+            Func<TElement, UniTask<TKey>> keySelector, IComparer<TKey> comparer, bool descending);
+
+        IUniTaskOrderedAsyncEnumerable<TElement> CreateOrderedEnumerable<TKey>(
+            Func<TElement, CancellationToken, UniTask<TKey>> keySelector, IComparer<TKey> comparer, bool descending);
     }
 
     public interface IConnectableUniTaskAsyncEnumerable<out T> : IUniTaskAsyncEnumerable<T>
@@ -41,7 +46,8 @@ namespace Cysharp.Threading.Tasks
 
     public static class UniTaskAsyncEnumerableExtensions
     {
-        public static UniTaskCancelableAsyncEnumerable<T> WithCancellation<T>(this IUniTaskAsyncEnumerable<T> source, CancellationToken cancellationToken)
+        public static UniTaskCancelableAsyncEnumerable<T> WithCancellation<T>(this IUniTaskAsyncEnumerable<T> source,
+            CancellationToken cancellationToken)
         {
             return new UniTaskCancelableAsyncEnumerable<T>(source, cancellationToken);
         }
@@ -53,7 +59,8 @@ namespace Cysharp.Threading.Tasks
         private readonly IUniTaskAsyncEnumerable<T> enumerable;
         private readonly CancellationToken cancellationToken;
 
-        internal UniTaskCancelableAsyncEnumerable(IUniTaskAsyncEnumerable<T> enumerable, CancellationToken cancellationToken)
+        internal UniTaskCancelableAsyncEnumerable(IUniTaskAsyncEnumerable<T> enumerable,
+            CancellationToken cancellationToken)
         {
             this.enumerable = enumerable;
             this.cancellationToken = cancellationToken;

@@ -26,7 +26,7 @@ namespace PLUME.Core.Recorder
         /// </summary>
         private readonly IReadOnlyClock _clock;
 
-        private SampleTypeUrlRegistry _typeUrlRegistry;
+        private readonly SampleTypeUrlRegistry _typeUrlRegistry;
 
         private readonly IFrameDataRecorderModule[] _frameDataRecorderModules;
         private readonly IFrameDataRecorderModuleAsync[] _asyncFrameDataRecorderModules;

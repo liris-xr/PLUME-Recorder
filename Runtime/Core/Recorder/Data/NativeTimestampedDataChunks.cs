@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 
-namespace PLUME.Core.Collections
+namespace PLUME.Core.Recorder.Data
 {
     [BurstCompile]
     [StructLayout(LayoutKind.Sequential)]
@@ -67,6 +68,7 @@ namespace PLUME.Core.Collections
             }
         }
 
+        // TODO: Merge TryDequeueAll implementations
         public unsafe bool TryDequeueAll(NativeList<byte> dataDst, NativeList<int> chunkLengthsDst,
             NativeList<long> timestampsDst)
         {
@@ -77,7 +79,7 @@ namespace PLUME.Core.Collections
             if (ChunkCount == 0)
                 return false;
 
-            dataDst.AddRange(_data.RawData.GetUnsafeReadOnlyPtr(), _data.Length);
+            dataDst.AddRange(_data.RawData.GetUnsafeReadOnlyPtr(), _data.DataLength);
             chunkLengthsDst.AddRange(_data.ChunkLengths.GetUnsafeReadOnlyPtr(), _data.ChunkCount);
             timestampsDst.AddRange(_timestamps.GetUnsafeReadOnlyPtr(), _timestamps.Length);
             _data.Clear();
@@ -85,6 +87,25 @@ namespace PLUME.Core.Collections
             return true;
         }
 
+        // TODO: Merge TryDequeueAll implementations
+        public bool TryDequeueAll(List<byte> dataDst, List<int> chunkLengthsDst, List<long> timestampsDst)
+        {
+            dataDst.Clear();
+            chunkLengthsDst.Clear();
+            timestampsDst.Clear();
+
+            if (ChunkCount == 0)
+                return false;
+
+            dataDst.AddRange(_data.RawData);
+            chunkLengthsDst.AddRange(_data.ChunkLengths);
+            timestampsDst.AddRange(_timestamps);
+            _data.Clear();
+            _timestamps.Clear();
+            return true;
+        }
+        
+        // TODO: Merge TryDequeueAllBeforeTimestamp implementations
         public unsafe bool TryDequeueAllBeforeTimestamp(long timestamp, NativeList<byte> dataDst,
             NativeList<int> chunkLengthsDst, NativeList<long> timestampsDst, bool inclusive)
         {
@@ -101,7 +122,7 @@ namespace PLUME.Core.Collections
             // If the timestamp is greater than the last one, just return all the data.
             if (timestamp > _timestamps[ChunkCount - 1])
             {
-                dataDst.AddRange(_data.RawData.GetUnsafeReadOnlyPtr(), _data.Length);
+                dataDst.AddRange(_data.RawData.GetUnsafeReadOnlyPtr(), _data.DataLength);
                 chunkLengthsDst.AddRange(_data.ChunkLengths.GetUnsafeReadOnlyPtr(), _data.ChunkCount);
                 timestampsDst.AddRange(_timestamps.GetUnsafeReadOnlyPtr(), _timestamps.Length);
                 _data.Clear();
@@ -131,6 +152,53 @@ namespace PLUME.Core.Collections
             return true;
         }
         
+        // TODO: Merge TryDequeueAllBeforeTimestamp implementations
+        public bool TryDequeueAllBeforeTimestamp(long timestamp, List<byte> dataDst,
+            List<int> chunkLengthsDst, List<long> timestampsDst, bool inclusive)
+        {
+            dataDst.Clear();
+            chunkLengthsDst.Clear();
+            timestampsDst.Clear();
+
+            if (ChunkCount == 0)
+                return false;
+
+            if (timestamp < _timestamps[0])
+                return false;
+
+            // If the timestamp is greater than the last one, just return all the data.
+            if (timestamp > _timestamps[ChunkCount - 1])
+            {
+                dataDst.AddRange(_data.RawData);
+                chunkLengthsDst.AddRange(_data.ChunkLengths);
+                timestampsDst.AddRange(_timestamps);
+                _data.Clear();
+                _timestamps.Clear();
+                return true;
+            }
+
+            var chunkIndex = FirstChunkIndexAfterTimestampInclusive(timestamp);
+            
+            if (_timestamps[chunkIndex] > timestamp || (_timestamps[chunkIndex] == timestamp && !inclusive))
+                chunkIndex -= 1;
+            
+            // Nothing to copy.
+            if (chunkIndex < 0)
+                return false;
+
+            // We dequeue all chunks between index 0 and lastChunkIndex.
+            var nChunks = chunkIndex + 1;
+
+            var rawData = _data.GetChunksData(0, nChunks);
+            var chunkLengths = _data.GetChunksLengths(0, nChunks);
+            dataDst.AddRange(rawData);
+            chunkLengthsDst.AddRange(chunkLengths);
+            timestampsDst.AddRange(_timestamps);
+            _data.RemoveRange(0, nChunks);
+            _timestamps.RemoveRange(0, nChunks);
+            return true;
+        }
+        
         private int FirstChunkIndexAfterTimestampInclusive(long timestamp)
         {
             var left = 0;
@@ -149,7 +217,7 @@ namespace PLUME.Core.Collections
             return left;
         }
 
-        public int DataLength => _data.Length;
+        public int DataLength => _data.DataLength;
 
         public int ChunkCount => _data.ChunkCount;
 

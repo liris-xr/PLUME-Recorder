@@ -1,19 +1,18 @@
 using System;
 using System.IO;
-using System.IO.Compression;
 
-namespace PLUME.Core.Writer
+namespace PLUME.Core.Recorder.Writer
 {
     // TODO: add metadata file
     // TODO: add delayed write
     public class FileDataWriter : IDataWriter, IDisposable
     {
-        private readonly GZipStream _stream;
+        private readonly FileStream _stream;
 
         public FileDataWriter(string outputDir, string recordIdentifier)
         {
             var filePath = Path.Combine(outputDir, GenerateFileName(recordIdentifier));
-            _stream = new GZipStream(File.Create(filePath), CompressionLevel.Optimal);
+            _stream = File.Create(filePath);
         }
 
         private static string GenerateFileName(string recordName)
@@ -27,11 +26,11 @@ namespace PLUME.Core.Writer
             // TODO: check if file exists and prefix with number if it does
             return recordName + ".plm.meta";
         }
-        
+
         public void WriteTimelessData(ReadOnlySpan<byte> data)
         {
         }
-        
+
         public void WriteTimelessData(ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths)
         {
         }
@@ -42,7 +41,8 @@ namespace PLUME.Core.Writer
             _stream.Write(data);
         }
 
-        public void WriteTimestampedData(ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths, ReadOnlySpan<long> timestamps)
+        public void WriteTimestampedData(ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths,
+            ReadOnlySpan<long> timestamps)
         {
             // TODO: update metadata file
             _stream.Write(data);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Recorder.Time;
@@ -31,6 +32,8 @@ namespace PLUME.Core.Recorder
         private readonly IFrameDataRecorderModule[] _frameDataRecorderModules;
         private readonly IFrameDataRecorderModuleAsync[] _asyncFrameDataRecorderModules;
 
+        private readonly IRecorderData _recorderData;
+
         private readonly FrameSamplePacker _frameSamplePacker;
 
         /// <summary>
@@ -38,7 +41,7 @@ namespace PLUME.Core.Recorder
         /// Tasks are added in the <see cref="Update"/> method and automatically removed when they finish.
         /// Tasks may queue up if the serialization process is slow. This list is used to wait for all the tasks to finish before stopping the recorder (see <see cref="CompleteTasks"/>).
         /// </summary>
-        private readonly HashSet<FrameRecorderTask> _tasks = new(FrameRecorderModuleTaskComparer.Instance);
+        private readonly HashSet<FrameRecorderTask> _tasks = new(FrameRecorderTaskComparer.Instance);
 
         /// <summary>
         /// Whether the frame recorder should run the update loop. This is automatically set to true when the recorder starts and false when it stops.
@@ -54,21 +57,25 @@ namespace PLUME.Core.Recorder
             SampleTypeUrlRegistry typeUrlRegistry,
             IFrameDataRecorderModule[] modules,
             IFrameDataRecorderModuleAsync[] asyncModules,
-            FrameSamplePacker frameSamplePacker)
+            FrameSamplePacker frameSamplePacker,
+            IRecorderData recorderData)
         {
             _clock = clock;
             _typeUrlRegistry = typeUrlRegistry;
             _frameDataRecorderModules = modules;
             _asyncFrameDataRecorderModules = asyncModules;
             _frameSamplePacker = frameSamplePacker;
+            _recorderData = recorderData;
         }
 
         internal static FrameRecorder Instantiate(IReadOnlyClock clock, SampleTypeUrlRegistry typeUrlRegistry,
-            IRecorderModule[] recorderModules, FrameSamplePacker frameSamplePacker, bool injectUpdateInCurrentLoop)
+            IRecorderModule[] recorderModules, FrameSamplePacker frameSamplePacker, IRecorderData output,
+            bool injectUpdateInCurrentLoop)
         {
             var modules = recorderModules.OfType<IFrameDataRecorderModule>().ToArray();
             var asyncModules = recorderModules.OfType<IFrameDataRecorderModuleAsync>().ToArray();
-            var frameRecorder = new FrameRecorder(clock, typeUrlRegistry, modules, asyncModules, frameSamplePacker);
+            var frameRecorder =
+                new FrameRecorder(clock, typeUrlRegistry, modules, asyncModules, frameSamplePacker, output);
 
             if (injectUpdateInCurrentLoop)
             {
@@ -128,7 +135,8 @@ namespace PLUME.Core.Recorder
 
             var timestamp = _clock.ElapsedNanoseconds;
             var frame = UnityEngine.Time.frameCount;
-            var task = RecordFrameAsync(timestamp, frame).AttachExternalCancellation(_cancellationTokenSource.Token);
+            var task = RecordFrameAsync(timestamp, frame, _recorderData)
+                .AttachExternalCancellation(_cancellationTokenSource.Token);
             var recordFrameTask = FrameRecorderTask.Get(frame, task);
 
             lock (_tasks)
@@ -154,25 +162,31 @@ namespace PLUME.Core.Recorder
             }
         }
 
-        // TODO: add an output parameter, make this public
-        internal async UniTask RecordFrameAsync(long timestamp, int frameNumber)
+        internal async UniTask RecordFrameAsync(long timestamp, int frameNumber, IRecorderData output)
         {
             var frameDataBuffer = new SerializedSamplesBuffer(Allocator.Persistent);
             await RecordFrameDataAsync(frameDataBuffer);
 
             var data = new NativeList<byte>(Allocator.TempJob);
-
-            // TODO: chain jobs
-
+            
             var jobHandle =
-                FrameSamplePacker.WriteFramePackedSampleAsync(timestamp, frameNumber, _typeUrlRegistry, frameDataBuffer,
-                    data);
-            await jobHandle.WaitAsync(PlayerLoopTiming.Update);
+                _frameSamplePacker.WriteFramePackedSampleAsync(timestamp, frameNumber, _typeUrlRegistry,
+                    frameDataBuffer, data);
 
-            // TODO: push data to writer
-
-            data.Dispose();
-            frameDataBuffer.Dispose();
+            try
+            {
+                await jobHandle.WaitAsync(PlayerLoopTiming.Update, _cancellationTokenSource.Token);
+                output.AddTimestampedData(data.AsArray().AsReadOnlySpan(), timestamp);
+            }
+            catch (OperationCanceledException)
+            {
+                // Ignored
+            }
+            finally
+            {
+                data.Dispose();
+                frameDataBuffer.Dispose();
+            }
         }
 
         internal async UniTask RecordFrameDataAsync(SerializedSamplesBuffer serializedSamplesBuffer)

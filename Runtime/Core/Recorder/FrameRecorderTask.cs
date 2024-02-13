@@ -28,26 +28,11 @@ namespace PLUME.Core.Recorder
         {
             Pool.Release(frameRecorderTask);
         }
-
-        public bool Equals(FrameRecorderTask other)
-        {
-            return Frame == other.Frame;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is FrameRecorderTask other && Equals(other);
-        }
-
-        public override int GetHashCode()
-        {
-            return Frame;
-        }
     }
 
-    public class FrameRecorderModuleTaskComparer : IEqualityComparer<FrameRecorderTask>
+    public class FrameRecorderTaskComparer : IEqualityComparer<FrameRecorderTask>
     {
-        public static readonly FrameRecorderModuleTaskComparer Instance = new();
+        public static readonly FrameRecorderTaskComparer Instance = new();
 
         public bool Equals(FrameRecorderTask x, FrameRecorderTask y)
         {

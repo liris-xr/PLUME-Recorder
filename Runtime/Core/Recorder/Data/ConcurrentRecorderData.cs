@@ -1,18 +1,18 @@
 using System;
 using Unity.Collections;
 
-namespace PLUME.Core.Recorder
+namespace PLUME.Core.Recorder.Data
 {
     public class ConcurrentRecorderData : IRecorderData, IDisposable
     {
         private NativeRecorderData _data;
         private readonly object _lock = new();
-        
+
         public ConcurrentRecorderData(Allocator allocator)
         {
             _data = new NativeRecorderData(allocator);
         }
-        
+
         public void AddTimelessData(ReadOnlySpan<byte> data)
         {
             lock (_lock)
@@ -37,11 +37,61 @@ namespace PLUME.Core.Recorder
             }
         }
 
-        public void AddTimestampedData(ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths, ReadOnlySpan<long> timestamps)
+        public void AddTimestampedData(ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths,
+            ReadOnlySpan<long> timestamps)
         {
             lock (_lock)
             {
                 _data.AddTimestampedData(data, lengths, timestamps);
+            }
+        }
+
+        public bool TryPopTimelessData(NativeList<byte> dataDst, NativeList<int> chunkLengthsDst)
+        {
+            lock (_lock)
+            {
+                return _data.TryPopTimelessData(dataDst, chunkLengthsDst);
+            }
+        }
+
+        public bool TryPopTimestampedDataBeforeTimestamp(long timestamp, NativeList<byte> dataDst, NativeList<int> chunkLengthsDst,
+            NativeList<long> timestampsDst, bool inclusive)
+        {
+            lock (_lock)
+            {
+                return _data.TryPopTimestampedDataBeforeTimestamp(timestamp, dataDst, chunkLengthsDst, timestampsDst, inclusive);
+            }
+        }
+
+        public bool TryPopAllTimestampedData(NativeList<byte> timestampedData, NativeList<int> timestampedLengths, NativeList<long> timestamps)
+        {
+            lock (_lock)
+            {
+                return _data.TryPopAllTimestampedData(timestampedData, timestampedLengths, timestamps);
+            }
+        }
+
+        public void Clear()
+        {
+            lock (_lock)
+            {
+                _data.Clear();
+            }
+        }
+
+        public int GetTimelessDataLength()
+        {
+            lock (_lock)
+            {
+                return _data.GetTimelessDataLength();
+            }
+        }
+
+        public int GetTimestampedDataLength()
+        {
+            lock (_lock)
+            {
+                return _data.GetTimestampedDataLength();
             }
         }
 

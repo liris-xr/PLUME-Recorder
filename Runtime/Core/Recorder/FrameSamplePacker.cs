@@ -11,10 +11,11 @@ namespace PLUME.Core.Recorder
     public class FrameSamplePacker
     {
         [BurstDiscard]
-        public static JobHandle WriteFramePackedSampleAsync(long timestamp, int frameNumber,
+        public JobHandle WriteFramePackedSampleAsync(long timestamp, int frameNumber,
             SampleTypeUrlRegistry typeUrlRegistry, SerializedSamplesBuffer buffer, NativeList<byte> data,
             JobHandle dependsOn = default)
         {
+            // TODO: chain jobs
             var job = new AsyncWritingJob
             {
                 Timestamp = timestamp,
@@ -26,6 +27,21 @@ namespace PLUME.Core.Recorder
             return job.Schedule(dependsOn);
         }
 
+        [BurstCompile]
+        private struct AsyncWritingJob : IJob
+        {
+            public long Timestamp;
+            public int FrameNumber;
+            [ReadOnly] public SerializedSamplesBuffer Buffer;
+            public NativeList<byte> Data;
+            [ReadOnly] public SampleTypeUrlRegistry TypeUrlRegistry;
+
+            public void Execute()
+            {
+                WriteFramePackedSample(Timestamp, FrameNumber, ref Buffer, ref Data, ref TypeUrlRegistry);
+            }
+        }
+        
         [BurstCompile]
         public static void WriteFramePackedSample(long timestamp, int frameNumber, ref SerializedSamplesBuffer buffer,
             ref NativeList<byte> data, ref SampleTypeUrlRegistry typeUrlRegistry)
@@ -51,21 +67,6 @@ namespace PLUME.Core.Recorder
             foreach (var fd in frameData)
             {
                 fd.Dispose();
-            }
-        }
-
-        [BurstCompile]
-        private struct AsyncWritingJob : IJob
-        {
-            public long Timestamp;
-            public int FrameNumber;
-            [ReadOnly] public SerializedSamplesBuffer Buffer;
-            public NativeList<byte> Data;
-            [ReadOnly] public SampleTypeUrlRegistry TypeUrlRegistry;
-
-            public void Execute()
-            {
-                WriteFramePackedSample(Timestamp, FrameNumber, ref Buffer, ref Data, ref TypeUrlRegistry);
             }
         }
     }

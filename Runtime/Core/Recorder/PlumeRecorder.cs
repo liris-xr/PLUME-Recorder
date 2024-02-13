@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Object.SafeRef;
+using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Time;
+using PLUME.Core.Recorder.Writer;
 using Unity.Collections;
 using UnityEngine;
 
@@ -26,6 +28,12 @@ namespace PLUME.Core.Recorder
         public bool IsStopping => CurrentStatus == Status.Stopping;
         public bool IsStopped => CurrentStatus == Status.Stopped;
 
+        private FileDataWriter _fileDataWriter;
+
+        private readonly IRecorderData _recorderData;
+
+        private readonly DataDispatcher _dataDispatcher;
+
         public readonly ObjectSafeRefProvider ObjectSafeRefProvider;
 
         public readonly SampleTypeUrlRegistry SampleTypeUrlRegistry;
@@ -45,19 +53,17 @@ namespace PLUME.Core.Recorder
         private bool _hasScheduledQuit;
 
         private PlumeRecorder(Clock clock, IRecorderModule[] recorderModules,
+            IRecorderData recorderData,
             SampleTypeUrlRegistry sampleTypeUrlRegistry,
-            ObjectSafeRefProvider objSafeRefProvider, FrameRecorder frameRecorder)
+            ObjectSafeRefProvider objSafeRefProvider, FrameRecorder frameRecorder, DataDispatcher dataDispatcher)
         {
+            _recorderData = recorderData;
             _clock = clock;
             ObjectSafeRefProvider = objSafeRefProvider;
             SampleTypeUrlRegistry = sampleTypeUrlRegistry;
             _recorderModules = recorderModules;
             _frameRecorder = frameRecorder;
-        }
-
-        ~PlumeRecorder()
-        {
-            Dispose();
+            _dataDispatcher = dataDispatcher;
         }
 
         /// <summary>
@@ -73,9 +79,12 @@ namespace PLUME.Core.Recorder
             var objSafeRefProvider = new ObjectSafeRefProvider();
             var recorderModules = RecorderModuleManager.InstantiateRecorderModulesFromAllAssemblies();
             var frameSamplePacker = new FrameSamplePacker();
+            var output = new ConcurrentRecorderData(Allocator.Persistent);
             var frameRecorder =
-                FrameRecorder.Instantiate(clock, typeUrlRegistry, recorderModules, frameSamplePacker, true);
-            _instance = new PlumeRecorder(clock, recorderModules, typeUrlRegistry, objSafeRefProvider, frameRecorder);
+                FrameRecorder.Instantiate(clock, typeUrlRegistry, recorderModules, frameSamplePacker, output, true);
+            var dataDispatcher = DataDispatcher.Instantiate(clock, output, true);
+            _instance = new PlumeRecorder(clock, recorderModules, output, typeUrlRegistry, objSafeRefProvider,
+                frameRecorder, dataDispatcher);
 
             foreach (var recorderModule in recorderModules)
             {
@@ -83,15 +92,21 @@ namespace PLUME.Core.Recorder
             }
 
             Application.wantsToQuit += _instance.OnApplicationWantsToQuit;
-            Application.quitting += _instance.OnApplicationQuitting;
-            Application.quitting += _instance.Dispose;
-            Application.quitting += typeUrlRegistry.Dispose;
+
+            Application.quitting += () =>
+            {
+                _instance.OnApplicationQuitting();
+                _instance.Dispose();
+                typeUrlRegistry.Dispose();
+                output.Dispose();
+            };
         }
 
         /// <summary>
         /// Starts the recording process. If the recorder is already recording, throw a <see cref="InvalidOperationException"/> exception.
         /// </summary>
         /// <exception cref="InvalidOperationException"></exception>
+        /// TODO: take a record identifier as param
         public void Start()
         {
             if (IsStopping)
@@ -101,9 +116,13 @@ namespace PLUME.Core.Recorder
             if (IsRecording)
                 throw new InvalidOperationException("Recorder is already recording.");
 
+            _fileDataWriter = new FileDataWriter(Application.persistentDataPath,
+                "recording_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
+
             _clock.Reset();
             CurrentStatus = Status.Recording;
 
+            _dataDispatcher.Start(new IDataWriter[] { _fileDataWriter });
             _frameRecorder.Start();
 
             foreach (var module in _recorderModules)
@@ -144,6 +163,10 @@ namespace PLUME.Core.Recorder
                 // Ignored. The recorder was force stopped.
             }
 
+            _dataDispatcher.Stop();
+            _fileDataWriter.Dispose();
+            _fileDataWriter = null;
+            
             _stoppingCancellationTokenSource.Dispose();
         }
 
@@ -161,6 +184,8 @@ namespace PLUME.Core.Recorder
             foreach (var module in _recorderModules)
                 module.Stop();
 
+            _dataDispatcher.Stop();
+            
             CurrentStatus = Status.Stopped;
         }
 
@@ -223,6 +248,8 @@ namespace PLUME.Core.Recorder
         {
             foreach (var module in _recorderModules)
                 module.Destroy();
+
+            _fileDataWriter?.Dispose();
         }
 
         /// <summary>

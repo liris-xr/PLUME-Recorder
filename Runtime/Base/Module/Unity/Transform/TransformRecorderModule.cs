@@ -81,7 +81,7 @@ namespace PLUME.Base.Module.Unity.Transform
                 var t = recordedObject.TypedObject;
                 identifiers.Add(recordedObject.Identifier);
                 // localPositions.Add(t.localPosition);
-                localPositions.Add(UnityEngine.Vector3.one);
+                localPositions.Add(new UnityEngine.Vector3(1, 2, 3));
             }
             
             // // TODO: run in a job

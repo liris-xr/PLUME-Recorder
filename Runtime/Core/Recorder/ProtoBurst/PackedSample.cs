@@ -9,9 +9,7 @@ namespace PLUME.Core.Recorder.ProtoBurst
     [BurstCompile]
     public struct PackedSample : IProtoBurstMessage, IDisposable
     {
-        private static readonly FixedString128Bytes PackedSampleTypeUrl = "fr.liris.plume/fr.liris.plume.PackedSample";
-
-        public FixedString128Bytes TypeUrl => PackedSampleTypeUrl;
+        public FixedString128Bytes TypeUrl => "fr.liris.plume/plume.sample.PackedSample";
 
         private readonly bool _hasTimestamp;
         private readonly long _timestamp;
@@ -24,7 +22,7 @@ namespace PLUME.Core.Recorder.ProtoBurst
             _payload = payload;
         }
 
-        public static PackedSample Pack<T>(Allocator allocator, long timestamp, T message) where T : struct, IProtoBurstMessage
+        public static PackedSample Pack<T>(Allocator allocator, long timestamp, T message) where T : unmanaged, IProtoBurstMessage
         {
             return new PackedSample(timestamp, Any.Pack(allocator, message));
         }

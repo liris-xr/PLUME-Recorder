@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 
-namespace PLUME.Core.Collections
+namespace PLUME.Core.Recorder.Data
 {
     [BurstCompile]
     [StructLayout(LayoutKind.Sequential)]
@@ -21,16 +22,16 @@ namespace PLUME.Core.Collections
             _chunkLengths = new NativeList<int>(allocator);
         }
 
-        public void Add(ReadOnlySpan<byte> data)
+        public void Add(ReadOnlySpan<byte> chunk)
         {
             unsafe
             {
-                fixed (byte* dataPtr = data)
+                fixed (byte* dataPtr = chunk)
                 {
-                    _data.AddRange(dataPtr, data.Length);
+                    _data.AddRange(dataPtr, chunk.Length);
                 }
 
-                _chunkLengths.Add(data.Length);
+                _chunkLengths.Add(chunk.Length);
             }
         }
 
@@ -224,7 +225,7 @@ namespace PLUME.Core.Collections
             return _chunkLengths.AsArray().GetSubArray(chunkIndex, count).AsReadOnly();
         }
 
-        public int Length => _data.Length;
+        public int DataLength => _data.Length;
 
         public int ChunkCount => _chunkLengths.Length;
 

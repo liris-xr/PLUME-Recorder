@@ -9,16 +9,16 @@ namespace PLUME.Core
     /// </summary>
     public readonly struct SampleTypeUrlIndex : IEquatable<SampleTypeUrlIndex>
     {
-        private readonly int _index;
+        public readonly int Index;
 
         internal SampleTypeUrlIndex(int index)
         {
-            _index = index;
+            Index = index;
         }
 
         public bool Equals(SampleTypeUrlIndex other)
         {
-            return _index == other._index;
+            return Index == other.Index;
         }
 
         public override bool Equals(object obj)
@@ -28,7 +28,12 @@ namespace PLUME.Core
 
         public override int GetHashCode()
         {
-            return _index;
+            return Index;
+        }
+        
+        public override string ToString()
+        {
+            return $"SampleTypeUrlIndex({Index})";
         }
     }
 }

@@ -20,7 +20,7 @@ namespace PLUME.Base.Module.Unity.Transform
     [Preserve]
     internal class TransformRecorderModule : ObjectFrameDataRecorderModuleAsync<UnityEngine.Transform>
     {
-        private readonly DynamicTransformAccessArray _transformAccessArray = new();
+        private DynamicTransformAccessArray _transformAccessArray;
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
         private SampleTypeUrlIndex _updatePosSampleTypeUrlIndex;
 
@@ -31,15 +31,20 @@ namespace PLUME.Base.Module.Unity.Transform
                 LocalPosition = new Vector3()
             });
         
-        protected override void OnCreate()
+        protected override void OnCreate(ObjectSafeRefProvider objSafeRefProvider, SampleTypeUrlRegistry typeUrlRegistry)
         {
+            _transformAccessArray = new DynamicTransformAccessArray();
             _lastStates = new NativeHashMap<ObjectIdentifier, TransformState>(1000, Allocator.Persistent);
-            _updatePosSampleTypeUrlIndex =
-                SampleTypeUrlRegistry.Instance.GetOrCreateTypeUrlIndex("fr.liris.plume", TransformUpdateLocalPosition.Descriptor);
+            _updatePosSampleTypeUrlIndex = typeUrlRegistry.GetOrCreateTypeUrlIndex("fr.liris.plume", TransformUpdateLocalPosition.Descriptor);
         }
 
         protected override void OnDestroy()
         {
+            if (_transformAccessArray.IsCreated)
+            {
+                _transformAccessArray.Dispose();
+            }
+            
             if (_lastStates.IsCreated)
             {
                 _lastStates.Dispose();
@@ -78,9 +83,10 @@ namespace PLUME.Base.Module.Unity.Transform
                 // localPositions.Add(t.localPosition);
                 localPositions.Add(UnityEngine.Vector3.one);
             }
-
+            
+            // // TODO: run in a job
             await UniTask.SwitchToThreadPool();
-
+            
             TransformUpdateLocalPosition transformUpdatePositionSample;
             
             lock (_transformUpdatePositionPool)
@@ -100,7 +106,7 @@ namespace PLUME.Base.Module.Unity.Transform
             {
                 _transformUpdatePositionPool.Release(transformUpdatePositionSample);
             }
-
+            
             await UniTask.SwitchToMainThread();
 
             identifiers.Dispose();

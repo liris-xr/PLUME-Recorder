@@ -92,9 +92,9 @@ namespace PLUME.Core.Recorder.Module
             return objSafeRef is ObjectSafeRef<TObject> tObjSafeRef && _recordedObjects.Contains(tObjSafeRef);
         }
 
-        void IRecorderModule.Create()
+        void IRecorderModule.Create(ObjectSafeRefProvider objSafeRefProvider, SampleTypeUrlRegistry typeUrlRegistry)
         {
-            OnCreate();
+            OnCreate(objSafeRefProvider, typeUrlRegistry);
         }
 
         void IRecorderModule.Destroy()
@@ -128,7 +128,7 @@ namespace PLUME.Core.Recorder.Module
                 throw new InvalidOperationException("Recorder module is not recording.");
         }
 
-        protected virtual void OnCreate()
+        protected virtual void OnCreate(ObjectSafeRefProvider objSafeRefProvider, SampleTypeUrlRegistry typeUrlRegistry)
         {
         }
 

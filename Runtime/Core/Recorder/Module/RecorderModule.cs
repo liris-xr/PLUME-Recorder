@@ -1,4 +1,5 @@
 using System;
+using PLUME.Core.Object.SafeRef;
 
 namespace PLUME.Core.Recorder.Module
 {
@@ -6,9 +7,9 @@ namespace PLUME.Core.Recorder.Module
     {
         public bool IsRecording { get; private set; }
 
-        void IRecorderModule.Create()
+        void IRecorderModule.Create(ObjectSafeRefProvider objSafeRefProvider, SampleTypeUrlRegistry typeUrlRegistry)
         {
-            OnCreate();
+            OnCreate(objSafeRefProvider, typeUrlRegistry);
         }
 
         void IRecorderModule.Destroy()
@@ -41,7 +42,7 @@ namespace PLUME.Core.Recorder.Module
             }
         }
 
-        protected virtual void OnCreate()
+        protected virtual void OnCreate(ObjectSafeRefProvider objSafeRefProvider, SampleTypeUrlRegistry typeUrlRegistry)
         {
         }
 

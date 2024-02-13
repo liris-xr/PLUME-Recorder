@@ -15,6 +15,7 @@ namespace PLUME.Base.Module.Unity.Transform
         private readonly Dictionary<int, int> _instanceIdToIndex;
 
         public int Length => _transformAccessArray.length;
+        public bool IsCreated => _transformAccessArray.isCreated;
 
         public DynamicTransformAccessArray(int initialCapacity = 1000, int desiredJobCount = -1)
         {

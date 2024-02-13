@@ -1,12 +1,13 @@
 using Cysharp.Threading.Tasks;
+using PLUME.Core.Object.SafeRef;
 
 namespace PLUME.Core.Recorder.Module.Frame
 {
     public abstract class FrameDataRecorderModuleAsync : IFrameDataRecorderModuleAsync
     {
-        void IRecorderModule.Create()
+        void IRecorderModule.Create(ObjectSafeRefProvider objSafeRefProvider, SampleTypeUrlRegistry typeUrlRegistry)
         {
-            OnCreate();
+            OnCreate(objSafeRefProvider, typeUrlRegistry);
         }
 
         void IRecorderModule.Destroy()
@@ -34,7 +35,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             return OnRecordFrameData(buffer);
         }
 
-        protected virtual void OnCreate()
+        protected virtual void OnCreate(ObjectSafeRefProvider objSafeRefProvider, SampleTypeUrlRegistry typeUrlRegistry)
         {
         }
 

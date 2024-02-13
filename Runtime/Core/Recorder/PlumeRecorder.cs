@@ -1,10 +1,12 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
-using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Recorder.Time;
+using Unity.Collections;
 using UnityEngine;
 
 namespace PLUME.Core.Recorder
@@ -14,13 +16,19 @@ namespace PLUME.Core.Recorder
     /// It is a singleton and should be accessed through the <see cref="Instance"/> property. The instance is created automatically
     /// after the assemblies are loaded by the application.
     /// </summary>
-    public sealed class PlumeRecorder
+    public sealed class PlumeRecorder : IDisposable
     {
         private static PlumeRecorder _instance;
 
-        public bool IsRecording { get; private set; }
+        public Status CurrentStatus { get; private set; } = Status.Stopped;
+
+        public bool IsRecording => CurrentStatus == Status.Recording;
+        public bool IsStopping => CurrentStatus == Status.Stopping;
+        public bool IsStopped => CurrentStatus == Status.Stopped;
 
         public readonly ObjectSafeRefProvider ObjectSafeRefProvider;
+
+        public readonly SampleTypeUrlRegistry SampleTypeUrlRegistry;
 
         /// <summary>
         /// Clock used by the recorder to timestamp the samples.
@@ -30,30 +38,26 @@ namespace PLUME.Core.Recorder
 
         private readonly IRecorderModule[] _recorderModules;
 
-        /// <summary>
-        /// 
-        /// </summary>
         private readonly FrameRecorder _frameRecorder;
 
-        private PlumeRecorder(IRecorderModule[] recorderModules)
+        private CancellationTokenSource _stoppingCancellationTokenSource;
+
+        private bool _hasScheduledQuit;
+
+        private PlumeRecorder(Clock clock, IRecorderModule[] recorderModules,
+            SampleTypeUrlRegistry sampleTypeUrlRegistry,
+            ObjectSafeRefProvider objSafeRefProvider, FrameRecorder frameRecorder)
         {
-            _clock = new Clock();
-            ObjectSafeRefProvider = new ObjectSafeRefProvider();
+            _clock = clock;
+            ObjectSafeRefProvider = objSafeRefProvider;
+            SampleTypeUrlRegistry = sampleTypeUrlRegistry;
             _recorderModules = recorderModules;
-            var frameDataRecorderModules = recorderModules.OfType<IFrameDataRecorderModule>().ToArray();
-            var asyncFrameDataRecorderModules = recorderModules.OfType<IFrameDataRecorderModuleAsync>().ToArray();
-            var frameSamplePacker = new FrameSamplePacker();
-            _frameRecorder = new FrameRecorder(_clock, frameDataRecorderModules, asyncFrameDataRecorderModules,
-                frameSamplePacker);
+            _frameRecorder = frameRecorder;
         }
 
         ~PlumeRecorder()
         {
-            if (IsRecording)
-                Stop();
-
-            foreach (var module in _recorderModules)
-                module.Destroy();
+            Dispose();
         }
 
         /// <summary>
@@ -64,26 +68,24 @@ namespace PLUME.Core.Recorder
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         private static void Instantiate()
         {
-            var recorderModuleTypes = RecorderModuleManager.GetRecorderModulesTypesFromAllAssemblies();
-            var recorderModules = RecorderModuleManager.InstantiateRecorderModulesFromTypes(recorderModuleTypes);
-            _instance = Instantiate(recorderModules, true);
-        }
+            var clock = new Clock();
+            var typeUrlRegistry = new SampleTypeUrlRegistry(Allocator.Persistent);
+            var objSafeRefProvider = new ObjectSafeRefProvider();
+            var recorderModules = RecorderModuleManager.InstantiateRecorderModulesFromAllAssemblies();
+            var frameSamplePacker = new FrameSamplePacker();
+            var frameRecorder =
+                FrameRecorder.Instantiate(clock, typeUrlRegistry, recorderModules, frameSamplePacker, true);
+            _instance = new PlumeRecorder(clock, recorderModules, typeUrlRegistry, objSafeRefProvider, frameRecorder);
 
-        /// <summary>
-        /// Instantiates a new instance of the recorder with the specified clock and recorder modules.
-        /// For internal use only. Use the <see cref="Instance"/> property to get the instance of the recorder.
-        /// </summary>
-        /// <param name="recorderModules">The recorder modules attached to the recorder.</param>
-        /// <param name="injectUpdateInCurrentLoop">If true, injects the <see cref="FrameRecorder"/> update method in the player loop.</param>
-        /// <returns>The new instance of the recorder.</returns>
-        internal static PlumeRecorder Instantiate(IRecorderModule[] recorderModules, bool injectUpdateInCurrentLoop)
-        {
-            var instance = new PlumeRecorder(recorderModules);
+            foreach (var recorderModule in recorderModules)
+            {
+                recorderModule.Create(objSafeRefProvider, typeUrlRegistry);
+            }
 
-            if (injectUpdateInCurrentLoop)
-                instance._frameRecorder.InjectUpdateInCurrentLoop();
-
-            return instance;
+            Application.wantsToQuit += _instance.OnApplicationWantsToQuit;
+            Application.quitting += _instance.OnApplicationQuitting;
+            Application.quitting += _instance.Dispose;
+            Application.quitting += typeUrlRegistry.Dispose;
         }
 
         /// <summary>
@@ -92,11 +94,15 @@ namespace PLUME.Core.Recorder
         /// <exception cref="InvalidOperationException"></exception>
         public void Start()
         {
+            if (IsStopping)
+                throw new InvalidOperationException(
+                    "Recorder is stopping. You cannot start it again until it is stopped.");
+
             if (IsRecording)
-                throw new InvalidOperationException("Recorder is already recording");
+                throw new InvalidOperationException("Recorder is already recording.");
 
             _clock.Reset();
-            IsRecording = true;
+            CurrentStatus = Status.Recording;
 
             _frameRecorder.Start();
 
@@ -112,18 +118,80 @@ namespace PLUME.Core.Recorder
         /// This method also stops the clock without resetting it.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown if called when the recorder is not recording.</exception>
-        public void Stop()
+        public async UniTask Stop()
+        {
+            if (IsStopping)
+                throw new InvalidOperationException("Recorder is already stopping.");
+
+            if (!IsRecording)
+                throw new InvalidOperationException("Recorder is not recording");
+
+            _stoppingCancellationTokenSource = new CancellationTokenSource();
+            CurrentStatus = Status.Stopping;
+            _clock.Stop();
+
+            try
+            {
+                await _frameRecorder.Stop().AttachExternalCancellation(_stoppingCancellationTokenSource.Token);
+
+                foreach (var module in _recorderModules)
+                    module.Stop();
+
+                CurrentStatus = Status.Stopped;
+            }
+            catch (OperationCanceledException)
+            {
+                // Ignored. The recorder was force stopped.
+            }
+
+            _stoppingCancellationTokenSource.Dispose();
+        }
+
+        public void ForceStop()
         {
             if (!IsRecording)
                 throw new InvalidOperationException("Recorder is not recording");
 
-            IsRecording = false;
-            _clock.Stop();
+            if (IsStopping)
+                _stoppingCancellationTokenSource.Cancel();
 
-            _frameRecorder.Stop();
+            _clock.Stop();
+            _frameRecorder.ForceStop();
 
             foreach (var module in _recorderModules)
                 module.Stop();
+
+            CurrentStatus = Status.Stopped;
+        }
+
+        private bool OnApplicationWantsToQuit()
+        {
+            if (Application.isEditor)
+                return true;
+
+            if (IsStopped)
+                return true;
+
+            if (IsRecording)
+            {
+                var remainingTasksCount = _frameRecorder.GetRemainingTasksCount();
+                Debug.Log(
+                    $"Waiting for {remainingTasksCount} recording tasks to complete before quitting. The application will close automatically when finished.");
+                Stop().Forget();
+            }
+
+            if (_hasScheduledQuit)
+                return false;
+
+            UniTask.WaitUntil(() => IsStopped).ContinueWith(Application.Quit).Forget();
+            _hasScheduledQuit = true;
+            return false;
+        }
+
+        private void OnApplicationQuitting()
+        {
+            if (IsRecording || IsStopping)
+                ForceStop();
         }
 
         /// <summary>
@@ -151,6 +219,12 @@ namespace PLUME.Core.Recorder
             return module != null;
         }
 
+        public void Dispose()
+        {
+            foreach (var module in _recorderModules)
+                module.Destroy();
+        }
+
         /// <summary>
         /// List of all the modules attached to the recorder.
         /// </summary>
@@ -167,6 +241,13 @@ namespace PLUME.Core.Recorder
 
                 return _instance;
             }
+        }
+
+        public enum Status
+        {
+            Recording,
+            Stopping,
+            Stopped
         }
     }
 }

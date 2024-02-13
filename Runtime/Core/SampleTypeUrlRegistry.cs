@@ -1,27 +1,36 @@
 using System;
+using System.Linq;
 using Google.Protobuf.Reflection;
 using Unity.Burst;
 using Unity.Collections;
+using UnityEngine;
 
 namespace PLUME.Core
 {
-    public class SampleTypeUrlRegistry : IDisposable
+    public struct SampleTypeUrlRegistry : IDisposable
     {
-        private static SampleTypeUrlRegistry _instance;
-
-        private int _nextTypeUrlIndex;
         private NativeHashMap<FixedString128Bytes, SampleTypeUrlIndex> _typeUrlToIndex;
         private NativeHashMap<SampleTypeUrlIndex, FixedString128Bytes> _indexToTypeUrl;
 
-        private SampleTypeUrlRegistry()
+        public SampleTypeUrlRegistry(Allocator allocator)
         {
-            _typeUrlToIndex = new NativeHashMap<FixedString128Bytes, SampleTypeUrlIndex>(100, Allocator.Persistent);
-            _indexToTypeUrl = new NativeHashMap<SampleTypeUrlIndex, FixedString128Bytes>(100, Allocator.Persistent);
+            _typeUrlToIndex = new NativeHashMap<FixedString128Bytes, SampleTypeUrlIndex>(100, allocator);
+            _indexToTypeUrl = new NativeHashMap<SampleTypeUrlIndex, FixedString128Bytes>(100, allocator);
         }
 
-        ~SampleTypeUrlRegistry()
+        private int NextTypeUrlIndex()
         {
-            Dispose();
+            var indices = _indexToTypeUrl.GetKeyArray(Allocator.Temp);
+
+            if (indices.Length == 0)
+            {
+                indices.Dispose();
+                return 0;
+            }
+
+            var index = indices.Max(m => m.Index) + 1;
+            indices.Dispose();
+            return index;
         }
 
         public SampleTypeUrlIndex GetOrCreateTypeUrlIndex(string prefix, MessageDescriptor descriptor)
@@ -29,7 +38,7 @@ namespace PLUME.Core
             var typeUrl = !prefix.EndsWith("/") ? prefix + "/" + descriptor.FullName : prefix + descriptor.FullName;
             return GetOrCreateTypeUrlIndex(typeUrl);
         }
-        
+
         public SampleTypeUrlIndex GetOrCreateTypeUrlIndex(string typeUrl)
         {
             var fixedString = new FixedString128Bytes();
@@ -46,9 +55,11 @@ namespace PLUME.Core
                 return index;
             }
 
-            index = new SampleTypeUrlIndex(_nextTypeUrlIndex++);
+            var newTypeUrlIndex = NextTypeUrlIndex();
+            index = new SampleTypeUrlIndex(newTypeUrlIndex);
             _typeUrlToIndex.Add(fixedString, index);
             _indexToTypeUrl.Add(index, fixedString);
+            Debug.Log($"Registered TypeUrl {typeUrl} with index {index.Index}");
             return index;
         }
 
@@ -57,7 +68,7 @@ namespace PLUME.Core
         {
             if (!_indexToTypeUrl.TryGetValue(index, out var typeUrl))
             {
-                throw new InvalidOperationException($"TypeUrlIndex {index} is not registered.");
+                throw new InvalidOperationException($"TypeUrlIndex {index.Index} is not registered.");
             }
 
             return typeUrl;
@@ -69,6 +80,6 @@ namespace PLUME.Core
             _indexToTypeUrl.Dispose();
         }
 
-        public static SampleTypeUrlRegistry Instance => _instance ??= new SampleTypeUrlRegistry();
+        public bool IsCreated => _typeUrlToIndex.IsCreated && _indexToTypeUrl.IsCreated;
     }
 }

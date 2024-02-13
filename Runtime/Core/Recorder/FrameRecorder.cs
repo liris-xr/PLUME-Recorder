@@ -1,12 +1,16 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
+using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Recorder.Time;
 using PLUME.Core.Utils;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Pool;
 
 namespace PLUME.Core.Recorder
 {
@@ -22,11 +26,13 @@ namespace PLUME.Core.Recorder
         /// </summary>
         private readonly IReadOnlyClock _clock;
 
+        private SampleTypeUrlRegistry _typeUrlRegistry;
+
         private readonly IFrameDataRecorderModule[] _frameDataRecorderModules;
         private readonly IFrameDataRecorderModuleAsync[] _asyncFrameDataRecorderModules;
 
         private readonly FrameSamplePacker _frameSamplePacker;
-        
+
         /// <summary>
         /// List of tasks that are currently running and serializing frames data.
         /// Tasks are added in the <see cref="Update"/> method and automatically removed when they finish.
@@ -39,15 +45,37 @@ namespace PLUME.Core.Recorder
         /// </summary>
         private bool _shouldRunUpdateLoop;
 
-        public FrameRecorder(IReadOnlyClock clock,
+        private CancellationTokenSource _cancellationTokenSource;
+
+        private readonly ObjectPool<List<FrameDataRecorderModuleTask>> _moduleTasksListPool =
+            new(() => new List<FrameDataRecorderModuleTask>(20), l => l.Clear());
+
+        private FrameRecorder(IReadOnlyClock clock,
+            SampleTypeUrlRegistry typeUrlRegistry,
             IFrameDataRecorderModule[] modules,
             IFrameDataRecorderModuleAsync[] asyncModules,
             FrameSamplePacker frameSamplePacker)
         {
             _clock = clock;
+            _typeUrlRegistry = typeUrlRegistry;
             _frameDataRecorderModules = modules;
             _asyncFrameDataRecorderModules = asyncModules;
             _frameSamplePacker = frameSamplePacker;
+        }
+
+        internal static FrameRecorder Instantiate(IReadOnlyClock clock, SampleTypeUrlRegistry typeUrlRegistry,
+            IRecorderModule[] recorderModules, FrameSamplePacker frameSamplePacker, bool injectUpdateInCurrentLoop)
+        {
+            var modules = recorderModules.OfType<IFrameDataRecorderModule>().ToArray();
+            var asyncModules = recorderModules.OfType<IFrameDataRecorderModuleAsync>().ToArray();
+            var frameRecorder = new FrameRecorder(clock, typeUrlRegistry, modules, asyncModules, frameSamplePacker);
+
+            if (injectUpdateInCurrentLoop)
+            {
+                frameRecorder.InjectUpdateInCurrentLoop();
+            }
+
+            return frameRecorder;
         }
 
         /// <summary>
@@ -64,6 +92,7 @@ namespace PLUME.Core.Recorder
         /// </summary>
         internal void Start()
         {
+            _cancellationTokenSource = new CancellationTokenSource();
             _shouldRunUpdateLoop = true;
         }
 
@@ -71,10 +100,25 @@ namespace PLUME.Core.Recorder
         /// Stops the frame recorder. Called automatically by <see cref="PlumeRecorder.Stop"/> when the recorder stops.
         /// For internal use only. Use <see cref="PlumeRecorder.Stop"/> to stop the recorder.
         /// </summary>
-        internal void Stop()
+        internal async UniTask Stop()
         {
             _shouldRunUpdateLoop = false;
-            CompleteTasks();
+            await CompleteTasks();
+        }
+
+        internal void ForceStop()
+        {
+            var remainingTasksCount = GetRemainingTasksCount();
+
+            _shouldRunUpdateLoop = false;
+            _cancellationTokenSource.Cancel();
+
+            if (remainingTasksCount > 0)
+            {
+                Debug.LogWarning(remainingTasksCount == 1
+                    ? "1 frame task was cancelled due to the frame recorder being forced stopped."
+                    : $"{remainingTasksCount} frame tasks were cancelled due to the frame recorder being forced stopped.");
+            }
         }
 
         private async void Update()
@@ -84,12 +128,30 @@ namespace PLUME.Core.Recorder
 
             var timestamp = _clock.ElapsedNanoseconds;
             var frame = UnityEngine.Time.frameCount;
-            var task = RecordFrameAsync(timestamp, frame);
-            var recordFrameTask = new FrameRecorderTask(frame, task);
+            var task = RecordFrameAsync(timestamp, frame).AttachExternalCancellation(_cancellationTokenSource.Token);
+            var recordFrameTask = FrameRecorderTask.Get(frame, task);
 
-            lock (_tasks) _tasks.Add(recordFrameTask);
-            await task;
-            lock (_tasks) _tasks.Remove(recordFrameTask);
+            lock (_tasks)
+            {
+                _tasks.Add(recordFrameTask);
+            }
+
+            try
+            {
+                await task;
+            }
+            catch (OperationCanceledException)
+            {
+                // Ignore
+            }
+            finally
+            {
+                lock (_tasks)
+                {
+                    _tasks.Remove(recordFrameTask);
+                    FrameRecorderTask.Release(recordFrameTask);
+                }
+            }
         }
 
         // TODO: add an output parameter, make this public
@@ -97,11 +159,18 @@ namespace PLUME.Core.Recorder
         {
             var frameDataBuffer = new SerializedSamplesBuffer(Allocator.Persistent);
             await RecordFrameDataAsync(frameDataBuffer);
-            
-            var data = new NativeList<byte>(Allocator.Temp);
-            _frameSamplePacker.WritePackedFrameSample(timestamp, frameNumber, ref frameDataBuffer, ref data);
-            // Debug.Log("Frame " + frameNumber + ", " + data.Length + " bytes");
+
+            var data = new NativeList<byte>(Allocator.TempJob);
+
+            // TODO: chain jobs
+
+            var jobHandle =
+                FrameSamplePacker.WriteFramePackedSampleAsync(timestamp, frameNumber, _typeUrlRegistry, frameDataBuffer,
+                    data);
+            await jobHandle.WaitAsync(PlayerLoopTiming.Update);
+
             // TODO: push data to writer
+
             data.Dispose();
             frameDataBuffer.Dispose();
         }
@@ -118,7 +187,12 @@ namespace PLUME.Core.Recorder
             }
 
             // Run all the asynchronous modules
-            var frameRecorderModuleTasks = new List<FrameDataRecorderModuleTask>();
+            List<FrameDataRecorderModuleTask> moduleTasks;
+
+            lock (_moduleTasksListPool)
+            {
+                moduleTasks = _moduleTasksListPool.Get();
+            }
 
             foreach (var module in _asyncFrameDataRecorderModules)
             {
@@ -127,34 +201,37 @@ namespace PLUME.Core.Recorder
                 // synchronous code first (like querying the object states on main thread) before running their
                 // async code (eg. serialization).
                 var task = module.RecordFrameDataAsync(moduleBuffer);
-                frameRecorderModuleTasks.Add(new FrameDataRecorderModuleTask(task, moduleBuffer));
+                var moduleTask = new FrameDataRecorderModuleTask(task, moduleBuffer);
+                moduleTasks.Add(moduleTask);
             }
 
-            foreach (var asyncTask in frameRecorderModuleTasks)
+            foreach (var asyncTask in moduleTasks)
             {
                 await asyncTask.Task;
-                serializedSamplesBuffer.Merge(asyncTask.Buffer);
+                var moduleBuffer = asyncTask.Buffer;
+                serializedSamplesBuffer.Merge(moduleBuffer);
+                moduleBuffer.Dispose();
+            }
+
+            lock (_moduleTasksListPool)
+            {
+                _moduleTasksListPool.Release(moduleTasks);
             }
         }
 
         /// <summary>
         /// Waits synchronously for all the frame recording tasks to finish. This method is called automatically by <see cref="PlumeRecorder.Stop"/> when the recorder stops.
         /// </summary>
-        public void CompleteTasks()
+        public async UniTask CompleteTasks()
         {
-            // Wait for all the frame recording tasks to finish.
+            await UniTask.WaitUntil(() => GetRemainingTasksCount() == 0);
+        }
+
+        public int GetRemainingTasksCount()
+        {
             lock (_tasks)
             {
-                if (_tasks.Any())
-                    Debug.Log("Waiting for " + _tasks.Count + " frame recording tasks to finish");
-
-                foreach (var recordTask in _tasks)
-                {
-                    // TODO: ensure that this doesn't create a deadlock
-                    recordTask.Task.AsTask().Wait();
-                }
-
-                _tasks.Clear();
+                return _tasks.Count;
             }
         }
     }

@@ -8,6 +8,13 @@ namespace PLUME.Core.Recorder.Module
 {
     public static class RecorderModuleManager
     {
+        internal static IRecorderModule[] InstantiateRecorderModulesFromAllAssemblies()
+        {
+            var recorderModuleTypes = GetRecorderModulesTypesFromAllAssemblies();
+            var recorderModules = InstantiateRecorderModulesFromTypes(recorderModuleTypes);
+            return recorderModules;
+        }
+
         internal static IRecorderModule[] InstantiateRecorderModulesFromTypes(IEnumerable<Type> moduleTypes)
         {
             var modules = new List<IRecorderModule>();
@@ -35,7 +42,6 @@ namespace PLUME.Core.Recorder.Module
                 }
                 
                 var recorderModule = (IRecorderModule)Activator.CreateInstance(moduleType);
-                recorderModule.Create();
                 modules.Add(recorderModule);
             }
 

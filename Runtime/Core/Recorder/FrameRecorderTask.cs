@@ -1,17 +1,32 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using UnityEngine.Pool;
 
 namespace PLUME.Core.Recorder
 {
-    public readonly struct FrameRecorderTask
+    // TODO: convert to IUniTaskSource
+    public class FrameRecorderTask
     {
-        public readonly int Frame;
-        public readonly UniTask Task;
+        private static readonly ObjectPool<FrameRecorderTask> Pool = new(() => new FrameRecorderTask());
+        
+        public int Frame { get; private set; }
+        public UniTask Task { get; private set; }
 
-        public FrameRecorderTask(int frame, UniTask task)
+        private FrameRecorderTask()
         {
-            Frame = frame;
-            Task = task;
+        }
+
+        public static FrameRecorderTask Get(int frame, UniTask task)
+        {
+            var frameRecorderTask = Pool.Get();
+            frameRecorderTask.Frame = frame;
+            frameRecorderTask.Task = task;
+            return frameRecorderTask;
+        }
+
+        public static void Release(FrameRecorderTask frameRecorderTask)
+        {
+            Pool.Release(frameRecorderTask);
         }
 
         public bool Equals(FrameRecorderTask other)

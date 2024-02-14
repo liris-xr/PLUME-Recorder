@@ -1,35 +1,28 @@
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
-using PLUME.Core.Recorder.Data;
-using PLUME.Core.Recorder.Time;
+using System;
+using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Writer;
 using PLUME.Core.Utils;
 using Unity.Collections;
-using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 namespace PLUME.Core.Recorder
 {
-    public class DataDispatcher
+    public class DataDispatcher : IDisposable
     {
         private bool _shouldUpdate;
-
-        private readonly IReadOnlyClock _clock;
-        private readonly IRecorderData _recorderData;
+    
+        private RecordContext _recordContext;
         private IDataWriter[] _outputs;
+        private FileDataWriter _fileDataWriter;
 
-        private DataDispatcher(IReadOnlyClock clock, IRecorderData recorderData)
+        private DataDispatcher()
         {
-            _clock = clock;
-            _recorderData = recorderData;
         }
 
-        internal static DataDispatcher Instantiate(IReadOnlyClock clock, IRecorderData recorderData,
-            bool injectUpdateInCurrentLoop)
+        internal static DataDispatcher Instantiate(bool injectUpdateInCurrentLoop)
         {
-            var dataDispatcher = new DataDispatcher(clock, recorderData);
+            var dataDispatcher = new DataDispatcher();
 
             if (injectUpdateInCurrentLoop)
             {
@@ -41,14 +34,20 @@ namespace PLUME.Core.Recorder
 
         internal void InjectUpdateInCurrentLoop()
         {
-            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(FrameRecorder), Update, typeof(PostLateUpdate));
+            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(FrameRecorderModule), Update, typeof(PostLateUpdate));
         }
 
-        internal void Start(IDataWriter[] outputs)
+        internal void Start(RecordContext recordContext)
         {
-            Debug.Log($"Started data dispatcher with {outputs.Length} outputs.");
+            _recordContext = recordContext;
+            
+            var recordIdentifier = recordContext.Identifier;
+            // TODO: format string
+            _fileDataWriter = new FileDataWriter(Application.persistentDataPath,
+                recordIdentifier.Identifier + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
+            
             _shouldUpdate = true;
-            _outputs = outputs;
+            _outputs = new IDataWriter[] { _fileDataWriter };
         }
 
         internal void Stop()
@@ -56,6 +55,8 @@ namespace PLUME.Core.Recorder
             _shouldUpdate = false;
             DispatchAllData();
             _outputs = null;
+            
+            _recordContext = null;
         }
 
         private void Update()
@@ -63,7 +64,7 @@ namespace PLUME.Core.Recorder
             if (!_shouldUpdate)
                 return;
 
-            var timestamp = _clock.ElapsedNanoseconds;
+            var timestamp = _recordContext.Clock.ElapsedNanoseconds;
             var timeBarrier = timestamp - 1_000_000;
             
             DispatchDataBeforeTimestamp(timeBarrier);
@@ -74,13 +75,13 @@ namespace PLUME.Core.Recorder
             var timelessData = new NativeList<byte>(Allocator.Persistent);
             var timelessDataLengths = new NativeList<int>(Allocator.Persistent);
 
-            var hasTimelessData = _recorderData.TryPopTimelessData(timelessData, timelessDataLengths);
+            var hasTimelessData = _recordContext.Data.TryPopTimelessData(timelessData, timelessDataLengths);
 
             var timestampedData = new NativeList<byte>(Allocator.Persistent);
             var timestampedLengths = new NativeList<int>(Allocator.Persistent);
             var timestamps = new NativeList<long>(Allocator.Persistent);
 
-            var hasTimestampedData = _recorderData.TryPopAllTimestampedData(timestampedData, timestampedLengths, timestamps);
+            var hasTimestampedData = _recordContext.Data.TryPopAllTimestampedData(timestampedData, timestampedLengths, timestamps);
 
             if (hasTimelessData)
             {
@@ -112,13 +113,13 @@ namespace PLUME.Core.Recorder
             var timelessData = new NativeList<byte>(Allocator.Persistent);
             var timelessDataLengths = new NativeList<int>(Allocator.Persistent);
 
-            var hasTimelessData = _recorderData.TryPopTimelessData(timelessData, timelessDataLengths);
+            var hasTimelessData = _recordContext.Data.TryPopTimelessData(timelessData, timelessDataLengths);
 
             var timestampedData = new NativeList<byte>(Allocator.Persistent);
             var timestampedLengths = new NativeList<int>(Allocator.Persistent);
             var timestamps = new NativeList<long>(Allocator.Persistent);
 
-            var hasTimestampedData = _recorderData.TryPopTimestampedDataBeforeTimestamp(timeBarrier, timestampedData,
+            var hasTimestampedData = _recordContext.Data.TryPopTimestampedDataBeforeTimestamp(timeBarrier, timestampedData,
                 timestampedLengths, timestamps, true);
 
             if (hasTimelessData)
@@ -144,6 +145,11 @@ namespace PLUME.Core.Recorder
             timestampedData.Dispose();
             timestampedLengths.Dispose();
             timestamps.Dispose();
+        }
+
+        public void Dispose()
+        {
+            _fileDataWriter?.Dispose();
         }
     }
 }

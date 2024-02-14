@@ -5,7 +5,7 @@ using UnityEngine.Scripting;
 namespace PLUME.Base.Module
 {
     [Preserve]
-    internal class MarkerRecorderModule : RecorderModule
+    internal class MarkerRecorderModuleBase : RecorderModuleBase
     {
         private readonly Marker _marker = new();
         

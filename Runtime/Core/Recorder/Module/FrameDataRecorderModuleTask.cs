@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace PLUME.Core.Recorder.Module.Frame
+namespace PLUME.Core.Recorder.Module
 {
     public readonly struct FrameDataRecorderModuleTask
     {

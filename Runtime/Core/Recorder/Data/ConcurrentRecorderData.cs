@@ -3,12 +3,12 @@ using Unity.Collections;
 
 namespace PLUME.Core.Recorder.Data
 {
-    public class ConcurrentRecorderData : IRecorderData, IDisposable
+    public class ConcurrentRecordData : IRecordData, IDisposable
     {
         private NativeRecorderData _data;
         private readonly object _lock = new();
 
-        public ConcurrentRecorderData(Allocator allocator)
+        public ConcurrentRecordData(Allocator allocator)
         {
             _data = new NativeRecorderData(allocator);
         }

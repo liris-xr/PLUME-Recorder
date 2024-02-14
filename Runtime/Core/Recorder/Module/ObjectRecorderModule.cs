@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
 
 namespace PLUME.Core.Recorder.Module
 {
-    public abstract class ObjectRecorderModule<TObject> : IObjectRecorderModule where TObject : UnityEngine.Object
+    public abstract class ObjectRecorderModuleBase<TObject> : IObjectRecorderModule where TObject : UnityEngine.Object
     {
         public Type SupportedObjectType => typeof(TObject);
         
-        private bool _isRecording;
+        public bool IsRecording { get; private set; }
 
         private readonly ObjectCollection<TObject> _recordedObjects = new();
         private readonly ObjectCollection<TObject> _createdObjects = new();
@@ -26,7 +28,7 @@ namespace PLUME.Core.Recorder.Module
             if (!_recordedObjects.TryAdd(objectSafeRef))
                 throw new InvalidOperationException("Object is already being recorded.");
 
-            OnStartRecording(objectSafeRef, markCreated);
+            OnStartRecordingObject(objectSafeRef, markCreated);
 
             if (!markCreated)
                 return;
@@ -45,7 +47,7 @@ namespace PLUME.Core.Recorder.Module
             if (!_recordedObjects.TryRemove(objSafeRef))
                 throw new InvalidOperationException("Object is not being recorded.");
 
-            OnStopRecording(objSafeRef, markDestroyed);
+            OnStopRecordingObject(objSafeRef, markDestroyed);
 
             if (!markDestroyed)
                 return;
@@ -92,67 +94,83 @@ namespace PLUME.Core.Recorder.Module
             return objSafeRef is ObjectSafeRef<TObject> tObjSafeRef && _recordedObjects.Contains(tObjSafeRef);
         }
 
-        void IRecorderModule.Create(ObjectSafeRefProvider objSafeRefProvider, SampleTypeUrlRegistry typeUrlRegistry)
+        void IRecorderModule.Create(RecorderContext recorderContext)
         {
-            OnCreate(objSafeRefProvider, typeUrlRegistry);
+            OnCreate(recorderContext);
         }
 
-        void IRecorderModule.Destroy()
+        void IRecorderModule.Destroy(RecorderContext recorderContext)
         {
-            OnDestroy();
+            OnDestroy(recorderContext);
         }
 
-        void IRecorderModule.Start()
+        void IRecorderModule.Start(RecordContext recordContext, RecorderContext recorderContext)
         {
-            _isRecording = true;
-            OnStart();
+            if (IsRecording)
+                throw new InvalidOperationException("Recorder module is already recording.");
+            
+            IsRecording = true;
+            OnStart(recordContext, recorderContext);
         }
 
-        void IRecorderModule.Stop()
+        async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext, CancellationToken cancellationToken)
         {
-            OnStop();
-            _isRecording = false;
+            EnsureIsRecording();
+            await OnStop(recordContext, recorderContext);
+            IsRecording = false;
+        }
+        
+        void IRecorderModule.ForceStop(RecordContext recordContext, RecorderContext recorderContext)
+        {
+            EnsureIsRecording();
+            OnForceStop(recordContext, recorderContext);
+            IsRecording = false;
         }
 
-        void IRecorderModule.Reset()
+        void IRecorderModule.Reset(RecorderContext recorderContext)
         {
             _recordedObjects.Clear();
             _createdObjects.Clear();
             _destroyedObjects.Clear();
-            OnReset();
+            OnReset(recorderContext);
         }
 
-        private void EnsureIsRecording()
+        protected void EnsureIsRecording()
         {
-            if (!_isRecording)
+            if (!IsRecording)
                 throw new InvalidOperationException("Recorder module is not recording.");
         }
 
-        protected virtual void OnCreate(ObjectSafeRefProvider objSafeRefProvider, SampleTypeUrlRegistry typeUrlRegistry)
+        protected virtual void OnCreate(RecorderContext recorderContext)
         {
         }
 
-        protected virtual void OnDestroy()
+        protected virtual void OnDestroy(RecorderContext recorderContext)
         {
         }
 
-        protected virtual void OnStart()
+        protected virtual void OnStart(RecordContext recordContext, RecorderContext recorderContext)
         {
         }
 
-        protected virtual void OnStop()
+        protected virtual UniTask OnStop(RecordContext recordContext, RecorderContext recorderContext)
+        {
+            return UniTask.CompletedTask;
+        }
+        
+        protected virtual void OnForceStop(RecordContext recordContext, RecorderContext recorderContext)
         {
         }
 
-        protected virtual void OnReset()
+        protected virtual void OnReset(RecorderContext recorderContext)
         {
         }
 
-        protected virtual void OnStartRecording(ObjectSafeRef<TObject> objSafeRef, bool markCreated)
+        protected virtual void OnStartRecordingObject(ObjectSafeRef<TObject> objSafeRef, bool markCreated)
         {
         }
 
-        protected virtual void OnStopRecording(ObjectSafeRef<TObject> objSafeRef, bool markDestroyed)
+        protected virtual void OnStopRecordingObject(ObjectSafeRef<TObject> objSafeRef, bool markDestroyed)
         {
         }
 

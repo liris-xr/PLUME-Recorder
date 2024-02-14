@@ -8,18 +8,18 @@ namespace PLUME.Base
 {
     public static class PlumeRecorderExtensions
     {
-        public static void RecordMarker(this PlumeRecorder recorder, string label)
+        public static void RecordMarker(this Recorder recorder, string label)
         {
-            if (recorder.TryGetModule<MarkerRecorderModule>(out var module))
+            if (recorder.Context.TryGetRecorderModule<MarkerRecorderModuleBase>(out var module))
                 module.RecordMarker(label);
         }
 
-        public static void StartRecordingObject<T>(this PlumeRecorder recorder, ObjectSafeRef<T> objectSafeRef,
+        public static void StartRecordingObject<T>(this Recorder recorder, ObjectSafeRef<T> objectSafeRef,
             bool markCreated) where T : UnityObject
         {
             recorder.EnsureIsRecording();
 
-            foreach (var module in recorder.Modules)
+            foreach (var module in recorder.Context.Modules)
             {
                 if (module is not IObjectRecorderModule objectRecorderModule)
                     continue;
@@ -34,12 +34,12 @@ namespace PLUME.Base
             }
         }
 
-        public static void StopRecordingObject<T>(this PlumeRecorder recorder, ObjectSafeRef<T> objectSafeRef)
+        public static void StopRecordingObject<T>(this Recorder recorder, ObjectSafeRef<T> objectSafeRef)
             where T : UnityObject
         {
             recorder.EnsureIsRecording();
-
-            foreach (var module in recorder.Modules)
+            
+            foreach (var module in recorder.Context.Modules)
             {
                 if (module is not IObjectRecorderModule objectRecorderModule)
                     continue;

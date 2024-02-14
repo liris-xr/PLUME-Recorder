@@ -3,7 +3,7 @@ using Unity.Collections;
 
 namespace PLUME.Core.Recorder.Data
 {
-    public interface IRecorderData
+    public interface IRecordData : IDisposable
     {
         public void AddTimelessData(ReadOnlySpan<byte> data);
 

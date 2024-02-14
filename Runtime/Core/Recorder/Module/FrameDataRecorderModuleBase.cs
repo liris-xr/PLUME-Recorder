@@ -4,36 +4,35 @@ using Cysharp.Threading.Tasks;
 
 namespace PLUME.Core.Recorder.Module
 {
-    public abstract class RecorderModuleBase : IRecorderModule
+    public abstract class FrameDataRecorderModuleBase : IFrameDataRecorderModule
     {
         public bool IsRecording { get; private set; }
-
-        void IRecorderModule.Create(RecorderContext ctx)
+        
+        void IRecorderModule.Create(RecorderContext recorderContext)
         {
-            OnCreate(ctx);
+            OnCreate(recorderContext);
         }
 
-        void IRecorderModule.Destroy(RecorderContext ctx)
+        void IRecorderModule.Destroy(RecorderContext recorderContext)
         {
-            OnDestroy(ctx);
+            OnDestroy(recorderContext);
         }
 
         void IRecorderModule.Start(RecordContext recordContext, RecorderContext recorderContext)
         {
             if (IsRecording)
                 throw new InvalidOperationException("Recorder module is already recording.");
-            
-            IsRecording = true;
             OnStart(recordContext, recorderContext);
+            IsRecording = true;
         }
 
         async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext, CancellationToken cancellationToken)
         {
             EnsureIsRecording();
-            await OnStop(recordContext, recorderContext, cancellationToken);
+            await OnStop(recordContext, recorderContext);
             IsRecording = false;
         }
-
+        
         void IRecorderModule.ForceStop(RecordContext recordContext, RecorderContext recorderContext)
         {
             EnsureIsRecording();
@@ -41,11 +40,16 @@ namespace PLUME.Core.Recorder.Module
             IsRecording = false;
         }
 
-        void IRecorderModule.Reset(RecorderContext ctx)
+        void IRecorderModule.Reset(RecorderContext recorderContext)
         {
-            OnReset(ctx);
+            OnReset(recorderContext);
         }
 
+        UniTask IFrameDataRecorderModule.RecordFrameData(SerializedSamplesBuffer buffer)
+        {
+            return OnRecordFrameData(buffer);
+        }
+        
         protected void EnsureIsRecording()
         {
             if (!IsRecording)
@@ -54,11 +58,11 @@ namespace PLUME.Core.Recorder.Module
             }
         }
 
-        protected virtual void OnCreate(RecorderContext ctx)
+        protected virtual void OnCreate(RecorderContext recorderContext)
         {
         }
 
-        protected virtual void OnDestroy(RecorderContext ctx)
+        protected virtual void OnDestroy(RecorderContext recorderContext)
         {
         }
 
@@ -66,17 +70,22 @@ namespace PLUME.Core.Recorder.Module
         {
         }
 
-        protected virtual UniTask OnStop(RecordContext recordContext, RecorderContext recorderContext, CancellationToken cancellationToken)
+        protected virtual UniTask OnStop(RecordContext recordContext, RecorderContext recorderContext)
         {
             return UniTask.CompletedTask;
         }
-        
+
         protected virtual void OnForceStop(RecordContext recordContext, RecorderContext recorderContext)
         {
         }
 
-        protected virtual void OnReset(RecorderContext ctx)
+        protected virtual void OnReset(RecorderContext recorderContext)
         {
+        }
+
+        protected virtual UniTask OnRecordFrameData(SerializedSamplesBuffer buffer)
+        {
+            return UniTask.CompletedTask;
         }
     }
 }

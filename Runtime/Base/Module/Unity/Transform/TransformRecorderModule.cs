@@ -4,7 +4,7 @@ using PLUME.Core;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
-using PLUME.Core.Recorder.Module.Frame;
+using PLUME.Core.Recorder.Module;
 using PLUME.Core.Utils.Sample;
 using PLUME.Sample.Unity;
 using Unity.Burst;
@@ -18,7 +18,7 @@ using Vector3 = PLUME.Sample.Common.Vector3;
 namespace PLUME.Base.Module.Unity.Transform
 {
     [Preserve]
-    internal class TransformRecorderModule : ObjectFrameDataRecorderModuleAsync<UnityEngine.Transform>
+    internal class TransformRecorderModuleBaseBase : ObjectFrameDataRecorderModuleBaseBase<UnityEngine.Transform>
     {
         private DynamicTransformAccessArray _transformAccessArray;
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
@@ -31,14 +31,16 @@ namespace PLUME.Base.Module.Unity.Transform
                 LocalPosition = new Vector3()
             });
         
-        protected override void OnCreate(ObjectSafeRefProvider objSafeRefProvider, SampleTypeUrlRegistry typeUrlRegistry)
+        protected override void OnCreate(RecorderContext ctx)
         {
             _transformAccessArray = new DynamicTransformAccessArray();
             _lastStates = new NativeHashMap<ObjectIdentifier, TransformState>(1000, Allocator.Persistent);
-            _updatePosSampleTypeUrlIndex = typeUrlRegistry.GetOrCreateTypeUrlIndex("fr.liris.plume", TransformUpdateLocalPosition.Descriptor);
+            
+            // TODO: register type urls when loading assemblies
+            _updatePosSampleTypeUrlIndex = ctx.SampleTypeUrlRegistry.GetOrCreateTypeUrlIndex("fr.liris.plume", TransformUpdateLocalPosition.Descriptor);
         }
 
-        protected override void OnDestroy()
+        protected override void OnDestroy(RecorderContext ctx)
         {
             if (_transformAccessArray.IsCreated)
             {
@@ -51,19 +53,19 @@ namespace PLUME.Base.Module.Unity.Transform
             }
         }
 
-        protected override void OnStartRecording(ObjectSafeRef<UnityEngine.Transform> objSafeRef, bool markCreated)
+        protected override void OnStartRecordingObject(ObjectSafeRef<UnityEngine.Transform> objSafeRef, bool markCreated)
         {
             _transformAccessArray.TryAdd(objSafeRef);
             _lastStates[objSafeRef.Identifier] = TransformState.Null;
         }
 
-        protected override void OnStopRecording(ObjectSafeRef<UnityEngine.Transform> objSafeRef, bool markDestroyed)
+        protected override void OnStopRecordingObject(ObjectSafeRef<UnityEngine.Transform> objSafeRef, bool markDestroyed)
         {
             _transformAccessArray.RemoveSwapBack(objSafeRef);
             _lastStates.Remove(objSafeRef.Identifier);
         }
 
-        protected override void OnReset()
+        protected override void OnReset(RecorderContext ctx)
         {
             _transformAccessArray.Clear();
             _lastStates.Clear();

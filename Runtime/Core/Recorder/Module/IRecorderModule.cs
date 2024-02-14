@@ -1,17 +1,20 @@
-using PLUME.Core.Object.SafeRef;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 
 namespace PLUME.Core.Recorder.Module
 {
     public interface IRecorderModule
     {
-        internal void Create(ObjectSafeRefProvider objectSafeRefProvider, SampleTypeUrlRegistry sampleTypeUrlRegistry);
+        internal void Create(RecorderContext context);
 
-        internal void Destroy();
+        internal void Destroy(RecorderContext context);
 
-        internal void Start();
+        internal void Start(RecordContext recordContext, RecorderContext recorderContext);
 
-        internal void Stop();
+        internal UniTask Stop(RecordContext recordContext, RecorderContext recorderContext, CancellationToken cancellationToken = default);
 
-        internal void Reset();
+        internal void ForceStop(RecordContext recordContext, RecorderContext recorderContext);
+
+        internal void Reset(RecorderContext context);
     }
 }

@@ -11,18 +11,42 @@ namespace PLUME.Core.Recorder.ProtoBurst
     {
         public FixedString128Bytes TypeUrl => "fr.liris.plume/plume.sample.PackedSample";
 
-        private readonly bool _hasTimestamp;
-        private readonly long _timestamp;
-        private Any _payload;
+        private bool _hasTimestamp;
+        private long _timestamp;
+
+        public long Timestamp
+        {
+            get => _timestamp;
+            set
+            {
+                _hasTimestamp = true;
+                _timestamp = value;
+            }
+        }
+
+        public Any Payload;
+
+        private PackedSample(Any payload)
+        {
+            _hasTimestamp = false;
+            _timestamp = default;
+            Payload = payload;
+        }
 
         private PackedSample(long timestamp, Any payload)
         {
             _hasTimestamp = true;
             _timestamp = timestamp;
-            _payload = payload;
+            Payload = payload;
         }
 
-        public static PackedSample Pack<T>(Allocator allocator, long timestamp, T message) where T : unmanaged, IProtoBurstMessage
+        public static PackedSample Pack<T>(Allocator allocator, T message) where T : unmanaged, IProtoBurstMessage
+        {
+            return new PackedSample(Any.Pack(allocator, message));
+        }
+
+        public static PackedSample Pack<T>(Allocator allocator, long timestamp, T message)
+            where T : unmanaged, IProtoBurstMessage
         {
             return new PackedSample(timestamp, Any.Pack(allocator, message));
         }
@@ -39,12 +63,12 @@ namespace PLUME.Core.Recorder.ProtoBurst
 
             WritingPrimitives.WriteTag(Sample.PackedSample.PayloadFieldNumber,
                 WireFormat.WireType.LengthDelimited, ref data);
-            WritingPrimitives.WriteMessage(ref _payload, ref data);
+            WritingPrimitives.WriteMessage(ref Payload, ref data);
         }
 
         public void Dispose()
         {
-            _payload.Dispose();
+            Payload.Dispose();
         }
     }
 }

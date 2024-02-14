@@ -2,21 +2,21 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine.Pool;
 
-namespace PLUME.Core.Recorder
+namespace PLUME.Core.Recorder.Module
 {
     // TODO: convert to IUniTaskSource
-    public class FrameRecorderTask
+    public class FrameRecorderModuleTask
     {
-        private static readonly ObjectPool<FrameRecorderTask> Pool = new(() => new FrameRecorderTask());
+        private static readonly ObjectPool<FrameRecorderModuleTask> Pool = new(() => new FrameRecorderModuleTask());
         
         public int Frame { get; private set; }
         public UniTask Task { get; private set; }
 
-        private FrameRecorderTask()
+        private FrameRecorderModuleTask()
         {
         }
 
-        public static FrameRecorderTask Get(int frame, UniTask task)
+        public static FrameRecorderModuleTask Get(int frame, UniTask task)
         {
             var frameRecorderTask = Pool.Get();
             frameRecorderTask.Frame = frame;
@@ -24,22 +24,22 @@ namespace PLUME.Core.Recorder
             return frameRecorderTask;
         }
 
-        public static void Release(FrameRecorderTask frameRecorderTask)
+        public static void Release(FrameRecorderModuleTask frameRecorderModuleTask)
         {
-            Pool.Release(frameRecorderTask);
+            Pool.Release(frameRecorderModuleTask);
         }
     }
 
-    public class FrameRecorderTaskComparer : IEqualityComparer<FrameRecorderTask>
+    public class FrameRecorderTaskComparer : IEqualityComparer<FrameRecorderModuleTask>
     {
         public static readonly FrameRecorderTaskComparer Instance = new();
 
-        public bool Equals(FrameRecorderTask x, FrameRecorderTask y)
+        public bool Equals(FrameRecorderModuleTask x, FrameRecorderModuleTask y)
         {
             return x.Frame == y.Frame;
         }
 
-        public int GetHashCode(FrameRecorderTask obj)
+        public int GetHashCode(FrameRecorderModuleTask obj)
         {
             return obj.Frame;
         }

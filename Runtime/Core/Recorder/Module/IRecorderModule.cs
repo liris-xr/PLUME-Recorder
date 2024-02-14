@@ -1,4 +1,3 @@
-using System.Threading;
 using Cysharp.Threading.Tasks;
 
 namespace PLUME.Core.Recorder.Module
@@ -11,9 +10,7 @@ namespace PLUME.Core.Recorder.Module
 
         internal void Start(RecordContext recordContext, RecorderContext recorderContext);
 
-        internal UniTask Stop(RecordContext recordContext, RecorderContext recorderContext, CancellationToken cancellationToken = default);
-
-        internal void ForceStop(RecordContext recordContext, RecorderContext recorderContext);
+        internal UniTask Stop(RecordContext recordContext, RecorderContext recorderContext);
 
         internal void Reset(RecorderContext context);
     }

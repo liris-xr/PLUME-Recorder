@@ -6,27 +6,26 @@ using Unity.Collections;
 namespace PLUME.Core.Recorder.ProtoBurst
 {
     [BurstCompile]
-    public struct Frame : IProtoBurstMessage
+    public struct FrameSample : IProtoBurstMessage
     {
-        [BurstDiscard]
         public FixedString128Bytes TypeUrl => "fr.liris.plume/plume.sample.unity.Frame";
 
-        private readonly int _frameNumber;
-        private NativeArray<Any> _data;
+        public readonly int FrameNumber;
+        public NativeArray<Any> Data;
 
-        public Frame(int frameNumber, NativeArray<Any> data)
+        public FrameSample(int frameNumber, NativeArray<Any> data)
         {
-            _frameNumber = frameNumber;
-            _data = data;
+            FrameNumber = frameNumber;
+            Data = data;
         }
 
         [BurstCompile]
         public void WriteTo(ref NativeList<byte> data)
         {
             WritingPrimitives.WriteTag(Sample.Unity.Frame.FrameNumberFieldNumber, WireFormat.WireType.VarInt, ref data);
-            WritingPrimitives.WriteInt32(_frameNumber, ref data);
+            WritingPrimitives.WriteInt32(FrameNumber, ref data);
 
-            foreach (var frameData in _data)
+            foreach (var frameData in Data)
             {
                 var fd = frameData;
                 WritingPrimitives.WriteTag(Sample.Unity.Frame.DataFieldNumber, WireFormat.WireType.LengthDelimited,

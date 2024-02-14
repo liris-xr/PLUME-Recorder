@@ -289,6 +289,34 @@ namespace Cysharp.Threading.Tasks
         static PlayerLoopRunner[] runners;
         internal static bool IsEditorApplicationQuitting { get; private set; }
 
+        internal static void RunRunnersNTimesMax(int maxIterations)
+        {
+            foreach (var runner in runners)
+            {
+                var it = 0;
+
+                while (runner.RemainingItemsCount > 0 && it < maxIterations)
+                {
+                    runner.Run();
+                    
+                    foreach (var cq in yielders)
+                    {
+                        cq.Run();
+                    }
+                    
+                    it++;
+                }
+
+                runner.Clear();
+            }
+            
+            foreach (var cq in yielders)
+            {
+                cq.Run();
+                cq.Clear();
+            }
+        }
+
         static PlayerLoopSystem[] InsertRunner(PlayerLoopSystem loopSystem,
             bool injectOnFirst,
             Type loopRunnerYieldType, ContinuationQueue cq,

@@ -113,17 +113,10 @@ namespace PLUME.Core.Recorder.Module
             OnStart(recordContext, recorderContext);
         }
 
-        async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext, CancellationToken cancellationToken)
+        async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext)
         {
             EnsureIsRecording();
             await OnStop(recordContext, recorderContext);
-            IsRecording = false;
-        }
-        
-        void IRecorderModule.ForceStop(RecordContext recordContext, RecorderContext recorderContext)
-        {
-            EnsureIsRecording();
-            OnForceStop(recordContext, recorderContext);
             IsRecording = false;
         }
 
@@ -156,10 +149,6 @@ namespace PLUME.Core.Recorder.Module
         protected virtual UniTask OnStop(RecordContext recordContext, RecorderContext recorderContext)
         {
             return UniTask.CompletedTask;
-        }
-        
-        protected virtual void OnForceStop(RecordContext recordContext, RecorderContext recorderContext)
-        {
         }
 
         protected virtual void OnReset(RecorderContext recorderContext)

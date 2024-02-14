@@ -4,61 +4,48 @@
 using System;
 using System.Threading;
 using Unity.Jobs;
-using UnityEngine;
 
 namespace Cysharp.Threading.Tasks
 {
     public static partial class UnityAsyncExtensions
     {
-        public static async UniTask WaitAsync(this JobHandle jobHandle, PlayerLoopTiming waitTiming,
+        
+        public static UniTask WaitAsync(this JobHandle jobHandle, PlayerLoopTiming timing = PlayerLoopTiming.Update,
             CancellationToken cancellationToken = default)
         {
-            await UniTask.Yield(waitTiming);
-            jobHandle.Complete();
-            cancellationToken.ThrowIfCancellationRequested(); // call cancel after Complete.
+            return new UniTask(JobHandlePromise.Create(jobHandle, timing, cancellationToken, out var token), token);
         }
 
-        public static UniTask.Awaiter GetAwaiter(this JobHandle jobHandle)
+        public sealed class JobHandlePromise : IUniTaskSource, IPlayerLoopItem, ITaskPoolNode<JobHandlePromise>
         {
-            var handler = JobHandlePromise.Create(jobHandle, out var token);
+            static TaskPool<JobHandlePromise> pool;
+            JobHandlePromise nextNode;
+            public ref JobHandlePromise NextNode => ref nextNode;
+
+            static JobHandlePromise()
             {
-                PlayerLoopHelper.AddAction(PlayerLoopTiming.EarlyUpdate, handler);
-                PlayerLoopHelper.AddAction(PlayerLoopTiming.PreUpdate, handler);
-                PlayerLoopHelper.AddAction(PlayerLoopTiming.Update, handler);
-                PlayerLoopHelper.AddAction(PlayerLoopTiming.PreLateUpdate, handler);
-                PlayerLoopHelper.AddAction(PlayerLoopTiming.PostLateUpdate, handler);
+                TaskPool.RegisterSizeGetter(typeof(JobHandlePromise), () => pool.Size);
             }
 
-            return new UniTask(handler, token).GetAwaiter();
-        }
-
-        // can not pass CancellationToken because can't handle JobHandle's Complete and NativeArray.Dispose.
-
-        public static UniTask ToUniTask(this JobHandle jobHandle, PlayerLoopTiming waitTiming)
-        {
-            var handler = JobHandlePromise.Create(jobHandle, out var token);
-            {
-                PlayerLoopHelper.AddAction(waitTiming, handler);
-            }
-
-            return new UniTask(handler, token);
-        }
-
-        sealed class JobHandlePromise : IUniTaskSource, IPlayerLoopItem
-        {
             JobHandle jobHandle;
+            CancellationToken cancellationToken;
 
             UniTaskCompletionSourceCore<AsyncUnit> core;
 
-            // Cancellation is not supported.
-            public static JobHandlePromise Create(JobHandle jobHandle, out short token)
+            public static JobHandlePromise Create(JobHandle jobHandle, PlayerLoopTiming timing,
+                CancellationToken cancellationToken, out short token)
             {
-                // not use pool.
-                var result = new JobHandlePromise();
+                if (!pool.TryPop(out var result))
+                {
+                    result = new JobHandlePromise();
+                }
 
                 result.jobHandle = jobHandle;
+                result.cancellationToken = cancellationToken;
 
                 TaskTracker.TrackActiveTask(result, 3);
+
+                PlayerLoopHelper.AddAction(timing, result);
 
                 token = result.core.Version;
                 return result;
@@ -66,8 +53,23 @@ namespace Cysharp.Threading.Tasks
 
             public void GetResult(short token)
             {
+                try
+                {
+                    core.GetResult(token);
+                }
+                finally
+                {
+                    TryReturn();
+                }
+            }
+
+            bool TryReturn()
+            {
                 TaskTracker.RemoveTracking(this);
-                core.GetResult(token);
+                core.Reset();
+                jobHandle = default;
+                cancellationToken = default;
+                return pool.TryPush(this);
             }
 
             public UniTaskStatus GetStatus(short token)
@@ -87,6 +89,13 @@ namespace Cysharp.Threading.Tasks
 
             public bool MoveNext()
             {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    core.TrySetCanceled(cancellationToken);
+                    jobHandle.Complete();
+                    return false;
+                }
+
                 if (jobHandle.IsCompleted | PlayerLoopHelper.IsEditorApplicationQuitting)
                 {
                     jobHandle.Complete();

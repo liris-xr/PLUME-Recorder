@@ -2,14 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.CompilerServices;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Utils;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Pool;
+using UnityEngine.Profiling;
 
 namespace PLUME.Core.Recorder.Module
 {
@@ -33,14 +34,12 @@ namespace PLUME.Core.Recorder.Module
         /// Tasks are added in the <see cref="Update"/> method and automatically removed when they finish.
         /// Tasks may queue up if the serialization process is slow. This list is used to wait for all the tasks to finish before stopping the recorder (see <see cref="CompleteTasks"/>).
         /// </summary>
-        private readonly HashSet<FrameRecorderTask> _tasks = new(FrameRecorderTaskComparer.Instance);
+        private readonly List<FrameRecorderModuleTask> _tasks = new();
 
         /// <summary>
         /// Whether the frame recorder should run the update loop. This is automatically set to true when the recorder starts and false when it stops.
         /// </summary>
         private bool _shouldRunUpdateLoop;
-
-        private CancellationTokenSource _cancellationTokenSource;
 
         private readonly ObjectPool<List<FrameDataRecorderModuleTask>> _moduleTasksListPool =
             new(() => new List<FrameDataRecorderModuleTask>(20), l => l.Clear());
@@ -56,34 +55,41 @@ namespace PLUME.Core.Recorder.Module
         void IRecorderModule.Start(RecordContext recordContext, RecorderContext recorderContext)
         {
             _recordContext = recordContext;
-            _cancellationTokenSource = new CancellationTokenSource();
             _shouldRunUpdateLoop = true;
         }
 
-        async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext,
-            CancellationToken cancellationToken)
+        async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext)
         {
-            var remainingTasksCount = GetRemainingTasksCount();
-            Debug.Log($"Waiting for {remainingTasksCount} recording tasks to complete.");
-
             _shouldRunUpdateLoop = false;
-            await CompleteTasks(cancellationToken);
-            _recordContext = null;
-        }
-
-        void IRecorderModule.ForceStop(RecordContext recordContext, RecorderContext recorderContext)
-        {
+            
             var remainingTasksCount = GetRemainingTasksCount();
-
-            _shouldRunUpdateLoop = false;
-            _cancellationTokenSource.Cancel();
 
             if (remainingTasksCount > 0)
             {
-                Debug.LogWarning(remainingTasksCount == 1
-                    ? "1 frame task was cancelled due to the frame recorder being forced stopped."
-                    : $"{remainingTasksCount} frame tasks were cancelled due to the frame recorder being forced stopped.");
+                Debug.Log($"Waiting for {remainingTasksCount} recording tasks to complete.");
+
+                try
+                {
+                    await UniTask.WaitUntil(() => GetRemainingTasksCount() == 0, PlayerLoopTiming.Update,
+                        recordContext.ForceStopToken);
+                }
+                catch (OperationCanceledException)
+                {
+                    remainingTasksCount = GetRemainingTasksCount();
+
+                    if (remainingTasksCount > 0)
+                    {
+                        Debug.LogWarning(remainingTasksCount == 1
+                            ? "1 frame task was cancelled due to the frame recorder being forced stopped."
+                            : $"{remainingTasksCount} frame tasks were cancelled due to the frame recorder being forced stopped.");
+                    }
+
+                    // Make the exception bubble up to the recorder.
+                    throw;
+                }
             }
+
+            _recordContext = null;
         }
 
         void IRecorderModule.Destroy(RecorderContext recorderContext)
@@ -102,7 +108,12 @@ namespace PLUME.Core.Recorder.Module
             PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(FrameRecorderModule), Update, typeof(PostLateUpdate));
         }
 
-        private async void Update()
+        private void Update()
+        {
+            UpdateAsync().Forget();
+        }
+
+        private async UniTask UpdateAsync()
         {
             if (!_shouldRunUpdateLoop)
                 return;
@@ -110,13 +121,10 @@ namespace PLUME.Core.Recorder.Module
             var timestamp = _recordContext.Clock.ElapsedNanoseconds;
             var frame = UnityEngine.Time.frameCount;
             var task = RecordFrameAsync(timestamp, frame, _recorderContext.SampleTypeUrlRegistry, _recordContext.Data,
-                _cancellationTokenSource.Token);
-            var recordFrameTask = FrameRecorderTask.Get(frame, task);
+                _recordContext.ForceStopToken);
+            var recordFrameTask = FrameRecorderModuleTask.Get(frame, task);
 
-            lock (_tasks)
-            {
-                _tasks.Add(recordFrameTask);
-            }
+            _tasks.Add(recordFrameTask);
 
             try
             {
@@ -128,25 +136,22 @@ namespace PLUME.Core.Recorder.Module
             }
             finally
             {
-                lock (_tasks)
-                {
-                    _tasks.Remove(recordFrameTask);
-                    FrameRecorderTask.Release(recordFrameTask);
-                }
+                _tasks.Remove(recordFrameTask);
+                FrameRecorderModuleTask.Release(recordFrameTask);
             }
         }
 
         internal async UniTask RecordFrameAsync(long timestamp, int frameNumber,
             SampleTypeUrlRegistry sampleTypeUrlRegistry, IRecordData output,
-            CancellationToken cancellationToken = default)
+            CancellationToken forceStopToken)
         {
             var frameDataBuffer = new SerializedSamplesBuffer(Allocator.Persistent);
 
             try
             {
-                await RecordFrameDataAsync(frameDataBuffer, cancellationToken);
+                await RecordFrameDataAsync(frameDataBuffer, forceStopToken);
                 await WritePackedFrameAsync(timestamp, frameNumber, frameDataBuffer, sampleTypeUrlRegistry, output,
-                    cancellationToken);
+                    forceStopToken);
             }
             catch (OperationCanceledException)
             {
@@ -158,25 +163,12 @@ namespace PLUME.Core.Recorder.Module
             }
         }
 
-        private async Task WritePackedFrameAsync(long timestamp, int frameNumber,
+        private async UniTask WritePackedFrameAsync(long timestamp, int frameNumber,
             SerializedSamplesBuffer frameDataBuffer, SampleTypeUrlRegistry sampleTypeUrlRegistry,
-            IRecordData output, CancellationToken cancellationToken)
+            IRecordData output, CancellationToken forceStopToken)
         {
-            var data = new NativeList<byte>(Allocator.TempJob);
-
-            var jobHandle = _frameSamplePacker.WriteFramePackedSampleAsync(timestamp, frameNumber,
-                sampleTypeUrlRegistry, frameDataBuffer, data);
-
-            // Do not catch OperationCanceledException here. The caller should handle it.
-            try
-            {
-                await jobHandle.WaitAsync(PlayerLoopTiming.Update, cancellationToken);
-                output.AddTimestampedData(data.AsArray().AsReadOnlySpan(), timestamp);
-            }
-            finally
-            {
-                data.Dispose();
-            }
+            await _frameSamplePacker.WriteFramePackedSampleAsync(timestamp, frameNumber,
+                    sampleTypeUrlRegistry, frameDataBuffer, output, forceStopToken);
         }
 
         internal async UniTask RecordFrameDataAsync(SerializedSamplesBuffer serializedSamplesBuffer,
@@ -196,7 +188,7 @@ namespace PLUME.Core.Recorder.Module
                 // Fire the task but don't wait for it to finish yet. This is to allow all modules to run their
                 // synchronous code first (like querying the object states on main thread) before running their
                 // async code (eg. serialization).
-                var task = module.RecordFrameData(moduleBuffer);
+                var task = module.RecordFrameData(moduleBuffer, cancellationToken);
                 var moduleTask = new FrameDataRecorderModuleTask(task, moduleBuffer);
                 moduleTasks.Add(moduleTask);
             }
@@ -226,10 +218,7 @@ namespace PLUME.Core.Recorder.Module
 
         public int GetRemainingTasksCount()
         {
-            lock (_tasks)
-            {
-                return _tasks.Count;
-            }
+            return _tasks.Count;
         }
     }
 }

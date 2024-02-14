@@ -26,17 +26,10 @@ namespace PLUME.Core.Recorder.Module
             IsRecording = true;
         }
 
-        async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext, CancellationToken cancellationToken)
+        async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext)
         {
             EnsureIsRecording();
             await OnStop(recordContext, recorderContext);
-            IsRecording = false;
-        }
-        
-        void IRecorderModule.ForceStop(RecordContext recordContext, RecorderContext recorderContext)
-        {
-            EnsureIsRecording();
-            OnForceStop(recordContext, recorderContext);
             IsRecording = false;
         }
 
@@ -45,9 +38,9 @@ namespace PLUME.Core.Recorder.Module
             OnReset(recorderContext);
         }
 
-        UniTask IFrameDataRecorderModule.RecordFrameData(SerializedSamplesBuffer buffer)
+        async UniTask IFrameDataRecorderModule.RecordFrameData(SerializedSamplesBuffer buffer, CancellationToken cancellationToken)
         {
-            return OnRecordFrameData(buffer);
+            await OnRecordFrameData(buffer, cancellationToken);
         }
         
         protected void EnsureIsRecording()
@@ -75,15 +68,11 @@ namespace PLUME.Core.Recorder.Module
             return UniTask.CompletedTask;
         }
 
-        protected virtual void OnForceStop(RecordContext recordContext, RecorderContext recorderContext)
-        {
-        }
-
         protected virtual void OnReset(RecorderContext recorderContext)
         {
         }
 
-        protected virtual UniTask OnRecordFrameData(SerializedSamplesBuffer buffer)
+        protected virtual UniTask OnRecordFrameData(SerializedSamplesBuffer buffer, CancellationToken cancellationToken)
         {
             return UniTask.CompletedTask;
         }

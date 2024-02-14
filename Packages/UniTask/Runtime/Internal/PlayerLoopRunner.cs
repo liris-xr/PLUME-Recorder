@@ -18,7 +18,7 @@ namespace Cysharp.Threading.Tasks.Internal
         IPlayerLoopItem[] loopItems = new IPlayerLoopItem[InitialSize];
         MinimumQueue<IPlayerLoopItem> waitQueue = new MinimumQueue<IPlayerLoopItem>(InitialSize);
 
-
+        internal int RemainingItemsCount => tail + waitQueue.Count;
 
         public PlayerLoopRunner(PlayerLoopTiming timing)
         {

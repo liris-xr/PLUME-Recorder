@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Time;
 using Unity.Collections;
@@ -17,8 +18,13 @@ namespace PLUME.Core.Recorder
         public readonly IRecordData Data;
         public readonly RecordIdentifier Identifier;
 
+        internal readonly CancellationTokenSource ForceStopTokenSource;
+        public readonly CancellationToken ForceStopToken;
+
         public RecordContext(Allocator allocator, Clock clock, RecordIdentifier identifier)
         {
+            ForceStopTokenSource = new CancellationTokenSource();
+            ForceStopToken = ForceStopTokenSource.Token;
             InternalClock = clock;
             Data = new ConcurrentRecordData(allocator);
             Identifier = identifier;
@@ -27,6 +33,7 @@ namespace PLUME.Core.Recorder
         public void Dispose()
         {
             Data.Dispose();
+            ForceStopTokenSource.Dispose();
         }
     }
 }

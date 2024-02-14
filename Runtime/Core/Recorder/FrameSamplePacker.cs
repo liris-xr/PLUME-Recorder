@@ -1,3 +1,7 @@
+using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.ProtoBurst;
 using ProtoBurst;
 using ProtoBurst.Message;
@@ -11,11 +15,13 @@ namespace PLUME.Core.Recorder
     public class FrameSamplePacker
     {
         [BurstDiscard]
-        public JobHandle WriteFramePackedSampleAsync(long timestamp, int frameNumber,
-            SampleTypeUrlRegistry typeUrlRegistry, SerializedSamplesBuffer buffer, NativeList<byte> data,
-            JobHandle dependsOn = default)
+        public async UniTask WriteFramePackedSampleAsync(long timestamp, int frameNumber,
+            SampleTypeUrlRegistry typeUrlRegistry, SerializedSamplesBuffer buffer,
+            IRecordData output,
+            CancellationToken forceStopToken)
         {
-            // TODO: chain jobs
+            var data = new NativeList<byte>(Allocator.TempJob);
+            
             var job = new AsyncWritingJob
             {
                 Timestamp = timestamp,
@@ -24,7 +30,19 @@ namespace PLUME.Core.Recorder
                 Data = data,
                 TypeUrlRegistry = typeUrlRegistry
             };
-            return job.Schedule(dependsOn);
+            var jobHandle = job.Schedule();
+
+            try
+            {
+                await jobHandle.WaitAsync(PlayerLoopTiming.Update, forceStopToken);
+                output.AddTimestampedData(data.AsArray().AsReadOnlySpan(), timestamp);
+                data.Dispose();
+            } catch (OperationCanceledException)
+            {
+                jobHandle.Complete();
+                data.Dispose();
+                throw;
+            }
         }
 
         [BurstCompile]
@@ -59,7 +77,7 @@ namespace PLUME.Core.Recorder
                 offset += chunkLength;
             }
 
-            var frame = new Frame(frameNumber, frameData);
+            var frame = new FrameSample(frameNumber, frameData);
             var packedSample = PackedSample.Pack(Allocator.Temp, timestamp, frame);
             WritingPrimitives.WriteMessage(ref packedSample, ref data);
             packedSample.Dispose();

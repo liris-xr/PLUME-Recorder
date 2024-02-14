@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Object.SafeRef;
@@ -28,8 +29,6 @@ namespace PLUME.Core.Recorder
         private RecordContext _recordContext;
 
         private readonly DataDispatcher _dataDispatcher;
-
-        private CancellationTokenSource _cancelStopTokenSource;
 
         private bool _wantsToQuit;
 
@@ -111,8 +110,7 @@ namespace PLUME.Core.Recorder
 
             if (!IsRecording)
                 throw new InvalidOperationException("Recorder is not recording");
-
-            _cancelStopTokenSource = new CancellationTokenSource();
+            
             CurrentStatus = Status.Stopping;
             _recordContext.InternalClock.Stop();
 
@@ -120,39 +118,32 @@ namespace PLUME.Core.Recorder
             {
                 foreach (var module in Context.Modules)
                 {
-                    await module.Stop(_recordContext, Context, _cancelStopTokenSource.Token);
+                    await module.Stop(_recordContext, Context);
                 }
-
-                CurrentStatus = Status.Stopped;
             }
             catch (OperationCanceledException)
             {
                 // Ignored. The recorder was force stopped.
             }
 
+            CurrentStatus = Status.Stopped;
             _dataDispatcher.Stop();
             _recordContext.Dispose();
             _recordContext = default;
-
-            _cancelStopTokenSource.Dispose();
         }
 
         public void ForceStop()
         {
-            if (!IsRecording)
-                throw new InvalidOperationException("Recorder is not recording");
-
-            if (IsStopping)
-                _cancelStopTokenSource.Cancel();
-
-            _recordContext.InternalClock.Stop();
-
-            foreach (var module in Context.Modules)
-                module.ForceStop(_recordContext, Context);
-
-            _dataDispatcher.Stop();
-
-            CurrentStatus = Status.Stopped;
+            var stopTask = Stop();
+            PlayerLoopHelper.RunRunnersNTimesMax(100);
+            
+            if (!stopTask.Status.IsCompleted())
+            {
+                Debug.LogWarning($"Tried to wait 100 iterations for the recorder to stop softly but did not stop. Forcing stop."); 
+                _recordContext.ForceStopTokenSource.Cancel();
+            }
+            
+            PlayerLoopHelper.RunRunnersNTimesMax(10);
         }
 
         private bool OnApplicationWantsToQuit()

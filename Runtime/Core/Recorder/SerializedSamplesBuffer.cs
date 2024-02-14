@@ -29,61 +29,40 @@ namespace PLUME.Core.Recorder
         {
             unsafe
             {
-                fixed (byte* ptr = data)
+                fixed(byte* ptr = data)
                 {
                     _data.AddRange(ptr, data.Length);
                 }
-
-                _lengths.Add(data.Length);
-                _sampleTypeUrlIndices.Add(sampleTypeUrlIndex);
             }
+            _lengths.Add(data.Length);
+            _sampleTypeUrlIndices.Add(sampleTypeUrlIndex);
         }
-
-        public void AddSerializedSamples(SampleTypeUrlIndex sampleTypeUrlIndex, ReadOnlySpan<byte> data,
-            ReadOnlySpan<int> lengths)
+        
+        public void AddSerializedSample(SampleTypeUrlIndex sampleTypeUrlIndex, NativeArray<byte> data)
         {
-            unsafe
-            {
-                fixed (byte* ptr = data)
-                {
-                    _data.AddRange(ptr, data.Length);
-                }
-
-                // TODO: in case a chunk misreports its length, we should check that the sum of lengths is equal to the data length
-                // TODO: we should do this when packing the frame data because then we can sum the lengths as we go
-                fixed (int* ptr = lengths)
-                {
-                    _lengths.AddRange(ptr, lengths.Length);
-                }
-
-                _sampleTypeUrlIndices.AddReplicate(sampleTypeUrlIndex, lengths.Length);
-            }
+            _data.AddRange(data);
+            _lengths.Add(data.Length);
+            _sampleTypeUrlIndices.Add(sampleTypeUrlIndex);
         }
 
-        public void AddSerializedSamples(ReadOnlySpan<SampleTypeUrlIndex> typeUrlIndices, ReadOnlySpan<byte> data,
-            ReadOnlySpan<int> lengths)
+        public void AddSerializedSamples(SampleTypeUrlIndex sampleTypeUrlIndex, NativeArray<byte> data,
+            NativeArray<int> lengths)
+        {
+            _data.AddRange(data);
+            _lengths.AddRange(lengths);
+            _sampleTypeUrlIndices.AddReplicate(sampleTypeUrlIndex, lengths.Length);
+        }
+
+        public void AddSerializedSamples(NativeArray<SampleTypeUrlIndex> typeUrlIndices, NativeArray<byte> data,
+            NativeArray<int> lengths)
         {
             if (typeUrlIndices.Length != lengths.Length)
                 throw new ArgumentException(
                     $"{nameof(typeUrlIndices)} and {nameof(lengths)} must have the same length.");
 
-            unsafe
-            {
-                fixed (byte* ptr = data)
-                {
-                    _data.AddRange(ptr, data.Length);
-                }
-
-                fixed (int* ptr = lengths)
-                {
-                    _lengths.AddRange(ptr, lengths.Length);
-                }
-
-                fixed (SampleTypeUrlIndex* ptr = typeUrlIndices)
-                {
-                    _sampleTypeUrlIndices.AddRange(ptr, typeUrlIndices.Length);
-                }
-            }
+            _data.AddRange(data);
+            _lengths.AddRange(lengths);
+            _sampleTypeUrlIndices.AddRange(typeUrlIndices);
         }
 
         public NativeArray<byte> GetData()

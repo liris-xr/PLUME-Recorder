@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Utils;
@@ -59,7 +60,8 @@ namespace PLUME.Core.Recorder.Module
             _shouldRunUpdateLoop = true;
         }
 
-        async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext, CancellationToken cancellationToken)
+        async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext,
+            CancellationToken cancellationToken)
         {
             var remainingTasksCount = GetRemainingTasksCount();
             Debug.Log($"Waiting for {remainingTasksCount} recording tasks to complete.");
@@ -107,8 +109,8 @@ namespace PLUME.Core.Recorder.Module
 
             var timestamp = _recordContext.Clock.ElapsedNanoseconds;
             var frame = UnityEngine.Time.frameCount;
-            var task = RecordFrameAsync(timestamp, frame, _recorderContext.SampleTypeUrlRegistry, _recordContext.Data);
-            task = task.AttachExternalCancellation(_cancellationTokenSource.Token);
+            var task = RecordFrameAsync(timestamp, frame, _recorderContext.SampleTypeUrlRegistry, _recordContext.Data,
+                _cancellationTokenSource.Token);
             var recordFrameTask = FrameRecorderTask.Get(frame, task);
 
             lock (_tasks)
@@ -135,20 +137,16 @@ namespace PLUME.Core.Recorder.Module
         }
 
         internal async UniTask RecordFrameAsync(long timestamp, int frameNumber,
-            SampleTypeUrlRegistry sampleTypeUrlRegistry, IRecordData output)
+            SampleTypeUrlRegistry sampleTypeUrlRegistry, IRecordData output,
+            CancellationToken cancellationToken = default)
         {
             var frameDataBuffer = new SerializedSamplesBuffer(Allocator.Persistent);
-            await RecordFrameDataAsync(frameDataBuffer);
-
-            var data = new NativeList<byte>(Allocator.TempJob);
-
-            var jobHandle = _frameSamplePacker.WriteFramePackedSampleAsync(timestamp, frameNumber,
-                sampleTypeUrlRegistry, frameDataBuffer, data);
 
             try
             {
-                await jobHandle.WaitAsync(PlayerLoopTiming.Update, _cancellationTokenSource.Token);
-                output.AddTimestampedData(data.AsArray().AsReadOnlySpan(), timestamp);
+                await RecordFrameDataAsync(frameDataBuffer, cancellationToken);
+                await WritePackedFrameAsync(timestamp, frameNumber, frameDataBuffer, sampleTypeUrlRegistry, output,
+                    cancellationToken);
             }
             catch (OperationCanceledException)
             {
@@ -156,12 +154,33 @@ namespace PLUME.Core.Recorder.Module
             }
             finally
             {
-                data.Dispose();
                 frameDataBuffer.Dispose();
             }
         }
 
-        internal async UniTask RecordFrameDataAsync(SerializedSamplesBuffer serializedSamplesBuffer)
+        private async Task WritePackedFrameAsync(long timestamp, int frameNumber,
+            SerializedSamplesBuffer frameDataBuffer, SampleTypeUrlRegistry sampleTypeUrlRegistry,
+            IRecordData output, CancellationToken cancellationToken)
+        {
+            var data = new NativeList<byte>(Allocator.TempJob);
+
+            var jobHandle = _frameSamplePacker.WriteFramePackedSampleAsync(timestamp, frameNumber,
+                sampleTypeUrlRegistry, frameDataBuffer, data);
+
+            // Do not catch OperationCanceledException here. The caller should handle it.
+            try
+            {
+                await jobHandle.WaitAsync(PlayerLoopTiming.Update, cancellationToken);
+                output.AddTimestampedData(data.AsArray().AsReadOnlySpan(), timestamp);
+            }
+            finally
+            {
+                data.Dispose();
+            }
+        }
+
+        internal async UniTask RecordFrameDataAsync(SerializedSamplesBuffer serializedSamplesBuffer,
+            CancellationToken cancellationToken = default)
         {
             List<FrameDataRecorderModuleTask> moduleTasks;
 

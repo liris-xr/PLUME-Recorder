@@ -1,9 +1,9 @@
+using System.Runtime.CompilerServices;
 using PLUME.Core.Recorder.ProtoBurst;
 using PLUME.Sample.Unity;
 using ProtoBurst;
 using Unity.Burst;
 using Unity.Collections;
-using UnityEngine.Profiling;
 
 namespace PLUME.Base.Module.Unity.Transform
 {
@@ -11,8 +11,6 @@ namespace PLUME.Base.Module.Unity.Transform
     public struct TransformUpdateLocalPositionSample : IProtoBurstMessage
     {
         public FixedString128Bytes TypeUrl => "fr.liris.plume/plume.sample.unity.TransformUpdateLocation";
-
-        public static int MaxSize => sizeof(ushort) + sizeof(uint) + Vector3Sample.MaxSize;
         
         // TODO: add identifier
 
@@ -24,11 +22,20 @@ namespace PLUME.Base.Module.Unity.Transform
         }
 
         // TODO: return length written
-        public void WriteTo(ref NativeList<byte> data)
+        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void WriteToNoResize(ref NativeList<byte> data)
         {
-            WritingPrimitives.WriteTag(TransformUpdateLocalPosition.LocalPositionFieldNumber,
+            WritingPrimitives.WriteTagNoResize(TransformUpdateLocalPosition.LocalPositionFieldNumber,
                 WireFormat.WireType.LengthDelimited, ref data);
-            WritingPrimitives.WriteMessage(ref LocalPosition, ref data);
+            WritingPrimitives.WriteLengthPrefixedMessageNoResize(ref LocalPosition, ref data);
+        }
+        
+        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public int ComputeMaxSize()
+        {
+            return WritingPrimitives.TagSize + WritingPrimitives.LengthPrefixMaxSize + LocalPosition.ComputeMaxSize();
         }
     }
 }

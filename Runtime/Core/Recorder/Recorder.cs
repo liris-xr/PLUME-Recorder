@@ -50,8 +50,9 @@ namespace PLUME.Core.Recorder
             var objSafeRefProvider = new ObjectSafeRefProvider();
             var recorderModules = RecorderModuleManager.InstantiateRecorderModulesFromAllAssemblies();
             var dataDispatcher = DataDispatcher.Instantiate(true);
-            var recorderContext = new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider, typeUrlRegistry);
-            
+            var recorderContext =
+                new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider, typeUrlRegistry);
+
             _instance = new Recorder(dataDispatcher, recorderContext);
 
             foreach (var recorderModule in recorderModules)
@@ -83,10 +84,10 @@ namespace PLUME.Core.Recorder
 
             if (IsRecording)
                 throw new InvalidOperationException("Recorder is already recording.");
-            
+
             var recordClock = new Clock();
             _recordContext = new RecordContext(Allocator.Persistent, recordClock, recordIdentifier);
-            
+
             CurrentStatus = Status.Recording;
 
             _dataDispatcher.Start(_recordContext);
@@ -110,40 +111,53 @@ namespace PLUME.Core.Recorder
 
             if (!IsRecording)
                 throw new InvalidOperationException("Recorder is not recording");
-            
+
             CurrentStatus = Status.Stopping;
             _recordContext.InternalClock.Stop();
 
-            try
+            foreach (var module in Context.Modules)
             {
-                foreach (var module in Context.Modules)
+                try
                 {
                     await module.Stop(_recordContext, Context);
                 }
+                catch (OperationCanceledException)
+                {
+                    // Ignored. The recorder was force stopped.
+                }
+            }
+
+            CurrentStatus = Status.Stopped;
+
+            try
+            {
+                await _dataDispatcher.Stop(_recordContext);
             }
             catch (OperationCanceledException)
             {
                 // Ignored. The recorder was force stopped.
             }
 
-            CurrentStatus = Status.Stopped;
-            _dataDispatcher.Stop();
             _recordContext.Dispose();
             _recordContext = default;
         }
 
         public void ForceStop()
         {
+            Debug.Log("Force stop");
             var stopTask = Stop();
-            PlayerLoopHelper.RunRunnersNTimesMax(100);
-            
+            Debug.Log("Started task");
+            var success = PlayerLoopHelper.TryFinishRunnersTasks(100);
+            Debug.Log("Ran runners for 100 iterations. Success = " + success);
+
             if (!stopTask.Status.IsCompleted())
             {
-                Debug.LogWarning($"Tried to wait 100 iterations for the recorder to stop softly but did not stop. Forcing stop."); 
+                Debug.LogWarning(
+                    $"Tried to wait 100 iterations for the recorder to stop softly but did not stop. Forcing stop.");
                 _recordContext.ForceStopTokenSource.Cancel();
             }
             
-            PlayerLoopHelper.RunRunnersNTimesMax(10);
+            // PlayerLoopHelper.RunRunnersNTimesMax(10);
         }
 
         private bool OnApplicationWantsToQuit()
@@ -159,7 +173,8 @@ namespace PLUME.Core.Recorder
                 var stopTask = Stop();
                 if (!stopTask.Status.IsCompleted())
                 {
-                    Debug.Log("Waiting for the recorder modules to stop before quitting the application. The application will stop automatically when finished.");
+                    Debug.Log(
+                        "Waiting for the recorder modules to stop before quitting the application. The application will stop automatically when finished.");
                 }
             }
 

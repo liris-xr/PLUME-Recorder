@@ -3,89 +3,77 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.ProtoBurst;
-using ProtoBurst;
 using ProtoBurst.Message;
-using Unity.Burst;
 using Unity.Collections;
-using Unity.Jobs;
+using UnityEngine.Profiling;
 
 namespace PLUME.Core.Recorder
 {
-    [BurstCompile]
     public class FrameSamplePacker
     {
-        [BurstDiscard]
         public async UniTask WriteFramePackedSampleAsync(long timestamp, int frameNumber,
             SampleTypeUrlRegistry typeUrlRegistry, SerializedSamplesBuffer buffer,
-            IRecordData output,
-            CancellationToken forceStopToken)
+            IRecordData output)
         {
-            var data = new NativeList<byte>(Allocator.TempJob);
-            
-            var job = new AsyncWritingJob
-            {
-                Timestamp = timestamp,
-                FrameNumber = frameNumber,
-                Buffer = buffer,
-                Data = data,
-                TypeUrlRegistry = typeUrlRegistry
-            };
-            var jobHandle = job.Schedule();
+            var frameDataSamples = new NativeArray<Any>(buffer.ChunkCount, Allocator.Persistent);
 
-            try
-            {
-                await jobHandle.WaitAsync(PlayerLoopTiming.Update, forceStopToken);
-                output.AddTimestampedData(data.AsArray().AsReadOnlySpan(), timestamp);
-                data.Dispose();
-            } catch (OperationCanceledException)
-            {
-                jobHandle.Complete();
-                data.Dispose();
-                throw;
-            }
-        }
+            await UniTask.SwitchToThreadPool();
 
-        [BurstCompile]
-        private struct AsyncWritingJob : IJob
-        {
-            public long Timestamp;
-            public int FrameNumber;
-            [ReadOnly] public SerializedSamplesBuffer Buffer;
-            public NativeList<byte> Data;
-            [ReadOnly] public SampleTypeUrlRegistry TypeUrlRegistry;
-
-            public void Execute()
-            {
-                WriteFramePackedSample(Timestamp, FrameNumber, ref Buffer, ref Data, ref TypeUrlRegistry);
-            }
-        }
-        
-        [BurstCompile]
-        public static void WriteFramePackedSample(long timestamp, int frameNumber, ref SerializedSamplesBuffer buffer,
-            ref NativeList<byte> data, ref SampleTypeUrlRegistry typeUrlRegistry)
-        {
+            Profiler.BeginSample("WriteFramePackedSampleAsync.1");
             var offset = 0;
-            var frameData = new NativeArray<Any>(buffer.ChunkCount, Allocator.Temp);
+
+            var chunksData = buffer.GetData();
+            var chunksLength = buffer.GetLengths();
+            var chunksSampleTypeUrlIndex = buffer.GetSampleTypeUrlIndices();
 
             for (var chunkIdx = 0; chunkIdx < buffer.ChunkCount; chunkIdx++)
             {
-                var chunkLength = buffer.GetLengths()[chunkIdx];
-                var chunkData = buffer.GetData(offset, chunkLength);
-                var chunkSampleTypeUrlIndex = buffer.GetSampleTypeUrlIndices()[chunkIdx];
-                var msgTypeUrl = typeUrlRegistry.GetTypeUrlFromIndex(chunkSampleTypeUrlIndex);
-                frameData[chunkIdx] = Any.Pack(chunkData, msgTypeUrl);
+                var chunkLength = chunksLength[chunkIdx];
+                var chunkData = chunksData.GetSubArray(offset, chunkLength);
+                var chunkSampleTypeUrlIndex = chunksSampleTypeUrlIndex[chunkIdx];
+                frameDataSamples[chunkIdx] =
+                    Any.Pack(chunkData, typeUrlRegistry.GetTypeUrlFromIndex(chunkSampleTypeUrlIndex));
                 offset += chunkLength;
             }
 
-            var frame = new FrameSample(frameNumber, frameData);
-            var packedSample = PackedSample.Pack(Allocator.Temp, timestamp, frame);
-            WritingPrimitives.WriteMessage(ref packedSample, ref data);
-            packedSample.Dispose();
+            Profiler.EndSample();
 
-            foreach (var fd in frameData)
-            {
-                fd.Dispose();
-            }
+            Profiler.BeginSample("WriteFramePackedSampleAsync.1.bis");
+            var frameSample = new FrameSample(frameNumber, frameDataSamples);
+            var frameSampleMaxSize = frameSample.ComputeMaxSize();
+            Profiler.EndSample();
+
+            await UniTask.SwitchToMainThread();
+
+            var frameSampleData = new NativeList<byte>(frameSampleMaxSize, Allocator.Persistent);
+
+            await UniTask.SwitchToThreadPool();
+
+            Profiler.BeginSample("WriteFramePackedSampleAsync.2");
+            frameSample.WriteToNoResize(ref frameSampleData);
+            var packedSample = PackedSample.Pack(timestamp, frameSampleData.AsArray(), FrameSample.FrameSampleTypeUrl);
+            var packedSampleMaxSize = packedSample.ComputeMaxSize();
+            Profiler.EndSample();
+
+            await UniTask.SwitchToMainThread();
+
+            var data = new NativeList<byte>(packedSampleMaxSize, Allocator.Persistent);
+
+            await UniTask.SwitchToThreadPool();
+
+            Profiler.BeginSample("WriteFramePackedSampleAsync.3");
+            packedSample.WriteToNoResize(ref data);
+            Profiler.EndSample();
+
+            await UniTask.SwitchToMainThread();
+
+            Profiler.BeginSample("WriteFramePackedSampleAsync.4");
+            output.AddTimestampedData(data.AsArray(), timestamp);
+            Profiler.EndSample();
+
+            data.Dispose();
+            frameDataSamples.Dispose();
+            frameSampleData.Dispose();
         }
     }
 }

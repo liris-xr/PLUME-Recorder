@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Writer;
 using PLUME.Core.Utils;
@@ -50,13 +51,14 @@ namespace PLUME.Core.Recorder
             _outputs = new IDataWriter[] { _fileDataWriter };
         }
 
-        internal void Stop()
+        internal UniTask Stop(RecordContext recordContext)
         {
             _shouldUpdate = false;
             DispatchAllData();
             _outputs = null;
             
             _recordContext = null;
+            return UniTask.CompletedTask;
         }
 
         private void Update()

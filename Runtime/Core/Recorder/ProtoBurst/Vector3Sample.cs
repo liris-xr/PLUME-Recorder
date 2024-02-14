@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using PLUME.Sample.Common;
 using ProtoBurst;
 using Unity.Burst;
@@ -9,7 +10,7 @@ namespace PLUME.Core.Recorder.ProtoBurst
     public struct Vector3Sample : IProtoBurstMessage
     {
         public FixedString128Bytes TypeUrl => "fr.liris.plume/plume.sample.common.Vector3";
-        
+
         public static int MaxSize => (sizeof(ushort) + sizeof(float)) * 3;
 
         public float X;
@@ -23,25 +24,34 @@ namespace PLUME.Core.Recorder.ProtoBurst
             Z = z;
         }
 
-        public void WriteTo(ref NativeList<byte> data)
+        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void WriteToNoResize(ref NativeList<byte> data)
         {
             if (X != 0)
             {
-                WritingPrimitives.WriteTag(Vector3.XFieldNumber, WireFormat.WireType.Fixed32, ref data);
-                WritingPrimitives.WriteFloat(X, ref data);
+                WritingPrimitives.WriteTagNoResize(Vector3.XFieldNumber, WireFormat.WireType.Fixed32, ref data);
+                WritingPrimitives.WriteFloatNoResize(X, ref data);
             }
-            
+
             if (Y != 0)
             {
-                WritingPrimitives.WriteTag(Vector3.YFieldNumber, WireFormat.WireType.Fixed32, ref data);
-                WritingPrimitives.WriteFloat(Y, ref data);
+                WritingPrimitives.WriteTagNoResize(Vector3.YFieldNumber, WireFormat.WireType.Fixed32, ref data);
+                WritingPrimitives.WriteFloatNoResize(Y, ref data);
             }
-            
+
             if (Z != 0)
             {
-                WritingPrimitives.WriteTag(Vector3.ZFieldNumber, WireFormat.WireType.Fixed32, ref data);
-                WritingPrimitives.WriteFloat(Z, ref data);
+                WritingPrimitives.WriteTagNoResize(Vector3.ZFieldNumber, WireFormat.WireType.Fixed32, ref data);
+                WritingPrimitives.WriteFloatNoResize(Z, ref data);
             }
+        }
+
+        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public int ComputeMaxSize()
+        {
+            return (WritingPrimitives.TagSize + WritingPrimitives.Fixed32Size) * 3;
         }
     }
 }

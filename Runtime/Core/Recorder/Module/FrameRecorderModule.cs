@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.CompilerServices;
@@ -11,6 +12,7 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Pool;
 using UnityEngine.Profiling;
+using UnityEngine.Scripting;
 
 namespace PLUME.Core.Recorder.Module
 {
@@ -61,7 +63,7 @@ namespace PLUME.Core.Recorder.Module
         async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext)
         {
             _shouldRunUpdateLoop = false;
-            
+
             var remainingTasksCount = GetRemainingTasksCount();
 
             if (remainingTasksCount > 0)
@@ -118,13 +120,21 @@ namespace PLUME.Core.Recorder.Module
             if (!_shouldRunUpdateLoop)
                 return;
 
+            Profiler.BeginSample("FrameRecorderModule.UpdateAsync.1");
             var timestamp = _recordContext.Clock.ElapsedNanoseconds;
             var frame = UnityEngine.Time.frameCount;
+            
+            Profiler.BeginSample("Create task");
             var task = RecordFrameAsync(timestamp, frame, _recorderContext.SampleTypeUrlRegistry, _recordContext.Data,
                 _recordContext.ForceStopToken);
+            Profiler.EndSample();
+            
+            Profiler.BeginSample("Get Task From Pool");
             var recordFrameTask = FrameRecorderModuleTask.Get(frame, task);
-
             _tasks.Add(recordFrameTask);
+            Profiler.EndSample();
+            
+            Profiler.EndSample();
 
             try
             {
@@ -136,8 +146,10 @@ namespace PLUME.Core.Recorder.Module
             }
             finally
             {
+                Profiler.BeginSample("FrameRecorderModule.UpdateAsync.2");
                 _tasks.Remove(recordFrameTask);
                 FrameRecorderModuleTask.Release(recordFrameTask);
+                Profiler.EndSample();
             }
         }
 
@@ -150,8 +162,12 @@ namespace PLUME.Core.Recorder.Module
             try
             {
                 await RecordFrameDataAsync(frameDataBuffer, forceStopToken);
-                await WritePackedFrameAsync(timestamp, frameNumber, frameDataBuffer, sampleTypeUrlRegistry, output,
-                    forceStopToken);
+
+                if (frameDataBuffer.ChunkCount > 0)
+                {
+                    await WritePackedFrameAsync(timestamp, frameNumber, frameDataBuffer, sampleTypeUrlRegistry, output,
+                        forceStopToken);
+                }
             }
             catch (OperationCanceledException)
             {
@@ -167,8 +183,8 @@ namespace PLUME.Core.Recorder.Module
             SerializedSamplesBuffer frameDataBuffer, SampleTypeUrlRegistry sampleTypeUrlRegistry,
             IRecordData output, CancellationToken forceStopToken)
         {
-            await _frameSamplePacker.WriteFramePackedSampleAsync(timestamp, frameNumber,
-                    sampleTypeUrlRegistry, frameDataBuffer, output, forceStopToken);
+            await _frameSamplePacker.WriteFramePackedSampleAsync(timestamp, frameNumber, sampleTypeUrlRegistry,
+                frameDataBuffer, output);
         }
 
         internal async UniTask RecordFrameDataAsync(SerializedSamplesBuffer serializedSamplesBuffer,

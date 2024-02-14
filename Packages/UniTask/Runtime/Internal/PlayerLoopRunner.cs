@@ -15,10 +15,9 @@ namespace Cysharp.Threading.Tasks.Internal
 
         int tail = 0;
         bool running = false;
-        IPlayerLoopItem[] loopItems = new IPlayerLoopItem[InitialSize];
-        MinimumQueue<IPlayerLoopItem> waitQueue = new MinimumQueue<IPlayerLoopItem>(InitialSize);
-
-        internal int RemainingItemsCount => tail + waitQueue.Count;
+        internal int itemCount = 0;
+        internal IPlayerLoopItem[] loopItems = new IPlayerLoopItem[InitialSize];
+        internal MinimumQueue<IPlayerLoopItem> waitQueue = new MinimumQueue<IPlayerLoopItem>(InitialSize);
 
         public PlayerLoopRunner(PlayerLoopTiming timing)
         {
@@ -45,6 +44,7 @@ namespace Cysharp.Threading.Tasks.Internal
                     Array.Resize(ref loopItems, checked(tail * 2));
                 }
                 loopItems[tail++] = item;
+                itemCount++;
             }
         }
 
@@ -64,6 +64,7 @@ namespace Cysharp.Threading.Tasks.Internal
                     loopItems[index] = null;
                 }
 
+                itemCount = 0;
                 tail = 0;
                 return rest;
             }
@@ -175,6 +176,7 @@ namespace Cysharp.Threading.Tasks.Internal
                             if (!action.MoveNext())
                             {
                                 loopItems[i] = null;
+                                itemCount--;
                             }
                             else
                             {
@@ -184,6 +186,7 @@ namespace Cysharp.Threading.Tasks.Internal
                         catch (Exception ex)
                         {
                             loopItems[i] = null;
+                            itemCount--;
                             try
                             {
                                 unhandledExceptionCallback(ex);
@@ -203,6 +206,7 @@ namespace Cysharp.Threading.Tasks.Internal
                                 if (!fromTail.MoveNext())
                                 {
                                     loopItems[j] = null;
+                                    itemCount--;
                                     j--;
                                     continue; // next j
                                 }
@@ -218,6 +222,7 @@ namespace Cysharp.Threading.Tasks.Internal
                             catch (Exception ex)
                             {
                                 loopItems[j] = null;
+                                itemCount--;
                                 j--;
                                 try
                                 {
@@ -251,6 +256,7 @@ namespace Cysharp.Threading.Tasks.Internal
                             Array.Resize(ref loopItems, checked(tail * 2));
                         }
                         loopItems[tail++] = waitQueue.Dequeue();
+                        itemCount++;
                     }
                 }
             }

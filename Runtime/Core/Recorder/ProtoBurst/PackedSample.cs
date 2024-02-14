@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using ProtoBurst;
 using ProtoBurst.Message;
 using Unity.Burst;
@@ -50,22 +51,46 @@ namespace PLUME.Core.Recorder.ProtoBurst
         {
             return new PackedSample(timestamp, Any.Pack(allocator, message));
         }
+        
+        public static PackedSample Pack(long timestamp, NativeArray<byte> msgBytes, FixedString128Bytes msgTypeUrl)
+        {
+            return new PackedSample(timestamp, Any.Pack(msgBytes, msgTypeUrl));
+        }
 
         [BurstCompile]
-        public void WriteTo(ref NativeList<byte> data)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void WriteToNoResize(ref NativeList<byte> data)
         {
             if (_hasTimestamp)
             {
-                WritingPrimitives.WriteTag(Sample.PackedSample.TimestampFieldNumber, WireFormat.WireType.VarInt,
+                WritingPrimitives.WriteTagNoResize(Sample.PackedSample.TimestampFieldNumber, WireFormat.WireType.VarInt,
                     ref data);
-                WritingPrimitives.WriteInt64(_timestamp, ref data);
+                WritingPrimitives.WriteInt64NoResize(_timestamp, ref data);
             }
 
-            WritingPrimitives.WriteTag(Sample.PackedSample.PayloadFieldNumber,
+            WritingPrimitives.WriteTagNoResize(Sample.PackedSample.PayloadFieldNumber,
                 WireFormat.WireType.LengthDelimited, ref data);
-            WritingPrimitives.WriteMessage(ref Payload, ref data);
+            WritingPrimitives.WriteLengthPrefixedMessageNoResize(ref Payload, ref data);
         }
 
+        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public int ComputeMaxSize()
+        {
+            var size = 0;
+            
+            if (_hasTimestamp)
+            {
+                size += sizeof(ushort);
+                size += sizeof(ulong);
+            }
+
+            size += sizeof(ushort);
+            size += sizeof(uint); // msg length
+            size += Payload.ComputeMaxSize();
+            return size;
+        }
+        
         public void Dispose()
         {
             Payload.Dispose();

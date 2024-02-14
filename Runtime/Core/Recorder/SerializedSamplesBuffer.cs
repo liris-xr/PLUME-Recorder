@@ -1,4 +1,5 @@
 using System;
+using ProtoBurst;
 using Unity.Collections;
 
 namespace PLUME.Core.Recorder
@@ -25,19 +26,38 @@ namespace PLUME.Core.Recorder
             _sampleTypeUrlIndices.AddRange(other._sampleTypeUrlIndices.AsArray());
         }
 
+        public void EnsureCapacity(int requiredBytesCapacity, int requiredChunksCapacity)
+        {
+            if (requiredBytesCapacity > _data.Capacity)
+            {
+                _data.SetCapacity(requiredBytesCapacity);
+            }
+
+            if (requiredChunksCapacity > _lengths.Capacity)
+            {
+                _lengths.SetCapacity(requiredChunksCapacity);
+            }
+            
+            if (requiredChunksCapacity > _sampleTypeUrlIndices.Capacity)
+            {
+                _sampleTypeUrlIndices.SetCapacity(requiredChunksCapacity);
+            }
+        }
+
         public void AddSerializedSample(SampleTypeUrlIndex sampleTypeUrlIndex, ReadOnlySpan<byte> data)
         {
             unsafe
             {
-                fixed(byte* ptr = data)
+                fixed (byte* ptr = data)
                 {
                     _data.AddRange(ptr, data.Length);
                 }
             }
+
             _lengths.Add(data.Length);
             _sampleTypeUrlIndices.Add(sampleTypeUrlIndex);
         }
-        
+
         public void AddSerializedSample(SampleTypeUrlIndex sampleTypeUrlIndex, NativeArray<byte> data)
         {
             _data.AddRange(data);
@@ -53,6 +73,14 @@ namespace PLUME.Core.Recorder
             _sampleTypeUrlIndices.AddReplicate(sampleTypeUrlIndex, lengths.Length);
         }
 
+        public void AddSerializedSamplesNoResize(SampleTypeUrlIndex sampleTypeUrlIndex, NativeArray<byte> data,
+            NativeArray<int> lengths)
+        {
+            _data.AddRangeNoResize(data);
+            _lengths.AddRangeNoResize(lengths);
+            _sampleTypeUrlIndices.AddReplicateNoResize(sampleTypeUrlIndex, lengths.Length);
+        }
+
         public void AddSerializedSamples(NativeArray<SampleTypeUrlIndex> typeUrlIndices, NativeArray<byte> data,
             NativeArray<int> lengths)
         {
@@ -63,6 +91,16 @@ namespace PLUME.Core.Recorder
             _data.AddRange(data);
             _lengths.AddRange(lengths);
             _sampleTypeUrlIndices.AddRange(typeUrlIndices);
+        }
+
+        public int GetDataCapacity()
+        {
+            return _data.Capacity;
+        }
+
+        public int GetChunksCapacity()
+        {
+            return ChunkCount;
         }
 
         public NativeArray<byte> GetData()

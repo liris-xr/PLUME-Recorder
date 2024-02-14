@@ -9,7 +9,6 @@ namespace Cysharp.Threading.Tasks
 {
     public static partial class UnityAsyncExtensions
     {
-        
         public static UniTask WaitAsync(this JobHandle jobHandle, PlayerLoopTiming timing = PlayerLoopTiming.Update,
             CancellationToken cancellationToken = default)
         {

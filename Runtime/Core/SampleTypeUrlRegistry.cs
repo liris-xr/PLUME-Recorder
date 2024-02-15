@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace PLUME.Core
 {
+    // TODO: don't use NativeHashMap, use a normal HashMap, the systems requiring an access to a blittable type should get the index first and pass it as the blittable type
     public struct SampleTypeUrlRegistry : IDisposable
     {
         private NativeHashMap<FixedString128Bytes, SampleTypeUrlIndex> _typeUrlToIndex;

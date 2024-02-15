@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core;
@@ -12,6 +10,7 @@ using PLUME.Sample.Unity;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.Jobs;
 using UnityEngine.Jobs;
 using UnityEngine.Profiling;
 using UnityEngine.Scripting;
@@ -19,7 +18,7 @@ using UnityEngine.Scripting;
 namespace PLUME.Base.Module.Unity.Transform
 {
     [Preserve]
-    internal class TransformRecorderModule : ObjectFrameDataRecorderModuleBase<UnityEngine.Transform>
+    internal class TransformRecorderModule : ObjectFrameDataRecorderModuleBase<UnityEngine.Transform, TransformFrameData>
     {
         private DynamicTransformAccessArray _transformAccessArray;
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
@@ -69,73 +68,95 @@ namespace PLUME.Base.Module.Unity.Transform
             _lastStates.Clear();
         }
 
-        [SuppressMessage("ReSharper", "ForCanBeConvertedToForeach")]
-        protected override async UniTask OnRecordFrameData(SerializedSamplesBuffer buffer,
-            CancellationToken forceStopToken)
+        private NativeList<TransformUpdateLocalPositionSample> _dirtySamples;
+        private NativeArray<int> _dirtySamplesMaxLengthArray;
+        private JobHandle _pollingJobHandle;
+        
+        protected override void OnPreUpdate(RecordContext recordContext, RecorderContext context)
         {
-            Profiler.BeginSample("Poll states");
-            var dirtySamples =
-                new NativeList<TransformUpdateLocalPositionSample>(RecordedObjects.Count, Allocator.Persistent);
-            var dirtySamplesMaxLengthArr = new NativeArray<int>(1, Allocator.Persistent);
-            dirtySamplesMaxLengthArr[0] = 0;
-
+            Profiler.BeginSample("Create native collections");
+            _dirtySamples = new NativeList<TransformUpdateLocalPositionSample>(RecordedObjects.Count, Allocator.Persistent);
+            _dirtySamplesMaxLengthArray = new NativeArray<int>(1, Allocator.Persistent);
+            Profiler.EndSample();
+            
+            Profiler.BeginSample("Create job");
             var pollTransformStatesJob = new PollTransformStatesJob
             {
                 AlignedIdentifiers = _transformAccessArray.GetAlignedIdentifiers(),
-                DirtySamples = dirtySamples.AsParallelWriter(),
-                DirtySamplesMaxLength = dirtySamplesMaxLengthArr,
+                DirtySamples = _dirtySamples.AsParallelWriter(),
+                DirtySamplesMaxLength = _dirtySamplesMaxLengthArray,
+                // TODO: work on a copy of _lastStates, update after job
                 LastStates = _lastStates
             };
-
-            pollTransformStatesJob.Schedule(_transformAccessArray).Complete();
-
-            var dirtySamplesMaxLength = dirtySamplesMaxLengthArr[0];
-            dirtySamplesMaxLengthArr.Dispose();
-
             Profiler.EndSample();
+            
+            Profiler.BeginSample("Schedule job");
+            _pollingJobHandle = pollTransformStatesJob.ScheduleReadOnly(_transformAccessArray, 128);
+            Profiler.EndSample();
+        }
 
-            if (dirtySamples.Length > 0)
+        // TODO: start job earlier in the frame
+        
+        protected override TransformFrameData CollectFrameData()
+        {
+            Profiler.BeginSample("OnCollectFrameData");
+            
+            Profiler.BeginSample("Wait for job");
+            _pollingJobHandle.Complete();
+            Profiler.EndSample();
+            
+            var dirtySamplesMaxLength = _dirtySamplesMaxLengthArray[0];
+            _dirtySamplesMaxLengthArray.Dispose();
+            
+            var transformFrameData = new TransformFrameData(_dirtySamples, dirtySamplesMaxLength);
+            Profiler.EndSample();
+            return transformFrameData;
+        }
+
+        protected override void SerializeFrameData(TransformFrameData frameData, SerializedSamplesBuffer buffer)
+        {
+            buffer.EnsureCapacity(frameData.DirtySamplesMaxLength, frameData.DirtySamples.Length);
+            
+            var data = new NativeList<byte>(frameData.DirtySamplesMaxLength, Allocator.TempJob);
+            var lengths = new NativeList<int>(frameData.DirtySamples.Length, Allocator.TempJob);
+            
+            foreach (var dirtySample in frameData.DirtySamples)
             {
-                var requiredDataCapacity = buffer.GetDataCapacity() + dirtySamplesMaxLength;
-                var requiredChunksCapacity = buffer.GetChunksCapacity() + dirtySamples.Length;
-                
-                Profiler.BeginSample("Ensure capacity");
-                buffer.EnsureCapacity(requiredDataCapacity, requiredChunksCapacity);
-                Profiler.EndSample();
-                
-                await UniTask.SwitchToThreadPool();
-                
-                var data = new NativeList<byte>(dirtySamplesMaxLength, Allocator.TempJob);
-                var lengths = new NativeList<int>(dirtySamples.Length, Allocator.TempJob);
-                
-                foreach (var dirtySample in dirtySamples)
-                {
-                    var prevLength = data.Length;
-                    dirtySample.WriteToNoResize(ref data);
-                    var newLength = data.Length;
-                    lengths.AddNoResize(newLength - prevLength);
-                }
-                
-                buffer.AddSerializedSamplesNoResize(_updatePosSampleTypeUrlIndex, data.AsArray(), lengths.AsArray());
-                data.Dispose();
-                lengths.Dispose();
-                
-                await UniTask.SwitchToMainThread();
+                var prevLength = data.Length;
+                dirtySample.WriteToNoResize(ref data);
+                var newLength = data.Length;
+                lengths.AddNoResize(newLength - prevLength);
             }
+            
+            buffer.AddSerializedSamplesNoResize(_updatePosSampleTypeUrlIndex, data.AsArray(), lengths.AsArray());
+            data.Dispose();
+            lengths.Dispose();
+        }
 
-            dirtySamples.Dispose();
+        protected override void DisposeFrameData(TransformFrameData frameData)
+        {
+            frameData.Dispose();
+        }
+
+        protected override void OnForceStop(RecordContext recordContext, RecorderContext recorderContext)
+        {
+            _pollingJobHandle.Complete();
+        }
+
+        protected override async UniTask OnStop(RecordContext recordContext, RecorderContext recorderContext)
+        {
+            await UniTask.WaitUntil(() => _pollingJobHandle.IsCompleted);
         }
 
         [BurstCompile]
         private struct PollTransformStatesJob : IJobParallelForTransform
-
         {
             [ReadOnly] public NativeArray<ObjectIdentifier>.ReadOnly AlignedIdentifiers;
-
+            
             [WriteOnly] public NativeList<TransformUpdateLocalPositionSample>.ParallelWriter DirtySamples;
 
             public NativeArray<int> DirtySamplesMaxLength;
-
+            
             [NativeDisableParallelForRestriction] public NativeHashMap<ObjectIdentifier, TransformState> LastStates;
 
             public void Execute(int index, TransformAccess transform)
@@ -178,6 +199,7 @@ namespace PLUME.Base.Module.Unity.Transform
                     var localRotation = transform.localRotation;
                     var localScale = transform.localScale;
 
+                    // TODO
                     // var isLocalPositionDirty = lastSample.LocalPosition != localPosition;
                     // var isLocalRotationDirty = lastSample.LocalRotation != localRotation;
                     // var isLocalScaleDirty = lastSample.LocalScale != localScale;

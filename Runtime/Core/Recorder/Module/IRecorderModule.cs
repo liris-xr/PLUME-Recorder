@@ -12,6 +12,20 @@ namespace PLUME.Core.Recorder.Module
 
         internal UniTask Stop(RecordContext recordContext, RecorderContext recorderContext);
 
+        internal void ForceStop(RecordContext recordContext, RecorderContext recorderContext);
+
         internal void Reset(RecorderContext context);
+        
+        internal void FixedUpdate(RecordContext recordContext, RecorderContext context) {}
+        
+        internal void EarlyUpdate(RecordContext recordContext, RecorderContext context) {}
+        
+        internal void PreUpdate(RecordContext recordContext, RecorderContext context) {}
+        
+        internal void Update(RecordContext recordContext, RecorderContext context) {}
+        
+        internal void PreLateUpdate(RecordContext recordContext, RecorderContext context) {}
+        
+        internal void PostLateUpdate(RecordContext recordContext, RecorderContext context) {}
     }
 }

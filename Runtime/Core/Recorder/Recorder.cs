@@ -1,12 +1,13 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Object.SafeRef;
+using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Time;
+using PLUME.Core.Utils;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace PLUME.Core.Recorder
 {
@@ -49,7 +50,7 @@ namespace PLUME.Core.Recorder
             var typeUrlRegistry = new SampleTypeUrlRegistry(Allocator.Persistent);
             var objSafeRefProvider = new ObjectSafeRefProvider();
             var recorderModules = RecorderModuleManager.InstantiateRecorderModulesFromAllAssemblies();
-            var dataDispatcher = DataDispatcher.Instantiate(true);
+            var dataDispatcher = new DataDispatcher();
             var recorderContext =
                 new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider, typeUrlRegistry);
 
@@ -60,6 +61,18 @@ namespace PLUME.Core.Recorder
                 recorderModule.Create(recorderContext);
             }
 
+            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(RecorderFixedUpdate), _instance.FixedUpdate,
+                typeof(FixedUpdate));
+            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(RecorderEarlyUpdate), _instance.EarlyUpdate,
+                typeof(EarlyUpdate));
+            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(RecorderPreUpdate), _instance.PreUpdate,
+                typeof(PreUpdate));
+            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(RecorderUpdate), _instance.Update, typeof(Update));
+            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(RecorderPreLateUpdate), _instance.PreLateUpdate,
+                typeof(PreLateUpdate));
+            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(RecorderPostLateUpdate), _instance.PostLateUpdate,
+                typeof(PostLateUpdate));
+
             Application.wantsToQuit += _instance.OnApplicationWantsToQuit;
 
             Application.quitting += () =>
@@ -67,8 +80,79 @@ namespace PLUME.Core.Recorder
                 _instance.OnApplicationQuitting();
                 _instance.Dispose();
                 typeUrlRegistry.Dispose();
-                dataDispatcher.Dispose();
             };
+        }
+
+        private void FixedUpdate()
+        {
+            if (!IsRecording)
+                return;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Context.Modules.Count; i++)
+            {
+                Context.Modules[i].FixedUpdate(_recordContext, Context);
+            }
+        }
+
+        private void PreUpdate()
+        {
+            if (!IsRecording)
+                return;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Context.Modules.Count; i++)
+            {
+                Context.Modules[i].PreUpdate(_recordContext, Context);
+            }
+        }
+
+        private void EarlyUpdate()
+        {
+            if (!IsRecording)
+                return;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Context.Modules.Count; i++)
+            {
+                Context.Modules[i].EarlyUpdate(_recordContext, Context);
+            }
+        }
+
+        private void Update()
+        {
+            if (!IsRecording)
+                return;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Context.Modules.Count; i++)
+            {
+                Context.Modules[i].Update(_recordContext, Context);
+            }
+        }
+
+        private void PreLateUpdate()
+        {
+            if (!IsRecording)
+                return;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Context.Modules.Count; i++)
+            {
+                Context.Modules[i].PreLateUpdate(_recordContext, Context);
+            }
+        }
+
+        private void PostLateUpdate()
+        {
+            if (!IsRecording)
+                return;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Context.Modules.Count; i++)
+            {
+                Context.Modules[i].PostLateUpdate(_recordContext, Context);
+            }
         }
 
         /// <summary>
@@ -86,14 +170,18 @@ namespace PLUME.Core.Recorder
                 throw new InvalidOperationException("Recorder is already recording.");
 
             var recordClock = new Clock();
-            _recordContext = new RecordContext(Allocator.Persistent, recordClock, recordIdentifier);
+            var data = new ConcurrentRecordData();
+            _recordContext = new RecordContext(recordClock, data, recordIdentifier);
 
             CurrentStatus = Status.Recording;
 
             _dataDispatcher.Start(_recordContext);
 
-            foreach (var module in Context.Modules)
-                module.Start(_recordContext, Context);
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Context.Modules.Count; i++)
+            {
+                Context.Modules[i].Start(_recordContext, Context);
+            }
 
             recordClock.Start();
         }
@@ -112,52 +200,31 @@ namespace PLUME.Core.Recorder
             if (!IsRecording)
                 throw new InvalidOperationException("Recorder is not recording");
 
-            CurrentStatus = Status.Stopping;
             _recordContext.InternalClock.Stop();
+            CurrentStatus = Status.Stopping;
 
-            foreach (var module in Context.Modules)
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Context.Modules.Count; i++)
             {
-                try
-                {
-                    await module.Stop(_recordContext, Context);
-                }
-                catch (OperationCanceledException)
-                {
-                    // Ignored. The recorder was force stopped.
-                }
+                await Context.Modules[i].Stop(_recordContext, Context);
             }
 
+            await _dataDispatcher.Stop();
+            
             CurrentStatus = Status.Stopped;
-
-            try
-            {
-                await _dataDispatcher.Stop(_recordContext);
-            }
-            catch (OperationCanceledException)
-            {
-                // Ignored. The recorder was force stopped.
-            }
-
-            _recordContext.Dispose();
-            _recordContext = default;
+            _recordContext = null;
         }
 
         public void ForceStop()
         {
-            Debug.Log("Force stop");
-            var stopTask = Stop();
-            Debug.Log("Started task");
-            var success = PlayerLoopHelper.TryFinishRunnersTasks(100);
-            Debug.Log("Ran runners for 100 iterations. Success = " + success);
+            if (IsStopped)
+                return;
 
-            if (!stopTask.Status.IsCompleted())
-            {
-                Debug.LogWarning(
-                    $"Tried to wait 100 iterations for the recorder to stop softly but did not stop. Forcing stop.");
-                _recordContext.ForceStopTokenSource.Cancel();
-            }
+            _dataDispatcher.ForceStop();
+            CurrentStatus = Status.Stopped;
+            _recordContext = null;
             
-            // PlayerLoopHelper.RunRunnersNTimesMax(10);
+            Debug.Log("Recorder stopped forcefully.");
         }
 
         private bool OnApplicationWantsToQuit()
@@ -207,8 +274,6 @@ namespace PLUME.Core.Recorder
         {
             foreach (var module in Context.Modules)
                 module.Destroy(Context);
-
-            _dataDispatcher?.Dispose();
         }
 
         public static Recorder Instance

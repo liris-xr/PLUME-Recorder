@@ -73,6 +73,13 @@ namespace PLUME.Core.Recorder
             _sampleTypeUrlIndices.AddReplicate(sampleTypeUrlIndex, lengths.Length);
         }
 
+        public void AddSerializedSampleNoResize(SampleTypeUrlIndex sampleTypeUrlIndex, NativeArray<byte> data)
+        {
+            _data.AddRangeNoResize(data);
+            _lengths.AddNoResize(data.Length);
+            _sampleTypeUrlIndices.AddNoResize(sampleTypeUrlIndex);
+        }
+        
         public void AddSerializedSamplesNoResize(SampleTypeUrlIndex sampleTypeUrlIndex, NativeArray<byte> data,
             NativeArray<int> lengths)
         {

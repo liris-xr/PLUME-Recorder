@@ -1,24 +1,29 @@
 using System;
-using System.Collections.Concurrent;
 using Cysharp.Threading.Tasks;
 
 namespace PLUME.Core.Recorder.Module
 {
-    public abstract class FrameDataRecorderModuleBase<TFrameData> : IFrameDataRecorderModule
-        where TFrameData : unmanaged, IFrameData
+    public abstract class RecorderModuleBase : IRecorderModule
     {
-        private ConcurrentQueue<TFrameData> _frameDataQueue = new();
-        
         public bool IsRecording { get; private set; }
 
-        private TFrameData _frameData;
+        void IRecorderModule.Create(RecorderContext ctx)
+        {
+            OnCreate(ctx);
+        }
+
+        void IRecorderModule.Destroy(RecorderContext ctx)
+        {
+            OnDestroy(ctx);
+        }
 
         void IRecorderModule.Start(RecordContext recordContext, RecorderContext recorderContext)
         {
             if (IsRecording)
                 throw new InvalidOperationException("Recorder module is already recording.");
-            OnStart(recordContext, recorderContext);
+
             IsRecording = true;
+            OnStart(recordContext, recorderContext);
         }
 
         void IRecorderModule.ForceStop(RecordContext recordContext, RecorderContext recorderContext)
@@ -35,24 +40,9 @@ namespace PLUME.Core.Recorder.Module
             IsRecording = false;
         }
 
-        void IRecorderModule.Reset(RecorderContext recorderContext)
+        void IRecorderModule.Reset(RecorderContext ctx)
         {
-            OnReset(recorderContext);
-        }
-
-        void IFrameDataRecorderModule.EnqueueFrameData()
-        {
-            var frameData = CollectFrameData();
-            _frameDataQueue.Enqueue(frameData);
-        }
-        
-        void IFrameDataRecorderModule.DequeueSerializedFrameData(SerializedSamplesBuffer buffer)
-        {
-            if(!_frameDataQueue.TryDequeue(out var frameData))
-                throw new InvalidOperationException("No frame data to dequeue.");
-
-            SerializeFrameData(frameData, buffer);
-            DisposeFrameData(frameData);
+            OnReset(ctx);
         }
 
         protected void EnsureIsRecording()
@@ -63,16 +53,6 @@ namespace PLUME.Core.Recorder.Module
             }
         }
 
-        void IRecorderModule.Create(RecorderContext recorderContext)
-        {
-            OnCreate(recorderContext);
-        }
-
-        void IRecorderModule.Destroy(RecorderContext recorderContext)
-        {
-            OnDestroy(recorderContext);
-        }
-        
         void IRecorderModule.FixedUpdate(RecordContext recordContext, RecorderContext context)
         {
             OnFixedUpdate(recordContext, context);
@@ -125,12 +105,12 @@ namespace PLUME.Core.Recorder.Module
         protected virtual void OnPostLateUpdate(RecordContext recordContext, RecorderContext context)
         {
         }
-        
-        protected virtual void OnCreate(RecorderContext recorderContext)
+
+        protected virtual void OnCreate(RecorderContext ctx)
         {
         }
 
-        protected virtual void OnDestroy(RecorderContext recorderContext)
+        protected virtual void OnDestroy(RecorderContext ctx)
         {
         }
 
@@ -138,23 +118,17 @@ namespace PLUME.Core.Recorder.Module
         {
         }
 
-        protected void OnForceStop(RecordContext recordContext, RecorderContext recorderContext)
+        protected virtual void OnForceStop(RecordContext recordContext, RecorderContext recorderContext)
         {
         }
-        
+
         protected virtual UniTask OnStop(RecordContext recordContext, RecorderContext recorderContext)
         {
             return UniTask.CompletedTask;
         }
 
-        protected virtual void OnReset(RecorderContext recorderContext)
+        protected virtual void OnReset(RecorderContext ctx)
         {
         }
-
-        protected abstract TFrameData CollectFrameData();
-
-        protected abstract void SerializeFrameData(TFrameData frameData, SerializedSamplesBuffer buffer);
-
-        protected abstract void DisposeFrameData(TFrameData frameData);
     }
 }

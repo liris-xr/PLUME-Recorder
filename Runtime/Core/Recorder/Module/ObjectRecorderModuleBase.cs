@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
@@ -113,6 +112,13 @@ namespace PLUME.Core.Recorder.Module
             OnStart(recordContext, recorderContext);
         }
 
+        void IRecorderModule.ForceStop(RecordContext recordContext, RecorderContext recorderContext)
+        {
+            EnsureIsRecording();
+            OnForceStop(recordContext, recorderContext);
+            IsRecording = false;
+        }
+        
         async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext)
         {
             EnsureIsRecording();
@@ -134,6 +140,59 @@ namespace PLUME.Core.Recorder.Module
                 throw new InvalidOperationException("Recorder module is not recording.");
         }
 
+        void IRecorderModule.FixedUpdate(RecordContext recordContext, RecorderContext context)
+        {
+            OnFixedUpdate(recordContext, context);
+        }
+
+        void IRecorderModule.EarlyUpdate(RecordContext recordContext, RecorderContext context)
+        {
+            OnEarlyUpdate(recordContext, context);
+        }
+
+        void IRecorderModule.PreUpdate(RecordContext recordContext, RecorderContext context)
+        {
+            OnPreUpdate(recordContext, context);
+        }
+
+        void IRecorderModule.Update(RecordContext recordContext, RecorderContext context)
+        {
+        }
+
+        void IRecorderModule.PreLateUpdate(RecordContext recordContext, RecorderContext context)
+        {
+            OnPreLateUpdate(recordContext, context);
+        }
+
+        void IRecorderModule.PostLateUpdate(RecordContext recordContext, RecorderContext context)
+        {
+            OnPostLateUpdate(recordContext, context);
+        }
+
+        protected virtual void OnFixedUpdate(RecordContext recordContext, RecorderContext context)
+        {
+        }
+
+        protected virtual void OnEarlyUpdate(RecordContext recordContext, RecorderContext context)
+        {
+        }
+
+        protected virtual void OnPreUpdate(RecordContext recordContext, RecorderContext context)
+        {
+        }
+
+        protected virtual void OnUpdate(RecordContext recordContext, RecorderContext context)
+        {
+        }
+
+        protected virtual void OnPreLateUpdate(RecordContext recordContext, RecorderContext context)
+        {
+        }
+
+        protected virtual void OnPostLateUpdate(RecordContext recordContext, RecorderContext context)
+        {
+        }
+        
         protected virtual void OnCreate(RecorderContext recorderContext)
         {
         }
@@ -146,6 +205,10 @@ namespace PLUME.Core.Recorder.Module
         {
         }
 
+        protected virtual void OnForceStop(RecordContext recordContext, RecorderContext recorderContext)
+        {
+        }
+        
         protected virtual UniTask OnStop(RecordContext recordContext, RecorderContext recorderContext)
         {
             return UniTask.CompletedTask;

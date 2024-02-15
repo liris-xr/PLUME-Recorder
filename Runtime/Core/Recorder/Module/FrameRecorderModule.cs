@@ -1,16 +1,12 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.CompilerServices;
 using PLUME.Core.Recorder.Data;
-using PLUME.Core.Utils;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
-using UnityEngine.Pool;
 using UnityEngine.Profiling;
 using UnityEngine.Scripting;
 
@@ -21,77 +17,54 @@ namespace PLUME.Core.Recorder.Module
     /// It automatically runs after <see cref="PostLateUpdate"/> if <see cref="InjectUpdateInCurrentLoop"/> was called (automatically called by <see cref="Recorder"/> when the instance is created).
     /// It is responsible for running the <see cref="IFrameDataRecorderModule.RecordFrameData"/> and <see cref="IFrameDataRecorderModule.RecordFrameData"/> on <see cref="IFrameDataRecorderModule"/> and <see cref="IFrameDataRecorderModule"/> modules respectively.
     /// </summary>
+    [Preserve]
     public class FrameRecorderModule : IRecorderModule
     {
-        private RecorderContext _recorderContext;
-        private RecordContext _recordContext;
-
         // TODO: convert to a utility class?
         private FrameSamplePacker _frameSamplePacker;
 
         private IFrameDataRecorderModule[] _frameDataRecorderModules;
 
-        /// <summary>
-        /// List of tasks that are currently running and serializing frames data.
-        /// Tasks are added in the <see cref="Update"/> method and automatically removed when they finish.
-        /// Tasks may queue up if the serialization process is slow. This list is used to wait for all the tasks to finish before stopping the recorder (see <see cref="CompleteTasks"/>).
-        /// </summary>
-        private readonly List<FrameRecorderModuleTask> _tasks = new();
+        private struct FrameInfo
+        {
+            public long Timestamp;
+            public int FrameNumber;
+        }
 
-        /// <summary>
-        /// Whether the frame recorder should run the update loop. This is automatically set to true when the recorder starts and false when it stops.
-        /// </summary>
-        private bool _shouldRunUpdateLoop;
+        private readonly BlockingCollection<FrameInfo> _frameInfoQueue = new(new ConcurrentQueue<FrameInfo>());
+        private Thread _frameSerializationThread;
 
-        private readonly ObjectPool<List<FrameDataRecorderModuleTask>> _moduleTasksListPool =
-            new(() => new List<FrameDataRecorderModuleTask>(20), l => l.Clear());
+        private bool _shouldSerialize;
 
         void IRecorderModule.Create(RecorderContext recorderContext)
         {
-            _recorderContext = recorderContext;
             _frameSamplePacker = new FrameSamplePacker();
             _frameDataRecorderModules = recorderContext.Modules.OfType<IFrameDataRecorderModule>().ToArray();
-            InjectUpdateInCurrentLoop();
         }
 
         void IRecorderModule.Start(RecordContext recordContext, RecorderContext recorderContext)
         {
-            _recordContext = recordContext;
-            _shouldRunUpdateLoop = true;
+            _shouldSerialize = true;
+
+            _frameSerializationThread = new Thread(() => SerializeFrameLoop(recordContext.Data, recorderContext.SampleTypeUrlRegistry))
+            {
+                Name = "FrameRecorderModule.SerializeThread",
+                IsBackground = false
+            };
+            _frameSerializationThread.Start();
         }
 
+        void IRecorderModule.ForceStop(RecordContext recordContext, RecorderContext recorderContext)
+        {
+            _shouldSerialize = false;
+            _frameSerializationThread.Join();
+        }
+        
         async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext)
         {
-            _shouldRunUpdateLoop = false;
-
-            var remainingTasksCount = GetRemainingTasksCount();
-
-            if (remainingTasksCount > 0)
-            {
-                Debug.Log($"Waiting for {remainingTasksCount} recording tasks to complete.");
-
-                try
-                {
-                    await UniTask.WaitUntil(() => GetRemainingTasksCount() == 0, PlayerLoopTiming.Update,
-                        recordContext.ForceStopToken);
-                }
-                catch (OperationCanceledException)
-                {
-                    remainingTasksCount = GetRemainingTasksCount();
-
-                    if (remainingTasksCount > 0)
-                    {
-                        Debug.LogWarning(remainingTasksCount == 1
-                            ? "1 frame task was cancelled due to the frame recorder being forced stopped."
-                            : $"{remainingTasksCount} frame tasks were cancelled due to the frame recorder being forced stopped.");
-                    }
-
-                    // Make the exception bubble up to the recorder.
-                    throw;
-                }
-            }
-
-            _recordContext = null;
+            _shouldSerialize = false;
+            await UniTask.WaitUntil(() => !_frameSerializationThread.IsAlive);
+            _frameSerializationThread = null;
         }
 
         void IRecorderModule.Destroy(RecorderContext recorderContext)
@@ -102,139 +75,58 @@ namespace PLUME.Core.Recorder.Module
         {
         }
 
-        /// <summary>
-        /// Injects the <see cref="Update"/> method in the current player loop. Called automatically by <see cref="Recorder.Instantiate()"/> when the instance is created.
-        /// </summary>
-        internal void InjectUpdateInCurrentLoop()
+        void IRecorderModule.PostLateUpdate(RecordContext recordContext, RecorderContext context)
         {
-            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(FrameRecorderModule), Update, typeof(PostLateUpdate));
-        }
-
-        private void Update()
-        {
-            UpdateAsync().Forget();
-        }
-
-        private async UniTask UpdateAsync()
-        {
-            if (!_shouldRunUpdateLoop)
-                return;
-
-            Profiler.BeginSample("FrameRecorderModule.UpdateAsync.1");
-            var timestamp = _recordContext.Clock.ElapsedNanoseconds;
+            var timestamp = recordContext.Clock.ElapsedNanoseconds;
             var frame = UnityEngine.Time.frameCount;
-            
-            Profiler.BeginSample("Create task");
-            var task = RecordFrameAsync(timestamp, frame, _recorderContext.SampleTypeUrlRegistry, _recordContext.Data,
-                _recordContext.ForceStopToken);
-            Profiler.EndSample();
-            
-            Profiler.BeginSample("Get Task From Pool");
-            var recordFrameTask = FrameRecorderModuleTask.Get(frame, task);
-            _tasks.Add(recordFrameTask);
-            Profiler.EndSample();
-            
-            Profiler.EndSample();
-
-            try
-            {
-                await task;
-            }
-            catch (OperationCanceledException)
-            {
-                // Ignore
-            }
-            finally
-            {
-                Profiler.BeginSample("FrameRecorderModule.UpdateAsync.2");
-                _tasks.Remove(recordFrameTask);
-                FrameRecorderModuleTask.Release(recordFrameTask);
-                Profiler.EndSample();
-            }
+            EnqueueFrame(timestamp, frame);
         }
 
-        internal async UniTask RecordFrameAsync(long timestamp, int frameNumber,
-            SampleTypeUrlRegistry sampleTypeUrlRegistry, IRecordData output,
-            CancellationToken forceStopToken)
+        internal void EnqueueFrame(long timestamp, int frameNumber)
         {
-            var frameDataBuffer = new SerializedSamplesBuffer(Allocator.Persistent);
-
-            try
-            {
-                await RecordFrameDataAsync(frameDataBuffer, forceStopToken);
-
-                if (frameDataBuffer.ChunkCount > 0)
-                {
-                    await WritePackedFrameAsync(timestamp, frameNumber, frameDataBuffer, sampleTypeUrlRegistry, output,
-                        forceStopToken);
-                }
-            }
-            catch (OperationCanceledException)
-            {
-                // Ignored
-            }
-            finally
-            {
-                frameDataBuffer.Dispose();
-            }
-        }
-
-        private async UniTask WritePackedFrameAsync(long timestamp, int frameNumber,
-            SerializedSamplesBuffer frameDataBuffer, SampleTypeUrlRegistry sampleTypeUrlRegistry,
-            IRecordData output, CancellationToken forceStopToken)
-        {
-            await _frameSamplePacker.WriteFramePackedSampleAsync(timestamp, frameNumber, sampleTypeUrlRegistry,
-                frameDataBuffer, output);
-        }
-
-        internal async UniTask RecordFrameDataAsync(SerializedSamplesBuffer serializedSamplesBuffer,
-            CancellationToken cancellationToken = default)
-        {
-            List<FrameDataRecorderModuleTask> moduleTasks;
-
-            // TODO: check thread, maybe not required as on main thread
-            lock (_moduleTasksListPool)
-            {
-                moduleTasks = _moduleTasksListPool.Get();
-            }
-
             foreach (var module in _frameDataRecorderModules)
             {
-                var moduleBuffer = new SerializedSamplesBuffer(Allocator.Persistent);
-                // Fire the task but don't wait for it to finish yet. This is to allow all modules to run their
-                // synchronous code first (like querying the object states on main thread) before running their
-                // async code (eg. serialization).
-                var task = module.RecordFrameData(moduleBuffer, cancellationToken);
-                var moduleTask = new FrameDataRecorderModuleTask(task, moduleBuffer);
-                moduleTasks.Add(moduleTask);
+                module.EnqueueFrameData();
             }
 
-            foreach (var tasks in moduleTasks)
+            _frameInfoQueue.Add(new FrameInfo
             {
-                await tasks.Task;
-                var moduleBuffer = tasks.Buffer;
-                serializedSamplesBuffer.Merge(moduleBuffer);
-                moduleBuffer.Dispose();
-            }
-
-            // TODO: check thread, maybe not required as on main thread
-            lock (_moduleTasksListPool)
-            {
-                _moduleTasksListPool.Release(moduleTasks);
-            }
+                Timestamp = timestamp,
+                FrameNumber = frameNumber
+            });
         }
 
-        /// <summary>
-        /// Waits synchronously for all the frame recording tasks to finish. This method is called automatically by <see cref="Recorder.Stop"/> when the recorder stops.
-        /// </summary>
-        private async UniTask CompleteTasks(CancellationToken cancellationToken = default)
+        internal void SerializeFrameLoop(IRecordData data, SampleTypeUrlRegistry sampleTypeUrlRegistry)
         {
-            await UniTask.WaitUntil(() => GetRemainingTasksCount() == 0, PlayerLoopTiming.Update, cancellationToken);
+            Profiler.BeginThreadProfiling("PLUME", "FrameRecorderModule.SerializeThread");
+            
+            while (_shouldSerialize || _frameInfoQueue.Count > 0)
+            {
+                while (_frameInfoQueue.TryTake(out var frameInfo))
+                {
+                    var frameBuffer = new SerializedSamplesBuffer(Allocator.Persistent);
+
+                    foreach (var recorderModule in _frameDataRecorderModules)
+                    {
+                        recorderModule.DequeueSerializedFrameData(frameBuffer);
+                    }
+
+                    var serializedData = new NativeList<byte>(Allocator.Persistent);
+                    
+                    _frameSamplePacker.WriteFramePackedSample(frameInfo.Timestamp, frameInfo.FrameNumber, ref sampleTypeUrlRegistry, ref frameBuffer, ref serializedData);
+                    
+                    data.AddTimestampedDataChunk(serializedData.AsArray(), frameInfo.Timestamp);
+                    serializedData.Dispose();
+                    frameBuffer.Dispose();
+                }
+            }
+            
+            Profiler.EndThreadProfiling();
         }
 
         public int GetRemainingTasksCount()
         {
-            return _tasks.Count;
+            return _frameInfoQueue.Count;
         }
     }
 }

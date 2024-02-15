@@ -1,157 +1,118 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
-using PLUME.Core.Recorder.Module;
+using PLUME.Core.Recorder.Data;
+using PLUME.Core.Recorder.Time;
 using PLUME.Core.Recorder.Writer;
-using PLUME.Core.Utils;
-using Unity.Collections;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+using UnityEngine.Profiling;
 
 namespace PLUME.Core.Recorder
 {
-    public class DataDispatcher : IDisposable
+    public class DataDispatcher
     {
-        private bool _shouldUpdate;
-    
-        private RecordContext _recordContext;
+        private bool _shouldDispatch = true;
+        private Thread _dispatcherThread;
+
         private IDataWriter[] _outputs;
         private FileDataWriter _fileDataWriter;
 
-        private DataDispatcher()
-        {
-        }
-
-        internal static DataDispatcher Instantiate(bool injectUpdateInCurrentLoop)
-        {
-            var dataDispatcher = new DataDispatcher();
-
-            if (injectUpdateInCurrentLoop)
-            {
-                dataDispatcher.InjectUpdateInCurrentLoop();
-            }
-
-            return dataDispatcher;
-        }
-
-        internal void InjectUpdateInCurrentLoop()
-        {
-            PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(FrameRecorderModule), Update, typeof(PostLateUpdate));
-        }
-
         internal void Start(RecordContext recordContext)
         {
-            _recordContext = recordContext;
-            
             var recordIdentifier = recordContext.Identifier;
             // TODO: format string
             _fileDataWriter = new FileDataWriter(Application.persistentDataPath,
                 recordIdentifier.Identifier + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
-            
-            _shouldUpdate = true;
+
             _outputs = new IDataWriter[] { _fileDataWriter };
+
+            _dispatcherThread = new Thread(() => DispatchLoop(recordContext.Data, recordContext.Clock))
+            {
+                Name = "DataDispatcher.DispatchThread",
+                IsBackground = false
+            };
+            _dispatcherThread.Start();
         }
 
-        internal UniTask Stop(RecordContext recordContext)
+        private void DispatchLoop(IRecordData data, IReadOnlyClock clock)
         {
-            _shouldUpdate = false;
-            DispatchAllData();
-            _outputs = null;
+            Profiler.BeginThreadProfiling("PLUME", "DataDispatcher");
             
-            _recordContext = null;
-            return UniTask.CompletedTask;
+            DataChunks tmpTimelessDataChunks = new();
+            DataChunks tmpTimestampedDataChunks = new();
+            List<long> tmpTimestamps = new();
+
+            while (_shouldDispatch)
+            {
+                var timestamp = clock.ElapsedNanoseconds;
+                var timeBarrier = timestamp - 1_000_000;
+
+                if (data.TryPopAllTimelessDataChunks(tmpTimestampedDataChunks))
+                {
+                    DispatchTimelessDataChunks(tmpTimelessDataChunks);
+                }
+
+                if (data.TryPopTimestampedDataChunksBefore(timeBarrier, tmpTimestampedDataChunks, tmpTimestamps, true))
+                {
+                    DispatchTimestampedDataChunks(tmpTimestampedDataChunks, tmpTimestamps);
+                }
+                
+                Thread.Sleep(1);
+            }
+
+            // Dispatch any remaining data
+            if (data.TryPopAllTimelessDataChunks(tmpTimestampedDataChunks))
+            {
+                DispatchTimelessDataChunks(tmpTimelessDataChunks);
+            }
+
+            if (data.TryPopAllTimestampedDataChunks(tmpTimestampedDataChunks, tmpTimestamps))
+            {
+                DispatchTimestampedDataChunks(tmpTimestampedDataChunks, tmpTimestamps);
+            }
+            
+            Profiler.EndThreadProfiling();
         }
 
-        private void Update()
+        private void DispatchTimelessDataChunks(DataChunks dataChunks)
         {
-            if (!_shouldUpdate)
+            if(_outputs == null)
                 return;
-
-            var timestamp = _recordContext.Clock.ElapsedNanoseconds;
-            var timeBarrier = timestamp - 1_000_000;
             
-            DispatchDataBeforeTimestamp(timeBarrier);
+            foreach (var output in _outputs)
+            {
+                output.WriteTimelessData(dataChunks);
+            }
+        }
+        
+        private void DispatchTimestampedDataChunks(DataChunks dataChunks, List<long> timestamps)
+        {
+            if(_outputs == null)
+                return;
+            
+            foreach (var output in _outputs)
+            {
+                output.WriteTimestampedData(dataChunks, timestamps);
+            }
+        }
+        
+        internal async UniTask Stop()
+        {
+            _shouldDispatch = false;
+            await UniTask.WaitUntil(() => !_dispatcherThread.IsAlive);
+            _dispatcherThread = null;
+            _outputs = null;
+            _fileDataWriter.Dispose();
         }
 
-        private void DispatchAllData()
+        internal void ForceStop()
         {
-            var timelessData = new NativeList<byte>(Allocator.Persistent);
-            var timelessDataLengths = new NativeList<int>(Allocator.Persistent);
-
-            var hasTimelessData = _recordContext.Data.TryPopTimelessData(timelessData, timelessDataLengths);
-
-            var timestampedData = new NativeList<byte>(Allocator.Persistent);
-            var timestampedLengths = new NativeList<int>(Allocator.Persistent);
-            var timestamps = new NativeList<long>(Allocator.Persistent);
-
-            var hasTimestampedData = _recordContext.Data.TryPopAllTimestampedData(timestampedData, timestampedLengths, timestamps);
-
-            if (hasTimelessData)
-            {
-                foreach (var output in _outputs)
-                {
-                    output.WriteTimelessData(timelessData.AsArray(), timelessDataLengths.AsArray());
-                }
-            }
-
-            if (hasTimestampedData)
-            {
-                foreach (var output in _outputs)
-                {
-                    output.WriteTimestampedData(timestampedData.AsArray(), timestampedLengths.AsArray(),
-                        timestamps.AsArray());
-                }
-            }
-
-            timelessData.Dispose();
-            timelessDataLengths.Dispose();
-
-            timestampedData.Dispose();
-            timestampedLengths.Dispose();
-            timestamps.Dispose();
-        }
-
-        private void DispatchDataBeforeTimestamp(long timeBarrier)
-        {
-            var timelessData = new NativeList<byte>(Allocator.Persistent);
-            var timelessDataLengths = new NativeList<int>(Allocator.Persistent);
-
-            var hasTimelessData = _recordContext.Data.TryPopTimelessData(timelessData, timelessDataLengths);
-
-            var timestampedData = new NativeList<byte>(Allocator.Persistent);
-            var timestampedLengths = new NativeList<int>(Allocator.Persistent);
-            var timestamps = new NativeList<long>(Allocator.Persistent);
-
-            var hasTimestampedData = _recordContext.Data.TryPopTimestampedDataBeforeTimestamp(timeBarrier, timestampedData,
-                timestampedLengths, timestamps, true);
-
-            if (hasTimelessData)
-            {
-                foreach (var output in _outputs)
-                {
-                    output.WriteTimelessData(timelessData.AsArray(), timelessDataLengths.AsArray());
-                }
-            }
-
-            if (hasTimestampedData)
-            {
-                foreach (var output in _outputs)
-                {
-                    output.WriteTimestampedData(timestampedData.AsArray(), timestampedLengths.AsArray(),
-                        timestamps.AsArray());
-                }
-            }
-
-            timelessData.Dispose();
-            timelessDataLengths.Dispose();
-
-            timestampedData.Dispose();
-            timestampedLengths.Dispose();
-            timestamps.Dispose();
-        }
-
-        public void Dispose()
-        {
-            _fileDataWriter?.Dispose();
+            _shouldDispatch = false;
+            _dispatcherThread.Join();
+            _dispatcherThread = null;
+            _outputs = null;
+            _fileDataWriter.Dispose();
         }
     }
 }

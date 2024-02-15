@@ -52,6 +52,11 @@ namespace PLUME.Core.Recorder.ProtoBurst
             return new PackedSample(timestamp, Any.Pack(allocator, message));
         }
         
+        public static PackedSample Pack(NativeArray<byte> msgBytes, FixedString128Bytes msgTypeUrl)
+        {
+            return new PackedSample(Any.Pack(msgBytes, msgTypeUrl));
+        }
+        
         public static PackedSample Pack(long timestamp, NativeArray<byte> msgBytes, FixedString128Bytes msgTypeUrl)
         {
             return new PackedSample(timestamp, Any.Pack(msgBytes, msgTypeUrl));

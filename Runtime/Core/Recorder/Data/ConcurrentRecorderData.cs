@@ -1,73 +1,50 @@
 using System;
-using Unity.Collections;
+using System.Collections.Generic;
 
 namespace PLUME.Core.Recorder.Data
 {
-    public class ConcurrentRecordData : IRecordData, IDisposable
+    public class ConcurrentRecordData : IRecordData
     {
-        private NativeRecorderData _data;
         private readonly object _lock = new();
-
-        public ConcurrentRecordData(Allocator allocator)
-        {
-            _data = new NativeRecorderData(allocator);
-        }
-
-        public void AddTimelessData(ReadOnlySpan<byte> data)
+        private readonly RecordData _data = new();
+        
+        public void AddTimelessDataChunk(ReadOnlySpan<byte> data)
         {
             lock (_lock)
             {
-                _data.AddTimelessData(data);
+                _data.AddTimelessDataChunk(data);
             }
         }
 
-        public void AddTimelessData(ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths)
+        public void AddTimestampedDataChunk(ReadOnlySpan<byte> data, long timestamp)
         {
             lock (_lock)
             {
-                _data.AddTimelessData(data, lengths);
+                _data.AddTimestampedDataChunk(data, timestamp);
             }
         }
 
-        public void AddTimestampedData(ReadOnlySpan<byte> data, long timestamp)
+        public bool TryPopAllTimelessDataChunks(DataChunks dataChunks)
         {
             lock (_lock)
             {
-                _data.AddTimestampedData(data, timestamp);
+                return _data.TryPopAllTimelessDataChunks(dataChunks);
             }
         }
 
-        public void AddTimestampedData(ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths,
-            ReadOnlySpan<long> timestamps)
+        public bool TryPopAllTimestampedDataChunks(DataChunks dataChunks, List<long> chunksTimestamp)
         {
             lock (_lock)
             {
-                _data.AddTimestampedData(data, lengths, timestamps);
+                return _data.TryPopAllTimestampedDataChunks(dataChunks, chunksTimestamp);
             }
         }
 
-        public bool TryPopTimelessData(NativeList<byte> dataDst, NativeList<int> chunkLengthsDst)
+        public bool TryPopTimestampedDataChunksBefore(long timestamp, DataChunks dataChunks, List<long> chunksTimestamp, bool inclusive)
         {
             lock (_lock)
             {
-                return _data.TryPopTimelessData(dataDst, chunkLengthsDst);
-            }
-        }
-
-        public bool TryPopTimestampedDataBeforeTimestamp(long timestamp, NativeList<byte> dataDst, NativeList<int> chunkLengthsDst,
-            NativeList<long> timestampsDst, bool inclusive)
-        {
-            lock (_lock)
-            {
-                return _data.TryPopTimestampedDataBeforeTimestamp(timestamp, dataDst, chunkLengthsDst, timestampsDst, inclusive);
-            }
-        }
-
-        public bool TryPopAllTimestampedData(NativeList<byte> timestampedData, NativeList<int> timestampedLengths, NativeList<long> timestamps)
-        {
-            lock (_lock)
-            {
-                return _data.TryPopAllTimestampedData(timestampedData, timestampedLengths, timestamps);
+                return _data.TryPopTimestampedDataChunksBefore(timestamp, dataChunks, chunksTimestamp, inclusive);
             }
         }
 
@@ -77,27 +54,6 @@ namespace PLUME.Core.Recorder.Data
             {
                 _data.Clear();
             }
-        }
-
-        public int GetTimelessDataLength()
-        {
-            lock (_lock)
-            {
-                return _data.GetTimelessDataLength();
-            }
-        }
-
-        public int GetTimestampedDataLength()
-        {
-            lock (_lock)
-            {
-                return _data.GetTimestampedDataLength();
-            }
-        }
-
-        public void Dispose()
-        {
-            _data.Dispose();
         }
     }
 }

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using PLUME.Core.Recorder.Data;
 
 namespace PLUME.Core.Recorder.Writer
 {
@@ -27,25 +29,14 @@ namespace PLUME.Core.Recorder.Writer
             return recordName + ".plm.meta";
         }
 
-        public void WriteTimelessData(ReadOnlySpan<byte> data)
+        public void WriteTimelessData(DataChunks dataChunks)
         {
         }
 
-        public void WriteTimelessData(ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths)
-        {
-        }
-
-        public void WriteTimestampedData(ReadOnlySpan<byte> data, long timestamp)
+        public void WriteTimestampedData(DataChunks dataChunks, List<long> timestamps)
         {
             // TODO: update metadata file
-            _stream.Write(data);
-        }
-
-        public void WriteTimestampedData(ReadOnlySpan<byte> data, ReadOnlySpan<int> lengths,
-            ReadOnlySpan<long> timestamps)
-        {
-            // TODO: update metadata file
-            _stream.Write(data);
+            _stream.Write(dataChunks.GetAllChunksData());
         }
 
         public void Close()

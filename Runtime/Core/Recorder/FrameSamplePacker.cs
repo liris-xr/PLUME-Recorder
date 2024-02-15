@@ -1,25 +1,19 @@
-using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.ProtoBurst;
 using ProtoBurst.Message;
+using Unity.Burst;
 using Unity.Collections;
-using UnityEngine.Profiling;
 
 namespace PLUME.Core.Recorder
 {
     public class FrameSamplePacker
     {
-        public async UniTask WriteFramePackedSampleAsync(long timestamp, int frameNumber,
-            SampleTypeUrlRegistry typeUrlRegistry, SerializedSamplesBuffer buffer,
-            IRecordData output)
+        [BurstCompile]
+        public void WriteFramePackedSample(long timestamp, int frameNumber,
+            ref SampleTypeUrlRegistry typeUrlRegistry, ref SerializedSamplesBuffer buffer,
+            ref NativeList<byte> output)
         {
-            var frameDataSamples = new NativeArray<Any>(buffer.ChunkCount, Allocator.Persistent);
+            var frameSampleData = new NativeArray<Any>(buffer.ChunkCount, Allocator.Persistent);
 
-            await UniTask.SwitchToThreadPool();
-
-            Profiler.BeginSample("WriteFramePackedSampleAsync.1");
             var offset = 0;
 
             var chunksData = buffer.GetData();
@@ -31,49 +25,23 @@ namespace PLUME.Core.Recorder
                 var chunkLength = chunksLength[chunkIdx];
                 var chunkData = chunksData.GetSubArray(offset, chunkLength);
                 var chunkSampleTypeUrlIndex = chunksSampleTypeUrlIndex[chunkIdx];
-                frameDataSamples[chunkIdx] =
+                frameSampleData[chunkIdx] =
                     Any.Pack(chunkData, typeUrlRegistry.GetTypeUrlFromIndex(chunkSampleTypeUrlIndex));
                 offset += chunkLength;
             }
 
-            Profiler.EndSample();
-
-            Profiler.BeginSample("WriteFramePackedSampleAsync.1.bis");
-            var frameSample = new FrameSample(frameNumber, frameDataSamples);
-            var frameSampleMaxSize = frameSample.ComputeMaxSize();
-            Profiler.EndSample();
-
-            await UniTask.SwitchToMainThread();
-
-            var frameSampleData = new NativeList<byte>(frameSampleMaxSize, Allocator.Persistent);
-
-            await UniTask.SwitchToThreadPool();
-
-            Profiler.BeginSample("WriteFramePackedSampleAsync.2");
-            frameSample.WriteToNoResize(ref frameSampleData);
-            var packedSample = PackedSample.Pack(timestamp, frameSampleData.AsArray(), FrameSample.FrameSampleTypeUrl);
+            var frameSample = new FrameSample(frameNumber, frameSampleData);
+            var packedSample = PackedSample.Pack(Allocator.Persistent, timestamp, frameSample);
             var packedSampleMaxSize = packedSample.ComputeMaxSize();
-            Profiler.EndSample();
 
-            await UniTask.SwitchToMainThread();
+            var serializedPackedSample = new NativeList<byte>(packedSampleMaxSize, Allocator.Persistent);
+            packedSample.WriteToNoResize(ref serializedPackedSample);
+            
+            output.AddRange(serializedPackedSample.AsArray());
 
-            var data = new NativeList<byte>(packedSampleMaxSize, Allocator.Persistent);
-
-            await UniTask.SwitchToThreadPool();
-
-            Profiler.BeginSample("WriteFramePackedSampleAsync.3");
-            packedSample.WriteToNoResize(ref data);
-            Profiler.EndSample();
-
-            await UniTask.SwitchToMainThread();
-
-            Profiler.BeginSample("WriteFramePackedSampleAsync.4");
-            output.AddTimestampedData(data.AsArray(), timestamp);
-            Profiler.EndSample();
-
-            data.Dispose();
-            frameDataSamples.Dispose();
+            serializedPackedSample.Dispose();
             frameSampleData.Dispose();
+            packedSample.Dispose();
         }
     }
 }

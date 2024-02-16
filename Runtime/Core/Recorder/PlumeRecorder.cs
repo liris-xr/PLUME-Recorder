@@ -20,16 +20,7 @@ namespace PLUME.Core.Recorder
     /// </summary>
     public sealed class PlumeRecorder : IDisposable
     {
-        private static PlumeRecorder _instance;
-        
-        public static PlumeRecorder Instance
-        {
-            get
-            {
-                CheckInstantiated();
-                return _instance;
-            }
-        }
+        public static PlumeRecorder Instance { get; private set; }
 
         public RecorderStatus CurrentStatus { get; private set; } = RecorderStatus.Stopped;
 
@@ -67,7 +58,7 @@ namespace PLUME.Core.Recorder
             var recorderContext =
                 new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider, typeUrlRegistry);
 
-            _instance = new PlumeRecorder(dataDispatcher, recorderContext);
+            Instance = new PlumeRecorder(dataDispatcher, recorderContext);
 
             foreach (var recorderModule in recorderModules)
             {
@@ -322,10 +313,7 @@ namespace PLUME.Core.Recorder
 
         private void OnApplicationPaused()
         {
-            if (_dataDispatcher == null)
-                return;
-
-            _dataDispatcher.OnApplicationPaused();
+            _dataDispatcher?.OnApplicationPaused();
         }
 
         private bool OnApplicationWantsToQuit()
@@ -373,7 +361,7 @@ namespace PLUME.Core.Recorder
 
         private static void CheckInstantiated()
         {
-            if (_instance == null)
+            if (Instance == null)
                 throw new InvalidOperationException("PLUME recorder instance is not created yet.");
         }
 
@@ -385,39 +373,46 @@ namespace PLUME.Core.Recorder
 
         public static void StartRecording(RecordIdentifier recordIdentifier)
         {
+            CheckInstantiated();
             Instance.StartRecordingInternal(recordIdentifier);
         }
 
         public static async UniTask StopRecording()
         {
+            CheckInstantiated();
             await Instance.StopRecordingInternal();
         }
 
         public static void RecordMarker(string label)
         {
+            CheckInstantiated();
             Instance.RecordMarkerInternal(label);
         }
 
         public static void StartRecordingObject<T>(ObjectSafeRef<T> objectSafeRef, bool markCreated = true)
             where T : UnityEngine.Object
         {
+            CheckInstantiated();
             Instance.StartRecordingObjectInternal(objectSafeRef, markCreated);
         }
 
         public static void StopRecordingObject<T>(ObjectSafeRef<T> objectSafeRef, bool markDestroyed = true)
             where T : UnityEngine.Object
         {
+            CheckInstantiated();
             Instance.StopRecordingObjectInternal(objectSafeRef, markDestroyed);
         }
 
         public static void StartRecordingObject<T>(T obj, bool markCreated = true) where T : UnityEngine.Object
         {
+            CheckInstantiated();
             var objectSafeRef = Instance.Context.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(obj);
             Instance.StartRecordingObjectInternal(objectSafeRef, markCreated);
         }
 
         public static void StopRecordingObject<T>(T obj, bool markDestroyed = true) where T : UnityEngine.Object
         {
+            CheckInstantiated();
             var objectSafeRef = Instance.Context.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(obj);
             Instance.StopRecordingObjectInternal(objectSafeRef, markDestroyed);
         }

@@ -20,7 +20,7 @@ namespace PLUME.Core
 
         private int NextTypeUrlIndex()
         {
-            var indices = _indexToTypeUrl.GetKeyArray(Allocator.Temp);
+            var indices = _indexToTypeUrl.GetKeyArray(Allocator.Persistent);
 
             if (indices.Length == 0)
             {

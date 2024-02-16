@@ -76,8 +76,10 @@ namespace PLUME.Core.Recorder.Data
             var chunksLengths = DataChunks.GetDataChunksLength(0, chunkIndex + 1);
             dataChunks.AddRange(chunksData, chunksLengths);
             DataChunks.RemoveRange(0, chunkIndex + 1);
-
-            timestamps.AddRange(Timestamps.GetRange(0, chunkIndex + 1));
+            
+            for(var i = 0; i <= chunkIndex; i++)
+                timestamps.Add(Timestamps[i]);
+            
             Timestamps.RemoveRange(0, chunkIndex + 1);
             return true;
         }

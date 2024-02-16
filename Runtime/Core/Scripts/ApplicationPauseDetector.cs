@@ -1,6 +1,10 @@
 using System;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace PLUME.Core.Scripts
 {
     [DisallowMultipleComponent]
@@ -10,24 +14,25 @@ namespace PLUME.Core.Scripts
 
         private static ApplicationPauseDetector _instance;
 
-        public static ApplicationPauseDetector Instance
+        static ApplicationPauseDetector()
         {
-            get
+#if UNITY_EDITOR
+            EditorApplication.pauseStateChanged += state =>
             {
-                if (_instance == null)
+                if (state == PauseState.Paused)
                 {
-                    EnsureExists();
+                    Paused?.Invoke();
                 }
-
-                return _instance;
-            }
+            };
+#endif
         }
 
         public void Awake()
         {
-            if (Instance != null)
+            if (_instance != null)
             {
-                DestroyImmediate(gameObject);
+                Destroy(gameObject);
+                Debug.LogWarning("Multiple ApplicationPauseDetectors in scene. Destroying one.");
             }
             else
             {
@@ -46,7 +51,7 @@ namespace PLUME.Core.Scripts
 
         private void OnDestroy()
         {
-            if (Instance == this)
+            if (_instance == this)
             {
                 _instance = null;
             }
@@ -63,7 +68,7 @@ namespace PLUME.Core.Scripts
         {
             if (_instance != null)
             {
-                Destroy(Instance.gameObject);
+                Destroy(_instance.gameObject);
             }
         }
     }

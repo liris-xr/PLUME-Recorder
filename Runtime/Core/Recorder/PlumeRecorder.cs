@@ -26,9 +26,7 @@ namespace PLUME.Core.Recorder
         {
             get
             {
-                if (_instance == null)
-                    throw new InvalidOperationException("PLUME recorder instance is not created yet.");
-
+                CheckInstantiated();
                 return _instance;
             }
         }
@@ -366,10 +364,16 @@ namespace PLUME.Core.Recorder
         /// Only called by internal methods.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown if the recorder is not recording.</exception>
-        internal void EnsureIsRecording()
+        private void EnsureIsRecording()
         {
             if (!IsRecording)
                 throw new InvalidOperationException("Recorder is not recording");
+        }
+        
+        private static void CheckInstantiated()
+        {
+            if (_instance == null)
+                throw new InvalidOperationException("PLUME recorder instance is not created yet.");
         }
 
         public void Dispose()
@@ -389,16 +393,11 @@ namespace PLUME.Core.Recorder
             Instance.StartRecordingObjectInternal(objectSafeRef, markCreated);
         }
         
-        public static void StopRecordingObject<T>(ObjectSafeRef<T> objectSafeRef) where T : UnityEngine.Object
-        {
-            Instance.StopRecordingObjectInternal(objectSafeRef);
-        }
-        
         public static void StartRecording(RecordIdentifier recordIdentifier)
         {
             Instance.StartRecordingInternal(recordIdentifier);
         }
-
+        
         public static async UniTask StopRecording()
         {
             await Instance.StopRecordingInternal();

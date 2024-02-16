@@ -6,7 +6,6 @@ using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.ProtoBurst;
-using PLUME.Sample.Unity;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
@@ -31,8 +30,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
             // TODO: register type urls when loading assemblies
             _updatePosSampleTypeUrlIndex =
-                ctx.SampleTypeUrlRegistry.GetOrCreateTypeUrlIndex("fr.liris.plume",
-                    TransformUpdateLocalPosition.Descriptor);
+                ctx.SampleTypeUrlRegistry.GetOrCreateTypeUrlIndex(TransformUpdateLocalPositionSample.SampleTypeUrl);
         }
 
         protected override void OnDestroy(RecorderContext ctx)
@@ -113,12 +111,13 @@ namespace PLUME.Base.Module.Unity.Transform
             return transformFrameData;
         }
 
+        [BurstCompile]
         protected override void SerializeFrameData(TransformFrameData frameData, SerializedSamplesBuffer buffer)
         {
             buffer.EnsureCapacity(frameData.DirtySamplesMaxLength, frameData.DirtySamples.Length);
             
-            var data = new NativeList<byte>(frameData.DirtySamplesMaxLength, Allocator.TempJob);
-            var lengths = new NativeList<int>(frameData.DirtySamples.Length, Allocator.TempJob);
+            var data = new NativeList<byte>(frameData.DirtySamplesMaxLength, Allocator.Persistent);
+            var lengths = new NativeList<int>(frameData.DirtySamples.Length, Allocator.Persistent);
             
             foreach (var dirtySample in frameData.DirtySamples)
             {

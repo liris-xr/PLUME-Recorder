@@ -11,8 +11,9 @@ namespace PLUME.Core.Recorder.ProtoBurst
     [BurstCompile]
     public struct FrameSample : IProtoBurstMessage, IDisposable
     {
-        public static FixedString128Bytes FrameSampleTypeUrl => "fr.liris.plume/plume.sample.unity.Frame";
-        public FixedString128Bytes TypeUrl => FrameSampleTypeUrl;
+        public static readonly FixedString128Bytes SampleTypeUrl = "fr.liris.plume/" + Frame.Descriptor.FullName;
+        
+        public FixedString128Bytes TypeUrl => SampleTypeUrl;
 
         public readonly int FrameNumber;
         public NativeArray<Any> Data;
@@ -35,7 +36,7 @@ namespace PLUME.Core.Recorder.ProtoBurst
                 var chunkLength = buffer.GetLength(chunkIdx);
                 var chunkData = buffer.GetData(allocator, offset, chunkLength);
                 var chunkSampleTypeUrlIndex = buffer.GetSampleTypeUrlIndex(chunkIdx);
-                data[chunkIdx] = new Any(chunkData, typeUrlRegistry.GetTypeUrlFromIndex(chunkSampleTypeUrlIndex));
+                data[chunkIdx] = Any.Pack(chunkData, typeUrlRegistry.GetTypeUrlFromIndex(chunkSampleTypeUrlIndex));
                 offset += chunkLength;
             }
 

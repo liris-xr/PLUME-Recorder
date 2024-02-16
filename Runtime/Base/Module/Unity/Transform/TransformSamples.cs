@@ -10,7 +10,9 @@ namespace PLUME.Base.Module.Unity.Transform
     [BurstCompile]
     public struct TransformUpdateLocalPositionSample : IProtoBurstMessage
     {
-        public FixedString128Bytes TypeUrl => "fr.liris.plume/plume.sample.unity.TransformUpdateLocation";
+        public static readonly FixedString128Bytes SampleTypeUrl = "fr.liris.plume/" + TransformUpdateLocalPosition.Descriptor.FullName;
+
+        public FixedString128Bytes TypeUrl => SampleTypeUrl;
         
         // TODO: add identifier
 

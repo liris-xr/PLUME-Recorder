@@ -22,7 +22,7 @@ namespace PLUME.Core.Recorder.Module
 
         public void StartRecordingObject(ObjectSafeRef<TObject> objectSafeRef, bool markCreated)
         {
-            EnsureIsRecording();
+            CheckIsRecording();
 
             if (!_recordedObjects.TryAdd(objectSafeRef))
                 throw new InvalidOperationException("Object is already being recorded.");
@@ -41,7 +41,7 @@ namespace PLUME.Core.Recorder.Module
 
         public void StopRecordingObject(ObjectSafeRef<TObject> objSafeRef, bool markDestroyed)
         {
-            EnsureIsRecording();
+            CheckIsRecording();
 
             if (!_recordedObjects.TryRemove(objSafeRef))
                 throw new InvalidOperationException("Object is not being recorded.");
@@ -114,14 +114,14 @@ namespace PLUME.Core.Recorder.Module
 
         void IRecorderModule.ForceStopRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
-            EnsureIsRecording();
+            CheckIsRecording();
             OnForceStopRecording(recordContext, recorderContext);
             IsRecording = false;
         }
         
         async UniTask IRecorderModule.StopRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
-            EnsureIsRecording();
+            CheckIsRecording();
             await OnStopRecording(recordContext, recorderContext);
             IsRecording = false;
         }
@@ -134,7 +134,7 @@ namespace PLUME.Core.Recorder.Module
             OnReset(recorderContext);
         }
 
-        protected void EnsureIsRecording()
+        protected void CheckIsRecording()
         {
             if (!IsRecording)
                 throw new InvalidOperationException("Recorder module is not recording.");

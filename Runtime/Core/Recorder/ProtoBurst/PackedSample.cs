@@ -1,16 +1,19 @@
 using System;
 using System.Runtime.CompilerServices;
+using Google.Protobuf;
 using ProtoBurst;
 using ProtoBurst.Message;
 using Unity.Burst;
 using Unity.Collections;
+using WireFormat = ProtoBurst.WireFormat;
 
 namespace PLUME.Core.Recorder.ProtoBurst
 {
     [BurstCompile]
     public struct PackedSample : IProtoBurstMessage, IDisposable
     {
-        public FixedString128Bytes TypeUrl => "fr.liris.plume/plume.sample.PackedSample";
+        public static readonly FixedString128Bytes SampleTypeUrl = "fr.liris.plume/" + Sample.PackedSample.Descriptor.FullName;
+        public FixedString128Bytes TypeUrl => SampleTypeUrl;
 
         private bool _hasTimestamp;
         private long _timestamp;
@@ -41,25 +44,37 @@ namespace PLUME.Core.Recorder.ProtoBurst
             Payload = payload;
         }
 
-        public static PackedSample Pack<T>(Allocator allocator, T message) where T : unmanaged, IProtoBurstMessage
+        public static PackedSample Pack<T>(T message, Allocator allocator) where T : unmanaged, IProtoBurstMessage
         {
-            return new PackedSample(Any.Pack(allocator, message));
+            return new PackedSample(Any.Pack(message, allocator));
         }
 
-        public static PackedSample Pack<T>(Allocator allocator, long timestamp, T message)
+        public static PackedSample Pack<T>(long timestamp, T msg, Allocator allocator)
             where T : unmanaged, IProtoBurstMessage
         {
-            return new PackedSample(timestamp, Any.Pack(allocator, message));
+            return new PackedSample(timestamp, Any.Pack(msg, allocator));
+        }
+
+        public static PackedSample PackManaged<T>(long timestamp, T msg, Allocator allocator)
+            where T : IMessage
+        {
+            return new PackedSample(timestamp, Any.PackManaged(msg, allocator));
         }
         
+        public static PackedSample PackManaged<T>(T msg, Allocator allocator)
+            where T : IMessage
+        {
+            return new PackedSample(Any.PackManaged(msg, allocator));
+        }
+
         public static PackedSample Pack(NativeArray<byte> msgBytes, FixedString128Bytes msgTypeUrl)
         {
-            return new PackedSample(new Any(msgBytes, msgTypeUrl));
+            return new PackedSample(Any.Pack(msgBytes, msgTypeUrl));
         }
-        
+
         public static PackedSample Pack(long timestamp, NativeArray<byte> msgBytes, FixedString128Bytes msgTypeUrl)
         {
-            return new PackedSample(timestamp, new Any(msgBytes, msgTypeUrl));
+            return new PackedSample(timestamp, Any.Pack(msgBytes, msgTypeUrl));
         }
 
         [BurstCompile]
@@ -83,7 +98,7 @@ namespace PLUME.Core.Recorder.ProtoBurst
         public int ComputeMaxSize()
         {
             var size = 0;
-            
+
             if (_hasTimestamp)
             {
                 size += WritingPrimitives.TagSize + WritingPrimitives.Int64MaxSize;
@@ -92,7 +107,7 @@ namespace PLUME.Core.Recorder.ProtoBurst
             size += WritingPrimitives.TagSize + WritingPrimitives.LengthPrefixMaxSize + Payload.ComputeMaxSize();
             return size;
         }
-        
+
         public void Dispose()
         {
             Payload.Dispose();

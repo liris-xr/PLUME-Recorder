@@ -1,13 +1,12 @@
 using System;
 using System.Linq;
 using Google.Protobuf.Reflection;
-using PLUME.Core.Recorder;
 using Unity.Burst;
 using Unity.Collections;
 
 namespace PLUME.Core
 {
-    // TODO: don't use NativeHashMap, use a normal HashMap, the systems requiring an access to a blittable type should get the index first and pass it as the blittable type
+    // TODO: create registry automatically from all samples found in the assemblies
     public struct SampleTypeUrlRegistry : IDisposable
     {
         private NativeHashMap<FixedString128Bytes, SampleTypeUrlIndex> _typeUrlToIndex;
@@ -40,6 +39,20 @@ namespace PLUME.Core
             return GetOrCreateTypeUrlIndex(typeUrl);
         }
 
+        public SampleTypeUrlIndex GetOrCreateTypeUrlIndex(FixedString128Bytes typeUrl)
+        {
+            if (_typeUrlToIndex.TryGetValue(typeUrl, out var index))
+            {
+                return index;
+            }
+
+            var newTypeUrlIndex = NextTypeUrlIndex();
+            index = new SampleTypeUrlIndex(newTypeUrlIndex);
+            _typeUrlToIndex.Add(typeUrl, index);
+            _indexToTypeUrl.Add(index, typeUrl);
+            return index;
+        }
+
         public SampleTypeUrlIndex GetOrCreateTypeUrlIndex(string typeUrl)
         {
             var fixedString = new FixedString128Bytes();
@@ -51,16 +64,7 @@ namespace PLUME.Core
                     $"TypeUrl {typeUrl} is too long (max length is {FixedString128Bytes.UTF8MaxLengthInBytes} UTF-8 bytes)");
             }
 
-            if (_typeUrlToIndex.TryGetValue(fixedString, out var index))
-            {
-                return index;
-            }
-
-            var newTypeUrlIndex = NextTypeUrlIndex();
-            index = new SampleTypeUrlIndex(newTypeUrlIndex);
-            _typeUrlToIndex.Add(fixedString, index);
-            _indexToTypeUrl.Add(index, fixedString);
-            return index;
+            return GetOrCreateTypeUrlIndex(fixedString);
         }
 
         [BurstCompile]

@@ -9,9 +9,8 @@ namespace PLUME.Core.Recorder.ProtoBurst
     [BurstCompile]
     public struct Vector3Sample : IProtoBurstMessage
     {
-        public FixedString128Bytes TypeUrl => "fr.liris.plume/plume.sample.common.Vector3";
-
-        public static int MaxSize => (sizeof(ushort) + sizeof(float)) * 3;
+        public static readonly FixedString128Bytes SampleTypeUrl = "fr.liris.plume/" + Vector3.Descriptor.FullName;
+        public FixedString128Bytes TypeUrl => SampleTypeUrl;
 
         public float X;
         public float Y;

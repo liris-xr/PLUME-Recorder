@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using Logger = PLUME.Core.Recorder.Logger;
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using PLUME.Core.Recorder.Data;
-using UnityEngine;
 
 namespace PLUME.Core.Recorder.Writer
 {

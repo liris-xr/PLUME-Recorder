@@ -1,4 +1,3 @@
-using System;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Time;
 

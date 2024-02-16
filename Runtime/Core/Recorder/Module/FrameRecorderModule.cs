@@ -4,9 +4,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.ProtoBurst;
-using ProtoBurst.Message;
 using Unity.Collections;
-using UnityEngine;
 using UnityEngine.Profiling;
 using UnityEngine.Scripting;
 
@@ -73,10 +71,10 @@ namespace PLUME.Core.Recorder.Module
         {
             var timestamp = recordContext.Clock.ElapsedNanoseconds;
             var frame = UnityEngine.Time.frameCount;
-            EnqueueFrame(timestamp, frame);
+            PushFrame(timestamp, frame);
         }
 
-        internal void EnqueueFrame(long timestamp, int frameNumber)
+        private void PushFrame(long timestamp, int frameNumber)
         {
             var frame = new Frame(timestamp, frameNumber);
 
@@ -112,15 +110,8 @@ namespace PLUME.Core.Recorder.Module
                     {
                         var frameSample = FrameSample.Pack(Allocator.Persistent, frame.FrameNumber,
                             ref sampleTypeUrlRegistry, ref frameBuffer);
-                        var packedSample = PackedSample.Pack(Allocator.Persistent, frame.Timestamp, frameSample);
-
-                        var serializedData = new NativeList<byte>(packedSample.ComputeMaxSize(), Allocator.Persistent);
-                        packedSample.WriteToNoResize(ref serializedData);
-                        data.AddTimestampedDataChunk(serializedData.AsArray(), frame.Timestamp);
-
+                        data.PushTimestampedSample(frameSample, frame.Timestamp);
                         frameSample.Dispose();
-                        packedSample.Dispose();
-                        serializedData.Dispose();
                     }
 
                     frameBuffer.Dispose();

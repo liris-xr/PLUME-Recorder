@@ -4,7 +4,7 @@ using Unity.Collections;
 
 namespace PLUME.Core.Recorder
 {
-    // TODO: merge with NativeDataChunks/NativeTimestampedDataChunks
+    // TODO: merge with RecordData 
     public struct SerializedSamplesBuffer : IDisposable
     {
         private NativeList<byte> _data;

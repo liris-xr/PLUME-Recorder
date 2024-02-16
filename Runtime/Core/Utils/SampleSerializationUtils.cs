@@ -1,40 +1,31 @@
 using System;
 using Google.Protobuf;
-using PLUME.Core.Recorder;
 using Unity.Collections;
 
 namespace PLUME.Core.Utils
 {
     public static class SampleSerializationUtils
     {
-        public static unsafe void SerializeSampleToBuffer(this IMessage message, SampleTypeUrlIndex sampleTypeUrlIndex,
-            SerializedSamplesBuffer buffer)
-        {
-            var size = message.CalculateSize();
-            Span<byte> bytes = stackalloc byte[size];
-            message.WriteTo(bytes);
-            buffer.AddSerializedSample(sampleTypeUrlIndex, bytes);
-        }
-
-        public static unsafe Span<byte> ToSpan(this IMessage message)
+        public static unsafe void Serialize(this IMessage message, ref NativeList<byte> buffer)
         {
             var size = message.CalculateSize();
             var bytes = stackalloc byte[size];
             var span = new Span<byte>(bytes, size);
             message.WriteTo(span);
-            return span;
+
+            fixed (byte* ptr = span)
+            {
+                buffer.AddRange(ptr, size);
+            }
         }
 
-        public static unsafe NativeArray<byte> ToNativeArray(this IMessage message, Allocator allocator)
+        public static NativeArray<byte> Serialize(this IMessage message, Allocator allocator)
         {
-            var size = message.CalculateSize();
-            var list = new NativeList<byte>(size, allocator);
-            var bytes = stackalloc byte[size];
-            var span = new Span<byte>(bytes, size);
-            message.WriteTo(span);
-            list.Resize(size, NativeArrayOptions.UninitializedMemory);
-            span.CopyTo(list.AsArray().AsSpan());
-            return list.AsArray();
+            var bytes = new NativeList<byte>(message.CalculateSize(), Allocator.Persistent);
+            message.Serialize(ref bytes);
+            var bytesArray = bytes.ToArray(allocator);
+            bytes.Dispose();
+            return bytesArray;
         }
     }
 }

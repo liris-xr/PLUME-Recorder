@@ -14,7 +14,7 @@ namespace PLUME.Tests
         {
             PlumeRecorder.Instantiate();
             
-            var objectSafeRefProvider = new ObjectSafeRefProvider();
+            var objectSafeRefProvider = PlumeRecorder.Instance.Context.ObjectSafeRefProvider;
 
             var go1 = new GameObject("go1");
             var go2 = new GameObject("go2");

@@ -1,34 +1,121 @@
-using System;
 using System.Collections.Generic;
+using Google.Protobuf;
+using PLUME.Core.Recorder.ProtoBurst;
+using ProtoBurst;
+using Unity.Collections;
 
 namespace PLUME.Core.Recorder.Data
 {
     public class ConcurrentRecordData : IRecordData
     {
         private readonly object _lock = new();
-        private readonly RecordData _data = new();
 
-        public void AddTimelessDataChunk(ReadOnlySpan<byte> data)
+        private readonly TimelessDataChunks _timelessDataChunks;
+        private readonly TimestampedDataChunks _timestampedDataChunks;
+
+        public ConcurrentRecordData()
         {
-            lock (_lock)
-            {
-                _data.AddTimelessDataChunk(data);
-            }
+            _timelessDataChunks = new TimelessDataChunks();
+            _timestampedDataChunks = new TimestampedDataChunks();
         }
 
-        public void AddTimestampedDataChunk(ReadOnlySpan<byte> data, long timestamp)
+        public ConcurrentRecordData(TimestampedDataChunks timestampedDataChunks, TimelessDataChunks timelessDataChunks)
         {
+            _timestampedDataChunks = timestampedDataChunks;
+            _timelessDataChunks = timelessDataChunks;
+        }
+
+
+        public void PushTimelessSample(IMessage msg)
+        {
+            var packedSample = PackedSample.PackManaged(msg, Allocator.Persistent);
+            var bytes = packedSample.SerializeLengthPrefixed(Allocator.Persistent);
+
             lock (_lock)
             {
-                _data.AddTimestampedDataChunk(data, timestamp);
+                _timelessDataChunks.Push(bytes);
             }
+
+            bytes.Dispose();
+            packedSample.Dispose();
+        }
+
+        public void PushTimestampedSample(IMessage msg, long timestamp)
+        {
+            var packedSample = PackedSample.PackManaged(timestamp, msg, Allocator.Persistent);
+            var bytes = packedSample.SerializeLengthPrefixed(Allocator.Persistent);
+
+            lock (_lock)
+            {
+                _timestampedDataChunks.Push(bytes, timestamp);
+            }
+
+            bytes.Dispose();
+            packedSample.Dispose();
+        }
+
+        public void PushTimelessSample<T>(T msg) where T : unmanaged, IProtoBurstMessage
+        {
+            var packedSample = PackedSample.Pack(msg, Allocator.Persistent);
+            var bytes = packedSample.SerializeLengthPrefixed(Allocator.Persistent);
+
+            lock (_lock)
+            {
+                _timelessDataChunks.Push(bytes);
+            }
+
+            bytes.Dispose();
+            packedSample.Dispose();
+        }
+
+        public void PushTimestampedSample<T>(T msg, long timestamp) where T : unmanaged, IProtoBurstMessage
+        {
+            var packedSample = PackedSample.Pack(timestamp, msg, Allocator.Persistent);
+            var bytes = packedSample.SerializeLengthPrefixed(Allocator.Persistent);
+
+            lock (_lock)
+            {
+                _timestampedDataChunks.Push(bytes, timestamp);
+            }
+
+            bytes.Dispose();
+            packedSample.Dispose();
+        }
+
+        public void PushTimelessSample(NativeArray<byte> sampleData, FixedString128Bytes sampleTypeUrl)
+        {
+            var packedSample = PackedSample.Pack(sampleData, sampleTypeUrl);
+            var bytes = packedSample.SerializeLengthPrefixed(Allocator.Persistent);
+
+            lock (_lock)
+            {
+                _timelessDataChunks.Push(bytes);
+            }
+
+            bytes.Dispose();
+            packedSample.Dispose();
+        }
+
+        public void PushTimestampedSample(NativeArray<byte> sampleData, FixedString128Bytes sampleTypeUrl,
+            long timestamp)
+        {
+            var packedSample = PackedSample.Pack(timestamp, sampleData, sampleTypeUrl);
+            var bytes = packedSample.SerializeLengthPrefixed(Allocator.Persistent);
+            
+            lock (_lock)
+            {
+                _timestampedDataChunks.Push(bytes, timestamp);
+            }
+            
+            bytes.Dispose();
+            packedSample.Dispose();
         }
 
         public bool TryPopAllTimelessDataChunks(DataChunks dataChunks)
         {
             lock (_lock)
             {
-                return _data.TryPopAllTimelessDataChunks(dataChunks);
+                return _timelessDataChunks.TryPopAll(dataChunks);
             }
         }
 
@@ -36,7 +123,7 @@ namespace PLUME.Core.Recorder.Data
         {
             lock (_lock)
             {
-                return _data.TryPopAllTimestampedDataChunks(dataChunks, timestamps);
+                return _timestampedDataChunks.TryPopAll(dataChunks, timestamps);
             }
         }
 
@@ -45,7 +132,7 @@ namespace PLUME.Core.Recorder.Data
         {
             lock (_lock)
             {
-                return _data.TryPopTimestampedDataChunksBefore(timestamp, dataChunks, timestamps, inclusive);
+                return _timestampedDataChunks.TryPopAllBeforeTimestamp(timestamp, dataChunks, timestamps, inclusive);
             }
         }
 
@@ -53,7 +140,8 @@ namespace PLUME.Core.Recorder.Data
         {
             lock (_lock)
             {
-                _data.Clear();
+                _timelessDataChunks.Clear();
+                _timestampedDataChunks.Clear();
             }
         }
     }

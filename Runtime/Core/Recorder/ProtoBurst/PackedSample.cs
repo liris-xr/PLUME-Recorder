@@ -27,14 +27,14 @@ namespace PLUME.Core.Recorder.ProtoBurst
 
         public Any Payload;
 
-        private PackedSample(Any payload)
+        public PackedSample(Any payload)
         {
             _hasTimestamp = false;
             _timestamp = default;
             Payload = payload;
         }
 
-        private PackedSample(long timestamp, Any payload)
+        public PackedSample(long timestamp, Any payload)
         {
             _hasTimestamp = true;
             _timestamp = timestamp;
@@ -54,12 +54,12 @@ namespace PLUME.Core.Recorder.ProtoBurst
         
         public static PackedSample Pack(NativeArray<byte> msgBytes, FixedString128Bytes msgTypeUrl)
         {
-            return new PackedSample(Any.Pack(msgBytes, msgTypeUrl));
+            return new PackedSample(new Any(msgBytes, msgTypeUrl));
         }
         
         public static PackedSample Pack(long timestamp, NativeArray<byte> msgBytes, FixedString128Bytes msgTypeUrl)
         {
-            return new PackedSample(timestamp, Any.Pack(msgBytes, msgTypeUrl));
+            return new PackedSample(timestamp, new Any(msgBytes, msgTypeUrl));
         }
 
         [BurstCompile]
@@ -86,13 +86,10 @@ namespace PLUME.Core.Recorder.ProtoBurst
             
             if (_hasTimestamp)
             {
-                size += sizeof(ushort);
-                size += sizeof(ulong);
+                size += WritingPrimitives.TagSize + WritingPrimitives.Int64MaxSize;
             }
 
-            size += sizeof(ushort);
-            size += sizeof(uint); // msg length
-            size += Payload.ComputeMaxSize();
+            size += WritingPrimitives.TagSize + WritingPrimitives.LengthPrefixMaxSize + Payload.ComputeMaxSize();
             return size;
         }
         

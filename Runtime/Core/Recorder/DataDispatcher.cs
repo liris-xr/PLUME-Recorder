@@ -12,7 +12,7 @@ namespace PLUME.Core.Recorder
 {
     public class DataDispatcher
     {
-        private bool _shouldDispatch = true;
+        private bool _running;
         private Thread _dispatcherThread;
 
         private IDataWriter[] _outputs;
@@ -32,6 +32,7 @@ namespace PLUME.Core.Recorder
                 Name = "DataDispatcher.DispatchThread",
                 IsBackground = false
             };
+            _running = true;
             _dispatcherThread.Start();
         }
 
@@ -43,7 +44,7 @@ namespace PLUME.Core.Recorder
             DataChunks tmpTimestampedDataChunks = new();
             List<long> tmpTimestamps = new();
 
-            while (_shouldDispatch)
+            while (_running)
             {
                 var timestamp = clock.ElapsedNanoseconds;
                 var timeBarrier = timestamp - 1_000_000;
@@ -57,8 +58,6 @@ namespace PLUME.Core.Recorder
                 {
                     DispatchTimestampedDataChunks(tmpTimestampedDataChunks, tmpTimestamps);
                 }
-                
-                Thread.Sleep(1);
             }
 
             // Dispatch any remaining data
@@ -99,7 +98,7 @@ namespace PLUME.Core.Recorder
         
         internal async UniTask Stop()
         {
-            _shouldDispatch = false;
+            _running = false;
             await UniTask.WaitUntil(() => !_dispatcherThread.IsAlive);
             _dispatcherThread = null;
             _outputs = null;
@@ -108,11 +107,19 @@ namespace PLUME.Core.Recorder
 
         internal void ForceStop()
         {
-            _shouldDispatch = false;
+            _running = false;
             _dispatcherThread.Join();
             _dispatcherThread = null;
             _outputs = null;
             _fileDataWriter.Dispose();
+        }
+
+        public void OnApplicationPaused()
+        {
+            foreach (var output in _outputs)
+            {
+                output.Flush();
+            }
         }
     }
 }

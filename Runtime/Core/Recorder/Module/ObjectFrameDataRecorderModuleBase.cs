@@ -1,29 +1,42 @@
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace PLUME.Core.Recorder.Module
 {
     public abstract class ObjectFrameDataRecorderModuleBase<TObject, TFrameData> : ObjectRecorderModuleBase<TObject>,
         IFrameDataRecorderModule where TObject : UnityEngine.Object where TFrameData : unmanaged, IFrameData
     {
-        private readonly ConcurrentQueue<TFrameData> _frameDataQueue = new();
+        private readonly Dictionary<Frame, TFrameData> _framesData = new(FrameComparer.Instance);
 
-        void IFrameDataRecorderModule.EnqueueFrameData()
+        void IFrameDataRecorderModule.PushFrameData(Frame frame)
         {
             var frameData = CollectFrameData();
             ClearCreatedObjects();
             ClearDestroyedObjects();
-            _frameDataQueue.Enqueue(frameData);
+
+            lock (_framesData)
+            {
+                _framesData.Add(frame, frameData);
+            }
         }
 
-        void IFrameDataRecorderModule.DequeueSerializedFrameData(SerializedSamplesBuffer buffer)
+        bool IFrameDataRecorderModule.TryPopSerializedFrameData(Frame frame, SerializedSamplesBuffer buffer)
         {
-            if(!_frameDataQueue.TryDequeue(out var frameData))
-                throw new System.InvalidOperationException("No frame data to dequeue.");
+            TFrameData frameData;
             
+            lock (_framesData)
+            {
+                if (!_framesData.TryGetValue(frame, out frameData))
+                {
+                    return false;
+                }
+
+                _framesData.Remove(frame);
+            }
+
             SerializeFrameData(frameData, buffer);
-            
-            // TODO: tester si le dispose fonctionne sur l'autre thread
             DisposeFrameData(frameData);
+            return true;
         }
 
         protected abstract TFrameData CollectFrameData();

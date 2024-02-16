@@ -11,9 +11,9 @@ namespace PLUME.Core.Recorder.Data
         
         public bool TryPopAllTimelessDataChunks(DataChunks dataChunks);
         
-        public bool TryPopAllTimestampedDataChunks(DataChunks dataChunks, List<long> chunksTimestamp);
+        public bool TryPopAllTimestampedDataChunks(DataChunks dataChunks, List<long> timestamps);
         
-        public bool TryPopTimestampedDataChunksBefore(long timestamp, DataChunks dataChunks, List<long> chunksTimestamp, bool inclusive);
+        public bool TryPopTimestampedDataChunksBefore(long timestamp, DataChunks dataChunks, List<long> timestamps, bool inclusive);
         
         public void Clear();
     }

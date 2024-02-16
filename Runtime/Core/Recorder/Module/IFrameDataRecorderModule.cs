@@ -2,8 +2,8 @@ namespace PLUME.Core.Recorder.Module
 {
     public interface IFrameDataRecorderModule : IRecorderModule
     {
-        internal void EnqueueFrameData();
+        internal void PushFrameData(Frame frame);
 
-        internal void DequeueSerializedFrameData(SerializedSamplesBuffer buffer);
+        internal bool TryPopSerializedFrameData(Frame frame, SerializedSamplesBuffer buffer);
     }
 }

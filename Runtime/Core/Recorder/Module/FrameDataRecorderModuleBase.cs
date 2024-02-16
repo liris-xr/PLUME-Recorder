@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Concurrent;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
 namespace PLUME.Core.Recorder.Module
@@ -7,8 +7,8 @@ namespace PLUME.Core.Recorder.Module
     public abstract class FrameDataRecorderModuleBase<TFrameData> : IFrameDataRecorderModule
         where TFrameData : unmanaged, IFrameData
     {
-        private ConcurrentQueue<TFrameData> _frameDataQueue = new();
-        
+        private readonly Dictionary<Frame, TFrameData> _framesData = new(FrameComparer.Instance);
+
         public bool IsRecording { get; private set; }
 
         private TFrameData _frameData;
@@ -27,7 +27,7 @@ namespace PLUME.Core.Recorder.Module
             OnForceStop(recordContext, recorderContext);
             IsRecording = false;
         }
-        
+
         async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext)
         {
             EnsureIsRecording();
@@ -40,19 +40,33 @@ namespace PLUME.Core.Recorder.Module
             OnReset(recorderContext);
         }
 
-        void IFrameDataRecorderModule.EnqueueFrameData()
+        void IFrameDataRecorderModule.PushFrameData(Frame frame)
         {
             var frameData = CollectFrameData();
-            _frameDataQueue.Enqueue(frameData);
+
+            lock (_framesData)
+            {
+                _framesData.Add(frame, frameData);
+            }
         }
-        
-        void IFrameDataRecorderModule.DequeueSerializedFrameData(SerializedSamplesBuffer buffer)
+
+        bool IFrameDataRecorderModule.TryPopSerializedFrameData(Frame frame, SerializedSamplesBuffer buffer)
         {
-            if(!_frameDataQueue.TryDequeue(out var frameData))
-                throw new InvalidOperationException("No frame data to dequeue.");
+            TFrameData frameData;
+            
+            lock (_framesData)
+            {
+                if (!_framesData.TryGetValue(frame, out frameData))
+                {
+                    return false;
+                }
+
+                _framesData.Remove(frame);
+            }
 
             SerializeFrameData(frameData, buffer);
             DisposeFrameData(frameData);
+            return true;
         }
 
         protected void EnsureIsRecording()
@@ -72,7 +86,7 @@ namespace PLUME.Core.Recorder.Module
         {
             OnDestroy(recorderContext);
         }
-        
+
         void IRecorderModule.FixedUpdate(RecordContext recordContext, RecorderContext context)
         {
             OnFixedUpdate(recordContext, context);
@@ -125,7 +139,7 @@ namespace PLUME.Core.Recorder.Module
         protected virtual void OnPostLateUpdate(RecordContext recordContext, RecorderContext context)
         {
         }
-        
+
         protected virtual void OnCreate(RecorderContext recorderContext)
         {
         }
@@ -141,7 +155,7 @@ namespace PLUME.Core.Recorder.Module
         protected void OnForceStop(RecordContext recordContext, RecorderContext recorderContext)
         {
         }
-        
+
         protected virtual UniTask OnStop(RecordContext recordContext, RecorderContext recorderContext)
         {
             return UniTask.CompletedTask;

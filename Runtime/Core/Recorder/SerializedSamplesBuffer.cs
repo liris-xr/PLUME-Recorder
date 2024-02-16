@@ -37,7 +37,7 @@ namespace PLUME.Core.Recorder
             {
                 _lengths.SetCapacity(requiredChunksCapacity);
             }
-            
+
             if (requiredChunksCapacity > _sampleTypeUrlIndices.Capacity)
             {
                 _sampleTypeUrlIndices.SetCapacity(requiredChunksCapacity);
@@ -79,7 +79,7 @@ namespace PLUME.Core.Recorder
             _lengths.AddNoResize(data.Length);
             _sampleTypeUrlIndices.AddNoResize(sampleTypeUrlIndex);
         }
-        
+
         public void AddSerializedSamplesNoResize(SampleTypeUrlIndex sampleTypeUrlIndex, NativeArray<byte> data,
             NativeArray<int> lengths)
         {
@@ -114,17 +114,41 @@ namespace PLUME.Core.Recorder
         {
             return _data.AsArray();
         }
+        
+        public NativeArray<byte> GetData(Allocator allocator)
+        {
+            var copy = new NativeArray<byte>(_data.Length, allocator);
+            _data.AsArray().CopyTo(copy);
+            return copy;
+        }
 
         public NativeArray<byte> GetData(int start, int length)
         {
             return _data.AsArray().GetSubArray(start, length);
         }
 
+        public NativeArray<byte> GetData(Allocator allocator, int start, int length)
+        {
+            var copy = new NativeArray<byte>(length, allocator);
+            _data.AsArray().GetSubArray(start, length).CopyTo(copy);
+            return copy;
+        }
+
+        public int GetLength(int index)
+        {
+            return _lengths[index];
+        }
+        
         public NativeArray<int> GetLengths()
         {
             return _lengths.AsArray();
         }
 
+        public SampleTypeUrlIndex GetSampleTypeUrlIndex(int index)
+        {
+            return _sampleTypeUrlIndices[index];
+        }
+        
         public NativeArray<SampleTypeUrlIndex> GetSampleTypeUrlIndices()
         {
             return _sampleTypeUrlIndices.AsArray();

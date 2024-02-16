@@ -4,6 +4,7 @@ using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Time;
+using PLUME.Core.Scripts;
 using PLUME.Core.Utils;
 using Unity.Collections;
 using UnityEngine;
@@ -31,6 +32,8 @@ namespace PLUME.Core.Recorder
 
         private readonly DataDispatcher _dataDispatcher;
 
+        private GameObject _applicationOnPauseListener;
+        
         private bool _wantsToQuit;
 
         private Recorder(DataDispatcher dataDispatcher, RecorderContext ctx)
@@ -72,7 +75,9 @@ namespace PLUME.Core.Recorder
                 typeof(PreLateUpdate));
             PlayerLoopUtils.InjectUpdateInCurrentLoop(typeof(RecorderPostLateUpdate), _instance.PostLateUpdate,
                 typeof(PostLateUpdate));
-
+            
+            ApplicationPauseDetector.Paused += () => _instance.OnApplicationPaused();
+            
             Application.wantsToQuit += _instance.OnApplicationWantsToQuit;
 
             Application.quitting += () =>
@@ -169,6 +174,8 @@ namespace PLUME.Core.Recorder
             if (IsRecording)
                 throw new InvalidOperationException("Recorder is already recording.");
 
+            ApplicationPauseDetector.EnsureExists();
+            
             var recordClock = new Clock();
             var data = new ConcurrentRecordData();
             _recordContext = new RecordContext(recordClock, data, recordIdentifier);
@@ -210,15 +217,16 @@ namespace PLUME.Core.Recorder
             }
 
             await _dataDispatcher.Stop();
-            
+
             CurrentStatus = Status.Stopped;
-            
+
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
                 Context.Modules[i].Reset(Context);
             }
-            
+
+            ApplicationPauseDetector.Destroy();
             _recordContext = null;
         }
 
@@ -227,13 +235,27 @@ namespace PLUME.Core.Recorder
             if (IsStopped)
                 return;
 
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Context.Modules.Count; i++)
+            {
+                Context.Modules[i].ForceStop(_recordContext, Context);
+            }
+
             _dataDispatcher.ForceStop();
             CurrentStatus = Status.Stopped;
             _recordContext = null;
-            
+
             Debug.Log("Recorder stopped forcefully.");
         }
+        
+        private void OnApplicationPaused()
+        {
+            if(_dataDispatcher == null)
+                return;
 
+            _dataDispatcher.OnApplicationPaused();
+        }
+        
         private bool OnApplicationWantsToQuit()
         {
             if (Application.isEditor)

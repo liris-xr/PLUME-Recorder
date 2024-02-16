@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace PLUME.Core.Recorder.Data
 {
-    public class DataChunks
+    public class DataChunks : IEqualityComparer<DataChunks>
     {
         private byte[] _chunksData;
         private int[] _chunksDataLength;
@@ -18,7 +20,7 @@ namespace PLUME.Core.Recorder.Data
             _chunksDataLength = new int[initialChunksCapacity];
         }
 
-        public void AddDataChunk(ReadOnlySpan<byte> chunk)
+        public void Add(ReadOnlySpan<byte> chunk)
         {
             EnsureChunksDataCapacity(TotalDataLength + chunk.Length);
             EnsureChunksLengthCapacity(ChunksCount + 1);
@@ -29,8 +31,8 @@ namespace PLUME.Core.Recorder.Data
             TotalDataLength += chunk.Length;
             ChunksCount += 1;
         }
-        
-        public void AddDataChunks(ReadOnlySpan<byte> chunksData, ReadOnlySpan<int> chunksLengths)
+
+        public void AddRange(ReadOnlySpan<byte> chunksData, ReadOnlySpan<int> chunksLengths)
         {
             EnsureChunksDataCapacity(TotalDataLength + chunksData.Length);
             EnsureChunksLengthCapacity(ChunksCount + chunksLengths.Length);
@@ -42,7 +44,7 @@ namespace PLUME.Core.Recorder.Data
             ChunksCount += chunksLengths.Length;
         }
 
-        public void InsertDataChunk(int chunkIndex, ReadOnlySpan<byte> chunk)
+        public void Insert(int chunkIndex, ReadOnlySpan<byte> chunk)
         {
             EnsureChunksDataCapacity(TotalDataLength + chunk.Length);
             EnsureChunksLengthCapacity(ChunksCount + 1);
@@ -70,7 +72,7 @@ namespace PLUME.Core.Recorder.Data
         {
             var byteIndex = pos == ChunkPosition.Start
                 ? GetChunkByteIndex(chunkIndex)
-                : GetChunkByteIndex(chunkIndex) + GetChunkDataLength(chunkIndex);
+                : GetChunkByteIndex(chunkIndex) + GetDataChunkLength(chunkIndex);
 
             Array.Copy(_chunksData, byteIndex, _chunksData, byteIndex + chunk.Length, TotalDataLength - byteIndex);
             chunk.CopyTo(new Span<byte>(_chunksData, byteIndex, chunk.Length));
@@ -79,7 +81,7 @@ namespace PLUME.Core.Recorder.Data
             TotalDataLength += chunk.Length;
         }
 
-        public void RemoveDataChunk(int chunkIndex)
+        public void Remove(int chunkIndex)
         {
             var byteIndex = GetChunkByteIndex(chunkIndex);
             var chunkLength = _chunksDataLength[chunkIndex];
@@ -90,7 +92,7 @@ namespace PLUME.Core.Recorder.Data
             ChunksCount -= 1;
         }
 
-        public void RemoveDataChunks(int chunkIndex, int count)
+        public void RemoveRange(int chunkIndex, int count)
         {
             var lastChunkIndex = chunkIndex + count - 1;
             var firstByteIndex = GetChunkByteIndex(chunkIndex);
@@ -102,21 +104,21 @@ namespace PLUME.Core.Recorder.Data
             TotalDataLength -= lastByteIndex - firstByteIndex;
             ChunksCount -= count;
         }
-        
+
         public void Clear()
         {
             ChunksCount = 0;
             TotalDataLength = 0;
         }
-        
-        public ReadOnlySpan<byte> GetChunkData(int chunkIndex)
+
+        public ReadOnlySpan<byte> GetDataChunk(int chunkIndex)
         {
             var chunkByteIndex = GetChunkByteIndex(chunkIndex);
             var chunkLength = _chunksDataLength[chunkIndex];
             return new ReadOnlySpan<byte>(_chunksData, chunkByteIndex, chunkLength);
         }
 
-        public ReadOnlySpan<byte> GetChunksData(int chunkIndex, int count)
+        public ReadOnlySpan<byte> GetDataChunks(int chunkIndex, int count)
         {
             var lastChunkIndex = chunkIndex + count - 1;
             var firstByteIndex = GetChunkByteIndex(chunkIndex);
@@ -124,22 +126,22 @@ namespace PLUME.Core.Recorder.Data
             return new ReadOnlySpan<byte>(_chunksData, firstByteIndex, lastByteIndex - firstByteIndex);
         }
 
-        public int GetChunkDataLength(int chunkIdx)
-        {
-            return _chunksDataLength[chunkIdx];
-        }
-        
-        public ReadOnlySpan<int> GetChunksDataLength(int chunkIndex, int count)
-        {
-            return new ReadOnlySpan<int>(_chunksDataLength, chunkIndex, count);
-        }
-        
-        public ReadOnlySpan<byte> GetAllChunksData()
+        public ReadOnlySpan<byte> GetAllData()
         {
             return new ReadOnlySpan<byte>(_chunksData, 0, TotalDataLength);
         }
 
-        public ReadOnlySpan<int> GetAllChunksDataLength()
+        public int GetDataChunkLength(int chunkIdx)
+        {
+            return _chunksDataLength[chunkIdx];
+        }
+
+        public ReadOnlySpan<int> GetDataChunksLength(int chunkIndex, int count)
+        {
+            return new ReadOnlySpan<int>(_chunksDataLength, chunkIndex, count);
+        }
+        
+        public ReadOnlySpan<int> GetAllDataChunksLength()
         {
             return new ReadOnlySpan<int>(_chunksDataLength, 0, ChunksCount);
         }
@@ -190,6 +192,54 @@ namespace PLUME.Core.Recorder.Data
         {
             Start,
             End
+        }
+
+        public bool Equals(DataChunks x, DataChunks y)
+        {
+            if (ReferenceEquals(x, y)) return true;
+            if (ReferenceEquals(x, null)) return false;
+            if (ReferenceEquals(y, null)) return false;
+            if (x.GetType() != y.GetType()) return false;
+            if (x.ChunksCount != y.ChunksCount) return false;
+            return x.GetAllData().SequenceEqual(y.GetAllData()) &&
+                   x.GetAllDataChunksLength().SequenceEqual(y.GetAllDataChunksLength());
+        }
+
+        public int GetHashCode(DataChunks obj)
+        {
+            var chunksData = obj.GetAllData().ToArray();
+            var chunksDataLength = obj.GetAllDataChunksLength().ToArray();
+            return HashCode.Combine(chunksData, chunksDataLength, obj.ChunksCount, obj.TotalDataLength);
+        }
+
+        public override int GetHashCode()
+        {
+            return GetHashCode(this);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is DataChunks other && Equals(this, other);
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+
+            sb.Append($"{ChunksCount} chunks, {TotalDataLength} bytes (");
+
+            for (var i = 0; i < ChunksCount; i++)
+            {
+                sb.Append($"{_chunksDataLength[i]}");
+
+                if (i < ChunksCount - 1)
+                {
+                    sb.Append(", ");
+                }
+            }
+            sb.Append(")");
+
+            return sb.ToString();
         }
     }
 }

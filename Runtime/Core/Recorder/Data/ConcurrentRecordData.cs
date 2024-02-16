@@ -7,7 +7,7 @@ namespace PLUME.Core.Recorder.Data
     {
         private readonly object _lock = new();
         private readonly RecordData _data = new();
-        
+
         public void AddTimelessDataChunk(ReadOnlySpan<byte> data)
         {
             lock (_lock)
@@ -32,19 +32,20 @@ namespace PLUME.Core.Recorder.Data
             }
         }
 
-        public bool TryPopAllTimestampedDataChunks(DataChunks dataChunks, List<long> chunksTimestamp)
+        public bool TryPopAllTimestampedDataChunks(DataChunks dataChunks, List<long> timestamps)
         {
             lock (_lock)
             {
-                return _data.TryPopAllTimestampedDataChunks(dataChunks, chunksTimestamp);
+                return _data.TryPopAllTimestampedDataChunks(dataChunks, timestamps);
             }
         }
 
-        public bool TryPopTimestampedDataChunksBefore(long timestamp, DataChunks dataChunks, List<long> chunksTimestamp, bool inclusive)
+        public bool TryPopTimestampedDataChunksBefore(long timestamp, DataChunks dataChunks, List<long> timestamps,
+            bool inclusive)
         {
             lock (_lock)
             {
-                return _data.TryPopTimestampedDataChunksBefore(timestamp, dataChunks, chunksTimestamp, inclusive);
+                return _data.TryPopTimestampedDataChunksBefore(timestamp, dataChunks, timestamps, inclusive);
             }
         }
 

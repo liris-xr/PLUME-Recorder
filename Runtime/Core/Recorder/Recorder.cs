@@ -212,6 +212,13 @@ namespace PLUME.Core.Recorder
             await _dataDispatcher.Stop();
             
             CurrentStatus = Status.Stopped;
+            
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Context.Modules.Count; i++)
+            {
+                Context.Modules[i].Reset(Context);
+            }
+            
             _recordContext = null;
         }
 

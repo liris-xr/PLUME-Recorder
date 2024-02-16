@@ -297,7 +297,8 @@ namespace PLUME.Core.Recorder
             }
         }
 
-        private void StopRecordingObjectInternal<T>(ObjectSafeRef<T> objectSafeRef) where T : UnityEngine.Object
+        private void StopRecordingObjectInternal<T>(ObjectSafeRef<T> objectSafeRef, bool markDestroyed)
+            where T : UnityEngine.Object
         {
             EnsureIsRecording();
 
@@ -315,7 +316,7 @@ namespace PLUME.Core.Recorder
                 if (!objectRecorderModule.IsRecordingObject(objectSafeRef))
                     continue;
 
-                objectRecorderModule.StopRecordingObject(objectSafeRef);
+                objectRecorderModule.StopRecordingObject(objectSafeRef, markDestroyed);
             }
         }
 
@@ -369,7 +370,7 @@ namespace PLUME.Core.Recorder
             if (!IsRecording)
                 throw new InvalidOperationException("Recorder is not recording");
         }
-        
+
         private static void CheckInstantiated()
         {
             if (_instance == null)
@@ -381,26 +382,44 @@ namespace PLUME.Core.Recorder
             foreach (var module in Context.Modules)
                 module.Destroy(Context);
         }
-        
+
+        public static void StartRecording(RecordIdentifier recordIdentifier)
+        {
+            Instance.StartRecordingInternal(recordIdentifier);
+        }
+
+        public static async UniTask StopRecording()
+        {
+            await Instance.StopRecordingInternal();
+        }
+
         public static void RecordMarker(string label)
         {
             Instance.RecordMarkerInternal(label);
         }
-        
+
         public static void StartRecordingObject<T>(ObjectSafeRef<T> objectSafeRef, bool markCreated = true)
             where T : UnityEngine.Object
         {
             Instance.StartRecordingObjectInternal(objectSafeRef, markCreated);
         }
-        
-        public static void StartRecording(RecordIdentifier recordIdentifier)
+
+        public static void StopRecordingObject<T>(ObjectSafeRef<T> objectSafeRef, bool markDestroyed = true)
+            where T : UnityEngine.Object
         {
-            Instance.StartRecordingInternal(recordIdentifier);
+            Instance.StopRecordingObjectInternal(objectSafeRef, markDestroyed);
         }
-        
-        public static async UniTask StopRecording()
+
+        public static void StartRecordingObject<T>(T obj, bool markCreated = true) where T : UnityEngine.Object
         {
-            await Instance.StopRecordingInternal();
+            var objectSafeRef = Instance.Context.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(obj);
+            Instance.StartRecordingObjectInternal(objectSafeRef, markCreated);
+        }
+
+        public static void StopRecordingObject<T>(T obj, bool markDestroyed = true) where T : UnityEngine.Object
+        {
+            var objectSafeRef = Instance.Context.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(obj);
+            Instance.StopRecordingObjectInternal(objectSafeRef, markDestroyed);
         }
     }
 }

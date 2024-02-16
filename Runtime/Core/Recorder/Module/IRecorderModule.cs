@@ -8,11 +8,11 @@ namespace PLUME.Core.Recorder.Module
 
         internal void Destroy(RecorderContext context);
 
-        internal void Start(RecordContext recordContext, RecorderContext recorderContext);
+        internal void StartRecording(RecordContext recordContext, RecorderContext recorderContext);
 
-        internal UniTask Stop(RecordContext recordContext, RecorderContext recorderContext);
+        internal UniTask StopRecording(RecordContext recordContext, RecorderContext recorderContext);
 
-        internal void ForceStop(RecordContext recordContext, RecorderContext recorderContext);
+        internal void ForceStopRecording(RecordContext recordContext, RecorderContext recorderContext);
 
         internal void Reset(RecorderContext context);
         

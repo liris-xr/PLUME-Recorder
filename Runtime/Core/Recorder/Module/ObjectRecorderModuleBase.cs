@@ -36,7 +36,7 @@ namespace PLUME.Core.Recorder.Module
             _destroyedObjects.TryRemove(objectSafeRef);
 
             if (successfullyMarkedCreated)
-                OnMarkedCreated(objectSafeRef);
+                OnObjectMarkedCreated(objectSafeRef);
         }
 
         public void StopRecordingObject(ObjectSafeRef<TObject> objSafeRef, bool markDestroyed)
@@ -55,7 +55,7 @@ namespace PLUME.Core.Recorder.Module
             _createdObjects.TryRemove(objSafeRef);
 
             if (successfullyMarkedDestroyed)
-                OnMarkedDestroyed(objSafeRef);
+                OnObjectMarkedDestroyed(objSafeRef);
         }
 
         protected void ClearCreatedObjects()
@@ -103,26 +103,26 @@ namespace PLUME.Core.Recorder.Module
             OnDestroy(recorderContext);
         }
 
-        void IRecorderModule.Start(RecordContext recordContext, RecorderContext recorderContext)
+        void IRecorderModule.StartRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
             if (IsRecording)
                 throw new InvalidOperationException("Recorder module is already recording.");
             
             IsRecording = true;
-            OnStart(recordContext, recorderContext);
+            OnStartRecording(recordContext, recorderContext);
         }
 
-        void IRecorderModule.ForceStop(RecordContext recordContext, RecorderContext recorderContext)
+        void IRecorderModule.ForceStopRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
             EnsureIsRecording();
-            OnForceStop(recordContext, recorderContext);
+            OnForceStopRecording(recordContext, recorderContext);
             IsRecording = false;
         }
         
-        async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext)
+        async UniTask IRecorderModule.StopRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
             EnsureIsRecording();
-            await OnStop(recordContext, recorderContext);
+            await OnStopRecording(recordContext, recorderContext);
             IsRecording = false;
         }
 
@@ -201,15 +201,15 @@ namespace PLUME.Core.Recorder.Module
         {
         }
 
-        protected virtual void OnStart(RecordContext recordContext, RecorderContext recorderContext)
+        protected virtual void OnStartRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
         }
 
-        protected virtual void OnForceStop(RecordContext recordContext, RecorderContext recorderContext)
+        protected virtual void OnForceStopRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
         }
         
-        protected virtual UniTask OnStop(RecordContext recordContext, RecorderContext recorderContext)
+        protected virtual UniTask OnStopRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
             return UniTask.CompletedTask;
         }
@@ -226,11 +226,11 @@ namespace PLUME.Core.Recorder.Module
         {
         }
 
-        protected virtual void OnMarkedCreated(ObjectSafeRef<TObject> objSafeRef)
+        protected virtual void OnObjectMarkedCreated(ObjectSafeRef<TObject> objSafeRef)
         {
         }
 
-        protected virtual void OnMarkedDestroyed(ObjectSafeRef<TObject> objSafeRef)
+        protected virtual void OnObjectMarkedDestroyed(ObjectSafeRef<TObject> objSafeRef)
         {
         }
     }

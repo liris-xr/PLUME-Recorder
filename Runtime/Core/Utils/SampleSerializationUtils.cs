@@ -3,9 +3,9 @@ using Google.Protobuf;
 using PLUME.Core.Recorder;
 using Unity.Collections;
 
-namespace PLUME.Core.Utils.Sample
+namespace PLUME.Core.Utils
 {
-    public static class SerializationUtils
+    public static class SampleSerializationUtils
     {
         public static unsafe void SerializeSampleToBuffer(this IMessage message, SampleTypeUrlIndex sampleTypeUrlIndex,
             SerializedSamplesBuffer buffer)

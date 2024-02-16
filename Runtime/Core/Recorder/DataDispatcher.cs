@@ -116,6 +116,8 @@ namespace PLUME.Core.Recorder
 
         public void OnApplicationPaused()
         {
+            Logger.Log("Application paused detected. Flushing data.");
+            
             foreach (var output in _outputs)
             {
                 output.Flush();

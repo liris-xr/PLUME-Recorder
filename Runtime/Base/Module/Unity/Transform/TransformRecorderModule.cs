@@ -138,12 +138,12 @@ namespace PLUME.Base.Module.Unity.Transform
             frameData.Dispose();
         }
 
-        protected override void OnForceStop(RecordContext recordContext, RecorderContext recorderContext)
+        protected override void OnForceStopRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
             _pollingJobHandle.Complete();
         }
 
-        protected override async UniTask OnStop(RecordContext recordContext, RecorderContext recorderContext)
+        protected override async UniTask OnStopRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
             await UniTask.WaitUntil(() => _pollingJobHandle.IsCompleted);
         }

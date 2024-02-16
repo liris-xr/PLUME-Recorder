@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
 using Google.Protobuf.Reflection;
+using PLUME.Core.Recorder;
 using Unity.Burst;
 using Unity.Collections;
-using UnityEngine;
 
 namespace PLUME.Core
 {
@@ -60,7 +60,6 @@ namespace PLUME.Core
             index = new SampleTypeUrlIndex(newTypeUrlIndex);
             _typeUrlToIndex.Add(fixedString, index);
             _indexToTypeUrl.Add(index, fixedString);
-            Debug.Log($"Registered TypeUrl {typeUrl} with index {index.Index}");
             return index;
         }
 

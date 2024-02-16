@@ -23,13 +23,13 @@ namespace PLUME.Core.Recorder.Module
             {
                 if (!moduleType.GetInterfaces().Contains(typeof(IRecorderModule)))
                 {
-                    Debug.LogWarning($"Type {moduleType} does not implement {nameof(IRecorderModule)}. Skipping.");
+                    Logger.LogWarning($"Type {moduleType} does not implement {nameof(IRecorderModule)}. Skipping.");
                     continue;
                 }
 
                 if (moduleType.IsAbstract || moduleType.IsInterface)
                 {
-                    Debug.LogWarning($"Type {moduleType} is not a concrete class. Skipping.");
+                    Logger.LogWarning($"Type {moduleType} is not a concrete class. Skipping.");
                     continue;
                 }
 
@@ -37,7 +37,7 @@ namespace PLUME.Core.Recorder.Module
 
                 if (parameterlessConstructor == null)
                 {
-                    Debug.LogWarning($"Type {moduleType} does not have a default constructor. Skipping.");
+                    Logger.LogWarning($"Type {moduleType} does not have a default constructor. Skipping.");
                     continue;
                 }
                 

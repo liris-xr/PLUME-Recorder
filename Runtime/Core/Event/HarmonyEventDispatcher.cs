@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
+using Logger = PLUME.Core.Recorder.Logger;
 
 namespace PLUME.Core.Event
 {
@@ -18,7 +19,7 @@ namespace PLUME.Core.Event
         {
             var harmony = new Harmony("fr.liris.plume.patch");
             harmony.PatchAll();
-            Debug.Log("Applied Harmony patches.");
+            Logger.Log("Applied Harmony patches.");
         }
     }
 

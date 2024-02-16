@@ -1,6 +1,5 @@
 using System.Collections;
 using Cysharp.Threading.Tasks;
-using PLUME.Base;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
 using UnityEngine;
@@ -13,6 +12,8 @@ namespace PLUME.Tests
         [UnityTest]
         public IEnumerator IntegrationTest() => UniTask.ToCoroutine(async () =>
         {
+            PlumeRecorder.Instantiate();
+            
             var objectSafeRefProvider = new ObjectSafeRefProvider();
 
             var go1 = new GameObject("go1");
@@ -22,11 +23,11 @@ namespace PLUME.Tests
 
             var recordIdentifier = new RecordIdentifier("test");
 
-            Recorder.Instance.Start(recordIdentifier);
-            Recorder.Instance.StartRecordingObject(tRef1, true);
-            Recorder.Instance.StartRecordingObject(tRef2, true);
-            Recorder.Instance.RecordMarker("Start");
-            await Recorder.Instance.Stop();
+            PlumeRecorder.StartRecording(recordIdentifier);
+            PlumeRecorder.StartRecordingObject(tRef1);
+            PlumeRecorder.StartRecordingObject(tRef2);
+            PlumeRecorder.RecordMarker("Start");
+            await PlumeRecorder.StopRecording();
         });
     }
 }

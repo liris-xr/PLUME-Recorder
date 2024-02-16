@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Logger = PLUME.Core.Recorder.Logger;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -32,7 +33,7 @@ namespace PLUME.Core.Scripts
             if (_instance != null)
             {
                 Destroy(gameObject);
-                Debug.LogWarning("Multiple ApplicationPauseDetectors in scene. Destroying one.");
+                Logger.LogWarning("Multiple ApplicationPauseDetectors in scene. Destroying one.");
             }
             else
             {

@@ -8,7 +8,7 @@ namespace PLUME.Core.Recorder
     {
         /// <summary>
         /// Clock used by the recorder to timestamp the samples.
-        /// The clock is automatically started and stopped when calling <see cref="Recorder.Start"/> and <see cref="Recorder.Stop"/>.
+        /// The clock is automatically started and stopped when calling <see cref="PlumeRecorder.StartRecordingInternal"/> and <see cref="PlumeRecorder.StopRecordingInternal"/>.
         /// </summary>
         internal readonly Clock InternalClock;
 

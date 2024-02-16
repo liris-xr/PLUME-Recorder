@@ -19,9 +19,9 @@ namespace PLUME.Core.Recorder.Module
     public class FrameRecorderModule : IRecorderModule
     {
         private bool _isRecording;
-        
+
         private IFrameDataRecorderModule[] _frameDataRecorderModules;
-        
+
         private Thread _serializationThread;
         private BlockingCollection<Frame> _frameQueue;
 
@@ -31,7 +31,7 @@ namespace PLUME.Core.Recorder.Module
             _frameDataRecorderModules = recorderContext.Modules.OfType<IFrameDataRecorderModule>().ToArray();
         }
 
-        void IRecorderModule.Start(RecordContext recordContext, RecorderContext recorderContext)
+        void IRecorderModule.StartRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
             _isRecording = true;
 
@@ -44,14 +44,17 @@ namespace PLUME.Core.Recorder.Module
             _serializationThread.Start();
         }
 
-        void IRecorderModule.ForceStop(RecordContext recordContext, RecorderContext recorderContext)
+        void IRecorderModule.ForceStopRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
             _isRecording = false;
+            var remainingFramesCount = _frameQueue.Count;
+            if (remainingFramesCount > 0)
+                Logger.Log(nameof(FrameRecorderModule), $"{remainingFramesCount} frames left in queue.");
             _serializationThread.Join();
             _serializationThread = null;
         }
 
-        async UniTask IRecorderModule.Stop(RecordContext recordContext, RecorderContext recorderContext)
+        async UniTask IRecorderModule.StopRecording(RecordContext recordContext, RecorderContext recorderContext)
         {
             _isRecording = false;
             await UniTask.WaitUntil(() => !_serializationThread.IsAlive);
@@ -81,7 +84,7 @@ namespace PLUME.Core.Recorder.Module
             {
                 module.PushFrameData(frame);
             }
-            
+
             _frameQueue.Add(frame);
         }
 
@@ -110,7 +113,7 @@ namespace PLUME.Core.Recorder.Module
                         var frameSample = FrameSample.Pack(Allocator.Persistent, frame.FrameNumber,
                             ref sampleTypeUrlRegistry, ref frameBuffer);
                         var packedSample = PackedSample.Pack(Allocator.Persistent, frame.Timestamp, frameSample);
-                        
+
                         var serializedData = new NativeList<byte>(packedSample.ComputeMaxSize(), Allocator.Persistent);
                         packedSample.WriteToNoResize(ref serializedData);
                         data.AddTimestampedDataChunk(serializedData.AsArray(), frame.Timestamp);
@@ -123,7 +126,7 @@ namespace PLUME.Core.Recorder.Module
                     frameBuffer.Dispose();
                 }
             }
-            
+
             Profiler.EndThreadProfiling();
         }
     }

@@ -8,24 +8,24 @@ namespace PLUME.Core.Recorder.Module
 
         internal void Destroy(RecorderContext context);
 
-        internal void StartRecording(RecordContext recordContext, RecorderContext recorderContext);
+        internal void StartRecording(Record record, RecorderContext recorderContext);
 
-        internal UniTask StopRecording(RecordContext recordContext, RecorderContext recorderContext);
+        internal UniTask StopRecording(Record record, RecorderContext recorderContext);
 
-        internal void ForceStopRecording(RecordContext recordContext, RecorderContext recorderContext);
+        internal void ForceStopRecording(Record record, RecorderContext recorderContext);
 
         internal void Reset(RecorderContext context);
         
-        internal void FixedUpdate(RecordContext recordContext, RecorderContext context) {}
+        internal void FixedUpdate(Record record, RecorderContext context) {}
         
-        internal void EarlyUpdate(RecordContext recordContext, RecorderContext context) {}
+        internal void EarlyUpdate(Record record, RecorderContext context) {}
         
-        internal void PreUpdate(RecordContext recordContext, RecorderContext context) {}
+        internal void PreUpdate(Record record, RecorderContext context) {}
         
-        internal void Update(RecordContext recordContext, RecorderContext context) {}
+        internal void Update(Record record, RecorderContext context) {}
         
-        internal void PreLateUpdate(RecordContext recordContext, RecorderContext context) {}
+        internal void PreLateUpdate(Record record, RecorderContext context) {}
         
-        internal void PostLateUpdate(RecordContext recordContext, RecorderContext context) {}
+        internal void PostLateUpdate(Record record, RecorderContext context) {}
     }
 }

@@ -55,16 +55,15 @@ namespace PLUME.Core.Recorder.ProtoBurst
             return new PackedSample(timestamp, Any.Pack(msg, allocator));
         }
 
-        public static PackedSample PackManaged<T>(long timestamp, T msg, Allocator allocator)
-            where T : IMessage
+        [BurstDiscard]
+        public static PackedSample Pack(long timestamp, IMessage msg, Allocator allocator)
         {
-            return new PackedSample(timestamp, Any.PackManaged(msg, allocator));
+            return new PackedSample(timestamp, Any.Pack(msg, allocator));
         }
         
-        public static PackedSample PackManaged<T>(T msg, Allocator allocator)
-            where T : IMessage
+        public static PackedSample Pack(IMessage msg, Allocator allocator)
         {
-            return new PackedSample(Any.PackManaged(msg, allocator));
+            return new PackedSample(Any.Pack(msg, allocator));
         }
 
         public static PackedSample Pack(NativeArray<byte> msgBytes, FixedString128Bytes msgTypeUrl)

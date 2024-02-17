@@ -1,12 +1,12 @@
 using System;
 using Cysharp.Threading.Tasks;
-using PLUME.Base.Module;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Time;
 using PLUME.Core.Scripts;
 using PLUME.Core.Utils;
+using PLUME.Sample.Common;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -29,7 +29,7 @@ namespace PLUME.Core.Recorder
         public bool IsStopped => CurrentStatus == RecorderStatus.Stopped;
 
         public readonly RecorderContext Context;
-        private RecordContext _recordContext;
+        private Record _record;
 
         private readonly DataDispatcher _dataDispatcher;
 
@@ -97,7 +97,7 @@ namespace PLUME.Core.Recorder
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
-                Context.Modules[i].FixedUpdate(_recordContext, Context);
+                Context.Modules[i].FixedUpdate(_record, Context);
             }
         }
 
@@ -109,7 +109,7 @@ namespace PLUME.Core.Recorder
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
-                Context.Modules[i].PreUpdate(_recordContext, Context);
+                Context.Modules[i].PreUpdate(_record, Context);
             }
         }
 
@@ -121,7 +121,7 @@ namespace PLUME.Core.Recorder
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
-                Context.Modules[i].EarlyUpdate(_recordContext, Context);
+                Context.Modules[i].EarlyUpdate(_record, Context);
             }
         }
 
@@ -133,7 +133,7 @@ namespace PLUME.Core.Recorder
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
-                Context.Modules[i].Update(_recordContext, Context);
+                Context.Modules[i].Update(_record, Context);
             }
         }
 
@@ -145,7 +145,7 @@ namespace PLUME.Core.Recorder
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
-                Context.Modules[i].PreLateUpdate(_recordContext, Context);
+                Context.Modules[i].PreLateUpdate(_record, Context);
             }
         }
 
@@ -157,13 +157,8 @@ namespace PLUME.Core.Recorder
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
-                Context.Modules[i].PostLateUpdate(_recordContext, Context);
+                Context.Modules[i].PostLateUpdate(_record, Context);
             }
-        }
-
-        public static void ForceStopRecording()
-        {
-            Instance.ForceStopRecordingInternal();
         }
 
         /// <summary>
@@ -183,17 +178,17 @@ namespace PLUME.Core.Recorder
             ApplicationPauseDetector.EnsureExists();
 
             var recordClock = new Clock();
-            var data = new ConcurrentRecordData();
-            _recordContext = new RecordContext(recordClock, data, recordIdentifier);
+            var data = new RecordDataBuffer(Allocator.Persistent);
+            _record = new Record(recordClock, data, recordIdentifier);
 
             CurrentStatus = RecorderStatus.Recording;
 
-            _dataDispatcher.Start(_recordContext);
+            _dataDispatcher.Start(_record);
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
-                Context.Modules[i].StartRecording(_recordContext, Context);
+                Context.Modules[i].StartRecording(_record, Context);
             }
 
             recordClock.Start();
@@ -213,17 +208,17 @@ namespace PLUME.Core.Recorder
                 throw new InvalidOperationException("Recorder is already stopping.");
 
             if (!IsRecording)
-                throw new InvalidOperationException("Recorder is not recording");
+                throw new InvalidOperationException("Recorder is not recording.");
 
             Logger.Log("Stopping recorder...");
 
-            _recordContext.InternalClock.Stop();
+            _record.InternalClock.Stop();
             CurrentStatus = RecorderStatus.Stopping;
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
-                await Context.Modules[i].StopRecording(_recordContext, Context);
+                await Context.Modules[i].StopRecording(_record, Context);
             }
 
             await _dataDispatcher.Stop();
@@ -237,7 +232,8 @@ namespace PLUME.Core.Recorder
             }
 
             ApplicationPauseDetector.Destroy();
-            _recordContext = null;
+            _record.Dispose();
+            _record = null;
 
             Logger.Log("Recorder stopped.");
         }
@@ -252,25 +248,30 @@ namespace PLUME.Core.Recorder
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
-                Context.Modules[i].ForceStopRecording(_recordContext, Context);
+                Context.Modules[i].ForceStopRecording(_record, Context);
             }
 
             _dataDispatcher.ForceStop();
             CurrentStatus = RecorderStatus.Stopped;
-            _recordContext = null;
+            
+            _record.Dispose();
+            _record = null;
 
             Logger.Log("Recorder force stopped.");
         }
 
-        public void RecordMarkerInternal(string label)
+        private void RecordMarkerInternal(string label)
         {
-            if (Context.TryGetRecorderModule<MarkerRecorderModuleBase>(out var module))
-                module.RecordMarker(label);
+            EnsureIsRecording();
+            var marker = new Marker {Label = label};
+            _record.DataBuffer.AddTimestampedSample(marker, _record.Clock.ElapsedNanoseconds);
         }
 
         private void StartRecordingObjectInternal<T>(ObjectSafeRef<T> objectSafeRef, bool markCreated)
             where T : UnityEngine.Object
         {
+            EnsureIsRecording();
+            
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
@@ -356,7 +357,7 @@ namespace PLUME.Core.Recorder
         private void EnsureIsRecording()
         {
             if (!IsRecording)
-                throw new InvalidOperationException("Recorder is not recording");
+                throw new InvalidOperationException("Recorder is not recording.");
         }
 
         private static void CheckInstantiated()
@@ -381,6 +382,11 @@ namespace PLUME.Core.Recorder
         {
             CheckInstantiated();
             await Instance.StopRecordingInternal();
+        }
+        
+        public static void ForceStopRecording()
+        {
+            Instance.ForceStopRecordingInternal();
         }
 
         public static void RecordMarker(string label)

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using PLUME.Core.Recorder.Data;
 
 namespace PLUME.Core.Recorder.Module
 {
@@ -7,9 +8,9 @@ namespace PLUME.Core.Recorder.Module
     {
         private readonly Dictionary<Frame, TFrameData> _framesData = new(FrameComparer.Instance);
 
-        void IFrameDataRecorderModule.PushFrameData(Frame frame)
+        void IFrameDataRecorderModule.CollectFrameData(Frame frame)
         {
-            var frameData = CollectFrameData();
+            var frameData = OnCollectFrameData(frame);
             ClearCreatedObjects();
             ClearDestroyedObjects();
 
@@ -19,7 +20,7 @@ namespace PLUME.Core.Recorder.Module
             }
         }
 
-        bool IFrameDataRecorderModule.TryPopSerializedFrameData(Frame frame, SerializedSamplesBuffer buffer)
+        bool IFrameDataRecorderModule.SerializeFrameData(Frame frame, FrameDataChunks output)
         {
             TFrameData frameData;
             
@@ -29,19 +30,32 @@ namespace PLUME.Core.Recorder.Module
                 {
                     return false;
                 }
+            }
 
+            OnSerializeFrameData(frameData, frame, output);
+            return true;
+        }
+        
+        void IFrameDataRecorderModule.DisposeFrameData(Frame frame)
+        {
+            TFrameData frameData;
+            
+            lock (_framesData)
+            {
+                if (!_framesData.TryGetValue(frame, out frameData))
+                {
+                    return;
+                }
                 _framesData.Remove(frame);
             }
 
-            SerializeFrameData(frameData, buffer);
-            DisposeFrameData(frameData);
-            return true;
+            OnDisposeFrameData(frameData, frame);
         }
 
-        protected abstract TFrameData CollectFrameData();
+        protected abstract TFrameData OnCollectFrameData(Frame frame);
 
-        protected abstract void SerializeFrameData(TFrameData frameData, SerializedSamplesBuffer buffer);
+        protected abstract void OnSerializeFrameData(TFrameData frameData, Frame frame, FrameDataChunks output);
 
-        protected abstract void DisposeFrameData(TFrameData frameData);
+        protected abstract void OnDisposeFrameData(TFrameData frameData, Frame frame);
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using PLUME.Core.Recorder.Data;
 using PLUME.Sample.Unity;
 using ProtoBurst;
 using ProtoBurst.Message;
@@ -12,7 +13,7 @@ namespace PLUME.Core.Recorder.ProtoBurst
     public struct FrameSample : IProtoBurstMessage, IDisposable
     {
         public static readonly FixedString128Bytes SampleTypeUrl = "fr.liris.plume/" + Frame.Descriptor.FullName;
-        
+
         public FixedString128Bytes TypeUrl => SampleTypeUrl;
 
         public readonly int FrameNumber;
@@ -24,20 +25,16 @@ namespace PLUME.Core.Recorder.ProtoBurst
             Data = data;
         }
 
-        public static FrameSample Pack(Allocator allocator, int frameNumber,
-            ref SampleTypeUrlRegistry typeUrlRegistry, ref SerializedSamplesBuffer buffer)
+        public static FrameSample Pack(int frameNumber, ref SampleTypeUrlRegistry typeUrlRegistry,
+            ref FrameDataChunks frameDataSamples, Allocator allocator)
         {
-            var data = new NativeArray<Any>(buffer.ChunkCount, allocator);
-
-            var offset = 0;
-
-            for (var chunkIdx = 0; chunkIdx < buffer.ChunkCount; chunkIdx++)
+            var data = new NativeArray<Any>(frameDataSamples.ChunksCount, allocator);
+            
+            for (var chunkIdx = 0; chunkIdx < frameDataSamples.ChunksCount; chunkIdx++)
             {
-                var chunkLength = buffer.GetLength(chunkIdx);
-                var chunkData = buffer.GetData(allocator, offset, chunkLength);
-                var chunkSampleTypeUrlIndex = buffer.GetSampleTypeUrlIndex(chunkIdx);
-                data[chunkIdx] = Any.Pack(chunkData, typeUrlRegistry.GetTypeUrlFromIndex(chunkSampleTypeUrlIndex));
-                offset += chunkLength;
+                var chunkData = frameDataSamples.GetChunkData(chunkIdx);
+                var chunkSampleTypeUrlIndex = frameDataSamples.GetSampleTypeUrlIndex(chunkIdx);
+                data[chunkIdx] = Any.Pack(chunkData, typeUrlRegistry.GetTypeUrlFromIndex(chunkSampleTypeUrlIndex), allocator);
             }
 
             return new FrameSample(frameNumber, data);
@@ -77,9 +74,9 @@ namespace PLUME.Core.Recorder.ProtoBurst
 
         public void Dispose()
         {
-            foreach (var data in Data)
+            foreach (var frameData in Data)
             {
-                data.Dispose();
+                frameData.Dispose();
             }
 
             Data.Dispose();

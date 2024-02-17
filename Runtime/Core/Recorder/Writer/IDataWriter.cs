@@ -7,7 +7,7 @@ namespace PLUME.Core.Recorder.Writer
     {
         public void WriteTimelessData(DataChunks dataChunks);
 
-        public void WriteTimestampedData(DataChunks dataChunks, List<long> timestamps);
+        public void WriteTimestampedData(TimestampedDataChunks dataChunks);
 
         void Flush();
         

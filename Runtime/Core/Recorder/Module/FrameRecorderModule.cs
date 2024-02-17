@@ -1,6 +1,7 @@
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.ProtoBurst;
@@ -29,12 +30,11 @@ namespace PLUME.Core.Recorder.Module
             _frameDataRecorderModules = recorderContext.Modules.OfType<IFrameDataRecorderModule>().ToArray();
         }
 
-        void IRecorderModule.StartRecording(RecordContext recordContext, RecorderContext recorderContext)
+        void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
         {
             _isRecording = true;
 
-            _serializationThread = new Thread(() =>
-                SerializeFrameLoop(recordContext.Data, recorderContext.SampleTypeUrlRegistry))
+            _serializationThread = new Thread(() => SerializeFrameLoop(record.DataBuffer, recorderContext.SampleTypeUrlRegistry))
             {
                 Name = "FrameRecorderModule.SerializeThread",
                 IsBackground = false
@@ -42,7 +42,7 @@ namespace PLUME.Core.Recorder.Module
             _serializationThread.Start();
         }
 
-        void IRecorderModule.ForceStopRecording(RecordContext recordContext, RecorderContext recorderContext)
+        void IRecorderModule.ForceStopRecording(Record record, RecorderContext recorderContext)
         {
             _isRecording = false;
             var remainingFramesCount = _frameQueue.Count;
@@ -52,7 +52,7 @@ namespace PLUME.Core.Recorder.Module
             _serializationThread = null;
         }
 
-        async UniTask IRecorderModule.StopRecording(RecordContext recordContext, RecorderContext recorderContext)
+        async UniTask IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             _isRecording = false;
             await UniTask.WaitUntil(() => !_serializationThread.IsAlive);
@@ -67,9 +67,9 @@ namespace PLUME.Core.Recorder.Module
         {
         }
 
-        void IRecorderModule.PostLateUpdate(RecordContext recordContext, RecorderContext context)
+        void IRecorderModule.PostLateUpdate(Record record, RecorderContext context)
         {
-            var timestamp = recordContext.Clock.ElapsedNanoseconds;
+            var timestamp = record.Clock.ElapsedNanoseconds;
             var frame = UnityEngine.Time.frameCount;
             PushFrame(timestamp, frame);
         }
@@ -80,14 +80,14 @@ namespace PLUME.Core.Recorder.Module
 
             foreach (var module in _frameDataRecorderModules)
             {
-                module.PushFrameData(frame);
+                module.CollectFrameData(frame);
             }
 
             _frameQueue.Add(frame);
         }
 
         // TODO: use workers
-        internal void SerializeFrameLoop(IRecordData data, SampleTypeUrlRegistry sampleTypeUrlRegistry)
+        internal void SerializeFrameLoop(RecordDataBuffer dataBuffer, SampleTypeUrlRegistry sampleTypeUrlRegistry)
         {
             Profiler.BeginThreadProfiling("PLUME", "FrameRecorderModule.SerializeThread");
 
@@ -95,26 +95,28 @@ namespace PLUME.Core.Recorder.Module
             {
                 while (_frameQueue.TryTake(out var frame))
                 {
-                    var frameBuffer = new SerializedSamplesBuffer(Allocator.Persistent);
-                    var hasData = false;
+                    var nRecorderModules = _frameDataRecorderModules.Length;
 
-                    // ReSharper disable once ForCanBeConvertedToForeach
-                    // ReSharper disable once LoopCanBeConvertedToQuery
-                    for (var i = 0; i < _frameDataRecorderModules.Length; i++)
+                    var hasData = false;
+                    
+                    var frameDataChunks = new FrameDataChunks(Allocator.Persistent);
+
+                    for (var i = 0; i < nRecorderModules; i++)
                     {
                         var module = _frameDataRecorderModules[i];
-                        hasData |= module.TryPopSerializedFrameData(frame, frameBuffer);
+                        hasData |= module.SerializeFrameData(frame, frameDataChunks);
+                        module.DisposeFrameData(frame);
                     }
 
                     if (hasData)
                     {
-                        var frameSample = FrameSample.Pack(Allocator.Persistent, frame.FrameNumber,
-                            ref sampleTypeUrlRegistry, ref frameBuffer);
-                        data.PushTimestampedSample(frameSample, frame.Timestamp);
+                        var frameSample = FrameSample.Pack(frame.FrameNumber,
+                            ref sampleTypeUrlRegistry, ref frameDataChunks, Allocator.Persistent);
+                        dataBuffer.AddTimestampedSample(frameSample, frame.Timestamp);
                         frameSample.Dispose();
                     }
 
-                    frameBuffer.Dispose();
+                    frameDataChunks.Dispose();
                 }
             }
 

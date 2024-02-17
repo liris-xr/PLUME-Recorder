@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using PLUME.Core.Recorder.Data;
+using Unity.Collections;
 
 namespace PLUME.Tests
 {
@@ -17,38 +18,39 @@ namespace PLUME.Tests
         private const long FirstTimestamp = 1L;
         private const long SecondTimestamp = 3L;
 
-        private byte[] _emptyChunk;
-        private byte[] _dataChunk;
+        private static readonly byte[] EmptyChunk = Array.Empty<byte>();
+        private static readonly byte[] NonEmptyChunk = { 42, 56, 21 };
 
-        private byte[] _firstDataChunk;
-        private byte[] _secondDataChunk;
+        private static readonly byte[] FirstDataChunk = { 1, 2, 3, 4 };
+        private static readonly byte[] SecondDataChunk = { 5, 6, 7, 8 };
 
-        private TimestampedDataChunks _nonEmptyDataChunks;
+        private TimestampedDataChunks _nonEmptyTimestampedDataChunks;
 
         [SetUp]
         public void Setup()
         {
-            _emptyChunk = Array.Empty<byte>();
-            _dataChunk = new byte[] { 42, 56, 21 };
-            _firstDataChunk = new byte[] { 1, 2, 3, 4 };
-            _secondDataChunk = new byte[] { 5, 6, 7, 8 };
+            var dataChunks = (ReadOnlySpan<byte>)FirstDataChunk.Concat(SecondDataChunk).ToArray();
+            var chunksLength = (ReadOnlySpan<int>)new[] { FirstDataChunk.Length, SecondDataChunk.Length };
+            var timestamps = (ReadOnlySpan<long>)new[] { FirstTimestamp, SecondTimestamp };
+            _nonEmptyTimestampedDataChunks =
+                new TimestampedDataChunks(dataChunks, chunksLength, timestamps, Allocator.Persistent);
+        }
 
-            _nonEmptyDataChunks = new TimestampedDataChunks();
-            _nonEmptyDataChunks.DataChunks.Add(_firstDataChunk);
-            _nonEmptyDataChunks.Timestamps.Add(FirstTimestamp);
-            _nonEmptyDataChunks.DataChunks.Add(_secondDataChunk);
-            _nonEmptyDataChunks.Timestamps.Add(SecondTimestamp);
+        [TearDown]
+        public void TearDown()
+        {
+            _nonEmptyTimestampedDataChunks.Dispose();
         }
 
         [Test]
         public void Empty_AddTimestampedDataChunk()
         {
-            var data = new TimestampedDataChunks();
+            var data = new TimestampedDataChunks(Allocator.Temp);
 
-            data.Push(_dataChunk, AnyTimestamp);
+            data.Add(NonEmptyChunk, AnyTimestamp);
 
-            var expected = new TimestampedDataChunks();
-            expected.DataChunks.Add(_dataChunk);
+            var expected = new TimestampedDataChunks(Allocator.Temp);
+            expected.DataChunks.Add(NonEmptyChunk);
             expected.Timestamps.Add(AnyTimestamp);
 
             Assert.AreEqual(expected, data);
@@ -57,65 +59,50 @@ namespace PLUME.Tests
         [Test]
         public void Empty_AddTimestampedDataChunk_EmptyChunk()
         {
-            var data = new TimestampedDataChunks();
-            data.Push(_emptyChunk, AnyTimestamp);
+            var data = new TimestampedDataChunks(Allocator.Temp);
+            data.Add(EmptyChunk, AnyTimestamp);
 
             // Empty chunks should not be added.
-            var expected = new TimestampedDataChunks();
-            expected.Clear();
+            var expected = new TimestampedDataChunks(Allocator.Temp);
 
             Assert.AreEqual(expected, data);
         }
 
         [Test]
-        public void Empty_TryPopAllBeforeTimestamp_AnyTimestamp_Inclusive()
+        public void Empty_TryRemoveAllBeforeTimestamp_AnyTimestamp_Inclusive()
         {
-            var data = new TimestampedDataChunks();
+            var data = new TimestampedDataChunks(Allocator.Temp);
 
-            var poppedDataChunks = new DataChunks();
-            var poppedTimestamps = new List<long>();
-            var popped = data.TryPopAllBeforeTimestamp(AnyTimestamp, poppedDataChunks, poppedTimestamps, true);
+            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removed = data.TryRemoveAllBeforeTimestamp(AnyTimestamp, removedChunks, true);
 
-            var expectedDataChunks = new DataChunks();
-            var expectedChunksTimestamps = new List<long>();
-            expectedDataChunks.Clear();
-            expectedChunksTimestamps.Clear();
-
-            Assert.AreEqual(false, popped);
-            Assert.AreEqual(expectedDataChunks, poppedDataChunks);
-            Assert.AreEqual(expectedChunksTimestamps, poppedTimestamps);
+            Assert.AreEqual(0, removed);
+            Assert.IsTrue(removedChunks.IsEmpty());
         }
 
         [Test]
-        public void Empty_TryPopAllBeforeTimestamp_AnyTimestamp_Exclusive()
+        public void Empty_TryRemoveAllBeforeTimestamp_AnyTimestamp_Exclusive()
         {
-            var data = new TimestampedDataChunks();
+            var data = new TimestampedDataChunks(Allocator.Temp);
 
-            var poppedDataChunks = new DataChunks();
-            var poppedTimestamps = new List<long>();
-            var popped = data.TryPopAllBeforeTimestamp(AnyTimestamp, poppedDataChunks, poppedTimestamps, false);
+            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removed = data.TryRemoveAllBeforeTimestamp(AnyTimestamp, removedChunks, false);
 
-            var expectedDataChunks = new DataChunks();
-            var expectedTimestamps = new List<long>();
-            expectedDataChunks.Clear();
-            expectedTimestamps.Clear();
-
-            Assert.AreEqual(false, popped);
-            Assert.AreEqual(expectedDataChunks, poppedDataChunks);
-            Assert.AreEqual(expectedTimestamps, poppedTimestamps);
+            Assert.AreEqual(0, removed);
+            Assert.IsTrue(removedChunks.IsEmpty());
         }
 
         [Test]
         public void NonEmpty_AddTimestampedDataChunk_AfterAllTimestamp()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            data.Push(_dataChunk, AfterAllTimestamp);
+            data.Add(NonEmptyChunk, AfterAllTimestamp);
 
-            var expected = new TimestampedDataChunks();
-            expected.DataChunks.Add(_firstDataChunk);
-            expected.DataChunks.Add(_secondDataChunk);
-            expected.DataChunks.Add(_dataChunk);
+            var expected = new TimestampedDataChunks(Allocator.Temp);
+            expected.DataChunks.Add(FirstDataChunk);
+            expected.DataChunks.Add(SecondDataChunk);
+            expected.DataChunks.Add(NonEmptyChunk);
             expected.Timestamps.Add(FirstTimestamp);
             expected.Timestamps.Add(SecondTimestamp);
             expected.Timestamps.Add(AfterAllTimestamp);
@@ -126,14 +113,14 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_AddTimestampedDataChunk_BeforeAllTimestamp()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            data.Push(_dataChunk, BeforeAllTimestamp);
+            data.Add(NonEmptyChunk, BeforeAllTimestamp);
 
-            var expected = new TimestampedDataChunks();
-            expected.DataChunks.Add(_dataChunk);
-            expected.DataChunks.Add(_firstDataChunk);
-            expected.DataChunks.Add(_secondDataChunk);
+            var expected = new TimestampedDataChunks(Allocator.Temp);
+            expected.DataChunks.Add(NonEmptyChunk);
+            expected.DataChunks.Add(FirstDataChunk);
+            expected.DataChunks.Add(SecondDataChunk);
             expected.Timestamps.Add(BeforeAllTimestamp);
             expected.Timestamps.Add(FirstTimestamp);
             expected.Timestamps.Add(SecondTimestamp);
@@ -144,14 +131,14 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_AddTimestampedDataChunk_InBetweenTimestamp()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            data.Push(_dataChunk, InBetweenTimestamp);
+            data.Add(NonEmptyChunk, InBetweenTimestamp);
 
-            var expected = new TimestampedDataChunks();
-            expected.DataChunks.Add(_firstDataChunk);
-            expected.DataChunks.Add(_dataChunk);
-            expected.DataChunks.Add(_secondDataChunk);
+            var expected = new TimestampedDataChunks(Allocator.Temp);
+            expected.DataChunks.Add(FirstDataChunk);
+            expected.DataChunks.Add(NonEmptyChunk);
+            expected.DataChunks.Add(SecondDataChunk);
             expected.Timestamps.Add(FirstTimestamp);
             expected.Timestamps.Add(InBetweenTimestamp);
             expected.Timestamps.Add(SecondTimestamp);
@@ -162,13 +149,13 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_AddTimestampedDataChunk_ExistingTimestamp_FirstTimestamp()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            data.Push(_dataChunk, FirstTimestamp);
+            data.Add(NonEmptyChunk, FirstTimestamp);
 
-            var expected = new TimestampedDataChunks();
-            expected.DataChunks.Add(_firstDataChunk.Concat(_dataChunk).ToArray());
-            expected.DataChunks.Add(_secondDataChunk);
+            var expected = new TimestampedDataChunks(Allocator.Temp);
+            expected.DataChunks.Add(FirstDataChunk.Concat(NonEmptyChunk).ToArray());
+            expected.DataChunks.Add(SecondDataChunk);
             expected.Timestamps.Add(FirstTimestamp);
             expected.Timestamps.Add(SecondTimestamp);
 
@@ -178,13 +165,13 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_AddTimestampedDataChunk_ExistingTimestamp_SecondTimestamp()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            data.Push(_dataChunk, SecondTimestamp);
+            data.Add(NonEmptyChunk, SecondTimestamp);
 
-            var expected = new TimestampedDataChunks();
-            expected.DataChunks.Add(_firstDataChunk);
-            expected.DataChunks.Add(_secondDataChunk.Concat(_dataChunk).ToArray());
+            var expected = new TimestampedDataChunks(Allocator.Temp);
+            expected.DataChunks.Add(FirstDataChunk);
+            expected.DataChunks.Add(SecondDataChunk.Concat(NonEmptyChunk).ToArray());
             expected.Timestamps.Add(FirstTimestamp);
             expected.Timestamps.Add(SecondTimestamp);
 
@@ -192,136 +179,111 @@ namespace PLUME.Tests
         }
 
         [Test]
-        public void NonEmpty_TryPopAllBeforeTimestamp_BeforeAllTimestamp_Exclusive()
+        public void NonEmpty_TryRemoveAllBeforeTimestamp_BeforeAllTimestamp_Exclusive()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            var poppedDataChunks = new DataChunks();
-            var poppedTimestamps = new List<long>();
-            var popped = data.TryPopAllBeforeTimestamp(BeforeAllTimestamp, poppedDataChunks, poppedTimestamps, false);
+            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removed = data.TryRemoveAllBeforeTimestamp(BeforeAllTimestamp, removedChunks, false);
             
-            var expectedDataChunks = new DataChunks();
-            var expectedTimestamps = new List<long>();
-
-            Assert.AreEqual(false, popped);
-            Assert.AreEqual(expectedDataChunks, poppedDataChunks);
-            Assert.AreEqual(expectedTimestamps, poppedTimestamps);
+            Assert.AreEqual(0, removed);
+            Assert.IsTrue(removedChunks.IsEmpty());
         }
 
         [Test]
-        public void NonEmpty_TryPopAllBeforeTimestamp_InBetweenTimestamp_Exclusive()
+        public void NonEmpty_TryRemoveAllBeforeTimestamp_InBetweenTimestamp_Exclusive()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            var poppedDataChunks = new DataChunks();
-            var poppedTimestamps = new List<long>();
-            var popped = data.TryPopAllBeforeTimestamp(InBetweenTimestamp, poppedDataChunks, poppedTimestamps, false);
-            
-            var expectedDataChunks = new DataChunks();
-            var expectedTimestamps = new List<long>();
-            expectedDataChunks.Add(_firstDataChunk);
-            expectedTimestamps.Add(FirstTimestamp);
+            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removed = data.TryRemoveAllBeforeTimestamp(InBetweenTimestamp, removedChunks, false);
 
-            Assert.AreEqual(true, popped);
-            Assert.AreEqual(expectedDataChunks, poppedDataChunks);
-            Assert.AreEqual(expectedTimestamps, poppedTimestamps);
+            var expected = new TimestampedDataChunks(Allocator.Temp);
+            expected.DataChunks.Add(FirstDataChunk);
+            expected.Timestamps.Add(FirstTimestamp);
+
+            Assert.AreEqual(1, removed);
+            Assert.AreEqual(expected, removedChunks);
         }
 
         [Test]
-        public void NonEmpty_TryPopAllBeforeTimestamp_AfterAllTimestamp_Exclusive()
+        public void NonEmpty_TryRemoveAllBeforeTimestamp_AfterAllTimestamp_Exclusive()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            var poppedDataChunks = new DataChunks();
-            var poppedTimestamps = new List<long>();
-            var popped = data.TryPopAllBeforeTimestamp(AfterAllTimestamp, poppedDataChunks, poppedTimestamps, false);
-            
-            var expectedDataChunks = new DataChunks();
-            var expectedTimestamps = new List<long>();
-            expectedDataChunks.Add(_firstDataChunk);
-            expectedDataChunks.Add(_secondDataChunk);
-            expectedTimestamps.Add(FirstTimestamp);
-            expectedTimestamps.Add(SecondTimestamp);
+            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removed = data.TryRemoveAllBeforeTimestamp(AfterAllTimestamp, removedChunks, false);
 
-            Assert.AreEqual(true, popped);
-            Assert.AreEqual(expectedDataChunks, poppedDataChunks);
-            Assert.AreEqual(expectedTimestamps, poppedTimestamps);
+            var expected = new TimestampedDataChunks(Allocator.Temp);
+            expected.DataChunks.Add(FirstDataChunk);
+            expected.DataChunks.Add(SecondDataChunk);
+            expected.Timestamps.Add(FirstTimestamp);
+            expected.Timestamps.Add(SecondTimestamp);
+
+            Assert.AreEqual(2, removed);
+            Assert.AreEqual(expected, removedChunks);
         }
-        
+
         [Test]
-        public void NonEmpty_TryPopAllBeforeTimestamp_FirstTimestamp_Exclusive()
+        public void NonEmpty_TryRemoveAllBeforeTimestamp_FirstTimestamp_Exclusive()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            var poppedDataChunks = new DataChunks();
-            var poppedTimestamps = new List<long>();
-            var popped = data.TryPopAllBeforeTimestamp(FirstTimestamp, poppedDataChunks, poppedTimestamps, false);
+            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removed = data.TryRemoveAllBeforeTimestamp(FirstTimestamp, removedChunks, false);
             
-            var expectedDataChunks = new DataChunks();
-            var expectedTimestamps = new List<long>();
-
-            Assert.AreEqual(false, popped);
-            Assert.AreEqual(expectedDataChunks, poppedDataChunks);
-            Assert.AreEqual(expectedTimestamps, poppedTimestamps);
+            Assert.AreEqual(0, removed);
+            Assert.IsTrue(removedChunks.IsEmpty());
         }
-        
+
         [Test]
-        public void NonEmpty_TryPopAllBeforeTimestamp_FirstTimestamp_Inclusive()
+        public void NonEmpty_TryRemoveAllBeforeTimestamp_FirstTimestamp_Inclusive()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            var poppedDataChunks = new DataChunks();
-            var poppedTimestamps = new List<long>();
-            var popped = data.TryPopAllBeforeTimestamp(FirstTimestamp, poppedDataChunks, poppedTimestamps, true);
-            
-            var expectedDataChunks = new DataChunks();
-            var expectedTimestamps = new List<long>();
-            expectedDataChunks.Add(_firstDataChunk);
-            expectedTimestamps.Add(FirstTimestamp);
+            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removed = data.TryRemoveAllBeforeTimestamp(FirstTimestamp, removedChunks, true);
 
-            Assert.AreEqual(true, popped);
-            Assert.AreEqual(expectedDataChunks, poppedDataChunks);
-            Assert.AreEqual(expectedTimestamps, poppedTimestamps);
+            var expected = new TimestampedDataChunks(Allocator.Temp);
+            expected.DataChunks.Add(FirstDataChunk);
+            expected.Timestamps.Add(FirstTimestamp);
+
+            Assert.AreEqual(1, removed);
+            Assert.AreEqual(expected, removedChunks);
         }
-        
+
         [Test]
-        public void NonEmpty_TryPopAllBeforeTimestamp_SecondTimestamp_Exclusive()
+        public void NonEmpty_TryRemoveAllBeforeTimestamp_SecondTimestamp_Exclusive()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            var poppedDataChunks = new DataChunks();
-            var poppedTimestamps = new List<long>();
-            var popped = data.TryPopAllBeforeTimestamp(SecondTimestamp, poppedDataChunks, poppedTimestamps, false);
-            
-            var expectedDataChunks = new DataChunks();
-            var expectedTimestamps = new List<long>();
-            expectedDataChunks.Add(_firstDataChunk);
-            expectedTimestamps.Add(FirstTimestamp);
+            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removed = data.TryRemoveAllBeforeTimestamp(SecondTimestamp, removedChunks, false);
 
-            Assert.AreEqual(true, popped);
-            Assert.AreEqual(expectedDataChunks, poppedDataChunks);
-            Assert.AreEqual(expectedTimestamps, poppedTimestamps);
+            var expected = new TimestampedDataChunks(Allocator.Temp);
+            expected.DataChunks.Add(FirstDataChunk);
+            expected.Timestamps.Add(FirstTimestamp);
+
+            Assert.AreEqual(1, removed);
+            Assert.AreEqual(expected, removedChunks);
         }
-        
+
         [Test]
-        public void NonEmpty_TryPopAllBeforeTimestamp_SecondTimestamp_Inclusive()
+        public void NonEmpty_TryRemoveAllBeforeTimestamp_SecondTimestamp_Inclusive()
         {
-            var data = _nonEmptyDataChunks.Copy();
+            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
 
-            var poppedDataChunks = new DataChunks();
-            var poppedTimestamps = new List<long>();
-            var popped = data.TryPopAllBeforeTimestamp(SecondTimestamp, poppedDataChunks, poppedTimestamps, true);
-            
-            var expectedDataChunks = new DataChunks();
-            var expectedTimestamps = new List<long>();
-            expectedDataChunks.Add(_firstDataChunk);
-            expectedDataChunks.Add(_secondDataChunk);
-            expectedTimestamps.Add(FirstTimestamp);
-            expectedTimestamps.Add(SecondTimestamp);
+            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removed = data.TryRemoveAllBeforeTimestamp(SecondTimestamp, removedChunks, true);
 
-            Assert.AreEqual(true, popped);
-            Assert.AreEqual(expectedDataChunks, poppedDataChunks);
-            Assert.AreEqual(expectedTimestamps, poppedTimestamps);
+            var expected = new TimestampedDataChunks(Allocator.Temp);
+            expected.DataChunks.Add(FirstDataChunk);
+            expected.DataChunks.Add(SecondDataChunk);
+            expected.Timestamps.Add(FirstTimestamp);
+            expected.Timestamps.Add(SecondTimestamp);
+
+            Assert.AreEqual(2, removed);
+            Assert.AreEqual(expected, removedChunks);
         }
     }
 }

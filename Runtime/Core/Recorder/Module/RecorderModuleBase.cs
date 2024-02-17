@@ -17,26 +17,26 @@ namespace PLUME.Core.Recorder.Module
             OnDestroy(ctx);
         }
 
-        void IRecorderModule.StartRecording(RecordContext recordContext, RecorderContext recorderContext)
+        void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
         {
             if (IsRecording)
                 throw new InvalidOperationException("Recorder module is already recording.");
 
             IsRecording = true;
-            OnStartRecording(recordContext, recorderContext);
+            OnStartRecording(record, recorderContext);
         }
 
-        void IRecorderModule.ForceStopRecording(RecordContext recordContext, RecorderContext recorderContext)
+        void IRecorderModule.ForceStopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
-            OnForceStopRecording(recordContext, recorderContext);
+            OnForceStopRecording(record, recorderContext);
             IsRecording = false;
         }
         
-        async UniTask IRecorderModule.StopRecording(RecordContext recordContext, RecorderContext recorderContext)
+        async UniTask IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
-            await OnStopRecording(recordContext, recorderContext);
+            await OnStopRecording(record, recorderContext);
             IsRecording = false;
         }
 
@@ -53,56 +53,56 @@ namespace PLUME.Core.Recorder.Module
             }
         }
 
-        void IRecorderModule.FixedUpdate(RecordContext recordContext, RecorderContext context)
+        void IRecorderModule.FixedUpdate(Record record, RecorderContext context)
         {
-            OnFixedUpdate(recordContext, context);
+            OnFixedUpdate(record, context);
         }
 
-        void IRecorderModule.EarlyUpdate(RecordContext recordContext, RecorderContext context)
+        void IRecorderModule.EarlyUpdate(Record record, RecorderContext context)
         {
-            OnEarlyUpdate(recordContext, context);
+            OnEarlyUpdate(record, context);
         }
 
-        void IRecorderModule.PreUpdate(RecordContext recordContext, RecorderContext context)
+        void IRecorderModule.PreUpdate(Record record, RecorderContext context)
         {
-            OnPreUpdate(recordContext, context);
+            OnPreUpdate(record, context);
         }
 
-        void IRecorderModule.Update(RecordContext recordContext, RecorderContext context)
-        {
-        }
-
-        void IRecorderModule.PreLateUpdate(RecordContext recordContext, RecorderContext context)
-        {
-            OnPreLateUpdate(recordContext, context);
-        }
-
-        void IRecorderModule.PostLateUpdate(RecordContext recordContext, RecorderContext context)
-        {
-            OnPostLateUpdate(recordContext, context);
-        }
-
-        protected virtual void OnFixedUpdate(RecordContext recordContext, RecorderContext context)
+        void IRecorderModule.Update(Record record, RecorderContext context)
         {
         }
 
-        protected virtual void OnEarlyUpdate(RecordContext recordContext, RecorderContext context)
+        void IRecorderModule.PreLateUpdate(Record record, RecorderContext context)
+        {
+            OnPreLateUpdate(record, context);
+        }
+
+        void IRecorderModule.PostLateUpdate(Record record, RecorderContext context)
+        {
+            OnPostLateUpdate(record, context);
+        }
+
+        protected virtual void OnFixedUpdate(Record record, RecorderContext context)
         {
         }
 
-        protected virtual void OnPreUpdate(RecordContext recordContext, RecorderContext context)
+        protected virtual void OnEarlyUpdate(Record record, RecorderContext context)
         {
         }
 
-        protected virtual void OnUpdate(RecordContext recordContext, RecorderContext context)
+        protected virtual void OnPreUpdate(Record record, RecorderContext context)
         {
         }
 
-        protected virtual void OnPreLateUpdate(RecordContext recordContext, RecorderContext context)
+        protected virtual void OnUpdate(Record record, RecorderContext context)
         {
         }
 
-        protected virtual void OnPostLateUpdate(RecordContext recordContext, RecorderContext context)
+        protected virtual void OnPreLateUpdate(Record record, RecorderContext context)
+        {
+        }
+
+        protected virtual void OnPostLateUpdate(Record record, RecorderContext context)
         {
         }
 
@@ -114,16 +114,16 @@ namespace PLUME.Core.Recorder.Module
         {
         }
 
-        protected virtual void OnStartRecording(RecordContext recordContext, RecorderContext recorderContext)
+        protected virtual void OnStartRecording(Record record, RecorderContext recorderContext)
         {
         }
         
-        protected virtual UniTask OnStopRecording(RecordContext recordContext, RecorderContext recorderContext)
+        protected virtual UniTask OnStopRecording(Record record, RecorderContext recorderContext)
         {
             return UniTask.CompletedTask;
         }
         
-        protected virtual void OnForceStopRecording(RecordContext recordContext, RecorderContext recorderContext)
+        protected virtual void OnForceStopRecording(Record record, RecorderContext recorderContext)
         {
         }
 

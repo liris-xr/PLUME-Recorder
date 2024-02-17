@@ -1,57 +1,107 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using Unity.Burst;
+using Unity.Collections;
 
 namespace PLUME.Core.Recorder.Data
 {
-    public class TimestampedDataChunks : IEqualityComparer<TimestampedDataChunks>
+    [BurstCompile]
+    [GenerateTestsForBurstCompatibility]
+    public struct TimestampedDataChunks : IReadOnlyDataChunks, IDisposable
     {
-        internal readonly DataChunks DataChunks = new();
-        internal readonly List<long> Timestamps = new();
+        internal DataChunks DataChunks;
+        internal NativeList<long> Timestamps;
+        
+        public int ChunksCount => DataChunks.ChunksCount;
+        public int ChunksTotalLength => DataChunks.ChunksTotalLength;
 
-        public void Push(ReadOnlySpan<byte> data, long timestamp)
+        public TimestampedDataChunks(Allocator allocator)
         {
-            if (data.Length == 0)
+            DataChunks = new DataChunks(allocator);
+            Timestamps = new NativeList<long>(allocator);
+        }
+
+        public TimestampedDataChunks(ReadOnlySpan<byte> chunksData, ReadOnlySpan<int> chunksLength,
+            ReadOnlySpan<long> timestamps, Allocator allocator)
+        {
+            DataChunks = new DataChunks(chunksData, chunksLength, allocator);
+            Timestamps = new NativeList<long>(timestamps.Length, allocator);
+            Timestamps.ResizeUninitialized(timestamps.Length);
+            timestamps.CopyTo(Timestamps.AsArray().AsSpan());
+        }
+
+        public TimestampedDataChunks(TimestampedDataChunks other, Allocator allocator)
+        {
+            DataChunks = new DataChunks(other.DataChunks, allocator);
+            Timestamps = new NativeList<long>(other.Timestamps.Length, allocator);
+            Timestamps.AddRange(other.Timestamps.AsArray());
+        }
+
+        public void Add(DataChunks chunks, long timestamp)
+        {
+            CheckIsCreated();
+
+            if (chunks.IsEmpty())
                 return;
 
             var chunkIndex = Timestamps.BinarySearch(timestamp);
 
             if (chunkIndex >= 0)
             {
-                DataChunks.MergeIntoChunk(chunkIndex, data, DataChunks.ChunkPosition.End);
+                DataChunks.MergeIntoChunk(chunkIndex, chunks.GetChunksData(), DataChunks.ChunkPosition.End);
                 return;
             }
 
             // In this case, chunk index is the bitwise complement of the index of the next element that is larger
-            // than timestamp or, if there is no larger element,the bitwise complement of Count.
-            DataChunks.Insert(~chunkIndex, data);
-            Timestamps.Insert(~chunkIndex, timestamp);
+            // than timestamp or, if there is no larger element, the bitwise complement of Count.
+            var nearestChunkIndex = ~chunkIndex;
+            DataChunks.Insert(nearestChunkIndex, chunks.GetChunksData());
+            Timestamps.InsertRange(nearestChunkIndex, 1);
+            Timestamps[nearestChunkIndex] = timestamp;
         }
 
-        public bool TryPopAll(DataChunks dataChunks, List<long> timestamps)
+        public void Add(ReadOnlySpan<byte> chunkData, long timestamp)
         {
-            dataChunks.Clear();
-            timestamps.Clear();
+            CheckIsCreated();
+            if (chunkData.Length == 0)
+                return;
 
-            if (DataChunks.ChunksCount == 0)
+            var chunkIndex = Timestamps.BinarySearch(timestamp);
+
+            if (chunkIndex >= 0)
+            {
+                DataChunks.MergeIntoChunk(chunkIndex, chunkData, DataChunks.ChunkPosition.End);
+                return;
+            }
+
+            // In this case, chunk index is the bitwise complement of the index of the next element that is larger
+            // than timestamp or, if there is no larger element, the bitwise complement of Count.
+            var nearestChunkIndex = ~chunkIndex;
+            DataChunks.Insert(nearestChunkIndex, chunkData);
+            Timestamps.InsertRange(nearestChunkIndex, 1);
+            Timestamps[nearestChunkIndex] = timestamp;
+        }
+
+        public bool TryRemoveAll(TimestampedDataChunks dst)
+        {
+            CheckIsCreated();
+            dst.Clear();
+
+            if (DataChunks.IsEmpty())
                 return false;
 
-            var chunksData = DataChunks.GetAllData();
-            var chunksLengths = DataChunks.GetAllDataChunksLength();
-            dataChunks.AddRange(chunksData, chunksLengths);
-            timestamps.AddRange(Timestamps);
-            DataChunks.Clear();
-            Timestamps.Clear();
+            dst.DataChunks.Add(DataChunks);
+            dst.Timestamps.AddRange(Timestamps.AsArray());
             return true;
         }
 
-        public bool TryPopAllBeforeTimestamp(long timestamp, DataChunks dataChunks, List<long> timestamps,
-            bool inclusive)
+        public bool TryRemoveAllBeforeTimestamp(long timestamp, TimestampedDataChunks dst, bool inclusive)
         {
-            dataChunks.Clear();
-            timestamps.Clear();
+            CheckIsCreated();
+            dst.Clear();
 
-            if (DataChunks.ChunksCount == 0)
+            if (DataChunks.IsEmpty())
                 return false;
 
             var chunkIndex = Timestamps.BinarySearch(timestamp);
@@ -71,60 +121,174 @@ namespace PLUME.Core.Recorder.Data
             if (chunkIndex < 0)
                 return false;
 
-            // Pop from 0 to chunkIndex
-            var chunksData = DataChunks.GetDataChunks(0, chunkIndex + 1);
-            var chunksLengths = DataChunks.GetDataChunksLength(0, chunkIndex + 1);
-            dataChunks.AddRange(chunksData, chunksLengths);
-            DataChunks.RemoveRange(0, chunkIndex + 1);
-            
-            for(var i = 0; i <= chunkIndex; i++)
-                timestamps.Add(Timestamps[i]);
-            
-            Timestamps.RemoveRange(0, chunkIndex + 1);
+            var nRemovedChunks = chunkIndex + 1;
+            var dataChunks = DataChunks.GetChunksData(0, nRemovedChunks);
+            var chunksLength = DataChunks.GetChunksLength(0, nRemovedChunks);
+            var timestamps = Timestamps.AsArray().AsReadOnlySpan()[..nRemovedChunks];
+            dst.DataChunks.AddRange(dataChunks, chunksLength);
+            dst.Timestamps.InsertRange(0, nRemovedChunks);
+            timestamps.CopyTo(dst.Timestamps.AsArray());
+
+            DataChunks.RemoveRange(0, nRemovedChunks);
+            Timestamps.RemoveRange(0, nRemovedChunks);
             return true;
+        }
+
+        public bool IsEmpty()
+        {
+            CheckIsCreated();
+            return DataChunks.IsEmpty();
         }
 
         public void Clear()
         {
+            CheckIsCreated();
             DataChunks.Clear();
             Timestamps.Clear();
         }
 
-        public bool Equals(TimestampedDataChunks x, TimestampedDataChunks y)
+        public TimestampedDataChunks Copy(Allocator allocator)
         {
-            if (ReferenceEquals(x, y)) return true;
-            if (ReferenceEquals(x, null)) return false;
-            if (ReferenceEquals(y, null)) return false;
-            if (x.GetType() != y.GetType()) return false;
-            return Equals(x.DataChunks, y.DataChunks) && x.Timestamps.SequenceEqual(y.Timestamps);
-        }
-
-        public int GetHashCode(TimestampedDataChunks obj)
-        {
-            return HashCode.Combine(obj.DataChunks, obj.Timestamps);
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is TimestampedDataChunks other && Equals(this, other);
+            CheckIsCreated();
+            return new TimestampedDataChunks(this, allocator);
         }
 
         public override int GetHashCode()
         {
-            return GetHashCode(this);
+            int timestampHash;
+
+            if (Timestamps.Length == 0)
+            {
+                timestampHash = -1;
+            }
+            else
+            {
+                unchecked
+                {
+                    timestampHash = 17;
+                    timestampHash = 31 * timestampHash + Timestamps[0].GetHashCode();
+                    timestampHash = 31 * timestampHash + Timestamps[Timestamps.Length / 2].GetHashCode();
+                    timestampHash = 31 * timestampHash + Timestamps[^1].GetHashCode();
+                    timestampHash = 31 * timestampHash + Timestamps.Length;
+                }
+            }
+
+            return HashCode.Combine(DataChunks.GetHashCode(), timestampHash);
         }
 
-        public TimestampedDataChunks Copy()
+        public override bool Equals(object obj)
         {
-            var copy = new TimestampedDataChunks();
-            copy.DataChunks.AddRange(DataChunks.GetAllData(), DataChunks.GetAllDataChunksLength());
-            copy.Timestamps.AddRange(Timestamps);
-            return copy;
+            if (!IsCreated)
+                return false;
+            if (obj is not TimestampedDataChunks other)
+                return false;
+            if (!other.IsCreated)
+                return false;
+            if (!DataChunks.Equals(other.DataChunks))
+                return false;
+            if (Timestamps.Length != other.Timestamps.Length)
+                return false;
+
+            // ReSharper disable once LoopCanBeConvertedToQuery
+            for (var i = 0; i < Timestamps.Length; i++)
+            {
+                if (Timestamps[i] != other.Timestamps[i])
+                    return false;
+            }
+
+            return true;
         }
+
+        public void Dispose()
+        {
+            CheckIsCreated();
+            DataChunks.Dispose();
+            Timestamps.Dispose();
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private void CheckIsCreated()
+        {
+            if (!IsCreated)
+                throw new InvalidOperationException($"{nameof(TimestampedDataChunks)} is not created.");
+        }
+
+        public bool IsCreated => DataChunks.IsCreated && Timestamps.IsCreated;
 
         public override string ToString()
         {
-            return $"Chunks: {DataChunks}, Timestamps: ({string.Join(", ", Timestamps)})";
+            var sb = new StringBuilder();
+            sb.Append($"Chunks: {DataChunks}, Timestamps: (");
+
+            for (var i = 0; i < Timestamps.Length; i++)
+            {
+                sb.Append(Timestamps[i]);
+                if (i < Timestamps.Length - 1)
+                    sb.Append(", ");
+            }
+
+            sb.Append(")");
+            return sb.ToString();
+        }
+
+        public ReadOnlySpan<byte> GetChunkData(int chunkIndex)
+        {
+            return DataChunks.GetChunkData(chunkIndex);
+        }
+
+        public ReadOnlySpan<byte> GetChunksData(int chunkIndex, int count)
+        {
+            return DataChunks.GetChunksData(chunkIndex, count);
+        }
+
+        public ReadOnlySpan<byte> GetChunksData()
+        {
+            return DataChunks.GetChunksData();
+        }
+
+        public int GetChunkLength(int chunkIdx)
+        {
+            return DataChunks.GetChunkLength(chunkIdx);
+        }
+
+        public ReadOnlySpan<int> GetChunksLength(int chunkIndex, int count)
+        {
+            return DataChunks.GetChunksLength(chunkIndex, count);
+        }
+
+        public ReadOnlySpan<int> GetChunksLength()
+        {
+            return DataChunks.GetChunksLength();
+        }
+
+        public NativeArray<byte> GetChunkData(int chunkIndex, Allocator allocator)
+        {
+            return DataChunks.GetChunkData(chunkIndex, allocator);
+        }
+
+        public NativeArray<byte> GetChunksData(int chunkIndex, int count, Allocator allocator)
+        {
+            return DataChunks.GetChunksData(chunkIndex, count, allocator);
+        }
+
+        public NativeArray<byte> GetChunksData(Allocator allocator)
+        {
+            return DataChunks.GetChunksData(allocator);
+        }
+
+        public NativeArray<int> GetChunksLength(int chunkIndex, int count, Allocator allocator)
+        {
+            return DataChunks.GetChunksLength(chunkIndex, count, allocator);
+        }
+
+        public NativeArray<int> GetChunksLength(Allocator allocator)
+        {
+            return DataChunks.GetChunksLength(allocator);
+        }
+
+        public static implicit operator ReadOnlySpan<byte>(TimestampedDataChunks timestampedDataChunks)
+        {
+            return timestampedDataChunks.GetChunksData();
         }
     }
 }

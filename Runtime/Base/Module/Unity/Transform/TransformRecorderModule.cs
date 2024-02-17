@@ -1,27 +1,26 @@
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
+using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.ProtoBurst;
 using Unity.Burst;
 using Unity.Collections;
-using Unity.Collections.LowLevel.Unsafe;
 using Unity.Jobs;
 using UnityEngine.Jobs;
-using UnityEngine.Profiling;
 using UnityEngine.Scripting;
 
 namespace PLUME.Base.Module.Unity.Transform
 {
     [Preserve]
-    internal class TransformRecorderModule : ObjectFrameDataRecorderModuleBase<UnityEngine.Transform, TransformFrameData>
+    internal class
+        TransformRecorderModule : ObjectFrameDataRecorderModuleBase<UnityEngine.Transform, TransformFrameData>
     {
         private DynamicTransformAccessArray _transformAccessArray;
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
-        private SampleTypeUrlIndex _updatePosSampleTypeUrlIndex;
+        private SampleTypeUrlIndex _sampleTypeUrlIndex;
 
         protected override void OnCreate(RecorderContext ctx)
         {
@@ -29,7 +28,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _lastStates = new NativeHashMap<ObjectIdentifier, TransformState>(1000, Allocator.Persistent);
 
             // TODO: register type urls when loading assemblies
-            _updatePosSampleTypeUrlIndex =
+            _sampleTypeUrlIndex =
                 ctx.SampleTypeUrlRegistry.GetOrCreateTypeUrlIndex(TransformUpdateLocalPositionSample.SampleTypeUrl);
         }
 
@@ -67,82 +66,48 @@ namespace PLUME.Base.Module.Unity.Transform
         }
 
         private NativeList<TransformUpdateLocalPositionSample> _dirtySamples;
-        private NativeArray<int> _dirtySamplesMaxLengthArray;
         private JobHandle _pollingJobHandle;
-        
-        protected override void OnPreUpdate(RecordContext recordContext, RecorderContext context)
+
+        protected override void OnPreUpdate(Record record, RecorderContext context)
         {
-            Profiler.BeginSample("Create native collections");
-            _dirtySamples = new NativeList<TransformUpdateLocalPositionSample>(RecordedObjects.Count, Allocator.Persistent);
-            _dirtySamplesMaxLengthArray = new NativeArray<int>(1, Allocator.Persistent);
-            Profiler.EndSample();
-            
-            Profiler.BeginSample("Create job");
+            _dirtySamples =
+                new NativeList<TransformUpdateLocalPositionSample>(RecordedObjects.Count, Allocator.Persistent);
+
             var pollTransformStatesJob = new PollTransformStatesJob
             {
                 AlignedIdentifiers = _transformAccessArray.GetAlignedIdentifiers(),
                 DirtySamples = _dirtySamples.AsParallelWriter(),
-                DirtySamplesMaxLength = _dirtySamplesMaxLengthArray,
-                // TODO: work on a copy of _lastStates, update after job
-                LastStates = _lastStates
+                LastStates = _lastStates // TODO: work on a copy of _lastStates, update after job
             };
-            Profiler.EndSample();
-            
-            Profiler.BeginSample("Schedule job");
+
             _pollingJobHandle = pollTransformStatesJob.ScheduleReadOnly(_transformAccessArray, 128);
-            Profiler.EndSample();
         }
 
-        // TODO: start job earlier in the frame
-        
-        protected override TransformFrameData CollectFrameData()
+        protected override TransformFrameData OnCollectFrameData(Frame frame)
         {
-            Profiler.BeginSample("OnCollectFrameData");
-            
-            Profiler.BeginSample("Wait for job");
             _pollingJobHandle.Complete();
-            Profiler.EndSample();
-            
-            var dirtySamplesMaxLength = _dirtySamplesMaxLengthArray[0];
-            _dirtySamplesMaxLengthArray.Dispose();
-            
-            var transformFrameData = new TransformFrameData(_dirtySamples, dirtySamplesMaxLength);
-            Profiler.EndSample();
-            return transformFrameData;
+            return new TransformFrameData(_dirtySamples);
         }
 
         [BurstCompile]
-        protected override void SerializeFrameData(TransformFrameData frameData, SerializedSamplesBuffer buffer)
+        protected override void OnSerializeFrameData(TransformFrameData frameData, Frame frame,
+            FrameDataChunks frameDataChunks)
         {
-            buffer.EnsureCapacity(frameData.DirtySamplesMaxLength, frameData.DirtySamples.Length);
-            
-            var data = new NativeList<byte>(frameData.DirtySamplesMaxLength, Allocator.Persistent);
-            var lengths = new NativeList<int>(frameData.DirtySamples.Length, Allocator.Persistent);
-            
-            foreach (var dirtySample in frameData.DirtySamples)
-            {
-                var prevLength = data.Length;
-                dirtySample.WriteToNoResize(ref data);
-                var newLength = data.Length;
-                lengths.AddNoResize(newLength - prevLength);
-            }
-            
-            buffer.AddSerializedSamplesNoResize(_updatePosSampleTypeUrlIndex, data.AsArray(), lengths.AsArray());
-            data.Dispose();
-            lengths.Dispose();
+            // TODO: serialize in parallel and put everything inside a DataChunks
+            frameDataChunks.AddSamples(frameData.DirtySamples, _sampleTypeUrlIndex);
         }
 
-        protected override void DisposeFrameData(TransformFrameData frameData)
+        protected override void OnDisposeFrameData(TransformFrameData frameData, Frame frame)
         {
             frameData.Dispose();
         }
 
-        protected override void OnForceStopRecording(RecordContext recordContext, RecorderContext recorderContext)
+        protected override void OnForceStopRecording(Record record, RecorderContext recorderContext)
         {
             _pollingJobHandle.Complete();
         }
 
-        protected override async UniTask OnStopRecording(RecordContext recordContext, RecorderContext recorderContext)
+        protected override async UniTask OnStopRecording(Record record, RecorderContext recorderContext)
         {
             await UniTask.WaitUntil(() => _pollingJobHandle.IsCompleted);
         }
@@ -151,11 +116,9 @@ namespace PLUME.Base.Module.Unity.Transform
         private struct PollTransformStatesJob : IJobParallelForTransform
         {
             [ReadOnly] public NativeArray<ObjectIdentifier>.ReadOnly AlignedIdentifiers;
-            
+
             [WriteOnly] public NativeList<TransformUpdateLocalPositionSample>.ParallelWriter DirtySamples;
 
-            public NativeArray<int> DirtySamplesMaxLength;
-            
             [NativeDisableParallelForRestriction] public NativeHashMap<ObjectIdentifier, TransformState> LastStates;
 
             public void Execute(int index, TransformAccess transform)
@@ -184,12 +147,6 @@ namespace PLUME.Base.Module.Unity.Transform
                     };
 
                     DirtySamples.AddNoResize(sample);
-
-                    unsafe
-                    {
-                        Interlocked.Add(ref ((int*)DirtySamplesMaxLength.GetUnsafePtr())[0], sample.ComputeMaxSize());
-                    }
-
                     LastStates[identifier] = state;
                 }
                 else
@@ -225,12 +182,6 @@ namespace PLUME.Base.Module.Unity.Transform
                     };
 
                     DirtySamples.AddNoResize(sample);
-
-                    unsafe
-                    {
-                        Interlocked.Add(ref ((int*)DirtySamplesMaxLength.GetUnsafePtr())[0], sample.ComputeMaxSize());
-                    }
-
                     LastStates[identifier] = state;
                 }
             }

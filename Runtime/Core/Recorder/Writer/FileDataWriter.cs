@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using PLUME.Core.Recorder.Data;
 
@@ -34,10 +33,10 @@ namespace PLUME.Core.Recorder.Writer
         {
         }
 
-        public void WriteTimestampedData(DataChunks dataChunks, List<long> timestamps)
+        public void WriteTimestampedData(TimestampedDataChunks dataChunks)
         {
             // TODO: update metadata file
-            _stream.Write(dataChunks.GetAllData());
+            _stream.Write(dataChunks.GetChunksData());
         }
         
         public void Flush()

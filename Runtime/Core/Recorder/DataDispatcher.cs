@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Time;
 using PLUME.Core.Recorder.Writer;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Profiling;
 
@@ -18,16 +19,16 @@ namespace PLUME.Core.Recorder
         private IDataWriter[] _outputs;
         private FileDataWriter _fileDataWriter;
 
-        internal void Start(RecordContext recordContext)
+        internal void Start(Record record)
         {
-            var recordIdentifier = recordContext.Identifier;
+            var recordIdentifier = record.Identifier;
             // TODO: format string
             _fileDataWriter = new FileDataWriter(Application.persistentDataPath,
                 recordIdentifier.Identifier + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
 
             _outputs = new IDataWriter[] { _fileDataWriter };
 
-            _dispatcherThread = new Thread(() => DispatchLoop(recordContext.Data, recordContext.Clock))
+            _dispatcherThread = new Thread(() => DispatchLoop(record.DataBuffer, record.Clock))
             {
                 Name = "DataDispatcher.DispatchThread",
                 IsBackground = false
@@ -36,66 +37,68 @@ namespace PLUME.Core.Recorder
             _dispatcherThread.Start();
         }
 
-        private void DispatchLoop(IRecordData data, IReadOnlyClock clock)
+        private void DispatchLoop(RecordDataBuffer dataBuffer, IReadOnlyClock clock)
         {
             Profiler.BeginThreadProfiling("PLUME", "DataDispatcher");
-            
-            DataChunks tmpTimelessDataChunks = new();
-            DataChunks tmpTimestampedDataChunks = new();
-            List<long> tmpTimestamps = new();
+
+            DataChunks tmpTimelessDataChunks = new(Allocator.Persistent);
+            TimestampedDataChunks tmpTimestampedDataChunks = new(Allocator.Persistent);
 
             while (_running)
             {
                 var timestamp = clock.ElapsedNanoseconds;
                 var timeBarrier = timestamp - 1_000_000;
 
-                if (data.TryPopAllTimelessDataChunks(tmpTimestampedDataChunks))
+                if (dataBuffer.TryRemoveAllTimelessDataChunks(tmpTimelessDataChunks))
                 {
                     DispatchTimelessDataChunks(tmpTimelessDataChunks);
                 }
 
-                if (data.TryPopTimestampedDataChunksBefore(timeBarrier, tmpTimestampedDataChunks, tmpTimestamps, true))
+                if (dataBuffer.TryRemoveAllTimestampedDataChunksBeforeTimestamp(timeBarrier, tmpTimestampedDataChunks, true))
                 {
-                    DispatchTimestampedDataChunks(tmpTimestampedDataChunks, tmpTimestamps);
+                    DispatchTimestampedDataChunks(tmpTimestampedDataChunks);
                 }
             }
 
             // Dispatch any remaining data
-            if (data.TryPopAllTimelessDataChunks(tmpTimestampedDataChunks))
+            if (dataBuffer.TryRemoveAllTimelessDataChunks(tmpTimelessDataChunks))
             {
                 DispatchTimelessDataChunks(tmpTimelessDataChunks);
             }
 
-            if (data.TryPopAllTimestampedDataChunks(tmpTimestampedDataChunks, tmpTimestamps))
+            if (dataBuffer.TryRemoveAllTimestampedDataChunks(tmpTimestampedDataChunks))
             {
-                DispatchTimestampedDataChunks(tmpTimestampedDataChunks, tmpTimestamps);
+                DispatchTimestampedDataChunks(tmpTimestampedDataChunks);
             }
-            
+
+            tmpTimelessDataChunks.Dispose();
+            tmpTimestampedDataChunks.Dispose();
+
             Profiler.EndThreadProfiling();
         }
 
         private void DispatchTimelessDataChunks(DataChunks dataChunks)
         {
-            if(_outputs == null)
+            if (_outputs == null)
                 return;
-            
+
             foreach (var output in _outputs)
             {
                 output.WriteTimelessData(dataChunks);
             }
         }
-        
-        private void DispatchTimestampedDataChunks(DataChunks dataChunks, List<long> timestamps)
+
+        private void DispatchTimestampedDataChunks(TimestampedDataChunks dataChunks)
         {
-            if(_outputs == null)
+            if (_outputs == null)
                 return;
-            
+
             foreach (var output in _outputs)
             {
-                output.WriteTimestampedData(dataChunks, timestamps);
+                output.WriteTimestampedData(dataChunks);
             }
         }
-        
+
         internal async UniTask Stop()
         {
             _running = false;
@@ -117,7 +120,7 @@ namespace PLUME.Core.Recorder
         public void OnApplicationPaused()
         {
             Logger.Log("Application paused detected. Flushing data.");
-            
+
             foreach (var output in _outputs)
             {
                 output.Flush();

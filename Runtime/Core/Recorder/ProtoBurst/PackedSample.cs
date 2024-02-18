@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Google.Protobuf;
 using ProtoBurst;
 using ProtoBurst.Message;
+using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
 using WireFormat = ProtoBurst.WireFormat;
@@ -12,8 +13,10 @@ namespace PLUME.Core.Recorder.ProtoBurst
     [BurstCompile]
     public struct PackedSample : IProtoBurstMessage, IDisposable
     {
-        public static readonly FixedString128Bytes SampleTypeUrl = "fr.liris.plume/" + Sample.PackedSample.Descriptor.FullName;
-        public FixedString128Bytes TypeUrl => SampleTypeUrl;
+        public static readonly SampleTypeUrl SampleTypeUrl =
+            SampleTypeUrlRegistry.GetOrCreate("fr.liris.plume", Sample.PackedSample.Descriptor);
+
+        public SampleTypeUrl TypeUrl => SampleTypeUrl;
 
         private bool _hasTimestamp;
         private long _timestamp;
@@ -60,20 +63,20 @@ namespace PLUME.Core.Recorder.ProtoBurst
         {
             return new PackedSample(timestamp, Any.Pack(msg, allocator));
         }
-        
+
         public static PackedSample Pack(IMessage msg, Allocator allocator)
         {
             return new PackedSample(Any.Pack(msg, allocator));
         }
 
-        public static PackedSample Pack(NativeArray<byte> msgBytes, FixedString128Bytes msgTypeUrl)
+        public static PackedSample Pack(NativeArray<byte> value, SampleTypeUrl typeUrl)
         {
-            return new PackedSample(Any.Pack(msgBytes, msgTypeUrl));
+            return new PackedSample(Any.Pack(value, typeUrl));
         }
 
-        public static PackedSample Pack(long timestamp, NativeArray<byte> msgBytes, FixedString128Bytes msgTypeUrl)
+        public static PackedSample Pack(long timestamp, NativeArray<byte> value, SampleTypeUrl typeUrl)
         {
-            return new PackedSample(timestamp, Any.Pack(msgBytes, msgTypeUrl));
+            return new PackedSample(timestamp, Any.Pack(value, typeUrl));
         }
 
         [BurstCompile]
@@ -90,6 +93,22 @@ namespace PLUME.Core.Recorder.ProtoBurst
             WritingPrimitives.WriteTagNoResize(Sample.PackedSample.PayloadFieldNumber,
                 WireFormat.WireType.LengthDelimited, ref data);
             WritingPrimitives.WriteLengthPrefixedMessageNoResize(ref Payload, ref data);
+        }
+
+        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void WriteTo(ref NativeList<byte> data)
+        {
+            if (_hasTimestamp)
+            {
+                WritingPrimitives.WriteTag(Sample.PackedSample.TimestampFieldNumber, WireFormat.WireType.VarInt,
+                    ref data);
+                WritingPrimitives.WriteInt64(_timestamp, ref data);
+            }
+
+            WritingPrimitives.WriteTag(Sample.PackedSample.PayloadFieldNumber, WireFormat.WireType.LengthDelimited,
+                ref data);
+            WritingPrimitives.WriteLengthPrefixedMessage(ref Payload, ref data);
         }
 
         [BurstCompile]

@@ -19,6 +19,8 @@ namespace PLUME.Core.Scripts
 #if UNITY_EDITOR
             EditorApplication.pauseStateChanged += state =>
             {
+                if (_instance == null) return;
+                
                 if (state == PauseState.Paused)
                 {
                     Paused?.Invoke();

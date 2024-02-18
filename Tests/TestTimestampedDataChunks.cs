@@ -76,7 +76,7 @@ namespace PLUME.Tests
             var removedChunks = new TimestampedDataChunks(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(AnyTimestamp, removedChunks, true);
 
-            Assert.AreEqual(0, removed);
+            Assert.AreEqual(false, removed);
             Assert.IsTrue(removedChunks.IsEmpty());
         }
 
@@ -88,7 +88,7 @@ namespace PLUME.Tests
             var removedChunks = new TimestampedDataChunks(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(AnyTimestamp, removedChunks, false);
 
-            Assert.AreEqual(0, removed);
+            Assert.AreEqual(false, removed);
             Assert.IsTrue(removedChunks.IsEmpty());
         }
 
@@ -186,7 +186,7 @@ namespace PLUME.Tests
             var removedChunks = new TimestampedDataChunks(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(BeforeAllTimestamp, removedChunks, false);
             
-            Assert.AreEqual(0, removed);
+            Assert.AreEqual(false, removed);
             Assert.IsTrue(removedChunks.IsEmpty());
         }
 
@@ -202,7 +202,7 @@ namespace PLUME.Tests
             expected.DataChunks.Add(FirstDataChunk);
             expected.Timestamps.Add(FirstTimestamp);
 
-            Assert.AreEqual(1, removed);
+            Assert.AreEqual(true, removed);
             Assert.AreEqual(expected, removedChunks);
         }
 
@@ -220,7 +220,7 @@ namespace PLUME.Tests
             expected.Timestamps.Add(FirstTimestamp);
             expected.Timestamps.Add(SecondTimestamp);
 
-            Assert.AreEqual(2, removed);
+            Assert.AreEqual(true, removed);
             Assert.AreEqual(expected, removedChunks);
         }
 
@@ -232,7 +232,7 @@ namespace PLUME.Tests
             var removedChunks = new TimestampedDataChunks(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(FirstTimestamp, removedChunks, false);
             
-            Assert.AreEqual(0, removed);
+            Assert.AreEqual(false, removed);
             Assert.IsTrue(removedChunks.IsEmpty());
         }
 
@@ -248,7 +248,7 @@ namespace PLUME.Tests
             expected.DataChunks.Add(FirstDataChunk);
             expected.Timestamps.Add(FirstTimestamp);
 
-            Assert.AreEqual(1, removed);
+            Assert.AreEqual(true, removed);
             Assert.AreEqual(expected, removedChunks);
         }
 
@@ -264,7 +264,7 @@ namespace PLUME.Tests
             expected.DataChunks.Add(FirstDataChunk);
             expected.Timestamps.Add(FirstTimestamp);
 
-            Assert.AreEqual(1, removed);
+            Assert.AreEqual(true, removed);
             Assert.AreEqual(expected, removedChunks);
         }
 
@@ -282,7 +282,7 @@ namespace PLUME.Tests
             expected.Timestamps.Add(FirstTimestamp);
             expected.Timestamps.Add(SecondTimestamp);
 
-            Assert.AreEqual(2, removed);
+            Assert.AreEqual(true, removed);
             Assert.AreEqual(expected, removedChunks);
         }
     }

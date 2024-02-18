@@ -41,6 +41,8 @@ namespace PLUME.Core.Recorder.Module
             OnReset(recorderContext);
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
+
         void IFrameDataRecorderModule.CollectFrameData(Frame frame)
         {
             var frameData = OnCollectFrameData(frame);
@@ -51,35 +53,35 @@ namespace PLUME.Core.Recorder.Module
             }
         }
 
-        bool IFrameDataRecorderModule.SerializeFrameData(Frame frame, FrameDataChunks output)
+        // ReSharper restore Unity.PerformanceCriticalContext
+
+        bool IFrameDataRecorderModule.SerializeFrameData(Frame frame, FrameDataWriter output)
         {
             TFrameData frameData;
-            
+
             lock (_framesData)
             {
-                if (!_framesData.TryGetValue(frame, out frameData))
+                if (!_framesData.Remove(frame, out frameData))
                 {
                     return false;
                 }
-
-                _framesData.Remove(frame);
             }
 
             OnSerializeFrameData(frameData, frame, output);
             return true;
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IFrameDataRecorderModule.DisposeFrameData(Frame frame)
         {
             TFrameData frameData;
-            
+
             lock (_framesData)
             {
-                if (!_framesData.TryGetValue(frame, out frameData))
+                if (!_framesData.Remove(frame, out frameData))
                 {
                     return;
                 }
-                _framesData.Remove(frame);
             }
 
             OnDisposeFrameData(frameData, frame);
@@ -103,71 +105,85 @@ namespace PLUME.Core.Recorder.Module
             OnDestroy(recorderContext);
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IRecorderModule.FixedUpdate(Record record, RecorderContext context)
         {
             OnFixedUpdate(record, context);
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IRecorderModule.EarlyUpdate(Record record, RecorderContext context)
         {
             OnEarlyUpdate(record, context);
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IRecorderModule.PreUpdate(Record record, RecorderContext context)
         {
             OnPreUpdate(record, context);
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IRecorderModule.Update(Record record, RecorderContext context)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IRecorderModule.PreLateUpdate(Record record, RecorderContext context)
         {
             OnPreLateUpdate(record, context);
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IRecorderModule.PostLateUpdate(Record record, RecorderContext context)
         {
             OnPostLateUpdate(record, context);
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnFixedUpdate(Record record, RecorderContext context)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnEarlyUpdate(Record record, RecorderContext context)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnPreUpdate(Record record, RecorderContext context)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnUpdate(Record record, RecorderContext context)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnPreLateUpdate(Record record, RecorderContext context)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnPostLateUpdate(Record record, RecorderContext context)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnCreate(RecorderContext recorderContext)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnDestroy(RecorderContext recorderContext)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnStartRecording(Record record, RecorderContext recorderContext)
         {
         }
-        
         
         protected virtual UniTask OnStopRecording(Record record, RecorderContext recorderContext)
         {
@@ -182,10 +198,13 @@ namespace PLUME.Core.Recorder.Module
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected abstract TFrameData OnCollectFrameData(Frame frame);
 
-        protected abstract void OnSerializeFrameData(TFrameData frameData, Frame frame, FrameDataChunks output);
+        // ReSharper restore Unity.PerformanceCriticalContext
+        protected abstract void OnSerializeFrameData(TFrameData frameData, Frame frame, FrameDataWriter output);
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected abstract void OnDisposeFrameData(TFrameData frameData, Frame frame);
     }
 }

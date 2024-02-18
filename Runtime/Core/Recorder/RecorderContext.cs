@@ -9,14 +9,11 @@ namespace PLUME.Core.Recorder
     {
         public readonly ReadOnlyCollection<IRecorderModule> Modules;
         public readonly ObjectSafeRefProvider ObjectSafeRefProvider;
-        public readonly SampleTypeUrlRegistry SampleTypeUrlRegistry;
 
-        public RecorderContext(ReadOnlyCollection<IRecorderModule> modules, ObjectSafeRefProvider objectSafeRefProvider,
-            SampleTypeUrlRegistry sampleTypeUrlRegistry)
+        public RecorderContext(ReadOnlyCollection<IRecorderModule> modules, ObjectSafeRefProvider objectSafeRefProvider)
         {
             Modules = modules;
             ObjectSafeRefProvider = objectSafeRefProvider;
-            SampleTypeUrlRegistry = sampleTypeUrlRegistry;
         }
 
         /// <summary>

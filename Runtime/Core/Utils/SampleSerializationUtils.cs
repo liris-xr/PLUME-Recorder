@@ -1,31 +1,30 @@
 using System;
 using Google.Protobuf;
+using ProtoBurst;
 using Unity.Collections;
 
 namespace PLUME.Core.Utils
 {
     public static class SampleSerializationUtils
     {
-        public static unsafe void Serialize(this IMessage message, ref NativeList<byte> buffer)
+        public static NativeArray<byte> SerializeLengthPrefixed(this IMessage message, Allocator allocator)
         {
             var size = message.CalculateSize();
-            var bytes = stackalloc byte[size];
-            var span = new Span<byte>(bytes, size);
-            message.WriteTo(span);
-
-            fixed (byte* ptr = span)
-            {
-                buffer.AddRange(ptr, size);
-            }
+            var tmpBytes = new NativeList<byte>(Allocator.Persistent);
+            tmpBytes.ResizeUninitialized(size + WritingPrimitives.LengthPrefixMaxSize);
+            message.WriteTo(tmpBytes.AsArray().AsSpan());
+            WritingPrimitives.InsertLength(size, ref tmpBytes, 0);
+            var bytes = tmpBytes.ToArray(allocator);
+            tmpBytes.Dispose();
+            return bytes;
         }
 
         public static NativeArray<byte> Serialize(this IMessage message, Allocator allocator)
         {
-            var bytes = new NativeList<byte>(message.CalculateSize(), Allocator.Persistent);
-            message.Serialize(ref bytes);
-            var bytesArray = bytes.ToArray(allocator);
-            bytes.Dispose();
-            return bytesArray;
+            var size = message.CalculateSize();
+            var bytes = new NativeArray<byte>(size, allocator);
+            message.WriteTo(bytes.AsSpan());
+            return bytes;
         }
     }
 }

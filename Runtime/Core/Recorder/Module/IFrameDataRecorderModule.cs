@@ -6,7 +6,7 @@ namespace PLUME.Core.Recorder.Module
     {
         internal void CollectFrameData(Frame frame);
 
-        internal bool SerializeFrameData(Frame frame, FrameDataChunks output);
+        internal bool SerializeFrameData(Frame frame, FrameDataWriter output);
         
         internal void DisposeFrameData(Frame frame);
     }

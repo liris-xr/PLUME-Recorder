@@ -123,7 +123,7 @@ namespace PLUME.Core.Recorder.Data
 
             var nRemovedChunks = chunkIndex + 1;
             var dataChunks = DataChunks.GetChunksData(0, nRemovedChunks);
-            var chunksLength = DataChunks.GetChunksLength(0, nRemovedChunks);
+            var chunksLength = DataChunks.GetChunksLengths(0, nRemovedChunks);
             var timestamps = Timestamps.AsArray().AsReadOnlySpan()[..nRemovedChunks];
             dst.DataChunks.AddRange(dataChunks, chunksLength);
             dst.Timestamps.InsertRange(0, nRemovedChunks);
@@ -251,14 +251,14 @@ namespace PLUME.Core.Recorder.Data
             return DataChunks.GetChunkLength(chunkIdx);
         }
 
-        public ReadOnlySpan<int> GetChunksLength(int chunkIndex, int count)
+        public ReadOnlySpan<int> GetChunksLengths(int chunkIndex, int count)
         {
-            return DataChunks.GetChunksLength(chunkIndex, count);
+            return DataChunks.GetChunksLengths(chunkIndex, count);
         }
 
-        public ReadOnlySpan<int> GetChunksLength()
+        public ReadOnlySpan<int> GetChunksLengths()
         {
-            return DataChunks.GetChunksLength();
+            return DataChunks.GetChunksLengths();
         }
 
         public NativeArray<byte> GetChunkData(int chunkIndex, Allocator allocator)
@@ -276,14 +276,14 @@ namespace PLUME.Core.Recorder.Data
             return DataChunks.GetChunksData(allocator);
         }
 
-        public NativeArray<int> GetChunksLength(int chunkIndex, int count, Allocator allocator)
+        public NativeArray<int> GetChunksLengths(int chunkIndex, int count, Allocator allocator)
         {
-            return DataChunks.GetChunksLength(chunkIndex, count, allocator);
+            return DataChunks.GetChunksLengths(chunkIndex, count, allocator);
         }
 
-        public NativeArray<int> GetChunksLength(Allocator allocator)
+        public NativeArray<int> GetChunksLengths(Allocator allocator)
         {
-            return DataChunks.GetChunksLength(allocator);
+            return DataChunks.GetChunksLengths(allocator);
         }
 
         public static implicit operator ReadOnlySpan<byte>(TimestampedDataChunks timestampedDataChunks)

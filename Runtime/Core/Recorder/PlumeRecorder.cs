@@ -51,12 +51,10 @@ namespace PLUME.Core.Recorder
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         internal static void Instantiate()
         {
-            var typeUrlRegistry = new SampleTypeUrlRegistry(Allocator.Persistent);
             var objSafeRefProvider = new ObjectSafeRefProvider();
             var recorderModules = RecorderModuleManager.InstantiateRecorderModulesFromAllAssemblies();
             var dataDispatcher = new DataDispatcher();
-            var recorderContext =
-                new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider, typeUrlRegistry);
+            var recorderContext = new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider);
 
             Instance = new PlumeRecorder(dataDispatcher, recorderContext);
 
@@ -85,7 +83,6 @@ namespace PLUME.Core.Recorder
             {
                 Instance.OnApplicationQuitting();
                 Instance.Dispose();
-                typeUrlRegistry.Dispose();
             };
         }
 
@@ -178,8 +175,7 @@ namespace PLUME.Core.Recorder
             ApplicationPauseDetector.EnsureExists();
 
             var recordClock = new Clock();
-            var data = new RecordDataBuffer(Allocator.Persistent);
-            _record = new Record(recordClock, data, recordIdentifier);
+            _record = new Record(recordClock, recordIdentifier, Allocator.Persistent);
 
             CurrentStatus = RecorderStatus.Recording;
 
@@ -264,7 +260,7 @@ namespace PLUME.Core.Recorder
         {
             EnsureIsRecording();
             var marker = new Marker {Label = label};
-            _record.DataBuffer.AddTimestampedSample(marker, _record.Clock.ElapsedNanoseconds);
+            _record.RecordTimestampedSample(marker, _record.Clock.ElapsedNanoseconds);
         }
 
         private void StartRecordingObjectInternal<T>(ObjectSafeRef<T> objectSafeRef, bool markCreated)

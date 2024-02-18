@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using PLUME.Core.Recorder.ProtoBurst;
 using PLUME.Sample.Unity;
 using ProtoBurst;
+using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
 
@@ -10,10 +11,11 @@ namespace PLUME.Base.Module.Unity.Transform
     [BurstCompile]
     public struct TransformUpdateLocalPositionSample : IProtoBurstMessage
     {
-        public static readonly FixedString128Bytes SampleTypeUrl = "fr.liris.plume/" + TransformUpdateLocalPosition.Descriptor.FullName;
+        public static readonly SampleTypeUrl LocalPositionTypeUrl =
+            SampleTypeUrlRegistry.GetOrCreate("fr.liris.plume", TransformUpdateLocalPosition.Descriptor);
 
-        public FixedString128Bytes TypeUrl => SampleTypeUrl;
-        
+        public SampleTypeUrl TypeUrl => LocalPositionTypeUrl;
+
         // TODO: add identifier
 
         public Vector3Sample LocalPosition;
@@ -23,7 +25,6 @@ namespace PLUME.Base.Module.Unity.Transform
             LocalPosition = localPosition;
         }
 
-        // TODO: return length written
         [BurstCompile]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void WriteToNoResize(ref NativeList<byte> data)
@@ -32,7 +33,16 @@ namespace PLUME.Base.Module.Unity.Transform
                 WireFormat.WireType.LengthDelimited, ref data);
             WritingPrimitives.WriteLengthPrefixedMessageNoResize(ref LocalPosition, ref data);
         }
-        
+
+        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void WriteTo(ref NativeList<byte> data)
+        {
+            WritingPrimitives.WriteTag(TransformUpdateLocalPosition.LocalPositionFieldNumber,
+                WireFormat.WireType.LengthDelimited, ref data);
+            WritingPrimitives.WriteLengthPrefixedMessage(ref LocalPosition, ref data);
+        }
+
         [BurstCompile]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public int ComputeMaxSize()

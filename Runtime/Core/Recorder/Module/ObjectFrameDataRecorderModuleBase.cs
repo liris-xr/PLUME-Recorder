@@ -20,7 +20,7 @@ namespace PLUME.Core.Recorder.Module
             }
         }
 
-        bool IFrameDataRecorderModule.SerializeFrameData(Frame frame, FrameDataChunks output)
+        bool IFrameDataRecorderModule.SerializeFrameData(Frame frame, FrameDataWriter output)
         {
             TFrameData frameData;
             
@@ -54,7 +54,7 @@ namespace PLUME.Core.Recorder.Module
 
         protected abstract TFrameData OnCollectFrameData(Frame frame);
 
-        protected abstract void OnSerializeFrameData(TFrameData frameData, Frame frame, FrameDataChunks output);
+        protected abstract void OnSerializeFrameData(TFrameData frameData, Frame frame, FrameDataWriter output);
 
         protected abstract void OnDisposeFrameData(TFrameData frameData, Frame frame);
     }

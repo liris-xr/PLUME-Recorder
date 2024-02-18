@@ -1,9 +1,8 @@
 using System;
 using System.Runtime.CompilerServices;
-using PLUME.Core.Recorder.Data;
 using PLUME.Sample.Unity;
 using ProtoBurst;
-using ProtoBurst.Message;
+using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
 
@@ -12,31 +11,29 @@ namespace PLUME.Core.Recorder.ProtoBurst
     [BurstCompile]
     public struct FrameSample : IProtoBurstMessage, IDisposable
     {
-        public static readonly FixedString128Bytes SampleTypeUrl = "fr.liris.plume/" + Frame.Descriptor.FullName;
+        public static readonly SampleTypeUrl FrameSampleTypeUrl =
+            SampleTypeUrlRegistry.GetOrCreate("fr.liris.plume", Frame.Descriptor);
 
-        public FixedString128Bytes TypeUrl => SampleTypeUrl;
+        public SampleTypeUrl TypeUrl => FrameSampleTypeUrl;
 
         public readonly int FrameNumber;
-        public NativeArray<Any> Data;
+        public NativeArray<byte> Data;
 
-        public FrameSample(int frameNumber, NativeArray<Any> data)
+        public FrameSample(int frameNumber, NativeArray<byte> data)
         {
             FrameNumber = frameNumber;
             Data = data;
         }
 
-        public static FrameSample Pack(int frameNumber, ref SampleTypeUrlRegistry typeUrlRegistry,
-            ref FrameDataChunks frameDataSamples, Allocator allocator)
+        public static FrameSample Pack(int frameNumber, ReadOnlySpan<byte> data, Allocator allocator)
         {
-            var data = new NativeArray<Any>(frameDataSamples.ChunksCount, allocator);
-            
-            for (var chunkIdx = 0; chunkIdx < frameDataSamples.ChunksCount; chunkIdx++)
-            {
-                var chunkData = frameDataSamples.GetChunkData(chunkIdx);
-                var chunkSampleTypeUrlIndex = frameDataSamples.GetSampleTypeUrlIndex(chunkIdx);
-                data[chunkIdx] = Any.Pack(chunkData, typeUrlRegistry.GetTypeUrlFromIndex(chunkSampleTypeUrlIndex), allocator);
-            }
-
+            var dataArr = new NativeArray<byte>(data.Length, allocator);
+            data.CopyTo(dataArr);
+            return new FrameSample(frameNumber, dataArr);
+        }
+        
+        public static FrameSample Pack(int frameNumber, NativeArray<byte> data)
+        {
             return new FrameSample(frameNumber, data);
         }
 
@@ -44,17 +41,22 @@ namespace PLUME.Core.Recorder.ProtoBurst
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void WriteToNoResize(ref NativeList<byte> data)
         {
-            WritingPrimitives.WriteTagNoResize(Frame.FrameNumberFieldNumber, WireFormat.WireType.VarInt,
-                ref data);
+            WritingPrimitives.WriteTagNoResize(Frame.FrameNumberFieldNumber, WireFormat.WireType.VarInt, ref data);
             WritingPrimitives.WriteInt32NoResize(FrameNumber, ref data);
 
-            foreach (var frameData in Data)
-            {
-                var fd = frameData;
-                WritingPrimitives.WriteTagNoResize(Frame.DataFieldNumber,
-                    WireFormat.WireType.LengthDelimited, ref data);
-                WritingPrimitives.WriteLengthPrefixedMessageNoResize(ref fd, ref data);
-            }
+            WritingPrimitives.WriteTagNoResize(Frame.DataFieldNumber, WireFormat.WireType.LengthDelimited, ref data);
+            WritingPrimitives.WriteLengthPrefixedBytesNoResize(ref Data, ref data);
+        }
+
+        [BurstCompile]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void WriteTo(ref NativeList<byte> data)
+        {
+            WritingPrimitives.WriteTag(Frame.FrameNumberFieldNumber, WireFormat.WireType.VarInt, ref data);
+            WritingPrimitives.WriteInt32(FrameNumber, ref data);
+
+            WritingPrimitives.WriteTag(Frame.DataFieldNumber, WireFormat.WireType.LengthDelimited, ref data);
+            WritingPrimitives.WriteLengthPrefixedBytes(ref Data, ref data);
         }
 
         [BurstCompile]
@@ -62,23 +64,12 @@ namespace PLUME.Core.Recorder.ProtoBurst
         public int ComputeMaxSize()
         {
             var size = WritingPrimitives.TagSize + WritingPrimitives.Int32MaxSize;
-
-            foreach (var frameData in Data)
-            {
-                size += WritingPrimitives.TagSize + WritingPrimitives.LengthPrefixMaxSize;
-                size += frameData.ComputeMaxSize();
-            }
-
+            size += WritingPrimitives.TagSize + WritingPrimitives.LengthPrefixMaxSize + Data.Length;
             return size;
         }
 
         public void Dispose()
         {
-            foreach (var frameData in Data)
-            {
-                frameData.Dispose();
-            }
-
             Data.Dispose();
         }
     }

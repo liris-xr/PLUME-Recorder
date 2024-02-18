@@ -6,9 +6,11 @@ using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.ProtoBurst;
+using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
+using UnityEngine;
 using UnityEngine.Jobs;
 using UnityEngine.Scripting;
 
@@ -20,16 +22,11 @@ namespace PLUME.Base.Module.Unity.Transform
     {
         private DynamicTransformAccessArray _transformAccessArray;
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
-        private SampleTypeUrlIndex _sampleTypeUrlIndex;
 
         protected override void OnCreate(RecorderContext ctx)
         {
             _transformAccessArray = new DynamicTransformAccessArray();
             _lastStates = new NativeHashMap<ObjectIdentifier, TransformState>(1000, Allocator.Persistent);
-
-            // TODO: register type urls when loading assemblies
-            _sampleTypeUrlIndex =
-                ctx.SampleTypeUrlRegistry.GetOrCreateTypeUrlIndex(TransformUpdateLocalPositionSample.SampleTypeUrl);
         }
 
         protected override void OnDestroy(RecorderContext ctx)
@@ -91,10 +88,10 @@ namespace PLUME.Base.Module.Unity.Transform
 
         [BurstCompile]
         protected override void OnSerializeFrameData(TransformFrameData frameData, Frame frame,
-            FrameDataChunks frameDataChunks)
+            FrameDataWriter frameDataWriter)
         {
             // TODO: serialize in parallel and put everything inside a DataChunks
-            frameDataChunks.AddSamples(frameData.DirtySamples, _sampleTypeUrlIndex);
+            frameDataWriter.Write(frameData.DirtySamples);
         }
 
         protected override void OnDisposeFrameData(TransformFrameData frameData, Frame frame)

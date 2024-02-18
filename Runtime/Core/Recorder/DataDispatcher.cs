@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Recorder.Data;
-using PLUME.Core.Recorder.Time;
 using PLUME.Core.Recorder.Writer;
 using Unity.Collections;
 using UnityEngine;
@@ -28,7 +26,7 @@ namespace PLUME.Core.Recorder
 
             _outputs = new IDataWriter[] { _fileDataWriter };
 
-            _dispatcherThread = new Thread(() => DispatchLoop(record.DataBuffer, record.Clock))
+            _dispatcherThread = new Thread(() => DispatchLoop(record))
             {
                 Name = "DataDispatcher.DispatchThread",
                 IsBackground = false
@@ -37,7 +35,7 @@ namespace PLUME.Core.Recorder
             _dispatcherThread.Start();
         }
 
-        private void DispatchLoop(RecordDataBuffer dataBuffer, IReadOnlyClock clock)
+        private void DispatchLoop(Record record)
         {
             Profiler.BeginThreadProfiling("PLUME", "DataDispatcher");
 
@@ -46,27 +44,29 @@ namespace PLUME.Core.Recorder
 
             while (_running)
             {
-                var timestamp = clock.ElapsedNanoseconds;
+                var timestamp = record.Clock.ElapsedNanoseconds;
                 var timeBarrier = timestamp - 1_000_000;
 
-                if (dataBuffer.TryRemoveAllTimelessDataChunks(tmpTimelessDataChunks))
+                if (record.TryRemoveAllTimelessDataChunks(tmpTimelessDataChunks))
                 {
                     DispatchTimelessDataChunks(tmpTimelessDataChunks);
                 }
 
-                if (dataBuffer.TryRemoveAllTimestampedDataChunksBeforeTimestamp(timeBarrier, tmpTimestampedDataChunks, true))
+                if (record.TryRemoveAllTimestampedDataChunksBeforeTimestamp(timeBarrier, tmpTimestampedDataChunks, true))
                 {
                     DispatchTimestampedDataChunks(tmpTimestampedDataChunks);
                 }
+                
+                Thread.Sleep(10);
             }
 
             // Dispatch any remaining data
-            if (dataBuffer.TryRemoveAllTimelessDataChunks(tmpTimelessDataChunks))
+            if (record.TryRemoveAllTimelessDataChunks(tmpTimelessDataChunks))
             {
                 DispatchTimelessDataChunks(tmpTimelessDataChunks);
             }
 
-            if (dataBuffer.TryRemoveAllTimestampedDataChunks(tmpTimestampedDataChunks))
+            if (record.TryRemoveAllTimestampedDataChunks(tmpTimestampedDataChunks))
             {
                 DispatchTimestampedDataChunks(tmpTimestampedDataChunks);
             }

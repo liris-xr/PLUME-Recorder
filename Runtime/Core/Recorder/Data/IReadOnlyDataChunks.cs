@@ -17,9 +17,9 @@ namespace PLUME.Core.Recorder.Data
 
         public int GetChunkLength(int chunkIdx);
         
-        public ReadOnlySpan<int> GetChunksLength(int chunkIndex, int count);
+        public ReadOnlySpan<int> GetChunksLengths(int chunkIndex, int count);
         
-        public ReadOnlySpan<int> GetChunksLength();
+        public ReadOnlySpan<int> GetChunksLengths();
         
         public NativeArray<byte> GetChunkData(int chunkIndex, Allocator allocator);
         
@@ -27,8 +27,8 @@ namespace PLUME.Core.Recorder.Data
         
         public NativeArray<byte> GetChunksData(Allocator allocator);
         
-        public NativeArray<int> GetChunksLength(int chunkIndex, int count, Allocator allocator);
+        public NativeArray<int> GetChunksLengths(int chunkIndex, int count, Allocator allocator);
         
-        public NativeArray<int> GetChunksLength(Allocator allocator);
+        public NativeArray<int> GetChunksLengths(Allocator allocator);
     }
 }

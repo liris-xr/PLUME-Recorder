@@ -14,7 +14,7 @@ namespace PLUME.Core.Recorder.Writer
         public FileDataWriter(string outputDir, string recordIdentifier)
         {
             var filePath = Path.Combine(outputDir, GenerateFileName(recordIdentifier));
-            _stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, 4096, FileOptions.SequentialScan);
+            _stream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
         }
 
         private static string GenerateFileName(string recordName)
@@ -36,7 +36,8 @@ namespace PLUME.Core.Recorder.Writer
         public void WriteTimestampedData(TimestampedDataChunks dataChunks)
         {
             // TODO: update metadata file
-            _stream.Write(dataChunks.GetChunksData());
+            var data = dataChunks.GetChunksData();
+            _stream.Write(data);
         }
         
         public void Flush()

@@ -93,6 +93,8 @@ namespace PLUME.Core.Recorder.Data
 
             dst.DataChunks.Add(DataChunks);
             dst.Timestamps.AddRange(Timestamps.AsArray());
+            DataChunks.Clear();
+            Timestamps.Clear();
             return true;
         }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Net.Sockets;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Recorder.Data;
@@ -16,10 +17,21 @@ namespace PLUME.Core.Recorder
 
         private IDataWriter[] _outputs;
         private FileDataWriter _fileDataWriter;
+        private NetworkStream _networkStream;
 
         internal void Start(Record record)
         {
             var recordIdentifier = record.Identifier;
+
+            // _networkStream = new TcpClient("localhost", 12345).GetStream();
+            //
+            // // Wait for client to connect
+            // while (!_networkStream.CanWrite)
+            // {
+            //     Debug.Log("Waiting for client to connect...");
+            //     Thread.Sleep(100);
+            // }
+
             // TODO: format string
             _fileDataWriter = new FileDataWriter(Application.persistentDataPath,
                 recordIdentifier.Identifier + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
@@ -46,20 +58,28 @@ namespace PLUME.Core.Recorder
             {
                 var timestamp = record.Clock.ElapsedNanoseconds;
                 var timeBarrier = timestamp - 1_000_000;
+                
+                tmpTimelessDataChunks.Clear();
+                tmpTimestampedDataChunks.Clear();
 
                 if (record.TryRemoveAllTimelessDataChunks(tmpTimelessDataChunks))
                 {
                     DispatchTimelessDataChunks(tmpTimelessDataChunks);
                 }
-
-                if (record.TryRemoveAllTimestampedDataChunksBeforeTimestamp(timeBarrier, tmpTimestampedDataChunks, true))
+                
+                if (record.TryRemoveAllTimestampedDataChunksBeforeTimestamp(timeBarrier, tmpTimestampedDataChunks,
+                        true))
                 {
                     DispatchTimestampedDataChunks(tmpTimestampedDataChunks);
                 }
-                
-                Thread.Sleep(10);
+
+                if (_running)
+                    Thread.Sleep(1);
             }
 
+            tmpTimelessDataChunks.Clear();
+            tmpTimestampedDataChunks.Clear();
+            
             // Dispatch any remaining data
             if (record.TryRemoveAllTimelessDataChunks(tmpTimelessDataChunks))
             {
@@ -105,7 +125,7 @@ namespace PLUME.Core.Recorder
             await UniTask.WaitUntil(() => !_dispatcherThread.IsAlive);
             _dispatcherThread = null;
             _outputs = null;
-            _fileDataWriter.Dispose();
+            _fileDataWriter.Close();
         }
 
         internal void ForceStop()
@@ -114,11 +134,14 @@ namespace PLUME.Core.Recorder
             _dispatcherThread.Join();
             _dispatcherThread = null;
             _outputs = null;
-            _fileDataWriter.Dispose();
+            _fileDataWriter.Close();
         }
 
         public void OnApplicationPaused()
         {
+            if (!_running)
+                return;
+
             Logger.Log("Application paused detected. Flushing data.");
 
             foreach (var output in _outputs)

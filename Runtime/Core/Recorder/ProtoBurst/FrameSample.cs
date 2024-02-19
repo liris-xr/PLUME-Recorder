@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
 using PLUME.Sample.Unity;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
@@ -11,13 +10,13 @@ namespace PLUME.Core.Recorder.ProtoBurst
     [BurstCompile]
     public struct FrameSample : IProtoBurstMessage, IDisposable
     {
-        public static readonly SampleTypeUrl FrameSampleTypeUrl =
-            SampleTypeUrlRegistry.GetOrCreate("fr.liris.plume", Frame.Descriptor);
-
-        public SampleTypeUrl TypeUrl => FrameSampleTypeUrl;
+        public static readonly FixedString128Bytes TypeUrl = new("fr.liris.plume/" + Frame.Descriptor.FullName);
 
         public readonly int FrameNumber;
         public NativeArray<byte> Data;
+
+        private static readonly uint FrameNumberFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.VarInt);
+        private static readonly uint DataFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
 
         public FrameSample(int frameNumber, NativeArray<byte> data)
         {
@@ -31,41 +30,38 @@ namespace PLUME.Core.Recorder.ProtoBurst
             data.CopyTo(dataArr);
             return new FrameSample(frameNumber, dataArr);
         }
-        
+
         public static FrameSample Pack(int frameNumber, NativeArray<byte> data)
         {
             return new FrameSample(frameNumber, data);
         }
 
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void WriteToNoResize(ref NativeList<byte> data)
+        public void WriteTo(ref BufferWriter bufferWriter)
         {
-            WritingPrimitives.WriteTagNoResize(Frame.FrameNumberFieldNumber, WireFormat.WireType.VarInt, ref data);
-            WritingPrimitives.WriteInt32NoResize(FrameNumber, ref data);
-
-            WritingPrimitives.WriteTagNoResize(Frame.DataFieldNumber, WireFormat.WireType.LengthDelimited, ref data);
-            WritingPrimitives.WriteLengthPrefixedBytesNoResize(ref Data, ref data);
+            bufferWriter.WriteTag(FrameNumberFieldTag);
+            bufferWriter.WriteSInt32(FrameNumber);
+            bufferWriter.WriteTag(DataFieldTag);
+            bufferWriter.WriteLengthPrefixedBytes(ref Data);
+        }
+        
+        public static void WriteTo(int frameNumber, NativeArray<byte> data, ref BufferWriter bufferWriter)
+        {
+            bufferWriter.WriteTag(FrameNumberFieldTag);
+            bufferWriter.WriteSInt32(frameNumber);
+            bufferWriter.WriteTag(DataFieldTag);
+            bufferWriter.WriteLengthPrefixedBytes(ref data);
         }
 
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void WriteTo(ref NativeList<byte> data)
+        public SampleTypeUrl GetTypeUrl(Allocator allocator)
         {
-            WritingPrimitives.WriteTag(Frame.FrameNumberFieldNumber, WireFormat.WireType.VarInt, ref data);
-            WritingPrimitives.WriteInt32(FrameNumber, ref data);
-
-            WritingPrimitives.WriteTag(Frame.DataFieldNumber, WireFormat.WireType.LengthDelimited, ref data);
-            WritingPrimitives.WriteLengthPrefixedBytes(ref Data, ref data);
+            return SampleTypeUrl.Alloc(TypeUrl, allocator);
         }
 
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int ComputeMaxSize()
+        public int ComputeSize()
         {
-            var size = WritingPrimitives.TagSize + WritingPrimitives.Int32MaxSize;
-            size += WritingPrimitives.TagSize + WritingPrimitives.LengthPrefixMaxSize + Data.Length;
-            return size;
+            return BufferExtensions.TagSize * 2 +
+                   BufferExtensions.ComputeVarIntSize(FrameNumber) +
+                   BufferExtensions.ComputeLengthPrefixedBytesSize(ref Data);
         }
 
         public void Dispose()

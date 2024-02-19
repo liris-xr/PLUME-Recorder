@@ -55,7 +55,7 @@ namespace PLUME.Core.Recorder.Module
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        bool IFrameDataRecorderModule.SerializeFrameData(Frame frame, FrameDataWriter output)
+        bool IFrameDataRecorderModule.SerializeFrameData(Frame frame, SampleWriter output)
         {
             TFrameData frameData;
 
@@ -202,7 +202,7 @@ namespace PLUME.Core.Recorder.Module
         protected abstract TFrameData OnCollectFrameData(Frame frame);
 
         // ReSharper restore Unity.PerformanceCriticalContext
-        protected abstract void OnSerializeFrameData(TFrameData frameData, Frame frame, FrameDataWriter output);
+        protected abstract void OnSerializeFrameData(TFrameData frameData, Frame frame, SampleWriter output);
 
         // ReSharper restore Unity.PerformanceCriticalContext
         protected abstract void OnDisposeFrameData(TFrameData frameData, Frame frame);

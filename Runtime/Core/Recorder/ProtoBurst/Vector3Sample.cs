@@ -1,6 +1,4 @@
-using System.Runtime.CompilerServices;
-using PLUME.Core.Recorder.Data;
-using PLUME.Sample.Common;
+using System.Runtime.InteropServices;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
@@ -9,12 +7,14 @@ using Unity.Collections;
 namespace PLUME.Core.Recorder.ProtoBurst
 {
     [BurstCompile]
+    [StructLayout(LayoutKind.Sequential)]
     public struct Vector3Sample : IProtoBurstMessage
     {
-        public static readonly SampleTypeUrl Vector3TypeUrl =
-            SampleTypeUrlRegistry.GetOrCreate("fr.liris.plume", Vector3.Descriptor);
+        public static readonly FixedString64Bytes TypeUrl = "fr.liris.plume/plume.sample.common.Vector3";
 
-        public SampleTypeUrl TypeUrl => Vector3TypeUrl;
+        private static readonly uint XFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.Fixed32);
+        private static readonly uint YFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.Fixed32);
+        private static readonly uint ZFieldTag = WireFormat.MakeTag(3, WireFormat.WireType.Fixed32);
 
         public float X;
         public float Y;
@@ -26,58 +26,55 @@ namespace PLUME.Core.Recorder.ProtoBurst
             Y = y;
             Z = z;
         }
-
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void WriteTo(ref NativeList<byte> data)
+        
+        public void WriteTo(ref BufferWriter bufferWriter)
         {
             if (X != 0)
             {
-                WritingPrimitives.WriteTag(Vector3.XFieldNumber, WireFormat.WireType.Fixed32, ref data);
-                WritingPrimitives.WriteFloat(X, ref data);
+                bufferWriter.WriteTag(XFieldTag);
+                bufferWriter.WriteFloat(X);
             }
-
+            
             if (Y != 0)
             {
-                WritingPrimitives.WriteTag(Vector3.YFieldNumber, WireFormat.WireType.Fixed32, ref data);
-                WritingPrimitives.WriteFloat(Y, ref data);
+                bufferWriter.WriteTag(YFieldTag);
+                bufferWriter.WriteFloat(Y);
             }
-
+            
             if (Z != 0)
             {
-                WritingPrimitives.WriteTag(Vector3.ZFieldNumber, WireFormat.WireType.Fixed32, ref data);
-                WritingPrimitives.WriteFloat(Z, ref data);
+                bufferWriter.WriteTag(ZFieldTag);
+                bufferWriter.WriteFloat(Z);
             }
         }
 
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void WriteToNoResize(ref NativeList<byte> data)
+        public int ComputeSize()
         {
+            var size = 0;
+            
             if (X != 0)
             {
-                WritingPrimitives.WriteTagNoResize(Vector3.XFieldNumber, WireFormat.WireType.Fixed32, ref data);
-                WritingPrimitives.WriteFloatNoResize(X, ref data);
+                size += BufferExtensions.TagSize + BufferExtensions.Fixed32Size;
             }
-
+            
             if (Y != 0)
             {
-                WritingPrimitives.WriteTagNoResize(Vector3.YFieldNumber, WireFormat.WireType.Fixed32, ref data);
-                WritingPrimitives.WriteFloatNoResize(Y, ref data);
+                size += BufferExtensions.TagSize + BufferExtensions.Fixed32Size;
             }
-
+            
             if (Z != 0)
             {
-                WritingPrimitives.WriteTagNoResize(Vector3.ZFieldNumber, WireFormat.WireType.Fixed32, ref data);
-                WritingPrimitives.WriteFloatNoResize(Z, ref data);
+                size += BufferExtensions.TagSize + BufferExtensions.Fixed32Size;
             }
+            
+            return size;
         }
 
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int ComputeMaxSize()
+        public SampleTypeUrl GetTypeUrl(Allocator allocator)
         {
-            return (WritingPrimitives.TagSize + WritingPrimitives.Fixed32Size) * 3;
+            return SampleTypeUrl.Alloc(TypeUrl, allocator);
         }
+
+        public static int MaxSize => (BufferExtensions.TagSize + BufferExtensions.Fixed32Size) * 3;
     }
 }

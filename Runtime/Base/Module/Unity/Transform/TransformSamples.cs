@@ -1,6 +1,5 @@
-using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using PLUME.Core.Recorder.ProtoBurst;
-using PLUME.Sample.Unity;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
@@ -9,12 +8,14 @@ using Unity.Collections;
 namespace PLUME.Base.Module.Unity.Transform
 {
     [BurstCompile]
+    [StructLayout(LayoutKind.Sequential)]
     public struct TransformUpdateLocalPositionSample : IProtoBurstMessage
     {
-        public static readonly SampleTypeUrl LocalPositionTypeUrl =
-            SampleTypeUrlRegistry.GetOrCreate("fr.liris.plume", TransformUpdateLocalPosition.Descriptor);
+        public static readonly FixedString128Bytes TypeUrl =
+            "fr.liris.plume/plume.sample.unity.TransformUpdateLocalPosition";
 
-        public SampleTypeUrl TypeUrl => LocalPositionTypeUrl;
+        private static readonly uint IdentifierFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.LengthDelimited);
+        private static readonly uint LocalPositionFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
 
         // TODO: add identifier
 
@@ -24,30 +25,24 @@ namespace PLUME.Base.Module.Unity.Transform
         {
             LocalPosition = localPosition;
         }
-
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void WriteToNoResize(ref NativeList<byte> data)
+        
+        public void WriteTo(ref BufferWriter bufferWriter)
         {
-            WritingPrimitives.WriteTagNoResize(TransformUpdateLocalPosition.LocalPositionFieldNumber,
-                WireFormat.WireType.LengthDelimited, ref data);
-            WritingPrimitives.WriteLengthPrefixedMessageNoResize(ref LocalPosition, ref data);
+            bufferWriter.WriteTag(LocalPositionFieldTag);
+            bufferWriter.WriteLengthPrefixedMessage(ref LocalPosition);
         }
 
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void WriteTo(ref NativeList<byte> data)
+        public int ComputeSize()
         {
-            WritingPrimitives.WriteTag(TransformUpdateLocalPosition.LocalPositionFieldNumber,
-                WireFormat.WireType.LengthDelimited, ref data);
-            WritingPrimitives.WriteLengthPrefixedMessage(ref LocalPosition, ref data);
+            return BufferExtensions.TagSize + BufferExtensions.ComputeLengthPrefixedMessageSize(ref LocalPosition);
         }
 
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int ComputeMaxSize()
+        public SampleTypeUrl GetTypeUrl(Allocator allocator)
         {
-            return WritingPrimitives.TagSize + WritingPrimitives.LengthPrefixMaxSize + LocalPosition.ComputeMaxSize();
+            return SampleTypeUrl.Alloc(TypeUrl, allocator);
         }
+
+        public static int MaxSize =>
+            BufferExtensions.TagSize + BufferExtensions.ComputeLengthPrefixSize(Vector3Sample.MaxSize) + Vector3Sample.MaxSize;
     }
 }

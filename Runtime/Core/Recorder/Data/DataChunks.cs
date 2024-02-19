@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Unity.Burst;
 using Unity.Collections;
+using UnityEngine;
 
 namespace PLUME.Core.Recorder.Data
 {
@@ -65,12 +66,11 @@ namespace PLUME.Core.Recorder.Data
             CheckIsCreated();
             if (chunkData.Length == 0)
                 return;
-
+            
             var byteIndex = GetChunkByteIndex(chunkIndex);
-
+            
             _data.InsertRange(byteIndex, chunkData.Length);
             _chunksLengths.InsertRange(chunkIndex, 1);
-
             chunkData.CopyTo(_data.AsArray().AsSpan().Slice(byteIndex, chunkData.Length));
             _chunksLengths[chunkIndex] = chunkData.Length;
         }
@@ -78,15 +78,17 @@ namespace PLUME.Core.Recorder.Data
         public void InsertRange(int chunkIndex, ReadOnlySpan<byte> chunkData, ReadOnlySpan<int> chunksLength)
         {
             CheckIsCreated();
+            
             if (chunkData.Length == 0)
+                return;
+            if(chunksLength.Length == 0)
                 return;
 
             var byteIndex = GetChunkByteIndex(chunkIndex);
             var chunksCount = chunksLength.Length;
-
+            
             _data.InsertRange(byteIndex, chunkData.Length);
             _chunksLengths.InsertRange(chunkIndex, chunksCount);
-
             chunkData.CopyTo(_data.AsArray().AsSpan().Slice(byteIndex, chunkData.Length));
             chunksLength.CopyTo(_chunksLengths.AsArray().AsSpan().Slice(chunkIndex, chunksCount));
         }
@@ -145,8 +147,7 @@ namespace PLUME.Core.Recorder.Data
 
             if (ChunksCount == 0)
                 return false;
-
-            var chunksCount = ChunksCount;
+            
             dst.AddRange(GetChunksData(), GetChunksLengths());
             RemoveAll();
             return true;
@@ -253,6 +254,8 @@ namespace PLUME.Core.Recorder.Data
             var firstByteIndex = GetChunkByteIndex(chunkIndex);
             var lastByteIndex = GetChunkByteIndex(lastChunkIndex) + GetChunkLength(lastChunkIndex);
             var byteLength = lastByteIndex - firstByteIndex;
+            if(byteLength < 0)
+                Debug.LogWarning("buffer overflow?");
             return _data.AsArray().GetSubArray(firstByteIndex, byteLength).AsReadOnlySpan();
         }
 

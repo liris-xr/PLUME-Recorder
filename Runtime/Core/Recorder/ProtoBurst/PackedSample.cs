@@ -13,13 +13,13 @@ namespace PLUME.Core.Recorder.ProtoBurst
     [BurstCompile]
     public struct PackedSample : IProtoBurstMessage, IDisposable
     {
-        public static readonly SampleTypeUrl SampleTypeUrl =
-            SampleTypeUrlRegistry.GetOrCreate("fr.liris.plume", Sample.PackedSample.Descriptor);
-
-        public SampleTypeUrl TypeUrl => SampleTypeUrl;
+        public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.PackedSample";
 
         private bool _hasTimestamp;
         private long _timestamp;
+
+        private static readonly uint TimestampFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.VarInt);
+        private static readonly uint PayloadFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
 
         public long Timestamp
         {
@@ -79,51 +79,61 @@ namespace PLUME.Core.Recorder.ProtoBurst
             return new PackedSample(timestamp, Any.Pack(value, typeUrl));
         }
 
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void WriteToNoResize(ref NativeList<byte> data)
+        public void WriteTo(ref BufferWriter bufferWriter)
         {
             if (_hasTimestamp)
             {
-                WritingPrimitives.WriteTagNoResize(Sample.PackedSample.TimestampFieldNumber, WireFormat.WireType.VarInt,
-                    ref data);
-                WritingPrimitives.WriteInt64NoResize(_timestamp, ref data);
+                bufferWriter.WriteTag(TimestampFieldTag);
+                bufferWriter.WriteSInt64(_timestamp);
             }
 
-            WritingPrimitives.WriteTagNoResize(Sample.PackedSample.PayloadFieldNumber,
-                WireFormat.WireType.LengthDelimited, ref data);
-            WritingPrimitives.WriteLengthPrefixedMessageNoResize(ref Payload, ref data);
+            bufferWriter.WriteTag(PayloadFieldTag);
+            bufferWriter.WriteLengthPrefixedMessage(ref Payload);
         }
-
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void WriteTo(ref NativeList<byte> data)
+        
+        public static void WriteTo<T>(long timestamp, ref T payload, ref BufferWriter bufferWriter) where T : unmanaged, IProtoBurstMessage
         {
-            if (_hasTimestamp)
-            {
-                WritingPrimitives.WriteTag(Sample.PackedSample.TimestampFieldNumber, WireFormat.WireType.VarInt,
-                    ref data);
-                WritingPrimitives.WriteInt64(_timestamp, ref data);
-            }
-
-            WritingPrimitives.WriteTag(Sample.PackedSample.PayloadFieldNumber, WireFormat.WireType.LengthDelimited,
-                ref data);
-            WritingPrimitives.WriteLengthPrefixedMessage(ref Payload, ref data);
+            bufferWriter.WriteTag(TimestampFieldTag);
+            bufferWriter.WriteSInt64(timestamp);
+            bufferWriter.WriteTag(PayloadFieldTag);
+            bufferWriter.WriteLengthPrefixedMessage(ref payload);
+        }
+        
+        public static void WriteTo<T>(ref T payload, ref BufferWriter bufferWriter) where T : unmanaged, IProtoBurstMessage
+        {
+            bufferWriter.WriteTag(PayloadFieldTag);
+            bufferWriter.WriteLengthPrefixedMessage(ref payload);
         }
 
-        [BurstCompile]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int ComputeMaxSize()
+        public static int ComputeSize<T>(long timestamp, ref T payload) where T : unmanaged, IProtoBurstMessage
+        {
+            var size = 0;
+            size += BufferExtensions.TagSize + BufferExtensions.ComputeVarIntSize(timestamp);
+            size += BufferExtensions.TagSize + BufferExtensions.ComputeLengthPrefixedMessageSize(ref payload);
+            return size;
+        }
+        
+        public static int ComputeSize<T>(ref T payload) where T : unmanaged, IProtoBurstMessage
+        {
+            return BufferExtensions.TagSize + BufferExtensions.ComputeLengthPrefixedMessageSize(ref payload);
+        }
+
+        public int ComputeSize()
         {
             var size = 0;
 
             if (_hasTimestamp)
             {
-                size += WritingPrimitives.TagSize + WritingPrimitives.Int64MaxSize;
+                size += BufferExtensions.TagSize + BufferExtensions.ComputeVarIntSize(_timestamp);
             }
 
-            size += WritingPrimitives.TagSize + WritingPrimitives.LengthPrefixMaxSize + Payload.ComputeMaxSize();
+            size += BufferExtensions.TagSize + BufferExtensions.ComputeLengthPrefixedMessageSize(ref Payload);
             return size;
+        }
+
+        public SampleTypeUrl GetTypeUrl(Allocator allocator)
+        {
+            return SampleTypeUrl.Alloc(TypeUrl, allocator);
         }
 
         public void Dispose()

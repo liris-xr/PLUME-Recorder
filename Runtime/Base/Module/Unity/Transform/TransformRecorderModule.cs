@@ -1,16 +1,13 @@
 using Cysharp.Threading.Tasks;
-using PLUME.Core;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.ProtoBurst;
-using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
-using UnityEngine;
 using UnityEngine.Jobs;
 using UnityEngine.Scripting;
 
@@ -88,10 +85,9 @@ namespace PLUME.Base.Module.Unity.Transform
 
         [BurstCompile]
         protected override void OnSerializeFrameData(TransformFrameData frameData, Frame frame,
-            FrameDataWriter frameDataWriter)
+            SampleWriter sampleWriter)
         {
-            // TODO: serialize in parallel and put everything inside a DataChunks
-            frameDataWriter.Write(frameData.DirtySamples);
+            sampleWriter.WriteBatch(frameData.DirtySamples, new TransformSampleBatchSerializer());
         }
 
         protected override void OnDisposeFrameData(TransformFrameData frameData, Frame frame)
@@ -152,13 +148,13 @@ namespace PLUME.Base.Module.Unity.Transform
                     var localRotation = transform.localRotation;
                     var localScale = transform.localScale;
 
-                    // TODO
-                    // var isLocalPositionDirty = lastSample.LocalPosition != localPosition;
-                    // var isLocalRotationDirty = lastSample.LocalRotation != localRotation;
-                    // var isLocalScaleDirty = lastSample.LocalScale != localScale;
-                    //
-                    // if (!isLocalPositionDirty && !isLocalRotationDirty && !isLocalScaleDirty)
-                    //     return;
+                    // TODO: add a distance threshold
+                    var isLocalPositionDirty = lastSample.LocalPosition != localPosition;
+                    var isLocalRotationDirty = lastSample.LocalRotation != localRotation;
+                    var isLocalScaleDirty = lastSample.LocalScale != localScale;
+                    
+                    if (!isLocalPositionDirty && !isLocalRotationDirty && !isLocalScaleDirty)
+                        return;
 
                     var state = new TransformState
                     {

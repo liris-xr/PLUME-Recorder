@@ -240,18 +240,23 @@ namespace PLUME.Core.Recorder
                 throw new InvalidOperationException("Recorder is already stopped.");
 
             Logger.Log("Force stopping recorder...");
+            
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < Context.Modules.Count; i++)
             {
                 Context.Modules[i].ForceStopRecording(_record, Context);
             }
-
+            
             _dataDispatcher.ForceStop();
             CurrentStatus = RecorderStatus.Stopped;
             
             _record.Dispose();
             _record = null;
+            
+            stopwatch.Stop();
+            Logger.Log("Recorder force stopped after " + stopwatch.ElapsedMilliseconds + "ms.");
 
             Logger.Log("Recorder force stopped.");
         }

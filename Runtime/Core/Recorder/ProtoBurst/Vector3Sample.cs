@@ -54,17 +54,17 @@ namespace PLUME.Core.Recorder.ProtoBurst
             
             if (X != 0)
             {
-                size += BufferExtensions.TagSize + BufferExtensions.Fixed32Size;
+                size += BufferExtensions.ComputeTagSize(XFieldTag) + BufferExtensions.Fixed32Size;
             }
             
             if (Y != 0)
             {
-                size += BufferExtensions.TagSize + BufferExtensions.Fixed32Size;
+                size += BufferExtensions.ComputeTagSize(YFieldTag) + BufferExtensions.Fixed32Size;
             }
             
             if (Z != 0)
             {
-                size += BufferExtensions.TagSize + BufferExtensions.Fixed32Size;
+                size += BufferExtensions.ComputeTagSize(ZFieldTag) + BufferExtensions.Fixed32Size;
             }
             
             return size;
@@ -74,7 +74,5 @@ namespace PLUME.Core.Recorder.ProtoBurst
         {
             return SampleTypeUrl.Alloc(TypeUrl, allocator);
         }
-
-        public static int MaxSize => (BufferExtensions.TagSize + BufferExtensions.Fixed32Size) * 3;
     }
 }

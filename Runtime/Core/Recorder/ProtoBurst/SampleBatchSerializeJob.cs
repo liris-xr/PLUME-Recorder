@@ -1,9 +1,9 @@
+using System;
+using PLUME.Core.Recorder.Data;
 using ProtoBurst;
-using ProtoBurst.Message;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
-using Unity.Collections.LowLevel.Unsafe;
 using Unity.Jobs;
 
 namespace PLUME.Core.Recorder.ProtoBurst
@@ -11,27 +11,31 @@ namespace PLUME.Core.Recorder.ProtoBurst
     [BurstCompile]
     public struct SampleBatchSerializeJob<T> : IJobParallelForBatch where T : unmanaged, IProtoBurstMessage
     {
-        public int SampleMaxSize;
-
         [ReadOnly] public NativeArray<T> Samples;
 
-        public SampleTypeUrl SampleTypeUrl;
+        [NativeDisableParallelForRestriction] public DataChunks SerializedData;
 
-        public NativeList<byte>.ParallelWriter Bytes;
+        [ReadOnly] public NativeArray<int> ChunksByteOffset;
 
-        public unsafe void Execute(int startIndex, int count)
+        private static void SetBytes(ref DataChunks dataChunks, int byteOffset, ReadOnlySpan<byte> bytes)
         {
-            var buffer = new BufferWriter(SampleMaxSize * count, Allocator.Temp);
+            var dst = dataChunks.GetDataSpan().Slice(byteOffset, bytes.Length);
+            bytes.CopyTo(dst);
+        }
 
+        public void Execute(int startIndex, int count)
+        {
             for (var i = startIndex; i < startIndex + count; i++)
             {
+                var sampleLength = SerializedData.GetLength(i);
+                var sampleBytes = new NativeList<byte>(sampleLength, Allocator.Temp);
+                var buffer = new BufferWriter(sampleBytes);
                 var sample = Samples[i];
-                Any.WriteTo(ref SampleTypeUrl, ref sample, ref buffer);
+                var sampleByteOffset = ChunksByteOffset[i];
+                sample.WriteTo(ref buffer);
+                SetBytes(ref SerializedData, sampleByteOffset, sampleBytes.AsArray().AsReadOnlySpan());
+                sampleBytes.Dispose();
             }
-
-            var arr = buffer.AsArray();
-            Bytes.AddRangeNoResize(arr.GetUnsafeReadOnlyPtr(), arr.Length);
-            buffer.Dispose();
         }
     }
 }

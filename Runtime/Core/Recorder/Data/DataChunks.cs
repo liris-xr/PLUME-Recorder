@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Unity.Burst;
 using Unity.Collections;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace PLUME.Core.Recorder.Data
@@ -15,12 +16,18 @@ namespace PLUME.Core.Recorder.Data
         private NativeList<int> _chunksLengths;
 
         public int ChunksCount => _chunksLengths.Length;
-        public int ChunksTotalLength => _data.Length;
+        public int DataLength => _data.Length;
 
         public DataChunks(Allocator allocator)
         {
             _data = new NativeList<byte>(allocator);
             _chunksLengths = new NativeList<int>(allocator);
+        }
+
+        public DataChunks(int dataCapacity, int chunksCapacity, Allocator allocator)
+        {
+            _data = new NativeList<byte>(dataCapacity, allocator);
+            _chunksLengths = new NativeList<int>(chunksCapacity, allocator);
         }
 
         public DataChunks(ReadOnlySpan<byte> chunksData, ReadOnlySpan<int> chunksLength, Allocator allocator)
@@ -43,6 +50,24 @@ namespace PLUME.Core.Recorder.Data
             InsertRange(ChunksCount, chunks._data.AsArray(), chunks._chunksLengths.AsArray());
         }
 
+        public void AddReplicate(ReadOnlySpan<byte> chunk, int count)
+        {
+            CheckIsCreated();
+            var dataIndex = _data.Length;
+            
+            _data.ResizeUninitialized(_data.Length + chunk.Length * count);
+
+            unsafe
+            {
+                fixed (byte* chunkPtr = chunk)
+                {
+                    UnsafeUtility.MemCpyReplicate(_data.GetUnsafePtr() + dataIndex, chunkPtr, chunk.Length, count);
+                }
+            }
+            
+            _chunksLengths.AddReplicate(chunk.Length, count);
+        }
+
         public void Add(ReadOnlySpan<byte> chunk)
         {
             CheckIsCreated();
@@ -53,6 +78,13 @@ namespace PLUME.Core.Recorder.Data
         {
             CheckIsCreated();
             InsertRange(ChunksCount, chunksData, chunksLength);
+        }
+
+        public void AddUninitialized(int chunkLength)
+        {
+            CheckIsCreated();
+            _data.ResizeUninitialized(_data.Length + chunkLength);
+            _chunksLengths.Add(chunkLength);
         }
 
         public void Insert(int chunkIndex, DataChunks chunks)
@@ -66,9 +98,9 @@ namespace PLUME.Core.Recorder.Data
             CheckIsCreated();
             if (chunkData.Length == 0)
                 return;
-            
-            var byteIndex = GetChunkByteIndex(chunkIndex);
-            
+
+            var byteIndex = GetFirstByteIndex(chunkIndex);
+
             _data.InsertRange(byteIndex, chunkData.Length);
             _chunksLengths.InsertRange(chunkIndex, 1);
             chunkData.CopyTo(_data.AsArray().AsSpan().Slice(byteIndex, chunkData.Length));
@@ -78,21 +110,21 @@ namespace PLUME.Core.Recorder.Data
         public void InsertRange(int chunkIndex, ReadOnlySpan<byte> chunkData, ReadOnlySpan<int> chunksLength)
         {
             CheckIsCreated();
-            
+
             if (chunkData.Length == 0)
                 return;
-            if(chunksLength.Length == 0)
+            if (chunksLength.Length == 0)
                 return;
 
-            var byteIndex = GetChunkByteIndex(chunkIndex);
+            var byteIndex = GetFirstByteIndex(chunkIndex);
             var chunksCount = chunksLength.Length;
-            
+
             _data.InsertRange(byteIndex, chunkData.Length);
             _chunksLengths.InsertRange(chunkIndex, chunksCount);
             chunkData.CopyTo(_data.AsArray().AsSpan().Slice(byteIndex, chunkData.Length));
             chunksLength.CopyTo(_chunksLengths.AsArray().AsSpan().Slice(chunkIndex, chunksCount));
         }
-
+        
         /// <summary>
         /// Merge the data with the chunk at the given index. The data is merged at the end of the chunk.
         /// </summary>
@@ -106,8 +138,8 @@ namespace PLUME.Core.Recorder.Data
                 return;
 
             var byteIndex = pos == ChunkPosition.Start
-                ? GetChunkByteIndex(chunkIndex)
-                : GetChunkByteIndex(chunkIndex) + GetChunkLength(chunkIndex);
+                ? GetFirstByteIndex(chunkIndex)
+                : GetFirstByteIndex(chunkIndex) + GetLength(chunkIndex);
 
             _data.InsertRange(byteIndex, chunkData.Length);
             chunkData.CopyTo(_data.AsArray().AsSpan().Slice(byteIndex, chunkData.Length));
@@ -122,7 +154,7 @@ namespace PLUME.Core.Recorder.Data
             if (ChunksCount == 0)
                 return false;
 
-            dst.Add(GetChunkData(chunkIndex));
+            dst.Add(GetDataSpan(chunkIndex));
             Remove(chunkIndex);
             return true;
         }
@@ -135,7 +167,7 @@ namespace PLUME.Core.Recorder.Data
             if (ChunksCount == 0)
                 return false;
 
-            dst.AddRange(GetChunksData(chunkIndex, count), GetChunksLengths(chunkIndex, count));
+            dst.AddRange(GetDataSpan(chunkIndex, count), GetLengthsSpan(chunkIndex, count));
             RemoveRange(chunkIndex, count);
             return true;
         }
@@ -147,8 +179,8 @@ namespace PLUME.Core.Recorder.Data
 
             if (ChunksCount == 0)
                 return false;
-            
-            dst.AddRange(GetChunksData(), GetChunksLengths());
+
+            dst.AddRange(GetDataSpan(), GetLengthsSpan());
             RemoveAll();
             return true;
         }
@@ -156,7 +188,7 @@ namespace PLUME.Core.Recorder.Data
         public void Remove(int chunkIndex)
         {
             CheckIsCreated();
-            var byteIndex = GetChunkByteIndex(chunkIndex);
+            var byteIndex = GetFirstByteIndex(chunkIndex);
             var chunkLength = _chunksLengths[chunkIndex];
             _data.RemoveRange(byteIndex, chunkLength);
             _chunksLengths.RemoveAt(chunkIndex);
@@ -166,8 +198,8 @@ namespace PLUME.Core.Recorder.Data
         {
             CheckIsCreated();
             var lastChunkIndex = chunkIndex + count - 1;
-            var firstByteIndex = GetChunkByteIndex(chunkIndex);
-            var lastByteIndex = GetChunkByteIndex(lastChunkIndex) + GetChunkLength(lastChunkIndex);
+            var firstByteIndex = GetFirstByteIndex(chunkIndex);
+            var lastByteIndex = GetFirstByteIndex(lastChunkIndex) + GetLength(lastChunkIndex);
             var byteLength = lastByteIndex - firstByteIndex;
 
             _data.RemoveRange(firstByteIndex, byteLength);
@@ -181,14 +213,14 @@ namespace PLUME.Core.Recorder.Data
             _chunksLengths.Clear();
         }
 
-        public int GetChunkByteIndex(int chunkIdx)
+        public int GetFirstByteIndex(int chunkIdx)
         {
             CheckIsCreated();
             // Perform a cumulative sum of the chunk lengths.
             // We either start summing from the start or the end of the data to minimize the number of iterations.
             if (chunkIdx > ChunksCount / 2)
             {
-                var byteIndex = ChunksTotalLength;
+                var byteIndex = DataLength;
 
                 for (var i = ChunksCount - 1; i >= chunkIdx; i--)
                 {
@@ -229,73 +261,73 @@ namespace PLUME.Core.Recorder.Data
             return new DataChunks(this, allocator);
         }
 
-        public ReadOnlySpan<byte> GetChunkData(int chunkIndex)
+        public NativeArray<byte> GetData(int chunkIndex, Allocator allocator)
         {
             CheckIsCreated();
-            var chunkByteIndex = GetChunkByteIndex(chunkIndex);
-            var chunkLength = _chunksLengths[chunkIndex];
-            return _data.AsArray().GetSubArray(chunkByteIndex, chunkLength).AsReadOnlySpan();
-        }
-
-        public NativeArray<byte> GetChunkData(int chunkIndex, Allocator allocator)
-        {
-            CheckIsCreated();
-            var chunkByteIndex = GetChunkByteIndex(chunkIndex);
+            var chunkByteIndex = GetFirstByteIndex(chunkIndex);
             var chunkLength = _chunksLengths[chunkIndex];
             var chunkData = new NativeArray<byte>(chunkLength, allocator);
             _data.AsArray().GetSubArray(chunkByteIndex, chunkLength).CopyTo(chunkData);
             return chunkData;
         }
 
-        public ReadOnlySpan<byte> GetChunksData(int chunkIndex, int count)
+        public NativeArray<byte> GetData(int chunkIndex, int count, Allocator allocator)
         {
             CheckIsCreated();
             var lastChunkIndex = chunkIndex + count - 1;
-            var firstByteIndex = GetChunkByteIndex(chunkIndex);
-            var lastByteIndex = GetChunkByteIndex(lastChunkIndex) + GetChunkLength(lastChunkIndex);
-            var byteLength = lastByteIndex - firstByteIndex;
-            if(byteLength < 0)
-                Debug.LogWarning("buffer overflow?");
-            return _data.AsArray().GetSubArray(firstByteIndex, byteLength).AsReadOnlySpan();
-        }
-
-        public NativeArray<byte> GetChunksData(int chunkIndex, int count, Allocator allocator)
-        {
-            CheckIsCreated();
-            var lastChunkIndex = chunkIndex + count - 1;
-            var firstByteIndex = GetChunkByteIndex(chunkIndex);
-            var lastByteIndex = GetChunkByteIndex(lastChunkIndex) + GetChunkLength(lastChunkIndex);
+            var firstByteIndex = GetFirstByteIndex(chunkIndex);
+            var lastByteIndex = GetFirstByteIndex(lastChunkIndex) + GetLength(lastChunkIndex);
             var byteLength = lastByteIndex - firstByteIndex;
             var chunksData = new NativeArray<byte>(byteLength, allocator);
             _data.AsArray().GetSubArray(firstByteIndex, byteLength).CopyTo(chunksData);
             return chunksData;
         }
 
-        public ReadOnlySpan<byte> GetChunksData()
+        public Span<byte> GetDataSpan(int chunkIndex)
         {
             CheckIsCreated();
-            return _data.AsArray().AsReadOnlySpan();
+            var chunkByteIndex = GetFirstByteIndex(chunkIndex);
+            var chunkLength = _chunksLengths[chunkIndex];
+            return _data.AsArray().GetSubArray(chunkByteIndex, chunkLength).AsSpan();
         }
 
-        public NativeArray<byte> GetChunksData(Allocator allocator)
+        public Span<byte> GetDataSpan(int chunkIndex, int count)
+        {
+            CheckIsCreated();
+            var lastChunkIndex = chunkIndex + count - 1;
+            var firstByteIndex = GetFirstByteIndex(chunkIndex);
+            var lastByteIndex = GetFirstByteIndex(lastChunkIndex) + GetLength(lastChunkIndex);
+            var byteLength = lastByteIndex - firstByteIndex;
+            if (byteLength < 0)
+                Debug.LogWarning("buffer overflow?");
+            return _data.AsArray().GetSubArray(firstByteIndex, byteLength).AsSpan();
+        }
+
+        public Span<byte> GetDataSpan()
+        {
+            CheckIsCreated();
+            return _data.AsArray().AsSpan();
+        }
+
+        public NativeArray<byte> GetData(Allocator allocator)
         {
             CheckIsCreated();
             return _data.ToArray(allocator);
         }
 
-        public int GetChunkLength(int chunkIdx)
+        public int GetLength(int chunkIdx)
         {
             CheckIsCreated();
             return _chunksLengths[chunkIdx];
         }
 
-        public ReadOnlySpan<int> GetChunksLengths(int chunkIndex, int count)
+        public Span<int> GetLengthsSpan(int chunkIndex, int count)
         {
             CheckIsCreated();
-            return _chunksLengths.AsArray().GetSubArray(chunkIndex, count).AsReadOnlySpan();
+            return _chunksLengths.AsArray().GetSubArray(chunkIndex, count).AsSpan();
         }
 
-        public NativeArray<int> GetChunksLengths(int chunkIndex, int count, Allocator allocator)
+        public NativeArray<int> GetLengths(int chunkIndex, int count, Allocator allocator)
         {
             CheckIsCreated();
             var chunksLength = new NativeArray<int>(count, allocator);
@@ -303,13 +335,13 @@ namespace PLUME.Core.Recorder.Data
             return chunksLength;
         }
 
-        public ReadOnlySpan<int> GetChunksLengths()
+        public Span<int> GetLengthsSpan()
         {
             CheckIsCreated();
-            return _chunksLengths.AsArray().AsReadOnlySpan();
+            return _chunksLengths.AsArray().AsSpan();
         }
 
-        public NativeArray<int> GetChunksLengths(Allocator allocator)
+        public NativeArray<int> GetLengths(Allocator allocator)
         {
             CheckIsCreated();
             return _chunksLengths.ToArray(allocator);
@@ -332,7 +364,7 @@ namespace PLUME.Core.Recorder.Data
             {
                 dataHash = unchecked(dataHash * 31 + _data[i]);
             }
-            
+
             // ReSharper disable once ForCanBeConvertedToForeach
             // ReSharper disable once LoopCanBeConvertedToQuery
             for (var i = 0; i < _chunksLengths.Length; i++)
@@ -352,7 +384,7 @@ namespace PLUME.Core.Recorder.Data
             if (!other.IsCreated)
                 return false;
             if (ChunksCount != other.ChunksCount) return false;
-            if (ChunksTotalLength != other.ChunksTotalLength) return false;
+            if (DataLength != other.DataLength) return false;
 
             for (var i = 0; i < ChunksCount; i++)
             {
@@ -360,7 +392,7 @@ namespace PLUME.Core.Recorder.Data
                     return false;
             }
 
-            for (var i = 0; i < ChunksTotalLength; i++)
+            for (var i = 0; i < DataLength; i++)
             {
                 if (_data[i] != other._data[i])
                     return false;

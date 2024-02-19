@@ -1,11 +1,15 @@
 using System.Collections.Concurrent;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.ProtoBurst;
+using ProtoBurst;
+using ProtoBurst.Message;
+using ProtoBurst.Packages.ProtoBurst.Runtime;
+using Unity.Burst;
 using Unity.Collections;
+using Unity.Jobs;
 using UnityEngine.Profiling;
 using UnityEngine.Scripting;
 
@@ -24,10 +28,19 @@ namespace PLUME.Core.Recorder.Module
         private Thread _serializationThread;
         private BlockingCollection<Frame> _frameQueue;
 
+        private SampleTypeUrl _frameSampleTypeUrl;
+
         void IRecorderModule.Create(RecorderContext recorderContext)
         {
             _frameQueue = new BlockingCollection<Frame>(new ConcurrentQueue<Frame>());
             _frameDataRecorderModules = recorderContext.Modules.OfType<IFrameDataRecorderModule>().ToArray();
+            _frameSampleTypeUrl = SampleTypeUrl.Alloc(FrameSample.TypeUrl, Allocator.Persistent);
+        }
+
+        void IRecorderModule.Destroy(RecorderContext recorderContext)
+        {
+            _frameSampleTypeUrl.Dispose();
+            _frameQueue.Dispose();
         }
 
         void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
@@ -59,10 +72,6 @@ namespace PLUME.Core.Recorder.Module
             _serializationThread = null;
         }
 
-        void IRecorderModule.Destroy(RecorderContext recorderContext)
-        {
-        }
-
         void IRecorderModule.Reset(RecorderContext context)
         {
         }
@@ -90,16 +99,18 @@ namespace PLUME.Core.Recorder.Module
         internal void SerializeFrameLoop(Record record)
         {
             Profiler.BeginThreadProfiling("PLUME", "FrameRecorderModule.SerializeThread");
-            
+
             while (_isRecording || _frameQueue.Count > 0)
             {
                 while (_frameQueue.TryTake(out var frame))
                 {
                     var hasData = false;
 
-                    var frameData = new NativeList<byte>(Allocator.Persistent);
-                    var frameDataWriter = new SampleWriter(frameData);
-                    
+                    var serializedSamplesData = new DataChunks(Allocator.Persistent);
+                    var serializedSamplesTypeUrl = new DataChunks(Allocator.Persistent);
+
+                    var frameDataWriter = new FrameDataWriter(serializedSamplesData, serializedSamplesTypeUrl);
+
                     foreach (var module in _frameDataRecorderModules)
                     {
                         hasData |= module.SerializeFrameData(frame, frameDataWriter);
@@ -108,16 +119,143 @@ namespace PLUME.Core.Recorder.Module
 
                     if (hasData)
                     {
-                        var frameSample = FrameSample.Pack(frame.FrameNumber, frameData.AsArray().AsReadOnlySpan(), Allocator.Persistent);
-                        record.RecordTimestampedSample(frameSample, frame.Timestamp);
-                        frameSample.Dispose();
+                        Profiler.BeginSample("Pack frame");
+                        var frameSample = new FrameSample(frame.FrameNumber, serializedSamplesData,
+                            serializedSamplesTypeUrl);
+                        var frameSampleBytes = SerializeFrameSampleParallel(ref frameSample, Allocator.TempJob);
+                        frameSampleBytes.Dispose();
+                        
+                        // var frameTypeUrlBytes = _frameSampleTypeUrl.Bytes;
+                        // var frameDataBytes = frameSampleBytes.AsArray();
+                        // var payload = Any.Pack(frameDataBytes, frameTypeUrlBytes, Allocator.TempJob);
+                        // frameSampleBytes.Dispose();
+                        //
+                        // var packedSample = new PackedSample(frame.Timestamp, payload);
+                        // record.RecordTimestampedPackedSample(packedSample, frame.Timestamp);
+                        // payload.Dispose();
+                        Profiler.EndSample();
                     }
 
-                    frameData.Dispose();
+                    serializedSamplesData.Dispose();
+                    serializedSamplesTypeUrl.Dispose();
                 }
             }
-            
+
             Profiler.EndThreadProfiling();
+        }
+
+        private static NativeList<byte> SerializeFrameSampleParallel(ref FrameSample sample, Allocator allocator,
+            int batchSize = 128)
+        {
+            var initialSize = BufferExtensions.ComputeTagSize(FrameSample.FrameNumberFieldTag) +
+                              BufferExtensions.ComputeInt32Size(sample.FrameNumber);
+
+            var frameDataBytes = new NativeList<byte>(initialSize, allocator);
+
+            var bufferWriter = new BufferWriter(frameDataBytes);
+            bufferWriter.WriteTag(FrameSample.FrameNumberFieldTag);
+            bufferWriter.WriteInt32(sample.FrameNumber);
+
+            var nData = sample.SerializedSamplesData.ChunksCount;
+            var dataChunksByteOffset = new NativeArray<int>(nData, Allocator.TempJob);
+            var typeUrlChunksByteOffset = new NativeArray<int>(nData, Allocator.TempJob);
+
+            new PrepareWriteDataJob
+            {
+                FrameDataBytes = frameDataBytes,
+                FrameSample = sample,
+                DataChunksByteOffset = dataChunksByteOffset,
+                TypeUrlChunksByteOffset = typeUrlChunksByteOffset
+            }.Run();
+
+            new WriteDataParallelJob
+            {
+                FrameDataBytes = frameDataBytes.AsParallelWriter(),
+                FrameSample = sample,
+                DataChunksByteOffset = dataChunksByteOffset,
+                TypeUrlChunksByteOffset = typeUrlChunksByteOffset
+            }.Run(sample.SerializedSamplesData.ChunksCount, batchSize);
+
+            dataChunksByteOffset.Dispose();
+            typeUrlChunksByteOffset.Dispose();
+            return frameDataBytes;
+        }
+
+        [BurstCompile]
+        private struct PrepareWriteDataJob : IJob
+        {
+            public NativeList<byte> FrameDataBytes;
+
+            [NativeDisableParallelForRestriction] public FrameSample FrameSample;
+
+            [WriteOnly] public NativeArray<int> DataChunksByteOffset;
+            [WriteOnly] public NativeArray<int> TypeUrlChunksByteOffset;
+
+            public void Execute()
+            {
+                var dataChunksByteOffset = 0;
+                var typeUrlChunksByteOffset = 0;
+
+                for (var chunkIdx = 0; chunkIdx < FrameSample.SerializedSamplesData.ChunksCount; chunkIdx++)
+                {
+                    var valueBytesLength = FrameSample.SerializedSamplesData.GetLength(chunkIdx);
+                    var typeUrlBytesLength = FrameSample.SerializedSamplesTypeUrl.GetLength(chunkIdx);
+                    var chunkSize = FrameSample.ComputeDataChunkSize(valueBytesLength, typeUrlBytesLength);
+                    FrameDataBytes.ResizeUninitialized(FrameDataBytes.Length + chunkSize);
+
+                    DataChunksByteOffset[chunkIdx] = dataChunksByteOffset;
+                    TypeUrlChunksByteOffset[chunkIdx] = typeUrlChunksByteOffset;
+                    dataChunksByteOffset += valueBytesLength;
+                    typeUrlChunksByteOffset += typeUrlBytesLength;
+                }
+            }
+        }
+
+        [BurstCompile]
+        private struct WriteDataParallelJob : IJobParallelForBatch
+        {
+            public NativeList<byte>.ParallelWriter FrameDataBytes;
+
+            [NativeDisableParallelForRestriction] public FrameSample FrameSample;
+
+            [ReadOnly] public NativeArray<int> DataChunksByteOffset;
+            [ReadOnly] public NativeArray<int> TypeUrlChunksByteOffset;
+
+            public void Execute(int startIndex, int count)
+            {
+                var serializedSampleData = FrameSample.SerializedSamplesData.GetDataSpan();
+                var serializedSampleTypeUrl = FrameSample.SerializedSamplesTypeUrl.GetDataSpan();
+
+                var bytes = new NativeList<byte>(Allocator.Temp);
+                var bufferWriter = new BufferWriter(bytes);
+
+                // ReSharper disable once ForCanBeConvertedToForeach
+                for (var chunkIdx = startIndex; chunkIdx < startIndex + count; chunkIdx++)
+                {
+                    var valueBytesLength = FrameSample.SerializedSamplesData.GetLength(chunkIdx);
+                    var typeUrlBytesLength = FrameSample.SerializedSamplesData.GetLength(chunkIdx);
+                    var valueByteOffset = DataChunksByteOffset[chunkIdx];
+                    var typeUrlByteOffset = TypeUrlChunksByteOffset[chunkIdx];
+                    var valueBytes = serializedSampleData.Slice(valueByteOffset, valueBytesLength);
+                    var typeUrlBytes = serializedSampleTypeUrl.Slice(typeUrlByteOffset, typeUrlBytesLength);
+
+                    unsafe
+                    {
+                        fixed (byte* valueBytesPtr = valueBytes)
+                        {
+                            fixed (byte* typeUrlBytesPtr = typeUrlBytes)
+                            {
+                                FrameSample.WriteDataChunkTo(typeUrlBytesPtr, typeUrlBytesLength, valueBytesPtr,
+                                    valueBytesLength,
+                                    ref bufferWriter);
+                            }
+                        }
+                    }
+                }
+
+                FrameDataBytes.AddRangeNoResize(bytes);
+                bytes.Dispose();
+            }
         }
     }
 }

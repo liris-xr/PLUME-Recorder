@@ -4,11 +4,11 @@ using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.ProtoBurst;
 using PLUME.Core.Recorder.Time;
 using ProtoBurst;
+using ProtoBurst.Message;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Collections;
 using Unity.Profiling;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 namespace PLUME.Core.Recorder
 {
@@ -35,59 +35,61 @@ namespace PLUME.Core.Recorder
             _timestampedDataBuffer = new TimestampedDataChunks(allocator);
         }
         
-        public void RecordTimelessSample(IMessage msg)
+        // public void RecordTimelessSample(IMessage msg)
+        // {
+        //     // var packedSample = PackedSample.Pack(msg, Allocator.Persistent);
+        //     //
+        //     // var bytes = packedSample.SerializeLengthPrefixed(Allocator.Persistent);
+        //     //
+        //     // lock (_timelessDataBufferLock)
+        //     // {
+        //     //     _timelessDataBuffer.Add(bytes.AsArray());
+        //     // }
+        //     //
+        //     // bytes.Dispose();
+        //     // packedSample.Dispose();
+        // }
+        //
+        // public void RecordTimestampedSample(IMessage msg, long timestamp)
+        // {
+        //     // var packedSample = PackedSample.Pack(timestamp, msg, Allocator.Persistent);
+        //     // var bytes = packedSample.SerializeLengthPrefixed(Allocator.Persistent);
+        //     //
+        //     // lock (_timestampedDataBufferLock)
+        //     // {
+        //     //     _timestampedDataBuffer.Add(bytes.AsArray(), timestamp);
+        //     // }
+        //     //
+        //     // bytes.Dispose();
+        //     // packedSample.Dispose();
+        // }
+        //
+        // public void RecordTimelessSample<T>(T msg) where T : unmanaged, IProtoBurstMessage
+        // {
+        //     var bytes = new NativeList<byte>(PackedSample.ComputeSize(ref msg), Allocator.Persistent);
+        //     var buffer = new BufferWriter(bytes);
+        //     PackedSample.WriteTo(ref msg, ref buffer);
+        //     
+        //     lock (_timelessDataBufferLock)
+        //     {
+        //         _timelessDataBuffer.Add(bytes.AsArray());
+        //     }
+        //     
+        //     bytes.Dispose();
+        // }
+        
+        public void RecordTimestampedPackedSample(PackedSample sample, long timestamp)
         {
-            // var packedSample = PackedSample.Pack(msg, Allocator.Persistent);
-            //
-            // var bytes = packedSample.SerializeLengthPrefixed(Allocator.Persistent);
-            //
-            // lock (_timelessDataBufferLock)
-            // {
-            //     _timelessDataBuffer.Add(bytes.AsArray());
-            // }
-            //
-            // bytes.Dispose();
-            // packedSample.Dispose();
-        }
-
-        public void RecordTimestampedSample(IMessage msg, long timestamp)
-        {
-            // var packedSample = PackedSample.Pack(timestamp, msg, Allocator.Persistent);
-            // var bytes = packedSample.SerializeLengthPrefixed(Allocator.Persistent);
-            //
-            // lock (_timestampedDataBufferLock)
-            // {
-            //     _timestampedDataBuffer.Add(bytes.AsArray(), timestamp);
-            // }
-            //
-            // bytes.Dispose();
-            // packedSample.Dispose();
-        }
-
-        public void RecordTimelessSample<T>(T msg) where T : unmanaged, IProtoBurstMessage
-        {
-            var bytes = new NativeList<byte>(PackedSample.ComputeSize(ref msg), Allocator.Persistent);
+            var size = BufferExtensions.ComputeLengthPrefixedMessageSize(ref sample);
+            var bytes = new NativeList<byte>(size, Allocator.Persistent);
             var buffer = new BufferWriter(bytes);
-            PackedSample.WriteTo(ref msg, ref buffer);
             
-            lock (_timelessDataBufferLock)
-            {
-                _timelessDataBuffer.Add(bytes.AsArray());
-            }
-            
-            bytes.Dispose();
-        }
-
-        public void RecordTimestampedSample<T>(T msg, long timestamp) where T : unmanaged, IProtoBurstMessage
-        {
-            var bytes = new NativeList<byte>(PackedSample.ComputeSize(timestamp, ref msg), Allocator.Persistent);
-            var buffer = new BufferWriter(bytes);
-            PackedSample.WriteTo(timestamp, ref msg, ref buffer);
+            buffer.WriteLengthPrefixedMessage(ref sample);
             
             lock (_timestampedDataBufferLock)
             {
                 _timestampedDataBuffer.Add(bytes.AsArray(), timestamp);
-                BufferSize.Value = _timestampedDataBuffer.ChunksTotalLength;
+                BufferSize.Value = _timestampedDataBuffer.DataLength;
                 FrameSize.Value = bytes.Length;
             }
             
@@ -118,7 +120,7 @@ namespace PLUME.Core.Recorder
             lock (_timestampedDataBufferLock)
             {
                 var rm = _timestampedDataBuffer.TryRemoveAllBeforeTimestamp(timestamp, dst, inclusive);
-                BufferSize.Value = _timestampedDataBuffer.ChunksTotalLength;
+                BufferSize.Value = _timestampedDataBuffer.DataLength;
                 return rm;
             }
         }

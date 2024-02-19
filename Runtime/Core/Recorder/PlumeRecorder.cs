@@ -265,7 +265,7 @@ namespace PLUME.Core.Recorder
         {
             EnsureIsRecording();
             var marker = new Marker {Label = label};
-            _record.RecordTimestampedSample(marker, _record.Clock.ElapsedNanoseconds);
+            // _record.RecordTimestampedSample(marker, _record.Clock.ElapsedNanoseconds);
         }
 
         private void StartRecordingObjectInternal<T>(ObjectSafeRef<T> objectSafeRef, bool markCreated)

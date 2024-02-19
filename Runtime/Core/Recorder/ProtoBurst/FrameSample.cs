@@ -1,6 +1,7 @@
 using System;
-using PLUME.Sample.Unity;
+using PLUME.Core.Recorder.Data;
 using ProtoBurst;
+using ProtoBurst.Message;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
@@ -10,46 +11,96 @@ namespace PLUME.Core.Recorder.ProtoBurst
     [BurstCompile]
     public struct FrameSample : IProtoBurstMessage, IDisposable
     {
-        public static readonly FixedString128Bytes TypeUrl = new("fr.liris.plume/" + Frame.Descriptor.FullName);
+        public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.Frame";
 
         public readonly int FrameNumber;
-        public NativeArray<byte> Data;
+        public DataChunks SerializedSamplesData;
+        public DataChunks SerializedSamplesTypeUrl;
 
-        private static readonly uint FrameNumberFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.VarInt);
-        private static readonly uint DataFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
+        public static readonly uint FrameNumberFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.VarInt);
+        public static readonly uint DataFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
 
-        public FrameSample(int frameNumber, NativeArray<byte> data)
+        public FrameSample(int frameNumber, DataChunks serializedSamplesData, DataChunks serializedSamplesTypeUrl)
         {
             FrameNumber = frameNumber;
-            Data = data;
-        }
 
-        public static FrameSample Pack(int frameNumber, ReadOnlySpan<byte> data, Allocator allocator)
-        {
-            var dataArr = new NativeArray<byte>(data.Length, allocator);
-            data.CopyTo(dataArr);
-            return new FrameSample(frameNumber, dataArr);
-        }
+            if (serializedSamplesData.ChunksCount != serializedSamplesTypeUrl.ChunksCount)
+                throw new ArgumentException(
+                    $"{nameof(serializedSamplesData)} and {nameof(serializedSamplesTypeUrl)} must have the same number of chunks.");
 
-        public static FrameSample Pack(int frameNumber, NativeArray<byte> data)
-        {
-            return new FrameSample(frameNumber, data);
+            SerializedSamplesData = serializedSamplesData;
+            SerializedSamplesTypeUrl = serializedSamplesTypeUrl;
         }
 
         public void WriteTo(ref BufferWriter bufferWriter)
         {
             bufferWriter.WriteTag(FrameNumberFieldTag);
-            bufferWriter.WriteSInt32(FrameNumber);
-            bufferWriter.WriteTag(DataFieldTag);
-            bufferWriter.WriteLengthPrefixedBytes(ref Data);
+            bufferWriter.WriteInt32(FrameNumber);
+
+            var serializedSampleData = SerializedSamplesData.GetDataSpan();
+            var serializedSampleTypeUrl = SerializedSamplesTypeUrl.GetDataSpan();
+            var valueByteOffset = 0;
+            var typeUrlByteOffset = 0;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var chunkIdx = 0; chunkIdx < SerializedSamplesData.ChunksCount; chunkIdx++)
+            {
+                var valueBytesLength = SerializedSamplesData.GetLength(chunkIdx);
+                var typeUrlBytesLength = SerializedSamplesTypeUrl.GetLength(chunkIdx);
+                var valueBytes = serializedSampleData.Slice(valueByteOffset, valueBytesLength);
+                var typeUrlBytes = serializedSampleTypeUrl.Slice(typeUrlByteOffset, typeUrlBytesLength);
+
+                unsafe
+                {
+                    fixed (byte* valueBytesPtr = valueBytes)
+                    {
+                        fixed (byte* typeUrlBytesPtr = typeUrlBytes)
+                        {
+                            WriteDataChunkTo(typeUrlBytesPtr, typeUrlBytesLength, valueBytesPtr, valueBytesLength,
+                                ref bufferWriter);
+                        }
+                    }
+                }
+
+                valueByteOffset += valueBytesLength;
+                typeUrlByteOffset += typeUrlBytesLength;
+            }
         }
-        
-        public static void WriteTo(int frameNumber, NativeArray<byte> data, ref BufferWriter bufferWriter)
+
+        public int ComputeSize()
         {
-            bufferWriter.WriteTag(FrameNumberFieldTag);
-            bufferWriter.WriteSInt32(frameNumber);
+            var size = 0;
+
+            size += BufferExtensions.ComputeTagSize(FrameNumberFieldTag) +
+                    BufferExtensions.ComputeInt32Size(FrameNumber);
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var chunkIdx = 0; chunkIdx < SerializedSamplesData.ChunksCount; chunkIdx++)
+            {
+                var valueBytesLength = SerializedSamplesData.GetLength(chunkIdx);
+                var typeUrlBytesLength = SerializedSamplesTypeUrl.GetLength(chunkIdx);
+                size += ComputeDataChunkSize(valueBytesLength, typeUrlBytesLength);
+            }
+
+            return size;
+        }
+
+        internal static unsafe void WriteDataChunkTo(
+            byte* typeUrlBytesPtr, int typeUrlBytesLength,
+            byte* valueBytesPtr, int valueBytesLength,
+            ref BufferWriter bufferWriter)
+        {
             bufferWriter.WriteTag(DataFieldTag);
-            bufferWriter.WriteLengthPrefixedBytes(ref data);
+            bufferWriter.WriteLength(Any.ComputeSize(typeUrlBytesLength, valueBytesLength));
+            Any.WriteTo(typeUrlBytesPtr, typeUrlBytesLength, valueBytesPtr, valueBytesLength, ref bufferWriter);
+        }
+
+        internal static int ComputeDataChunkSize(int valueBytesLength, int typeUrlBytesLength)
+        {
+            var anySize = Any.ComputeSize(typeUrlBytesLength, valueBytesLength);
+
+            return BufferExtensions.ComputeTagSize(DataFieldTag) +
+                   BufferExtensions.ComputeLengthPrefixSize(anySize) + anySize;
         }
 
         public SampleTypeUrl GetTypeUrl(Allocator allocator)
@@ -57,16 +108,10 @@ namespace PLUME.Core.Recorder.ProtoBurst
             return SampleTypeUrl.Alloc(TypeUrl, allocator);
         }
 
-        public int ComputeSize()
-        {
-            return BufferExtensions.TagSize * 2 +
-                   BufferExtensions.ComputeVarIntSize(FrameNumber) +
-                   BufferExtensions.ComputeLengthPrefixedBytesSize(ref Data);
-        }
-
         public void Dispose()
         {
-            Data.Dispose();
+            SerializedSamplesData.Dispose();
+            SerializedSamplesTypeUrl.Dispose();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace PLUME.Core.Recorder.Data
         internal NativeList<long> Timestamps;
         
         public int ChunksCount => DataChunks.ChunksCount;
-        public int ChunksTotalLength => DataChunks.ChunksTotalLength;
+        public int DataLength => DataChunks.DataLength;
 
         public TimestampedDataChunks(Allocator allocator)
         {
@@ -49,14 +49,14 @@ namespace PLUME.Core.Recorder.Data
 
             if (chunkIndex >= 0)
             {
-                DataChunks.MergeIntoChunk(chunkIndex, chunks.GetChunksData(), DataChunks.ChunkPosition.End);
+                DataChunks.MergeIntoChunk(chunkIndex, chunks.GetDataSpan(), DataChunks.ChunkPosition.End);
                 return;
             }
 
             // In this case, chunk index is the bitwise complement of the index of the next element that is larger
             // than timestamp or, if there is no larger element, the bitwise complement of Count.
             var nearestChunkIndex = ~chunkIndex;
-            DataChunks.Insert(nearestChunkIndex, chunks.GetChunksData());
+            DataChunks.Insert(nearestChunkIndex, chunks.GetDataSpan());
             Timestamps.InsertRange(nearestChunkIndex, 1);
             Timestamps[nearestChunkIndex] = timestamp;
         }
@@ -124,8 +124,8 @@ namespace PLUME.Core.Recorder.Data
                 return false;
 
             var nRemovedChunks = chunkIndex + 1;
-            var dataChunks = DataChunks.GetChunksData(0, nRemovedChunks);
-            var chunksLength = DataChunks.GetChunksLengths(0, nRemovedChunks);
+            var dataChunks = DataChunks.GetDataSpan(0, nRemovedChunks);
+            var chunksLength = DataChunks.GetLengthsSpan(0, nRemovedChunks);
             var timestamps = Timestamps.AsArray().AsReadOnlySpan()[..nRemovedChunks];
             dst.DataChunks.AddRange(dataChunks, chunksLength);
             dst.Timestamps.InsertRange(0, nRemovedChunks);
@@ -233,64 +233,64 @@ namespace PLUME.Core.Recorder.Data
             return sb.ToString();
         }
 
-        public ReadOnlySpan<byte> GetChunkData(int chunkIndex)
+        public Span<byte> GetDataSpan(int chunkIndex)
         {
-            return DataChunks.GetChunkData(chunkIndex);
+            return DataChunks.GetDataSpan(chunkIndex);
         }
 
-        public ReadOnlySpan<byte> GetChunksData(int chunkIndex, int count)
+        public Span<byte> GetDataSpan(int chunkIndex, int count)
         {
-            return DataChunks.GetChunksData(chunkIndex, count);
+            return DataChunks.GetDataSpan(chunkIndex, count);
         }
 
-        public ReadOnlySpan<byte> GetChunksData()
+        public Span<byte> GetDataSpan()
         {
-            return DataChunks.GetChunksData();
+            return DataChunks.GetDataSpan();
         }
 
-        public int GetChunkLength(int chunkIdx)
+        public int GetLength(int chunkIdx)
         {
-            return DataChunks.GetChunkLength(chunkIdx);
+            return DataChunks.GetLength(chunkIdx);
         }
 
-        public ReadOnlySpan<int> GetChunksLengths(int chunkIndex, int count)
+        public Span<int> GetLengthsSpan(int chunkIndex, int count)
         {
-            return DataChunks.GetChunksLengths(chunkIndex, count);
+            return DataChunks.GetLengthsSpan(chunkIndex, count);
         }
 
-        public ReadOnlySpan<int> GetChunksLengths()
+        public Span<int> GetLengthsSpan()
         {
-            return DataChunks.GetChunksLengths();
+            return DataChunks.GetLengthsSpan();
         }
 
-        public NativeArray<byte> GetChunkData(int chunkIndex, Allocator allocator)
+        public NativeArray<byte> GetData(int chunkIndex, Allocator allocator)
         {
-            return DataChunks.GetChunkData(chunkIndex, allocator);
+            return DataChunks.GetData(chunkIndex, allocator);
         }
 
-        public NativeArray<byte> GetChunksData(int chunkIndex, int count, Allocator allocator)
+        public NativeArray<byte> GetData(int chunkIndex, int count, Allocator allocator)
         {
-            return DataChunks.GetChunksData(chunkIndex, count, allocator);
+            return DataChunks.GetData(chunkIndex, count, allocator);
         }
 
-        public NativeArray<byte> GetChunksData(Allocator allocator)
+        public NativeArray<byte> GetData(Allocator allocator)
         {
-            return DataChunks.GetChunksData(allocator);
+            return DataChunks.GetData(allocator);
         }
 
-        public NativeArray<int> GetChunksLengths(int chunkIndex, int count, Allocator allocator)
+        public NativeArray<int> GetLengths(int chunkIndex, int count, Allocator allocator)
         {
-            return DataChunks.GetChunksLengths(chunkIndex, count, allocator);
+            return DataChunks.GetLengths(chunkIndex, count, allocator);
         }
 
-        public NativeArray<int> GetChunksLengths(Allocator allocator)
+        public NativeArray<int> GetLengths(Allocator allocator)
         {
-            return DataChunks.GetChunksLengths(allocator);
+            return DataChunks.GetLengths(allocator);
         }
 
         public static implicit operator ReadOnlySpan<byte>(TimestampedDataChunks timestampedDataChunks)
         {
-            return timestampedDataChunks.GetChunksData();
+            return timestampedDataChunks.GetDataSpan();
         }
     }
 }

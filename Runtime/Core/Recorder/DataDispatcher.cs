@@ -16,7 +16,6 @@ namespace PLUME.Core.Recorder
         private Thread _dispatcherThread;
 
         private IDataWriter[] _outputs;
-        private FileDataWriter _fileDataWriter;
         private NetworkStream _networkStream;
 
         internal void Start(Record record)
@@ -33,10 +32,10 @@ namespace PLUME.Core.Recorder
             // }
 
             // TODO: format string
-            _fileDataWriter = new FileDataWriter(Application.persistentDataPath,
-                recordIdentifier.Identifier + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
-
-            _outputs = new IDataWriter[] { _fileDataWriter };
+            var fileDataWriter = new FileDataWriter(recordIdentifier);
+            // var networkDataWriter = new NetworkDataWriter(recordIdentifier);
+            
+            _outputs = new IDataWriter[] { fileDataWriter/*, networkDataWriter*/ };
 
             _dispatcherThread = new Thread(() => DispatchLoop(record))
             {
@@ -124,8 +123,16 @@ namespace PLUME.Core.Recorder
             _running = false;
             await UniTask.WaitUntil(() => !_dispatcherThread.IsAlive);
             _dispatcherThread = null;
+
+            if (_outputs != null)
+            {
+                foreach (var output in _outputs)
+                {
+                    output.Close();
+                }
+            }
+
             _outputs = null;
-            _fileDataWriter.Close();
         }
 
         internal void ForceStop()
@@ -133,8 +140,15 @@ namespace PLUME.Core.Recorder
             _running = false;
             _dispatcherThread.Join();
             _dispatcherThread = null;
+            
+            if (_outputs != null)
+            {
+                foreach (var output in _outputs)
+                {
+                    output.Close();
+                }
+            }
             _outputs = null;
-            _fileDataWriter.Close();
         }
 
         public void OnApplicationPaused()

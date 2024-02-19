@@ -31,10 +31,13 @@ namespace PLUME.Core.Recorder.ProtoBurst
 
         public int ComputeSize()
         {
-            return BufferExtensions.TagSize * 4 +
+            return BufferExtensions.ComputeTagSize(XFieldTag) +
                    BufferExtensions.ComputeVarIntSize(_x) +
+                   BufferExtensions.ComputeTagSize(YFieldTag) +
                    BufferExtensions.ComputeVarIntSize(_y) +
+                   BufferExtensions.ComputeTagSize(ZFieldTag) +
                    BufferExtensions.ComputeVarIntSize(_z) +
+                   BufferExtensions.ComputeTagSize(WFieldTag) +
                    BufferExtensions.ComputeVarIntSize(_w);
         }
 

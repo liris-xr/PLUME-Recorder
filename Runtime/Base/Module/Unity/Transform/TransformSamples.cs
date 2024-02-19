@@ -34,15 +34,12 @@ namespace PLUME.Base.Module.Unity.Transform
 
         public int ComputeSize()
         {
-            return BufferExtensions.TagSize + BufferExtensions.ComputeLengthPrefixedMessageSize(ref LocalPosition);
+            return BufferExtensions.ComputeTagSize(LocalPositionFieldTag) + BufferExtensions.ComputeLengthPrefixedMessageSize(ref LocalPosition);
         }
 
         public SampleTypeUrl GetTypeUrl(Allocator allocator)
         {
             return SampleTypeUrl.Alloc(TypeUrl, allocator);
         }
-
-        public static int MaxSize =>
-            BufferExtensions.TagSize + BufferExtensions.ComputeLengthPrefixSize(Vector3Sample.MaxSize) + Vector3Sample.MaxSize;
     }
 }

@@ -1,12 +1,9 @@
 using System;
-using System.Runtime.CompilerServices;
-using Google.Protobuf;
 using ProtoBurst;
 using ProtoBurst.Message;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
-using WireFormat = ProtoBurst.WireFormat;
 
 namespace PLUME.Core.Recorder.ProtoBurst
 {
@@ -18,8 +15,8 @@ namespace PLUME.Core.Recorder.ProtoBurst
         private bool _hasTimestamp;
         private long _timestamp;
 
-        private static readonly uint TimestampFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.VarInt);
-        private static readonly uint PayloadFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
+        public static readonly uint TimestampFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.VarInt);
+        public static readonly uint PayloadFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
 
         public long Timestamp
         {
@@ -49,34 +46,13 @@ namespace PLUME.Core.Recorder.ProtoBurst
 
         public static PackedSample Pack<T>(T message, Allocator allocator) where T : unmanaged, IProtoBurstMessage
         {
-            return new PackedSample(Any.Pack(message, allocator));
+            return new PackedSample(message.ToAny(allocator));
         }
 
-        public static PackedSample Pack<T>(long timestamp, T msg, Allocator allocator)
+        public static PackedSample Pack<T>(long timestamp, T message, Allocator allocator)
             where T : unmanaged, IProtoBurstMessage
         {
-            return new PackedSample(timestamp, Any.Pack(msg, allocator));
-        }
-
-        [BurstDiscard]
-        public static PackedSample Pack(long timestamp, IMessage msg, Allocator allocator)
-        {
-            return new PackedSample(timestamp, Any.Pack(msg, allocator));
-        }
-
-        public static PackedSample Pack(IMessage msg, Allocator allocator)
-        {
-            return new PackedSample(Any.Pack(msg, allocator));
-        }
-
-        public static PackedSample Pack(NativeArray<byte> value, SampleTypeUrl typeUrl)
-        {
-            return new PackedSample(Any.Pack(value, typeUrl));
-        }
-
-        public static PackedSample Pack(long timestamp, NativeArray<byte> value, SampleTypeUrl typeUrl)
-        {
-            return new PackedSample(timestamp, Any.Pack(value, typeUrl));
+            return new PackedSample(timestamp, message.ToAny(allocator));
         }
 
         public void WriteTo(ref BufferWriter bufferWriter)
@@ -84,38 +60,11 @@ namespace PLUME.Core.Recorder.ProtoBurst
             if (_hasTimestamp)
             {
                 bufferWriter.WriteTag(TimestampFieldTag);
-                bufferWriter.WriteSInt64(_timestamp);
+                bufferWriter.WriteInt64(_timestamp);
             }
 
             bufferWriter.WriteTag(PayloadFieldTag);
             bufferWriter.WriteLengthPrefixedMessage(ref Payload);
-        }
-        
-        public static void WriteTo<T>(long timestamp, ref T payload, ref BufferWriter bufferWriter) where T : unmanaged, IProtoBurstMessage
-        {
-            bufferWriter.WriteTag(TimestampFieldTag);
-            bufferWriter.WriteSInt64(timestamp);
-            bufferWriter.WriteTag(PayloadFieldTag);
-            bufferWriter.WriteLengthPrefixedMessage(ref payload);
-        }
-        
-        public static void WriteTo<T>(ref T payload, ref BufferWriter bufferWriter) where T : unmanaged, IProtoBurstMessage
-        {
-            bufferWriter.WriteTag(PayloadFieldTag);
-            bufferWriter.WriteLengthPrefixedMessage(ref payload);
-        }
-
-        public static int ComputeSize<T>(long timestamp, ref T payload) where T : unmanaged, IProtoBurstMessage
-        {
-            var size = 0;
-            size += BufferExtensions.TagSize + BufferExtensions.ComputeVarIntSize(timestamp);
-            size += BufferExtensions.TagSize + BufferExtensions.ComputeLengthPrefixedMessageSize(ref payload);
-            return size;
-        }
-        
-        public static int ComputeSize<T>(ref T payload) where T : unmanaged, IProtoBurstMessage
-        {
-            return BufferExtensions.TagSize + BufferExtensions.ComputeLengthPrefixedMessageSize(ref payload);
         }
 
         public int ComputeSize()
@@ -124,10 +73,13 @@ namespace PLUME.Core.Recorder.ProtoBurst
 
             if (_hasTimestamp)
             {
-                size += BufferExtensions.TagSize + BufferExtensions.ComputeVarIntSize(_timestamp);
+                size += BufferExtensions.ComputeTagSize(TimestampFieldTag) +
+                        BufferExtensions.ComputeInt64Size(_timestamp);
             }
 
-            size += BufferExtensions.TagSize + BufferExtensions.ComputeLengthPrefixedMessageSize(ref Payload);
+            size += BufferExtensions.ComputeTagSize(PayloadFieldTag) +
+                    BufferExtensions.ComputeLengthPrefixedMessageSize(ref Payload);
+
             return size;
         }
 

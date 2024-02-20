@@ -10,76 +10,69 @@ namespace PLUME.Core.Recorder.Data
 {
     public struct FrameDataWriter
     {
-        private DataChunks _serializedSamplesData;
-        private DataChunks _serializedSamplesTypeUrl;
-
-        public FrameDataWriter(DataChunks serializedSamplesData, DataChunks serializedSamplesTypeUrl)
+        private NativeList<byte> _frameDataRawBytes;
+        
+        public FrameDataWriter(NativeList<byte> frameDataRawBytes)
         {
-            _serializedSamplesData = serializedSamplesData;
-            _serializedSamplesTypeUrl = serializedSamplesTypeUrl;
-        }
-
-        public void WriteSerializedBatch(SampleTypeUrl sampleTypeUrl, DataChunks serializedSamples)
-        {
-            _serializedSamplesData.Add(serializedSamples);
-            _serializedSamplesTypeUrl.AddReplicate(sampleTypeUrl, serializedSamples.ChunksCount);
+            _frameDataRawBytes = frameDataRawBytes;
         }
 
         public void WriteBatch<TU, TV>(NativeArray<TU> samples, TV batchSerializer)
             where TU : unmanaged, IProtoBurstMessage
-            where TV : ISampleBatchSerializer<TU>
+            where TV : IFrameDataBatchSerializer<TU>
         {
             if (samples.Length == 0)
                 return;
 
             var sampleTypeUrl = samples[0].GetTypeUrl(Allocator.Persistent);
-            var serializedSamples = batchSerializer.SerializeBatch(samples, Allocator.Persistent);
-            WriteSerializedBatch(sampleTypeUrl, serializedSamples);
+            var serializedFrameDataBatch = batchSerializer.SerializeFrameDataBatch(samples, sampleTypeUrl, Allocator.Persistent);
+            _frameDataRawBytes.AddRange(serializedFrameDataBatch.AsArray());
             sampleTypeUrl.Dispose();
-            serializedSamples.Dispose();
+            serializedFrameDataBatch.Dispose();
         }
-
-        // ReSharper restore Unity.ExpensiveCode
-
-        public void WriteBatch<T>(NativeArray<T> samples) where T : unmanaged, IProtoBurstMessage
-        {
-            if (samples.Length == 0)
-                return;
-
-            var sampleTypeUrl = samples[0].GetTypeUrl(Allocator.Persistent);
-            var serializedSamples = new DataChunks(Allocator.Persistent);
-
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < samples.Length; i++)
-            {
-                var sample = samples[i];
-                var size = sample.ComputeSize();
-                var data = new NativeList<byte>(size, Allocator.Persistent);
-                var buffer = new BufferWriter(data);
-
-                sample.WriteTo(ref buffer);
-                serializedSamples.Add(data.AsArray());
-                data.Dispose();
-            }
-
-            WriteSerializedBatch(sampleTypeUrl, serializedSamples);
-            serializedSamples.Dispose();
-            sampleTypeUrl.Dispose();
-        }
-
-        public void Write<T>(T sample) where T : unmanaged, IProtoBurstMessage
-        {
-            var sampleTypeUrl = sample.GetTypeUrl(Allocator.Persistent);
-            var serializedSample = new NativeList<byte>(sample.ComputeSize(), Allocator.Persistent);
-            var buffer = new BufferWriter(serializedSample);
-
-            sample.WriteTo(ref buffer);
-            _serializedSamplesData.Add(serializedSample.AsArray());
-            _serializedSamplesTypeUrl.Add(sampleTypeUrl);
-
-            sampleTypeUrl.Dispose();
-            serializedSample.Dispose();
-        }
+        
+        //
+        // // ReSharper restore Unity.ExpensiveCode
+        //
+        // public void WriteBatch<T>(NativeArray<T> samples) where T : unmanaged, IProtoBurstMessage
+        // {
+        //     if (samples.Length == 0)
+        //         return;
+        //
+        //     var sampleTypeUrl = samples[0].GetTypeUrl(Allocator.Persistent);
+        //     var serializedSamples = new DataChunks(Allocator.Persistent);
+        //
+        //     // ReSharper disable once ForCanBeConvertedToForeach
+        //     for (var i = 0; i < samples.Length; i++)
+        //     {
+        //         var sample = samples[i];
+        //         var size = sample.ComputeSize();
+        //         var data = new NativeList<byte>(size, Allocator.Persistent);
+        //         var buffer = new BufferWriter(data);
+        //
+        //         sample.WriteTo(ref buffer);
+        //         serializedSamples.Add(data.AsArray());
+        //         data.Dispose();
+        //     }
+        //
+        //     WriteSerializedBatch(sampleTypeUrl, serializedSamples);
+        //     serializedSamples.Dispose();
+        //     sampleTypeUrl.Dispose();
+        // }
+        //
+        // public void Write<T>(T sample) where T : unmanaged, IProtoBurstMessage
+        // {
+        //     var sampleTypeUrl = sample.GetTypeUrl(Allocator.Persistent);
+        //     var serializedSample = new NativeList<byte>(sample.ComputeSize(), Allocator.Persistent);
+        //     var buffer = new BufferWriter(serializedSample);
+        //
+        //     sample.WriteTo(ref buffer);
+        //     _serializedSamplesData.Add(serializedSample.AsArray());
+        //     _serializedSamplesTypeUrl.Add(sampleTypeUrl);
+        //
+        //     sampleTypeUrl.Dispose();
+        //     serializedSample.Dispose();
+        // }
 
         // [BurstDiscard]
         // // ReSharper restore Unity.ExpensiveCode

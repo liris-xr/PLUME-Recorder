@@ -46,13 +46,13 @@ namespace PLUME.Core.Recorder.ProtoBurst
 
         public static PackedSample Pack<T>(T message, Allocator allocator) where T : unmanaged, IProtoBurstMessage
         {
-            return new PackedSample(message.ToAny(allocator));
+            return new PackedSample(Any.Pack(message, allocator));
         }
 
         public static PackedSample Pack<T>(long timestamp, T message, Allocator allocator)
             where T : unmanaged, IProtoBurstMessage
         {
-            return new PackedSample(timestamp, message.ToAny(allocator));
+            return new PackedSample(timestamp, Any.Pack(message, allocator));
         }
 
         public void WriteTo(ref BufferWriter bufferWriter)

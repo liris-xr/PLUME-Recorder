@@ -1,7 +1,5 @@
 using System;
-using PLUME.Core.Recorder.Data;
 using ProtoBurst;
-using ProtoBurst.Message;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
@@ -14,93 +12,31 @@ namespace PLUME.Core.Recorder.ProtoBurst
         public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.Frame";
 
         public readonly int FrameNumber;
-        public DataChunks SerializedSamplesData;
-        public DataChunks SerializedSamplesTypeUrl;
+        public NativeList<byte> FrameDataRawBytes;
 
         public static readonly uint FrameNumberFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.VarInt);
         public static readonly uint DataFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
 
-        public FrameSample(int frameNumber, DataChunks serializedSamplesData, DataChunks serializedSamplesTypeUrl)
+        public FrameSample(int frameNumber, NativeList<byte> frameDataRawBytes)
         {
             FrameNumber = frameNumber;
-
-            if (serializedSamplesData.ChunksCount != serializedSamplesTypeUrl.ChunksCount)
-                throw new ArgumentException(
-                    $"{nameof(serializedSamplesData)} and {nameof(serializedSamplesTypeUrl)} must have the same number of chunks.");
-
-            SerializedSamplesData = serializedSamplesData;
-            SerializedSamplesTypeUrl = serializedSamplesTypeUrl;
+            FrameDataRawBytes = frameDataRawBytes;
         }
 
         public void WriteTo(ref BufferWriter bufferWriter)
         {
             bufferWriter.WriteTag(FrameNumberFieldTag);
             bufferWriter.WriteInt32(FrameNumber);
-
-            var serializedSampleData = SerializedSamplesData.GetDataSpan();
-            var serializedSampleTypeUrl = SerializedSamplesTypeUrl.GetDataSpan();
-            var valueByteOffset = 0;
-            var typeUrlByteOffset = 0;
-
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var chunkIdx = 0; chunkIdx < SerializedSamplesData.ChunksCount; chunkIdx++)
-            {
-                var valueBytesLength = SerializedSamplesData.GetLength(chunkIdx);
-                var typeUrlBytesLength = SerializedSamplesTypeUrl.GetLength(chunkIdx);
-                var valueBytes = serializedSampleData.Slice(valueByteOffset, valueBytesLength);
-                var typeUrlBytes = serializedSampleTypeUrl.Slice(typeUrlByteOffset, typeUrlBytesLength);
-
-                unsafe
-                {
-                    fixed (byte* valueBytesPtr = valueBytes)
-                    {
-                        fixed (byte* typeUrlBytesPtr = typeUrlBytes)
-                        {
-                            WriteDataChunkTo(typeUrlBytesPtr, typeUrlBytesLength, valueBytesPtr, valueBytesLength,
-                                ref bufferWriter);
-                        }
-                    }
-                }
-
-                valueByteOffset += valueBytesLength;
-                typeUrlByteOffset += typeUrlBytesLength;
-            }
+            bufferWriter.WriteBytes(ref FrameDataRawBytes);
         }
 
         public int ComputeSize()
         {
-            var size = 0;
-
-            size += BufferExtensions.ComputeTagSize(FrameNumberFieldTag) +
-                    BufferExtensions.ComputeInt32Size(FrameNumber);
-
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var chunkIdx = 0; chunkIdx < SerializedSamplesData.ChunksCount; chunkIdx++)
-            {
-                var valueBytesLength = SerializedSamplesData.GetLength(chunkIdx);
-                var typeUrlBytesLength = SerializedSamplesTypeUrl.GetLength(chunkIdx);
-                size += ComputeDataChunkSize(typeUrlBytesLength, valueBytesLength);
-            }
+            var size = BufferExtensions.ComputeTagSize(FrameNumberFieldTag) +
+                       BufferExtensions.ComputeInt32Size(FrameNumber) +
+                       FrameDataRawBytes.Length;
 
             return size;
-        }
-
-        internal static int ComputeDataChunkSize(int typeUrlBytesLength, int valueBytesLength)
-        {
-            var anySize = Any.ComputeSize(typeUrlBytesLength, valueBytesLength);
-
-            return BufferExtensions.ComputeTagSize(DataFieldTag) +
-                   BufferExtensions.ComputeLengthPrefixSize(anySize) + anySize;
-        }
-        
-        internal static unsafe void WriteDataChunkTo(
-            byte* typeUrlBytesPtr, int typeUrlBytesLength,
-            byte* valueBytesPtr, int valueBytesLength,
-            ref BufferWriter bufferWriter)
-        {
-            bufferWriter.WriteTag(DataFieldTag);
-            bufferWriter.WriteLength(Any.ComputeSize(typeUrlBytesLength, valueBytesLength));
-            Any.WriteTo(typeUrlBytesPtr, typeUrlBytesLength, valueBytesPtr, valueBytesLength, ref bufferWriter);
         }
 
         public SampleTypeUrl GetTypeUrl(Allocator allocator)
@@ -110,8 +46,7 @@ namespace PLUME.Core.Recorder.ProtoBurst
 
         public void Dispose()
         {
-            SerializedSamplesData.Dispose();
-            SerializedSamplesTypeUrl.Dispose();
+            FrameDataRawBytes.Dispose();
         }
     }
 }

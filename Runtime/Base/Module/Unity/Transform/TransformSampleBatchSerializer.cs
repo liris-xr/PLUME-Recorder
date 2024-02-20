@@ -1,36 +1,46 @@
-using PLUME.Core.Recorder.Data;
 using PLUME.Core.Recorder.Module;
-using PLUME.Core.Recorder.ProtoBurst;
+using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
-using UnityEngine;
 
 namespace PLUME.Base.Module.Unity.Transform
 {
     [BurstCompile]
-    public struct TransformSampleBatchSerializer : ISampleBatchSerializer<TransformUpdateLocalPositionSample>
+    public struct TransformFrameDataBatchSerializer : IFrameDataBatchSerializer<TransformUpdateLocalPositionSample>
     {
-        private SampleBatchPrepareSerializeJob<TransformUpdateLocalPositionSample> _prepareSerializeJob;
-        private SampleBatchSerializeJob<TransformUpdateLocalPositionSample> _serializeJob;
-        
-        public DataChunks SerializeBatch(NativeArray<TransformUpdateLocalPositionSample> samples, Allocator allocator)
+        private FrameDataBatchPrepareSerializeJob<TransformUpdateLocalPositionSample> _prepareSerializeJob;
+        private FrameDataBatchSerializeJob<TransformUpdateLocalPositionSample> _serializeJob;
+
+        public NativeList<byte> SerializeFrameDataBatch(NativeArray<TransformUpdateLocalPositionSample> samples,
+            SampleTypeUrl sampleTypeUrl, Allocator allocator, int batchSize)
         {
-            var dataChunks = new DataChunks(allocator);
-            var chunksByteOffset = new NativeArray<int>(samples.Length, Allocator.Persistent);
+            var totalSize = new NativeArray<int>(1, Allocator.Persistent);
+            var serializedSampleSizes = new NativeArray<int>(samples.Length, Allocator.Persistent);
+            var sampleSizes = new NativeArray<int>(samples.Length, Allocator.Persistent);
+
+            totalSize[0] = 0;
             
-            _prepareSerializeJob.SerializedData = dataChunks;
-            _prepareSerializeJob.ChunksByteOffset = chunksByteOffset;
+            _prepareSerializeJob.TotalSize = totalSize;
             _prepareSerializeJob.Samples = samples;
-            _prepareSerializeJob.Run();
-            
-            _serializeJob.SerializedData = dataChunks;
-            _serializeJob.ChunksByteOffset = chunksByteOffset;
+            _prepareSerializeJob.SampleTypeUrlBytes = sampleTypeUrl.AsArray();
+            _prepareSerializeJob.SampleSizes = sampleSizes;
+            _prepareSerializeJob.SerializedSampleSizes = serializedSampleSizes;
+            _prepareSerializeJob.Run(samples.Length, batchSize);
+
+            var serializedData = new NativeList<byte>(totalSize[0], allocator);
+            totalSize.Dispose();
+
+            _serializeJob.SerializedData = serializedData.AsParallelWriter();
             _serializeJob.Samples = samples;
-            _serializeJob.Run(samples.Length, 128);
-            
-            chunksByteOffset.Dispose();
-            return dataChunks;
+            _serializeJob.SampleTypeUrlBytes = sampleTypeUrl.AsArray();
+            _serializeJob.SampleSizes = sampleSizes;
+            _serializeJob.SerializedSampleSizes = serializedSampleSizes;
+            _serializeJob.Run(samples.Length, batchSize);
+            serializedSampleSizes.Dispose();
+            sampleSizes.Dispose();
+
+            return serializedData;
         }
     }
 }

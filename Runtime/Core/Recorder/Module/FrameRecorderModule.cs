@@ -108,10 +108,8 @@ namespace PLUME.Core.Recorder.Module
                 {
                     var hasData = false;
                     
-                    var serializedSamplesData = new DataChunks(Allocator.Persistent);
-                    var serializedSamplesTypeUrl = new DataChunks(Allocator.Persistent);
-                    
-                    var frameDataWriter = new FrameDataWriter(serializedSamplesData, serializedSamplesTypeUrl);
+                    var frameDataRawBytes = new NativeList<byte>(Allocator.Persistent);
+                    var frameDataWriter = new FrameDataWriter(frameDataRawBytes);
                     
                     foreach (var module in _frameDataRecorderModules)
                     {
@@ -122,160 +120,21 @@ namespace PLUME.Core.Recorder.Module
                     if (hasData)
                     {
                         Profiler.BeginSample("Pack frame");
-                        var frameSample = new FrameSample(frame.FrameNumber, serializedSamplesData,
-                            serializedSamplesTypeUrl);
                         
-                        var frameSampleBytes = SerializeFrameSampleParallel(ref frameSample, Allocator.Persistent);
-                        var frameSampleTypeUrlSpan = _frameSampleTypeUrl.AsReadOnlySpan();
-                        var frameSampleBytesSpan = frameSampleBytes.AsArray().AsReadOnlySpan();
-                        var payload = Any.Pack(frameSampleBytesSpan, frameSampleTypeUrlSpan, Allocator.Persistent);
-                        frameSampleBytes.Dispose();
-                        
+                        var frameSample = new FrameSample(frame.FrameNumber, frameDataRawBytes);
+                        var payload = Any.Pack(frameSample, Allocator.Persistent);
                         var packedSample = new PackedSample(frame.Timestamp, payload);
                         record.RecordTimestampedPackedSample(packedSample, frame.Timestamp);
                         payload.Dispose();
+                        
                         Profiler.EndSample();
                     }
                     
-                    serializedSamplesData.Dispose();
-                    serializedSamplesTypeUrl.Dispose();
+                    frameDataRawBytes.Dispose();
                 }
             }
 
             Profiler.EndThreadProfiling();
-        }
-
-        private static NativeList<byte> SerializeFrameSampleParallel(ref FrameSample sample, Allocator allocator,
-            int batchSize = 128)
-        {
-            var initialSize = BufferExtensions.ComputeTagSize(FrameSample.FrameNumberFieldTag) +
-                              BufferExtensions.ComputeInt32Size(sample.FrameNumber);
-
-            var frameDataBytes = new NativeList<byte>(initialSize, allocator);
-            var bufferWriter = new BufferWriter(frameDataBytes);
-            bufferWriter.WriteTag(FrameSample.FrameNumberFieldTag);
-            bufferWriter.WriteInt32(sample.FrameNumber);
-            
-            var nChunks = sample.SerializedSamplesData.ChunksCount;
-            var chunksSize = new NativeArray<int>(nChunks, allocator);
-            var chunksTotalSize = new NativeArray<int>(1, allocator);
-            var dataChunksByteOffset = new NativeArray<int>(nChunks, allocator);
-            var typeUrlChunksByteOffset = new NativeArray<int>(nChunks, allocator);
-            
-            new PrepareWriteDataParallelJob
-            {
-                FrameSample = sample,
-                ChunksSize = chunksSize,
-                ChunksTotalSize = chunksTotalSize,
-                DataChunksByteOffset = dataChunksByteOffset,
-                TypeUrlChunksByteOffset = typeUrlChunksByteOffset
-            }.Run(nChunks, batchSize);
-            
-            frameDataBytes.Capacity += chunksTotalSize[0];
-            chunksTotalSize.Dispose();
-            
-            new WriteDataParallelJob
-            {
-                FrameDataBytes = frameDataBytes.AsParallelWriter(),
-                FrameSample = sample,
-                ChunksSize = chunksSize,
-                DataChunksByteOffset = dataChunksByteOffset,
-                TypeUrlChunksByteOffset = typeUrlChunksByteOffset
-            }.Run(nChunks, batchSize);
-            
-            chunksSize.Dispose();
-            dataChunksByteOffset.Dispose();
-            typeUrlChunksByteOffset.Dispose();
-            return frameDataBytes;
-        }
-
-        [BurstCompile]
-        private struct PrepareWriteDataParallelJob : IJobParallelForBatch
-        {
-            [ReadOnly]
-            public FrameSample FrameSample;
-
-            public NativeArray<int> ChunksTotalSize;
-            [WriteOnly] public NativeArray<int> ChunksSize;
-            [WriteOnly] public NativeArray<int> DataChunksByteOffset;
-            [WriteOnly] public NativeArray<int> TypeUrlChunksByteOffset;
-
-            public unsafe void Execute(int startIndex, int count)
-            {
-                var dataByteOffset = 0;
-                var typeUrlByteOffset = 0;
-
-                var chunkSizes = 0;
-
-                for (var chunkIdx = startIndex; chunkIdx < startIndex + count; chunkIdx++)
-                {
-                    var typeUrlBytesLength = FrameSample.SerializedSamplesTypeUrl.GetLength(chunkIdx);
-                    var dataBytesLength = FrameSample.SerializedSamplesData.GetLength(chunkIdx);
-                    
-                    TypeUrlChunksByteOffset[chunkIdx] = typeUrlByteOffset;
-                    DataChunksByteOffset[chunkIdx] = dataByteOffset;
-                    
-                    var chunkSize = FrameSample.ComputeDataChunkSize(typeUrlBytesLength, dataBytesLength);
-                    ChunksSize[chunkIdx] = chunkSize;
-                    chunkSizes += chunkSize;
-                    typeUrlByteOffset += typeUrlBytesLength;
-                    dataByteOffset += dataBytesLength;
-                }
-
-                Interlocked.Add(ref ((int*)ChunksTotalSize.GetUnsafePtr())[0], chunkSizes);
-            }
-        }
-
-        [BurstCompile]
-        private struct WriteDataParallelJob : IJobParallelForBatch
-        {
-            public NativeList<byte>.ParallelWriter FrameDataBytes;
-
-            [NativeDisableParallelForRestriction] public FrameSample FrameSample;
-
-            [ReadOnly] public NativeArray<int> ChunksSize;
-            [ReadOnly] public NativeArray<int> DataChunksByteOffset;
-            [ReadOnly] public NativeArray<int> TypeUrlChunksByteOffset;
-
-            public void Execute(int startIndex, int count)
-            {
-                var serializedSampleData = FrameSample.SerializedSamplesData.GetDataSpan();
-                var serializedSampleTypeUrl = FrameSample.SerializedSamplesTypeUrl.GetDataSpan();
-
-                // ReSharper disable once ForCanBeConvertedToForeach
-                for (var chunkIdx = startIndex; chunkIdx < startIndex + count; chunkIdx++)
-                {
-                    var typeUrlBytesLength = FrameSample.SerializedSamplesTypeUrl.GetLength(chunkIdx);
-                    var valueBytesLength = FrameSample.SerializedSamplesData.GetLength(chunkIdx);
-                    
-                    var typeUrlByteOffset = TypeUrlChunksByteOffset[chunkIdx];
-                    var valueByteOffset = DataChunksByteOffset[chunkIdx];
-                    
-                    var typeUrlBytes = serializedSampleTypeUrl.Slice(typeUrlByteOffset, typeUrlBytesLength);
-                    var valueBytes = serializedSampleData.Slice(valueByteOffset, valueBytesLength);
-
-                    var chunkSize = ChunksSize[chunkIdx];
-                    
-                    var bytes = new NativeList<byte>(chunkSize, Allocator.Temp);
-                    var bufferWriter = new BufferWriter(bytes);
-                    
-                    unsafe
-                    {
-                        fixed (byte* valueBytesPtr = valueBytes)
-                        {
-                            fixed (byte* typeUrlBytesPtr = typeUrlBytes)
-                            {
-                                FrameSample.WriteDataChunkTo(typeUrlBytesPtr, typeUrlBytesLength, valueBytesPtr,
-                                    valueBytesLength,
-                                    ref bufferWriter);
-                            }
-                        }
-                    }
-                    
-                    FrameDataBytes.AddRangeNoResize(bytes);
-                    bytes.Dispose();
-                }
-            }
         }
     }
 }

@@ -95,7 +95,7 @@ namespace PLUME.Base.Module.Unity.Transform
         protected override void OnSerializeFrameData(TransformFrameData frameData, Frame frame,
             FrameDataWriter frameDataWriter)
         {
-            frameDataWriter.WriteBatch(frameData.DirtySamples.AsArray(), new TransformSampleBatchSerializer());
+            frameDataWriter.WriteBatch(frameData.DirtySamples.AsArray(), new TransformFrameDataBatchSerializer());
         }
 
         protected override void OnDisposeFrameData(TransformFrameData frameData, Frame frame)

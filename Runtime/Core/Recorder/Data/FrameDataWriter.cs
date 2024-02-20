@@ -97,7 +97,7 @@ namespace PLUME.Core.Recorder.Data
                 var size = sample.CalculateSize();
                 var data = new NativeList<byte>(size, Allocator.TempJob);
 
-                sample.WriteTo(data.AsArray());
+                sample.WriteTo(data.AsArray().AsSpan());
                 serializedSamples.Add(data.AsArray());
                 data.Dispose();
             }

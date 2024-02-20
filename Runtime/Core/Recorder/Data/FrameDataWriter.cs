@@ -22,19 +22,21 @@ namespace PLUME.Core.Recorder.Data
         public void WriteSerializedBatch(SampleTypeUrl sampleTypeUrl, DataChunks serializedSamples)
         {
             _serializedSamplesData.Add(serializedSamples);
-            _serializedSamplesTypeUrl.AddReplicate(sampleTypeUrl.Bytes, serializedSamples.ChunksCount);
+            _serializedSamplesTypeUrl.AddReplicate(sampleTypeUrl, serializedSamples.ChunksCount);
         }
 
-        public void WriteBatch<T>(NativeArray<T> samples, ISampleBatchSerializer<T> batchSerializer)
-            where T : unmanaged, IProtoBurstMessage
+        public void WriteBatch<TU, TV>(NativeArray<TU> samples, TV batchSerializer)
+            where TU : unmanaged, IProtoBurstMessage
+            where TV : ISampleBatchSerializer<TU>
         {
             if (samples.Length == 0)
                 return;
 
-            var sampleTypeUrl = samples[0].GetTypeUrl(Allocator.TempJob);
-            var serializedSamples = batchSerializer.SerializeBatch(samples, Allocator.TempJob);
+            var sampleTypeUrl = samples[0].GetTypeUrl(Allocator.Persistent);
+            var serializedSamples = batchSerializer.SerializeBatch(samples, Allocator.Persistent);
             WriteSerializedBatch(sampleTypeUrl, serializedSamples);
             sampleTypeUrl.Dispose();
+            serializedSamples.Dispose();
         }
 
         // ReSharper restore Unity.ExpensiveCode
@@ -44,15 +46,15 @@ namespace PLUME.Core.Recorder.Data
             if (samples.Length == 0)
                 return;
 
-            var sampleTypeUrl = samples[0].GetTypeUrl(Allocator.TempJob);
-            var serializedSamples = new DataChunks(Allocator.TempJob);
+            var sampleTypeUrl = samples[0].GetTypeUrl(Allocator.Persistent);
+            var serializedSamples = new DataChunks(Allocator.Persistent);
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < samples.Length; i++)
             {
                 var sample = samples[i];
                 var size = sample.ComputeSize();
-                var data = new NativeList<byte>(size, Allocator.TempJob);
+                var data = new NativeList<byte>(size, Allocator.Persistent);
                 var buffer = new BufferWriter(data);
 
                 sample.WriteTo(ref buffer);
@@ -67,60 +69,57 @@ namespace PLUME.Core.Recorder.Data
 
         public void Write<T>(T sample) where T : unmanaged, IProtoBurstMessage
         {
-            var sampleTypeUrl = sample.GetTypeUrl(Allocator.TempJob);
-            var size = sample.ComputeSize();
-            var data = new NativeList<byte>(size, Allocator.TempJob);
-            var buffer = new BufferWriter(data);
+            var sampleTypeUrl = sample.GetTypeUrl(Allocator.Persistent);
+            var serializedSample = new NativeList<byte>(sample.ComputeSize(), Allocator.Persistent);
+            var buffer = new BufferWriter(serializedSample);
 
             sample.WriteTo(ref buffer);
-            _serializedSamplesData.Add(data.AsArray());
-            _serializedSamplesTypeUrl.Add(sampleTypeUrl.Bytes);
+            _serializedSamplesData.Add(serializedSample.AsArray());
+            _serializedSamplesTypeUrl.Add(sampleTypeUrl);
 
             sampleTypeUrl.Dispose();
-            data.Dispose();
+            serializedSample.Dispose();
         }
 
-        [BurstDiscard]
-        // ReSharper restore Unity.ExpensiveCode
-        public void WriteBatch(IList<IMessage> samples)
-        {
-            if (samples.Count == 0)
-                return;
-
-            var sampleTypeUrl = SampleTypeUrl.Alloc(samples[0].Descriptor, Allocator.TempJob);
-            var serializedSamples = new DataChunks(Allocator.TempJob);
-
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < samples.Count; i++)
-            {
-                var sample = samples[i];
-                var size = sample.CalculateSize();
-                var data = new NativeList<byte>(size, Allocator.TempJob);
-
-                sample.WriteTo(data.AsArray().AsSpan());
-                serializedSamples.Add(data.AsArray());
-                data.Dispose();
-            }
-
-            WriteSerializedBatch(sampleTypeUrl, serializedSamples);
-            serializedSamples.Dispose();
-            sampleTypeUrl.Dispose();
-        }
-
-        [BurstDiscard]
-        // ReSharper restore Unity.ExpensiveCode
-        public void Write(IMessage sample)
-        {
-            var sampleTypeUrl = SampleTypeUrl.Alloc(sample.Descriptor, Allocator.TempJob);
-            var size = sample.CalculateSize();
-            var data = new NativeList<byte>(size, Allocator.TempJob);
-
-            sample.WriteTo(data.AsArray().AsSpan());
-            _serializedSamplesData.Add(data.AsArray());
-            _serializedSamplesTypeUrl.Add(sampleTypeUrl.Bytes);
-
-            sampleTypeUrl.Dispose();
-            data.Dispose();
-        }
+        // [BurstDiscard]
+        // // ReSharper restore Unity.ExpensiveCode
+        // public void WriteBatch(IList<IMessage> samples)
+        // {
+        //     if (samples.Count == 0)
+        //         return;
+        //
+        //     var sampleTypeUrl = SampleTypeUrl.Alloc(samples[0].Descriptor, Allocator.Persistent);
+        //     var serializedSamples = new DataChunks(Allocator.Persistent);
+        //
+        //     // ReSharper disable once ForCanBeConvertedToForeach
+        //     for (var i = 0; i < samples.Count; i++)
+        //     {
+        //         var sample = samples[i];
+        //         var data = new NativeList<byte>(sample.CalculateSize(), Allocator.Persistent);
+        //
+        //         sample.WriteTo(data.AsArray().AsSpan());
+        //         serializedSamples.Add(data.AsArray());
+        //         data.Dispose();
+        //     }
+        //
+        //     WriteSerializedBatch(sampleTypeUrl, serializedSamples);
+        //     serializedSamples.Dispose();
+        //     sampleTypeUrl.Dispose();
+        // }
+        //
+        // [BurstDiscard]
+        // // ReSharper restore Unity.ExpensiveCode
+        // public void Write(IMessage sample)
+        // {
+        //     var sampleTypeUrl = SampleTypeUrl.Alloc(sample.Descriptor, Allocator.Persistent);
+        //     var serializedSample = new NativeList<byte>(sample.CalculateSize(), Allocator.Persistent);
+        //
+        //     sample.WriteTo(serializedSample.AsArray().AsSpan());
+        //     _serializedSamplesData.Add(serializedSample.AsArray());
+        //     _serializedSamplesTypeUrl.Add(sampleTypeUrl.Bytes);
+        //
+        //     sampleTypeUrl.Dispose();
+        //     serializedSample.Dispose();
+        // }
     }
 }

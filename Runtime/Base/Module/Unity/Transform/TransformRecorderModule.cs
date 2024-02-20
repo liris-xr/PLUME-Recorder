@@ -8,6 +8,7 @@ using PLUME.Core.Recorder.ProtoBurst;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
+using UnityEngine;
 using UnityEngine.Jobs;
 using UnityEngine.Scripting;
 
@@ -19,6 +20,9 @@ namespace PLUME.Base.Module.Unity.Transform
     {
         private DynamicTransformAccessArray _transformAccessArray;
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
+        
+        private NativeList<TransformUpdateLocalPositionSample> _currentFrameDirtySamples;
+        private JobHandle _currentFramePollingJobHandle;
 
         protected override void OnCreate(RecorderContext ctx)
         {
@@ -37,6 +41,11 @@ namespace PLUME.Base.Module.Unity.Transform
             {
                 _lastStates.Dispose();
             }
+            
+            _currentFramePollingJobHandle.Complete();
+            
+            if(_currentFrameDirtySamples.IsCreated)
+                _currentFrameDirtySamples.Dispose();
         }
 
         protected override void OnStartRecordingObject(ObjectSafeRef<UnityEngine.Transform> objSafeRef,
@@ -59,28 +68,27 @@ namespace PLUME.Base.Module.Unity.Transform
             _lastStates.Clear();
         }
 
-        private NativeList<TransformUpdateLocalPositionSample> _dirtySamples;
-        private JobHandle _pollingJobHandle;
-
         protected override void OnPreUpdate(Record record, RecorderContext context)
         {
-            _dirtySamples =
-                new NativeList<TransformUpdateLocalPositionSample>(RecordedObjects.Count, Allocator.Persistent);
+            _currentFrameDirtySamples = new NativeList<TransformUpdateLocalPositionSample>(RecordedObjects.Count, Allocator.Persistent);
 
             var pollTransformStatesJob = new PollTransformStatesJob
             {
                 AlignedIdentifiers = _transformAccessArray.GetAlignedIdentifiers(),
-                DirtySamples = _dirtySamples.AsParallelWriter(),
+                DirtySamples = _currentFrameDirtySamples.AsParallelWriter(),
                 LastStates = _lastStates // TODO: work on a copy of _lastStates, update after job
             };
 
-            _pollingJobHandle = pollTransformStatesJob.ScheduleReadOnly(_transformAccessArray, 128);
+            _currentFramePollingJobHandle = pollTransformStatesJob.ScheduleReadOnly(_transformAccessArray, 128);
         }
 
         protected override TransformFrameData OnCollectFrameData(Frame frame)
         {
-            _pollingJobHandle.Complete();
-            return new TransformFrameData(_dirtySamples);
+            _currentFramePollingJobHandle.Complete();
+            var data = new TransformFrameData(_currentFrameDirtySamples);
+            _currentFramePollingJobHandle = default;
+            _currentFrameDirtySamples = default;
+            return data;
         }
 
         [BurstCompile]
@@ -97,12 +105,12 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnForceStopRecording(Record record, RecorderContext recorderContext)
         {
-            _pollingJobHandle.Complete();
+            _currentFramePollingJobHandle.Complete();
         }
 
         protected override async UniTask OnStopRecording(Record record, RecorderContext recorderContext)
         {
-            await UniTask.WaitUntil(() => _pollingJobHandle.IsCompleted);
+            await UniTask.WaitUntil(() => _currentFramePollingJobHandle.IsCompleted);
         }
 
         [BurstCompile]
@@ -152,7 +160,7 @@ namespace PLUME.Base.Module.Unity.Transform
                     var isLocalPositionDirty = lastSample.LocalPosition != localPosition;
                     var isLocalRotationDirty = lastSample.LocalRotation != localRotation;
                     var isLocalScaleDirty = lastSample.LocalScale != localScale;
-                    
+
                     if (!isLocalPositionDirty && !isLocalRotationDirty && !isLocalScaleDirty)
                         return;
 

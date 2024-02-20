@@ -79,12 +79,20 @@ namespace PLUME.Core.Recorder.ProtoBurst
             {
                 var valueBytesLength = SerializedSamplesData.GetLength(chunkIdx);
                 var typeUrlBytesLength = SerializedSamplesTypeUrl.GetLength(chunkIdx);
-                size += ComputeDataChunkSize(valueBytesLength, typeUrlBytesLength);
+                size += ComputeDataChunkSize(typeUrlBytesLength, valueBytesLength);
             }
 
             return size;
         }
 
+        internal static int ComputeDataChunkSize(int typeUrlBytesLength, int valueBytesLength)
+        {
+            var anySize = Any.ComputeSize(typeUrlBytesLength, valueBytesLength);
+
+            return BufferExtensions.ComputeTagSize(DataFieldTag) +
+                   BufferExtensions.ComputeLengthPrefixSize(anySize) + anySize;
+        }
+        
         internal static unsafe void WriteDataChunkTo(
             byte* typeUrlBytesPtr, int typeUrlBytesLength,
             byte* valueBytesPtr, int valueBytesLength,
@@ -93,14 +101,6 @@ namespace PLUME.Core.Recorder.ProtoBurst
             bufferWriter.WriteTag(DataFieldTag);
             bufferWriter.WriteLength(Any.ComputeSize(typeUrlBytesLength, valueBytesLength));
             Any.WriteTo(typeUrlBytesPtr, typeUrlBytesLength, valueBytesPtr, valueBytesLength, ref bufferWriter);
-        }
-
-        internal static int ComputeDataChunkSize(int valueBytesLength, int typeUrlBytesLength)
-        {
-            var anySize = Any.ComputeSize(typeUrlBytesLength, valueBytesLength);
-
-            return BufferExtensions.ComputeTagSize(DataFieldTag) +
-                   BufferExtensions.ComputeLengthPrefixSize(anySize) + anySize;
         }
 
         public SampleTypeUrl GetTypeUrl(Allocator allocator)

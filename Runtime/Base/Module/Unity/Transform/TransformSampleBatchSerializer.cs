@@ -17,7 +17,7 @@ namespace PLUME.Base.Module.Unity.Transform
         public DataChunks SerializeBatch(NativeArray<TransformUpdateLocalPositionSample> samples, Allocator allocator)
         {
             var dataChunks = new DataChunks(allocator);
-            var chunksByteOffset = new NativeArray<int>(samples.Length, Allocator.TempJob);
+            var chunksByteOffset = new NativeArray<int>(samples.Length, Allocator.Persistent);
             
             _prepareSerializeJob.SerializedData = dataChunks;
             _prepareSerializeJob.ChunksByteOffset = chunksByteOffset;

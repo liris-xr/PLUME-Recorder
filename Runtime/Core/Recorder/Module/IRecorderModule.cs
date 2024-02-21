@@ -4,6 +4,8 @@ namespace PLUME.Core.Recorder.Module
 {
     public interface IRecorderModule
     {
+        protected bool IsRecording();
+        
         internal void Create(RecorderContext context);
 
         internal void Destroy(RecorderContext context);
@@ -13,10 +15,6 @@ namespace PLUME.Core.Recorder.Module
         internal UniTask StopRecording(Record record, RecorderContext recorderContext);
 
         internal void ForceStopRecording(Record record, RecorderContext recorderContext);
-
-        internal void Reset(RecorderContext context);
-        
-        internal void FixedUpdate(Record record, RecorderContext context) {}
         
         internal void EarlyUpdate(Record record, RecorderContext context) {}
         

@@ -11,35 +11,30 @@ namespace PLUME.Base.Module
     {
         private readonly Dictionary<FrameInfo, TFrameData> _framesData = new(FrameInfoComparer.Instance);
 
-        public bool IsRecording { get; private set; }
+        private bool _recording;
 
         private TFrameData _frameData;
 
         void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
         {
-            if (IsRecording)
+            if (_recording)
                 throw new InvalidOperationException("Recorder module is already recording.");
             OnStartRecording(record, recorderContext);
-            IsRecording = true;
+            _recording = true;
         }
 
         void IRecorderModule.ForceStopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
             OnForceStopRecording(record, recorderContext);
-            IsRecording = false;
+            _recording = false;
         }
 
         async UniTask IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
             await OnStopRecording(record, recorderContext);
-            IsRecording = false;
-        }
-
-        void IRecorderModule.Reset(RecorderContext recorderContext)
-        {
-            OnReset(recorderContext);
+            _recording = false;
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
@@ -90,7 +85,7 @@ namespace PLUME.Base.Module
 
         protected void CheckIsRecording()
         {
-            if (!IsRecording)
+            if (!_recording)
             {
                 throw new InvalidOperationException("Recorder module is not recording.");
             }
@@ -104,12 +99,6 @@ namespace PLUME.Base.Module
         void IRecorderModule.Destroy(RecorderContext recorderContext)
         {
             OnDestroy(recorderContext);
-        }
-
-        // ReSharper restore Unity.PerformanceCriticalContext
-        void IRecorderModule.FixedUpdate(Record record, RecorderContext context)
-        {
-            OnFixedUpdate(record, context);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
@@ -139,6 +128,11 @@ namespace PLUME.Base.Module
         void IRecorderModule.PostLateUpdate(Record record, RecorderContext context)
         {
             OnPostLateUpdate(record, context);
+        }
+        
+        bool IRecorderModule.IsRecording()
+        {
+            return _recording;
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
@@ -192,10 +186,6 @@ namespace PLUME.Base.Module
         }
 
         protected void OnForceStopRecording(Record record, RecorderContext recorderContext)
-        {
-        }
-
-        protected virtual void OnReset(RecorderContext recorderContext)
         {
         }
 

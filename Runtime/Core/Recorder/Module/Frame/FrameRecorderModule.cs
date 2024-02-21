@@ -18,7 +18,7 @@ namespace PLUME.Core.Recorder.Module.Frame
     [Preserve]
     public class FrameRecorderModule : IRecorderModule
     {
-        private bool _isRecording;
+        private bool _recording;
 
         private IFrameDataRecorderModule[] _frameDataRecorderModules;
 
@@ -38,7 +38,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
         {
-            _isRecording = true;
+            _recording = true;
 
             _serializationThread = new Thread(() => SerializeFrameLoop(record))
             {
@@ -50,7 +50,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         void IRecorderModule.ForceStopRecording(Record record, RecorderContext recorderContext)
         {
-            _isRecording = false;
+            _recording = false;
             var remainingFramesCount = _frameQueue.Count;
             if (remainingFramesCount > 0)
                 Logger.Log(nameof(FrameRecorderModule), $"{remainingFramesCount} frames left in queue.");
@@ -60,13 +60,9 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         async UniTask IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
-            _isRecording = false;
+            _recording = false;
             await UniTask.WaitUntil(() => !_serializationThread.IsAlive);
             _serializationThread = null;
-        }
-
-        void IRecorderModule.Reset(RecorderContext context)
-        {
         }
 
         void IRecorderModule.PostLateUpdate(Record record, RecorderContext context)
@@ -99,7 +95,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             var frameSampleTypeUrl = SampleTypeUrl.Alloc(FrameSample.TypeUrl, Allocator.Persistent);
 
-            while (_isRecording || _frameQueue.Count > 0)
+            while (_recording || _frameQueue.Count > 0)
             {
                 while (_frameQueue.TryTake(out var frame))
                 {
@@ -127,6 +123,11 @@ namespace PLUME.Core.Recorder.Module.Frame
             frameSampleTypeUrl.Dispose();
             frameDataRawBytes.Dispose();
             Profiler.EndThreadProfiling();
+        }
+        
+        bool IRecorderModule.IsRecording()
+        {
+            return _recording;
         }
     }
 }

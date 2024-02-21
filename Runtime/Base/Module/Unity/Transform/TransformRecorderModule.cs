@@ -51,11 +51,19 @@ namespace PLUME.Base.Module.Unity.Transform
             _transformAccessArray.RemoveSwapBack(objSafeRef);
             _lastStates.Remove(objSafeRef.Identifier);
         }
-
-        protected override void OnReset(RecorderContext ctx)
+        
+        protected override void OnForceStopRecording(Record record, RecorderContext ctx)
+        {
+            _currentFramePollingJobHandle.Complete();
+            _transformAccessArray.Clear();
+            _lastStates.Clear();
+        }
+        
+        protected override async UniTask OnStopRecording(Record record, RecorderContext recorderContext)
         {
             _transformAccessArray.Clear();
             _lastStates.Clear();
+            await UniTask.WaitUntil(() => _currentFramePollingJobHandle.IsCompleted);
         }
 
         protected override void OnPreUpdate(Record record, RecorderContext context)
@@ -94,16 +102,6 @@ namespace PLUME.Base.Module.Unity.Transform
         protected override void OnDisposeFrameData(TransformFrameData frameData, FrameInfo frameInfo)
         {
             frameData.Dispose();
-        }
-
-        protected override void OnForceStopRecording(Record record, RecorderContext recorderContext)
-        {
-            _currentFramePollingJobHandle.Complete();
-        }
-
-        protected override async UniTask OnStopRecording(Record record, RecorderContext recorderContext)
-        {
-            await UniTask.WaitUntil(() => _currentFramePollingJobHandle.IsCompleted);
         }
     }
 }

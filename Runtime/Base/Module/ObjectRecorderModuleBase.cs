@@ -11,8 +11,8 @@ namespace PLUME.Base.Module
     public abstract class ObjectRecorderModuleBase<TObject> : IObjectRecorderModule where TObject : UnityEngine.Object
     {
         public Type SupportedObjectType => typeof(TObject);
-        
-        public bool IsRecording { get; private set; }
+
+        private bool _recording;
 
         private readonly ObjectCollection<TObject> _recordedObjects = new();
         private readonly ObjectCollection<TObject> _createdObjects = new();
@@ -107,10 +107,10 @@ namespace PLUME.Base.Module
 
         void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
         {
-            if (IsRecording)
+            if (_recording)
                 throw new InvalidOperationException("Recorder module is already recording.");
             
-            IsRecording = true;
+            _recording = true;
             OnStartRecording(record, recorderContext);
         }
 
@@ -118,33 +118,30 @@ namespace PLUME.Base.Module
         {
             CheckIsRecording();
             OnForceStopRecording(record, recorderContext);
-            IsRecording = false;
+            
+            _recordedObjects.Clear();
+            _createdObjects.Clear();
+            _destroyedObjects.Clear();
+            
+            _recording = false;
         }
         
         async UniTask IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
             await OnStopRecording(record, recorderContext);
-            IsRecording = false;
-        }
-
-        void IRecorderModule.Reset(RecorderContext recorderContext)
-        {
+            
             _recordedObjects.Clear();
             _createdObjects.Clear();
             _destroyedObjects.Clear();
-            OnReset(recorderContext);
+            
+            _recording = false;
         }
 
         protected void CheckIsRecording()
         {
-            if (!IsRecording)
+            if (!_recording)
                 throw new InvalidOperationException("Recorder module is not recording.");
-        }
-
-        void IRecorderModule.FixedUpdate(Record record, RecorderContext context)
-        {
-            OnFixedUpdate(record, context);
         }
 
         void IRecorderModule.EarlyUpdate(Record record, RecorderContext context)
@@ -169,6 +166,11 @@ namespace PLUME.Base.Module
         void IRecorderModule.PostLateUpdate(Record record, RecorderContext context)
         {
             OnPostLateUpdate(record, context);
+        }
+        
+        bool IRecorderModule.IsRecording()
+        {
+            return _recording;
         }
 
         protected virtual void OnFixedUpdate(Record record, RecorderContext context)
@@ -214,10 +216,6 @@ namespace PLUME.Base.Module
         protected virtual UniTask OnStopRecording(Record record, RecorderContext recorderContext)
         {
             return UniTask.CompletedTask;
-        }
-
-        protected virtual void OnReset(RecorderContext recorderContext)
-        {
         }
 
         protected virtual void OnStartRecordingObject(ObjectSafeRef<TObject> objSafeRef, bool markCreated)

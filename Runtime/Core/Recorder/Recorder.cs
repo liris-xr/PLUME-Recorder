@@ -92,12 +92,6 @@ namespace PLUME.Core.Recorder
 
             _status = RecorderStatus.Stopped;
 
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
-            {
-                _context.Modules[i].Reset(_context);
-            }
-
             ApplicationPauseDetector.Destroy();
             _record.Dispose();
             _record = null;
@@ -212,19 +206,6 @@ namespace PLUME.Core.Recorder
         {
             if (_status is RecorderStatus.Recording or RecorderStatus.Stopping)
                 ForceStopRecordingInternal();
-        }
-
-
-        private void FixedUpdate()
-        {
-            if (_status is not RecorderStatus.Recording)
-                return;
-
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
-            {
-                _context.Modules[i].FixedUpdate(_record, _context);
-            }
         }
 
         private void PreUpdate()

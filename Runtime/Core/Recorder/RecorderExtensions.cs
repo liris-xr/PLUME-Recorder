@@ -100,8 +100,7 @@ namespace PLUME.Core.Recorder
             {
                 recorderModule.Create(recorderContext);
             }
-
-            PlayerLoopUtils.InjectFixedUpdate<RecorderFixedUpdate>(Instance.FixedUpdate);
+            
             PlayerLoopUtils.InjectPreUpdate<RecorderPreUpdate>(Instance.PreUpdate);
             PlayerLoopUtils.InjectUpdate<RecorderUpdate>(Instance.Update);
             PlayerLoopUtils.InjectEarlyUpdate<RecorderEarlyUpdate>(Instance.EarlyUpdate);

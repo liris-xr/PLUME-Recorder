@@ -3,7 +3,6 @@ using System.IO;
 using K4os.Compression.LZ4;
 using K4os.Compression.LZ4.Internal;
 using K4os.Compression.LZ4.Streams;
-using PLUME.Core.Recorder.Data;
 using UnityEngine;
 
 namespace PLUME.Core.Recorder.Writer
@@ -43,7 +42,7 @@ namespace PLUME.Core.Recorder.Writer
         {
         }
 
-        public void WriteTimestampedData(TimestampedDataChunks dataChunks)
+        public void WriteTimestampedData(DataChunksTimestamped dataChunks)
         {
             // TODO: create a local buffer
             // TODO: update metadata file

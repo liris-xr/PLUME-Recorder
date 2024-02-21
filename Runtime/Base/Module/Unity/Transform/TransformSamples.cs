@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices;
-using PLUME.Core.Recorder.ProtoBurst;
+using PLUME.Sample.ProtoBurst;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;

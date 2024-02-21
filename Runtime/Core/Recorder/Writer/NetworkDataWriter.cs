@@ -4,7 +4,6 @@ using System.Net.Sockets;
 using System.Threading;
 using K4os.Compression.LZ4;
 using K4os.Compression.LZ4.Streams;
-using PLUME.Core.Recorder.Data;
 using UnityEngine;
 
 namespace PLUME.Core.Recorder.Writer
@@ -34,10 +33,11 @@ namespace PLUME.Core.Recorder.Writer
         {
         }
 
-        public void WriteTimestampedData(TimestampedDataChunks dataChunks)
+        public void WriteTimestampedData(DataChunksTimestamped dataChunks)
         {
             var data = dataChunks.GetDataSpan();
             _stream.Write(data);
+            _stream.Flush();
         }
 
         public void Flush()

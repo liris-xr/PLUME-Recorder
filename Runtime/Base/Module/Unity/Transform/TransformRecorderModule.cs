@@ -2,13 +2,10 @@ using Cysharp.Threading.Tasks;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
-using PLUME.Core.Recorder.Data;
-using PLUME.Core.Recorder.Module;
-using PLUME.Core.Recorder.ProtoBurst;
+using PLUME.Core.Recorder.Module.Frame;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
-using UnityEngine;
 using UnityEngine.Jobs;
 using UnityEngine.Scripting;
 
@@ -20,7 +17,7 @@ namespace PLUME.Base.Module.Unity.Transform
     {
         private DynamicTransformAccessArray _transformAccessArray;
         private NativeHashMap<ObjectIdentifier, TransformState> _lastStates;
-        
+
         private NativeList<TransformUpdateLocalPositionSample> _currentFrameDirtySamples;
         private JobHandle _currentFramePollingJobHandle;
 
@@ -32,19 +29,12 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnDestroy(RecorderContext ctx)
         {
-            if (_transformAccessArray.IsCreated)
-            {
-                _transformAccessArray.Dispose();
-            }
-
-            if (_lastStates.IsCreated)
-            {
-                _lastStates.Dispose();
-            }
+            _transformAccessArray.Dispose();
+            _lastStates.Dispose();
             
             _currentFramePollingJobHandle.Complete();
-            
-            if(_currentFrameDirtySamples.IsCreated)
+
+            if (_currentFrameDirtySamples.IsCreated)
                 _currentFrameDirtySamples.Dispose();
         }
 
@@ -70,7 +60,8 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnPreUpdate(Record record, RecorderContext context)
         {
-            _currentFrameDirtySamples = new NativeList<TransformUpdateLocalPositionSample>(RecordedObjects.Count, Allocator.Persistent);
+            _currentFrameDirtySamples =
+                new NativeList<TransformUpdateLocalPositionSample>(RecordedObjects.Count, Allocator.Persistent);
 
             var pollTransformStatesJob = new PollTransformStatesJob
             {
@@ -82,7 +73,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _currentFramePollingJobHandle = pollTransformStatesJob.ScheduleReadOnly(_transformAccessArray, 128);
         }
 
-        protected override TransformFrameData OnCollectFrameData(Frame frame)
+        protected override TransformFrameData OnCollectFrameData(FrameInfo frameInfo)
         {
             _currentFramePollingJobHandle.Complete();
             var data = new TransformFrameData(_currentFrameDirtySamples);
@@ -92,13 +83,15 @@ namespace PLUME.Base.Module.Unity.Transform
         }
 
         [BurstCompile]
-        protected override void OnSerializeFrameData(TransformFrameData frameData, Frame frame,
+        protected override void OnSerializeFrameData(TransformFrameData frameData, FrameInfo frameInfo,
             FrameDataWriter frameDataWriter)
         {
-            frameDataWriter.WriteBatch(frameData.DirtySamples.AsArray(), new TransformFrameDataBatchSerializer());
+            var prepareSerializeJob = new FrameDataBatchPrepareSerializeJob<TransformUpdateLocalPositionSample>();
+            var serializeJob = new FrameDataBatchSerializeJob<TransformUpdateLocalPositionSample>();
+            frameDataWriter.WriteBatch(frameData.DirtySamples.AsArray(), prepareSerializeJob, serializeJob);
         }
 
-        protected override void OnDisposeFrameData(TransformFrameData frameData, Frame frame)
+        protected override void OnDisposeFrameData(TransformFrameData frameData, FrameInfo frameInfo)
         {
             frameData.Dispose();
         }
@@ -111,81 +104,6 @@ namespace PLUME.Base.Module.Unity.Transform
         protected override async UniTask OnStopRecording(Record record, RecorderContext recorderContext)
         {
             await UniTask.WaitUntil(() => _currentFramePollingJobHandle.IsCompleted);
-        }
-
-        [BurstCompile]
-        private struct PollTransformStatesJob : IJobParallelForTransform
-        {
-            [ReadOnly] public NativeArray<ObjectIdentifier>.ReadOnly AlignedIdentifiers;
-
-            [WriteOnly] public NativeList<TransformUpdateLocalPositionSample>.ParallelWriter DirtySamples;
-
-            [NativeDisableParallelForRestriction] public NativeHashMap<ObjectIdentifier, TransformState> LastStates;
-
-            public void Execute(int index, TransformAccess transform)
-            {
-                var identifier = AlignedIdentifiers[index];
-                var lastSample = LastStates[identifier];
-
-                if (lastSample.IsNull)
-                {
-                    var state = new TransformState
-                    {
-                        Identifier = identifier,
-                        LocalPosition = transform.localPosition,
-                        LocalRotation = transform.localRotation,
-                        LocalScale = transform.localScale
-                    };
-
-                    var sample = new TransformUpdateLocalPositionSample
-                    {
-                        LocalPosition = new Vector3Sample
-                        {
-                            X = state.LocalPosition.x,
-                            Y = state.LocalPosition.y,
-                            Z = state.LocalPosition.z
-                        }
-                    };
-
-                    DirtySamples.AddNoResize(sample);
-                    LastStates[identifier] = state;
-                }
-                else
-                {
-                    var localPosition = transform.localPosition;
-                    var localRotation = transform.localRotation;
-                    var localScale = transform.localScale;
-
-                    // TODO: add a distance threshold
-                    var isLocalPositionDirty = lastSample.LocalPosition != localPosition;
-                    var isLocalRotationDirty = lastSample.LocalRotation != localRotation;
-                    var isLocalScaleDirty = lastSample.LocalScale != localScale;
-
-                    if (!isLocalPositionDirty && !isLocalRotationDirty && !isLocalScaleDirty)
-                        return;
-
-                    var state = new TransformState
-                    {
-                        Identifier = identifier,
-                        LocalPosition = localPosition,
-                        LocalRotation = localRotation,
-                        LocalScale = localScale
-                    };
-
-                    var sample = new TransformUpdateLocalPositionSample
-                    {
-                        LocalPosition = new Vector3Sample
-                        {
-                            X = state.LocalPosition.x,
-                            Y = state.LocalPosition.y,
-                            Z = state.LocalPosition.z
-                        }
-                    };
-
-                    DirtySamples.AddNoResize(sample);
-                    LastStates[identifier] = state;
-                }
-            }
         }
     }
 }

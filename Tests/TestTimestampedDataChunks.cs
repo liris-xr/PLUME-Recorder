@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using PLUME.Core.Recorder.Data;
+using PLUME.Core.Recorder;
 using Unity.Collections;
 
 namespace PLUME.Tests
@@ -24,7 +24,7 @@ namespace PLUME.Tests
         private static readonly byte[] FirstDataChunk = { 1, 2, 3, 4 };
         private static readonly byte[] SecondDataChunk = { 5, 6, 7, 8 };
 
-        private TimestampedDataChunks _nonEmptyTimestampedDataChunks;
+        private DataChunksTimestamped _nonEmptyDataChunksTimestamped;
 
         [SetUp]
         public void Setup()
@@ -32,24 +32,24 @@ namespace PLUME.Tests
             var dataChunks = (ReadOnlySpan<byte>)FirstDataChunk.Concat(SecondDataChunk).ToArray();
             var chunksLength = (ReadOnlySpan<int>)new[] { FirstDataChunk.Length, SecondDataChunk.Length };
             var timestamps = (ReadOnlySpan<long>)new[] { FirstTimestamp, SecondTimestamp };
-            _nonEmptyTimestampedDataChunks =
-                new TimestampedDataChunks(dataChunks, chunksLength, timestamps, Allocator.Persistent);
+            _nonEmptyDataChunksTimestamped =
+                new DataChunksTimestamped(dataChunks, chunksLength, timestamps, Allocator.Persistent);
         }
 
         [TearDown]
         public void TearDown()
         {
-            _nonEmptyTimestampedDataChunks.Dispose();
+            _nonEmptyDataChunksTimestamped.Dispose();
         }
 
         [Test]
         public void Empty_AddTimestampedDataChunk()
         {
-            var data = new TimestampedDataChunks(Allocator.Temp);
+            var data = new DataChunksTimestamped(Allocator.Temp);
 
             data.Add(NonEmptyChunk, AnyTimestamp);
 
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
             expected.DataChunks.Add(NonEmptyChunk);
             expected.Timestamps.Add(AnyTimestamp);
 
@@ -59,11 +59,11 @@ namespace PLUME.Tests
         [Test]
         public void Empty_AddTimestampedDataChunk_EmptyChunk()
         {
-            var data = new TimestampedDataChunks(Allocator.Temp);
+            var data = new DataChunksTimestamped(Allocator.Temp);
             data.Add(EmptyChunk, AnyTimestamp);
 
             // Empty chunks should not be added.
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
 
             Assert.AreEqual(expected, data);
         }
@@ -71,9 +71,9 @@ namespace PLUME.Tests
         [Test]
         public void Empty_TryRemoveAllBeforeTimestamp_AnyTimestamp_Inclusive()
         {
-            var data = new TimestampedDataChunks(Allocator.Temp);
+            var data = new DataChunksTimestamped(Allocator.Temp);
 
-            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removedChunks = new DataChunksTimestamped(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(AnyTimestamp, removedChunks, true);
 
             Assert.AreEqual(false, removed);
@@ -83,9 +83,9 @@ namespace PLUME.Tests
         [Test]
         public void Empty_TryRemoveAllBeforeTimestamp_AnyTimestamp_Exclusive()
         {
-            var data = new TimestampedDataChunks(Allocator.Temp);
+            var data = new DataChunksTimestamped(Allocator.Temp);
 
-            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removedChunks = new DataChunksTimestamped(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(AnyTimestamp, removedChunks, false);
 
             Assert.AreEqual(false, removed);
@@ -95,11 +95,11 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_AddTimestampedDataChunk_AfterAllTimestamp()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
             data.Add(NonEmptyChunk, AfterAllTimestamp);
 
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
             expected.DataChunks.Add(FirstDataChunk);
             expected.DataChunks.Add(SecondDataChunk);
             expected.DataChunks.Add(NonEmptyChunk);
@@ -113,11 +113,11 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_AddTimestampedDataChunk_BeforeAllTimestamp()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
             data.Add(NonEmptyChunk, BeforeAllTimestamp);
 
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
             expected.DataChunks.Add(NonEmptyChunk);
             expected.DataChunks.Add(FirstDataChunk);
             expected.DataChunks.Add(SecondDataChunk);
@@ -131,11 +131,11 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_AddTimestampedDataChunk_InBetweenTimestamp()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
             data.Add(NonEmptyChunk, InBetweenTimestamp);
 
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
             expected.DataChunks.Add(FirstDataChunk);
             expected.DataChunks.Add(NonEmptyChunk);
             expected.DataChunks.Add(SecondDataChunk);
@@ -149,11 +149,11 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_AddTimestampedDataChunk_ExistingTimestamp_FirstTimestamp()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
             data.Add(NonEmptyChunk, FirstTimestamp);
 
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
             expected.DataChunks.Add(FirstDataChunk.Concat(NonEmptyChunk).ToArray());
             expected.DataChunks.Add(SecondDataChunk);
             expected.Timestamps.Add(FirstTimestamp);
@@ -165,11 +165,11 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_AddTimestampedDataChunk_ExistingTimestamp_SecondTimestamp()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
             data.Add(NonEmptyChunk, SecondTimestamp);
 
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
             expected.DataChunks.Add(FirstDataChunk);
             expected.DataChunks.Add(SecondDataChunk.Concat(NonEmptyChunk).ToArray());
             expected.Timestamps.Add(FirstTimestamp);
@@ -181,9 +181,9 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_TryRemoveAllBeforeTimestamp_BeforeAllTimestamp_Exclusive()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
-            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removedChunks = new DataChunksTimestamped(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(BeforeAllTimestamp, removedChunks, false);
             
             Assert.AreEqual(false, removed);
@@ -193,12 +193,12 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_TryRemoveAllBeforeTimestamp_InBetweenTimestamp_Exclusive()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
-            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removedChunks = new DataChunksTimestamped(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(InBetweenTimestamp, removedChunks, false);
 
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
             expected.DataChunks.Add(FirstDataChunk);
             expected.Timestamps.Add(FirstTimestamp);
 
@@ -209,12 +209,12 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_TryRemoveAllBeforeTimestamp_AfterAllTimestamp_Exclusive()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
-            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removedChunks = new DataChunksTimestamped(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(AfterAllTimestamp, removedChunks, false);
 
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
             expected.DataChunks.Add(FirstDataChunk);
             expected.DataChunks.Add(SecondDataChunk);
             expected.Timestamps.Add(FirstTimestamp);
@@ -227,9 +227,9 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_TryRemoveAllBeforeTimestamp_FirstTimestamp_Exclusive()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
-            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removedChunks = new DataChunksTimestamped(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(FirstTimestamp, removedChunks, false);
             
             Assert.AreEqual(false, removed);
@@ -239,12 +239,12 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_TryRemoveAllBeforeTimestamp_FirstTimestamp_Inclusive()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
-            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removedChunks = new DataChunksTimestamped(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(FirstTimestamp, removedChunks, true);
 
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
             expected.DataChunks.Add(FirstDataChunk);
             expected.Timestamps.Add(FirstTimestamp);
 
@@ -255,12 +255,12 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_TryRemoveAllBeforeTimestamp_SecondTimestamp_Exclusive()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
-            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removedChunks = new DataChunksTimestamped(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(SecondTimestamp, removedChunks, false);
 
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
             expected.DataChunks.Add(FirstDataChunk);
             expected.Timestamps.Add(FirstTimestamp);
 
@@ -271,12 +271,12 @@ namespace PLUME.Tests
         [Test]
         public void NonEmpty_TryRemoveAllBeforeTimestamp_SecondTimestamp_Inclusive()
         {
-            var data = _nonEmptyTimestampedDataChunks.Copy(Allocator.Temp);
+            var data = _nonEmptyDataChunksTimestamped.Copy(Allocator.Temp);
 
-            var removedChunks = new TimestampedDataChunks(Allocator.Temp);
+            var removedChunks = new DataChunksTimestamped(Allocator.Temp);
             var removed = data.TryRemoveAllBeforeTimestamp(SecondTimestamp, removedChunks, true);
 
-            var expected = new TimestampedDataChunks(Allocator.Temp);
+            var expected = new DataChunksTimestamped(Allocator.Temp);
             expected.DataChunks.Add(FirstDataChunk);
             expected.DataChunks.Add(SecondDataChunk);
             expected.Timestamps.Add(FirstTimestamp);

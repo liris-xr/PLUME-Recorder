@@ -1,10 +1,41 @@
 using System;
 using UnityEngine.LowLevel;
+using UnityEngine.PlayerLoop;
 
 namespace PLUME.Core.Utils
 {
     public static class PlayerLoopUtils
     {
+        public static void InjectFixedUpdate<T>(PlayerLoopSystem.UpdateFunction fixedUpdate)
+        {
+            InjectUpdateInCurrentLoop<T, FixedUpdate>(fixedUpdate);
+        }
+
+        public static void InjectPreUpdate<T>(PlayerLoopSystem.UpdateFunction preUpdate)
+        {
+            InjectUpdateInCurrentLoop<T, PreUpdate>(preUpdate);
+        }
+
+        public static void InjectUpdate<T>(PlayerLoopSystem.UpdateFunction update)
+        {
+            InjectUpdateInCurrentLoop<T, Update>(update);
+        }
+
+        public static void InjectEarlyUpdate<T>(PlayerLoopSystem.UpdateFunction earlyUpdate)
+        {
+            InjectUpdateInCurrentLoop<T, EarlyUpdate>(earlyUpdate);
+        }
+
+        public static void InjectPreLateUpdate<T>(PlayerLoopSystem.UpdateFunction preLateUpdate)
+        {
+            InjectUpdateInCurrentLoop<T, PreLateUpdate>(preLateUpdate);
+        }
+
+        public static void InjectPostLateUpdate<T>(PlayerLoopSystem.UpdateFunction postLateUpdate)
+        {
+            InjectUpdateInCurrentLoop<T, PostLateUpdate>(postLateUpdate);
+        }
+
         public static bool InjectUpdateInCurrentLoop(Type updateType, PlayerLoopSystem.UpdateFunction updateFunction,
             Type playerLoopSystemType)
         {
@@ -12,6 +43,11 @@ namespace PLUME.Core.Utils
             var success = InjectUpdateInLoop(updateType, updateFunction, ref playerLoop, playerLoopSystemType);
             PlayerLoop.SetPlayerLoop(playerLoop);
             return success;
+        }
+
+        public static bool InjectUpdateInCurrentLoop<TU, TV>(PlayerLoopSystem.UpdateFunction updateFunction)
+        {
+            return InjectUpdateInCurrentLoop(typeof(TU), updateFunction, typeof(TV));
         }
 
         public static bool InjectUpdateInLoop(Type updateType, PlayerLoopSystem.UpdateFunction updateFunction,

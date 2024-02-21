@@ -1,13 +1,13 @@
-using PLUME.Core.Recorder.Data;
+using PLUME.Core.Recorder.Module.Frame;
 
 namespace PLUME.Core.Recorder.Module
 {
     public interface IFrameDataRecorderModule : IRecorderModule
     {
-        internal void CollectFrameData(Frame frame);
+        internal void CollectFrameData(FrameInfo frameInfo);
 
-        internal bool SerializeFrameData(Frame frame, FrameDataWriter output);
-        
-        internal void DisposeFrameData(Frame frame);
+        internal bool SerializeFrameData(FrameInfo frameInfo, FrameDataWriter output);
+
+        internal void DisposeFrameData(FrameInfo frameInfo);
     }
 }

@@ -1,6 +1,10 @@
+using System.Collections.Generic;
+using Google.Protobuf;
+using PLUME.Sample.ProtoBurst;
 using ProtoBurst;
+using ProtoBurst.Message;
+using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Collections;
-using Unity.Jobs;
 
 namespace PLUME.Core.Recorder.Module.Frame
 {
@@ -13,44 +17,101 @@ namespace PLUME.Core.Recorder.Module.Frame
             _frameDataRawBytes = frameDataRawBytes;
         }
 
-        public void WriteBatch<TU>(NativeArray<TU> samples,
-            FrameDataBatchPrepareSerializeJob<TU> prepareBatchJob,
-            FrameDataBatchSerializeJob<TU> serializeBatchJob, int batchSize = 128)
+        public void Write(IMessage sample)
+        {
+            var frameDataRawBytes = new NativeList<byte>(Allocator.Persistent);
+            var bufferWriter = new BufferWriter(frameDataRawBytes);
+            
+            var sampleTypeUrl = SampleTypeUrl.Alloc(sample.Descriptor, Allocator.Persistent);
+            var sampleTypeUrlBytes = sampleTypeUrl.AsArray();
+
+            var sampleSize = sample.CalculateSize();
+            var packedSampleSize = Any.ComputeSize(sampleTypeUrlBytes.Length, sampleSize);
+            var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(FrameSample.DataFieldTag) +
+                                       BufferWriterExtensions.ComputeLengthPrefixSize(packedSampleSize) +
+                                       packedSampleSize;
+
+            frameDataRawBytes.SetCapacity(serializedSampleSize);
+
+            bufferWriter.WriteTag(FrameSample.DataFieldTag);
+            bufferWriter.WriteLength(serializedSampleSize);
+            Any.WriteTo(ref sampleTypeUrlBytes, ref sample, ref bufferWriter);
+
+            WriteRaw(frameDataRawBytes);
+
+            frameDataRawBytes.Dispose();
+            sampleTypeUrl.Dispose();
+        }
+
+        public void WriteBatch(IList<IMessage> samples)
+        {
+            if (samples.Count == 0)
+                return;
+
+            var frameDataRawBytes = new NativeList<byte>(Allocator.Persistent);
+            var bufferWriter = new BufferWriter(frameDataRawBytes);
+            
+            var sampleTypeUrl = SampleTypeUrl.Alloc(samples[0].Descriptor, Allocator.Persistent);
+            var sampleTypeUrlBytes = sampleTypeUrl.AsArray();
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var sampleIdx = 0; sampleIdx < samples.Count; sampleIdx++)
+            {
+                var sample = samples[sampleIdx];
+                var sampleSize = sample.CalculateSize();
+                var packedSampleSize = Any.ComputeSize(sampleTypeUrlBytes.Length, sampleSize);
+                var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(FrameSample.DataFieldTag) +
+                                           BufferWriterExtensions.ComputeLengthPrefixSize(packedSampleSize) +
+                                           packedSampleSize;
+
+                frameDataRawBytes.SetCapacity(frameDataRawBytes.Length + serializedSampleSize);
+
+                bufferWriter.WriteTag(FrameSample.DataFieldTag);
+                bufferWriter.WriteLength(serializedSampleSize);
+                Any.WriteTo(ref sampleTypeUrlBytes, ref sample, ref bufferWriter);
+            }
+            
+            WriteRaw(frameDataRawBytes);
+
+            frameDataRawBytes.Dispose();
+            sampleTypeUrl.Dispose();
+        }
+
+        public void Write<TU>(TU sample) where TU : unmanaged, IProtoBurstMessage
+        {
+            var frameDataRawBytes = new NativeList<byte>(Allocator.Persistent);
+            var bufferWriter = new BufferWriter(frameDataRawBytes);
+            
+            var sampleTypeUrl = sample.GetTypeUrl(Allocator.Persistent);
+            var sampleTypeUrlBytes = sampleTypeUrl.AsArray();
+
+            var sampleSize = sample.ComputeSize();
+            var packedSampleSize = Any.ComputeSize(sampleTypeUrlBytes.Length, sampleSize);
+            var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(FrameSample.DataFieldTag) +
+                                       BufferWriterExtensions.ComputeLengthPrefixSize(packedSampleSize) +
+                                       packedSampleSize;
+
+            frameDataRawBytes.SetCapacity(serializedSampleSize);
+
+            bufferWriter.WriteTag(FrameSample.DataFieldTag);
+            bufferWriter.WriteLength(serializedSampleSize);
+            Any.WriteTo(ref sampleTypeUrlBytes, ref sample, ref bufferWriter);
+
+            WriteRaw(frameDataRawBytes);
+
+            frameDataRawBytes.Dispose();
+            sampleTypeUrl.Dispose();
+        }
+
+        public void WriteBatch<TU, TV>(NativeArray<TU> samples, TV batchSerializer, int batchSize = 128)
             where TU : unmanaged, IProtoBurstMessage
+            where TV : struct, IFrameDataBatchSerializer<TU>
         {
             if (samples.Length == 0)
                 return;
 
-            var sampleTypeUrl = samples[0].GetTypeUrl(Allocator.Persistent);
-
-            var totalSize = new NativeArray<int>(1, Allocator.Persistent);
-            var serializedSampleSizes = new NativeArray<int>(samples.Length, Allocator.Persistent);
-            var sampleSizes = new NativeArray<int>(samples.Length, Allocator.Persistent);
-
-            totalSize[0] = 0;
-
-            prepareBatchJob.TotalSize = totalSize;
-            prepareBatchJob.Samples = samples;
-            prepareBatchJob.SampleTypeUrlBytes = sampleTypeUrl.AsArray();
-            prepareBatchJob.SampleSizes = sampleSizes;
-            prepareBatchJob.SerializedSampleSizes = serializedSampleSizes;
-            prepareBatchJob.Run(samples.Length, batchSize);
-
-            var frameDataRawBytes = new NativeList<byte>(totalSize[0], Allocator.Persistent);
-            totalSize.Dispose();
-
-            serializeBatchJob.SerializedData = frameDataRawBytes.AsParallelWriter();
-            serializeBatchJob.Samples = samples;
-            serializeBatchJob.SampleTypeUrlBytes = sampleTypeUrl.AsArray();
-            serializeBatchJob.SampleSizes = sampleSizes;
-            serializeBatchJob.SerializedSampleSizes = serializedSampleSizes;
-            serializeBatchJob.Run(samples.Length, batchSize);
-            serializedSampleSizes.Dispose();
-            sampleSizes.Dispose();
-
+            var frameDataRawBytes = batchSerializer.SerializeFrameDataBatch(samples, Allocator.Persistent, batchSize);
             WriteRaw(frameDataRawBytes);
-            
-            sampleTypeUrl.Dispose();
             frameDataRawBytes.Dispose();
         }
 

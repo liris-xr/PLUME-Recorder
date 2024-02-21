@@ -7,7 +7,7 @@ using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Jobs;
 
-namespace PLUME.Core.Recorder.Module.Frame
+namespace PLUME.Base.Module
 {
     [BurstCompile]
     public struct FrameDataBatchPrepareSerializeJob<T> : IJobParallelForBatch where T : unmanaged, IProtoBurstMessage

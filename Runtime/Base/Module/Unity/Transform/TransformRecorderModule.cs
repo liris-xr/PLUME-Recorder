@@ -96,7 +96,8 @@ namespace PLUME.Base.Module.Unity.Transform
         {
             var prepareSerializeJob = new FrameDataBatchPrepareSerializeJob<TransformUpdateLocalPositionSample>();
             var serializeJob = new FrameDataBatchSerializeJob<TransformUpdateLocalPositionSample>();
-            frameDataWriter.WriteBatch(frameData.DirtySamples.AsArray(), prepareSerializeJob, serializeJob);
+            var batchSerializer = new FrameDataBatchSerializer<TransformUpdateLocalPositionSample>(prepareSerializeJob, serializeJob);
+            frameDataWriter.WriteBatch(frameData.DirtySamples.AsArray(), batchSerializer);
         }
 
         protected override void OnDisposeFrameData(TransformFrameData frameData, FrameInfo frameInfo)

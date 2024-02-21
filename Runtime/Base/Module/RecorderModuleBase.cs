@@ -7,7 +7,7 @@ namespace PLUME.Base.Module
 {
     public abstract class RecorderModuleBase : IRecorderModule
     {
-        private bool _recording;
+        public bool IsRecording { get; private set; }
 
         void IRecorderModule.Create(RecorderContext ctx)
         {
@@ -19,12 +19,17 @@ namespace PLUME.Base.Module
             OnDestroy(ctx);
         }
 
+        void IRecorderModule.Awake(RecorderContext context)
+        {
+            OnAwake(context);
+        }
+
         void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
         {
-            if (_recording)
+            if (IsRecording)
                 throw new InvalidOperationException("Recorder module is already recording.");
 
-            _recording = true;
+            IsRecording = true;
             OnStartRecording(record, recorderContext);
         }
 
@@ -32,19 +37,19 @@ namespace PLUME.Base.Module
         {
             CheckIsRecording();
             OnForceStopRecording(record, recorderContext);
-            _recording = false;
+            IsRecording = false;
         }
 
         async UniTask IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
             await OnStopRecording(record, recorderContext);
-            _recording = false;
+            IsRecording = false;
         }
 
         protected void CheckIsRecording()
         {
-            if (!_recording)
+            if (!IsRecording)
             {
                 throw new InvalidOperationException("Recorder module is not recording.");
             }
@@ -73,7 +78,11 @@ namespace PLUME.Base.Module
         {
             OnPostLateUpdate(record, context);
         }
-
+        
+        protected virtual void OnAwake(RecorderContext context)
+        {
+        }
+        
         protected virtual void OnEarlyUpdate(Record record, RecorderContext context)
         {
         }
@@ -113,11 +122,6 @@ namespace PLUME.Base.Module
 
         protected virtual void OnForceStopRecording(Record record, RecorderContext recorderContext)
         {
-        }
-        
-        bool IRecorderModule.IsRecording()
-        {
-            return _recording;
         }
     }
 }

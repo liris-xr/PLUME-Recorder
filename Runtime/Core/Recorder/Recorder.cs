@@ -207,7 +207,16 @@ namespace PLUME.Core.Recorder
             if (_status is RecorderStatus.Recording or RecorderStatus.Stopping)
                 ForceStopRecordingInternal();
         }
-
+        
+        private void Awake()
+        {
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < _context.Modules.Count; i++)
+            {
+                _context.Modules[i].Awake(_context);
+            }
+        }
+        
         private void PreUpdate()
         {
             if (_status is not RecorderStatus.Recording)

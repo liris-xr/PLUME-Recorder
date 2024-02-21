@@ -116,5 +116,11 @@ namespace PLUME.Core.Recorder
                 Instance.Dispose();
             };
         }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        internal static void OnSceneLoaded()
+        {
+            Instance.Awake();
+        }
     }
 }

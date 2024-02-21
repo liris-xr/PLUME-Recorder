@@ -11,30 +11,35 @@ namespace PLUME.Base.Module
     {
         private readonly Dictionary<FrameInfo, TFrameData> _framesData = new(FrameInfoComparer.Instance);
 
-        private bool _recording;
+        public bool IsRecording { get; private set; }
 
         private TFrameData _frameData;
 
+        void IRecorderModule.Awake(RecorderContext context)
+        {
+            OnAwake(context);
+        }
+
         void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
         {
-            if (_recording)
+            if (IsRecording)
                 throw new InvalidOperationException("Recorder module is already recording.");
             OnStartRecording(record, recorderContext);
-            _recording = true;
+            IsRecording = true;
         }
 
         void IRecorderModule.ForceStopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
             OnForceStopRecording(record, recorderContext);
-            _recording = false;
+            IsRecording = false;
         }
 
         async UniTask IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
             await OnStopRecording(record, recorderContext);
-            _recording = false;
+            IsRecording = false;
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
@@ -51,7 +56,8 @@ namespace PLUME.Base.Module
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        bool IFrameDataRecorderModule.SerializeFrameData(Core.Recorder.Module.Frame.FrameInfo frameInfo, FrameDataWriter output)
+        bool IFrameDataRecorderModule.SerializeFrameData(Core.Recorder.Module.Frame.FrameInfo frameInfo,
+            FrameDataWriter output)
         {
             TFrameData frameData;
 
@@ -68,6 +74,7 @@ namespace PLUME.Base.Module
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         void IFrameDataRecorderModule.DisposeFrameData(Core.Recorder.Module.Frame.FrameInfo frameInfo)
         {
             TFrameData frameData;
@@ -85,7 +92,7 @@ namespace PLUME.Base.Module
 
         protected void CheckIsRecording()
         {
-            if (!_recording)
+            if (!IsRecording)
             {
                 throw new InvalidOperationException("Recorder module is not recording.");
             }
@@ -102,84 +109,91 @@ namespace PLUME.Base.Module
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         void IRecorderModule.EarlyUpdate(Record record, RecorderContext context)
         {
             OnEarlyUpdate(record, context);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         void IRecorderModule.PreUpdate(Record record, RecorderContext context)
         {
             OnPreUpdate(record, context);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         void IRecorderModule.Update(Record record, RecorderContext context)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         void IRecorderModule.PreLateUpdate(Record record, RecorderContext context)
         {
             OnPreLateUpdate(record, context);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         void IRecorderModule.PostLateUpdate(Record record, RecorderContext context)
         {
             OnPostLateUpdate(record, context);
         }
-        
-        bool IRecorderModule.IsRecording()
-        {
-            return _recording;
-        }
 
-        // ReSharper restore Unity.PerformanceCriticalContext
-        protected virtual void OnFixedUpdate(Record record, RecorderContext context)
+        protected virtual void OnAwake(RecorderContext context)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         protected virtual void OnEarlyUpdate(Record record, RecorderContext context)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         protected virtual void OnPreUpdate(Record record, RecorderContext context)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         protected virtual void OnUpdate(Record record, RecorderContext context)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         protected virtual void OnPreLateUpdate(Record record, RecorderContext context)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         protected virtual void OnPostLateUpdate(Record record, RecorderContext context)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         protected virtual void OnCreate(RecorderContext recorderContext)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         protected virtual void OnDestroy(RecorderContext recorderContext)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
+
         protected virtual void OnStartRecording(Record record, RecorderContext recorderContext)
         {
         }
-        
+
         protected virtual UniTask OnStopRecording(Record record, RecorderContext recorderContext)
         {
             return UniTask.CompletedTask;
@@ -193,9 +207,13 @@ namespace PLUME.Base.Module
         protected abstract TFrameData OnCollectFrameData(Core.Recorder.Module.Frame.FrameInfo frameInfo);
 
         // ReSharper restore Unity.PerformanceCriticalContext
-        protected abstract void OnSerializeFrameData(TFrameData frameData, Core.Recorder.Module.Frame.FrameInfo frameInfo, FrameDataWriter output);
+
+        protected abstract void OnSerializeFrameData(TFrameData frameData,
+            Core.Recorder.Module.Frame.FrameInfo frameInfo, FrameDataWriter output);
 
         // ReSharper restore Unity.PerformanceCriticalContext
-        protected abstract void OnDisposeFrameData(TFrameData frameData, Core.Recorder.Module.Frame.FrameInfo frameInfo);
+
+        protected abstract void OnDisposeFrameData(TFrameData frameData,
+            Core.Recorder.Module.Frame.FrameInfo frameInfo);
     }
 }

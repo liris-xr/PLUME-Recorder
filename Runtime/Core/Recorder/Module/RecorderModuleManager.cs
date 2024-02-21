@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace PLUME.Core.Recorder.Module
 {
-    public static class RecorderModuleManager
+    internal static class RecorderModuleManager
     {
         internal static IRecorderModule[] InstantiateRecorderModulesFromAllAssemblies()
         {

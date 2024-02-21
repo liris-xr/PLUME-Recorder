@@ -4,6 +4,7 @@
   "references": [
     "fr.liris.unity-runtime-guid",
     "fr.liris.unity-runtime-guid.editor",
+    "GUID:b51f551439f313f47b052069bd53ae33",
     "GUID:5c1ff9bd975acec488150743d53a93ca",
     "GUID:c5ecc461727906345a35491a0440694f"
   ],

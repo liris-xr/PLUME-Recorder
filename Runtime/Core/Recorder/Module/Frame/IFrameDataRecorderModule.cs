@@ -1,6 +1,4 @@
-using PLUME.Core.Recorder.Module.Frame;
-
-namespace PLUME.Core.Recorder.Module
+namespace PLUME.Core.Recorder.Module.Frame
 {
     public interface IFrameDataRecorderModule : IRecorderModule
     {

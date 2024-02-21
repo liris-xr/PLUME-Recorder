@@ -16,7 +16,7 @@ namespace PLUME.Core.Recorder.Module.Frame
     /// The frame recorder is responsible for recording data associated with Unity frames.
     /// </summary>
     [Preserve]
-    public class FrameRecorderModule : IRecorderModule
+    internal sealed class FrameRecorderModule : IRecorderModule
     {
         public bool IsRecording { get; private set; }
 

@@ -16,9 +16,9 @@ using CompressionLevel = System.IO.Compression.CompressionLevel;
 namespace PLUME.Editor
 {
     [InitializeOnLoad]
-    public class PlumeBuilder
+    public class AssetBundleBuilder
     {
-        static PlumeBuilder()
+        static AssetBundleBuilder()
         {
             EditorApplication.playModeStateChanged += state =>
             {
@@ -46,29 +46,9 @@ namespace PLUME.Editor
                 BuildPlayerWindow.DefaultBuildMethods.BuildPlayer(buildPlayerOptions);
             });
         }
-
-        private static void SetBatchingForPlatform(BuildTarget platform, int staticBatching, int dynamicBatching)
-        {
-            Debug.Log("Disabling static and dynamic batching for PLUME.");
-            var method = typeof(PlayerSettings).GetMethod("SetBatchingForPlatform", BindingFlags.Static | BindingFlags.Default | BindingFlags.NonPublic);
-   
-            if (method == null)
-            {
-                throw new NotSupportedException("Setting batching per platform is not supported");
-            }
- 
-            var args = new object[]
-            {
-                platform,
-                staticBatching,
-                dynamicBatching
-            };
- 
-            method.Invoke(null, args);
-        }
         
-        [MenuItem("PLUME/Build Asset Bundle")]
-        private static void BuildAssetBundle()
+        
+        public static void BuildAssetBundle()
         {
             var scenePaths = EditorBuildSettings.scenes
                 .Where(s => s.enabled)
@@ -119,6 +99,26 @@ namespace PLUME.Editor
             
             File.Delete(zipOutputPath);
             ZipFile.CreateFromDirectory(outputPath, zipOutputPath, CompressionLevel.Optimal, false);
+        }
+
+        private static void SetBatchingForPlatform(BuildTarget platform, int staticBatching, int dynamicBatching)
+        {
+            Debug.Log("Disabling static and dynamic batching for PLUME.");
+            var method = typeof(PlayerSettings).GetMethod("SetBatchingForPlatform", BindingFlags.Static | BindingFlags.Default | BindingFlags.NonPublic);
+   
+            if (method == null)
+            {
+                throw new NotSupportedException("Setting batching per platform is not supported");
+            }
+ 
+            var args = new object[]
+            {
+                platform,
+                staticBatching,
+                dynamicBatching
+            };
+ 
+            method.Invoke(null, args);
         }
 
         private static bool CanAddAsset(ICollection<string> assetPaths, string assetPath)

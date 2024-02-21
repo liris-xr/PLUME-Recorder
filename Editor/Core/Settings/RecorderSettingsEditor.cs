@@ -11,6 +11,7 @@ namespace PLUME.Editor.Core.Settings
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
+            EditorGUILayout.LabelField("Global Settings", EditorStyles.boldLabel);
             DrawPropertiesExcluding(serializedObject, ScriptPropertyPath);
             serializedObject.ApplyModifiedProperties();
         }

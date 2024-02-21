@@ -39,8 +39,8 @@ namespace PLUME.Sample.ProtoBurst
 
         public int ComputeSize()
         {
-            var size = BufferExtensions.ComputeTagSize(FrameNumberFieldTag) +
-                       BufferExtensions.ComputeInt32Size(_frameNumber) +
+            var size = BufferWriterExtensions.ComputeTagSize(FrameNumberFieldTag) +
+                       BufferWriterExtensions.ComputeInt32Size(_frameNumber) +
                        _frameDataRawBytes.Length;
 
             return size;

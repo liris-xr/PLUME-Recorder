@@ -34,7 +34,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
         public int ComputeSize()
         {
-            return BufferExtensions.ComputeTagSize(LocalPositionFieldTag) + BufferExtensions.ComputeLengthPrefixedMessageSize(ref LocalPosition);
+            return BufferWriterExtensions.ComputeTagSize(LocalPositionFieldTag) + BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref LocalPosition);
         }
 
         public SampleTypeUrl GetTypeUrl(Allocator allocator)

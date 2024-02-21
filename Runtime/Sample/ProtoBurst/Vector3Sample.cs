@@ -54,17 +54,17 @@ namespace PLUME.Sample.ProtoBurst
             
             if (X != 0)
             {
-                size += BufferExtensions.ComputeTagSize(XFieldTag) + BufferExtensions.Fixed32Size;
+                size += BufferWriterExtensions.ComputeTagSize(XFieldTag) + BufferWriterExtensions.Fixed32Size;
             }
             
             if (Y != 0)
             {
-                size += BufferExtensions.ComputeTagSize(YFieldTag) + BufferExtensions.Fixed32Size;
+                size += BufferWriterExtensions.ComputeTagSize(YFieldTag) + BufferWriterExtensions.Fixed32Size;
             }
             
             if (Z != 0)
             {
-                size += BufferExtensions.ComputeTagSize(ZFieldTag) + BufferExtensions.Fixed32Size;
+                size += BufferWriterExtensions.ComputeTagSize(ZFieldTag) + BufferWriterExtensions.Fixed32Size;
             }
             
             return size;

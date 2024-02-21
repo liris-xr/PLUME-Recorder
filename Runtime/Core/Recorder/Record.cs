@@ -91,7 +91,7 @@ namespace PLUME.Core.Recorder
             var packedSample = PackedSample.Pack(ref sampleBytes, ref typeUrlBytes, Allocator.Persistent);
 
             var size = packedSample.ComputeSize();
-            var packedSize = size + BufferExtensions.ComputeLengthPrefixSize(size);
+            var packedSize = size + BufferWriterExtensions.ComputeLengthPrefixSize(size);
 
             var bytes = new NativeList<byte>(packedSize, Allocator.Persistent);
             var buffer = new BufferWriter(bytes);
@@ -119,7 +119,7 @@ namespace PLUME.Core.Recorder
             var packedSample = PackedSample.Pack(timestamp, ref sampleBytes, ref typeUrlBytes, Allocator.Persistent);
 
             var size = packedSample.ComputeSize();
-            var packedSize = size + BufferExtensions.ComputeLengthPrefixSize(size);
+            var packedSize = size + BufferWriterExtensions.ComputeLengthPrefixSize(size);
 
             var bytes = new NativeList<byte>(packedSize, Allocator.Persistent);
             var buffer = new BufferWriter(bytes);

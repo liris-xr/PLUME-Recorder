@@ -89,12 +89,12 @@ namespace PLUME.Sample.ProtoBurst
 
             if (_hasTimestamp)
             {
-                size += BufferExtensions.ComputeTagSize(TimestampFieldTag) +
-                        BufferExtensions.ComputeInt64Size(_timestamp);
+                size += BufferWriterExtensions.ComputeTagSize(TimestampFieldTag) +
+                        BufferWriterExtensions.ComputeInt64Size(_timestamp);
             }
 
-            size += BufferExtensions.ComputeTagSize(PayloadFieldTag) +
-                    BufferExtensions.ComputeLengthPrefixedBytesSize(ref _payloadRawBytes);
+            size += BufferWriterExtensions.ComputeTagSize(PayloadFieldTag) +
+                    BufferWriterExtensions.ComputeLengthPrefixedBytesSize(ref _payloadRawBytes);
 
             return size;
         }

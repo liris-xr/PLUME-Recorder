@@ -30,14 +30,14 @@ namespace PLUME.Sample.ProtoBurst
 
         public int ComputeSize()
         {
-            return BufferExtensions.ComputeTagSize(XFieldTag) +
-                   BufferExtensions.ComputeVarIntSize(_x) +
-                   BufferExtensions.ComputeTagSize(YFieldTag) +
-                   BufferExtensions.ComputeVarIntSize(_y) +
-                   BufferExtensions.ComputeTagSize(ZFieldTag) +
-                   BufferExtensions.ComputeVarIntSize(_z) +
-                   BufferExtensions.ComputeTagSize(WFieldTag) +
-                   BufferExtensions.ComputeVarIntSize(_w);
+            return BufferWriterExtensions.ComputeTagSize(XFieldTag) +
+                   BufferWriterExtensions.ComputeVarIntSize(_x) +
+                   BufferWriterExtensions.ComputeTagSize(YFieldTag) +
+                   BufferWriterExtensions.ComputeVarIntSize(_y) +
+                   BufferWriterExtensions.ComputeTagSize(ZFieldTag) +
+                   BufferWriterExtensions.ComputeVarIntSize(_z) +
+                   BufferWriterExtensions.ComputeTagSize(WFieldTag) +
+                   BufferWriterExtensions.ComputeVarIntSize(_w);
         }
 
         public void WriteTo(ref BufferWriter bufferWriter)

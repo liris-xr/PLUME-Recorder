@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace PLUME.Core.Recorder
+namespace PLUME.Core
 {
     public class Logger
     {

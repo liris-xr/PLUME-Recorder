@@ -9,30 +9,34 @@ namespace PLUME.Core.Settings
     [Serializable]
     public abstract class Settings : ScriptableObject
     {
-        private const string BasePath = "Settings/PLUME";
+        internal const string BasePath = "Settings/PLUME";
 
         private static readonly Dictionary<string, Settings> LoadedSettings = new();
 
-        public abstract string GetSettingsWindowPath();
-        
+        public virtual void OnValidate()
+        {
+        }
+
+        internal abstract string GetSettingsWindowPath();
+
         internal static T GetOrCreateInternal<T>(string settingsSubPath) where T : Settings
         {
             var settingsPath = Path.Join(BasePath, settingsSubPath);
-            
-            if(LoadedSettings.TryGetValue(settingsPath, out var settings))
+
+            if (LoadedSettings.TryGetValue(settingsPath, out var settings))
             {
-                return (T) settings;
+                return (T)settings;
             }
-            
+
             // ReSharper disable once Unity.UnknownResource
             settings = Resources.Load<T>(settingsPath);
-            
+
             if (settings != null)
             {
                 LoadedSettings[settingsPath] = settings;
                 return (T)settings;
             }
-            
+
             settings = CreateInstance<T>();
 #if UNITY_EDITOR
             var assetPath = Path.Join("Resources", settingsPath + ".asset");

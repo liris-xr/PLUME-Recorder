@@ -16,10 +16,13 @@ namespace PLUME.Core.Settings
         [Tooltip("Determines the maximum number of frames per second that the Unity frame recorder will capture.")]
         internal float updateRate = 140;
 
-        private void OnValidate()
+        public override void OnValidate()
         {
             if (updateRate < 0)
+            {
+                Debug.LogWarning("Update rate cannot be negative. Setting to 0.");
                 updateRate = 0;
+            }
         }
         
         public static FrameRecorderModuleSettings GetOrCreate()
@@ -27,7 +30,7 @@ namespace PLUME.Core.Settings
             return GetOrCreateInternal<FrameRecorderModuleSettings>("FrameRecorderModuleSettings");
         }
 
-        public override string GetSettingsWindowPath()
+        internal override string GetSettingsWindowPath()
         {
             return SettingsWindowPath;
         }

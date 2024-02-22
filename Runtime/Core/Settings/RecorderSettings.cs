@@ -18,7 +18,7 @@ namespace PLUME.Core.Settings
             return GetOrCreateInternal<RecorderSettings>("RecorderSettings");
         }
 
-        public override string GetSettingsWindowPath()
+        internal override string GetSettingsWindowPath()
         {
             return SettingsWindowPath;
         }

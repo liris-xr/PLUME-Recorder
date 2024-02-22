@@ -3,6 +3,7 @@ using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
+using UnityEngine;
 
 namespace PLUME.Sample.ProtoBurst
 {
@@ -20,6 +21,13 @@ namespace PLUME.Sample.ProtoBurst
         public float Y;
         public float Z;
 
+        public Vector3Sample(Vector3 vec)
+        {
+            X = vec.x;
+            Y = vec.y;
+            Z = vec.z;
+        }
+        
         public Vector3Sample(float x, float y, float z)
         {
             X = x;

@@ -1,12 +1,12 @@
-﻿using System;
+﻿#if UNITY_STANDALONE_WIN
+using HarmonyLib;
+using System;
 using System.Linq;
 using System.Reflection;
-using HarmonyLib;
 using UnityEngine;
 
 namespace PLUME.Core.Event
 {
-#if UNITY_STANDALONE_WIN
     /**
      * Simple monkey patcher using Harmony.
      *
@@ -210,5 +210,6 @@ namespace PLUME.Core.Event
                 ObjectEvents.OnCreate.Invoke(__instance);
         }
     }
-#endif
 }
+
+#endif

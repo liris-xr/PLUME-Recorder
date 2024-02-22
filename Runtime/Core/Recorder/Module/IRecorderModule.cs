@@ -14,6 +14,10 @@ namespace PLUME.Core.Recorder.Module
 
         internal void StopRecording(Record record, RecorderContext recorderContext);
 
+        internal void FixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
+        {
+        }
+        
         internal void EarlyUpdate(long deltaTime, Record record, RecorderContext context)
         {
         }

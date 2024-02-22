@@ -42,7 +42,7 @@ namespace PLUME.Core.Recorder.Writer
 
             while (_running)
             {
-                var timestamp = record.Clock.ElapsedNanoseconds;
+                var timestamp = record.Time;
                 var timeBarrier = timestamp - 1_000_000;
                 
                 tmpTimelessDataChunks.Clear();

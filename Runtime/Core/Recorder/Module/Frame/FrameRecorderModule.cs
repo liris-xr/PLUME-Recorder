@@ -76,7 +76,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         void IRecorderModule.PostLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
-            var timestamp = record.Clock.ElapsedNanoseconds;
+            var timestamp = record.Time;
             var frame = Time.frameCount;
             PushFrame(timestamp, frame);
         }

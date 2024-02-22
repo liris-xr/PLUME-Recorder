@@ -88,6 +88,13 @@ namespace PLUME.Base.Module
         {
             OnDestroy(recorderContext);
         }
+        
+        // ReSharper restore Unity.PerformanceCriticalContext
+
+        void IRecorderModule.FixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
+        {
+            OnFixedUpdate(fixedDeltaTime, record, context);
+        }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
@@ -128,6 +135,12 @@ namespace PLUME.Base.Module
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
+
+        protected virtual void OnFixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
+        {
+        }
+        
         // ReSharper restore Unity.PerformanceCriticalContext
 
         protected virtual void OnEarlyUpdate(long deltaTime, Record record, RecorderContext context)

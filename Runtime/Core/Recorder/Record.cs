@@ -9,9 +9,11 @@ namespace PLUME.Core.Recorder
 {
     public class Record : IDisposable
     {
-        public IReadOnlyClock Clock => InternalClock;
         public readonly RecordIdentifier Identifier;
-
+        
+        public long Time => InternalClock.ElapsedNanoseconds;
+        public long FixedTime { get; internal set; }
+        
         internal readonly Clock InternalClock;
 
         private DataChunks _timelessDataBuffer;
@@ -45,7 +47,7 @@ namespace PLUME.Core.Recorder
 
         public void RecordTimestampedSample(IMessage msg)
         {
-            RecordTimestampedSample(msg, Clock.ElapsedNanoseconds);
+            RecordTimestampedSample(msg, Time);
         }
         
         // ReSharper restore Unity.ExpensiveCode
@@ -73,7 +75,7 @@ namespace PLUME.Core.Recorder
 
         public void RecordTimestampedSample<T>(T msg) where T : unmanaged, IProtoBurstMessage
         {
-            RecordTimestampedSample(msg, Clock.ElapsedNanoseconds);
+            RecordTimestampedSample(msg, Time);
         }
 
         public void RecordTimestampedSample<T>(T msg, long timestamp) where T : unmanaged, IProtoBurstMessage
@@ -110,7 +112,7 @@ namespace PLUME.Core.Recorder
 
         public void RecordTimestampedSample(NativeList<byte> sampleBytes, SampleTypeUrl typeUrl)
         {
-            RecordTimestampedSample(sampleBytes, typeUrl, Clock.ElapsedNanoseconds);
+            RecordTimestampedSample(sampleBytes, typeUrl, Time);
         }
 
         public void RecordTimestampedSample(NativeList<byte> sampleBytes, SampleTypeUrl typeUrl, long timestamp)

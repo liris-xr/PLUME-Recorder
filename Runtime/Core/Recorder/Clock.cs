@@ -2,7 +2,7 @@
 
 namespace PLUME.Core.Recorder
 {
-    public class Clock : IReadOnlyClock
+    public class Clock
     {
         private readonly Stopwatch _clock = new();
 
@@ -30,14 +30,7 @@ namespace PLUME.Core.Recorder
         {
             return _clock.IsRunning;
         }
-        
+
         public long ElapsedNanoseconds => _clock.ElapsedTicks * (1_000_000_000 / Stopwatch.Frequency);
-    }
-    
-    public interface IReadOnlyClock
-    {
-        public bool IsRunning();
-        
-        public long ElapsedNanoseconds { get; }
     }
 }

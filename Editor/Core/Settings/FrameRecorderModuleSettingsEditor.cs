@@ -13,8 +13,9 @@ namespace PLUME.Editor.Core.Settings
             serializedObject.Update();
 
             EditorGUILayout.HelpBox(
-                "The Unity frame recorder module records frame data from the Unity engine." +
-                "It uses the update rate from the global recorder settings to determine when to record a new frame.",
+                "The Unity frame recorder module records frame data from the Unity engine. " +
+                "Frames are recorded in the late update of the recorder (i.e. at approximately the update rate " +
+                "specified in the global recorder settings.)",
                 MessageType.Info);
 
             DrawPropertiesExcluding(serializedObject, ScriptPropertyPath);

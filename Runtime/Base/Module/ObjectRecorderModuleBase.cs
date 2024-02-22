@@ -136,27 +136,38 @@ namespace PLUME.Base.Module
             if (!IsRecording)
                 throw new InvalidOperationException("Recorder module is not recording.");
         }
-
+        
+        // ReSharper restore Unity.PerformanceCriticalContext
+        void IRecorderModule.FixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
+        {
+            OnFixedUpdate(fixedDeltaTime, record, context);
+        }
+        
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IRecorderModule.EarlyUpdate(long deltaTime, Record record, RecorderContext context)
         {
             OnEarlyUpdate(deltaTime, record, context);
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IRecorderModule.PreUpdate(long deltaTime, Record record, RecorderContext context)
         {
             OnPreUpdate(deltaTime, record, context);
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IRecorderModule.Update(long deltaTime, Record record, RecorderContext context)
         {
             OnUpdate(deltaTime, record, context);
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IRecorderModule.PreLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
             OnPreLateUpdate(deltaTime, record, context);
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         void IRecorderModule.PostLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
             OnPostLateUpdate(deltaTime, record, context);
@@ -166,22 +177,32 @@ namespace PLUME.Base.Module
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
+        protected virtual void OnFixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
+        {
+        }
+        
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnEarlyUpdate(long deltaTime, Record record, RecorderContext context)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnPreUpdate(long deltaTime, Record record, RecorderContext context)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnUpdate(long deltaTime, Record record, RecorderContext context)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnPreLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
         }
 
+        // ReSharper restore Unity.PerformanceCriticalContext
         protected virtual void OnPostLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
         }

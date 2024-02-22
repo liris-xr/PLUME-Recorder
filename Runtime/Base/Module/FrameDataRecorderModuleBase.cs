@@ -44,9 +44,9 @@ namespace PLUME.Base.Module
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.CollectFrameData(Core.Recorder.Module.Frame.FrameInfo frameInfo)
+        void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo)
         {
-            var frameData = OnCollectFrameData(frameInfo);
+            var frameData = OnEnqueueFrameData(frameInfo);
 
             lock (_framesData)
             {
@@ -56,8 +56,7 @@ namespace PLUME.Base.Module
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        bool IFrameDataRecorderModule.SerializeFrameData(Core.Recorder.Module.Frame.FrameInfo frameInfo,
-            FrameDataWriter output)
+        bool IFrameDataRecorderModule.SerializeFrameData(FrameInfo frameInfo, FrameDataWriter output)
         {
             TFrameData frameData;
 
@@ -75,7 +74,7 @@ namespace PLUME.Base.Module
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.DisposeFrameData(Core.Recorder.Module.Frame.FrameInfo frameInfo)
+        void IFrameDataRecorderModule.DisposeFrameData(FrameInfo frameInfo)
         {
             TFrameData frameData;
 
@@ -204,16 +203,16 @@ namespace PLUME.Base.Module
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
-        protected abstract TFrameData OnCollectFrameData(Core.Recorder.Module.Frame.FrameInfo frameInfo);
+        protected abstract TFrameData OnEnqueueFrameData(FrameInfo frameInfo);
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
         protected abstract void OnSerializeFrameData(TFrameData frameData,
-            Core.Recorder.Module.Frame.FrameInfo frameInfo, FrameDataWriter output);
+            FrameInfo frameInfo, FrameDataWriter output);
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
         protected abstract void OnDisposeFrameData(TFrameData frameData,
-            Core.Recorder.Module.Frame.FrameInfo frameInfo);
+            FrameInfo frameInfo);
     }
 }

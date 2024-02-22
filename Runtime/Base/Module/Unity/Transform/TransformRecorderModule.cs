@@ -81,7 +81,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _currentFramePollingJobHandle = pollTransformStatesJob.ScheduleReadOnly(_transformAccessArray, 128);
         }
 
-        protected override TransformFrameData OnCollectFrameData(FrameInfo frameInfo)
+        protected override TransformFrameData OnEnqueueFrameData(FrameInfo frameInfo)
         {
             _currentFramePollingJobHandle.Complete();
             var data = new TransformFrameData(_currentFrameDirtySamples);

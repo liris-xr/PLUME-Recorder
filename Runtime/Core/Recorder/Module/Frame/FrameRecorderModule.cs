@@ -83,7 +83,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             foreach (var module in _frameDataRecorderModules)
             {
-                module.CollectFrameData(frame);
+                module.EnqueueFrameData(frame);
             }
 
             _frameQueue.Add(frame);

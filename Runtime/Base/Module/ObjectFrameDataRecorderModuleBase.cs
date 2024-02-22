@@ -10,9 +10,9 @@ namespace PLUME.Base.Module
     {
         private readonly Dictionary<FrameInfo, TFrameData> _framesData = new(FrameInfoComparer.Instance);
 
-        void IFrameDataRecorderModule.CollectFrameData(FrameInfo frameInfo)
+        void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo)
         {
-            var frameData = OnCollectFrameData(frameInfo);
+            var frameData = OnEnqueueFrameData(frameInfo);
             ClearCreatedObjects();
             ClearDestroyedObjects();
 
@@ -55,7 +55,7 @@ namespace PLUME.Base.Module
             OnDisposeFrameData(frameData, frameInfo);
         }
 
-        protected abstract TFrameData OnCollectFrameData(FrameInfo frameInfo);
+        protected abstract TFrameData OnEnqueueFrameData(FrameInfo frameInfo);
 
         protected abstract void OnSerializeFrameData(TFrameData frameData, FrameInfo frameInfo, FrameDataWriter output);
 

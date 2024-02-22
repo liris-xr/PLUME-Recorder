@@ -23,7 +23,7 @@ namespace PLUME.Core.Settings
         private void OnValidate()
         {
             if (updateRate < 0)
-                updateRate = 1;
+                updateRate = 0;
         }
 
         public static RecorderSettings GetOrCreate()

@@ -68,6 +68,7 @@ namespace PLUME.Editor
 
         private static bool CanAddAsset(ICollection<string> assetPaths, string assetPath)
         {
+            // If already added, return false
             if (assetPaths.Contains(assetPath))
                 return false;
 

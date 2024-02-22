@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PLUME.Core.Settings;
+using PLUME.Core.Utils;
 using PLUME.Sample.ProtoBurst;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
@@ -27,10 +30,30 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         private BlockingCollection<FrameInfo> _frameQueue;
 
+        private Record _record;
+        private RecorderContext _context;
+
+        private long _updateInterval; // in nanoseconds
+
+        private long _lastUpdateTime; // in nanoseconds
+        private long _lastFixedUpdateTime; // in nanoseconds
+        private long _deltaTime; // in nanoseconds
+        private bool _shouldRunUpdate;
+
         void IRecorderModule.Create(RecorderContext recorderContext)
         {
+            _context = recorderContext;
             _frameQueue = new BlockingCollection<FrameInfo>(new ConcurrentQueue<FrameInfo>());
             _frameDataRecorderModules = recorderContext.Modules.OfType<IFrameDataRecorderModule>().ToArray();
+
+            var settings = FrameRecorderModuleSettings.GetOrCreate();
+            _updateInterval = (long)(1_000_000_000 / settings.UpdateRate);
+
+            PlayerLoopUtils.InjectEarlyUpdate<RecorderEarlyUpdate>(EarlyUpdate);
+            PlayerLoopUtils.InjectPreUpdate<RecorderPreUpdate>(PreUpdate);
+            PlayerLoopUtils.InjectUpdate<RecorderUpdate>(Update);
+            PlayerLoopUtils.InjectPreLateUpdate<RecorderPreLateUpdate>(PreLateUpdate);
+            PlayerLoopUtils.InjectPostLateUpdate<RecorderPostLateUpdate>(PostLateUpdate);
         }
 
         void IRecorderModule.Destroy(RecorderContext recorderContext)
@@ -44,23 +67,29 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
         {
+            _record = record;
             IsRecording = true;
+            _lastUpdateTime = 0;
+            _shouldRunUpdate = true;
+            _shouldSerialize = true;
 
             _serializationThread = new Thread(() => SerializeFrameLoop(record))
             {
                 Name = "FrameRecorderModule.SerializeThread",
                 IsBackground = false
             };
-            _shouldSerialize = true;
+
             _serializationThread.Start();
         }
 
         void IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             IsRecording = false;
+            _shouldRunUpdate = false;
             _shouldSerialize = false;
             _serializationThread.Join();
             _serializationThread = null;
+            _record = null;
         }
 
         internal async UniTask CompleteSerializationAsync()
@@ -74,9 +103,131 @@ namespace PLUME.Core.Recorder.Module.Frame
             await UniTask.WaitUntil(() => !_serializationThread.IsAlive);
         }
 
-        void IRecorderModule.PostLateUpdate(long deltaTime, Record record, RecorderContext context)
+        private void EarlyUpdate()
         {
-            var timestamp = record.Time;
+            UpdateShouldRunUpdateFlag();
+            RunFixedUpdate();
+
+            if (!_shouldRunUpdate || !IsRecording)
+                return;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < _frameDataRecorderModules.Length; i++)
+            {
+                _frameDataRecorderModules[i].EarlyUpdate(_deltaTime, _record, _context);
+            }
+        }
+
+        private void RunFixedUpdate()
+        {
+            if (_updateInterval == 0 || !IsRecording)
+                return;
+            
+            var time = _record.Time;
+            var fixedUpdateDt = time - _lastFixedUpdateTime;
+            
+            if (fixedUpdateDt < _updateInterval)
+                return;
+            
+            var nFixedUpdates = fixedUpdateDt / _updateInterval;
+            var fixedTime = _lastFixedUpdateTime;
+
+            _record.FixedTime = fixedTime;
+
+            for (var i = 0; i < nFixedUpdates; i++)
+            {
+                // ReSharper disable once ForCanBeConvertedToForeach
+                for (var j = 0; j < _frameDataRecorderModules.Length; j++)
+                {
+                    _frameDataRecorderModules[j].FixedUpdate(_updateInterval, _record, _context);
+                }
+
+                fixedTime += _updateInterval;
+                _record.FixedTime = fixedTime;
+            }
+
+            _lastFixedUpdateTime = fixedTime;
+        }
+
+        private void UpdateShouldRunUpdateFlag()
+        {
+            if (_updateInterval == 0 || !IsRecording)
+            {
+                _shouldRunUpdate = false;
+                return;
+            }
+
+            var time = _record.Time;
+            var updateDt = time - _lastUpdateTime;
+            var nextUpdateDt = time + Time.unscaledTimeAsDouble * 1_000_000_000 - _lastUpdateTime;
+
+            // If the next frame is closer to the update interval than the current frame, wait for next frame
+            if (Math.Abs(nextUpdateDt - _updateInterval) < Math.Abs(updateDt - _updateInterval))
+            {
+                _shouldRunUpdate = false;
+                return;
+            }
+
+            // If the next frame is closer to the update interval than the current frame, wait for next frame
+            if (updateDt > _updateInterval)
+            {
+                _deltaTime = updateDt;
+                _lastUpdateTime = time;
+                _shouldRunUpdate = true;
+                return;
+            }
+
+            _shouldRunUpdate = false;
+        }
+
+        private void PreUpdate()
+        {
+            if (!_shouldRunUpdate || !IsRecording)
+                return;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < _frameDataRecorderModules.Length; i++)
+            {
+                _frameDataRecorderModules[i].PreUpdate(_deltaTime, _record, _context);
+            }
+        }
+
+        private void Update()
+        {
+            if (!_shouldRunUpdate || !IsRecording)
+                return;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < _frameDataRecorderModules.Length; i++)
+            {
+                _frameDataRecorderModules[i].Update(_deltaTime, _record, _context);
+            }
+        }
+
+        private void PreLateUpdate()
+        {
+            if (!_shouldRunUpdate || !IsRecording)
+                return;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < _frameDataRecorderModules.Length; i++)
+            {
+                _frameDataRecorderModules[i].PreLateUpdate(_deltaTime, _record, _context);
+            }
+        }
+
+        private void PostLateUpdate()
+        {
+            if (!_shouldRunUpdate || !IsRecording)
+                return;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < _frameDataRecorderModules.Length; i++)
+            {
+                _frameDataRecorderModules[i].PostLateUpdate(_deltaTime, _record, _context);
+            }
+
+            var timestamp = _record.Time;
             var frame = Time.frameCount;
             PushFrame(timestamp, frame);
         }

@@ -4,6 +4,7 @@ using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using Unity.Collections;
 using Unity.Jobs;
+using UnityEngine;
 using UnityEngine.Jobs;
 using UnityEngine.Scripting;
 
@@ -34,6 +35,15 @@ namespace PLUME.Base.Module.Unity.Transform
 
             if (_currentFrameDirtySamples.IsCreated)
                 _currentFrameDirtySamples.Dispose();
+        }
+        
+        private long lastUpdateTime;
+
+        protected override void OnUpdate(long deltaTime, Record record, RecorderContext context)
+        {
+            var time = record.Time;
+            Debug.Log((time - lastUpdateTime) / 1_000_000f + "ms");
+            lastUpdateTime = time;
         }
 
         protected override void OnStartRecordingObject(ObjectSafeRef<UnityEngine.Transform> objSafeRef,

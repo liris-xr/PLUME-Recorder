@@ -24,19 +24,11 @@ namespace PLUME.Core.Recorder
         private Record _record;
         private readonly DataDispatcher _dataDispatcher;
         private bool _wantsToQuit;
-        
-        private readonly long _updateInterval; // in nanoseconds
 
-        private long _lastUpdateTime; // in nanoseconds
-        private long _lastFixedUpdateTime; // in nanoseconds
-        private long _deltaTime; // in nanoseconds
-        private bool _shouldUpdate;
-
-        private PlumeRecorder(long updateInterval, DataDispatcher dataDispatcher, RecorderContext ctx)
+        private PlumeRecorder(DataDispatcher dataDispatcher, RecorderContext ctx)
         {
             _context = ctx;
             _dataDispatcher = dataDispatcher;
-            _updateInterval = updateInterval;
         }
 
         /// <summary>
@@ -56,8 +48,6 @@ namespace PLUME.Core.Recorder
 
             var recordClock = new Clock();
             _record = new Record(recordClock, recordIdentifier, Allocator.Persistent);
-
-            _lastUpdateTime = 0;
             
             _status = RecorderStatus.Recording;
 
@@ -92,7 +82,6 @@ namespace PLUME.Core.Recorder
 
             Logger.Log("Stopping recorder...");
 
-            _shouldUpdate = false;
             _record.InternalClock.Stop();
             _status = RecorderStatus.Stopping;
 
@@ -133,7 +122,6 @@ namespace PLUME.Core.Recorder
                 _context.Modules[i].StopRecording(_record, _context);
             }
 
-            _shouldUpdate = false;
             _dataDispatcher.Stop();
             _status = RecorderStatus.Stopped;
 
@@ -234,117 +222,6 @@ namespace PLUME.Core.Recorder
             for (var i = 0; i < _context.Modules.Count; i++)
             {
                 _context.Modules[i].Awake(_context);
-            }
-        }
-        
-        private void EarlyUpdate()
-        {
-            if (_status is not RecorderStatus.Recording)
-            {
-                _shouldUpdate = false;
-                return;
-            }
-
-            if (_updateInterval == 0)
-            {
-                _shouldUpdate = false;
-                return;
-            }
-            
-            var time = _record.Time;
-            
-            var updateDt = time - _lastUpdateTime;
-            
-            // If the next frame is closer to the update interval than the current frame, wait for next frame
-            if (updateDt > _updateInterval)
-            {
-                _deltaTime = updateDt;
-                _shouldUpdate = true;
-                _lastUpdateTime = time;
-            }
-            else
-            {
-                _shouldUpdate = false;
-            }
-            
-            var fixedUpdateDt = time - _lastFixedUpdateTime;
-            if (fixedUpdateDt >= _updateInterval)
-            {
-                var nFixedUpdates = fixedUpdateDt / _updateInterval;
-                var fixedTime = _lastFixedUpdateTime;
-                
-                _record.FixedTime = fixedTime;
-                
-                for (var i = 0; i < nFixedUpdates; i++)
-                {
-                    // ReSharper disable once ForCanBeConvertedToForeach
-                    for (var j = 0; j < _context.Modules.Count; j++)
-                    {
-                        _context.Modules[j].FixedUpdate(_updateInterval, _record, _context);
-                    }
-                    
-                    fixedTime += _updateInterval;
-                    _record.FixedTime = fixedTime;
-                }
-                
-                _lastFixedUpdateTime = fixedTime;
-            }
-
-            if (_shouldUpdate)
-            {
-                // ReSharper disable once ForCanBeConvertedToForeach
-                for (var i = 0; i < _context.Modules.Count; i++)
-                {
-                    _context.Modules[i].EarlyUpdate(_deltaTime, _record, _context);
-                }
-            }
-        }
-        
-        private void PreUpdate()
-        {
-            if (!_shouldUpdate || _status is not RecorderStatus.Recording)
-                return;
-            
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
-            {
-                _context.Modules[i].PreUpdate(_deltaTime, _record, _context);
-            }
-        }
-        
-        private void Update()
-        {
-            if (!_shouldUpdate || _status is not RecorderStatus.Recording)
-                return;
-
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
-            {
-                _context.Modules[i].Update(_deltaTime, _record, _context);
-            }
-        }
-
-        private void PreLateUpdate()
-        {
-            if (!_shouldUpdate || _status is not RecorderStatus.Recording)
-                return;
-
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
-            {
-                _context.Modules[i].PreLateUpdate(_deltaTime, _record, _context);
-            }
-        }
-
-        private void PostLateUpdate()
-        {
-            if (!_shouldUpdate || _status is not RecorderStatus.Recording)
-                return;
-
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
-            {
-                _context.Modules[i].PostLateUpdate(_deltaTime, _record, _context);
             }
         }
 

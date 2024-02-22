@@ -48,31 +48,6 @@ namespace PLUME.Base.Module
             }
         }
 
-        void IRecorderModule.EarlyUpdate(long deltaTime, Record record, RecorderContext context)
-        {
-            OnEarlyUpdate(deltaTime, record, context);
-        }
-
-        void IRecorderModule.PreUpdate(long deltaTime, Record record, RecorderContext context)
-        {
-            OnPreUpdate(deltaTime, record, context);
-        }
-
-        void IRecorderModule.Update(long deltaTime, Record record, RecorderContext context)
-        {
-            OnUpdate(deltaTime, record, context);
-        }
-
-        void IRecorderModule.PreLateUpdate(long deltaTime, Record record, RecorderContext context)
-        {
-            OnPreLateUpdate(deltaTime, record, context);
-        }
-
-        void IRecorderModule.PostLateUpdate(long deltaTime, Record record, RecorderContext context)
-        {
-            OnPostLateUpdate(deltaTime, record, context);
-        }
-
         protected virtual void OnAwake(RecorderContext context)
         {
         }

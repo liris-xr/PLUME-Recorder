@@ -91,42 +91,42 @@ namespace PLUME.Base.Module
         
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IRecorderModule.FixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.FixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
         {
             OnFixedUpdate(fixedDeltaTime, record, context);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IRecorderModule.EarlyUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.EarlyUpdate(long deltaTime, Record record, RecorderContext context)
         {
             OnEarlyUpdate(deltaTime, record, context);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IRecorderModule.PreUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.PreUpdate(long deltaTime, Record record, RecorderContext context)
         {
             OnPreUpdate(deltaTime, record, context);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IRecorderModule.Update(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.Update(long deltaTime, Record record, RecorderContext context)
         {
             OnUpdate(deltaTime, record, context);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IRecorderModule.PreLateUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.PreLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
             OnPreLateUpdate(deltaTime, record, context);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IRecorderModule.PostLateUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.PostLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
             OnPostLateUpdate(deltaTime, record, context);
         }

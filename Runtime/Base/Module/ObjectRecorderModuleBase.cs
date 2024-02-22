@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
@@ -119,23 +118,11 @@ namespace PLUME.Base.Module
             IsRecording = true;
             OnStartRecording(record, recorderContext);
         }
-
-        void IRecorderModule.ForceStopRecording(Record record, RecorderContext recorderContext)
-        {
-            CheckIsRecording();
-            OnForceStopRecording(record, recorderContext);
-            
-            _recordedObjects.Clear();
-            _createdObjects.Clear();
-            _destroyedObjects.Clear();
-            
-            IsRecording = false;
-        }
         
-        async UniTask IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
+        void IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
-            await OnStopRecording(record, recorderContext);
+            OnStopRecording(record, recorderContext);
             
             _recordedObjects.Clear();
             _createdObjects.Clear();
@@ -162,6 +149,7 @@ namespace PLUME.Base.Module
 
         void IRecorderModule.Update(Record record, RecorderContext context)
         {
+            OnUpdate(record, context);
         }
 
         void IRecorderModule.PreLateUpdate(Record record, RecorderContext context)
@@ -209,14 +197,9 @@ namespace PLUME.Base.Module
         protected virtual void OnStartRecording(Record record, RecorderContext recorderContext)
         {
         }
-
-        protected virtual void OnForceStopRecording(Record record, RecorderContext recorderContext)
-        {
-        }
         
-        protected virtual UniTask OnStopRecording(Record record, RecorderContext recorderContext)
+        protected virtual void OnStopRecording(Record record, RecorderContext recorderContext)
         {
-            return UniTask.CompletedTask;
         }
 
         protected virtual void OnStartRecordingObject(ObjectSafeRef<TObject> objSafeRef, bool markCreated)

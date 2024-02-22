@@ -1,18 +1,18 @@
+using System;
 using System.Collections.Generic;
-using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
-using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace PLUME.Base.Module
 {
     public abstract class ObjectFrameDataRecorderModuleBase<TObject, TFrameData> : ObjectRecorderModuleBase<TObject>,
-        IFrameDataRecorderModule where TObject : Object
+        IFrameDataRecorderModule where TObject : Object where TFrameData : IFrameData
     {
         private readonly Dictionary<FrameInfo, TFrameData> _framesData = new(FrameInfoComparer.Instance);
 
         void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo)
         {
-            var frameData = OnEnqueueFrameData(frameInfo);
+            var frameData = CollectFrameData(frameInfo);
             ClearCreatedObjects();
             ClearDestroyedObjects();
 
@@ -22,7 +22,7 @@ namespace PLUME.Base.Module
             }
         }
 
-        bool IFrameDataRecorderModule.SerializeFrameData(FrameInfo frameInfo, FrameDataWriter output)
+        bool IFrameDataRecorderModule.SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter)
         {
             TFrameData frameData;
 
@@ -34,31 +34,16 @@ namespace PLUME.Base.Module
                 }
             }
 
-            OnSerializeFrameData(frameData, frameInfo, output);
+            frameData.Serialize(frameDataWriter);
+
+            if (frameData is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
+            
             return true;
         }
 
-        void IFrameDataRecorderModule.DisposeFrameData(FrameInfo frameInfo)
-        {
-            TFrameData frameData;
-
-            lock (_framesData)
-            {
-                if (!_framesData.TryGetValue(frameInfo, out frameData))
-                {
-                    return;
-                }
-
-                _framesData.Remove(frameInfo);
-            }
-
-            OnDisposeFrameData(frameData, frameInfo);
-        }
-
-        protected abstract TFrameData OnEnqueueFrameData(FrameInfo frameInfo);
-
-        protected abstract void OnSerializeFrameData(TFrameData frameData, FrameInfo frameInfo, FrameDataWriter output);
-
-        protected abstract void OnDisposeFrameData(TFrameData frameData, FrameInfo frameInfo);
+        protected abstract TFrameData CollectFrameData(FrameInfo frameInfo);
     }
 }

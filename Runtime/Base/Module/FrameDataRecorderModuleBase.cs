@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
@@ -8,6 +7,7 @@ using PLUME.Core.Recorder.Module.Frame;
 namespace PLUME.Base.Module
 {
     public abstract class FrameDataRecorderModuleBase<TFrameData> : IFrameDataRecorderModule
+        where TFrameData : IFrameData
     {
         private readonly Dictionary<FrameInfo, TFrameData> _framesData = new(FrameInfoComparer.Instance);
 
@@ -28,17 +28,10 @@ namespace PLUME.Base.Module
             IsRecording = true;
         }
 
-        void IRecorderModule.ForceStopRecording(Record record, RecorderContext recorderContext)
+        void IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
-            OnForceStopRecording(record, recorderContext);
-            IsRecording = false;
-        }
-
-        async UniTask IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
-        {
-            CheckIsRecording();
-            await OnStopRecording(record, recorderContext);
+            OnStopRecording(record, recorderContext);
             IsRecording = false;
         }
 
@@ -46,7 +39,7 @@ namespace PLUME.Base.Module
 
         void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo)
         {
-            var frameData = OnEnqueueFrameData(frameInfo);
+            var frameData = CollectFrameData(frameInfo);
 
             lock (_framesData)
             {
@@ -56,7 +49,7 @@ namespace PLUME.Base.Module
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        bool IFrameDataRecorderModule.SerializeFrameData(FrameInfo frameInfo, FrameDataWriter output)
+        bool IFrameDataRecorderModule.SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter)
         {
             TFrameData frameData;
 
@@ -68,25 +61,14 @@ namespace PLUME.Base.Module
                 }
             }
 
-            OnSerializeFrameData(frameData, frameInfo, output);
-            return true;
-        }
+            frameData.Serialize(frameDataWriter);
 
-        // ReSharper restore Unity.PerformanceCriticalContext
-
-        void IFrameDataRecorderModule.DisposeFrameData(FrameInfo frameInfo)
-        {
-            TFrameData frameData;
-
-            lock (_framesData)
+            if (frameData is IDisposable disposable)
             {
-                if (!_framesData.Remove(frameInfo, out frameData))
-                {
-                    return;
-                }
+                disposable.Dispose();
             }
-
-            OnDisposeFrameData(frameData, frameInfo);
+            
+            return true;
         }
 
         protected void CheckIsRecording()
@@ -193,26 +175,11 @@ namespace PLUME.Base.Module
         {
         }
 
-        protected virtual UniTask OnStopRecording(Record record, RecorderContext recorderContext)
-        {
-            return UniTask.CompletedTask;
-        }
-
-        protected void OnForceStopRecording(Record record, RecorderContext recorderContext)
+        protected virtual void OnStopRecording(Record record, RecorderContext recorderContext)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
-        protected abstract TFrameData OnEnqueueFrameData(FrameInfo frameInfo);
-
-        // ReSharper restore Unity.PerformanceCriticalContext
-
-        protected abstract void OnSerializeFrameData(TFrameData frameData,
-            FrameInfo frameInfo, FrameDataWriter output);
-
-        // ReSharper restore Unity.PerformanceCriticalContext
-
-        protected abstract void OnDisposeFrameData(TFrameData frameData,
-            FrameInfo frameInfo);
+        protected abstract TFrameData CollectFrameData(FrameInfo frameInfo);
     }
 }

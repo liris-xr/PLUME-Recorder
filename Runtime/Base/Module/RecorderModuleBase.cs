@@ -33,17 +33,10 @@ namespace PLUME.Base.Module
             OnStartRecording(record, recorderContext);
         }
 
-        void IRecorderModule.ForceStopRecording(Record record, RecorderContext recorderContext)
+        void IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
             OnForceStopRecording(record, recorderContext);
-            IsRecording = false;
-        }
-
-        async UniTask IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
-        {
-            CheckIsRecording();
-            await OnStopRecording(record, recorderContext);
             IsRecording = false;
         }
 
@@ -67,6 +60,7 @@ namespace PLUME.Base.Module
 
         void IRecorderModule.Update(Record record, RecorderContext context)
         {
+            OnUpdate(record, context);
         }
 
         void IRecorderModule.PreLateUpdate(Record record, RecorderContext context)

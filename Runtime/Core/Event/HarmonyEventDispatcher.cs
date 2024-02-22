@@ -3,7 +3,6 @@ using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
-using Logger = PLUME.Core.Logger;
 
 namespace PLUME.Core.Event
 {

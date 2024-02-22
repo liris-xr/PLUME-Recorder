@@ -1,9 +1,7 @@
-using Cysharp.Threading.Tasks;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
-using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine.Jobs;
@@ -52,18 +50,11 @@ namespace PLUME.Base.Module.Unity.Transform
             _lastStates.Remove(objSafeRef.Identifier);
         }
         
-        protected override void OnForceStopRecording(Record record, RecorderContext ctx)
+        protected override void OnStopRecording(Record record, RecorderContext recorderContext)
         {
             _currentFramePollingJobHandle.Complete();
             _transformAccessArray.Clear();
             _lastStates.Clear();
-        }
-        
-        protected override async UniTask OnStopRecording(Record record, RecorderContext recorderContext)
-        {
-            _transformAccessArray.Clear();
-            _lastStates.Clear();
-            await UniTask.WaitUntil(() => _currentFramePollingJobHandle.IsCompleted);
         }
 
         protected override void OnPreUpdate(Record record, RecorderContext context)
@@ -81,28 +72,13 @@ namespace PLUME.Base.Module.Unity.Transform
             _currentFramePollingJobHandle = pollTransformStatesJob.ScheduleReadOnly(_transformAccessArray, 128);
         }
 
-        protected override TransformFrameData OnEnqueueFrameData(FrameInfo frameInfo)
+        protected override TransformFrameData CollectFrameData(FrameInfo frameInfo)
         {
             _currentFramePollingJobHandle.Complete();
             var data = new TransformFrameData(_currentFrameDirtySamples);
             _currentFramePollingJobHandle = default;
             _currentFrameDirtySamples = default;
             return data;
-        }
-
-        [BurstCompile]
-        protected override void OnSerializeFrameData(TransformFrameData frameData, FrameInfo frameInfo,
-            FrameDataWriter frameDataWriter)
-        {
-            var prepareSerializeJob = new FrameDataBatchPrepareSerializeJob<TransformUpdateLocalPositionSample>();
-            var serializeJob = new FrameDataBatchSerializeJob<TransformUpdateLocalPositionSample>();
-            var batchSerializer = new FrameDataBatchSerializer<TransformUpdateLocalPositionSample>(prepareSerializeJob, serializeJob);
-            frameDataWriter.WriteBatch(frameData.DirtySamples.AsArray(), batchSerializer);
-        }
-
-        protected override void OnDisposeFrameData(TransformFrameData frameData, FrameInfo frameInfo)
-        {
-            frameData.Dispose();
         }
     }
 }

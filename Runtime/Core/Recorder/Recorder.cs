@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
+using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Recorder.Writer;
 using PLUME.Core.Scripts;
 using Unity.Collections;
@@ -82,13 +83,18 @@ namespace PLUME.Core.Recorder
             _record.InternalClock.Stop();
             _status = RecorderStatus.Stopping;
 
+            if (_context.TryGetRecorderModule(out FrameRecorderModule frameRecorderModule))
+            {
+                await frameRecorderModule.CompleteSerializationAsync();
+            }
+
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _context.Modules.Count; i++)
             {
-                await _context.Modules[i].StopRecording(_record, _context);
+                _context.Modules[i].StopRecording(_record, _context);
             }
 
-            await _dataDispatcher.Stop();
+            await _dataDispatcher.StopAsync();
 
             _status = RecorderStatus.Stopped;
 
@@ -111,10 +117,10 @@ namespace PLUME.Core.Recorder
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _context.Modules.Count; i++)
             {
-                _context.Modules[i].ForceStopRecording(_record, _context);
+                _context.Modules[i].StopRecording(_record, _context);
             }
 
-            _dataDispatcher.ForceStop();
+            _dataDispatcher.Stop();
             _status = RecorderStatus.Stopped;
 
             _record.Dispose();

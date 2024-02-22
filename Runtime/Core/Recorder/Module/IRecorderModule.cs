@@ -1,5 +1,3 @@
-using Cysharp.Threading.Tasks;
-
 namespace PLUME.Core.Recorder.Module
 {
     public interface IRecorderModule
@@ -14,9 +12,7 @@ namespace PLUME.Core.Recorder.Module
         
         internal void StartRecording(Record record, RecorderContext recorderContext);
 
-        internal UniTask StopRecording(Record record, RecorderContext recorderContext);
-
-        internal void ForceStopRecording(Record record, RecorderContext recorderContext);
+        internal void StopRecording(Record record, RecorderContext recorderContext);
         
         internal void EarlyUpdate(Record record, RecorderContext context) {}
         

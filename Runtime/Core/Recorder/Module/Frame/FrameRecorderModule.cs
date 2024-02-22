@@ -23,6 +23,8 @@ namespace PLUME.Core.Recorder.Module.Frame
         private IFrameDataRecorderModule[] _frameDataRecorderModules;
 
         private Thread _serializationThread;
+        private bool _shouldSerialize;
+        
         private BlockingCollection<FrameInfo> _frameQueue;
 
         void IRecorderModule.Create(RecorderContext recorderContext)
@@ -50,24 +52,27 @@ namespace PLUME.Core.Recorder.Module.Frame
                 Name = "FrameRecorderModule.SerializeThread",
                 IsBackground = false
             };
+            _shouldSerialize = true;
             _serializationThread.Start();
         }
 
-        void IRecorderModule.ForceStopRecording(Record record, RecorderContext recorderContext)
+        void IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             IsRecording = false;
-            var remainingFramesCount = _frameQueue.Count;
-            if (remainingFramesCount > 0)
-                Logger.Log(nameof(FrameRecorderModule), $"{remainingFramesCount} frames left in queue.");
+            _shouldSerialize = false;
             _serializationThread.Join();
             _serializationThread = null;
         }
-
-        async UniTask IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
+        
+        internal async UniTask CompleteSerializationAsync()
         {
-            IsRecording = false;
+            _shouldSerialize = false;
+            
+            var remainingFramesCount = _frameQueue.Count;
+            if (remainingFramesCount > 0)
+                Logger.Log(nameof(FrameRecorderModule), $"{remainingFramesCount} frames left in queue.");
+            
             await UniTask.WaitUntil(() => !_serializationThread.IsAlive);
-            _serializationThread = null;
         }
 
         void IRecorderModule.PostLateUpdate(Record record, RecorderContext context)
@@ -88,8 +93,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             _frameQueue.Add(frame);
         }
-
-        // TODO: use workers
+        
         internal void SerializeFrameLoop(Record record)
         {
             Profiler.BeginThreadProfiling("PLUME", "FrameRecorderModule.SerializeThread");
@@ -100,7 +104,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             var frameSampleTypeUrl = SampleTypeUrl.Alloc(FrameSample.TypeUrl, Allocator.Persistent);
 
-            while (IsRecording || _frameQueue.Count > 0)
+            while (_shouldSerialize || _frameQueue.Count > 0)
             {
                 while (_frameQueue.TryTake(out var frame))
                 {
@@ -108,10 +112,10 @@ namespace PLUME.Core.Recorder.Module.Frame
 
                     var hasData = false;
 
+                    // ReSharper disable once LoopCanBeConvertedToQuery
                     foreach (var module in _frameDataRecorderModules)
                     {
                         hasData |= module.SerializeFrameData(frame, frameDataWriter);
-                        module.DisposeFrameData(frame);
                     }
 
                     if (!hasData) continue;

@@ -106,7 +106,7 @@ namespace PLUME.Core.Recorder.Writer
             }
         }
 
-        internal async UniTask Stop()
+        internal async UniTask StopAsync()
         {
             _running = false;
             await UniTask.WaitUntil(() => !_dispatcherThread.IsAlive);
@@ -123,7 +123,7 @@ namespace PLUME.Core.Recorder.Writer
             _outputs = null;
         }
 
-        internal void ForceStop()
+        internal void Stop()
         {
             _running = false;
             _dispatcherThread.Join();

@@ -29,7 +29,7 @@ namespace PLUME.Base.Module.Unity.Transform
         {
             _transformAccessArray.Dispose();
             _lastStates.Dispose();
-            
+
             _currentFramePollingJobHandle.Complete();
 
             if (_currentFrameDirtySamples.IsCreated)
@@ -49,7 +49,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _transformAccessArray.RemoveSwapBack(objSafeRef);
             _lastStates.Remove(objSafeRef.Identifier);
         }
-        
+
         protected override void OnStopRecording(Record record, RecorderContext recorderContext)
         {
             _currentFramePollingJobHandle.Complete();
@@ -57,7 +57,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _lastStates.Clear();
         }
 
-        protected override void OnPreUpdate(Record record, RecorderContext context)
+        protected override void OnPreUpdate(long deltaTime, Record record, RecorderContext context)
         {
             _currentFrameDirtySamples =
                 new NativeList<TransformUpdateLocalPositionSample>(RecordedObjects.Count, Allocator.Persistent);

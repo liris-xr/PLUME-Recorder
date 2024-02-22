@@ -24,7 +24,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         private Thread _serializationThread;
         private bool _shouldSerialize;
-        
+
         private BlockingCollection<FrameInfo> _frameQueue;
 
         void IRecorderModule.Create(RecorderContext recorderContext)
@@ -40,7 +40,6 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         void IRecorderModule.Awake(RecorderContext context)
         {
-            
         }
 
         void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
@@ -63,19 +62,19 @@ namespace PLUME.Core.Recorder.Module.Frame
             _serializationThread.Join();
             _serializationThread = null;
         }
-        
+
         internal async UniTask CompleteSerializationAsync()
         {
             _shouldSerialize = false;
-            
+
             var remainingFramesCount = _frameQueue.Count;
             if (remainingFramesCount > 0)
                 Logger.Log(nameof(FrameRecorderModule), $"{remainingFramesCount} frames left in queue.");
-            
+
             await UniTask.WaitUntil(() => !_serializationThread.IsAlive);
         }
 
-        void IRecorderModule.PostLateUpdate(Record record, RecorderContext context)
+        void IRecorderModule.PostLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
             var timestamp = record.Clock.ElapsedNanoseconds;
             var frame = Time.frameCount;
@@ -93,7 +92,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             _frameQueue.Add(frame);
         }
-        
+
         internal void SerializeFrameLoop(Record record)
         {
             Profiler.BeginThreadProfiling("PLUME", "FrameRecorderModule.SerializeThread");

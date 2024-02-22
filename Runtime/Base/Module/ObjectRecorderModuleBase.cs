@@ -114,20 +114,20 @@ namespace PLUME.Base.Module
         {
             if (IsRecording)
                 throw new InvalidOperationException("Recorder module is already recording.");
-            
+
             IsRecording = true;
             OnStartRecording(record, recorderContext);
         }
-        
+
         void IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
             OnStopRecording(record, recorderContext);
-            
+
             _recordedObjects.Clear();
             _createdObjects.Clear();
             _destroyedObjects.Clear();
-            
+
             IsRecording = false;
         }
 
@@ -137,55 +137,55 @@ namespace PLUME.Base.Module
                 throw new InvalidOperationException("Recorder module is not recording.");
         }
 
-        void IRecorderModule.EarlyUpdate(Record record, RecorderContext context)
+        void IRecorderModule.EarlyUpdate(long deltaTime, Record record, RecorderContext context)
         {
-            OnEarlyUpdate(record, context);
+            OnEarlyUpdate(deltaTime, record, context);
         }
 
-        void IRecorderModule.PreUpdate(Record record, RecorderContext context)
+        void IRecorderModule.PreUpdate(long deltaTime, Record record, RecorderContext context)
         {
-            OnPreUpdate(record, context);
+            OnPreUpdate(deltaTime, record, context);
         }
 
-        void IRecorderModule.Update(Record record, RecorderContext context)
+        void IRecorderModule.Update(long deltaTime, Record record, RecorderContext context)
         {
-            OnUpdate(record, context);
+            OnUpdate(deltaTime, record, context);
         }
 
-        void IRecorderModule.PreLateUpdate(Record record, RecorderContext context)
+        void IRecorderModule.PreLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
-            OnPreLateUpdate(record, context);
+            OnPreLateUpdate(deltaTime, record, context);
         }
 
-        void IRecorderModule.PostLateUpdate(Record record, RecorderContext context)
+        void IRecorderModule.PostLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
-            OnPostLateUpdate(record, context);
+            OnPostLateUpdate(deltaTime, record, context);
         }
 
         protected virtual void OnAwake(RecorderContext context)
         {
         }
 
-        protected virtual void OnEarlyUpdate(Record record, RecorderContext context)
+        protected virtual void OnEarlyUpdate(long deltaTime, Record record, RecorderContext context)
         {
         }
 
-        protected virtual void OnPreUpdate(Record record, RecorderContext context)
+        protected virtual void OnPreUpdate(long deltaTime, Record record, RecorderContext context)
         {
         }
 
-        protected virtual void OnUpdate(Record record, RecorderContext context)
+        protected virtual void OnUpdate(long deltaTime, Record record, RecorderContext context)
         {
         }
 
-        protected virtual void OnPreLateUpdate(Record record, RecorderContext context)
+        protected virtual void OnPreLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
         }
 
-        protected virtual void OnPostLateUpdate(Record record, RecorderContext context)
+        protected virtual void OnPostLateUpdate(long deltaTime, Record record, RecorderContext context)
         {
         }
-        
+
         protected virtual void OnCreate(RecorderContext recorderContext)
         {
         }
@@ -197,7 +197,7 @@ namespace PLUME.Base.Module
         protected virtual void OnStartRecording(Record record, RecorderContext recorderContext)
         {
         }
-        
+
         protected virtual void OnStopRecording(Record record, RecorderContext recorderContext)
         {
         }

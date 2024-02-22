@@ -4,6 +4,7 @@ using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Writer;
 using PLUME.Core.Scripts;
+using PLUME.Core.Settings;
 using PLUME.Core.Utils;
 using PLUME.Sample.Common;
 using UnityEngine;
@@ -93,17 +94,20 @@ namespace PLUME.Core.Recorder
             var recorderModules = RecorderModuleManager.InstantiateRecorderModulesFromAllAssemblies();
             var dataDispatcher = new DataDispatcher();
             var recorderContext = new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider);
-
-            Instance = new PlumeRecorder(dataDispatcher, recorderContext);
+            
+            var settings = RecorderSettings.GetOrCreate();
+            var updateInterval = (long)(1_000_000_000 / settings.UpdateRate);
+            
+            Instance = new PlumeRecorder(updateInterval, dataDispatcher, recorderContext);
 
             foreach (var recorderModule in recorderModules)
             {
                 recorderModule.Create(recorderContext);
             }
             
+            PlayerLoopUtils.InjectEarlyUpdate<RecorderEarlyUpdate>(Instance.EarlyUpdate);
             PlayerLoopUtils.InjectPreUpdate<RecorderPreUpdate>(Instance.PreUpdate);
             PlayerLoopUtils.InjectUpdate<RecorderUpdate>(Instance.Update);
-            PlayerLoopUtils.InjectEarlyUpdate<RecorderEarlyUpdate>(Instance.EarlyUpdate);
             PlayerLoopUtils.InjectPreLateUpdate<RecorderPreLateUpdate>(Instance.PreLateUpdate);
             PlayerLoopUtils.InjectPostLateUpdate<RecorderPostLateUpdate>(Instance.PostLateUpdate);
 

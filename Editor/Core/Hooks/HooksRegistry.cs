@@ -21,7 +21,7 @@ namespace PLUME.Editor.Core.Hooks
             // Get all assemblies referencing assembly PLUME.Recorder
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
             var runtimeAsm = assemblies.First(asm => asm.GetName().Name == "PLUME.Recorder");
-            
+
             var registerHookAttributes = assemblies
                 .Where(asm =>
                     asm == runtimeAsm || asm.GetReferencedAssemblies()
@@ -34,22 +34,27 @@ namespace PLUME.Editor.Core.Hooks
                 })
                 .Where(v => v.attribute != null);
 
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("Registered hooks:");
+            
             foreach (var result in registerHookAttributes)
             {
                 if (!result.method.IsPublic)
                 {
-                    Logger.LogWarning($"Method {result.method} is not public. Skipping.");
-                    continue;
+                    throw new InvalidOperationException(
+                        $"Method {result.method} is not public. Only public methods can be registered as hooks.");
                 }
 
                 if (result.attribute.TargetMethod == null)
                 {
-                    Logger.LogWarning($"TargetMethod is null for {result.method}. Skipping.");
-                    continue;
+                    throw new InvalidOperationException($"Method {result.method} has a null target method.");
                 }
 
                 RegisterHook(result.attribute.TargetMethod, result.method);
+                sb.AppendLine($"{result.method} registered for target {result.attribute.TargetMethod.DeclaringType?.Name + "::" + result.attribute.TargetMethod}");
             }
+            
+            Logger.Log(sb.ToString());
         }
 
         private void RegisterHook(MethodBase targetMethod, MethodInfo hookMethod)
@@ -59,9 +64,9 @@ namespace PLUME.Editor.Core.Hooks
             if (hookMethod == null)
                 throw new ArgumentNullException(nameof(hookMethod));
 
-            var hook = MethodHookBuilder.CreateHook(hookMethod.Name, targetMethod, hookMethod);
+            var hook = MethodHookBuilder.CreateHook(hookMethod.DeclaringType?.Name + "." + hookMethod.Name,
+                targetMethod, hookMethod);
             _hooks.Add(hook);
-            Logger.Log($"Registered hook {hookMethod} for {targetMethod}.");
         }
 
         internal IEnumerable<MethodHook> RegisteredHooks => _hooks;

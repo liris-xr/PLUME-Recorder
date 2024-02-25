@@ -19,7 +19,7 @@ namespace PLUME.Core
     {
         public RegisterPropertySetterHookAttribute(Type declaringType, string propertyName) : base(
             declaringType.GetProperty(propertyName,
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)!.GetSetMethod())
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.GetSetMethod())
         {
         }
     }
@@ -29,7 +29,7 @@ namespace PLUME.Core
     {
         public RegisterPropertyGetterHookAttribute(Type declaringType, string propertyName) : base(
             declaringType.GetProperty(propertyName,
-                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)!.GetGetMethod())
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.GetGetMethod())
         {
         }
     }

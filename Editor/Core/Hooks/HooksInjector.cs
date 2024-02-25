@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using Mono.Cecil;
 using Mono.Cecil.Pdb;
 using Mono.Collections.Generic;
@@ -14,22 +15,46 @@ using Logger = PLUME.Core.Logger;
 
 namespace PLUME.Editor.Core.Hooks
 {
-    [InitializeOnLoad]
-    public static class HooksInjector
+    public class HooksInjector
     {
-        private static readonly HooksRegistry HooksRegistry = new();
+        private static HooksInjector _instance;
+        private readonly HooksRegistry _hooksRegistry;
 
-        static HooksInjector()
+        private HooksInjector()
         {
-            HooksRegistry.RegisterHooks();
+            _hooksRegistry = new HooksRegistry();
+            _hooksRegistry.RegisterHooks();
             CompilationPipeline.assemblyCompilationFinished += OnAssemblyCompilationFinished;
         }
 
-        private static void OnAssemblyCompilationFinished(string assemblyPath, CompilerMessage[] messages)
+        ~HooksInjector()
+        {
+            CompilationPipeline.assemblyCompilationFinished -= OnAssemblyCompilationFinished;
+        }
+
+        [InitializeOnLoadMethod]
+        private static void Initialize()
+        {
+            _instance = new HooksInjector();
+        }
+
+        private void OnAssemblyCompilationFinished(string assemblyPath, CompilerMessage[] messages)
         {
             if (assemblyPath.EndsWith("Assembly-CSharp.dll"))
             {
-                InjectHooksInAssembly(assemblyPath);
+                var results = InjectHooksInAssembly(assemblyPath);
+
+                var sb = new StringBuilder();
+                sb.AppendLine("Hooks injected in Assembly-CSharp.dll:");
+                
+                var maxHookLength = results.Max(result => result.HookName.Length); 
+                
+                foreach (var result in results)
+                {
+                    sb.AppendLine($"{result.HookName.PadRight(maxHookLength)} \t -> {result.MethodName}::{result.Instruction}");
+                }
+                
+                Logger.Log(sb.ToString());
             }
 
             if (assemblyPath.EndsWith("Unity.VisualScripting.Core.dll"))
@@ -42,8 +67,10 @@ namespace PLUME.Editor.Core.Hooks
             }
         }
 
-        private static void InjectHooksInAssemblyMethods(string assemblyPath, params MethodBase[] methodInfo)
+        private List<HooksInjectorResult> InjectHooksInAssemblyMethods(string assemblyPath, params MethodBase[] methodInfo)
         {
+            var results = new List<HooksInjectorResult>();
+            
             using var assemblyStream = new FileStream(assemblyPath, FileMode.Open, FileAccess.ReadWrite);
             using var assemblyDefinition =
                 AssemblyDefinition.ReadAssembly(assemblyStream, GetReaderParameters(assemblyPath));
@@ -51,57 +78,41 @@ namespace PLUME.Editor.Core.Hooks
             foreach (var method in methodInfo)
             {
                 var methodDefinition = assemblyDefinition.MainModule.ImportReference(method).Resolve();
-                InjectHooksInMethod(methodDefinition);
+                results.AddRange(InjectHooksInMethod(methodDefinition));
             }
 
             assemblyDefinition.Write(GetWriterParameters());
+            return results;
         }
 
-        private static void InjectHooksInAssembly(string assemblyPath)
+        private List<HooksInjectorResult> InjectHooksInAssembly(string assemblyPath)
         {
+            var results = new List<HooksInjectorResult>();
+            
             using var assemblyStream = new FileStream(assemblyPath, FileMode.Open, FileAccess.ReadWrite);
             using var assemblyDefinition =
                 AssemblyDefinition.ReadAssembly(assemblyStream, GetReaderParameters(assemblyPath));
 
             var collectedTypes = new Collection<TypeDefinition>();
 
-            CollectTypesRecursively(assemblyDefinition.MainModule.Types, IncludeType, collectedTypes);
+            CollectTypesRecursively(assemblyDefinition.MainModule.Types, ShouldIncludeType, collectedTypes);
 
             foreach (var method in collectedTypes.SelectMany(typeDefinition => typeDefinition.Methods))
             {
-                InjectHooksInMethod(method);
+                results.AddRange(InjectHooksInMethod(method));
             }
 
             assemblyDefinition.Write(GetWriterParameters());
+            
+            return results;
         }
 
-        private static WriterParameters GetWriterParameters()
+        private List<HooksInjectorResult> InjectHooksInMethod(MethodDefinition methodDefinition)
         {
-            var writerParameters = new WriterParameters
-            {
-                WriteSymbols = true,
-                SymbolWriterProvider = new PdbWriterProvider()
-            };
-            return writerParameters;
-        }
+            var results = new List<HooksInjectorResult>();
 
-        private static ReaderParameters GetReaderParameters(string assemblyPath)
-        {
-            var readerParameters = new ReaderParameters
-            {
-                ReadingMode = ReadingMode.Immediate,
-                ReadWrite = true,
-                AssemblyResolver = new AssemblyResolver(assemblyPath),
-                ReadSymbols = true,
-                SymbolReaderProvider = new PdbReaderProvider()
-            };
-            return readerParameters;
-        }
-
-        private static void InjectHooksInMethod(MethodDefinition methodDefinition)
-        {
             if (!methodDefinition.HasBody)
-                return;
+                return results;
 
             var worker = methodDefinition.Body.GetILProcessor();
             var instructions = methodDefinition.Body.Instructions;
@@ -110,7 +121,7 @@ namespace PLUME.Editor.Core.Hooks
 
             while (instructionIdx < instructions.Count)
             {
-                foreach (var hook in HooksRegistry.RegisteredHooks)
+                foreach (var hook in _hooksRegistry.RegisteredHooks)
                 {
                     var instruction = instructions[instructionIdx];
 
@@ -123,16 +134,17 @@ namespace PLUME.Editor.Core.Hooks
                     instructionIdx += instructionsAdded;
 
                     if (!success) continue;
-                    Logger.Log(
-                        $"Successfully injected {hook.Name} hook in {methodDefinition.FullName} after instruction {instruction}");
+                    results.Add(new HooksInjectorResult(hook.Name, methodDefinition.FullName, instruction));
                     break;
                 }
 
                 instructionIdx++;
             }
+            
+            return results;
         }
 
-        private static void CollectTypesRecursively(
+        private void CollectTypesRecursively(
             IEnumerable<TypeDefinition> types,
             Predicate<TypeReference> predicate,
             ICollection<TypeDefinition> collectedTypes)
@@ -150,7 +162,7 @@ namespace PLUME.Editor.Core.Hooks
             }
         }
 
-        private static bool IncludeType(TypeReference typeReference)
+        private bool ShouldIncludeType(TypeReference typeReference)
         {
             if (typeReference.Name == "<Module>" ||
                 typeReference.Name == "<PrivateImplementationDetails>" ||
@@ -172,6 +184,29 @@ namespace PLUME.Editor.Core.Hooks
             var isJob = typeReference.IsAssignableFrom(typeof(IJob));
 
             return !isJob;
+        }
+
+        private WriterParameters GetWriterParameters()
+        {
+            var writerParameters = new WriterParameters
+            {
+                WriteSymbols = true,
+                SymbolWriterProvider = new PdbWriterProvider()
+            };
+            return writerParameters;
+        }
+
+        private ReaderParameters GetReaderParameters(string assemblyPath)
+        {
+            var readerParameters = new ReaderParameters
+            {
+                ReadingMode = ReadingMode.Immediate,
+                ReadWrite = true,
+                AssemblyResolver = new AssemblyResolver(assemblyPath),
+                ReadSymbols = true,
+                SymbolReaderProvider = new PdbReaderProvider()
+            };
+            return readerParameters;
         }
     }
 }

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using PLUME.Sample.ProtoBurst;
+using Unity.Collections;
 using UnityEngine;
 using UnityRuntimeGuid;
 using UnityObject = UnityEngine.Object;
@@ -15,7 +17,7 @@ namespace PLUME.Core.Object.SafeRef
 
         public ObjectSafeRef<TObject> GetOrCreateTypedObjectSafeRef<TObject>(TObject obj) where TObject : UnityObject
         {
-            return (ObjectSafeRef<TObject>) GetOrCreateObjectSafeRef(obj);
+            return (ObjectSafeRef<TObject>)GetOrCreateObjectSafeRef(obj);
         }
 
         /// <summary>
@@ -39,12 +41,11 @@ namespace PLUME.Core.Object.SafeRef
             }
 
             var guidRegistryEntry = GetGuidRegistryEntry(obj);
-            var guid = Hash128.Parse(guidRegistryEntry.guid);
-            
+
             var objRefType = typeof(ObjectSafeRef<>).MakeGenericType(obj.GetType());
-            var objRefCtor = objRefType.GetConstructor(new[] { obj.GetType(), typeof(Hash128) });
-            var objRef = (IObjectSafeRef) objRefCtor!.Invoke(new object[] { obj, guid });
-            
+            var objRefCtor = objRefType.GetConstructor(new[] { obj.GetType(), typeof(Guid) });
+            var objRef = (IObjectSafeRef)objRefCtor!.Invoke(new object[] { obj, new Guid(guidRegistryEntry.guid) });
+
             _cachedRefs[instanceId] = objRef;
             return objRef;
         }

@@ -1,16 +1,17 @@
 using System;
 using UnityEngine;
+using Guid = PLUME.Sample.ProtoBurst.Guid;
 
 namespace PLUME.Core.Object
 {
     public readonly struct ObjectIdentifier : IEquatable<ObjectIdentifier>
     {
-        public static ObjectIdentifier Null { get; } = new(0, new Hash128(0, 0, 0, 0));
+        public static ObjectIdentifier Null { get; } = new(0, Guid.Null);
 
         public readonly int InstanceId;
-        public readonly Hash128 GlobalId;
+        public readonly Guid GlobalId;
 
-        public ObjectIdentifier(int instanceId, Hash128 globalId)
+        public ObjectIdentifier(int instanceId, Guid globalId)
         {
             InstanceId = instanceId;
             GlobalId = globalId;

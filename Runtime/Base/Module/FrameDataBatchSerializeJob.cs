@@ -35,7 +35,7 @@ namespace PLUME.Base.Module
                 
                 batchBytes.Capacity = batchBytes.Length + serializedSampleSize;
                 
-                bufferWriter.WriteTag(FrameSample.DataFieldTag);
+                bufferWriter.WriteTag(Frame.DataFieldTag);
                 bufferWriter.WriteLength(Any.ComputeSize(SampleTypeUrlBytes.Length, sampleSize));
                 Any.WriteTo(ref SampleTypeUrlBytes, ref sample, ref bufferWriter);
             }

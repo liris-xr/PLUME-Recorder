@@ -152,7 +152,7 @@ namespace PLUME.Core.Recorder
                 if (objectRecorderModule.IsRecordingObject(objectSafeRef))
                     continue;
 
-                objectRecorderModule.StartRecordingObject(objectSafeRef, markCreated);
+                objectRecorderModule.StartRecordingObject(objectSafeRef, markCreated, _record, _context);
             }
         }
 
@@ -175,7 +175,7 @@ namespace PLUME.Core.Recorder
                 if (!objectRecorderModule.IsRecordingObject(objectSafeRef))
                     continue;
 
-                objectRecorderModule.StopRecordingObject(objectSafeRef, markDestroyed);
+                objectRecorderModule.StopRecordingObject(objectSafeRef, markDestroyed, _record, _context);
             }
         }
 

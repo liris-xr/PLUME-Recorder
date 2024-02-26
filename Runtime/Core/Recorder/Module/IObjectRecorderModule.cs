@@ -7,9 +7,11 @@ namespace PLUME.Core.Recorder.Module
     {
         public Type SupportedObjectType { get; }
 
-        public void StartRecordingObject(IObjectSafeRef objSafeRef, bool markCreated = true);
+        public void StartRecordingObject(IObjectSafeRef objSafeRef, bool markCreated, Record record,
+            RecorderContext recorderContext);
 
-        public void StopRecordingObject(IObjectSafeRef objSafeRef, bool markDestroyed = true);
+        public void StopRecordingObject(IObjectSafeRef objSafeRef, bool markDestroyed, Record record,
+            RecorderContext recorderContext);
 
         public bool IsRecordingObject(IObjectSafeRef objSafeRef);
     }

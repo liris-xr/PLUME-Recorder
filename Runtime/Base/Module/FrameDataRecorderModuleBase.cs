@@ -37,14 +37,19 @@ namespace PLUME.Base.Module
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo)
+        void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo, Record record, RecorderContext context)
         {
-            var frameData = CollectFrameData(frameInfo);
+            var frameData = CollectFrameData(frameInfo, record, context);
 
             lock (_framesData)
             {
                 _framesData.Add(frameInfo, frameData);
             }
+        }
+
+        void IFrameDataRecorderModule.PostEnqueueFrameData(Record record, RecorderContext context)
+        {
+            
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
@@ -194,6 +199,6 @@ namespace PLUME.Base.Module
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
-        protected abstract TFrameData CollectFrameData(FrameInfo frameInfo);
+        protected abstract TFrameData CollectFrameData(FrameInfo frameInfo, Record record, RecorderContext context);
     }
 }

@@ -238,10 +238,15 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             foreach (var module in _frameDataRecorderModules)
             {
-                module.EnqueueFrameData(frame);
+                module.EnqueueFrameData(frame, _record, _context);
             }
-
+            
             _frameQueue.Add(frame);
+            
+            foreach (var module in _frameDataRecorderModules)
+            {
+                module.PostEnqueueFrameData(_record, _context);
+            }
         }
 
         internal void SerializeFrameLoop(Record record)
@@ -252,7 +257,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             var frameDataRawBytes = new NativeList<byte>(Allocator.Persistent);
             var frameDataWriter = new FrameDataWriter(frameDataRawBytes);
 
-            var frameSampleTypeUrl = SampleTypeUrl.Alloc(FrameSample.TypeUrl, Allocator.Persistent);
+            var frameSampleTypeUrl = SampleTypeUrl.Alloc(Sample.ProtoBurst.Frame.TypeUrl, Allocator.Persistent);
 
             while (_shouldSerialize || _frameQueue.Count > 0)
             {
@@ -270,7 +275,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
                     if (!hasData) continue;
 
-                    var frameSample = FrameSample.Pack(frame.FrameNumber, ref frameDataRawBytes, Allocator.Persistent);
+                    var frameSample = Sample.ProtoBurst.Frame.Pack(frame.FrameNumber, ref frameDataRawBytes, Allocator.Persistent);
                     var frameSampleBytes = frameSample.ToBytes(Allocator.Persistent);
                     frameSample.Dispose();
 

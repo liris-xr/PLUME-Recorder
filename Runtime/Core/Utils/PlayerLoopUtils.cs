@@ -8,49 +8,49 @@ namespace PLUME.Core.Utils
     {
         public static void InjectFixedUpdate<T>(PlayerLoopSystem.UpdateFunction fixedUpdate)
         {
-            InjectUpdateInCurrentLoop<T, FixedUpdate>(fixedUpdate);
+            InjectAfterUpdateInCurrentLoop<T, FixedUpdate>(fixedUpdate);
         }
 
         public static void InjectPreUpdate<T>(PlayerLoopSystem.UpdateFunction preUpdate)
         {
-            InjectUpdateInCurrentLoop<T, PreUpdate>(preUpdate);
+            InjectAfterUpdateInCurrentLoop<T, PreUpdate>(preUpdate);
         }
 
         public static void InjectUpdate<T>(PlayerLoopSystem.UpdateFunction update)
         {
-            InjectUpdateInCurrentLoop<T, Update>(update);
+            InjectAfterUpdateInCurrentLoop<T, Update>(update);
         }
 
         public static void InjectEarlyUpdate<T>(PlayerLoopSystem.UpdateFunction earlyUpdate)
         {
-            InjectUpdateInCurrentLoop<T, EarlyUpdate>(earlyUpdate);
+            InjectAfterUpdateInCurrentLoop<T, EarlyUpdate>(earlyUpdate);
         }
 
         public static void InjectPreLateUpdate<T>(PlayerLoopSystem.UpdateFunction preLateUpdate)
         {
-            InjectUpdateInCurrentLoop<T, PreLateUpdate>(preLateUpdate);
+            InjectAfterUpdateInCurrentLoop<T, PreLateUpdate>(preLateUpdate);
         }
 
         public static void InjectPostLateUpdate<T>(PlayerLoopSystem.UpdateFunction postLateUpdate)
         {
-            InjectUpdateInCurrentLoop<T, PostLateUpdate>(postLateUpdate);
+            InjectAfterUpdateInCurrentLoop<T, PostLateUpdate>(postLateUpdate);
         }
 
-        public static bool InjectUpdateInCurrentLoop(Type updateType, PlayerLoopSystem.UpdateFunction updateFunction,
+        public static bool InjectAfterUpdateInCurrentLoop(Type updateType, PlayerLoopSystem.UpdateFunction updateFunction,
             Type playerLoopSystemType)
         {
             var playerLoop = PlayerLoop.GetCurrentPlayerLoop();
-            var success = InjectUpdateInLoop(updateType, updateFunction, ref playerLoop, playerLoopSystemType);
+            var success = InjectAfterUpdateInLoop(updateType, updateFunction, ref playerLoop, playerLoopSystemType);
             PlayerLoop.SetPlayerLoop(playerLoop);
             return success;
         }
 
-        public static bool InjectUpdateInCurrentLoop<TU, TV>(PlayerLoopSystem.UpdateFunction updateFunction)
+        public static bool InjectAfterUpdateInCurrentLoop<TU, TV>(PlayerLoopSystem.UpdateFunction updateFunction)
         {
-            return InjectUpdateInCurrentLoop(typeof(TU), updateFunction, typeof(TV));
+            return InjectAfterUpdateInCurrentLoop(typeof(TU), updateFunction, typeof(TV));
         }
 
-        public static bool InjectUpdateInLoop(Type updateType, PlayerLoopSystem.UpdateFunction updateFunction,
+        public static bool InjectAfterUpdateInLoop(Type updateType, PlayerLoopSystem.UpdateFunction updateFunction,
             ref PlayerLoopSystem playerLoop, Type playerLoopSystemType)
         {
             if (updateType == null || updateFunction == null || playerLoopSystemType == null)
@@ -81,7 +81,7 @@ namespace PLUME.Core.Utils
 
             for (var i = 0; i < playerLoop.subSystemList.Length; ++i)
             {
-                if (InjectUpdateInLoop(updateType, updateFunction, ref playerLoop.subSystemList[i],
+                if (InjectAfterUpdateInLoop(updateType, updateFunction, ref playerLoop.subSystemList[i],
                         playerLoopSystemType))
                     return true;
             }

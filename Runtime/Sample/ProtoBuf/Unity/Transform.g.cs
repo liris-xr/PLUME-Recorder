@@ -30,34 +30,29 @@ namespace PLUME.Sample.Unity {
             "PQoCaWQYASABKAsyMS5wbHVtZS5zYW1wbGUudW5pdHkuVHJhbnNmb3JtR2Ft",
             "ZU9iamVjdElkZW50aWZpZXIiUQoQVHJhbnNmb3JtRGVzdHJveRI9CgJpZBgB",
             "IAEoCzIxLnBsdW1lLnNhbXBsZS51bml0eS5UcmFuc2Zvcm1HYW1lT2JqZWN0",
-            "SWRlbnRpZmllciJzChtUcmFuc2Zvcm1VcGRhdGVTaWJsaW5nSW5kZXgSPQoC",
-            "aWQYASABKAsyMS5wbHVtZS5zYW1wbGUudW5pdHkuVHJhbnNmb3JtR2FtZU9i",
-            "amVjdElkZW50aWZpZXISFQoNc2libGluZ19pbmRleBgCIAEoBSKvAQoVVHJh",
-            "bnNmb3JtVXBkYXRlUGFyZW50Ej0KAmlkGAEgASgLMjEucGx1bWUuc2FtcGxl",
-            "LnVuaXR5LlRyYW5zZm9ybUdhbWVPYmplY3RJZGVudGlmaWVyEkkKCXBhcmVu",
-            "dF9pZBgCIAEoCzIxLnBsdW1lLnNhbXBsZS51bml0eS5UcmFuc2Zvcm1HYW1l",
-            "T2JqZWN0SWRlbnRpZmllckgAiAEBQgwKCl9wYXJlbnRfaWQikwEKHFRyYW5z",
-            "Zm9ybVVwZGF0ZUxvY2FsUG9zaXRpb24SPQoCaWQYASABKAsyMS5wbHVtZS5z",
-            "YW1wbGUudW5pdHkuVHJhbnNmb3JtR2FtZU9iamVjdElkZW50aWZpZXISNAoO",
-            "bG9jYWxfcG9zaXRpb24YAiABKAsyHC5wbHVtZS5zYW1wbGUuY29tbW9uLlZl",
-            "Y3RvcjMilgEKHFRyYW5zZm9ybVVwZGF0ZUxvY2FsUm90YXRpb24SPQoCaWQY",
-            "ASABKAsyMS5wbHVtZS5zYW1wbGUudW5pdHkuVHJhbnNmb3JtR2FtZU9iamVj",
-            "dElkZW50aWZpZXISNwoObG9jYWxfcm90YXRpb24YAiABKAsyHy5wbHVtZS5z",
-            "YW1wbGUuY29tbW9uLlF1YXRlcm5pb24ijQEKGVRyYW5zZm9ybVVwZGF0ZUxv",
-            "Y2FsU2NhbGUSPQoCaWQYASABKAsyMS5wbHVtZS5zYW1wbGUudW5pdHkuVHJh",
-            "bnNmb3JtR2FtZU9iamVjdElkZW50aWZpZXISMQoLbG9jYWxfc2NhbGUYAiAB",
-            "KAsyHC5wbHVtZS5zYW1wbGUuY29tbW9uLlZlY3RvcjNCFaoCElBMVU1FLlNh",
-            "bXBsZS5Vbml0eWIGcHJvdG8z"));
+            "SWRlbnRpZmllciK3AgoPVHJhbnNmb3JtVXBkYXRlEj0KAmlkGAEgASgLMjEu",
+            "cGx1bWUuc2FtcGxlLnVuaXR5LlRyYW5zZm9ybUdhbWVPYmplY3RJZGVudGlm",
+            "aWVyEjkKDmxvY2FsX3Bvc2l0aW9uGAIgASgLMhwucGx1bWUuc2FtcGxlLmNv",
+            "bW1vbi5WZWN0b3IzSACIAQESPAoObG9jYWxfcm90YXRpb24YAyABKAsyHy5w",
+            "bHVtZS5zYW1wbGUuY29tbW9uLlF1YXRlcm5pb25IAYgBARI2Cgtsb2NhbF9z",
+            "Y2FsZRgEIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21tb24uVmVjdG9yM0gCiAEB",
+            "QhEKD19sb2NhbF9wb3NpdGlvbkIRCg9fbG9jYWxfcm90YXRpb25CDgoMX2xv",
+            "Y2FsX3NjYWxlInMKG1RyYW5zZm9ybVVwZGF0ZVNpYmxpbmdJbmRleBI9CgJp",
+            "ZBgBIAEoCzIxLnBsdW1lLnNhbXBsZS51bml0eS5UcmFuc2Zvcm1HYW1lT2Jq",
+            "ZWN0SWRlbnRpZmllchIVCg1zaWJsaW5nX2luZGV4GAIgASgFIq8BChVUcmFu",
+            "c2Zvcm1VcGRhdGVQYXJlbnQSPQoCaWQYASABKAsyMS5wbHVtZS5zYW1wbGUu",
+            "dW5pdHkuVHJhbnNmb3JtR2FtZU9iamVjdElkZW50aWZpZXISSQoJcGFyZW50",
+            "X2lkGAIgASgLMjEucGx1bWUuc2FtcGxlLnVuaXR5LlRyYW5zZm9ybUdhbWVP",
+            "YmplY3RJZGVudGlmaWVySACIAQFCDAoKX3BhcmVudF9pZEIVqgISUExVTUUu",
+            "U2FtcGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Common.Vector3Reflection.Descriptor, global::PLUME.Sample.Common.QuaternionReflection.Descriptor, global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformCreate), global::PLUME.Sample.Unity.TransformCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformDestroy), global::PLUME.Sample.Unity.TransformDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformUpdate), global::PLUME.Sample.Unity.TransformUpdate.Parser, new[]{ "Id", "LocalPosition", "LocalRotation", "LocalScale" }, new[]{ "LocalPosition", "LocalRotation", "LocalScale" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformUpdateSiblingIndex), global::PLUME.Sample.Unity.TransformUpdateSiblingIndex.Parser, new[]{ "Id", "SiblingIndex" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformUpdateParent), global::PLUME.Sample.Unity.TransformUpdateParent.Parser, new[]{ "Id", "ParentId" }, new[]{ "ParentId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformUpdateLocalPosition), global::PLUME.Sample.Unity.TransformUpdateLocalPosition.Parser, new[]{ "Id", "LocalPosition" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformUpdateLocalRotation), global::PLUME.Sample.Unity.TransformUpdateLocalRotation.Parser, new[]{ "Id", "LocalRotation" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformUpdateLocalScale), global::PLUME.Sample.Unity.TransformUpdateLocalScale.Parser, new[]{ "Id", "LocalScale" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformUpdateParent), global::PLUME.Sample.Unity.TransformUpdateParent.Parser, new[]{ "Id", "ParentId" }, new[]{ "ParentId" }, null, null, null)
           }));
     }
     #endregion
@@ -460,6 +455,345 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  public sealed partial class TransformUpdate : pb::IMessage<TransformUpdate>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<TransformUpdate> _parser = new pb::MessageParser<TransformUpdate>(() => new TransformUpdate());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<TransformUpdate> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.TransformReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TransformUpdate() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TransformUpdate(TransformUpdate other) : this() {
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      localPosition_ = other.localPosition_ != null ? other.localPosition_.Clone() : null;
+      localRotation_ = other.localRotation_ != null ? other.localRotation_.Clone() : null;
+      localScale_ = other.localScale_ != null ? other.localScale_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TransformUpdate Clone() {
+      return new TransformUpdate(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "local_position" field.</summary>
+    public const int LocalPositionFieldNumber = 2;
+    private global::PLUME.Sample.Common.Vector3 localPosition_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Vector3 LocalPosition {
+      get { return localPosition_; }
+      set {
+        localPosition_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "local_rotation" field.</summary>
+    public const int LocalRotationFieldNumber = 3;
+    private global::PLUME.Sample.Common.Quaternion localRotation_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Quaternion LocalRotation {
+      get { return localRotation_; }
+      set {
+        localRotation_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "local_scale" field.</summary>
+    public const int LocalScaleFieldNumber = 4;
+    private global::PLUME.Sample.Common.Vector3 localScale_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Vector3 LocalScale {
+      get { return localScale_; }
+      set {
+        localScale_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as TransformUpdate);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(TransformUpdate other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      if (!object.Equals(LocalPosition, other.LocalPosition)) return false;
+      if (!object.Equals(LocalRotation, other.LocalRotation)) return false;
+      if (!object.Equals(LocalScale, other.LocalScale)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (localPosition_ != null) hash ^= LocalPosition.GetHashCode();
+      if (localRotation_ != null) hash ^= LocalRotation.GetHashCode();
+      if (localScale_ != null) hash ^= LocalScale.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (localPosition_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(LocalPosition);
+      }
+      if (localRotation_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(LocalRotation);
+      }
+      if (localScale_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(LocalScale);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (localPosition_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(LocalPosition);
+      }
+      if (localRotation_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(LocalRotation);
+      }
+      if (localScale_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(LocalScale);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (localPosition_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LocalPosition);
+      }
+      if (localRotation_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LocalRotation);
+      }
+      if (localScale_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LocalScale);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(TransformUpdate other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      if (other.localPosition_ != null) {
+        if (localPosition_ == null) {
+          LocalPosition = new global::PLUME.Sample.Common.Vector3();
+        }
+        LocalPosition.MergeFrom(other.LocalPosition);
+      }
+      if (other.localRotation_ != null) {
+        if (localRotation_ == null) {
+          LocalRotation = new global::PLUME.Sample.Common.Quaternion();
+        }
+        LocalRotation.MergeFrom(other.LocalRotation);
+      }
+      if (other.localScale_ != null) {
+        if (localScale_ == null) {
+          LocalScale = new global::PLUME.Sample.Common.Vector3();
+        }
+        LocalScale.MergeFrom(other.LocalScale);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+          case 18: {
+            if (localPosition_ == null) {
+              LocalPosition = new global::PLUME.Sample.Common.Vector3();
+            }
+            input.ReadMessage(LocalPosition);
+            break;
+          }
+          case 26: {
+            if (localRotation_ == null) {
+              LocalRotation = new global::PLUME.Sample.Common.Quaternion();
+            }
+            input.ReadMessage(LocalRotation);
+            break;
+          }
+          case 34: {
+            if (localScale_ == null) {
+              LocalScale = new global::PLUME.Sample.Common.Vector3();
+            }
+            input.ReadMessage(LocalScale);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+          case 18: {
+            if (localPosition_ == null) {
+              LocalPosition = new global::PLUME.Sample.Common.Vector3();
+            }
+            input.ReadMessage(LocalPosition);
+            break;
+          }
+          case 26: {
+            if (localRotation_ == null) {
+              LocalRotation = new global::PLUME.Sample.Common.Quaternion();
+            }
+            input.ReadMessage(LocalRotation);
+            break;
+          }
+          case 34: {
+            if (localScale_ == null) {
+              LocalScale = new global::PLUME.Sample.Common.Vector3();
+            }
+            input.ReadMessage(LocalScale);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  /// TODO: create a custom sample for hierarchy update
+  /// </summary>
   public sealed partial class TransformUpdateSiblingIndex : pb::IMessage<TransformUpdateSiblingIndex>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -474,7 +808,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.TransformReflection.Descriptor.MessageTypes[2]; }
+      get { return global::PLUME.Sample.Unity.TransformReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -709,7 +1043,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.TransformReflection.Descriptor.MessageTypes[3]; }
+      get { return global::PLUME.Sample.Unity.TransformReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -930,738 +1264,6 @@ namespace PLUME.Sample.Unity {
               ParentId = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
             }
             input.ReadMessage(ParentId);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  public sealed partial class TransformUpdateLocalPosition : pb::IMessage<TransformUpdateLocalPosition>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<TransformUpdateLocalPosition> _parser = new pb::MessageParser<TransformUpdateLocalPosition>(() => new TransformUpdateLocalPosition());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TransformUpdateLocalPosition> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.TransformReflection.Descriptor.MessageTypes[4]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TransformUpdateLocalPosition() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TransformUpdateLocalPosition(TransformUpdateLocalPosition other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      localPosition_ = other.localPosition_ != null ? other.localPosition_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TransformUpdateLocalPosition Clone() {
-      return new TransformUpdateLocalPosition(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "local_position" field.</summary>
-    public const int LocalPositionFieldNumber = 2;
-    private global::PLUME.Sample.Common.Vector3 localPosition_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Vector3 LocalPosition {
-      get { return localPosition_; }
-      set {
-        localPosition_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as TransformUpdateLocalPosition);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TransformUpdateLocalPosition other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(LocalPosition, other.LocalPosition)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (localPosition_ != null) hash ^= LocalPosition.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (localPosition_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(LocalPosition);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (localPosition_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(LocalPosition);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (localPosition_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LocalPosition);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TransformUpdateLocalPosition other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.localPosition_ != null) {
-        if (localPosition_ == null) {
-          LocalPosition = new global::PLUME.Sample.Common.Vector3();
-        }
-        LocalPosition.MergeFrom(other.LocalPosition);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (localPosition_ == null) {
-              LocalPosition = new global::PLUME.Sample.Common.Vector3();
-            }
-            input.ReadMessage(LocalPosition);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (localPosition_ == null) {
-              LocalPosition = new global::PLUME.Sample.Common.Vector3();
-            }
-            input.ReadMessage(LocalPosition);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  public sealed partial class TransformUpdateLocalRotation : pb::IMessage<TransformUpdateLocalRotation>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<TransformUpdateLocalRotation> _parser = new pb::MessageParser<TransformUpdateLocalRotation>(() => new TransformUpdateLocalRotation());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TransformUpdateLocalRotation> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.TransformReflection.Descriptor.MessageTypes[5]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TransformUpdateLocalRotation() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TransformUpdateLocalRotation(TransformUpdateLocalRotation other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      localRotation_ = other.localRotation_ != null ? other.localRotation_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TransformUpdateLocalRotation Clone() {
-      return new TransformUpdateLocalRotation(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "local_rotation" field.</summary>
-    public const int LocalRotationFieldNumber = 2;
-    private global::PLUME.Sample.Common.Quaternion localRotation_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Quaternion LocalRotation {
-      get { return localRotation_; }
-      set {
-        localRotation_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as TransformUpdateLocalRotation);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TransformUpdateLocalRotation other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(LocalRotation, other.LocalRotation)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (localRotation_ != null) hash ^= LocalRotation.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (localRotation_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(LocalRotation);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (localRotation_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(LocalRotation);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (localRotation_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LocalRotation);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TransformUpdateLocalRotation other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.localRotation_ != null) {
-        if (localRotation_ == null) {
-          LocalRotation = new global::PLUME.Sample.Common.Quaternion();
-        }
-        LocalRotation.MergeFrom(other.LocalRotation);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (localRotation_ == null) {
-              LocalRotation = new global::PLUME.Sample.Common.Quaternion();
-            }
-            input.ReadMessage(LocalRotation);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (localRotation_ == null) {
-              LocalRotation = new global::PLUME.Sample.Common.Quaternion();
-            }
-            input.ReadMessage(LocalRotation);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  public sealed partial class TransformUpdateLocalScale : pb::IMessage<TransformUpdateLocalScale>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<TransformUpdateLocalScale> _parser = new pb::MessageParser<TransformUpdateLocalScale>(() => new TransformUpdateLocalScale());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TransformUpdateLocalScale> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.TransformReflection.Descriptor.MessageTypes[6]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TransformUpdateLocalScale() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TransformUpdateLocalScale(TransformUpdateLocalScale other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      localScale_ = other.localScale_ != null ? other.localScale_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TransformUpdateLocalScale Clone() {
-      return new TransformUpdateLocalScale(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "local_scale" field.</summary>
-    public const int LocalScaleFieldNumber = 2;
-    private global::PLUME.Sample.Common.Vector3 localScale_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Vector3 LocalScale {
-      get { return localScale_; }
-      set {
-        localScale_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as TransformUpdateLocalScale);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TransformUpdateLocalScale other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(LocalScale, other.LocalScale)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (localScale_ != null) hash ^= LocalScale.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (localScale_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(LocalScale);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (localScale_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(LocalScale);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (localScale_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LocalScale);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TransformUpdateLocalScale other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.localScale_ != null) {
-        if (localScale_ == null) {
-          LocalScale = new global::PLUME.Sample.Common.Vector3();
-        }
-        LocalScale.MergeFrom(other.LocalScale);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (localScale_ == null) {
-              LocalScale = new global::PLUME.Sample.Common.Vector3();
-            }
-            input.ReadMessage(LocalScale);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (localScale_ == null) {
-              LocalScale = new global::PLUME.Sample.Common.Vector3();
-            }
-            input.ReadMessage(LocalScale);
             break;
           }
         }

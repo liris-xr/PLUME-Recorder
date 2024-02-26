@@ -1,30 +1,66 @@
 using System;
+using PLUME.Base.Module.Unity.Transform.Sample;
 using PLUME.Core.Recorder.Module.Frame;
 using Unity.Collections;
 
 namespace PLUME.Base.Module.Unity.Transform
 {
-    public readonly struct TransformFrameData : IFrameData, IDisposable
+    public struct TransformFrameData : IFrameData, IDisposable
     {
-        public NativeList<TransformUpdateLocalPositionSample> DirtySamples { get; }
+        private NativeList<TransformUpdate> _updateSamples;
+        private NativeList<TransformCreate> _createSamples;
+        private NativeList<TransformDestroy> _destroySamples;
 
-        public TransformFrameData(NativeList<TransformUpdateLocalPositionSample> dirtySamples)
+        public TransformFrameData(NativeList<TransformUpdate> updateSamples,
+            NativeList<TransformCreate> createSamples,
+            NativeList<TransformDestroy> destroySamples)
         {
-            DirtySamples = dirtySamples;
+            _updateSamples = updateSamples;
+            _createSamples = createSamples;
+            _destroySamples = destroySamples;
         }
 
         public void Serialize(FrameDataWriter frameDataWriter)
         {
-            var prepareSerializeJob = new FrameDataBatchPrepareSerializeJob<TransformUpdateLocalPositionSample>();
-            var serializeJob = new FrameDataBatchSerializeJob<TransformUpdateLocalPositionSample>();
-            var batchSerializer =
-                new FrameDataBatchSerializer<TransformUpdateLocalPositionSample>(prepareSerializeJob, serializeJob);
-            frameDataWriter.WriteBatch(DirtySamples.AsArray(), batchSerializer);
+            SerializeCreateSamples(frameDataWriter);
+            SerializeDestroySamples(frameDataWriter);
+            SerializeUpdateSamples(frameDataWriter);
         }
+
+        private void SerializeUpdateSamples(FrameDataWriter frameDataWriter)
+        {
+            var prepareSerializeJob = new FrameDataBatchPrepareSerializeJob<TransformUpdate>();
+            var serializeJob = new FrameDataBatchSerializeJob<TransformUpdate>();
+            var batchSerializer =
+                new FrameDataBatchSerializer<TransformUpdate>(prepareSerializeJob, serializeJob);
+            frameDataWriter.WriteBatch(_updateSamples.AsArray(), batchSerializer);
+        }
+        
+        private void SerializeCreateSamples(FrameDataWriter frameDataWriter)
+        {
+            var prepareSerializeJob = new FrameDataBatchPrepareSerializeJob<TransformCreate>();
+            var serializeJob = new FrameDataBatchSerializeJob<TransformCreate>();
+            var batchSerializer =
+                new FrameDataBatchSerializer<TransformCreate>(prepareSerializeJob, serializeJob);
+            frameDataWriter.WriteBatch(_createSamples.AsArray(), batchSerializer);
+        }
+        
+        private void SerializeDestroySamples(FrameDataWriter frameDataWriter)
+        {
+            var prepareSerializeJob = new FrameDataBatchPrepareSerializeJob<TransformDestroy>();
+            var serializeJob = new FrameDataBatchSerializeJob<TransformDestroy>();
+            var batchSerializer =
+                new FrameDataBatchSerializer<TransformDestroy>(prepareSerializeJob, serializeJob);
+            frameDataWriter.WriteBatch(_destroySamples.AsArray(), batchSerializer);
+        }
+
+        public bool IsCreated => _updateSamples.IsCreated;
 
         public void Dispose()
         {
-            DirtySamples.Dispose();
+            _updateSamples.Dispose();
+            _createSamples.Dispose();
+            _destroySamples.Dispose();
         }
     }
 }

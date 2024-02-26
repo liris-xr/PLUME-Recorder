@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Guid = PLUME.Sample.ProtoBurst.Guid;
 using UnityObject = UnityEngine.Object;
 
 namespace PLUME.Core.Object.SafeRef
@@ -28,7 +29,7 @@ namespace PLUME.Core.Object.SafeRef
             TypedObject = null;
         }
 
-        public ObjectSafeRef(TObject @object, Hash128 guid)
+        public ObjectSafeRef(TObject @object, Guid guid)
         {
             Identifier = new ObjectIdentifier(@object.GetInstanceID(), guid);
             TypedObject = @object;

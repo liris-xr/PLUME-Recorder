@@ -33,7 +33,7 @@ namespace PLUME.Base.Module
                 var sample = Samples[i];
                 var sampleSize = sample.ComputeSize();
                 var packedSampleSize = Any.ComputeSize(SampleTypeUrlBytes.Length, sampleSize);
-                var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(FrameSample.DataFieldTag) +
+                var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(Frame.DataFieldTag) +
                                            BufferWriterExtensions.ComputeLengthPrefixSize(packedSampleSize) +
                                            packedSampleSize;
                 

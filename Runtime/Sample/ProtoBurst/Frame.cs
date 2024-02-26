@@ -7,7 +7,7 @@ using Unity.Collections;
 namespace PLUME.Sample.ProtoBurst
 {
     [BurstCompile]
-    public struct FrameSample : IProtoBurstMessage, IDisposable
+    public struct Frame : IProtoBurstMessage, IDisposable
     {
         public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.Frame";
         
@@ -17,17 +17,17 @@ namespace PLUME.Sample.ProtoBurst
         private readonly int _frameNumber;
         private NativeList<byte> _frameDataRawBytes;
 
-        private FrameSample(int frameNumber, NativeList<byte> frameDataRawBytes)
+        private Frame(int frameNumber, NativeList<byte> frameDataRawBytes)
         {
             _frameNumber = frameNumber;
             _frameDataRawBytes = frameDataRawBytes;
         }
 
-        public static FrameSample Pack(int frameNumber, ref NativeList<byte> frameDataRawBytes, Allocator allocator)
+        public static Frame Pack(int frameNumber, ref NativeList<byte> frameDataRawBytes, Allocator allocator)
         {
             var frameDataRawBytesCopy = new NativeList<byte>(frameDataRawBytes.Length, allocator);
             frameDataRawBytesCopy.AddRange(frameDataRawBytes.AsArray());
-            return new FrameSample(frameNumber, frameDataRawBytesCopy);
+            return new Frame(frameNumber, frameDataRawBytesCopy);
         }
         
         public void WriteTo(ref BufferWriter bufferWriter)

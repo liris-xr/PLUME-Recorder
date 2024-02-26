@@ -27,13 +27,13 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             var sampleSize = sample.CalculateSize();
             var packedSampleSize = Any.ComputeSize(sampleTypeUrlBytes.Length, sampleSize);
-            var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(FrameSample.DataFieldTag) +
+            var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(Sample.ProtoBurst.Frame.DataFieldTag) +
                                        BufferWriterExtensions.ComputeLengthPrefixSize(packedSampleSize) +
                                        packedSampleSize;
 
             frameDataRawBytes.SetCapacity(serializedSampleSize);
 
-            bufferWriter.WriteTag(FrameSample.DataFieldTag);
+            bufferWriter.WriteTag(Sample.ProtoBurst.Frame.DataFieldTag);
             bufferWriter.WriteLength(serializedSampleSize);
             Any.WriteTo(ref sampleTypeUrlBytes, ref sample, ref bufferWriter);
 
@@ -60,13 +60,13 @@ namespace PLUME.Core.Recorder.Module.Frame
                 var sample = samples[sampleIdx];
                 var sampleSize = sample.CalculateSize();
                 var packedSampleSize = Any.ComputeSize(sampleTypeUrlBytes.Length, sampleSize);
-                var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(FrameSample.DataFieldTag) +
+                var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(Sample.ProtoBurst.Frame.DataFieldTag) +
                                            BufferWriterExtensions.ComputeLengthPrefixSize(packedSampleSize) +
                                            packedSampleSize;
 
                 frameDataRawBytes.SetCapacity(frameDataRawBytes.Length + serializedSampleSize);
 
-                bufferWriter.WriteTag(FrameSample.DataFieldTag);
+                bufferWriter.WriteTag(Sample.ProtoBurst.Frame.DataFieldTag);
                 bufferWriter.WriteLength(serializedSampleSize);
                 Any.WriteTo(ref sampleTypeUrlBytes, ref sample, ref bufferWriter);
             }
@@ -87,13 +87,13 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             var sampleSize = sample.ComputeSize();
             var packedSampleSize = Any.ComputeSize(sampleTypeUrlBytes.Length, sampleSize);
-            var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(FrameSample.DataFieldTag) +
+            var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(Sample.ProtoBurst.Frame.DataFieldTag) +
                                        BufferWriterExtensions.ComputeLengthPrefixSize(packedSampleSize) +
                                        packedSampleSize;
 
             frameDataRawBytes.SetCapacity(serializedSampleSize);
 
-            bufferWriter.WriteTag(FrameSample.DataFieldTag);
+            bufferWriter.WriteTag(Sample.ProtoBurst.Frame.DataFieldTag);
             bufferWriter.WriteLength(serializedSampleSize);
             Any.WriteTo(ref sampleTypeUrlBytes, ref sample, ref bufferWriter);
 

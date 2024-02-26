@@ -118,7 +118,7 @@ namespace PLUME.Base.Module.Unity.Transform
         {
             var index = IndexOf(objRef);
 
-            if (index != -1)
+            if (index == -1)
                 throw new InvalidOperationException($"Transform {objRef.TypedObject.name} is not in the list");
 
             RemoveAtSwapBack(index);
@@ -165,9 +165,9 @@ namespace PLUME.Base.Module.Unity.Transform
             return _transformAccessArray;
         }
 
-        public NativeArray<ObjectIdentifier>.ReadOnly GetAlignedIdentifiers()
+        public NativeList<ObjectIdentifier> GetAlignedIdentifiers()
         {
-            return _alignedIdentifiers.AsReadOnly();
+            return _alignedIdentifiers;
         }
 
         public void Dispose()

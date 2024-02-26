@@ -18,8 +18,6 @@ namespace PLUME.Base.Hooks
 
         public static Action<Renderer, IEnumerable<Material>> OnSetSharedMaterials;
 
-        public static Action<Renderer, ShadowCastingMode> OnSetShadowCastingMode;
-
         public static Action<Renderer, bool> OnSetEnabled;
         
         public static Action<Renderer, bool> OnSetReceiveShadows;

@@ -14,8 +14,6 @@ namespace PLUME.Base.Hooks
 
         public static Action<GameObject, Component> OnAddComponent;
 
-        public static Action<GameObject, string> OnSetName;
-
         public static Action<GameObject, bool> OnSetActive;
 
         public static Action<GameObject, string> OnSetTag;
@@ -32,28 +30,19 @@ namespace PLUME.Base.Hooks
         [RegisterConstructorHook(typeof(GameObject), typeof(string))]
         public static void ConstructorHook(string name, GameObject go)
         {
-            if (go != null)
-            {
-                OnCreate?.Invoke(go);
-            }
+            OnCreate?.Invoke(go);
         }
 
         [RegisterConstructorHook(typeof(GameObject), typeof(string), typeof(Type[]))]
         public static void ConstructorHook(string name, Type[] components, GameObject go)
         {
-            if (go != null)
-            {
-                OnCreate?.Invoke(go);
-            }
+            OnCreate?.Invoke(go);
         }
 
         [RegisterMethodHook(typeof(GameObject), nameof(GameObject.CreatePrimitive), typeof(PrimitiveType))]
         public static void CreatePrimitiveHook(PrimitiveType type, GameObject go)
         {
-            if (go != null)
-            {
-                OnCreate?.Invoke(go);
-            }
+            OnCreate?.Invoke(go);
         }
 
         [SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
@@ -99,23 +88,17 @@ namespace PLUME.Base.Hooks
             // TODO
             Logger.LogWarning("InstantiateGameObjectsHook not implemented");
         }
-
+        
         [RegisterMethodHook(typeof(GameObject), nameof(GameObject.SetActive), typeof(bool))]
         public static void SetActiveHook(GameObject go, bool active)
         {
-            if (go != null)
-            {
-                OnSetActive?.Invoke(go, active);
-            }
+            OnSetActive?.Invoke(go, active);
         }
 
         [RegisterPropertySetterHook(typeof(GameObject), nameof(GameObject.tag))]
         public static void SetTagHook(GameObject go, string tag)
         {
-            if (go != null)
-            {
-                OnSetTag?.Invoke(go, tag);
-            }
+            OnSetTag?.Invoke(go, tag);
         }
     }
 }

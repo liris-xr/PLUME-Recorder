@@ -2,8 +2,17 @@ namespace PLUME.Core.Recorder.Module.Frame
 {
     public interface IFrameDataRecorderModule : IRecorderModule
     {
-        internal void EnqueueFrameData(FrameInfo frameInfo);
+        /// <summary>
+        /// Enqueues frame data for the given frame info. This method is called by the frame recorder module after
+        /// all modules LateUpdate.
+        /// </summary>
+        /// <param name="frameInfo"></param>
+        /// <param name="record"></param>
+        /// <param name="context"></param>
+        internal void EnqueueFrameData(FrameInfo frameInfo, Record record, RecorderContext context);
 
+        internal void PostEnqueueFrameData(Record record, RecorderContext context);
+        
         internal bool SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter);
 
         internal void FixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)

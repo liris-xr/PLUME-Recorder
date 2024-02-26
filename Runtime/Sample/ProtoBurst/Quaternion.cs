@@ -3,36 +3,40 @@ using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
-using UnityEngine;
+using Unity.Mathematics;
 
 namespace PLUME.Sample.ProtoBurst
 {
     [BurstCompile]
     [StructLayout(LayoutKind.Sequential)]
-    public struct Vector3Sample : IProtoBurstMessage
+    public struct Quaternion : IProtoBurstMessage
     {
-        public static readonly FixedString64Bytes TypeUrl = "fr.liris.plume/plume.sample.common.Vector3";
+        public static readonly FixedString64Bytes TypeUrl = "fr.liris.plume/plume.sample.common.Quaternion";
 
         private static readonly uint XFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.Fixed32);
         private static readonly uint YFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.Fixed32);
         private static readonly uint ZFieldTag = WireFormat.MakeTag(3, WireFormat.WireType.Fixed32);
+        private static readonly uint WFieldTag = WireFormat.MakeTag(4, WireFormat.WireType.Fixed32);
 
-        public float X;
-        public float Y;
-        public float Z;
+        private float X;
+        private float Y;
+        private float Z;
+        private float W;
 
-        public Vector3Sample(Vector3 vec)
+        public Quaternion(quaternion vec)
         {
-            X = vec.x;
-            Y = vec.y;
-            Z = vec.z;
+            X = vec.value.x;
+            Y = vec.value.y;
+            Z = vec.value.z;
+            W = vec.value.w;
         }
         
-        public Vector3Sample(float x, float y, float z)
+        public Quaternion(float x, float y, float z, float w)
         {
             X = x;
             Y = y;
             Z = z;
+            W = w;
         }
         
         public void WriteTo(ref BufferWriter bufferWriter)
@@ -54,6 +58,12 @@ namespace PLUME.Sample.ProtoBurst
                 bufferWriter.WriteTag(ZFieldTag);
                 bufferWriter.WriteFloat(Z);
             }
+            
+            if (W != 0)
+            {
+                bufferWriter.WriteTag(WFieldTag);
+                bufferWriter.WriteFloat(W);
+            }
         }
 
         public int ComputeSize()
@@ -73,6 +83,11 @@ namespace PLUME.Sample.ProtoBurst
             if (Z != 0)
             {
                 size += BufferWriterExtensions.ComputeTagSize(ZFieldTag) + BufferWriterExtensions.Fixed32Size;
+            }
+            
+            if (W != 0)
+            {
+                size += BufferWriterExtensions.ComputeTagSize(WFieldTag) + BufferWriterExtensions.Fixed32Size;
             }
             
             return size;

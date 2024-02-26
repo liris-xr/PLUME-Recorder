@@ -21,7 +21,7 @@ namespace PLUME.Base.Module.Unity.Transform
         private NativeArray<PositionState> _positionStatesWorkCopy;
         private JobHandle _pollNewPositionStatesJobHandle;
 
-        public TransformPositionStateUpdater(NativeHashMap<ObjectIdentifier, PositionState> positionStates,
+        internal TransformPositionStateUpdater(NativeHashMap<ObjectIdentifier, PositionState> positionStates,
             DynamicTransformAccessArray transformAccessArray,
             float angularThreshold, float positionThresholdSq, float scaleThresholdSq)
         {
@@ -38,7 +38,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _identifiersWorkCopy = _positionStates.GetKeyArray(Allocator.Persistent);
             _positionStatesWorkCopy = _positionStates.GetValueArray(Allocator.Persistent);
 
-            var pollTransformStatesJob = new PollPositionStatesJob
+            var pollTransformStatesJob = new UpdatePositionStatesJob
             {
                 PositionStates = _positionStatesWorkCopy,
                 AngularThreshold = _angularThreshold,

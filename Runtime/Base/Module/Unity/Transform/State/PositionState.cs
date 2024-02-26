@@ -1,25 +1,27 @@
+using Unity.Burst;
 using Unity.Mathematics;
 
 namespace PLUME.Base.Module.Unity.Transform.State
 {
-    public struct PositionState
+    [BurstCompile]
+    internal struct PositionState
     {
         public float3 LocalPosition;
-        public bool LocalPositionChanged;
+        public bool LocalPositionDirty;
 
         public quaternion LocalRotation;
-        public bool LocalRotationChanged;
+        public bool LocalRotationDirty;
 
         public float3 LocalScale;
-        public bool LocalScaleChanged;
-        
-        public bool HasChanged => LocalPositionChanged || LocalRotationChanged || LocalScaleChanged;
+        public bool LocalScaleDirty;
 
-        public void CleanUp()
+        public bool IsDirty => LocalPositionDirty || LocalRotationDirty || LocalScaleDirty;
+
+        public void MarkClean()
         {
-            LocalPositionChanged = false;
-            LocalRotationChanged = false;
-            LocalScaleChanged = false;
+            LocalPositionDirty = false;
+            LocalRotationDirty = false;
+            LocalScaleDirty = false;
         }
     }
 }

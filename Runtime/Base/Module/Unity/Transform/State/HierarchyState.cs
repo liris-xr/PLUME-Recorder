@@ -1,13 +1,23 @@
 using PLUME.Sample.ProtoBurst;
+using Unity.Burst;
 
 namespace PLUME.Base.Module.Unity.Transform.State
 {
-    public struct HierarchyState
+    [BurstCompile]
+    internal struct HierarchyState
     {
         public TransformGameObjectIdentifier ParentIdentifier;
-        public bool ParentChanged;
-        
+        public bool ParentDirty;
+
         public int SiblingIndex;
-        public bool SiblingIndexChanged;
+        public bool SiblingIndexDirty;
+        
+        public bool IsDirty => ParentDirty || SiblingIndexDirty;
+        
+        public void MarkClean()
+        {
+            ParentDirty = false;
+            SiblingIndexDirty = false;
+        }
     }
 }

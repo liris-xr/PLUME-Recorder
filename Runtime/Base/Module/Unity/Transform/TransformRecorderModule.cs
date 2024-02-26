@@ -43,6 +43,7 @@ namespace PLUME.Base.Module.Unity.Transform
                 angularThreshold, positionThresholdSq, scaleThresholdSq);
 
             TransformHooks.OnSetParent += (t, parent) => OnSetParent(t, parent, ctx);
+            TransformHooks.OnSetSiblingIndex += (t, siblingIdx) => OnSetSiblingIndex(t, siblingIdx, ctx);
         }
 
         protected override void OnDestroy(RecorderContext ctx)
@@ -80,13 +81,13 @@ namespace PLUME.Base.Module.Unity.Transform
                 LocalRotation = localRotation,
                 LocalScale = localScale
             };
-            
+
             var initialHierarchyState = new HierarchyState
             {
                 ParentIdentifier = parentIdentifier,
                 SiblingIndex = siblingIndex
             };
-            
+
             _transformAccessArray.Add(objSafeRef);
             _gameObjectIdentifiers.Add(objSafeRef.Identifier, goSafeRef.Identifier);
             _positionStates.Add(objSafeRef.Identifier, initialPositionState);
@@ -112,14 +113,37 @@ namespace PLUME.Base.Module.Unity.Transform
             if (!IsRecordingObject(tSafeRef))
                 return;
 
-            var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(parent);
-            var parentGameObjectSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(parent.gameObject);
-            var parentIdentifier =
-                new TransformGameObjectIdentifier(parentSafeRef.Identifier, parentGameObjectSafeRef.Identifier);
+            var parentIdentifier = TransformGameObjectIdentifier.Null;
 
-            // var newState = _positionStates[tSafeRef.Identifier];
-            // newState.ParentIdentifier = parentIdentifier;
-            // _positionStates[tSafeRef.Identifier] = newState;
+            if (parent != null)
+            {
+                var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(parent);
+                var parentGameObjectSafeRef =
+                    ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(parent.gameObject);
+                parentIdentifier =
+                    new TransformGameObjectIdentifier(parentSafeRef.Identifier, parentGameObjectSafeRef.Identifier);
+            }
+
+            var hierarchyState = _hierarchyStates[tSafeRef.Identifier];
+            hierarchyState.ParentDirty = parentIdentifier != hierarchyState.ParentIdentifier;
+            hierarchyState.ParentIdentifier = parentIdentifier;
+            _hierarchyStates[tSafeRef.Identifier] = hierarchyState;
+        }
+
+        private void OnSetSiblingIndex(UnityEngine.Transform t, int siblingIndex, RecorderContext ctx)
+        {
+            if (!IsRecording)
+                return;
+
+            var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(t);
+
+            if (!IsRecordingObject(tSafeRef))
+                return;
+
+            var hierarchyState = _hierarchyStates[tSafeRef.Identifier];
+            hierarchyState.SiblingIndexDirty = siblingIndex != hierarchyState.SiblingIndex;
+            hierarchyState.SiblingIndex = siblingIndex;
+            _hierarchyStates[tSafeRef.Identifier] = hierarchyState;
         }
 
         protected override void OnStopRecording(Record record, RecorderContext recorderContext)

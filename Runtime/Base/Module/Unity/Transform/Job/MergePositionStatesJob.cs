@@ -7,7 +7,7 @@ using Unity.Jobs;
 namespace PLUME.Base.Module.Unity.Transform.Job
 {
     [BurstCompile]
-    public struct MergePositionStatesJob : IJobParallelForBatch
+    internal struct MergePositionStatesJob : IJobParallelForBatch
     {
         [ReadOnly] public NativeArray<PositionState> PositionStatesWorkCopy;
         [ReadOnly] public NativeArray<ObjectIdentifier> IdentifiersWorkCopy;

@@ -13,30 +13,46 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
         public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.TransformUpdate";
 
         private static readonly uint IdentifierFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.LengthDelimited);
-        private static readonly uint LocalPositionFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
-        private static readonly uint LocalRotationFieldTag = WireFormat.MakeTag(3, WireFormat.WireType.LengthDelimited);
-        private static readonly uint LocalScaleFieldTag = WireFormat.MakeTag(4, WireFormat.WireType.LengthDelimited);
+        private static readonly uint ParentIdentifierFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
+        private static readonly uint SiblingIndexFieldTag = WireFormat.MakeTag(3, WireFormat.WireType.VarInt);
+        private static readonly uint LocalPositionFieldTag = WireFormat.MakeTag(4, WireFormat.WireType.LengthDelimited);
+        private static readonly uint LocalRotationFieldTag = WireFormat.MakeTag(5, WireFormat.WireType.LengthDelimited);
+        private static readonly uint LocalScaleFieldTag = WireFormat.MakeTag(6, WireFormat.WireType.LengthDelimited);
 
         private TransformGameObjectIdentifier _identifier;
 
-        private bool _hasLocalPosition;
+        private bool _hasParentField;
+        private TransformGameObjectIdentifier _parent;
+        
+        private bool _hasSiblingIndexField;
+        private int _siblingIndex;
+
+        private bool _hasLocalPositionField;
         private Vector3 _localPosition;
 
-        private bool _hasLocalRotation;
+        private bool _hasLocalRotationField;
         private Quaternion _localRotation;
 
-        private bool _hasLocalScale;
+        private bool _hasLocalScaleField;
         private Vector3 _localScale;
 
         public TransformUpdate(TransformGameObjectIdentifier identifier)
         {
             _identifier = identifier;
-
-            _hasLocalPosition = false;
+            
+            _hasParentField = false;
+            _parent = default;
+            
+            _hasSiblingIndexField = false;
+            _siblingIndex = default;
+            
+            _hasLocalPositionField = false;
             _localPosition = default;
-            _hasLocalRotation = false;
+            
+            _hasLocalRotationField = false;
             _localRotation = default;
-            _hasLocalScale = false;
+            
+            _hasLocalScaleField = false;
             _localScale = default;
         }
 
@@ -45,19 +61,31 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
             bufferWriter.WriteTag(IdentifierFieldTag);
             bufferWriter.WriteLengthPrefixedMessage(ref _identifier);
 
-            if (_hasLocalPosition)
+            if (_hasParentField)
+            {
+                bufferWriter.WriteTag(ParentIdentifierFieldTag);
+                bufferWriter.WriteLengthPrefixedMessage(ref _parent);
+            }
+            
+            if (_hasSiblingIndexField)
+            {
+                bufferWriter.WriteTag(SiblingIndexFieldTag);
+                bufferWriter.WriteInt32(_siblingIndex);
+            }
+            
+            if (_hasLocalPositionField)
             {
                 bufferWriter.WriteTag(LocalPositionFieldTag);
                 bufferWriter.WriteLengthPrefixedMessage(ref _localPosition);
             }
 
-            if (_hasLocalRotation)
+            if (_hasLocalRotationField)
             {
                 bufferWriter.WriteTag(LocalRotationFieldTag);
                 bufferWriter.WriteLengthPrefixedMessage(ref _localRotation);
             }
 
-            if (_hasLocalScale)
+            if (_hasLocalScaleField)
             {
                 bufferWriter.WriteTag(LocalScaleFieldTag);
                 bufferWriter.WriteLengthPrefixedMessage(ref _localScale);
@@ -71,19 +99,31 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
             size += BufferWriterExtensions.ComputeTagSize(IdentifierFieldTag) +
                     BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref _identifier);
 
-            if (_hasLocalPosition)
+            if (_hasParentField)
+            {
+                size += BufferWriterExtensions.ComputeTagSize(ParentIdentifierFieldTag) +
+                        BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref _parent);
+            }
+            
+            if (_hasSiblingIndexField)
+            {
+                size += BufferWriterExtensions.ComputeTagSize(SiblingIndexFieldTag) +
+                        BufferWriterExtensions.ComputeInt32Size(_siblingIndex);
+            }
+            
+            if (_hasLocalPositionField)
             {
                 size += BufferWriterExtensions.ComputeTagSize(LocalPositionFieldTag) +
                         BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref _localPosition);
             }
 
-            if (_hasLocalRotation)
+            if (_hasLocalRotationField)
             {
                 size += BufferWriterExtensions.ComputeTagSize(LocalRotationFieldTag) +
                         BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref _localRotation);
             }
 
-            if (_hasLocalScale)
+            if (_hasLocalScaleField)
             {
                 size += BufferWriterExtensions.ComputeTagSize(LocalScaleFieldTag) +
                         BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref _localScale);
@@ -97,21 +137,33 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
             return SampleTypeUrl.Alloc(TypeUrl, allocator);
         }
 
+        public void SetParent(TransformGameObjectIdentifier parent)
+        {
+            _hasParentField = true;
+            _parent = parent;
+        }
+        
+        public void SetSiblingIndex(int siblingIndex)
+        {
+            _hasSiblingIndexField = true;
+            _siblingIndex = siblingIndex;
+        }
+        
         public void SetLocalPosition(float3 localPosition)
         {
-            _hasLocalPosition = true;
+            _hasLocalPositionField = true;
             _localPosition = new Vector3(localPosition);
         }
 
         public void SetLocalRotation(quaternion localRotation)
         {
-            _hasLocalRotation = true;
+            _hasLocalRotationField = true;
             _localRotation = new Quaternion(localRotation);
         }
 
         public void SetLocalScale(float3 localScale)
         {
-            _hasLocalScale = true;
+            _hasLocalScaleField = true;
             _localScale = new Vector3(localScale);
         }
     }

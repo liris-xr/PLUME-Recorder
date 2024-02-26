@@ -10,7 +10,7 @@ namespace PLUME.Base.Module.Unity.Transform.Job
     /// Update the LocalPosition, LocalScale and LocalRotation of the recorded transforms in their corresponding <see cref="TransformState"/>.
     /// </summary>
     [BurstCompile]
-    public struct PollPositionStatesJob : IJobParallelForTransform
+    internal struct UpdatePositionStatesJob : IJobParallelForTransform
     {
         public float AngularThreshold; // in radians
         public float PositionThresholdSq;
@@ -40,9 +40,9 @@ namespace PLUME.Base.Module.Unity.Transform.Job
                 LocalPosition = localPosition,
                 LocalRotation = localRotation,
                 LocalScale = localScale,
-                LocalPositionChanged = localPositionChanged,
-                LocalRotationChanged = localRotationChanged,
-                LocalScaleChanged = localScaleChanged
+                LocalPositionDirty = localPositionChanged,
+                LocalRotationDirty = localRotationChanged,
+                LocalScaleDirty = localScaleChanged
             };
             
             PositionStates[index] = newPositionState;

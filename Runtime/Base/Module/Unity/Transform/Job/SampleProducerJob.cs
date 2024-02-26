@@ -9,14 +9,14 @@ using Unity.Jobs;
 namespace PLUME.Base.Module.Unity.Transform.Job
 {
     [BurstCompile]
-    public struct SampleProducerJob : IJobParallelForBatch
+    internal struct SampleProducerJob : IJobParallelForBatch
     {
         [ReadOnly] public NativeArray<ObjectIdentifier> TransformIdentifiers;
         [ReadOnly] public NativeHashMap<ObjectIdentifier, ObjectIdentifier> GameObjectsIdentifiers;
-        
-        [ReadOnly] public NativeHashMap<ObjectIdentifier, PositionState> PositionStates;
-        [ReadOnly] public NativeHashMap<ObjectIdentifier, HierarchyState> HierarchyStates;
-        
+
+        public NativeHashMap<ObjectIdentifier, PositionState> PositionStates;
+        public NativeHashMap<ObjectIdentifier, HierarchyState> HierarchyStates;
+
         [ReadOnly] public NativeHashSet<ObjectIdentifier>.ReadOnly CreatedInFrameIdentifiers;
         [ReadOnly] public NativeHashSet<ObjectIdentifier>.ReadOnly DestroyedInFrameIdentifiers;
 
@@ -31,7 +31,7 @@ namespace PLUME.Base.Module.Unity.Transform.Job
                 var transformIdentifier = TransformIdentifiers[idx];
                 var gameObjectIdentifier = GameObjectsIdentifiers[transformIdentifier];
                 var identifier = new TransformGameObjectIdentifier(transformIdentifier, gameObjectIdentifier);
-                
+
                 var hierarchyState = HierarchyStates[transformIdentifier];
                 var positionState = PositionStates[transformIdentifier];
                 var createdInFrame = CreatedInFrameIdentifiers.Contains(transformIdentifier);
@@ -42,32 +42,47 @@ namespace PLUME.Base.Module.Unity.Transform.Job
                     DestroySamples.AddNoResize(new TransformDestroy(identifier));
                     continue;
                 }
-                
+
                 if (createdInFrame)
                 {
                     CreateSamples.AddNoResize(new TransformCreate(identifier));
                 }
-                
-                if(!createdInFrame && !positionState.HasChanged)
+
+                if (!createdInFrame && !positionState.IsDirty && !hierarchyState.IsDirty)
                     continue;
-                    
+
                 var updateSample = new TransformUpdate(identifier);
                 
-                if (positionState.LocalPositionChanged || createdInFrame)
+                if(hierarchyState.ParentDirty || createdInFrame)
+                {
+                    updateSample.SetParent(hierarchyState.ParentIdentifier);
+                }
+                
+                if(hierarchyState.SiblingIndexDirty || createdInFrame)
+                {
+                    updateSample.SetSiblingIndex(hierarchyState.SiblingIndex);
+                }
+
+                if (positionState.LocalPositionDirty || createdInFrame)
                 {
                     updateSample.SetLocalPosition(positionState.LocalPosition);
                 }
-                
-                if (positionState.LocalRotationChanged || createdInFrame)
+
+                if (positionState.LocalRotationDirty || createdInFrame)
                 {
                     updateSample.SetLocalRotation(positionState.LocalRotation);
                 }
-                
-                if (positionState.LocalScaleChanged || createdInFrame)
+
+                if (positionState.LocalScaleDirty || createdInFrame)
                 {
                     updateSample.SetLocalScale(positionState.LocalScale);
                 }
                 
+                positionState.MarkClean();
+                hierarchyState.MarkClean();
+                PositionStates[transformIdentifier] = positionState;
+                HierarchyStates[transformIdentifier] = hierarchyState;
+
                 UpdateSamples.AddNoResize(updateSample);
             }
         }

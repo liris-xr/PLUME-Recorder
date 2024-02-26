@@ -13,9 +13,9 @@ namespace PLUME.Core.Settings
         [SerializeField] [Tooltip("If true, the recorder will start recording as soon as the game starts.")]
         private bool startOnPlay = true;
 
-        public static RecorderSettings GetOrCreate()
+        internal override string GetSettingsFileName()
         {
-            return GetOrCreateInternal<RecorderSettings>("RecorderSettings");
+            return "RecorderSettings";
         }
 
         internal override string GetSettingsWindowPath()

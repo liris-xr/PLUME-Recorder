@@ -7,11 +7,8 @@ namespace PLUME.Core.Settings
     [Serializable]
     public sealed class FrameRecorderModuleSettings : RecorderModuleSettings
     {
-        internal static readonly string SettingsWindowPath =
-            Path.Join(RecorderSettings.SettingsWindowPath, "Unity Frame Recorder");
-        
         public float UpdateRate => updateRate;
-        
+
         [SerializeField]
         [Tooltip("Determines the maximum number of frames per second that the Unity frame recorder will capture.")]
         internal float updateRate = 140;
@@ -24,15 +21,15 @@ namespace PLUME.Core.Settings
                 updateRate = 0;
             }
         }
-        
-        public static FrameRecorderModuleSettings GetOrCreate()
+
+        internal override string GetSettingsFileName()
         {
-            return GetOrCreateInternal<FrameRecorderModuleSettings>("FrameRecorderModuleSettings");
+            return "FrameRecorderModuleSettings";
         }
 
         internal override string GetSettingsWindowPath()
         {
-            return SettingsWindowPath;
+            return Path.Join(base.GetSettingsWindowPath(), "Unity Frame Recorder");
         }
     }
 }

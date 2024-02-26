@@ -4,6 +4,7 @@ using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Writer;
 using PLUME.Core.Scripts;
+using PLUME.Core.Settings;
 using PLUME.Sample.Common;
 using UnityEngine;
 
@@ -91,7 +92,8 @@ namespace PLUME.Core.Recorder
             var objSafeRefProvider = new ObjectSafeRefProvider();
             var recorderModules = RecorderModuleManager.InstantiateRecorderModulesFromAllAssemblies();
             var dataDispatcher = new DataDispatcher();
-            var recorderContext = new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider);
+            var settingsProvider = new FileSettingsProvider();
+            var recorderContext = new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider, settingsProvider);
             
             Instance = new PlumeRecorder(dataDispatcher, recorderContext);
 

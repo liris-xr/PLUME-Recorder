@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using PLUME.Core.Settings;
 using UnityEngine;
 #if UNITY_EDITOR
@@ -33,14 +34,14 @@ namespace PLUME.Base.Settings
 #endif
         }
 
-        public static GameObjectRecorderModuleSettings GetOrCreate()
+        internal override string GetSettingsFileName()
         {
-            return GetOrCreate<GameObjectRecorderModuleSettings>("GameObjectRecorderModuleSettings");
+            return "GameObjectRecorderModuleSettings";
         }
 
-        protected override string GetSettingsWindowSubPath()
+        internal override string GetSettingsWindowPath()
         {
-            return "GameObject";
+            return Path.Join(base.GetSettingsWindowPath(), "GameObject");
         }
     }
 }

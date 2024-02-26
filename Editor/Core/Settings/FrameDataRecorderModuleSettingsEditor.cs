@@ -4,7 +4,7 @@ using UnityEditor;
 namespace PLUME.Editor.Core.Settings
 {
     [CustomEditor(typeof(FrameDataRecorderModuleSettings), true)]
-    public class FrameDataRecorderModuleSettingsEditor : UnityEditor.Editor
+    public class FrameDataRecorderModuleSettingsEditor : SettingsEditor<FrameDataRecorderModuleSettings>
     {
         protected const string ScriptPropertyPath = "m_Script";
         private const string EnabledPropertyPath = nameof(RecorderModuleSettings.enabled);
@@ -15,7 +15,7 @@ namespace PLUME.Editor.Core.Settings
 
         private void OnEnable()
         {
-            _frameRecorderModuleSettings = FrameRecorderModuleSettings.GetOrCreate();
+            _frameRecorderModuleSettings = GetSettings<FrameRecorderModuleSettings>();
             _serializedSettings = new SerializedObject(target);
             _enabledProperty = _serializedSettings.FindProperty(EnabledPropertyPath);
         }

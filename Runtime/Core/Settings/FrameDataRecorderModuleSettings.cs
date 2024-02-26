@@ -6,16 +6,9 @@ namespace PLUME.Core.Settings
     [Serializable]
     public abstract class FrameDataRecorderModuleSettings : RecorderModuleSettings
     {
-        protected static T GetOrCreate<T>(string path) where T : FrameDataRecorderModuleSettings
+        internal override string GetSettingsWindowPath()
         {
-            return GetOrCreateInternal<T>(Path.Join("FrameDataRecorderModules", path));
+            return Path.Join(base.GetSettingsWindowPath(), "Unity Frame Recorder");
         }
-        
-        internal sealed override string GetSettingsWindowPath()
-        {
-            return Path.Join(FrameRecorderModuleSettings.SettingsWindowPath, GetSettingsWindowSubPath());
-        }
-
-        protected abstract string GetSettingsWindowSubPath();
     }
 }

@@ -39,13 +39,13 @@ namespace PLUME.Core.Recorder.Module.Frame
         private long _deltaTime; // in nanoseconds
         private bool _shouldRunUpdate;
 
-        void IRecorderModule.Create(RecorderContext recorderContext)
+        void IRecorderModule.Create(RecorderContext ctx)
         {
-            _context = recorderContext;
+            _context = ctx;
             _frameQueue = new BlockingCollection<FrameInfo>(new ConcurrentQueue<FrameInfo>());
-            _frameDataRecorderModules = recorderContext.Modules.OfType<IFrameDataRecorderModule>().ToArray();
+            _frameDataRecorderModules = ctx.Modules.OfType<IFrameDataRecorderModule>().ToArray();
 
-            var settings = FrameRecorderModuleSettings.GetOrCreate();
+            var settings = ctx.SettingsProvider.GetOrCreate<FrameRecorderModuleSettings>();
             _updateInterval = (long)(1_000_000_000 / settings.UpdateRate);
 
             PlayerLoopUtils.InjectEarlyUpdate<RecorderEarlyUpdate>(EarlyUpdate);

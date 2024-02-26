@@ -28,7 +28,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnCreate(RecorderContext ctx)
         {
-            var settings = TransformRecorderModuleSettings.GetOrCreate();
+            var settings = ctx.SettingsProvider.GetOrCreate<TransformRecorderModuleSettings>();
             var angularThreshold = settings.AngularThreshold;
             var positionThresholdSq = settings.PositionThreshold * settings.PositionThreshold;
             var scaleThresholdSq = settings.ScaleThreshold * settings.ScaleThreshold;

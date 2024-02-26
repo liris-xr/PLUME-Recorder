@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
+using PLUME.Core.Settings;
 
 namespace PLUME.Core.Recorder
 {
@@ -9,11 +10,13 @@ namespace PLUME.Core.Recorder
     {
         public readonly ReadOnlyCollection<IRecorderModule> Modules;
         public readonly ObjectSafeRefProvider ObjectSafeRefProvider;
+        public readonly ISettingsProvider SettingsProvider;
 
-        public RecorderContext(ReadOnlyCollection<IRecorderModule> modules, ObjectSafeRefProvider objectSafeRefProvider)
+        public RecorderContext(ReadOnlyCollection<IRecorderModule> modules, ObjectSafeRefProvider objectSafeRefProvider, ISettingsProvider settingsProvider)
         {
             Modules = modules;
             ObjectSafeRefProvider = objectSafeRefProvider;
+            SettingsProvider = settingsProvider;
         }
 
         /// <summary>

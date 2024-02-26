@@ -8,7 +8,7 @@ namespace PLUME.Editor.Core.Settings.Provider
         [SettingsProvider]
         public static SettingsProvider CreateSettingsProvider()
         {
-            var settings = RecorderSettings.GetOrCreate();
+            var settings = SettingsEditor.GetSettings<RecorderSettings>();
             return CreateSettingsProvider(settings);
         }
 

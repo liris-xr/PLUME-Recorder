@@ -40,7 +40,7 @@ namespace PLUME.Editor
 
                 try
                 {
-                    foreach (var settings in Resources.LoadAll<Settings>(Settings.BasePath))
+                    foreach (var settings in Resources.LoadAll<Settings>(FileSettingsProvider.BasePath))
                     {
                         settings.OnValidate();
                     }

@@ -13,13 +13,13 @@ namespace PLUME.Base.Hooks
         [RegisterPropertySetterHook(typeof(MeshFilter), nameof(MeshFilter.sharedMesh))]
         public static void SetSharedMeshHook(MeshFilter meshFilter, Mesh sharedMesh)
         {
-            Debug.Log("SetSharedMeshHook: " + sharedMesh);
+            OnSetSharedMesh?.Invoke(meshFilter, sharedMesh);
         }
         
         [RegisterPropertySetterHook(typeof(MeshFilter), nameof(MeshFilter.mesh))]
         public static void SetMeshHook(MeshFilter meshFilter, Mesh mesh)
         {
-            Debug.Log("SetMeshHook: " + mesh);
+            OnSetMesh?.Invoke(meshFilter, mesh);
         }
     }
 }

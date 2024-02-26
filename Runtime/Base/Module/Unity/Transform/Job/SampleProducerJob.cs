@@ -11,14 +11,14 @@ namespace PLUME.Base.Module.Unity.Transform.Job
     [BurstCompile]
     public struct SampleProducerJob : IJobParallelForBatch
     {
-        [ReadOnly] public NativeList<ObjectIdentifier> TransformIdentifiers;
+        [ReadOnly] public NativeArray<ObjectIdentifier> TransformIdentifiers;
         [ReadOnly] public NativeHashMap<ObjectIdentifier, ObjectIdentifier> GameObjectsIdentifiers;
         
         [ReadOnly] public NativeHashMap<ObjectIdentifier, PositionState> PositionStates;
         [ReadOnly] public NativeHashMap<ObjectIdentifier, HierarchyState> HierarchyStates;
         
-        [ReadOnly] public NativeHashSet<ObjectIdentifier>.ReadOnly CreatedInFrame;
-        [ReadOnly] public NativeHashSet<ObjectIdentifier>.ReadOnly DestroyedInFrame;
+        [ReadOnly] public NativeHashSet<ObjectIdentifier>.ReadOnly CreatedInFrameIdentifiers;
+        [ReadOnly] public NativeHashSet<ObjectIdentifier>.ReadOnly DestroyedInFrameIdentifiers;
 
         [WriteOnly] public NativeList<TransformUpdate>.ParallelWriter UpdateSamples;
         [WriteOnly] public NativeList<TransformCreate>.ParallelWriter CreateSamples;
@@ -34,8 +34,8 @@ namespace PLUME.Base.Module.Unity.Transform.Job
                 
                 var hierarchyState = HierarchyStates[transformIdentifier];
                 var positionState = PositionStates[transformIdentifier];
-                var createdInFrame = CreatedInFrame.Contains(transformIdentifier);
-                var destroyedInFrame = DestroyedInFrame.Contains(transformIdentifier);
+                var createdInFrame = CreatedInFrameIdentifiers.Contains(transformIdentifier);
+                var destroyedInFrame = DestroyedInFrameIdentifiers.Contains(transformIdentifier);
 
                 if (destroyedInFrame)
                 {

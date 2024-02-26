@@ -15,31 +15,33 @@ namespace PLUME.Base.Module
 
         public bool IsRecording { get; private set; }
 
-        private ObjectCollection<TObject> _recordedObjects;
+        private readonly List<ObjectSafeRef<TObject>> _recordedObjects = new();
+        private NativeHashSet<ObjectIdentifier> _recordedObjectsIdentifier;
 
         protected IReadOnlyList<ObjectSafeRef<TObject>> RecordedObjects => _recordedObjects.AsReadOnly();
 
         void IRecorderModule.Create(RecorderContext recorderContext)
         {
-            _recordedObjects = new ObjectCollection<TObject>(1000, Allocator.Persistent);
+            _recordedObjectsIdentifier = new NativeHashSet<ObjectIdentifier>(1000, Allocator.Persistent);
             OnCreate(recorderContext);
         }
 
         void IRecorderModule.Destroy(RecorderContext recorderContext)
         {
             OnDestroy(recorderContext);
-            _recordedObjects.Dispose();
+            _recordedObjectsIdentifier.Dispose();
         }
         
-        public void StartRecordingObject(ObjectSafeRef<TObject> objectSafeRef, bool markCreated, Record record,
+        public void StartRecordingObject(ObjectSafeRef<TObject> objSafeRef, bool markCreated, Record record,
             RecorderContext recorderContext)
         {
             CheckIsRecording();
 
-            if (!_recordedObjects.TryAdd(objectSafeRef))
+            if(!_recordedObjectsIdentifier.Add(objSafeRef.Identifier))
                 throw new InvalidOperationException("Object is already being recorded.");
 
-            OnStartRecordingObject(objectSafeRef, markCreated, record, recorderContext);
+            _recordedObjects.Add(objSafeRef);
+            OnStartRecordingObject(objSafeRef, markCreated, record, recorderContext);
         }
 
         public void StopRecordingObject(ObjectSafeRef<TObject> objSafeRef, bool markDestroyed, Record record,
@@ -47,9 +49,10 @@ namespace PLUME.Base.Module
         {
             CheckIsRecording();
 
-            if (!_recordedObjects.TryRemove(objSafeRef))
+            if(!_recordedObjectsIdentifier.Remove(objSafeRef.Identifier))
                 throw new InvalidOperationException("Object is not being recorded.");
-
+            
+            _recordedObjects.Remove(objSafeRef);
             OnStopRecordingObject(objSafeRef, markDestroyed, record, recorderContext);
         }
 

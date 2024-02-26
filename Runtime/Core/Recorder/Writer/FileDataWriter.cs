@@ -17,12 +17,23 @@ namespace PLUME.Core.Recorder.Writer
         public FileDataWriter(RecordIdentifier recordIdentifier)
         {
             var outputDir = Application.persistentDataPath;
-            
+
             var filePath = Path.Combine(outputDir, GenerateFileName(recordIdentifier));
-            
+
             PinnedMemory.MaxPooledSize = 0;
-            // TODO: only enable on 32 bit systems or for IL2CPP
-            // LZ4Codec.Enforce32 = true;
+
+            if (Application.platform == RuntimePlatform.Android ||
+                Application.platform == RuntimePlatform.IPhonePlayer ||
+                Application.platform == RuntimePlatform.EmbeddedLinuxArm32 ||
+                Application.platform == RuntimePlatform.QNXArm32)
+            {
+                LZ4Codec.Enforce32 = true;
+            }
+            else
+            {
+                LZ4Codec.Enforce32 = false;
+            }
+
             _stream = LZ4Stream.Encode(File.Create(filePath), LZ4Level.L00_FAST);
         }
 

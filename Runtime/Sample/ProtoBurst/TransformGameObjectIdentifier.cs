@@ -20,14 +20,14 @@ namespace PLUME.Sample.ProtoBurst
         private static readonly uint GameObjectGuidFieldTag =
             WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
 
-        public readonly ObjectIdentifier TransformIdentifier;
-        public readonly ObjectIdentifier GameObjectIdentifier;
+        private readonly ObjectIdentifier _transformIdentifier;
+        private readonly ObjectIdentifier _gameObjectIdentifier;
 
         public TransformGameObjectIdentifier(ObjectIdentifier transformIdentifier,
             ObjectIdentifier gameObjectIdentifier)
         {
-            TransformIdentifier = transformIdentifier;
-            GameObjectIdentifier = gameObjectIdentifier;
+            _transformIdentifier = transformIdentifier;
+            _gameObjectIdentifier = gameObjectIdentifier;
         }
 
         public int ComputeSize()
@@ -42,8 +42,8 @@ namespace PLUME.Sample.ProtoBurst
 
         public void WriteTo(ref BufferWriter bufferWriter)
         {
-            var transformGuid = TransformIdentifier.GlobalId;
-            var goGuid = GameObjectIdentifier.GlobalId;
+            var transformGuid = _transformIdentifier.GlobalId;
+            var goGuid = _gameObjectIdentifier.GlobalId;
 
             bufferWriter.WriteTag(TransformGuidFieldTag);
             bufferWriter.WriteLength(Guid.Size);
@@ -61,8 +61,8 @@ namespace PLUME.Sample.ProtoBurst
 
         public bool Equals(TransformGameObjectIdentifier other)
         {
-            return TransformIdentifier.Equals(other.TransformIdentifier) &&
-                   GameObjectIdentifier.Equals(other.GameObjectIdentifier);
+            return _transformIdentifier.Equals(other._transformIdentifier) &&
+                   _gameObjectIdentifier.Equals(other._gameObjectIdentifier);
         }
 
         public override bool Equals(object obj)
@@ -72,17 +72,17 @@ namespace PLUME.Sample.ProtoBurst
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(TransformIdentifier, GameObjectIdentifier);
+            return HashCode.Combine(_transformIdentifier, _gameObjectIdentifier);
         }
 
-        public static bool operator ==(TransformGameObjectIdentifier a, TransformGameObjectIdentifier b)
+        public static bool operator ==(TransformGameObjectIdentifier lhs, TransformGameObjectIdentifier rhs)
         {
-            return a.Equals(b);
+            return lhs.Equals(rhs);
         }
 
-        public static bool operator !=(TransformGameObjectIdentifier a, TransformGameObjectIdentifier b)
+        public static bool operator !=(TransformGameObjectIdentifier lhs, TransformGameObjectIdentifier rhs)
         {
-            return !(a == b);
+            return !(lhs == rhs);
         }
     }
 }

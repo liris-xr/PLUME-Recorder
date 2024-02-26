@@ -9,11 +9,11 @@ namespace PLUME.Base.Module.Unity.Transform.Job
     [BurstCompile]
     internal struct MergePositionStatesJob : IJobParallelForBatch
     {
-        [ReadOnly] public NativeArray<PositionState> PositionStatesWorkCopy;
+        [ReadOnly] public NativeArray<TransformPositionState> PositionStatesWorkCopy;
         [ReadOnly] public NativeArray<ObjectIdentifier> IdentifiersWorkCopy;
 
         [NativeDisableParallelForRestriction]
-        public NativeHashMap<ObjectIdentifier, PositionState> PositionStates;
+        public NativeHashMap<ObjectIdentifier, TransformPositionState> PositionStates;
 
         public void Execute(int startIndex, int count)
         {

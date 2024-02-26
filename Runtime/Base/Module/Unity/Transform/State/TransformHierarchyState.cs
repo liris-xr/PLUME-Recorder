@@ -4,7 +4,7 @@ using Unity.Burst;
 namespace PLUME.Base.Module.Unity.Transform.State
 {
     [BurstCompile]
-    internal struct HierarchyState
+    internal struct TransformHierarchyState
     {
         public TransformGameObjectIdentifier ParentIdentifier;
         public bool ParentDirty;

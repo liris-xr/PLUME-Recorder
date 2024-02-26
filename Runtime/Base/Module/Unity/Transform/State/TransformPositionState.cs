@@ -4,7 +4,7 @@ using Unity.Mathematics;
 namespace PLUME.Base.Module.Unity.Transform.State
 {
     [BurstCompile]
-    internal struct PositionState
+    internal struct TransformPositionState
     {
         public float3 LocalPosition;
         public bool LocalPositionDirty;

@@ -32,5 +32,11 @@ namespace PLUME.Sample.ProtoBurst
         {
             bufferWriter.WriteFixedString(ref _guid);
         }
+        
+        [BurstDiscard]
+        public override string ToString()
+        {
+            return _guid.ToString();
+        }
     }
 }

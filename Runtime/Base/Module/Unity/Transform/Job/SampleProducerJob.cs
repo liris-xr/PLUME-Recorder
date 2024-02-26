@@ -14,8 +14,8 @@ namespace PLUME.Base.Module.Unity.Transform.Job
         [ReadOnly] public NativeArray<ObjectIdentifier> TransformIdentifiers;
         [ReadOnly] public NativeHashMap<ObjectIdentifier, ObjectIdentifier> GameObjectsIdentifiers;
 
-        public NativeHashMap<ObjectIdentifier, PositionState> PositionStates;
-        public NativeHashMap<ObjectIdentifier, HierarchyState> HierarchyStates;
+        public NativeHashMap<ObjectIdentifier, TransformPositionState> PositionStates;
+        public NativeHashMap<ObjectIdentifier, TransformHierarchyState> HierarchyStates;
 
         [ReadOnly] public NativeHashSet<ObjectIdentifier>.ReadOnly CreatedInFrameIdentifiers;
         [ReadOnly] public NativeHashSet<ObjectIdentifier>.ReadOnly DestroyedInFrameIdentifiers;

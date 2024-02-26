@@ -16,7 +16,7 @@ namespace PLUME.Base.Module.Unity.Transform.Job
         public float PositionThresholdSq;
         public float ScaleThresholdSq;
         
-        public NativeArray<PositionState> PositionStates;
+        public NativeArray<TransformPositionState> PositionStates;
         
         public void Execute(int index, TransformAccess transform)
         {
@@ -35,7 +35,7 @@ namespace PLUME.Base.Module.Unity.Transform.Job
             var localScaleChanged = math.distancesq(state.LocalScale, localScale) >= ScaleThresholdSq;
             var localRotationChanged = angle >= AngularThreshold;
             
-            var newPositionState = new PositionState
+            var newPositionState = new TransformPositionState
             {
                 LocalPosition = localPosition,
                 LocalRotation = localRotation,

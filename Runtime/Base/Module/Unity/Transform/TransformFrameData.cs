@@ -54,8 +54,6 @@ namespace PLUME.Base.Module.Unity.Transform
             frameDataWriter.WriteBatch(_destroySamples.AsArray(), batchSerializer);
         }
 
-        public bool IsCreated => _updateSamples.IsCreated;
-
         public void Dispose()
         {
             _updateSamples.Dispose();

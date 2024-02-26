@@ -10,10 +10,8 @@ namespace PLUME.Core.Object.SafeRef
     /// data about objects that have been destroyed and for which the reference is no longer valid.
     /// </summary>
     /// <typeparam name="TObject">The type of the Unity object to reference.</typeparam>
-    public readonly struct ObjectSafeRef<TObject> : IObjectSafeRef where TObject : UnityObject
+    public abstract class ObjectSafeRef<TObject> : IObjectSafeRef where TObject : UnityObject
     {
-        public static ObjectSafeRef<TObject> Null { get; } = new(ObjectIdentifier.Null);
-        
         public Type ObjectType => typeof(TObject);
 
         public ObjectIdentifier Identifier { get; }
@@ -22,13 +20,13 @@ namespace PLUME.Core.Object.SafeRef
 
         public UnityObject Object => TypedObject;
 
-        private ObjectSafeRef(ObjectIdentifier identifier)
+        internal ObjectSafeRef(ObjectIdentifier identifier)
         {
             Identifier = identifier;
             TypedObject = null;
         }
 
-        public ObjectSafeRef(TObject @object, Guid guid)
+        internal ObjectSafeRef(TObject @object, Guid guid)
         {
             Identifier = new ObjectIdentifier(@object.GetInstanceID(), guid);
             TypedObject = @object;

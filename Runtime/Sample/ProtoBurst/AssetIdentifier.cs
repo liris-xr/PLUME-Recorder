@@ -32,7 +32,7 @@ namespace PLUME.Sample.ProtoBurst
                    BufferWriterExtensions.ComputeLengthPrefixSize(Guid.Size) +
                    Guid.Size +
                    BufferWriterExtensions.ComputeTagSize(AssetPathFieldTag) +
-                   BufferWriterExtensions.ComputeLengthPrefixedFixedStringSize(ref _assetPath);
+                   BufferWriterExtensions.ComputeLengthPrefixedFixedString(ref _assetPath);
         }
 
         public void WriteTo(ref BufferWriter bufferWriter)
@@ -54,8 +54,7 @@ namespace PLUME.Sample.ProtoBurst
 
         public bool Equals(AssetIdentifier other)
         {
-            return _assetIdentifier.Equals(other._assetIdentifier) &&
-                   _assetPath.Equals(other._assetPath);
+            return _assetIdentifier.Equals(other._assetIdentifier);
         }
 
         public override bool Equals(object obj)
@@ -65,7 +64,7 @@ namespace PLUME.Sample.ProtoBurst
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(_assetIdentifier, _assetPath);
+            return _assetIdentifier.GetHashCode();
         }
 
         public static bool operator ==(AssetIdentifier lhs, AssetIdentifier rhs)

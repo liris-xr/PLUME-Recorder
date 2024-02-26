@@ -30,21 +30,20 @@ namespace PLUME.Sample.Unity {
             "bnRJZGVudGlmaWVyEgoKAmlkGAEgASgJEkQKCXBhcmVudF9pZBgCIAEoCzIx",
             "LnBsdW1lLnNhbXBsZS51bml0eS5UcmFuc2Zvcm1HYW1lT2JqZWN0SWRlbnRp",
             "ZmllciIoChpDb21wb25lbnREZXN0cm95SWRlbnRpZmllchIKCgJpZBgBIAEo",
-            "CSI5Cg9Bc3NldElkZW50aWZpZXISCgoCaWQYASABKAkSDAoEcGF0aBgCIAEo",
-            "CRIMCgRoYXNoGAMgASgFIpYBCg9TY2VuZUlkZW50aWZpZXISCgoCaWQYASAB",
-            "KAkSFQoNcnVudGltZV9pbmRleBgCIAEoCRIMCgRuYW1lGAMgASgJEgwKBHBh",
-            "dGgYBCABKAkSEwoLYnVpbGRfaW5kZXgYBSABKAUSLwoEbW9kZRgGIAEoDjIh",
-            "LnBsdW1lLnNhbXBsZS51bml0eS5Mb2FkU2NlbmVNb2RlKkkKDUxvYWRTY2Vu",
-            "ZU1vZGUSGgoWTE9BRF9TQ0VORV9NT0RFX1NJTkdMRRAAEhwKGExPQURfU0NF",
-            "TkVfTU9ERV9BRERJVElWRRABQhWqAhJQTFVNRS5TYW1wbGUuVW5pdHliBnBy",
-            "b3RvMw=="));
+            "CSIrCg9Bc3NldElkZW50aWZpZXISCgoCaWQYASABKAkSDAoEcGF0aBgCIAEo",
+            "CSKWAQoPU2NlbmVJZGVudGlmaWVyEgoKAmlkGAEgASgJEhUKDXJ1bnRpbWVf",
+            "aW5kZXgYAiABKAkSDAoEbmFtZRgDIAEoCRIMCgRwYXRoGAQgASgJEhMKC2J1",
+            "aWxkX2luZGV4GAUgASgFEi8KBG1vZGUYBiABKA4yIS5wbHVtZS5zYW1wbGUu",
+            "dW5pdHkuTG9hZFNjZW5lTW9kZSpJCg1Mb2FkU2NlbmVNb2RlEhoKFkxPQURf",
+            "U0NFTkVfTU9ERV9TSU5HTEUQABIcChhMT0FEX1NDRU5FX01PREVfQURESVRJ",
+            "VkUQAUIVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.LoadSceneMode), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformGameObjectIdentifier), global::PLUME.Sample.Unity.TransformGameObjectIdentifier.Parser, new[]{ "TransformId", "GameObjectId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ComponentIdentifier), global::PLUME.Sample.Unity.ComponentIdentifier.Parser, new[]{ "Id", "ParentId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ComponentDestroyIdentifier), global::PLUME.Sample.Unity.ComponentDestroyIdentifier.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AssetIdentifier), global::PLUME.Sample.Unity.AssetIdentifier.Parser, new[]{ "Id", "Path", "Hash" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AssetIdentifier), global::PLUME.Sample.Unity.AssetIdentifier.Parser, new[]{ "Id", "Path" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SceneIdentifier), global::PLUME.Sample.Unity.SceneIdentifier.Parser, new[]{ "Id", "RuntimeIndex", "Name", "Path", "BuildIndex", "Mode" }, null, null, null, null)
           }));
     }
@@ -60,6 +59,7 @@ namespace PLUME.Sample.Unity {
   #endregion
 
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class TransformGameObjectIdentifier : pb::IMessage<TransformGameObjectIdentifier>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -286,6 +286,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ComponentIdentifier : pb::IMessage<ComponentIdentifier>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -521,6 +522,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ComponentDestroyIdentifier : pb::IMessage<ComponentDestroyIdentifier>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -710,6 +712,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class AssetIdentifier : pb::IMessage<AssetIdentifier>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -746,7 +749,6 @@ namespace PLUME.Sample.Unity {
     public AssetIdentifier(AssetIdentifier other) : this() {
       id_ = other.id_;
       path_ = other.path_;
-      hash_ = other.hash_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -780,18 +782,6 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "hash" field.</summary>
-    public const int HashFieldNumber = 3;
-    private int hash_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Hash {
-      get { return hash_; }
-      set {
-        hash_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -809,7 +799,6 @@ namespace PLUME.Sample.Unity {
       }
       if (Id != other.Id) return false;
       if (Path != other.Path) return false;
-      if (Hash != other.Hash) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -819,7 +808,6 @@ namespace PLUME.Sample.Unity {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (Path.Length != 0) hash ^= Path.GetHashCode();
-      if (Hash != 0) hash ^= Hash.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -846,10 +834,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteString(Path);
       }
-      if (Hash != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(Hash);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -868,10 +852,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteString(Path);
       }
-      if (Hash != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(Hash);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -887,9 +867,6 @@ namespace PLUME.Sample.Unity {
       }
       if (Path.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Path);
-      }
-      if (Hash != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Hash);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -908,9 +885,6 @@ namespace PLUME.Sample.Unity {
       }
       if (other.Path.Length != 0) {
         Path = other.Path;
-      }
-      if (other.Hash != 0) {
-        Hash = other.Hash;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -933,10 +907,6 @@ namespace PLUME.Sample.Unity {
           }
           case 18: {
             Path = input.ReadString();
-            break;
-          }
-          case 24: {
-            Hash = input.ReadInt32();
             break;
           }
         }
@@ -962,10 +932,6 @@ namespace PLUME.Sample.Unity {
             Path = input.ReadString();
             break;
           }
-          case 24: {
-            Hash = input.ReadInt32();
-            break;
-          }
         }
       }
     }
@@ -973,6 +939,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SceneIdentifier : pb::IMessage<SceneIdentifier>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

@@ -64,6 +64,7 @@ namespace PLUME.Sample.Unity.XRITK {
 
   }
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class XRBaseInteractorCreate : pb::IMessage<XRBaseInteractorCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -262,6 +263,7 @@ namespace PLUME.Sample.Unity.XRITK {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class XRBaseInteractorDestroy : pb::IMessage<XRBaseInteractorDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -460,6 +462,7 @@ namespace PLUME.Sample.Unity.XRITK {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class XRBaseInteractorSetEnabled : pb::IMessage<XRBaseInteractorSetEnabled>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -695,6 +698,7 @@ namespace PLUME.Sample.Unity.XRITK {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class XRBaseInteractorHoverEnter : pb::IMessage<XRBaseInteractorHoverEnter>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -939,6 +943,7 @@ namespace PLUME.Sample.Unity.XRITK {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class XRBaseInteractorHoverExit : pb::IMessage<XRBaseInteractorHoverExit>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1183,6 +1188,7 @@ namespace PLUME.Sample.Unity.XRITK {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class XRBaseInteractorSelectEnter : pb::IMessage<XRBaseInteractorSelectEnter>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1427,6 +1433,7 @@ namespace PLUME.Sample.Unity.XRITK {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class XRBaseInteractorSelectExit : pb::IMessage<XRBaseInteractorSelectExit>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

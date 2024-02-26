@@ -56,6 +56,7 @@ namespace PLUME.Sample.Common {
   #endregion
 
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class AnimationCurve : pb::IMessage<AnimationCurve>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -234,6 +235,7 @@ namespace PLUME.Sample.Common {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class AnimationCurveKeyFrame : pb::IMessage<AnimationCurveKeyFrame>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

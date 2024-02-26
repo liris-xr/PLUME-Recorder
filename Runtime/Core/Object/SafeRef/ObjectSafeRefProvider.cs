@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using PLUME.Sample.ProtoBurst;
+using Unity.Collections;
 using UnityEngine;
 using UnityRuntimeGuid;
 using UnityObject = UnityEngine.Object;
@@ -39,33 +39,48 @@ namespace PLUME.Core.Object.SafeRef
                 return cachedRef;
             }
 
-            var guidRegistryEntry = GetGuidRegistryEntry(obj);
+            IObjectSafeRef objRef;
 
-            var objRefType = typeof(ObjectSafeRef<>).MakeGenericType(obj.GetType());
-            var objRefCtor = objRefType.GetConstructor(new[] { obj.GetType(), typeof(Guid) });
-            var objRef = (IObjectSafeRef)objRefCtor!.Invoke(new object[] { obj, new Guid(guidRegistryEntry.guid) });
+            if (obj is GameObject go && go.scene.IsValid())
+            {
+                var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
+                var sceneGuidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(obj);
+                objRef = CreateSceneObjectSafeRef(obj, sceneGuidRegistryEntry);
+            }
+            else if (obj is Component component && component.gameObject.scene.IsValid())
+            {
+                var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
+                var sceneGuidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(obj);
+                objRef = CreateSceneObjectSafeRef(obj, sceneGuidRegistryEntry);
+            }
+            else
+            {
+                var assetsGuidRegistry = AssetsGuidRegistry.GetOrCreate();
+                var assetsGuidRegistryEntry = assetsGuidRegistry.GetOrCreateEntry(obj);
+                objRef = CreateAssetObjectSafeRef(obj, assetsGuidRegistryEntry);
+            }
 
             _cachedRefs[instanceId] = objRef;
             return objRef;
         }
 
-        [SuppressMessage("ReSharper", "ConvertIfStatementToSwitchStatement")]
-        private static GuidRegistryEntry GetGuidRegistryEntry<TObject>(TObject obj) where TObject : UnityObject
+        private static IObjectSafeRef CreateSceneObjectSafeRef(UnityObject obj, SceneGuidRegistryEntry guidEntry)
         {
-            if (obj is GameObject go && go.scene.IsValid())
-            {
-                var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
-                return sceneGuidRegistry.GetOrCreateEntry(obj);
-            }
+            var objRefType = typeof(SceneObjectSafeRef<>).MakeGenericType(obj.GetType());
+            var objRefCtor = objRefType.GetConstructor(new[] { obj.GetType(), typeof(Guid) });
+            return (IObjectSafeRef)objRefCtor!.Invoke(new object[] { obj, new Guid(guidEntry.guid) });
+        }
 
-            if (obj is Component component && component.gameObject.scene.IsValid())
+        private static IObjectSafeRef CreateAssetObjectSafeRef(UnityObject obj, AssetGuidRegistryEntry guidEntry)
+        {
+            var objRefType = typeof(AssetObjectSafeRef<>).MakeGenericType(obj.GetType());
+            var objRefCtor =
+                objRefType.GetConstructor(new[] { obj.GetType(), typeof(Guid), typeof(FixedString512Bytes) });
+            return (IObjectSafeRef)objRefCtor!.Invoke(new object[]
             {
-                var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
-                return sceneGuidRegistry.GetOrCreateEntry(obj);
-            }
-
-            var assetsGuidRegistry = AssetsGuidRegistry.GetOrCreate();
-            return assetsGuidRegistry.GetOrCreateEntry(obj);
+                obj, new Guid(guidEntry.guid),
+                new FixedString512Bytes(guidEntry.assetBundlePath)
+            });
         }
     }
 }

@@ -21,8 +21,8 @@ namespace PLUME.Base.Module.Unity.Transform
         private DynamicTransformAccessArray _transformAccessArray;
 
         private NativeHashMap<ObjectIdentifier, ObjectIdentifier> _gameObjectIdentifiers;
-        private NativeHashMap<ObjectIdentifier, PositionState> _positionStates;
-        private NativeHashMap<ObjectIdentifier, HierarchyState> _hierarchyStates;
+        private NativeHashMap<ObjectIdentifier, TransformPositionState> _positionStates;
+        private NativeHashMap<ObjectIdentifier, TransformHierarchyState> _hierarchyStates;
 
         private TransformPositionStateUpdater _transformPositionStateUpdater;
 
@@ -35,9 +35,9 @@ namespace PLUME.Base.Module.Unity.Transform
 
             _transformAccessArray = new DynamicTransformAccessArray();
 
-            _positionStates = new NativeHashMap<ObjectIdentifier, PositionState>(1000, Allocator.Persistent);
+            _positionStates = new NativeHashMap<ObjectIdentifier, TransformPositionState>(1000, Allocator.Persistent);
             _gameObjectIdentifiers = new NativeHashMap<ObjectIdentifier, ObjectIdentifier>(1000, Allocator.Persistent);
-            _hierarchyStates = new NativeHashMap<ObjectIdentifier, HierarchyState>(1000, Allocator.Persistent);
+            _hierarchyStates = new NativeHashMap<ObjectIdentifier, TransformHierarchyState>(1000, Allocator.Persistent);
 
             _transformPositionStateUpdater = new TransformPositionStateUpdater(_positionStates, _transformAccessArray,
                 angularThreshold, positionThresholdSq, scaleThresholdSq);
@@ -75,14 +75,14 @@ namespace PLUME.Base.Module.Unity.Transform
                     new TransformGameObjectIdentifier(parentTransformSafeRef.Identifier, parentGoSafeRef.Identifier);
             }
 
-            var initialPositionState = new PositionState
+            var initialPositionState = new TransformPositionState
             {
                 LocalPosition = localPosition,
                 LocalRotation = localRotation,
                 LocalScale = localScale
             };
 
-            var initialHierarchyState = new HierarchyState
+            var initialHierarchyState = new TransformHierarchyState
             {
                 ParentIdentifier = parentIdentifier,
                 SiblingIndex = siblingIndex

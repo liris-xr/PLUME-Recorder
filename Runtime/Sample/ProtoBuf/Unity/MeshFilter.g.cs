@@ -27,22 +27,27 @@ namespace PLUME.Sample.Unity {
             "Chd1bml0eS9tZXNoX2ZpbHRlci5wcm90bxIScGx1bWUuc2FtcGxlLnVuaXR5",
             "Ghd1bml0eS9pZGVudGlmaWVycy5wcm90byJHChBNZXNoRmlsdGVyQ3JlYXRl",
             "EjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElk",
-            "ZW50aWZpZXIikgEKFE1lc2hGaWx0ZXJVcGRhdGVNZXNoEjMKAmlkGAEgASgL",
-            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISOQoH",
-            "bWVzaF9pZBgCIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50",
-            "aWZpZXJIAIgBAUIKCghfbWVzaF9pZEIVqgISUExVTUUuU2FtcGxlLlVuaXR5",
-            "YgZwcm90bzM="));
+            "ZW50aWZpZXIiSAoRTWVzaEZpbHRlckRlc3Ryb3kSMwoCaWQYASABKAsyJy5w",
+            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciLjAQoQTWVz",
+            "aEZpbHRlclVwZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0",
+            "eS5Db21wb25lbnRJZGVudGlmaWVyEjkKB21lc2hfaWQYAiABKAsyIy5wbHVt",
+            "ZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVudGlmaWVySACIAQESQAoOc2hhcmVk",
+            "X21lc2hfaWQYAyABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVu",
+            "dGlmaWVySAGIAQFCCgoIX21lc2hfaWRCEQoPX3NoYXJlZF9tZXNoX2lkQhWq",
+            "AhJQTFVNRS5TYW1wbGUuVW5pdHliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshFilterCreate), global::PLUME.Sample.Unity.MeshFilterCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshFilterUpdateMesh), global::PLUME.Sample.Unity.MeshFilterUpdateMesh.Parser, new[]{ "Id", "MeshId" }, new[]{ "MeshId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshFilterDestroy), global::PLUME.Sample.Unity.MeshFilterDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshFilterUpdate), global::PLUME.Sample.Unity.MeshFilterUpdate.Parser, new[]{ "Id", "MeshId", "SharedMeshId" }, new[]{ "MeshId", "SharedMeshId" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class MeshFilterCreate : pb::IMessage<MeshFilterCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -241,16 +246,17 @@ namespace PLUME.Sample.Unity {
 
   }
 
-  public sealed partial class MeshFilterUpdateMesh : pb::IMessage<MeshFilterUpdateMesh>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MeshFilterDestroy : pb::IMessage<MeshFilterDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<MeshFilterUpdateMesh> _parser = new pb::MessageParser<MeshFilterUpdateMesh>(() => new MeshFilterUpdateMesh());
+    private static readonly pb::MessageParser<MeshFilterDestroy> _parser = new pb::MessageParser<MeshFilterDestroy>(() => new MeshFilterDestroy());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<MeshFilterUpdateMesh> Parser { get { return _parser; } }
+    public static pb::MessageParser<MeshFilterDestroy> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -266,7 +272,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshFilterUpdateMesh() {
+    public MeshFilterDestroy() {
       OnConstruction();
     }
 
@@ -274,16 +280,216 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshFilterUpdateMesh(MeshFilterUpdateMesh other) : this() {
+    public MeshFilterDestroy(MeshFilterDestroy other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      meshId_ = other.meshId_ != null ? other.meshId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshFilterUpdateMesh Clone() {
-      return new MeshFilterUpdateMesh(this);
+    public MeshFilterDestroy Clone() {
+      return new MeshFilterDestroy(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MeshFilterDestroy);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MeshFilterDestroy other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MeshFilterDestroy other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MeshFilterUpdate : pb::IMessage<MeshFilterUpdate>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MeshFilterUpdate> _parser = new pb::MessageParser<MeshFilterUpdate>(() => new MeshFilterUpdate());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MeshFilterUpdate> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.MeshFilterReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MeshFilterUpdate() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MeshFilterUpdate(MeshFilterUpdate other) : this() {
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      meshId_ = other.meshId_ != null ? other.meshId_.Clone() : null;
+      sharedMeshId_ = other.sharedMeshId_ != null ? other.sharedMeshId_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MeshFilterUpdate Clone() {
+      return new MeshFilterUpdate(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -310,15 +516,27 @@ namespace PLUME.Sample.Unity {
       }
     }
 
+    /// <summary>Field number for the "shared_mesh_id" field.</summary>
+    public const int SharedMeshIdFieldNumber = 3;
+    private global::PLUME.Sample.Unity.AssetIdentifier sharedMeshId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as MeshFilterUpdateMesh);
+    public global::PLUME.Sample.Unity.AssetIdentifier SharedMeshId {
+      get { return sharedMeshId_; }
+      set {
+        sharedMeshId_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(MeshFilterUpdateMesh other) {
+    public override bool Equals(object other) {
+      return Equals(other as MeshFilterUpdate);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MeshFilterUpdate other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -327,6 +545,7 @@ namespace PLUME.Sample.Unity {
       }
       if (!object.Equals(Id, other.Id)) return false;
       if (!object.Equals(MeshId, other.MeshId)) return false;
+      if (!object.Equals(SharedMeshId, other.SharedMeshId)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -336,6 +555,7 @@ namespace PLUME.Sample.Unity {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
       if (meshId_ != null) hash ^= MeshId.GetHashCode();
+      if (sharedMeshId_ != null) hash ^= SharedMeshId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -362,6 +582,10 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteMessage(MeshId);
       }
+      if (sharedMeshId_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(SharedMeshId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -380,6 +604,10 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteMessage(MeshId);
       }
+      if (sharedMeshId_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(SharedMeshId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -396,6 +624,9 @@ namespace PLUME.Sample.Unity {
       if (meshId_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(MeshId);
       }
+      if (sharedMeshId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SharedMeshId);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -404,7 +635,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(MeshFilterUpdateMesh other) {
+    public void MergeFrom(MeshFilterUpdate other) {
       if (other == null) {
         return;
       }
@@ -419,6 +650,12 @@ namespace PLUME.Sample.Unity {
           MeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
         }
         MeshId.MergeFrom(other.MeshId);
+      }
+      if (other.sharedMeshId_ != null) {
+        if (sharedMeshId_ == null) {
+          SharedMeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
+        }
+        SharedMeshId.MergeFrom(other.SharedMeshId);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -449,6 +686,13 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(MeshId);
             break;
           }
+          case 26: {
+            if (sharedMeshId_ == null) {
+              SharedMeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(SharedMeshId);
+            break;
+          }
         }
       }
     #endif
@@ -476,6 +720,13 @@ namespace PLUME.Sample.Unity {
               MeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(MeshId);
+            break;
+          }
+          case 26: {
+            if (sharedMeshId_ == null) {
+              SharedMeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(SharedMeshId);
             break;
           }
         }

@@ -55,6 +55,16 @@ namespace PLUME.Editor
                     if (staticBatching != 0 || dynamicBatching != 0)
                         SetBatchingForPlatform(buildPlayerOptions.target, 0, 0);
 
+                    if (buildPlayerOptions.target == BuildTarget.Android)
+                    {
+                        // Set the minimum SDK version to 24 (Android 7.0) for LSL support
+                        if (PlayerSettings.Android.minSdkVersion < AndroidSdkVersions.AndroidApiLevel24)
+                        {
+                            PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
+                            Logger.LogWarning("Minimum SDK version set to 24 (Android 7.0) for LSL support.");
+                        }
+                    }
+
                     AssetBundleBuilder.BuildAssetBundle();
                     BuildPlayerWindow.DefaultBuildMethods.BuildPlayer(buildPlayerOptions);
                 }
@@ -64,7 +74,6 @@ namespace PLUME.Editor
                 }
             });
         }
-
 
         private static void SetBatchingForPlatform(BuildTarget platform, int staticBatching, int dynamicBatching)
         {

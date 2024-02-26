@@ -36,8 +36,16 @@ namespace PLUME.Core.Recorder
             var typeUrl = SampleTypeUrl.Alloc(msg.Descriptor, Allocator.Persistent);
             var sampleSize = msg.CalculateSize();
             var sampleBytes = new NativeList<byte>(sampleSize, Allocator.Persistent);
-            sampleBytes.ResizeUninitialized(sampleSize);
-            msg.WriteTo(sampleBytes.AsArray().AsSpan());
+            var bytes = msg.ToByteArray();
+
+            unsafe
+            {
+                fixed (byte* bytesPtr = bytes)
+                {
+                    sampleBytes.AddRange(bytesPtr, sampleSize);
+                }
+            }
+            
             RecordTimelessSample(sampleBytes, typeUrl);
             typeUrl.Dispose();
             sampleBytes.Dispose();
@@ -57,8 +65,16 @@ namespace PLUME.Core.Recorder
             var typeUrl = SampleTypeUrl.Alloc(msg.Descriptor, Allocator.Persistent);
             var sampleSize = msg.CalculateSize();
             var sampleBytes = new NativeList<byte>(sampleSize, Allocator.Persistent);
-            sampleBytes.ResizeUninitialized(sampleSize);
-            msg.WriteTo((CodedOutputStream)sampleBytes.AsArray().AsSpan());
+            var bytes = msg.ToByteArray();
+
+            unsafe
+            {
+                fixed (byte* bytesPtr = bytes)
+                {
+                    sampleBytes.AddRange(bytesPtr, sampleSize);
+                }
+            }
+            
             RecordTimestampedSample(sampleBytes, typeUrl, timestamp);
             typeUrl.Dispose();
             sampleBytes.Dispose();

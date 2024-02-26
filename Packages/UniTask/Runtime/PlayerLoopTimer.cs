@@ -1,8 +1,9 @@
 ﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-using System.Threading;
 using System;
+using System.Threading;
 using Cysharp.Threading.Tasks.Internal;
+using UnityEditor;
 using UnityEngine;
 
 namespace Cysharp.Threading.Tasks
@@ -32,7 +33,7 @@ namespace Cysharp.Threading.Tasks
         {
 #if UNITY_EDITOR
             // force use Realtime.
-            if (PlayerLoopHelper.IsMainThread && !UnityEditor.EditorApplication.isPlaying)
+            if (PlayerLoopHelper.IsMainThread && !EditorApplication.isPlaying)
             {
                 delayType = DelayType.Realtime;
             }

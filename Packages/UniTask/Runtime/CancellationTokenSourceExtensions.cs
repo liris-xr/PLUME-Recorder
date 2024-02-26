@@ -1,10 +1,9 @@
 ﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-using System.Threading;
-using UnityEngine;
-using Cysharp.Threading.Tasks.Triggers;
 using System;
-using Cysharp.Threading.Tasks.Internal;
+using System.Threading;
+using Cysharp.Threading.Tasks.Triggers;
+using UnityEngine;
 
 namespace Cysharp.Threading.Tasks
 {

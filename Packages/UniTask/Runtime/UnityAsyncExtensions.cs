@@ -3,8 +3,9 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading;
-using UnityEngine;
 using Cysharp.Threading.Tasks.Internal;
+using UnityEngine;
+using Object = UnityEngine.Object;
 #if ENABLE_UNITYWEBREQUEST && (!UNITY_2019_1_OR_NEWER || UNITASK_WEBREQUEST_SUPPORT)
 using UnityEngine.Networking;
 #endif
@@ -252,28 +253,28 @@ namespace Cysharp.Threading.Tasks
             return new ResourceRequestAwaiter(asyncOperation);
         }
 
-        public static UniTask<UnityEngine.Object> WithCancellation(this ResourceRequest asyncOperation,
+        public static UniTask<Object> WithCancellation(this ResourceRequest asyncOperation,
             CancellationToken cancellationToken)
         {
             return ToUniTask(asyncOperation, cancellationToken: cancellationToken);
         }
 
-        public static UniTask<UnityEngine.Object> WithCancellation(this ResourceRequest asyncOperation,
+        public static UniTask<Object> WithCancellation(this ResourceRequest asyncOperation,
             CancellationToken cancellationToken, bool cancelImmediately)
         {
             return ToUniTask(asyncOperation, cancellationToken: cancellationToken,
                 cancelImmediately: cancelImmediately);
         }
 
-        public static UniTask<UnityEngine.Object> ToUniTask(this ResourceRequest asyncOperation,
+        public static UniTask<Object> ToUniTask(this ResourceRequest asyncOperation,
             IProgress<float> progress = null, PlayerLoopTiming timing = PlayerLoopTiming.Update,
             CancellationToken cancellationToken = default(CancellationToken), bool cancelImmediately = false)
         {
             Error.ThrowArgumentNullException(asyncOperation, nameof(asyncOperation));
             if (cancellationToken.IsCancellationRequested)
-                return UniTask.FromCanceled<UnityEngine.Object>(cancellationToken);
+                return UniTask.FromCanceled<Object>(cancellationToken);
             if (asyncOperation.isDone) return UniTask.FromResult(asyncOperation.asset);
-            return new UniTask<UnityEngine.Object>(
+            return new UniTask<Object>(
                 ResourceRequestConfiguredSource.Create(asyncOperation, timing, progress, cancellationToken,
                     cancelImmediately, out var token), token);
         }
@@ -291,7 +292,7 @@ namespace Cysharp.Threading.Tasks
 
             public bool IsCompleted => asyncOperation.isDone;
 
-            public UnityEngine.Object GetResult()
+            public Object GetResult()
             {
                 if (continuationAction != null)
                 {
@@ -322,7 +323,7 @@ namespace Cysharp.Threading.Tasks
             }
         }
 
-        sealed class ResourceRequestConfiguredSource : IUniTaskSource<UnityEngine.Object>, IPlayerLoopItem,
+        sealed class ResourceRequestConfiguredSource : IUniTaskSource<Object>, IPlayerLoopItem,
             ITaskPoolNode<ResourceRequestConfiguredSource>
         {
             static TaskPool<ResourceRequestConfiguredSource> pool;
@@ -340,7 +341,7 @@ namespace Cysharp.Threading.Tasks
             CancellationTokenRegistration cancellationTokenRegistration;
             bool completed;
 
-            UniTaskCompletionSourceCore<UnityEngine.Object> core;
+            UniTaskCompletionSourceCore<Object> core;
 
             Action<AsyncOperation> continuationAction;
 
@@ -349,13 +350,13 @@ namespace Cysharp.Threading.Tasks
                 continuationAction = Continuation;
             }
 
-            public static IUniTaskSource<UnityEngine.Object> Create(ResourceRequest asyncOperation,
+            public static IUniTaskSource<Object> Create(ResourceRequest asyncOperation,
                 PlayerLoopTiming timing, IProgress<float> progress, CancellationToken cancellationToken,
                 bool cancelImmediately, out short token)
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    return AutoResetUniTaskCompletionSource<UnityEngine.Object>.CreateFromCanceled(cancellationToken,
+                    return AutoResetUniTaskCompletionSource<Object>.CreateFromCanceled(cancellationToken,
                         out token);
                 }
 
@@ -389,7 +390,7 @@ namespace Cysharp.Threading.Tasks
                 return result;
             }
 
-            public UnityEngine.Object GetResult(short token)
+            public Object GetResult(short token)
             {
                 try
                 {
@@ -494,28 +495,28 @@ namespace Cysharp.Threading.Tasks
             return new AssetBundleRequestAwaiter(asyncOperation);
         }
 
-        public static UniTask<UnityEngine.Object> WithCancellation(this AssetBundleRequest asyncOperation,
+        public static UniTask<Object> WithCancellation(this AssetBundleRequest asyncOperation,
             CancellationToken cancellationToken)
         {
             return ToUniTask(asyncOperation, cancellationToken: cancellationToken);
         }
 
-        public static UniTask<UnityEngine.Object> WithCancellation(this AssetBundleRequest asyncOperation,
+        public static UniTask<Object> WithCancellation(this AssetBundleRequest asyncOperation,
             CancellationToken cancellationToken, bool cancelImmediately)
         {
             return ToUniTask(asyncOperation, cancellationToken: cancellationToken,
                 cancelImmediately: cancelImmediately);
         }
 
-        public static UniTask<UnityEngine.Object> ToUniTask(this AssetBundleRequest asyncOperation,
+        public static UniTask<Object> ToUniTask(this AssetBundleRequest asyncOperation,
             IProgress<float> progress = null, PlayerLoopTiming timing = PlayerLoopTiming.Update,
             CancellationToken cancellationToken = default(CancellationToken), bool cancelImmediately = false)
         {
             Error.ThrowArgumentNullException(asyncOperation, nameof(asyncOperation));
             if (cancellationToken.IsCancellationRequested)
-                return UniTask.FromCanceled<UnityEngine.Object>(cancellationToken);
+                return UniTask.FromCanceled<Object>(cancellationToken);
             if (asyncOperation.isDone) return UniTask.FromResult(asyncOperation.asset);
-            return new UniTask<UnityEngine.Object>(
+            return new UniTask<Object>(
                 AssetBundleRequestConfiguredSource.Create(asyncOperation, timing, progress, cancellationToken,
                     cancelImmediately, out var token), token);
         }
@@ -533,7 +534,7 @@ namespace Cysharp.Threading.Tasks
 
             public bool IsCompleted => asyncOperation.isDone;
 
-            public UnityEngine.Object GetResult()
+            public Object GetResult()
             {
                 if (continuationAction != null)
                 {
@@ -564,7 +565,7 @@ namespace Cysharp.Threading.Tasks
             }
         }
 
-        sealed class AssetBundleRequestConfiguredSource : IUniTaskSource<UnityEngine.Object>, IPlayerLoopItem,
+        sealed class AssetBundleRequestConfiguredSource : IUniTaskSource<Object>, IPlayerLoopItem,
             ITaskPoolNode<AssetBundleRequestConfiguredSource>
         {
             static TaskPool<AssetBundleRequestConfiguredSource> pool;
@@ -582,7 +583,7 @@ namespace Cysharp.Threading.Tasks
             CancellationTokenRegistration cancellationTokenRegistration;
             bool completed;
 
-            UniTaskCompletionSourceCore<UnityEngine.Object> core;
+            UniTaskCompletionSourceCore<Object> core;
 
             Action<AsyncOperation> continuationAction;
 
@@ -591,13 +592,13 @@ namespace Cysharp.Threading.Tasks
                 continuationAction = Continuation;
             }
 
-            public static IUniTaskSource<UnityEngine.Object> Create(AssetBundleRequest asyncOperation,
+            public static IUniTaskSource<Object> Create(AssetBundleRequest asyncOperation,
                 PlayerLoopTiming timing, IProgress<float> progress, CancellationToken cancellationToken,
                 bool cancelImmediately, out short token)
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    return AutoResetUniTaskCompletionSource<UnityEngine.Object>.CreateFromCanceled(cancellationToken,
+                    return AutoResetUniTaskCompletionSource<Object>.CreateFromCanceled(cancellationToken,
                         out token);
                 }
 
@@ -631,7 +632,7 @@ namespace Cysharp.Threading.Tasks
                 return result;
             }
 
-            public UnityEngine.Object GetResult(short token)
+            public Object GetResult(short token)
             {
                 try
                 {

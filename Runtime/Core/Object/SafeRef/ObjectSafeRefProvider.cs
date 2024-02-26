@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using PLUME.Sample.ProtoBurst;
-using Unity.Collections;
 using UnityEngine;
 using UnityRuntimeGuid;
 using UnityObject = UnityEngine.Object;

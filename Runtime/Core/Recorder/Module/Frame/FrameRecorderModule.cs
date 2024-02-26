@@ -5,7 +5,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Settings;
 using PLUME.Core.Utils;
-using PLUME.Sample.ProtoBurst;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Collections;

@@ -4,7 +4,6 @@ using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace PLUME.Sample.ProtoBurst
 {

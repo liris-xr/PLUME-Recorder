@@ -6,9 +6,7 @@
 
 #if SUPPORT_VALUETASK
 
-using System;
 using System.Threading.Tasks;
-using System.Threading.Tasks.Sources;
 
 namespace Cysharp.Threading.Tasks
 {

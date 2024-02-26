@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks.Internal;
+using Object = UnityEngine.Object;
 
 namespace Cysharp.Threading.Tasks
 {
@@ -35,8 +36,8 @@ namespace Cysharp.Threading.Tasks
             CancellationToken cancellationToken = default(CancellationToken), bool cancelImmediately = false)
             where T : class
         {
-            var unityObject = target as UnityEngine.Object;
-            var isUnityObject = target is UnityEngine.Object; // don't use (unityObject == null)
+            var unityObject = target as Object;
+            var isUnityObject = target is Object; // don't use (unityObject == null)
 
             return new UniTask<U>(isUnityObject
                 ? WaitUntilValueChangedUnityObjectPromise<T, U>.Create(target, monitorFunction, equalityComparer,
@@ -396,7 +397,7 @@ namespace Cysharp.Threading.Tasks
             }
 
             T target;
-            UnityEngine.Object targetAsUnityObject;
+            Object targetAsUnityObject;
             U currentValue;
             Func<T, U> monitorFunction;
             IEqualityComparer<U> equalityComparer;
@@ -424,7 +425,7 @@ namespace Cysharp.Threading.Tasks
                 }
 
                 result.target = target;
-                result.targetAsUnityObject = target as UnityEngine.Object;
+                result.targetAsUnityObject = target as Object;
                 result.monitorFunction = monitorFunction;
                 result.currentValue = monitorFunction(target);
                 result.equalityComparer = equalityComparer ?? UnityEqualityComparer.GetDefault<U>();

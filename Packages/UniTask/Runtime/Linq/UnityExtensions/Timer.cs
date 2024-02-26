@@ -175,7 +175,7 @@ namespace Cysharp.Threading.Tasks.Linq
                         }
                     }
 
-                    elapsed += (ignoreTimeScale) ? UnityEngine.Time.unscaledDeltaTime : UnityEngine.Time.deltaTime;
+                    elapsed += (ignoreTimeScale) ? Time.unscaledDeltaTime : Time.deltaTime;
 
                     if (elapsed >= dueTime)
                     {
@@ -192,7 +192,7 @@ namespace Cysharp.Threading.Tasks.Linq
                         return false;
                     }
 
-                    elapsed += (ignoreTimeScale) ? UnityEngine.Time.unscaledDeltaTime : UnityEngine.Time.deltaTime;
+                    elapsed += (ignoreTimeScale) ? Time.unscaledDeltaTime : Time.deltaTime;
 
                     if (elapsed >= period)
                     {

@@ -1,7 +1,6 @@
 using System;
 using PLUME.Core.Settings;
 using UnityEngine;
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif

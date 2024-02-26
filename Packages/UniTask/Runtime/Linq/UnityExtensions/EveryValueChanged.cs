@@ -1,7 +1,8 @@
-﻿using Cysharp.Threading.Tasks.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using Cysharp.Threading.Tasks.Internal;
+using Object = UnityEngine.Object;
 
 namespace Cysharp.Threading.Tasks.Linq
 {
@@ -10,8 +11,8 @@ namespace Cysharp.Threading.Tasks.Linq
         public static IUniTaskAsyncEnumerable<TProperty> EveryValueChanged<TTarget, TProperty>(TTarget target, Func<TTarget, TProperty> propertySelector, PlayerLoopTiming monitorTiming = PlayerLoopTiming.Update, IEqualityComparer<TProperty> equalityComparer = null, bool cancelImmediately = false)
             where TTarget : class
         {
-            var unityObject = target as UnityEngine.Object;
-            var isUnityObject = target is UnityEngine.Object; // don't use (unityObject == null)
+            var unityObject = target as Object;
+            var isUnityObject = target is Object; // don't use (unityObject == null)
 
             if (isUnityObject)
             {
@@ -49,7 +50,7 @@ namespace Cysharp.Threading.Tasks.Linq
         sealed class _EveryValueChanged : MoveNextSource, IUniTaskAsyncEnumerator<TProperty>, IPlayerLoopItem
         {
             readonly TTarget target;
-            readonly UnityEngine.Object targetAsUnityObject;
+            readonly Object targetAsUnityObject;
             readonly IEqualityComparer<TProperty> equalityComparer;
             readonly Func<TTarget, TProperty> propertySelector;
             readonly CancellationToken cancellationToken;
@@ -62,7 +63,7 @@ namespace Cysharp.Threading.Tasks.Linq
             public _EveryValueChanged(TTarget target, Func<TTarget, TProperty> propertySelector, IEqualityComparer<TProperty> equalityComparer, PlayerLoopTiming monitorTiming, CancellationToken cancellationToken, bool cancelImmediately)
             {
                 this.target = target;
-                this.targetAsUnityObject = target as UnityEngine.Object;
+                this.targetAsUnityObject = target as Object;
                 this.propertySelector = propertySelector;
                 this.equalityComparer = equalityComparer;
                 this.cancellationToken = cancellationToken;

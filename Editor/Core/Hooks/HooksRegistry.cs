@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using PLUME.Core;
 
 namespace PLUME.Editor.Core.Hooks
@@ -34,7 +35,7 @@ namespace PLUME.Editor.Core.Hooks
                 })
                 .Where(v => v.attribute != null);
 
-            var sb = new System.Text.StringBuilder();
+            var sb = new StringBuilder();
             sb.AppendLine("Registered hooks:");
             
             foreach (var result in registerHookAttributes)

@@ -120,7 +120,7 @@ namespace Cysharp.Threading.Tasks
             {
                 get
                 {
-                    var currentThreadId = System.Threading.Thread.CurrentThread.ManagedThreadId;
+                    var currentThreadId = Thread.CurrentThread.ManagedThreadId;
                     if (PlayerLoopHelper.MainThreadId == currentThreadId)
                     {
                         return true; // run immediate.
@@ -179,7 +179,7 @@ namespace Cysharp.Threading.Tasks
             public Awaiter GetAwaiter() => this;
 
             public bool IsCompleted =>
-                PlayerLoopHelper.MainThreadId == System.Threading.Thread.CurrentThread.ManagedThreadId;
+                PlayerLoopHelper.MainThreadId == Thread.CurrentThread.ManagedThreadId;
 
             public void GetResult()
             {

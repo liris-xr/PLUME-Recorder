@@ -2,6 +2,7 @@
 
 using System.Threading;
 using UnityEngine;
+using UnityEngine.ParticleSystemJobs;
 #if !UNITY_2019_1_OR_NEWER || UNITASK_UGUI_SUPPORT
 using UnityEngine.EventSystems;
 #endif
@@ -2169,15 +2170,15 @@ namespace Cysharp.Threading.Tasks.Triggers
 
     public interface IAsyncOnParticleUpdateJobScheduledHandler
     {
-        UniTask<UnityEngine.ParticleSystemJobs.ParticleSystemJobData> OnParticleUpdateJobScheduledAsync();
+        UniTask<ParticleSystemJobData> OnParticleUpdateJobScheduledAsync();
     }
 
     public partial class AsyncTriggerHandler<T> : IAsyncOnParticleUpdateJobScheduledHandler
     {
-        UniTask<UnityEngine.ParticleSystemJobs.ParticleSystemJobData> IAsyncOnParticleUpdateJobScheduledHandler.OnParticleUpdateJobScheduledAsync()
+        UniTask<ParticleSystemJobData> IAsyncOnParticleUpdateJobScheduledHandler.OnParticleUpdateJobScheduledAsync()
         {
             core.Reset();
-            return new UniTask<UnityEngine.ParticleSystemJobs.ParticleSystemJobData>((IUniTaskSource<UnityEngine.ParticleSystemJobs.ParticleSystemJobData>)(object)this, core.Version);
+            return new UniTask<ParticleSystemJobData>((IUniTaskSource<ParticleSystemJobData>)(object)this, core.Version);
         }
     }
 
@@ -2195,31 +2196,31 @@ namespace Cysharp.Threading.Tasks.Triggers
     }
 
     [DisallowMultipleComponent]
-    public sealed class AsyncParticleUpdateJobScheduledTrigger : AsyncTriggerBase<UnityEngine.ParticleSystemJobs.ParticleSystemJobData>
+    public sealed class AsyncParticleUpdateJobScheduledTrigger : AsyncTriggerBase<ParticleSystemJobData>
     {
-        void OnParticleUpdateJobScheduled(UnityEngine.ParticleSystemJobs.ParticleSystemJobData particles)
+        void OnParticleUpdateJobScheduled(ParticleSystemJobData particles)
         {
             RaiseEvent((particles));
         }
 
         public IAsyncOnParticleUpdateJobScheduledHandler GetOnParticleUpdateJobScheduledAsyncHandler()
         {
-            return new AsyncTriggerHandler<UnityEngine.ParticleSystemJobs.ParticleSystemJobData>(this, false);
+            return new AsyncTriggerHandler<ParticleSystemJobData>(this, false);
         }
 
         public IAsyncOnParticleUpdateJobScheduledHandler GetOnParticleUpdateJobScheduledAsyncHandler(CancellationToken cancellationToken)
         {
-            return new AsyncTriggerHandler<UnityEngine.ParticleSystemJobs.ParticleSystemJobData>(this, cancellationToken, false);
+            return new AsyncTriggerHandler<ParticleSystemJobData>(this, cancellationToken, false);
         }
 
-        public UniTask<UnityEngine.ParticleSystemJobs.ParticleSystemJobData> OnParticleUpdateJobScheduledAsync()
+        public UniTask<ParticleSystemJobData> OnParticleUpdateJobScheduledAsync()
         {
-            return ((IAsyncOnParticleUpdateJobScheduledHandler)new AsyncTriggerHandler<UnityEngine.ParticleSystemJobs.ParticleSystemJobData>(this, true)).OnParticleUpdateJobScheduledAsync();
+            return ((IAsyncOnParticleUpdateJobScheduledHandler)new AsyncTriggerHandler<ParticleSystemJobData>(this, true)).OnParticleUpdateJobScheduledAsync();
         }
 
-        public UniTask<UnityEngine.ParticleSystemJobs.ParticleSystemJobData> OnParticleUpdateJobScheduledAsync(CancellationToken cancellationToken)
+        public UniTask<ParticleSystemJobData> OnParticleUpdateJobScheduledAsync(CancellationToken cancellationToken)
         {
-            return ((IAsyncOnParticleUpdateJobScheduledHandler)new AsyncTriggerHandler<UnityEngine.ParticleSystemJobs.ParticleSystemJobData>(this, cancellationToken, true)).OnParticleUpdateJobScheduledAsync();
+            return ((IAsyncOnParticleUpdateJobScheduledHandler)new AsyncTriggerHandler<ParticleSystemJobData>(this, cancellationToken, true)).OnParticleUpdateJobScheduledAsync();
         }
     }
 #endif

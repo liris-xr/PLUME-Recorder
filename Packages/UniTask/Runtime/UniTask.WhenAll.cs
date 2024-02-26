@@ -32,7 +32,7 @@ namespace Cysharp.Threading.Tasks
         {
             if (tasks.Length == 0)
             {
-                return UniTask.CompletedTask;
+                return CompletedTask;
             }
 
             return new UniTask(new WhenAllPromise(tasks, tasks.Length), 0);
@@ -167,7 +167,7 @@ namespace Cysharp.Threading.Tasks
 
                 for (int i = 0; i < tasksLength; i++)
                 {
-                    UniTask.Awaiter awaiter;
+                    Awaiter awaiter;
                     try
                     {
                         awaiter = tasks[i].GetAwaiter();
@@ -186,7 +186,7 @@ namespace Cysharp.Threading.Tasks
                     {
                         awaiter.SourceOnCompleted(state =>
                         {
-                            using (var t = (StateTuple<WhenAllPromise, UniTask.Awaiter>)state)
+                            using (var t = (StateTuple<WhenAllPromise, Awaiter>)state)
                             {
                                 TryInvokeContinuation(t.Item1, t.Item2);
                             }
@@ -195,7 +195,7 @@ namespace Cysharp.Threading.Tasks
                 }
             }
 
-            static void TryInvokeContinuation(WhenAllPromise self, in UniTask.Awaiter awaiter)
+            static void TryInvokeContinuation(WhenAllPromise self, in Awaiter awaiter)
             {
                 try
                 {

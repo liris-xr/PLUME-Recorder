@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using Cysharp.Threading.Tasks.Internal;
+using UnityEditor;
 
 namespace Cysharp.Threading.Tasks
 {
@@ -30,7 +31,7 @@ namespace Cysharp.Threading.Tasks
                 set
                 {
                     enableAutoReload = value;
-                    UnityEditor.EditorPrefs.SetBool(EnableAutoReloadKey, value);
+                    EditorPrefs.SetBool(EnableAutoReloadKey, value);
                 }
             }
 
@@ -41,7 +42,7 @@ namespace Cysharp.Threading.Tasks
                 set
                 {
                     enableTracking = value;
-                    UnityEditor.EditorPrefs.SetBool(EnableTrackingKey, value);
+                    EditorPrefs.SetBool(EnableTrackingKey, value);
                 }
             }
 
@@ -52,7 +53,7 @@ namespace Cysharp.Threading.Tasks
                 set
                 {
                     enableStackTrace = value;
-                    UnityEditor.EditorPrefs.SetBool(EnableStackTraceKey, value);
+                    EditorPrefs.SetBool(EnableStackTraceKey, value);
                 }
             }
         }

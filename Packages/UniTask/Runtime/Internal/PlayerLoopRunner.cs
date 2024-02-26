@@ -1,6 +1,6 @@
-﻿
-using System;
-using UnityEngine;
+﻿using System;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 namespace Cysharp.Threading.Tasks.Internal
 {
@@ -154,7 +154,7 @@ namespace Cysharp.Threading.Tasks.Internal
         void LastTimeUpdate() => RunCore();
 #endif
 
-        [System.Diagnostics.DebuggerHidden]
+        [DebuggerHidden]
         void RunCore()
         {
             lock (runningAndQueueLock)

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Google.Protobuf;
-using PLUME.Sample.ProtoBurst;
 using ProtoBurst;
 using ProtoBurst.Message;
 using ProtoBurst.Packages.ProtoBurst.Runtime;

@@ -6,7 +6,7 @@ namespace Cysharp.Threading.Tasks.Linq
     {
         public static IUniTaskAsyncEnumerable<T> Never<T>()
         {
-            return Cysharp.Threading.Tasks.Linq.Never<T>.Instance;
+            return Linq.Never<T>.Instance;
         }
     }
 

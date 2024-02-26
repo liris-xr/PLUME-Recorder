@@ -1,9 +1,9 @@
 ﻿#pragma warning disable CS1591
 
-using Cysharp.Threading.Tasks.Internal;
 using System;
-using System.Linq;
 using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace Cysharp.Threading.Tasks.CompilerServices
@@ -43,7 +43,7 @@ namespace Cysharp.Threading.Tasks.CompilerServices
         // Get AsyncStateMachine internal state to check IL2CPP bug
         public static int GetState(IAsyncStateMachine stateMachine)
         {
-            var info = stateMachine.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+            var info = stateMachine.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
                 .First(x => x.Name.EndsWith("__state"));
             return (int)info.GetValue(stateMachine);
         }

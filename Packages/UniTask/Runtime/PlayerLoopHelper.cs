@@ -1,11 +1,14 @@
 ﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using UnityEngine;
-using Cysharp.Threading.Tasks.Internal;
+using System.Text;
 using System.Threading;
-
+using Cysharp.Threading.Tasks.Internal;
+using UnityEngine;
+using Debug = UnityEngine.Debug;
 #if UNITY_2019_3_OR_NEWER
 using UnityEngine.LowLevel;
 using PlayerLoopType = UnityEngine.PlayerLoop;
@@ -296,7 +299,7 @@ namespace Cysharp.Threading.Tasks
         internal static bool TryFinishRunnersTasks(int timeout)
         {
             var success = true;
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            var stopwatch = Stopwatch.StartNew();
 
             foreach (var runner in runners)
             {
@@ -403,7 +406,7 @@ namespace Cysharp.Threading.Tasks
                 .Where(ls => ls.type != typeof(UniTaskSynchronizationContext))
                 .ToArray();
 
-            var dest = new System.Collections.Generic.List<PlayerLoopSystem>(source);
+            var dest = new List<PlayerLoopSystem>(source);
 
             var index = dest.FindIndex(x => x.type.Name == "ScriptRunDelayedTasks");
             if (index == -1)
@@ -437,9 +440,8 @@ namespace Cysharp.Threading.Tasks
 #if UNITY_EDITOR && UNITY_2019_3_OR_NEWER
             // When domain reload is disabled, re-initialization is required when entering play mode; 
             // otherwise, pending tasks will leak between play mode sessions.
-            var domainReloadDisabled = UnityEditor.EditorSettings.enterPlayModeOptionsEnabled &&
-                                       UnityEditor.EditorSettings.enterPlayModeOptions.HasFlag(UnityEditor
-                                           .EnterPlayModeOptions.DisableDomainReload);
+            var domainReloadDisabled = EditorSettings.enterPlayModeOptionsEnabled &&
+                                       EditorSettings.enterPlayModeOptions.HasFlag(EnterPlayModeOptions.DisableDomainReload);
             if (!domainReloadDisabled && runners != null) return;
 #else
             if (runners != null) return; // already initialized
@@ -678,9 +680,9 @@ namespace Cysharp.Threading.Tasks
 
         public static void DumpCurrentPlayerLoop()
         {
-            var playerLoop = UnityEngine.LowLevel.PlayerLoop.GetCurrentPlayerLoop();
+            var playerLoop = PlayerLoop.GetCurrentPlayerLoop();
 
-            var sb = new System.Text.StringBuilder();
+            var sb = new StringBuilder();
             sb.AppendLine($"PlayerLoop List");
             foreach (var header in playerLoop.subSystemList)
             {
@@ -701,17 +703,17 @@ namespace Cysharp.Threading.Tasks
 
                     if (subSystem.subSystemList != null)
                     {
-                        UnityEngine.Debug.LogWarning("More Subsystem:" + subSystem.subSystemList.Length);
+                        Debug.LogWarning("More Subsystem:" + subSystem.subSystemList.Length);
                     }
                 }
             }
 
-            UnityEngine.Debug.Log(sb.ToString());
+            Debug.Log(sb.ToString());
         }
 
         public static bool IsInjectedUniTaskPlayerLoop()
         {
-            var playerLoop = UnityEngine.LowLevel.PlayerLoop.GetCurrentPlayerLoop();
+            var playerLoop = PlayerLoop.GetCurrentPlayerLoop();
 
             foreach (var header in playerLoop.subSystemList)
             {

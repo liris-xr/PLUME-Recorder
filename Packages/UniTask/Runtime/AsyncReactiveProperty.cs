@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using UnityEngine;
 
 namespace Cysharp.Threading.Tasks
 {
@@ -21,7 +22,7 @@ namespace Cysharp.Threading.Tasks
         TriggerEvent<T> triggerEvent;
 
 #if UNITY_2018_3_OR_NEWER
-        [UnityEngine.SerializeField]
+        [SerializeField]
 #endif
         T latestValue;
 

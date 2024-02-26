@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using UnityEngine;
 
 namespace Cysharp.Threading.Tasks
 {
@@ -25,7 +26,7 @@ namespace Cysharp.Threading.Tasks
         void LogError(Exception ex)
         {
 #if UNITY_2018_3_OR_NEWER
-            UnityEngine.Debug.LogException(ex);
+            Debug.LogException(ex);
 #else
             Console.WriteLine(ex);
 #endif

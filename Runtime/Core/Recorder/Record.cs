@@ -58,7 +58,7 @@ namespace PLUME.Core.Recorder
             var sampleSize = msg.CalculateSize();
             var sampleBytes = new NativeList<byte>(sampleSize, Allocator.Persistent);
             sampleBytes.ResizeUninitialized(sampleSize);
-            msg.WriteTo(sampleBytes.AsArray().AsSpan());
+            msg.WriteTo((CodedOutputStream)sampleBytes.AsArray().AsSpan());
             RecordTimestampedSample(sampleBytes, typeUrl, timestamp);
             typeUrl.Dispose();
             sampleBytes.Dispose();

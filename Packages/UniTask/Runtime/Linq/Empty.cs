@@ -6,7 +6,7 @@ namespace Cysharp.Threading.Tasks.Linq
     {
         public static IUniTaskAsyncEnumerable<T> Empty<T>()
         {
-            return Cysharp.Threading.Tasks.Linq.Empty<T>.Instance;
+            return Linq.Empty<T>.Instance;
         }
     }
 

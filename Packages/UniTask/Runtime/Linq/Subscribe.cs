@@ -1,6 +1,6 @@
-﻿using Cysharp.Threading.Tasks.Internal;
-using System;
+﻿using System;
 using System.Threading;
+using Cysharp.Threading.Tasks.Internal;
 using Subscribes = Cysharp.Threading.Tasks.Linq.Subscribe;
 
 namespace Cysharp.Threading.Tasks.Linq

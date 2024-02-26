@@ -4,7 +4,6 @@ using PLUME.Core;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
-using ShadowCastingMode = PLUME.Sample.Unity.ShadowCastingMode;
 
 namespace PLUME.Base.Hooks
 {

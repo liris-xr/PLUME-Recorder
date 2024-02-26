@@ -1,7 +1,9 @@
 ﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 using System;
+using System.Diagnostics;
 using System.Threading;
+using Debug = UnityEngine.Debug;
 
 namespace Cysharp.Threading.Tasks.Internal
 {
@@ -167,7 +169,7 @@ namespace Cysharp.Threading.Tasks.Internal
         void LastTimeUpdate() => RunCore();
 #endif
 
-        [System.Diagnostics.DebuggerHidden]
+        [DebuggerHidden]
         void RunCore()
         {
             {
@@ -195,7 +197,7 @@ namespace Cysharp.Threading.Tasks.Internal
                 }
                 catch (Exception ex)
                 {
-                    UnityEngine.Debug.LogException(ex);
+                    Debug.LogException(ex);
                 }
             }
 

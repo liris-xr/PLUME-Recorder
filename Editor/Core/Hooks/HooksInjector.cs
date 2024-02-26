@@ -10,7 +10,6 @@ using Mono.Collections.Generic;
 using Unity.Jobs;
 using UnityEditor;
 using UnityEditor.Compilation;
-using UnityEngine;
 using Logger = PLUME.Core.Logger;
 
 namespace PLUME.Editor.Core.Hooks

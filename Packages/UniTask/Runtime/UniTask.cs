@@ -5,12 +5,13 @@
 #define SUPPORT_VALUETASK
 #endif
 
-using Cysharp.Threading.Tasks.CompilerServices;
 using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks.CompilerServices;
 
 namespace Cysharp.Threading.Tasks
 {
@@ -75,7 +76,7 @@ namespace Cysharp.Threading.Tasks
 
 #if SUPPORT_VALUETASK
 
-        public static implicit operator System.Threading.Tasks.ValueTask(in UniTask self)
+        public static implicit operator ValueTask(in UniTask self)
         {
             if (self.source == null)
             {
@@ -85,7 +86,7 @@ namespace Cysharp.Threading.Tasks
 #if (UNITASK_NETCORE && NETSTANDARD2_0)
             return self.AsValueTask();
 #else
-            return new System.Threading.Tasks.ValueTask(self.source, self.token);
+            return new ValueTask(self.source, self.token);
 #endif
         }
 
@@ -441,17 +442,17 @@ namespace Cysharp.Threading.Tasks
 
 #if SUPPORT_VALUETASK
 
-        public static implicit operator System.Threading.Tasks.ValueTask<T>(in UniTask<T> self)
+        public static implicit operator ValueTask<T>(in UniTask<T> self)
         {
             if (self.source == null)
             {
-                return new System.Threading.Tasks.ValueTask<T>(self.result);
+                return new ValueTask<T>(self.result);
             }
 
 #if (UNITASK_NETCORE && NETSTANDARD2_0)
             return self.AsValueTask();
 #else
-            return new System.Threading.Tasks.ValueTask<T>(self.source, self.token);
+            return new ValueTask<T>(self.source, self.token);
 #endif
         }
 

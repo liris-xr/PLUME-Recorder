@@ -1,7 +1,6 @@
 using System;
 using PLUME.Core.Settings;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace PLUME.Base.Settings
 {

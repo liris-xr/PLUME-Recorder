@@ -1,7 +1,6 @@
-﻿using Cysharp.Threading.Tasks.Internal;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Threading;
+using Cysharp.Threading.Tasks.Internal;
 
 namespace Cysharp.Threading.Tasks.Linq
 {
@@ -11,7 +10,7 @@ namespace Cysharp.Threading.Tasks.Linq
         {
             Error.ThrowArgumentNullException(source, nameof(source));
 
-            return Cysharp.Threading.Tasks.Linq.ToArray.ToArrayAsync(source, cancellationToken);
+            return ToArray.ToArrayAsync(source, cancellationToken);
         }
     }
 

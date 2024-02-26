@@ -2,6 +2,7 @@
 
 using System;
 using System.Threading;
+using UnityEngine;
 
 namespace Cysharp.Threading.Tasks
 {
@@ -22,7 +23,7 @@ namespace Cysharp.Threading.Tasks
         /// <summary>
         /// Write log type when catch unobserved exception and not registered UnobservedTaskException. Default is Exception.
         /// </summary>
-        public static UnityEngine.LogType UnobservedExceptionWriteLogType = UnityEngine.LogType.Exception;
+        public static LogType UnobservedExceptionWriteLogType = LogType.Exception;
 
         /// <summary>
         /// Dispatch exception event to Unity MainThread. Default is true.
@@ -68,26 +69,26 @@ namespace Cysharp.Threading.Tasks
                 {
 #if UNITY_2018_3_OR_NEWER
                     string msg = null;
-                    if (UnobservedExceptionWriteLogType != UnityEngine.LogType.Exception)
+                    if (UnobservedExceptionWriteLogType != LogType.Exception)
                     {
                         msg = "UnobservedTaskException: " + ex.ToString();
                     }
                     switch (UnobservedExceptionWriteLogType)
                     {
-                        case UnityEngine.LogType.Error:
-                            UnityEngine.Debug.LogError(msg);
+                        case LogType.Error:
+                            Debug.LogError(msg);
                             break;
-                        case UnityEngine.LogType.Assert:
-                            UnityEngine.Debug.LogAssertion(msg);
+                        case LogType.Assert:
+                            Debug.LogAssertion(msg);
                             break;
-                        case UnityEngine.LogType.Warning:
-                            UnityEngine.Debug.LogWarning(msg);
+                        case LogType.Warning:
+                            Debug.LogWarning(msg);
                             break;
-                        case UnityEngine.LogType.Log:
-                            UnityEngine.Debug.Log(msg);
+                        case LogType.Log:
+                            Debug.Log(msg);
                             break;
-                        case UnityEngine.LogType.Exception:
-                            UnityEngine.Debug.LogException(ex);
+                        case LogType.Exception:
+                            Debug.LogException(ex);
                             break;
                         default:
                             break;

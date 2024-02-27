@@ -42,7 +42,7 @@ namespace PLUME.Core.Utils
 
             return new AssetIdentifier
             {
-                Id = { Id = guidRegistryEntry.guid },
+                Id = new ObjectIdentifier { Id = guidRegistryEntry.guid },
                 Path = guidRegistryEntry.assetBundlePath
             };
         }
@@ -54,7 +54,7 @@ namespace PLUME.Core.Utils
 
             return new ComponentIdentifier
             {
-                ComponentId = { Id = componentGuidRegistryEntry.guid },
+                ComponentId = new ObjectIdentifier { Id = componentGuidRegistryEntry.guid },
                 GameObjectId = component.gameObject.ToIdentifierPayload()
             };
         }
@@ -67,8 +67,8 @@ namespace PLUME.Core.Utils
 
             return new GameObjectIdentifier
             {
-                GameObjectId = { Id = gameObjectGuidRegistryEntry.guid },
-                TransformId = { Id = transformGuidRegistryEntry.guid }
+                GameObjectId = new ObjectIdentifier { Id = gameObjectGuidRegistryEntry.guid },
+                TransformId = new ObjectIdentifier { Id = transformGuidRegistryEntry.guid }
             };
         }
 
@@ -76,7 +76,7 @@ namespace PLUME.Core.Utils
         {
             return new ComponentIdentifier
             {
-                ComponentId = { Id = component.ComponentIdentifier.ComponentId.Guid.ToString() },
+                ComponentId = new ObjectIdentifier { Id = component.ComponentIdentifier.ComponentId.Guid.ToString() },
                 GameObjectId = component.ParentSafeRef.ToIdentifierPayload()
             };
         }
@@ -86,7 +86,7 @@ namespace PLUME.Core.Utils
         {
             return new AssetIdentifier
             {
-                Id = { Id = asset.Identifier.Id.Guid.ToString() },
+                Id = new ObjectIdentifier { Id = asset.Identifier.Id.Guid.ToString() },
                 Path = asset.Identifier.Path.ToString()
             };
         }
@@ -95,8 +95,8 @@ namespace PLUME.Core.Utils
         {
             return new GameObjectIdentifier
             {
-                GameObjectId = { Id = goRef.Identifier.GameObjectId.ToString() },
-                TransformId = { Id = goRef.Identifier.TransformId.Guid.ToString() }
+                GameObjectId = new ObjectIdentifier { Id = goRef.Identifier.GameObjectId.ToString() },
+                TransformId = new ObjectIdentifier { Id = goRef.Identifier.TransformId.Guid.ToString() }
             };
         }
 

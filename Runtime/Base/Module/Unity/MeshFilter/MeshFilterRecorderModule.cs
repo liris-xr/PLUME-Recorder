@@ -42,7 +42,7 @@ namespace PLUME.Base.Module.Unity.MeshFilter
 
             var meshAssetSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateAssetSafeRef(mesh);
             var updateSample = new MeshFilterUpdate { Id = objSafeRef.ToIdentifierPayload() };
-            
+
             if (isSharedMesh)
                 updateSample.SharedMeshId = meshAssetSafeRef.ToAssetIdentifierPayload();
             else

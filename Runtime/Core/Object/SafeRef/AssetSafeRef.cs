@@ -19,7 +19,7 @@ namespace PLUME.Core.Object.SafeRef
         internal AssetSafeRef(TObject asset, Guid guid, FixedString512Bytes assetPath)
         {
             Asset = asset;
-            Identifier = new AssetIdentifier(new ObjectIdentifier(asset.GetInstanceID(), guid), assetPath);
+            Identifier = new AssetIdentifier(new Identifier(asset.GetInstanceID(), guid), assetPath);
         }
 
         public TObject GetObject()

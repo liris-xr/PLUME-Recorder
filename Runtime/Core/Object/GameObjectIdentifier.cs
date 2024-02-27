@@ -11,15 +11,15 @@ namespace PLUME.Core.Object
     {
         public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.GameObjectIdentifier";
         
-        public static GameObjectIdentifier Null { get; } = new(ObjectIdentifier.Null, ObjectIdentifier.Null);
+        public static GameObjectIdentifier Null { get; } = new(Identifier.Null, Identifier.Null);
         
         private static readonly uint GameObjectIdFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.LengthDelimited);
         private static readonly uint TransformIdFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
         
-        public readonly ObjectIdentifier GameObjectId;
-        public readonly ObjectIdentifier TransformId;
+        public readonly Identifier GameObjectId;
+        public readonly Identifier TransformId;
 
-        public GameObjectIdentifier(ObjectIdentifier gameObjectId, ObjectIdentifier transformId)
+        public GameObjectIdentifier(Identifier gameObjectId, Identifier transformId)
         {
             GameObjectId = gameObjectId;
             TransformId = transformId;
@@ -27,24 +27,25 @@ namespace PLUME.Core.Object
 
         public int ComputeSize()
         {
-            var gameObjectId = GameObjectId;
-            var transformId = TransformId;
-            
             return BufferWriterExtensions.ComputeTagSize(GameObjectIdFieldTag) +
-                   BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref gameObjectId) +
+                   BufferWriterExtensions.ComputeLengthPrefixSize(Guid.Size) +
+                   Guid.Size +
                    BufferWriterExtensions.ComputeTagSize(TransformIdFieldTag) +
-                   BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref transformId);
+                   BufferWriterExtensions.ComputeLengthPrefixSize(Guid.Size) +
+                   Guid.Size;
         }
 
         public void WriteTo(ref BufferWriter bufferWriter)
         {
-            var gameObjectId = GameObjectId;
-            var transformId = TransformId;
-            
+            var gameObjectGuid = GameObjectId.Guid;
             bufferWriter.WriteTag(GameObjectIdFieldTag);
-            bufferWriter.WriteLengthPrefixedMessage(ref gameObjectId);
+            bufferWriter.WriteLength(Guid.Size);
+            gameObjectGuid.WriteTo(ref bufferWriter);
+            
+            var transformGuid = TransformId.Guid;
             bufferWriter.WriteTag(TransformIdFieldTag);
-            bufferWriter.WriteLengthPrefixedMessage(ref transformId);
+            bufferWriter.WriteLength(Guid.Size);
+            transformGuid.WriteTo(ref bufferWriter);
         }
 
         public SampleTypeUrl GetTypeUrl(Allocator allocator)

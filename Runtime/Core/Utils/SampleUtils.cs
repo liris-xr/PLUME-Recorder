@@ -22,7 +22,6 @@ using Rect = PLUME.Sample.Common.Rect;
 using Vector2 = PLUME.Sample.Common.Vector2;
 using Vector3 = PLUME.Sample.Common.Vector3;
 using Vector4 = PLUME.Sample.Common.Vector4;
-using ObjectIdentifier = PLUME.Sample.Unity.ObjectIdentifier;
 using RenderingPath = PLUME.Sample.Unity.RenderingPath;
 using TransparencySortMode = PLUME.Sample.Unity.TransparencySortMode;
 #if URP_ENABLED
@@ -42,7 +41,7 @@ namespace PLUME.Core.Utils
 
             return new AssetIdentifier
             {
-                Id = new ObjectIdentifier { Id = guidRegistryEntry.guid },
+                Id = guidRegistryEntry.guid,
                 Path = guidRegistryEntry.assetBundlePath
             };
         }
@@ -54,8 +53,8 @@ namespace PLUME.Core.Utils
 
             return new ComponentIdentifier
             {
-                ComponentId = new ObjectIdentifier { Id = componentGuidRegistryEntry.guid },
-                GameObjectId = component.gameObject.ToIdentifierPayload()
+                ComponentId = componentGuidRegistryEntry.guid,
+                ParentId = component.gameObject.ToIdentifierPayload()
             };
         }
 
@@ -67,8 +66,8 @@ namespace PLUME.Core.Utils
 
             return new GameObjectIdentifier
             {
-                GameObjectId = new ObjectIdentifier { Id = gameObjectGuidRegistryEntry.guid },
-                TransformId = new ObjectIdentifier { Id = transformGuidRegistryEntry.guid }
+                GameObjectId = gameObjectGuidRegistryEntry.guid,
+                TransformId = transformGuidRegistryEntry.guid
             };
         }
 
@@ -76,8 +75,8 @@ namespace PLUME.Core.Utils
         {
             return new ComponentIdentifier
             {
-                ComponentId = new ObjectIdentifier { Id = component.ComponentIdentifier.ComponentId.Guid.ToString() },
-                GameObjectId = component.ParentSafeRef.ToIdentifierPayload()
+                ComponentId = component.ComponentIdentifier.ComponentId.Guid.ToString(),
+                ParentId = component.ParentSafeRef.ToIdentifierPayload()
             };
         }
 
@@ -86,8 +85,8 @@ namespace PLUME.Core.Utils
         {
             return new AssetIdentifier
             {
-                Id = new ObjectIdentifier { Id = asset.Identifier.Id.Guid.ToString() },
-                Path = asset.Identifier.Path.ToString()
+                Id = asset.Identifier.AssetId.Guid.ToString(),
+                Path = asset.Identifier.AssetPath.ToString()
             };
         }
 
@@ -95,8 +94,8 @@ namespace PLUME.Core.Utils
         {
             return new GameObjectIdentifier
             {
-                GameObjectId = new ObjectIdentifier { Id = goRef.Identifier.GameObjectId.Guid.ToString() },
-                TransformId = new ObjectIdentifier { Id = goRef.Identifier.TransformId.Guid.ToString() }
+                GameObjectId = goRef.Identifier.GameObjectId.Guid.ToString(),
+                TransformId = goRef.Identifier.TransformId.Guid.ToString()
             };
         }
 

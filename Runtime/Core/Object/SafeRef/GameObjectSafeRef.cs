@@ -22,8 +22,8 @@ namespace PLUME.Core.Object.SafeRef
 
         internal GameObjectSafeRef(GameObject go, Guid guid, ComponentSafeRef<Transform> transformSafeRef)
         {
-            var identifier = new ObjectIdentifier(go.GetInstanceID(), guid);
-            var transformIdentifier = new ObjectIdentifier(go.transform.GetInstanceID(), guid);
+            var identifier = new Identifier(go.GetInstanceID(), guid);
+            var transformIdentifier = new Identifier(go.transform.GetInstanceID(), guid);
             Identifier = new GameObjectIdentifier(identifier, transformIdentifier);
             GameObject = go;
             TransformSafeRef = transformSafeRef;

@@ -19,7 +19,7 @@ namespace PLUME.Core.Object.SafeRef
 
         internal ComponentSafeRef(TC component, Guid guid, GameObjectSafeRef gameObjectSafeRef)
         {
-            var objectIdentifier = new ObjectIdentifier(component.GetInstanceID(), guid);
+            var objectIdentifier = new Identifier(component.GetInstanceID(), guid);
             ParentSafeRef = gameObjectSafeRef;
             ComponentIdentifier = new ComponentIdentifier(objectIdentifier, gameObjectSafeRef.Identifier);
             Component = component;

@@ -25,27 +25,24 @@ namespace PLUME.Sample.Unity {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Chd1bml0eS9pZGVudGlmaWVycy5wcm90bxIScGx1bWUuc2FtcGxlLnVuaXR5",
-            "Ih4KEE9iamVjdElkZW50aWZpZXISCgoCaWQYASABKAkikAEKFEdhbWVPYmpl",
-            "Y3RJZGVudGlmaWVyEjwKDmdhbWVfb2JqZWN0X2lkGAEgASgLMiQucGx1bWUu",
-            "c2FtcGxlLnVuaXR5Lk9iamVjdElkZW50aWZpZXISOgoMdHJhbnNmb3JtX2lk",
-            "GAIgASgLMiQucGx1bWUuc2FtcGxlLnVuaXR5Lk9iamVjdElkZW50aWZpZXIi",
-            "kwEKE0NvbXBvbmVudElkZW50aWZpZXISOgoMY29tcG9uZW50X2lkGAEgASgL",
-            "MiQucGx1bWUuc2FtcGxlLnVuaXR5Lk9iamVjdElkZW50aWZpZXISQAoOZ2Ft",
-            "ZV9vYmplY3RfaWQYAiABKAsyKC5wbHVtZS5zYW1wbGUudW5pdHkuR2FtZU9i",
-            "amVjdElkZW50aWZpZXIiUQoPQXNzZXRJZGVudGlmaWVyEjAKAmlkGAEgASgL",
-            "MiQucGx1bWUuc2FtcGxlLnVuaXR5Lk9iamVjdElkZW50aWZpZXISDAoEcGF0",
-            "aBgCIAEoCSKWAQoPU2NlbmVJZGVudGlmaWVyEgoKAmlkGAEgASgJEhUKDXJ1",
-            "bnRpbWVfaW5kZXgYAiABKAkSDAoEbmFtZRgDIAEoCRIMCgRwYXRoGAQgASgJ",
-            "EhMKC2J1aWxkX2luZGV4GAUgASgFEi8KBG1vZGUYBiABKA4yIS5wbHVtZS5z",
-            "YW1wbGUudW5pdHkuTG9hZFNjZW5lTW9kZSpJCg1Mb2FkU2NlbmVNb2RlEhoK",
-            "FkxPQURfU0NFTkVfTU9ERV9TSU5HTEUQABIcChhMT0FEX1NDRU5FX01PREVf",
-            "QURESVRJVkUQAUIVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
+            "Ih4KEE9iamVjdElkZW50aWZpZXISCgoCaWQYASABKAkiRAoUR2FtZU9iamVj",
+            "dElkZW50aWZpZXISFgoOZ2FtZV9vYmplY3RfaWQYASABKAkSFAoMdHJhbnNm",
+            "b3JtX2lkGAIgASgJImgKE0NvbXBvbmVudElkZW50aWZpZXISFAoMY29tcG9u",
+            "ZW50X2lkGAEgASgJEjsKCXBhcmVudF9pZBgCIAEoCzIoLnBsdW1lLnNhbXBs",
+            "ZS51bml0eS5HYW1lT2JqZWN0SWRlbnRpZmllciIrCg9Bc3NldElkZW50aWZp",
+            "ZXISCgoCaWQYASABKAkSDAoEcGF0aBgCIAEoCSKWAQoPU2NlbmVJZGVudGlm",
+            "aWVyEgoKAmlkGAEgASgJEhUKDXJ1bnRpbWVfaW5kZXgYAiABKAkSDAoEbmFt",
+            "ZRgDIAEoCRIMCgRwYXRoGAQgASgJEhMKC2J1aWxkX2luZGV4GAUgASgFEi8K",
+            "BG1vZGUYBiABKA4yIS5wbHVtZS5zYW1wbGUudW5pdHkuTG9hZFNjZW5lTW9k",
+            "ZSpJCg1Mb2FkU2NlbmVNb2RlEhoKFkxPQURfU0NFTkVfTU9ERV9TSU5HTEUQ",
+            "ABIcChhMT0FEX1NDRU5FX01PREVfQURESVRJVkUQAUIVqgISUExVTUUuU2Ft",
+            "cGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.LoadSceneMode), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ObjectIdentifier), global::PLUME.Sample.Unity.ObjectIdentifier.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectIdentifier), global::PLUME.Sample.Unity.GameObjectIdentifier.Parser, new[]{ "GameObjectId", "TransformId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ComponentIdentifier), global::PLUME.Sample.Unity.ComponentIdentifier.Parser, new[]{ "ComponentId", "GameObjectId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ComponentIdentifier), global::PLUME.Sample.Unity.ComponentIdentifier.Parser, new[]{ "ComponentId", "ParentId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AssetIdentifier), global::PLUME.Sample.Unity.AssetIdentifier.Parser, new[]{ "Id", "Path" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SceneIdentifier), global::PLUME.Sample.Unity.SceneIdentifier.Parser, new[]{ "Id", "RuntimeIndex", "Name", "Path", "BuildIndex", "Mode" }, null, null, null, null)
           }));
@@ -287,8 +284,8 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public GameObjectIdentifier(GameObjectIdentifier other) : this() {
-      gameObjectId_ = other.gameObjectId_ != null ? other.gameObjectId_.Clone() : null;
-      transformId_ = other.transformId_ != null ? other.transformId_.Clone() : null;
+      gameObjectId_ = other.gameObjectId_;
+      transformId_ = other.transformId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -300,25 +297,25 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "game_object_id" field.</summary>
     public const int GameObjectIdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ObjectIdentifier gameObjectId_;
+    private string gameObjectId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ObjectIdentifier GameObjectId {
+    public string GameObjectId {
       get { return gameObjectId_; }
       set {
-        gameObjectId_ = value;
+        gameObjectId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
     /// <summary>Field number for the "transform_id" field.</summary>
     public const int TransformIdFieldNumber = 2;
-    private global::PLUME.Sample.Unity.ObjectIdentifier transformId_;
+    private string transformId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ObjectIdentifier TransformId {
+    public string TransformId {
       get { return transformId_; }
       set {
-        transformId_ = value;
+        transformId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -337,8 +334,8 @@ namespace PLUME.Sample.Unity {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(GameObjectId, other.GameObjectId)) return false;
-      if (!object.Equals(TransformId, other.TransformId)) return false;
+      if (GameObjectId != other.GameObjectId) return false;
+      if (TransformId != other.TransformId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -346,8 +343,8 @@ namespace PLUME.Sample.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (gameObjectId_ != null) hash ^= GameObjectId.GetHashCode();
-      if (transformId_ != null) hash ^= TransformId.GetHashCode();
+      if (GameObjectId.Length != 0) hash ^= GameObjectId.GetHashCode();
+      if (TransformId.Length != 0) hash ^= TransformId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -366,13 +363,13 @@ namespace PLUME.Sample.Unity {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (gameObjectId_ != null) {
+      if (GameObjectId.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteMessage(GameObjectId);
+        output.WriteString(GameObjectId);
       }
-      if (transformId_ != null) {
+      if (TransformId.Length != 0) {
         output.WriteRawTag(18);
-        output.WriteMessage(TransformId);
+        output.WriteString(TransformId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -384,13 +381,13 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (gameObjectId_ != null) {
+      if (GameObjectId.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteMessage(GameObjectId);
+        output.WriteString(GameObjectId);
       }
-      if (transformId_ != null) {
+      if (TransformId.Length != 0) {
         output.WriteRawTag(18);
-        output.WriteMessage(TransformId);
+        output.WriteString(TransformId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -402,11 +399,11 @@ namespace PLUME.Sample.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (gameObjectId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(GameObjectId);
+      if (GameObjectId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(GameObjectId);
       }
-      if (transformId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(TransformId);
+      if (TransformId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TransformId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -420,17 +417,11 @@ namespace PLUME.Sample.Unity {
       if (other == null) {
         return;
       }
-      if (other.gameObjectId_ != null) {
-        if (gameObjectId_ == null) {
-          GameObjectId = new global::PLUME.Sample.Unity.ObjectIdentifier();
-        }
-        GameObjectId.MergeFrom(other.GameObjectId);
+      if (other.GameObjectId.Length != 0) {
+        GameObjectId = other.GameObjectId;
       }
-      if (other.transformId_ != null) {
-        if (transformId_ == null) {
-          TransformId = new global::PLUME.Sample.Unity.ObjectIdentifier();
-        }
-        TransformId.MergeFrom(other.TransformId);
+      if (other.TransformId.Length != 0) {
+        TransformId = other.TransformId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -448,17 +439,11 @@ namespace PLUME.Sample.Unity {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            if (gameObjectId_ == null) {
-              GameObjectId = new global::PLUME.Sample.Unity.ObjectIdentifier();
-            }
-            input.ReadMessage(GameObjectId);
+            GameObjectId = input.ReadString();
             break;
           }
           case 18: {
-            if (transformId_ == null) {
-              TransformId = new global::PLUME.Sample.Unity.ObjectIdentifier();
-            }
-            input.ReadMessage(TransformId);
+            TransformId = input.ReadString();
             break;
           }
         }
@@ -477,17 +462,11 @@ namespace PLUME.Sample.Unity {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            if (gameObjectId_ == null) {
-              GameObjectId = new global::PLUME.Sample.Unity.ObjectIdentifier();
-            }
-            input.ReadMessage(GameObjectId);
+            GameObjectId = input.ReadString();
             break;
           }
           case 18: {
-            if (transformId_ == null) {
-              TransformId = new global::PLUME.Sample.Unity.ObjectIdentifier();
-            }
-            input.ReadMessage(TransformId);
+            TransformId = input.ReadString();
             break;
           }
         }
@@ -532,8 +511,8 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ComponentIdentifier(ComponentIdentifier other) : this() {
-      componentId_ = other.componentId_ != null ? other.componentId_.Clone() : null;
-      gameObjectId_ = other.gameObjectId_ != null ? other.gameObjectId_.Clone() : null;
+      componentId_ = other.componentId_;
+      parentId_ = other.parentId_ != null ? other.parentId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -545,25 +524,25 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "component_id" field.</summary>
     public const int ComponentIdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ObjectIdentifier componentId_;
+    private string componentId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ObjectIdentifier ComponentId {
+    public string ComponentId {
       get { return componentId_; }
       set {
-        componentId_ = value;
+        componentId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
-    /// <summary>Field number for the "game_object_id" field.</summary>
-    public const int GameObjectIdFieldNumber = 2;
-    private global::PLUME.Sample.Unity.GameObjectIdentifier gameObjectId_;
+    /// <summary>Field number for the "parent_id" field.</summary>
+    public const int ParentIdFieldNumber = 2;
+    private global::PLUME.Sample.Unity.GameObjectIdentifier parentId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.GameObjectIdentifier GameObjectId {
-      get { return gameObjectId_; }
+    public global::PLUME.Sample.Unity.GameObjectIdentifier ParentId {
+      get { return parentId_; }
       set {
-        gameObjectId_ = value;
+        parentId_ = value;
       }
     }
 
@@ -582,8 +561,8 @@ namespace PLUME.Sample.Unity {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(ComponentId, other.ComponentId)) return false;
-      if (!object.Equals(GameObjectId, other.GameObjectId)) return false;
+      if (ComponentId != other.ComponentId) return false;
+      if (!object.Equals(ParentId, other.ParentId)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -591,8 +570,8 @@ namespace PLUME.Sample.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (componentId_ != null) hash ^= ComponentId.GetHashCode();
-      if (gameObjectId_ != null) hash ^= GameObjectId.GetHashCode();
+      if (ComponentId.Length != 0) hash ^= ComponentId.GetHashCode();
+      if (parentId_ != null) hash ^= ParentId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -611,13 +590,13 @@ namespace PLUME.Sample.Unity {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (componentId_ != null) {
+      if (ComponentId.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteMessage(ComponentId);
+        output.WriteString(ComponentId);
       }
-      if (gameObjectId_ != null) {
+      if (parentId_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(GameObjectId);
+        output.WriteMessage(ParentId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -629,13 +608,13 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (componentId_ != null) {
+      if (ComponentId.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteMessage(ComponentId);
+        output.WriteString(ComponentId);
       }
-      if (gameObjectId_ != null) {
+      if (parentId_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(GameObjectId);
+        output.WriteMessage(ParentId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -647,11 +626,11 @@ namespace PLUME.Sample.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (componentId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ComponentId);
+      if (ComponentId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ComponentId);
       }
-      if (gameObjectId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(GameObjectId);
+      if (parentId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ParentId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -665,17 +644,14 @@ namespace PLUME.Sample.Unity {
       if (other == null) {
         return;
       }
-      if (other.componentId_ != null) {
-        if (componentId_ == null) {
-          ComponentId = new global::PLUME.Sample.Unity.ObjectIdentifier();
-        }
-        ComponentId.MergeFrom(other.ComponentId);
+      if (other.ComponentId.Length != 0) {
+        ComponentId = other.ComponentId;
       }
-      if (other.gameObjectId_ != null) {
-        if (gameObjectId_ == null) {
-          GameObjectId = new global::PLUME.Sample.Unity.GameObjectIdentifier();
+      if (other.parentId_ != null) {
+        if (parentId_ == null) {
+          ParentId = new global::PLUME.Sample.Unity.GameObjectIdentifier();
         }
-        GameObjectId.MergeFrom(other.GameObjectId);
+        ParentId.MergeFrom(other.ParentId);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -693,17 +669,14 @@ namespace PLUME.Sample.Unity {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            if (componentId_ == null) {
-              ComponentId = new global::PLUME.Sample.Unity.ObjectIdentifier();
-            }
-            input.ReadMessage(ComponentId);
+            ComponentId = input.ReadString();
             break;
           }
           case 18: {
-            if (gameObjectId_ == null) {
-              GameObjectId = new global::PLUME.Sample.Unity.GameObjectIdentifier();
+            if (parentId_ == null) {
+              ParentId = new global::PLUME.Sample.Unity.GameObjectIdentifier();
             }
-            input.ReadMessage(GameObjectId);
+            input.ReadMessage(ParentId);
             break;
           }
         }
@@ -722,17 +695,14 @@ namespace PLUME.Sample.Unity {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            if (componentId_ == null) {
-              ComponentId = new global::PLUME.Sample.Unity.ObjectIdentifier();
-            }
-            input.ReadMessage(ComponentId);
+            ComponentId = input.ReadString();
             break;
           }
           case 18: {
-            if (gameObjectId_ == null) {
-              GameObjectId = new global::PLUME.Sample.Unity.GameObjectIdentifier();
+            if (parentId_ == null) {
+              ParentId = new global::PLUME.Sample.Unity.GameObjectIdentifier();
             }
-            input.ReadMessage(GameObjectId);
+            input.ReadMessage(ParentId);
             break;
           }
         }
@@ -777,7 +747,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AssetIdentifier(AssetIdentifier other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
+      id_ = other.id_;
       path_ = other.path_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -790,13 +760,13 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ObjectIdentifier id_;
+    private string id_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ObjectIdentifier Id {
+    public string Id {
       get { return id_; }
       set {
-        id_ = value;
+        id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -827,7 +797,7 @@ namespace PLUME.Sample.Unity {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(Id, other.Id)) return false;
+      if (Id != other.Id) return false;
       if (Path != other.Path) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -836,7 +806,7 @@ namespace PLUME.Sample.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
+      if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (Path.Length != 0) hash ^= Path.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -856,9 +826,9 @@ namespace PLUME.Sample.Unity {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (id_ != null) {
+      if (Id.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteMessage(Id);
+        output.WriteString(Id);
       }
       if (Path.Length != 0) {
         output.WriteRawTag(18);
@@ -874,9 +844,9 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
+      if (Id.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteMessage(Id);
+        output.WriteString(Id);
       }
       if (Path.Length != 0) {
         output.WriteRawTag(18);
@@ -892,8 +862,8 @@ namespace PLUME.Sample.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      if (Id.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
       if (Path.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Path);
@@ -910,11 +880,8 @@ namespace PLUME.Sample.Unity {
       if (other == null) {
         return;
       }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
-        }
-        Id.MergeFrom(other.Id);
+      if (other.Id.Length != 0) {
+        Id = other.Id;
       }
       if (other.Path.Length != 0) {
         Path = other.Path;
@@ -935,10 +902,7 @@ namespace PLUME.Sample.Unity {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
-            }
-            input.ReadMessage(Id);
+            Id = input.ReadString();
             break;
           }
           case 18: {
@@ -961,10 +925,7 @@ namespace PLUME.Sample.Unity {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
-            }
-            input.ReadMessage(Id);
+            Id = input.ReadString();
             break;
           }
           case 18: {

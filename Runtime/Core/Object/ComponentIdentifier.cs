@@ -11,15 +11,15 @@ namespace PLUME.Core.Object
     {
         public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.ComponentIdentifier";
 
-        public static ComponentIdentifier Null { get; } = new(ObjectIdentifier.Null, GameObjectIdentifier.Null);
+        public static ComponentIdentifier Null { get; } = new(Identifier.Null, GameObjectIdentifier.Null);
 
         private static readonly uint ComponentIdFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.LengthDelimited);
         private static readonly uint GameObjectIdFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
 
-        public readonly ObjectIdentifier ComponentId;
+        public readonly Identifier ComponentId;
         public readonly GameObjectIdentifier GameObjectId;
 
-        public ComponentIdentifier(ObjectIdentifier componentId, GameObjectIdentifier gameObjectId)
+        public ComponentIdentifier(Identifier componentId, GameObjectIdentifier gameObjectId)
         {
             ComponentId = componentId;
             GameObjectId = gameObjectId;
@@ -27,22 +27,23 @@ namespace PLUME.Core.Object
 
         public int ComputeSize()
         {
-            var componentId = ComponentId;
             var gameObjectId = GameObjectId;
             
             return BufferWriterExtensions.ComputeTagSize(ComponentIdFieldTag) +
-                   BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref componentId) +
+                   BufferWriterExtensions.ComputeLengthPrefixSize(Guid.Size) +
+                   Guid.Size +
                    BufferWriterExtensions.ComputeTagSize(GameObjectIdFieldTag) +
                    BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref gameObjectId);
         }
 
         public void WriteTo(ref BufferWriter bufferWriter)
         {
-            var componentId = ComponentId;
-            var gameObjectId = GameObjectId;
-            
+            var componentGuid = ComponentId.Guid;
             bufferWriter.WriteTag(ComponentIdFieldTag);
-            bufferWriter.WriteLengthPrefixedMessage(ref componentId);
+            bufferWriter.WriteLength(Guid.Size);
+            componentGuid.WriteTo(ref bufferWriter);
+            
+            var gameObjectId = GameObjectId;
             bufferWriter.WriteTag(GameObjectIdFieldTag);
             bufferWriter.WriteLengthPrefixedMessage(ref gameObjectId);
         }

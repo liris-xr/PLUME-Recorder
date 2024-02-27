@@ -28,10 +28,10 @@ namespace PLUME.Base.Module.Unity.MeshFilter
         
         private void OnBeforeDestroy(Object obj, RecorderContext ctx)
         {
-            if (obj is not UnityEngine.MeshFilter meshFilter)
+            if (!ctx.IsRecording)
                 return;
             
-            if (!ctx.IsRecording)
+            if (obj is not UnityEngine.MeshFilter meshFilter)
                 return;
 
             var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(meshFilter);
@@ -44,10 +44,10 @@ namespace PLUME.Base.Module.Unity.MeshFilter
 
         private void OnAddComponent(UnityEngine.GameObject go, Component component, RecorderContext ctx)
         {
-            if (component is not UnityEngine.MeshFilter meshFilter)
-                return;
-
             if (!ctx.IsRecording)
+                return;
+            
+            if (component is not UnityEngine.MeshFilter meshFilter)
                 return;
 
             var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(meshFilter);

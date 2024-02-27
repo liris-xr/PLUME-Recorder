@@ -5,7 +5,6 @@ using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Writer;
 using PLUME.Core.Scripts;
 using PLUME.Core.Settings;
-using PLUME.Sample.Common;
 using UnityEngine;
 
 namespace PLUME.Core.Recorder

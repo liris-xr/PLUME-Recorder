@@ -8,6 +8,7 @@ using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using Unity.Collections;
 using Unity.Jobs;
+using UnityEngine;
 using UnityEngine.Scripting;
 using TransformSafeRef = PLUME.Core.Object.SafeRef.ComponentSafeRef<UnityEngine.Transform>;
 
@@ -40,12 +41,46 @@ namespace PLUME.Base.Module.Unity.Transform
             _alignedPositionStates = new NativeList<TransformPositionState>(1000, Allocator.Persistent);
             _alignedHierarchyStates = new NativeList<TransformHierarchyState>(1000, Allocator.Persistent);
             _alignedFlagsStates = new NativeList<TransformFlagsState>(1000, Allocator.Persistent);
-
-
+            
+            ObjectHooks.OnBeforeDestroy += obj => OnBeforeDestroy(obj, ctx);
+            GameObjectHooks.OnCreate += go => OnCreateGameObject(go, ctx);
             TransformHooks.OnSetParent += (t, parent) => OnSetParent(t, parent, ctx);
             TransformHooks.OnSetSiblingIndex += (t, siblingIdx) => OnSetSiblingIndex(t, siblingIdx, ctx);
         }
 
+        private void OnBeforeDestroy(Object obj, RecorderContext ctx)
+        {
+            if (!ctx.IsRecording)
+                return;
+            
+            TransformSafeRef tSafeRef;
+            
+            if (obj is UnityEngine.GameObject go)
+                tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
+            else if (obj is UnityEngine.Transform t)
+                tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t);
+            else
+                return;
+            
+            if (!IsRecordingObject(tSafeRef))
+                return;
+
+            StopRecordingObject(tSafeRef, true, ctx);
+        }
+        
+        private void OnCreateGameObject(UnityEngine.GameObject go, RecorderContext ctx)
+        {
+            if (!ctx.IsRecording)
+                return;
+
+            var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
+
+            if (!IsRecordingObject(tSafeRef))
+                return;
+
+            StartRecordingObject(tSafeRef, true, ctx);
+        }
+        
         protected override void OnDestroy(RecorderContext ctx)
         {
             _transformAccessArray.Dispose();
@@ -53,6 +88,22 @@ namespace PLUME.Base.Module.Unity.Transform
             _alignedPositionStates.Dispose();
             _alignedHierarchyStates.Dispose();
             _alignedFlagsStates.Dispose();
+        }
+
+        protected override void OnObjectMarkedCreated(TransformSafeRef tSafeRef)
+        {
+            var idx = _identifierToIndex[tSafeRef.ComponentIdentifier];
+            var flagsState = _alignedFlagsStates[idx];
+            flagsState.MarkCreatedInFrame();
+            _alignedFlagsStates[idx] = flagsState;
+        }
+
+        protected override void OnObjectMarkedDestroyed(TransformSafeRef tSafeRef)
+        {
+            var idx = _identifierToIndex[tSafeRef.ComponentIdentifier];
+            var flagsState = _alignedFlagsStates[idx];
+            flagsState.MarkDestroyedInFrame();
+            _alignedFlagsStates[idx] = flagsState;
         }
 
         protected override void OnStartRecordingObject(TransformSafeRef tSafeRef, RecorderContext ctx)

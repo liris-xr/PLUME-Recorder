@@ -167,8 +167,14 @@ namespace PLUME.Base.Module.Unity.Transform
 
         public void Dispose()
         {
-            _transformAccessArray.Dispose();
+            if (_transformAccessArray.isCreated)
+            {
+                _transformAccessArray.Dispose();
+                _transformAccessArray = default;
+            }
+
             _alignedIdentifiers.Dispose();
+            _alignedIdentifiers = default;
         }
     }
 }

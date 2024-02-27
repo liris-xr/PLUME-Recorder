@@ -18,8 +18,10 @@ namespace PLUME.Base.Module.Unity.Transform
     {
         private DynamicTransformAccessArray _transformAccessArray;
 
-        private NativeHashMap<ComponentIdentifier, TransformPositionState> _positionStates;
-        private NativeHashMap<ComponentIdentifier, TransformHierarchyState> _hierarchyStates;
+        private NativeHashMap<ComponentIdentifier, int> _identifierToIndex;
+        private NativeList<TransformPositionState> _alignedPositionStates;
+        private NativeList<TransformHierarchyState> _alignedHierarchyStates;
+        private NativeList<TransformFlagsState> _alignedFlagsStates;
 
         private TransformPositionStateUpdater _transformPositionStateUpdater;
 
@@ -32,13 +34,12 @@ namespace PLUME.Base.Module.Unity.Transform
 
             _transformAccessArray = new DynamicTransformAccessArray();
 
-            _positionStates =
-                new NativeHashMap<ComponentIdentifier, TransformPositionState>(1000, Allocator.Persistent);
-            _hierarchyStates =
-                new NativeHashMap<ComponentIdentifier, TransformHierarchyState>(1000, Allocator.Persistent);
+            _identifierToIndex = new NativeHashMap<ComponentIdentifier, int>(1000, Allocator.Persistent);
+            _alignedPositionStates = new NativeList<TransformPositionState>(1000, Allocator.Persistent);
+            _alignedHierarchyStates = new NativeList<TransformHierarchyState>(1000, Allocator.Persistent);
+            _alignedFlagsStates = new NativeList<TransformFlagsState>(1000, Allocator.Persistent);
 
-            _transformPositionStateUpdater = new TransformPositionStateUpdater(_positionStates, _transformAccessArray,
-                angularThreshold, positionThresholdSq, scaleThresholdSq);
+            _transformPositionStateUpdater = new TransformPositionStateUpdater(angularThreshold, positionThresholdSq, scaleThresholdSq);
 
             TransformHooks.OnSetParent += (t, parent) => OnSetParent(t, parent, ctx);
             TransformHooks.OnSetSiblingIndex += (t, siblingIdx) => OnSetSiblingIndex(t, siblingIdx, ctx);
@@ -46,10 +47,11 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnDestroy(RecorderContext ctx)
         {
-            _transformPositionStateUpdater.Dispose();
             _transformAccessArray.Dispose();
-            _positionStates.Dispose();
-            _hierarchyStates.Dispose();
+            _identifierToIndex.Dispose();
+            _alignedPositionStates.Dispose();
+            _alignedHierarchyStates.Dispose();
+            _alignedFlagsStates.Dispose();
         }
 
         protected override void OnStartRecordingObject(ComponentSafeRef<UnityEngine.Transform> objSafeRef,
@@ -64,7 +66,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
             var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t.parent);
             var parentIdentifier = parentSafeRef.ComponentIdentifier;
-            
+
             var initialPositionState = new TransformPositionState
             {
                 LocalPosition = localPosition,
@@ -78,17 +80,24 @@ namespace PLUME.Base.Module.Unity.Transform
                 SiblingIndex = siblingIndex
             };
 
+            var initialFlagsState = new TransformFlagsState();
+
+            var idx = _transformAccessArray.Length;
             _transformAccessArray.Add(objSafeRef);
-            _positionStates.Add(objSafeRef.ComponentIdentifier, initialPositionState);
-            _hierarchyStates.Add(objSafeRef.ComponentIdentifier, initialHierarchyState);
+            _identifierToIndex.Add(objSafeRef.ComponentIdentifier, idx);
+            _alignedPositionStates.Add(initialPositionState);
+            _alignedHierarchyStates.Add(initialHierarchyState);
+            _alignedFlagsStates.Add(initialFlagsState);
         }
 
         protected override void OnStopRecordingObject(ComponentSafeRef<UnityEngine.Transform> objSafeRef, Record record,
             RecorderContext recorderContext)
         {
-            _transformAccessArray.RemoveSwapBack(objSafeRef);
-            _hierarchyStates.Remove(objSafeRef.ComponentIdentifier);
-            _positionStates.Remove(objSafeRef.ComponentIdentifier);
+            var idx = _transformAccessArray.RemoveSwapBack(objSafeRef);
+            _identifierToIndex.Remove(objSafeRef.ComponentIdentifier);
+            _alignedHierarchyStates.RemoveAtSwapBack(idx);
+            _alignedPositionStates.RemoveAtSwapBack(idx);
+            _alignedFlagsStates.RemoveAtSwapBack(idx);
         }
 
         private void OnSetParent(UnityEngine.Transform t, UnityEngine.Transform parent, RecorderContext ctx)
@@ -104,10 +113,11 @@ namespace PLUME.Base.Module.Unity.Transform
             var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(parent);
             var parentIdentifier = parentSafeRef.ComponentIdentifier;
 
-            var hierarchyState = _hierarchyStates[tSafeRef.ComponentIdentifier];
+            var idx = _identifierToIndex[tSafeRef.ComponentIdentifier];
+            var hierarchyState = _alignedHierarchyStates[idx];
             hierarchyState.ParentDirty = !parentIdentifier.Equals(hierarchyState.ParentIdentifier);
             hierarchyState.ParentIdentifier = parentIdentifier;
-            _hierarchyStates[tSafeRef.ComponentIdentifier] = hierarchyState;
+            _alignedHierarchyStates[idx] = hierarchyState;
         }
 
         private void OnSetSiblingIndex(UnityEngine.Transform t, int siblingIndex, RecorderContext ctx)
@@ -120,53 +130,47 @@ namespace PLUME.Base.Module.Unity.Transform
             if (!IsRecordingObject(tSafeRef))
                 return;
 
-            var hierarchyState = _hierarchyStates[tSafeRef.ComponentIdentifier];
+            var idx = _identifierToIndex[tSafeRef.ComponentIdentifier];
+            var hierarchyState = _alignedHierarchyStates[idx];
             hierarchyState.SiblingIndexDirty = siblingIndex != hierarchyState.SiblingIndex;
             hierarchyState.SiblingIndex = siblingIndex;
-            _hierarchyStates[tSafeRef.ComponentIdentifier] = hierarchyState;
+            _alignedHierarchyStates[idx] = hierarchyState;
         }
 
         protected override void OnStopRecording(Record record, RecorderContext recorderContext)
         {
-            _transformPositionStateUpdater.Complete();
             _transformAccessArray.Clear();
-            _hierarchyStates.Clear();
-            _positionStates.Clear();
+            _identifierToIndex.Clear();
+            _alignedHierarchyStates.Clear();
+            _alignedPositionStates.Clear();
+            _alignedFlagsStates.Clear();
         }
 
-        protected override void OnEarlyUpdate(long deltaTime, Record record, RecorderContext context)
+        protected override TransformFrameData CollectFrameData(FrameInfo frameInfo, Record record, RecorderContext ctx)
         {
-            _transformPositionStateUpdater.StartPollingPositions();
-        }
+            _transformPositionStateUpdater.UpdatePositionStates(_alignedPositionStates, _transformAccessArray);
 
-        protected override TransformFrameData CollectFrameData(FrameInfo frameInfo, Record record,
-            RecorderContext context)
-        {
-            _transformPositionStateUpdater.Complete();
-            _transformPositionStateUpdater.MergePolledPositions();
+            var nRecorded = RecordedComponents.Count;
+            var nCreated = CreatedComponentsIdentifier.Count;
+            var nDestroyed = DestroyedComponentsIdentifier.Count;
+            var updateSamples = new NativeList<TransformUpdate>(nRecorded, Allocator.Persistent);
+            var createSamples = new NativeList<TransformCreate>(nCreated, Allocator.Persistent);
+            var destroySamples = new NativeList<TransformDestroy>(nDestroyed, Allocator.Persistent);
 
-            var updateSamples =
-                new NativeList<TransformUpdate>(RecordedComponents.Count, Allocator.Persistent);
-            var createSamples =
-                new NativeList<TransformCreate>(CreatedComponentsIdentifier.Count, Allocator.Persistent);
-            var destroySamples =
-                new NativeList<TransformDestroy>(DestroyedComponentsIdentifier.Count, Allocator.Persistent);
-
-            var recordedObjectsIdentifier = RecordedComponentsIdentifier.ToNativeArray(Allocator.Persistent);
+            var identifiers = RecordedComponentsIdentifier.ToNativeArray(Allocator.Persistent);
 
             new SampleProducerJob
             {
-                CreatedInFrameIdentifiers = CreatedComponentsIdentifier,
-                DestroyedInFrameIdentifiers = DestroyedComponentsIdentifier,
-                Identifiers = recordedObjectsIdentifier,
-                PositionStates = _positionStates,
-                HierarchyStates = _hierarchyStates,
+                Identifiers = identifiers,
+                AlignedPositionStates = _alignedPositionStates.AsArray(),
+                AlignedHierarchyStates = _alignedHierarchyStates.AsArray(),
+                AlignedFlagsStates = _alignedFlagsStates.AsArray(),
                 UpdateSamples = updateSamples.AsParallelWriter(),
                 CreateSamples = createSamples.AsParallelWriter(),
                 DestroySamples = destroySamples.AsParallelWriter()
             }.RunBatch(RecordedComponents.Count);
 
-            recordedObjectsIdentifier.Dispose();
+            identifiers.Dispose();
 
             return new TransformFrameData(updateSamples, createSamples, destroySamples);
         }

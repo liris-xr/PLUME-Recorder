@@ -16,14 +16,14 @@ namespace PLUME.Base.Module.Unity.Transform.Job
         public float PositionThresholdSq;
         public float ScaleThresholdSq;
         
-        public NativeArray<TransformPositionState> PositionStates;
+        public NativeArray<TransformPositionState> AlignedPositionStates;
         
         public void Execute(int index, TransformAccess transform)
         {
             if(!transform.isValid)
                 return;
             
-            var state = PositionStates[index];
+            var state = AlignedPositionStates[index];
 
             var localPosition = (float3)transform.localPosition;
             var localRotation = (quaternion)transform.localRotation;
@@ -45,7 +45,7 @@ namespace PLUME.Base.Module.Unity.Transform.Job
                 LocalScaleDirty = localScaleChanged
             };
             
-            PositionStates[index] = newPositionState;
+            AlignedPositionStates[index] = newPositionState;
         }
     }
 }

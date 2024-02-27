@@ -12,11 +12,9 @@ namespace PLUME.Base.Module.Unity.Transform.Job
     {
         [ReadOnly] public NativeArray<ComponentIdentifier> Identifiers;
 
-        public NativeHashMap<ComponentIdentifier, TransformPositionState> PositionStates;
-        public NativeHashMap<ComponentIdentifier, TransformHierarchyState> HierarchyStates;
-
-        [ReadOnly] public NativeHashSet<ComponentIdentifier>.ReadOnly CreatedInFrameIdentifiers;
-        [ReadOnly] public NativeHashSet<ComponentIdentifier>.ReadOnly DestroyedInFrameIdentifiers;
+        public NativeArray<TransformPositionState> AlignedPositionStates;
+        public NativeArray<TransformHierarchyState> AlignedHierarchyStates;
+        public NativeArray<TransformFlagsState> AlignedFlagsStates;
 
         [WriteOnly] public NativeList<TransformUpdate>.ParallelWriter UpdateSamples;
         [WriteOnly] public NativeList<TransformCreate>.ParallelWriter CreateSamples;
@@ -27,23 +25,24 @@ namespace PLUME.Base.Module.Unity.Transform.Job
             for (var idx = startIndex; idx < startIndex + count; ++idx)
             {
                 var identifier = Identifiers[idx];
+                var positionState = AlignedPositionStates[idx];
+                var hierarchyState = AlignedHierarchyStates[idx];
+                var flagsState = AlignedFlagsStates[idx];
 
-                var hierarchyState = HierarchyStates[identifier];
-                var positionState = PositionStates[identifier];
-                var createdInFrame = CreatedInFrameIdentifiers.Contains(identifier);
-                var destroyedInFrame = DestroyedInFrameIdentifiers.Contains(identifier);
-
+                var createdInFrame = flagsState.IsCreatedInFrame;
+                var destroyedInFrame = flagsState.IsDestroyedInFrame;
+                
                 if (destroyedInFrame)
                 {
                     DestroySamples.AddNoResize(new TransformDestroy(identifier));
                     continue;
                 }
-
+                
                 if (createdInFrame)
                 {
                     CreateSamples.AddNoResize(new TransformCreate(identifier));
                 }
-
+                
                 if (!createdInFrame && !positionState.IsDirty && !hierarchyState.IsDirty)
                     continue;
 
@@ -58,28 +57,30 @@ namespace PLUME.Base.Module.Unity.Transform.Job
                 {
                     updateSample.SetSiblingIndex(hierarchyState.SiblingIndex);
                 }
-
+                
                 if (positionState.LocalPositionDirty || createdInFrame)
                 {
                     updateSample.SetLocalPosition(positionState.LocalPosition);
                 }
-
+                
                 if (positionState.LocalRotationDirty || createdInFrame)
                 {
                     updateSample.SetLocalRotation(positionState.LocalRotation);
                 }
-
+                
                 if (positionState.LocalScaleDirty || createdInFrame)
                 {
                     updateSample.SetLocalScale(positionState.LocalScale);
                 }
                 
+                UpdateSamples.AddNoResize(updateSample);
+                
                 positionState.MarkClean();
                 hierarchyState.MarkClean();
-                PositionStates[identifier] = positionState;
-                HierarchyStates[identifier] = hierarchyState;
-
-                UpdateSamples.AddNoResize(updateSample);
+                flagsState.MarkClean();
+                AlignedPositionStates[idx] = positionState;
+                AlignedHierarchyStates[idx] = hierarchyState;
+                AlignedFlagsStates[idx] = flagsState;
             }
         }
     }

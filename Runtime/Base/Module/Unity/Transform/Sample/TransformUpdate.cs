@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using PLUME.Core.Object;
 using PLUME.Sample.ProtoBurst;
 using PLUME.Sample.ProtoBurst.Common;
@@ -140,30 +141,35 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
             return SampleTypeUrl.Alloc(TypeUrl, allocator);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetParent(ComponentIdentifier parent)
         {
             _hasParentField = true;
             _parent = parent;
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetSiblingIndex(int siblingIndex)
         {
             _hasSiblingIndexField = true;
             _siblingIndex = siblingIndex;
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetLocalPosition(float3 localPosition)
         {
             _hasLocalPositionField = true;
             _localPosition = new Vector3(localPosition);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetLocalRotation(quaternion localRotation)
         {
             _hasLocalRotationField = true;
             _localRotation = new Quaternion(localRotation);
         }
-
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetLocalScale(float3 localScale)
         {
             _hasLocalScaleField = true;

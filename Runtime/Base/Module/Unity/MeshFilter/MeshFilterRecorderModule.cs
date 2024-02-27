@@ -12,10 +12,13 @@ namespace PLUME.Base.Module.Unity.MeshFilter
     [Preserve]
     public class MeshFilterRecorderModule : ComponentRecorderModule<UnityEngine.MeshFilter, MeshFilterFrameData>
     {
-        private MeshFilterFrameData _frameData = new();
+        private readonly FrameDataPool<MeshFilterFrameData> _frameDataPool = new();
+        
+        private MeshFilterFrameData _frameData;
 
         protected override void OnCreate(RecorderContext ctx)
         {
+            _frameData = _frameDataPool.Get();
             MeshFilterHooks.OnSetMesh += (mf, mesh) => OnSetMesh(mf, mesh, false, ctx);
             MeshFilterHooks.OnSetSharedMesh += (mf, mesh) => OnSetMesh(mf, mesh, true, ctx);
         }
@@ -55,9 +58,9 @@ namespace PLUME.Base.Module.Unity.MeshFilter
             RecorderContext context)
         {
             // Collect the frame data and create a fresh instance for the next frame
-            var frameData = _frameData;
-            _frameData = new MeshFilterFrameData();
-            return frameData;
+            var collectedFrameData = _frameData;
+            _frameData = _frameDataPool.Get();
+            return collectedFrameData;
         }
     }
 }

@@ -4,7 +4,7 @@ using PLUME.Sample.Unity;
 
 namespace PLUME.Base.Module.Unity.MeshFilter
 {
-    public class MeshFilterFrameData : IFrameData
+    public class MeshFilterFrameData : PooledFrameData<MeshFilterFrameData>
     {
         private readonly List<MeshFilterCreate> _createSamples = new();
         private readonly List<MeshFilterDestroy> _destroySamples = new();
@@ -25,11 +25,18 @@ namespace PLUME.Base.Module.Unity.MeshFilter
             _updateSamples.Add(sample);
         }
 
-        public void Serialize(FrameDataWriter frameDataWriter)
+        public override void Serialize(FrameDataWriter frameDataWriter)
         {
             frameDataWriter.WriteManagedBatch(_createSamples);
             frameDataWriter.WriteManagedBatch(_destroySamples);
             frameDataWriter.WriteManagedBatch(_updateSamples);
+        }
+
+        public override void Clear()
+        {
+            _createSamples.Clear();
+            _destroySamples.Clear();
+            _updateSamples.Clear();
         }
     }
 }

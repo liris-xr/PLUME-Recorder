@@ -95,7 +95,7 @@ namespace PLUME.Core.Utils
         {
             return new GameObjectIdentifier
             {
-                GameObjectId = new ObjectIdentifier { Id = goRef.Identifier.GameObjectId.ToString() },
+                GameObjectId = new ObjectIdentifier { Id = goRef.Identifier.GameObjectId.Guid.ToString() },
                 TransformId = new ObjectIdentifier { Id = goRef.Identifier.TransformId.Guid.ToString() }
             };
         }

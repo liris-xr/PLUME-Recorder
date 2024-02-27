@@ -62,6 +62,7 @@ namespace PLUME.Core.Recorder
             Instance.StopRecordingObjectInternal(objectSafeRef, markDestroyed);
         }
 
+        // TODO: if game object, also start recording all components (?)
         public static void StartRecordingObject<T>(T obj, bool markCreated = true) where T : UnityEngine.Object
         {
             CheckInstantiated();
@@ -69,6 +70,7 @@ namespace PLUME.Core.Recorder
             Instance.StartRecordingObjectInternal(objectSafeRef, markCreated);
         }
 
+        // TODO: if game object, also stop recording all components (?)
         public static void StopRecordingObject<T>(T obj, bool markDestroyed = true) where T : UnityEngine.Object
         {
             CheckInstantiated();

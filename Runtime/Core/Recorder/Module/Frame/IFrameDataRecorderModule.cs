@@ -7,35 +7,34 @@ namespace PLUME.Core.Recorder.Module.Frame
         /// all modules LateUpdate.
         /// </summary>
         /// <param name="frameInfo"></param>
-        /// <param name="record"></param>
-        /// <param name="context"></param>
-        internal void EnqueueFrameData(FrameInfo frameInfo, Record record, RecorderContext context);
+        /// <param name="ctx"></param>
+        internal void EnqueueFrameData(FrameInfo frameInfo, RecorderContext ctx);
 
-        internal void PostEnqueueFrameData(Record record, RecorderContext context);
+        internal void PostEnqueueFrameData(RecorderContext ctx);
         
         internal void SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter);
 
-        internal void FixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
+        internal void FixedUpdate(long fixedDeltaTime, RecorderContext ctx)
         {
         }
 
-        internal void EarlyUpdate(long deltaTime, Record record, RecorderContext context)
+        internal void EarlyUpdate(long deltaTime, RecorderContext ctx)
         {
         }
 
-        internal void PreUpdate(long deltaTime, Record record, RecorderContext context)
+        internal void PreUpdate(long deltaTime, RecorderContext ctx)
         {
         }
 
-        internal void Update(long deltaTime, Record record, RecorderContext context)
+        internal void Update(long deltaTime, RecorderContext ctx)
         {
         }
 
-        internal void PreLateUpdate(long deltaTime, Record record, RecorderContext context)
+        internal void PreLateUpdate(long deltaTime, RecorderContext ctx)
         {
         }
 
-        internal void PostLateUpdate(long deltaTime, Record record, RecorderContext context)
+        internal void PostLateUpdate(long deltaTime, RecorderContext ctx)
         {
         }
     }

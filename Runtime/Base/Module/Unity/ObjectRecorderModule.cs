@@ -17,8 +17,6 @@ namespace PLUME.Base.Module.Unity
         where TObjectSafeRef : IObjectSafeRef<TObject, TObjectIdentifier>
         where TFrameData : IFrameData
     {
-        public bool IsRecording { get; private set; }
-
         private readonly Dictionary<FrameInfo, TFrameData> _framesData = new(FrameInfoComparer.Instance);
 
         private readonly List<TObjectSafeRef> _recordedObjects = new();
@@ -42,33 +40,31 @@ namespace PLUME.Base.Module.Unity
         /// </summary>
         private readonly List<TObjectSafeRef> _objectsToRemove = new();
 
-        void IRecorderModule.Create(RecorderContext recorderContext)
+        void IRecorderModule.Create(RecorderContext ctx)
         {
             _recordedObjectsIdentifier = new NativeHashSet<TObjectIdentifier>(1000, Allocator.Persistent);
             _createdObjectsIdentifier = new NativeHashSet<TObjectIdentifier>(1000, Allocator.Persistent);
             _destroyedObjectsIdentifier = new NativeHashSet<TObjectIdentifier>(1000, Allocator.Persistent);
-            OnCreate(recorderContext);
+            OnCreate(ctx);
         }
 
-        void IRecorderModule.Destroy(RecorderContext recorderContext)
+        void IRecorderModule.Destroy(RecorderContext ctx)
         {
-            OnDestroy(recorderContext);
+            OnDestroy(ctx);
             _recordedObjectsIdentifier.Dispose();
             _createdObjectsIdentifier.Dispose();
             _destroyedObjectsIdentifier.Dispose();
         }
 
-        public void StartRecordingObject(TObjectSafeRef objSafeRef, bool markCreated,
-            Record record,
-            RecorderContext ctx)
+        public void StartRecordingObject(TObjectSafeRef objSafeRef, bool markCreated, RecorderContext ctx)
         {
-            CheckIsRecording();
+            CheckIsRecording(ctx);
 
             if (!_recordedObjectsIdentifier.Add(objSafeRef.GetIdentifier()))
                 throw new InvalidOperationException("Object is already being recorded.");
 
             _recordedObjects.Add(objSafeRef);
-            OnStartRecordingObject(objSafeRef, record, ctx);
+            OnStartRecordingObject(objSafeRef, ctx);
 
             if (!markCreated)
                 return;
@@ -80,11 +76,9 @@ namespace PLUME.Base.Module.Unity
                 OnObjectMarkedCreated(objSafeRef);
         }
 
-        public void StopRecordingObject(TObjectSafeRef objSafeRef, bool markDestroyed,
-            Record record,
-            RecorderContext ctx)
+        public void StopRecordingObject(TObjectSafeRef objSafeRef, bool markDestroyed, RecorderContext ctx)
         {
-            CheckIsRecording();
+            CheckIsRecording(ctx);
 
             if (!_recordedObjectsIdentifier.Contains(objSafeRef.GetIdentifier()))
                 throw new InvalidOperationException("Object is not being recorded.");
@@ -102,26 +96,28 @@ namespace PLUME.Base.Module.Unity
             }
         }
 
-        public void StartRecordingObject(IObjectSafeRef objSafeRef, bool markCreated, Record record,
-            RecorderContext ctx)
+        public void StartRecordingObject(IObjectSafeRef objSafeRef, bool markCreated, RecorderContext ctx)
         {
+            CheckIsRecording(ctx);
+            
             if (objSafeRef is not TObjectSafeRef tObjSafeRef)
             {
                 throw new InvalidOperationException($"Object is not of type {typeof(TObject).Name}");
             }
 
-            StartRecordingObject(tObjSafeRef, markCreated, record, ctx);
+            StartRecordingObject(tObjSafeRef, markCreated, ctx);
         }
 
-        public void StopRecordingObject(IObjectSafeRef objSafeRef, bool markDestroyed, Record record,
-            RecorderContext ctx)
+        public void StopRecordingObject(IObjectSafeRef objSafeRef, bool markDestroyed, RecorderContext ctx)
         {
+            CheckIsRecording(ctx);
+            
             if (objSafeRef is not TObjectSafeRef tObjSafeRef)
             {
                 throw new InvalidOperationException($"Object is not of type {typeof(TObject).Name}");
             }
 
-            StopRecordingObject(tObjSafeRef, markDestroyed, record, ctx);
+            StopRecordingObject(tObjSafeRef, markDestroyed, ctx);
         }
 
         public bool IsObjectSupported(IObjectSafeRef objSafeRef)
@@ -129,9 +125,9 @@ namespace PLUME.Base.Module.Unity
             return objSafeRef is TObjectSafeRef;
         }
 
-        void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
-            var frameData = CollectFrameData(frameInfo, record, context);
+            var frameData = CollectFrameData(frameInfo, ctx);
 
             lock (_framesData)
             {
@@ -139,7 +135,7 @@ namespace PLUME.Base.Module.Unity
             }
         }
 
-        void IFrameDataRecorderModule.PostEnqueueFrameData(Record record, RecorderContext context)
+        void IFrameDataRecorderModule.PostEnqueueFrameData(RecorderContext ctx)
         {
             _createdObjectsIdentifier.Clear();
             _destroyedObjectsIdentifier.Clear();
@@ -148,7 +144,7 @@ namespace PLUME.Base.Module.Unity
             {
                 _recordedObjectsIdentifier.Remove(toRemove.GetIdentifier());
                 _recordedObjects.Remove(toRemove);
-                OnStopRecordingObject(toRemove, record, context);
+                OnStopRecordingObject(toRemove, ctx);
             }
 
             _objectsToRemove.Clear();
@@ -176,69 +172,58 @@ namespace PLUME.Base.Module.Unity
 
         public bool IsRecordingObject(IObjectSafeRef objSafeRef)
         {
-            return objSafeRef is TObjectSafeRef tObjSafeRef &&
-                   _recordedObjects.Contains(tObjSafeRef);
+            return objSafeRef is TObjectSafeRef tObjSafeRef && _recordedObjects.Contains(tObjSafeRef);
         }
 
-        void IRecorderModule.Awake(RecorderContext context)
+        void IRecorderModule.Awake(RecorderContext ctx)
         {
-            OnAwake(context);
+            OnAwake(ctx);
         }
 
-        void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
+        void IRecorderModule.StartRecording(RecorderContext ctx)
         {
-            if (IsRecording)
-                throw new InvalidOperationException("Recorder module is already recording.");
-
-            IsRecording = true;
-            OnStartRecording(record, recorderContext);
+            OnStartRecording(ctx);
         }
 
-        void IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
+        void IRecorderModule.StopRecording(RecorderContext ctx)
         {
-            CheckIsRecording();
-            OnStopRecording(record, recorderContext);
-
+            OnStopRecording(ctx);
             _recordedObjects.Clear();
             _createdObjectsIdentifier.Clear();
             _destroyedObjectsIdentifier.Clear();
-
-            IsRecording = false;
         }
 
-        protected void CheckIsRecording()
+        protected void CheckIsRecording(RecorderContext ctx)
         {
-            if (!IsRecording)
+            if (!ctx.IsRecording)
                 throw new InvalidOperationException("Recorder module is not recording.");
         }
 
-        protected virtual void OnAwake(RecorderContext context)
+        protected virtual void OnAwake(RecorderContext ctx)
         {
         }
 
-        protected virtual void OnCreate(RecorderContext recorderContext)
+        protected virtual void OnCreate(RecorderContext ctx)
         {
         }
 
-        protected virtual void OnDestroy(RecorderContext recorderContext)
+        protected virtual void OnDestroy(RecorderContext ctx)
         {
         }
 
-        protected virtual void OnStartRecording(Record record, RecorderContext recorderContext)
+        protected virtual void OnStartRecording(RecorderContext ctx)
         {
         }
 
-        protected virtual void OnStopRecording(Record record, RecorderContext recorderContext)
+        protected virtual void OnStopRecording(RecorderContext ctx)
         {
         }
 
-        protected virtual void OnStartRecordingObject(TObjectSafeRef objSafeRef, Record record,
-            RecorderContext ctx)
+        protected virtual void OnStartRecordingObject(TObjectSafeRef objSafeRef, RecorderContext ctx)
         {
         }
 
-        protected virtual void OnStopRecordingObject(TObjectSafeRef objSafeRef, Record record,
-            RecorderContext recorderContext)
+        protected virtual void OnStopRecordingObject(TObjectSafeRef objSafeRef, RecorderContext ctx)
         {
         }
 
@@ -252,81 +237,81 @@ namespace PLUME.Base.Module.Unity
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.FixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.FixedUpdate(long fixedDeltaTime, RecorderContext context)
         {
-            OnFixedUpdate(fixedDeltaTime, record, context);
+            OnFixedUpdate(fixedDeltaTime, context);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.EarlyUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.EarlyUpdate(long deltaTime, RecorderContext ctx)
         {
-            OnEarlyUpdate(deltaTime, record, context);
+            OnEarlyUpdate(deltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.PreUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.PreUpdate(long deltaTime, RecorderContext ctx)
         {
-            OnPreUpdate(deltaTime, record, context);
+            OnPreUpdate(deltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.Update(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.Update(long deltaTime, RecorderContext ctx)
         {
-            OnUpdate(deltaTime, record, context);
+            OnUpdate(deltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.PreLateUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.PreLateUpdate(long deltaTime, RecorderContext ctx)
         {
-            OnPreLateUpdate(deltaTime, record, context);
+            OnPreLateUpdate(deltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.PostLateUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.PostLateUpdate(long deltaTime, RecorderContext ctx)
         {
-            OnPostLateUpdate(deltaTime, record, context);
+            OnPostLateUpdate(deltaTime, ctx);
         }
 
-        protected abstract TFrameData CollectFrameData(FrameInfo frameInfo, Record record, RecorderContext ctx);
+        protected abstract TFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx);
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnFixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
-        {
-        }
-
-        // ReSharper restore Unity.PerformanceCriticalContext
-
-        protected virtual void OnEarlyUpdate(long deltaTime, Record record, RecorderContext context)
+        protected virtual void OnFixedUpdate(long fixedDeltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnPreUpdate(long deltaTime, Record record, RecorderContext context)
+        protected virtual void OnEarlyUpdate(long deltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnUpdate(long deltaTime, Record record, RecorderContext context)
+        protected virtual void OnPreUpdate(long deltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnPreLateUpdate(long deltaTime, Record record, RecorderContext context)
+        protected virtual void OnUpdate(long deltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnPostLateUpdate(long deltaTime, Record record, RecorderContext context)
+        protected virtual void OnPreLateUpdate(long deltaTime, RecorderContext ctx)
+        {
+        }
+
+        // ReSharper restore Unity.PerformanceCriticalContext
+
+        protected virtual void OnPostLateUpdate(long deltaTime, RecorderContext ctx)
         {
         }
     }

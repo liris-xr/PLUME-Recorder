@@ -6,6 +6,7 @@ using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Recorder.Writer;
 using PLUME.Core.Scripts;
+using PLUME.Sample.Common;
 using Unity.Collections;
 using UnityEngine;
 
@@ -21,7 +22,6 @@ namespace PLUME.Core.Recorder
         private RecorderStatus _status = RecorderStatus.Stopped;
 
         private readonly RecorderContext _context;
-        private Record _record;
         private readonly DataDispatcher _dataDispatcher;
         private bool _wantsToQuit;
 
@@ -47,16 +47,16 @@ namespace PLUME.Core.Recorder
             ApplicationPauseDetector.EnsureExists();
 
             var recordClock = new Clock();
-            _record = new Record(recordClock, recordIdentifier, Allocator.Persistent);
+            _context.CurrentRecord = new Record(recordClock, recordIdentifier, Allocator.Persistent);
             
             _status = RecorderStatus.Recording;
 
-            _dataDispatcher.Start(_record);
+            _dataDispatcher.Start(_context.CurrentRecord);
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _context.Modules.Count; i++)
             {
-                _context.Modules[i].StartRecording(_record, _context);
+                _context.Modules[i].StartRecording(_context);
             }
 
             recordClock.Start();
@@ -82,7 +82,7 @@ namespace PLUME.Core.Recorder
 
             Logger.Log("Stopping recorder...");
 
-            _record.InternalClock.Stop();
+            _context.CurrentRecord.InternalClock.Stop();
             _status = RecorderStatus.Stopping;
 
             if (_context.TryGetRecorderModule(out FrameRecorderModule frameRecorderModule))
@@ -93,7 +93,7 @@ namespace PLUME.Core.Recorder
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _context.Modules.Count; i++)
             {
-                _context.Modules[i].StopRecording(_record, _context);
+                _context.Modules[i].StopRecording(_context);
             }
 
             await _dataDispatcher.StopAsync();
@@ -101,8 +101,8 @@ namespace PLUME.Core.Recorder
             _status = RecorderStatus.Stopped;
 
             ApplicationPauseDetector.Destroy();
-            _record.Dispose();
-            _record = null;
+            _context.CurrentRecord.Dispose();
+            _context.CurrentRecord = null;
 
             Logger.Log("Recorder stopped.");
         }
@@ -119,14 +119,14 @@ namespace PLUME.Core.Recorder
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _context.Modules.Count; i++)
             {
-                _context.Modules[i].StopRecording(_record, _context);
+                _context.Modules[i].StopRecording(_context);
             }
 
             _dataDispatcher.Stop();
             _status = RecorderStatus.Stopped;
 
-            _record.Dispose();
-            _record = null;
+            _context.CurrentRecord.Dispose();
+            _context.CurrentRecord = null;
 
             stopwatch.Stop();
             Logger.Log("Recorder force stopped after " + stopwatch.ElapsedMilliseconds + "ms.");
@@ -151,7 +151,7 @@ namespace PLUME.Core.Recorder
                 if (objectRecorderModule.IsRecordingObject(objectSafeRef))
                     continue;
 
-                objectRecorderModule.StartRecordingObject(objectSafeRef, markCreated, _record, _context);
+                objectRecorderModule.StartRecordingObject(objectSafeRef, markCreated, _context);
             }
         }
 
@@ -173,8 +173,15 @@ namespace PLUME.Core.Recorder
                 if (!objectRecorderModule.IsRecordingObject(objectSafeRef))
                     continue;
 
-                objectRecorderModule.StopRecordingObject(objectSafeRef, markDestroyed, _record, _context);
+                objectRecorderModule.StopRecordingObject(objectSafeRef, markDestroyed, _context);
             }
+        }
+        
+        private void RecordMarkerInternal(string label)
+        {
+            EnsureIsRecording();
+            var marker = new Marker { Label = label };
+            _context.CurrentRecord.RecordTimestampedSample(marker);
         }
 
         private void OnApplicationPaused()

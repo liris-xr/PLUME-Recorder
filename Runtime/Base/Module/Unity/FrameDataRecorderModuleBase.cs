@@ -11,35 +11,28 @@ namespace PLUME.Base.Module.Unity
     {
         private readonly Dictionary<FrameInfo, TFrameData> _framesData = new(FrameInfoComparer.Instance);
 
-        public bool IsRecording { get; private set; }
-
         private TFrameData _frameData;
 
-        void IRecorderModule.Awake(RecorderContext context)
+        void IRecorderModule.Awake(RecorderContext ctx)
         {
-            OnAwake(context);
+            OnAwake(ctx);
         }
 
-        void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
+        void IRecorderModule.StartRecording(RecorderContext ctx)
         {
-            if (IsRecording)
-                throw new InvalidOperationException("Recorder module is already recording.");
-            OnStartRecording(record, recorderContext);
-            IsRecording = true;
+            OnStartRecording(ctx);
         }
 
-        void IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
+        void IRecorderModule.StopRecording(RecorderContext ctx)
         {
-            CheckIsRecording();
-            OnStopRecording(record, recorderContext);
-            IsRecording = false;
+            OnStopRecording(ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
-            var frameData = CollectFrameData(frameInfo, record, context);
+            var frameData = CollectFrameData(frameInfo, ctx);
 
             lock (_framesData)
             {
@@ -47,9 +40,8 @@ namespace PLUME.Base.Module.Unity
             }
         }
 
-        void IFrameDataRecorderModule.PostEnqueueFrameData(Record record, RecorderContext context)
+        void IFrameDataRecorderModule.PostEnqueueFrameData(RecorderContext ctx)
         {
-            
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
@@ -65,7 +57,7 @@ namespace PLUME.Base.Module.Unity
                     return;
                 }
             }
-            
+
             frameData.Serialize(frameDataWriter);
 
             if (frameData is IDisposable disposable)
@@ -74,64 +66,64 @@ namespace PLUME.Base.Module.Unity
             }
         }
 
-        protected void CheckIsRecording()
+        protected void CheckIsRecording(RecorderContext ctx)
         {
-            if (!IsRecording)
+            if (!ctx.IsRecording)
             {
                 throw new InvalidOperationException("Recorder module is not recording.");
             }
         }
 
-        void IRecorderModule.Create(RecorderContext recorderContext)
+        void IRecorderModule.Create(RecorderContext ctx)
         {
-            OnCreate(recorderContext);
+            OnCreate(ctx);
         }
 
-        void IRecorderModule.Destroy(RecorderContext recorderContext)
+        void IRecorderModule.Destroy(RecorderContext ctx)
         {
-            OnDestroy(recorderContext);
-        }
-        
-        // ReSharper restore Unity.PerformanceCriticalContext
-
-        void IFrameDataRecorderModule.FixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
-        {
-            OnFixedUpdate(fixedDeltaTime, record, context);
+            OnDestroy(ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.EarlyUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.FixedUpdate(long fixedDeltaTime, RecorderContext ctx)
         {
-            OnEarlyUpdate(deltaTime, record, context);
+            OnFixedUpdate(fixedDeltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.PreUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.EarlyUpdate(long deltaTime, RecorderContext ctx)
         {
-            OnPreUpdate(deltaTime, record, context);
+            OnEarlyUpdate(deltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.Update(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.PreUpdate(long deltaTime, RecorderContext ctx)
         {
-            OnUpdate(deltaTime, record, context);
+            OnPreUpdate(deltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.PreLateUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.Update(long deltaTime, RecorderContext ctx)
         {
-            OnPreLateUpdate(deltaTime, record, context);
+            OnUpdate(deltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.PostLateUpdate(long deltaTime, Record record, RecorderContext context)
+        void IFrameDataRecorderModule.PreLateUpdate(long deltaTime, RecorderContext ctx)
         {
-            OnPostLateUpdate(deltaTime, record, context);
+            OnPreLateUpdate(deltaTime, ctx);
+        }
+
+        // ReSharper restore Unity.PerformanceCriticalContext
+
+        void IFrameDataRecorderModule.PostLateUpdate(long deltaTime, RecorderContext ctx)
+        {
+            OnPostLateUpdate(deltaTime, ctx);
         }
 
         protected virtual void OnAwake(RecorderContext context)
@@ -140,37 +132,37 @@ namespace PLUME.Base.Module.Unity
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnFixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
-        {
-        }
-        
-        // ReSharper restore Unity.PerformanceCriticalContext
-
-        protected virtual void OnEarlyUpdate(long deltaTime, Record record, RecorderContext context)
+        protected virtual void OnFixedUpdate(long fixedDeltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnPreUpdate(long deltaTime, Record record, RecorderContext context)
+        protected virtual void OnEarlyUpdate(long deltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnUpdate(long deltaTime, Record record, RecorderContext context)
+        protected virtual void OnPreUpdate(long deltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnPreLateUpdate(long deltaTime, Record record, RecorderContext context)
+        protected virtual void OnUpdate(long deltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnPostLateUpdate(long deltaTime, Record record, RecorderContext context)
+        protected virtual void OnPreLateUpdate(long deltaTime, RecorderContext ctx)
+        {
+        }
+
+        // ReSharper restore Unity.PerformanceCriticalContext
+
+        protected virtual void OnPostLateUpdate(long deltaTime, RecorderContext ctx)
         {
         }
 
@@ -188,15 +180,15 @@ namespace PLUME.Base.Module.Unity
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnStartRecording(Record record, RecorderContext recorderContext)
+        protected virtual void OnStartRecording(RecorderContext ctx)
         {
         }
 
-        protected virtual void OnStopRecording(Record record, RecorderContext recorderContext)
+        protected virtual void OnStopRecording(RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
-        protected abstract TFrameData CollectFrameData(FrameInfo frameInfo, Record record, RecorderContext context);
+        protected abstract TFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx);
     }
 }

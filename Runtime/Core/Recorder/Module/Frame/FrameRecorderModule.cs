@@ -20,17 +20,12 @@ namespace PLUME.Core.Recorder.Module.Frame
     [Preserve]
     internal sealed class FrameRecorderModule : IRecorderModule
     {
-        public bool IsRecording { get; private set; }
-
         private IFrameDataRecorderModule[] _frameDataRecorderModules;
 
         private Thread _serializationThread;
         private bool _shouldSerialize;
 
         private BlockingCollection<FrameInfo> _frameQueue;
-
-        private Record _record;
-        private RecorderContext _context;
 
         private long _updateInterval; // in nanoseconds
 
@@ -41,38 +36,35 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         void IRecorderModule.Create(RecorderContext ctx)
         {
-            _context = ctx;
             _frameQueue = new BlockingCollection<FrameInfo>(new ConcurrentQueue<FrameInfo>());
             _frameDataRecorderModules = ctx.Modules.OfType<IFrameDataRecorderModule>().ToArray();
 
             var settings = ctx.SettingsProvider.GetOrCreate<FrameRecorderModuleSettings>();
             _updateInterval = (long)(1_000_000_000 / settings.UpdateRate);
 
-            PlayerLoopUtils.InjectEarlyUpdate<RecorderEarlyUpdate>(EarlyUpdate);
-            PlayerLoopUtils.InjectPreUpdate<RecorderPreUpdate>(PreUpdate);
-            PlayerLoopUtils.InjectUpdate<RecorderUpdate>(Update);
-            PlayerLoopUtils.InjectPreLateUpdate<RecorderPreLateUpdate>(PreLateUpdate);
-            PlayerLoopUtils.InjectPostLateUpdate<RecorderPostLateUpdate>(PostLateUpdate);
+            PlayerLoopUtils.InjectEarlyUpdate<RecorderEarlyUpdate>(() => EarlyUpdate(ctx));
+            PlayerLoopUtils.InjectPreUpdate<RecorderPreUpdate>(() => PreUpdate(ctx));
+            PlayerLoopUtils.InjectUpdate<RecorderUpdate>(() => Update(ctx));
+            PlayerLoopUtils.InjectPreLateUpdate<RecorderPreLateUpdate>(() => PreLateUpdate(ctx));
+            PlayerLoopUtils.InjectPostLateUpdate<RecorderPostLateUpdate>(() => PostLateUpdate(ctx));
         }
 
-        void IRecorderModule.Destroy(RecorderContext recorderContext)
+        void IRecorderModule.Destroy(RecorderContext ctx)
         {
             _frameQueue.Dispose();
         }
 
-        void IRecorderModule.Awake(RecorderContext context)
+        void IRecorderModule.Awake(RecorderContext ctx)
         {
         }
 
-        void IRecorderModule.StartRecording(Record record, RecorderContext recorderContext)
+        void IRecorderModule.StartRecording(RecorderContext ctx)
         {
-            _record = record;
-            IsRecording = true;
             _lastUpdateTime = 0;
             _shouldRunUpdate = true;
             _shouldSerialize = true;
 
-            _serializationThread = new Thread(() => SerializeFrameLoop(record))
+            _serializationThread = new Thread(() => SerializeFrameLoop(ctx.CurrentRecord))
             {
                 Name = "FrameRecorderModule.SerializeThread",
                 IsBackground = false
@@ -81,14 +73,14 @@ namespace PLUME.Core.Recorder.Module.Frame
             _serializationThread.Start();
         }
 
-        void IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
+        void IRecorderModule.StopRecording(RecorderContext ctx)
         {
-            IsRecording = false;
+            ctx.IsRecording = false;
             _shouldRunUpdate = false;
             _shouldSerialize = false;
             _serializationThread.Join();
             _serializationThread = null;
-            _record = null;
+            ctx.CurrentRecord = null;
         }
 
         internal async UniTask CompleteSerializationAsync()
@@ -102,27 +94,27 @@ namespace PLUME.Core.Recorder.Module.Frame
             await UniTask.WaitUntil(() => !_serializationThread.IsAlive);
         }
 
-        private void EarlyUpdate()
+        private void EarlyUpdate(RecorderContext ctx)
         {
-            UpdateShouldRunUpdateFlag();
-            RunFixedUpdate();
+            UpdateShouldRunUpdateFlag(ctx);
+            RunFixedUpdate(ctx);
 
-            if (!_shouldRunUpdate || !IsRecording)
+            if (!_shouldRunUpdate || !ctx.IsRecording)
                 return;
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _frameDataRecorderModules.Length; i++)
             {
-                _frameDataRecorderModules[i].EarlyUpdate(_deltaTime, _record, _context);
+                _frameDataRecorderModules[i].EarlyUpdate(_deltaTime, ctx);
             }
         }
 
-        private void RunFixedUpdate()
+        private void RunFixedUpdate(RecorderContext ctx)
         {
-            if (_updateInterval == 0 || !IsRecording)
+            if (_updateInterval == 0 || !ctx.IsRecording)
                 return;
             
-            var time = _record.Time;
+            var time = ctx.CurrentRecord.Time;
             var fixedUpdateDt = time - _lastFixedUpdateTime;
             
             if (fixedUpdateDt < _updateInterval)
@@ -131,32 +123,32 @@ namespace PLUME.Core.Recorder.Module.Frame
             var nFixedUpdates = fixedUpdateDt / _updateInterval;
             var fixedTime = _lastFixedUpdateTime;
 
-            _record.FixedTime = fixedTime;
+            ctx.CurrentRecord.FixedTime = fixedTime;
 
             for (var i = 0; i < nFixedUpdates; i++)
             {
                 // ReSharper disable once ForCanBeConvertedToForeach
                 for (var j = 0; j < _frameDataRecorderModules.Length; j++)
                 {
-                    _frameDataRecorderModules[j].FixedUpdate(_updateInterval, _record, _context);
+                    _frameDataRecorderModules[j].FixedUpdate(_updateInterval, ctx);
                 }
 
                 fixedTime += _updateInterval;
-                _record.FixedTime = fixedTime;
+                ctx.CurrentRecord.FixedTime = fixedTime;
             }
 
             _lastFixedUpdateTime = fixedTime;
         }
 
-        private void UpdateShouldRunUpdateFlag()
+        private void UpdateShouldRunUpdateFlag(RecorderContext ctx)
         {
-            if (_updateInterval == 0 || !IsRecording)
+            if (_updateInterval == 0 || !ctx.IsRecording)
             {
                 _shouldRunUpdate = false;
                 return;
             }
 
-            var time = _record.Time;
+            var time = ctx.CurrentRecord.Time;
             var updateDt = time - _lastUpdateTime;
             var nextUpdateDt = time + Time.unscaledTimeAsDouble * 1_000_000_000 - _lastUpdateTime;
 
@@ -179,72 +171,72 @@ namespace PLUME.Core.Recorder.Module.Frame
             _shouldRunUpdate = false;
         }
 
-        private void PreUpdate()
+        private void PreUpdate(RecorderContext ctx)
         {
-            if (!_shouldRunUpdate || !IsRecording)
+            if (!_shouldRunUpdate || !ctx.IsRecording)
                 return;
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _frameDataRecorderModules.Length; i++)
             {
-                _frameDataRecorderModules[i].PreUpdate(_deltaTime, _record, _context);
+                _frameDataRecorderModules[i].PreUpdate(_deltaTime, ctx);
             }
         }
 
-        private void Update()
+        private void Update(RecorderContext ctx)
         {
-            if (!_shouldRunUpdate || !IsRecording)
+            if (!_shouldRunUpdate || !ctx.IsRecording)
                 return;
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _frameDataRecorderModules.Length; i++)
             {
-                _frameDataRecorderModules[i].Update(_deltaTime, _record, _context);
+                _frameDataRecorderModules[i].Update(_deltaTime, ctx);
             }
         }
 
-        private void PreLateUpdate()
+        private void PreLateUpdate(RecorderContext ctx)
         {
-            if (!_shouldRunUpdate || !IsRecording)
+            if (!_shouldRunUpdate || !ctx.IsRecording)
                 return;
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _frameDataRecorderModules.Length; i++)
             {
-                _frameDataRecorderModules[i].PreLateUpdate(_deltaTime, _record, _context);
+                _frameDataRecorderModules[i].PreLateUpdate(_deltaTime, ctx);
             }
         }
 
-        private void PostLateUpdate()
+        private void PostLateUpdate(RecorderContext ctx)
         {
-            if (!_shouldRunUpdate || !IsRecording)
+            if (!_shouldRunUpdate || !ctx.IsRecording)
                 return;
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _frameDataRecorderModules.Length; i++)
             {
-                _frameDataRecorderModules[i].PostLateUpdate(_deltaTime, _record, _context);
+                _frameDataRecorderModules[i].PostLateUpdate(_deltaTime, ctx);
             }
 
-            var timestamp = _record.Time;
+            var timestamp = ctx.CurrentRecord.Time;
             var frame = Time.frameCount;
-            PushFrame(timestamp, frame);
+            PushFrame(timestamp, frame, ctx);
         }
 
-        private void PushFrame(long timestamp, int frameNumber)
+        private void PushFrame(long timestamp, int frameNumber, RecorderContext ctx)
         {
             var frame = new FrameInfo(timestamp, frameNumber);
 
             foreach (var module in _frameDataRecorderModules)
             {
-                module.EnqueueFrameData(frame, _record, _context);
+                module.EnqueueFrameData(frame, ctx);
             }
             
             _frameQueue.Add(frame);
             
             foreach (var module in _frameDataRecorderModules)
             {
-                module.PostEnqueueFrameData(_record, _context);
+                module.PostEnqueueFrameData(ctx);
             }
         }
 

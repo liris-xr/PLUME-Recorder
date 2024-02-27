@@ -19,6 +19,12 @@ namespace PLUME.Base.Module.Unity.MeshFilter
         protected override void OnCreate(RecorderContext ctx)
         {
             _frameData = _frameDataPool.Get();
+            
+            GameObjectHooks.OnAddComponent += (go, component) =>
+            {
+                if (component is UnityEngine.MeshFilter meshFilter)
+                    OnCreateMeshFilter(meshFilter, ctx);
+            };
             MeshFilterHooks.OnSetMesh += (mf, mesh) => OnSetMesh(mf, mesh, false, ctx);
             MeshFilterHooks.OnSetSharedMesh += (mf, mesh) => OnSetMesh(mf, mesh, true, ctx);
         }
@@ -33,9 +39,22 @@ namespace PLUME.Base.Module.Unity.MeshFilter
             _frameData.AddDestroySample(new MeshFilterDestroy { Id = objSafeRef.ToIdentifierPayload() });
         }
 
+        private void OnCreateMeshFilter(UnityEngine.MeshFilter meshFilter, RecorderContext ctx)
+        {
+            if (!ctx.IsRecording)
+                return;
+
+            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(meshFilter);
+
+            if (!IsRecordingObject(objSafeRef))
+                return;
+
+            StartRecordingObject(objSafeRef, true, ctx);
+        }
+        
         private void OnSetMesh(UnityEngine.MeshFilter meshFilter, Mesh mesh, bool isSharedMesh, RecorderContext ctx)
         {
-            if (!IsRecording)
+            if (!ctx.IsRecording)
                 return;
 
             var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(meshFilter);
@@ -54,8 +73,7 @@ namespace PLUME.Base.Module.Unity.MeshFilter
             _frameData.AddUpdateSample(updateSample);
         }
 
-        protected override MeshFilterFrameData CollectFrameData(FrameInfo frameInfo, Record record,
-            RecorderContext context)
+        protected override MeshFilterFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
             // Collect the frame data and create a fresh instance for the next frame
             var collectedFrameData = _frameData;

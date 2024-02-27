@@ -11,6 +11,9 @@ namespace PLUME.Core.Recorder
         public readonly ReadOnlyCollection<IRecorderModule> Modules;
         public readonly ObjectSafeRefProvider ObjectSafeRefProvider;
         public readonly ISettingsProvider SettingsProvider;
+        
+        public bool IsRecording { get; internal set; }
+        public Record CurrentRecord { get; internal set; }
 
         public RecorderContext(ReadOnlyCollection<IRecorderModule> modules, ObjectSafeRefProvider objectSafeRefProvider, ISettingsProvider settingsProvider)
         {

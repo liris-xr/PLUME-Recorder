@@ -48,9 +48,7 @@ namespace PLUME.Core.Recorder
         public static void RecordMarker(string label)
         {
             CheckInstantiated();
-            Instance.EnsureIsRecording();
-            var marker = new Marker { Label = label };
-            Instance._record.RecordTimestampedSample(marker);
+            Instance.RecordMarkerInternal(label);
         }
 
         public static void StartRecordingObject(IObjectSafeRef objectSafeRef, bool markCreated = true)

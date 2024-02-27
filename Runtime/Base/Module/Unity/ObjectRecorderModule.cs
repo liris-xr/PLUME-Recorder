@@ -154,7 +154,7 @@ namespace PLUME.Base.Module.Unity
             _objectsToRemove.Clear();
         }
 
-        bool IFrameDataRecorderModule.SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter)
+        void IFrameDataRecorderModule.SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter)
         {
             TFrameData frameData;
 
@@ -162,7 +162,7 @@ namespace PLUME.Base.Module.Unity
             {
                 if (!_framesData.TryGetValue(frameInfo, out frameData))
                 {
-                    return false;
+                    return;
                 }
             }
 
@@ -172,8 +172,6 @@ namespace PLUME.Base.Module.Unity
             {
                 disposable.Dispose();
             }
-
-            return true;
         }
 
         public bool IsRecordingObject(IObjectSafeRef objSafeRef)

@@ -264,15 +264,15 @@ namespace PLUME.Core.Recorder.Module.Frame
                 {
                     frameDataRawBytes.Clear();
 
-                    var hasData = false;
-
                     // ReSharper disable once LoopCanBeConvertedToQuery
                     foreach (var module in _frameDataRecorderModules)
                     {
-                        hasData |= module.SerializeFrameData(frame, frameDataWriter);
+                        module.SerializeFrameData(frame, frameDataWriter);
                     }
 
-                    if (!hasData) continue;
+                    // Don't write empty frames.
+                    if (frameDataRawBytes.Length == 0)
+                        continue;
 
                     var frameSample = Sample.ProtoBurst.Unity.Frame.Pack(frame.FrameNumber, ref frameDataRawBytes, Allocator.Persistent);
                     var frameSampleBytes = frameSample.ToBytes(Allocator.Persistent);

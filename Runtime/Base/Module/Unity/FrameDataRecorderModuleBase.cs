@@ -54,7 +54,7 @@ namespace PLUME.Base.Module.Unity
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        bool IFrameDataRecorderModule.SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter)
+        void IFrameDataRecorderModule.SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter)
         {
             TFrameData frameData;
 
@@ -62,18 +62,16 @@ namespace PLUME.Base.Module.Unity
             {
                 if (!_framesData.Remove(frameInfo, out frameData))
                 {
-                    return false;
+                    return;
                 }
             }
-
+            
             frameData.Serialize(frameDataWriter);
 
             if (frameData is IDisposable disposable)
             {
                 disposable.Dispose();
             }
-
-            return true;
         }
 
         protected void CheckIsRecording()

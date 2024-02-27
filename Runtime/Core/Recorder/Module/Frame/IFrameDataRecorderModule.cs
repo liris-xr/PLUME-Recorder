@@ -13,7 +13,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         internal void PostEnqueueFrameData(Record record, RecorderContext context);
         
-        internal bool SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter);
+        internal void SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter);
 
         internal void FixedUpdate(long fixedDeltaTime, Record record, RecorderContext context)
         {

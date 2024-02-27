@@ -3,7 +3,7 @@ using ProtoBurst;
 using Unity.Collections;
 using Unity.Jobs;
 
-namespace PLUME.Base.Module
+namespace PLUME.Base.Module.Unity
 {
     public struct FrameDataBatchSerializer<TU> : IFrameDataBatchSerializer<TU> where TU : unmanaged, IProtoBurstMessage
     {

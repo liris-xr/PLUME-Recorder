@@ -4,7 +4,7 @@ using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
 
-namespace PLUME.Sample.ProtoBurst
+namespace PLUME.Sample.ProtoBurst.Unity
 {
     [BurstCompile]
     public struct Frame : IProtoBurstMessage, IDisposable

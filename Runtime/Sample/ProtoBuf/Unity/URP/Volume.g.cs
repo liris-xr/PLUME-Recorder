@@ -27,21 +27,25 @@ namespace PLUME.Sample.Unity.URP {
             "ChZ1bml0eS91cnAvdm9sdW1lLnByb3RvEhZwbHVtZS5zYW1wbGUudW5pdHku",
             "dXJwGhd1bml0eS9pZGVudGlmaWVycy5wcm90byJDCgxWb2x1bWVDcmVhdGUS",
             "MwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRl",
-            "bnRpZmllciKrAgoMVm9sdW1lVXBkYXRlEjMKAmlkGAEgASgLMicucGx1bWUu",
-            "c2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISEQoJaXNfZ2xvYmFs",
-            "GAIgASgIEj4KDWNvbGxpZGVyc19pZHMYAyADKAsyJy5wbHVtZS5zYW1wbGUu",
-            "dW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIWCg5ibGVuZF9kaXN0YW5jZRgE",
-            "IAEoAhIOCgZ3ZWlnaHQYBSABKAISEAoIcHJpb3JpdHkYBiABKAISQwoRc2hh",
-            "cmVkX3Byb2ZpbGVfaWQYByABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNz",
-            "ZXRJZGVudGlmaWVySACIAQFCFAoSX3NoYXJlZF9wcm9maWxlX2lkIlsKE1Zv",
-            "bHVtZVVwZGF0ZUVuYWJsZWQSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUu",
-            "dW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIPCgdlbmFibGVkGAIgASgIQhmq",
-            "AhZQTFVNRS5TYW1wbGUuVW5pdHkuVVJQYgZwcm90bzM="));
+            "bnRpZmllciLRAwoMVm9sdW1lVXBkYXRlEjMKAmlkGAEgASgLMicucGx1bWUu",
+            "c2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISFgoJaXNfZ2xvYmFs",
+            "GAIgASgISACIAQESRgoJY29sbGlkZXJzGAMgASgLMi4ucGx1bWUuc2FtcGxl",
+            "LnVuaXR5LnVycC5Wb2x1bWVVcGRhdGUuQ29sbGlkZXJzSAGIAQESGwoOYmxl",
+            "bmRfZGlzdGFuY2UYBCABKAJIAogBARITCgZ3ZWlnaHQYBSABKAJIA4gBARIV",
+            "Cghwcmlvcml0eRgGIAEoAkgEiAEBEkMKEXNoYXJlZF9wcm9maWxlX2lkGAcg",
+            "ASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckgFiAEB",
+            "GkEKCUNvbGxpZGVycxI0CgNpZHMYASADKAsyJy5wbHVtZS5zYW1wbGUudW5p",
+            "dHkuQ29tcG9uZW50SWRlbnRpZmllckIMCgpfaXNfZ2xvYmFsQgwKCl9jb2xs",
+            "aWRlcnNCEQoPX2JsZW5kX2Rpc3RhbmNlQgkKB193ZWlnaHRCCwoJX3ByaW9y",
+            "aXR5QhQKEl9zaGFyZWRfcHJvZmlsZV9pZCJbChNWb2x1bWVVcGRhdGVFbmFi",
+            "bGVkEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVu",
+            "dElkZW50aWZpZXISDwoHZW5hYmxlZBgCIAEoCEIZqgIWUExVTUUuU2FtcGxl",
+            "LlVuaXR5LlVSUGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.VolumeCreate), global::PLUME.Sample.Unity.URP.VolumeCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.VolumeUpdate), global::PLUME.Sample.Unity.URP.VolumeUpdate.Parser, new[]{ "Id", "IsGlobal", "CollidersIds", "BlendDistance", "Weight", "Priority", "SharedProfileId" }, new[]{ "SharedProfileId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.VolumeUpdate), global::PLUME.Sample.Unity.URP.VolumeUpdate.Parser, new[]{ "Id", "IsGlobal", "Colliders", "BlendDistance", "Weight", "Priority", "SharedProfileId" }, new[]{ "IsGlobal", "Colliders", "BlendDistance", "Weight", "Priority", "SharedProfileId" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.VolumeUpdate.Types.Colliders), global::PLUME.Sample.Unity.URP.VolumeUpdate.Types.Colliders.Parser, new[]{ "Ids" }, null, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.VolumeUpdateEnabled), global::PLUME.Sample.Unity.URP.VolumeUpdateEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null)
           }));
     }
@@ -256,6 +260,7 @@ namespace PLUME.Sample.Unity.URP {
   {
     private static readonly pb::MessageParser<VolumeUpdate> _parser = new pb::MessageParser<VolumeUpdate>(() => new VolumeUpdate());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<VolumeUpdate> Parser { get { return _parser; } }
@@ -283,9 +288,10 @@ namespace PLUME.Sample.Unity.URP {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public VolumeUpdate(VolumeUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
       isGlobal_ = other.isGlobal_;
-      collidersIds_ = other.collidersIds_.Clone();
+      colliders_ = other.colliders_ != null ? other.colliders_.Clone() : null;
       blendDistance_ = other.blendDistance_;
       weight_ = other.weight_;
       priority_ = other.priority_;
@@ -313,61 +319,122 @@ namespace PLUME.Sample.Unity.URP {
 
     /// <summary>Field number for the "is_global" field.</summary>
     public const int IsGlobalFieldNumber = 2;
+    private readonly static bool IsGlobalDefaultValue = false;
+
     private bool isGlobal_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool IsGlobal {
-      get { return isGlobal_; }
+      get { if ((_hasBits0 & 1) != 0) { return isGlobal_; } else { return IsGlobalDefaultValue; } }
       set {
+        _hasBits0 |= 1;
         isGlobal_ = value;
       }
     }
-
-    /// <summary>Field number for the "colliders_ids" field.</summary>
-    public const int CollidersIdsFieldNumber = 3;
-    private static readonly pb::FieldCodec<global::PLUME.Sample.Unity.ComponentIdentifier> _repeated_collidersIds_codec
-        = pb::FieldCodec.ForMessage(26, global::PLUME.Sample.Unity.ComponentIdentifier.Parser);
-    private readonly pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier> collidersIds_ = new pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier>();
+    /// <summary>Gets whether the "is_global" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier> CollidersIds {
-      get { return collidersIds_; }
+    public bool HasIsGlobal {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "is_global" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearIsGlobal() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "colliders" field.</summary>
+    public const int CollidersFieldNumber = 3;
+    private global::PLUME.Sample.Unity.URP.VolumeUpdate.Types.Colliders colliders_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.URP.VolumeUpdate.Types.Colliders Colliders {
+      get { return colliders_; }
+      set {
+        colliders_ = value;
+      }
     }
 
     /// <summary>Field number for the "blend_distance" field.</summary>
     public const int BlendDistanceFieldNumber = 4;
+    private readonly static float BlendDistanceDefaultValue = 0F;
+
     private float blendDistance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float BlendDistance {
-      get { return blendDistance_; }
+      get { if ((_hasBits0 & 2) != 0) { return blendDistance_; } else { return BlendDistanceDefaultValue; } }
       set {
+        _hasBits0 |= 2;
         blendDistance_ = value;
       }
+    }
+    /// <summary>Gets whether the "blend_distance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBlendDistance {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "blend_distance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBlendDistance() {
+      _hasBits0 &= ~2;
     }
 
     /// <summary>Field number for the "weight" field.</summary>
     public const int WeightFieldNumber = 5;
+    private readonly static float WeightDefaultValue = 0F;
+
     private float weight_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float Weight {
-      get { return weight_; }
+      get { if ((_hasBits0 & 4) != 0) { return weight_; } else { return WeightDefaultValue; } }
       set {
+        _hasBits0 |= 4;
         weight_ = value;
       }
+    }
+    /// <summary>Gets whether the "weight" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasWeight {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "weight" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearWeight() {
+      _hasBits0 &= ~4;
     }
 
     /// <summary>Field number for the "priority" field.</summary>
     public const int PriorityFieldNumber = 6;
+    private readonly static float PriorityDefaultValue = 0F;
+
     private float priority_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float Priority {
-      get { return priority_; }
+      get { if ((_hasBits0 & 8) != 0) { return priority_; } else { return PriorityDefaultValue; } }
       set {
+        _hasBits0 |= 8;
         priority_ = value;
       }
+    }
+    /// <summary>Gets whether the "priority" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasPriority {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "priority" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearPriority() {
+      _hasBits0 &= ~8;
     }
 
     /// <summary>Field number for the "shared_profile_id" field.</summary>
@@ -399,7 +466,7 @@ namespace PLUME.Sample.Unity.URP {
       }
       if (!object.Equals(Id, other.Id)) return false;
       if (IsGlobal != other.IsGlobal) return false;
-      if(!collidersIds_.Equals(other.collidersIds_)) return false;
+      if (!object.Equals(Colliders, other.Colliders)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(BlendDistance, other.BlendDistance)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Weight, other.Weight)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Priority, other.Priority)) return false;
@@ -412,11 +479,11 @@ namespace PLUME.Sample.Unity.URP {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (IsGlobal != false) hash ^= IsGlobal.GetHashCode();
-      hash ^= collidersIds_.GetHashCode();
-      if (BlendDistance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(BlendDistance);
-      if (Weight != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Weight);
-      if (Priority != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Priority);
+      if (HasIsGlobal) hash ^= IsGlobal.GetHashCode();
+      if (colliders_ != null) hash ^= Colliders.GetHashCode();
+      if (HasBlendDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(BlendDistance);
+      if (HasWeight) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Weight);
+      if (HasPriority) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Priority);
       if (sharedProfileId_ != null) hash ^= SharedProfileId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -440,20 +507,23 @@ namespace PLUME.Sample.Unity.URP {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (IsGlobal != false) {
+      if (HasIsGlobal) {
         output.WriteRawTag(16);
         output.WriteBool(IsGlobal);
       }
-      collidersIds_.WriteTo(output, _repeated_collidersIds_codec);
-      if (BlendDistance != 0F) {
+      if (colliders_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Colliders);
+      }
+      if (HasBlendDistance) {
         output.WriteRawTag(37);
         output.WriteFloat(BlendDistance);
       }
-      if (Weight != 0F) {
+      if (HasWeight) {
         output.WriteRawTag(45);
         output.WriteFloat(Weight);
       }
-      if (Priority != 0F) {
+      if (HasPriority) {
         output.WriteRawTag(53);
         output.WriteFloat(Priority);
       }
@@ -475,20 +545,23 @@ namespace PLUME.Sample.Unity.URP {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (IsGlobal != false) {
+      if (HasIsGlobal) {
         output.WriteRawTag(16);
         output.WriteBool(IsGlobal);
       }
-      collidersIds_.WriteTo(ref output, _repeated_collidersIds_codec);
-      if (BlendDistance != 0F) {
+      if (colliders_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Colliders);
+      }
+      if (HasBlendDistance) {
         output.WriteRawTag(37);
         output.WriteFloat(BlendDistance);
       }
-      if (Weight != 0F) {
+      if (HasWeight) {
         output.WriteRawTag(45);
         output.WriteFloat(Weight);
       }
-      if (Priority != 0F) {
+      if (HasPriority) {
         output.WriteRawTag(53);
         output.WriteFloat(Priority);
       }
@@ -509,17 +582,19 @@ namespace PLUME.Sample.Unity.URP {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (IsGlobal != false) {
+      if (HasIsGlobal) {
         size += 1 + 1;
       }
-      size += collidersIds_.CalculateSize(_repeated_collidersIds_codec);
-      if (BlendDistance != 0F) {
+      if (colliders_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Colliders);
+      }
+      if (HasBlendDistance) {
         size += 1 + 4;
       }
-      if (Weight != 0F) {
+      if (HasWeight) {
         size += 1 + 4;
       }
-      if (Priority != 0F) {
+      if (HasPriority) {
         size += 1 + 4;
       }
       if (sharedProfileId_ != null) {
@@ -543,17 +618,22 @@ namespace PLUME.Sample.Unity.URP {
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.IsGlobal != false) {
+      if (other.HasIsGlobal) {
         IsGlobal = other.IsGlobal;
       }
-      collidersIds_.Add(other.collidersIds_);
-      if (other.BlendDistance != 0F) {
+      if (other.colliders_ != null) {
+        if (colliders_ == null) {
+          Colliders = new global::PLUME.Sample.Unity.URP.VolumeUpdate.Types.Colliders();
+        }
+        Colliders.MergeFrom(other.Colliders);
+      }
+      if (other.HasBlendDistance) {
         BlendDistance = other.BlendDistance;
       }
-      if (other.Weight != 0F) {
+      if (other.HasWeight) {
         Weight = other.Weight;
       }
-      if (other.Priority != 0F) {
+      if (other.HasPriority) {
         Priority = other.Priority;
       }
       if (other.sharedProfileId_ != null) {
@@ -589,7 +669,10 @@ namespace PLUME.Sample.Unity.URP {
             break;
           }
           case 26: {
-            collidersIds_.AddEntriesFrom(input, _repeated_collidersIds_codec);
+            if (colliders_ == null) {
+              Colliders = new global::PLUME.Sample.Unity.URP.VolumeUpdate.Types.Colliders();
+            }
+            input.ReadMessage(Colliders);
             break;
           }
           case 37: {
@@ -638,7 +721,10 @@ namespace PLUME.Sample.Unity.URP {
             break;
           }
           case 26: {
-            collidersIds_.AddEntriesFrom(ref input, _repeated_collidersIds_codec);
+            if (colliders_ == null) {
+              Colliders = new global::PLUME.Sample.Unity.URP.VolumeUpdate.Types.Colliders();
+            }
+            input.ReadMessage(Colliders);
             break;
           }
           case 37: {
@@ -664,6 +750,193 @@ namespace PLUME.Sample.Unity.URP {
       }
     }
     #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the VolumeUpdate message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+      public sealed partial class Colliders : pb::IMessage<Colliders>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<Colliders> _parser = new pb::MessageParser<Colliders>(() => new Colliders());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<Colliders> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::PLUME.Sample.Unity.URP.VolumeUpdate.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Colliders() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Colliders(Colliders other) : this() {
+          ids_ = other.ids_.Clone();
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Colliders Clone() {
+          return new Colliders(this);
+        }
+
+        /// <summary>Field number for the "ids" field.</summary>
+        public const int IdsFieldNumber = 1;
+        private static readonly pb::FieldCodec<global::PLUME.Sample.Unity.ComponentIdentifier> _repeated_ids_codec
+            = pb::FieldCodec.ForMessage(10, global::PLUME.Sample.Unity.ComponentIdentifier.Parser);
+        private readonly pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier> ids_ = new pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier> Ids {
+          get { return ids_; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as Colliders);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(Colliders other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if(!ids_.Equals(other.ids_)) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          hash ^= ids_.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          ids_.WriteTo(output, _repeated_ids_codec);
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          ids_.WriteTo(ref output, _repeated_ids_codec);
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          size += ids_.CalculateSize(_repeated_ids_codec);
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(Colliders other) {
+          if (other == null) {
+            return;
+          }
+          ids_.Add(other.ids_);
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 10: {
+                ids_.AddEntriesFrom(input, _repeated_ids_codec);
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 10: {
+                ids_.AddEntriesFrom(ref input, _repeated_ids_codec);
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+      }
+
+    }
+    #endregion
 
   }
 

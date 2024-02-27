@@ -134,8 +134,7 @@ namespace PLUME.Core.Recorder
             Logger.Log("Recorder force stopped.");
         }
 
-        private void StartRecordingObjectInternal<T>(ObjectSafeRef<T> objectSafeRef, bool markCreated)
-            where T : UnityEngine.Object
+        private void StartRecordingObjectInternal(IObjectSafeRef objectSafeRef, bool markCreated)
         {
             EnsureIsRecording();
 
@@ -146,7 +145,7 @@ namespace PLUME.Core.Recorder
                 if (module is not IObjectRecorderModule objectRecorderModule)
                     continue;
 
-                if (objectRecorderModule.SupportedObjectType != objectSafeRef.ObjectType)
+                if(!objectRecorderModule.IsObjectSupported(objectSafeRef))
                     continue;
 
                 if (objectRecorderModule.IsRecordingObject(objectSafeRef))
@@ -156,8 +155,7 @@ namespace PLUME.Core.Recorder
             }
         }
 
-        private void StopRecordingObjectInternal<T>(ObjectSafeRef<T> objectSafeRef, bool markDestroyed)
-            where T : UnityEngine.Object
+        private void StopRecordingObjectInternal(IObjectSafeRef objectSafeRef, bool markDestroyed)
         {
             EnsureIsRecording();
 
@@ -169,7 +167,7 @@ namespace PLUME.Core.Recorder
                 if (module is not IObjectRecorderModule objectRecorderModule)
                     continue;
 
-                if (objectRecorderModule.SupportedObjectType != objectSafeRef.ObjectType)
+                if(!objectRecorderModule.IsObjectSupported(objectSafeRef))
                     continue;
 
                 if (!objectRecorderModule.IsRecordingObject(objectSafeRef))

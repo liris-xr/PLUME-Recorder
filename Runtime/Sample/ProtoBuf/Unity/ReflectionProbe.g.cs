@@ -28,49 +28,58 @@ namespace PLUME.Sample.Unity {
             "dW5pdHkaF3VuaXR5L2lkZW50aWZpZXJzLnByb3RvGhNjb21tb24vYm91bmRz",
             "LnByb3RvGhJjb21tb24vY29sb3IucHJvdG8iTAoVUmVmbGVjdGlvblByb2Jl",
             "Q3JlYXRlEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBv",
-            "bmVudElkZW50aWZpZXIiZAocUmVmbGVjdGlvblByb2JlVXBkYXRlRW5hYmxl",
-            "ZBIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJ",
-            "ZGVudGlmaWVyEg8KB2VuYWJsZWQYAiABKAgi9wYKFVJlZmxlY3Rpb25Qcm9i",
-            "ZVVwZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
-            "b25lbnRJZGVudGlmaWVyEjUKBG1vZGUYAiABKA4yJy5wbHVtZS5zYW1wbGUu",
-            "dW5pdHkuUmVmbGVjdGlvblByb2JlTW9kZRJECgxyZWZyZXNoX21vZGUYAyAB",
-            "KA4yLi5wbHVtZS5zYW1wbGUudW5pdHkuUmVmbGVjdGlvblByb2JlUmVmcmVz",
-            "aE1vZGUSTQoRdGltZV9zbGljaW5nX21vZGUYBCABKA4yMi5wbHVtZS5zYW1w",
-            "bGUudW5pdHkuUmVmbGVjdGlvblByb2JlVGltZVNsaWNpbmdNb2RlEkIKC2Ns",
-            "ZWFyX2ZsYWdzGAUgASgOMi0ucGx1bWUuc2FtcGxlLnVuaXR5LlJlZmxlY3Rp",
-            "b25Qcm9iZUNsZWFyRmxhZ3MSEgoKaW1wb3J0YW5jZRgGIAEoBRIRCglpbnRl",
-            "bnNpdHkYByABKAISFwoPbmVhcl9jbGlwX3BsYW5lGAggASgCEhYKDmZhcl9j",
-            "bGlwX3BsYW5lGAkgASgCEh4KFnJlbmRlcl9keW5hbWljX29iamVjdHMYCiAB",
-            "KAgSFgoOYm94X3Byb2plY3Rpb24YCyABKAgSFgoOYmxlbmRfZGlzdGFuY2UY",
-            "DCABKAISKwoGYm91bmRzGA0gASgLMhsucGx1bWUuc2FtcGxlLmNvbW1vbi5C",
-            "b3VuZHMSEgoKcmVzb2x1dGlvbhgOIAEoBRILCgNoZHIYDyABKAgSFwoPc2hh",
-            "ZG93X2Rpc3RhbmNlGBAgASgCEjQKEGJhY2tncm91bmRfY29sb3IYESABKAsy",
-            "Gi5wbHVtZS5zYW1wbGUuY29tbW9uLkNvbG9yEhQKDGN1bGxpbmdfbWFzaxgS",
-            "IAEoBRJJChdjdXN0b21fYmFrZWRfdGV4dHVyZV9pZBgTIAEoCzIjLnBsdW1l",
-            "LnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZpZXJIAIgBARJCChBiYWtlZF90",
-            "ZXh0dXJlX2lkGBQgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRl",
-            "bnRpZmllckgBiAEBQhoKGF9jdXN0b21fYmFrZWRfdGV4dHVyZV9pZEITChFf",
-            "YmFrZWRfdGV4dHVyZV9pZCp8ChNSZWZsZWN0aW9uUHJvYmVNb2RlEh8KG1JF",
-            "RkxFQ1RJT05fUFJPQkVfTU9ERV9CQUtFRBAAEiAKHFJFRkxFQ1RJT05fUFJP",
-            "QkVfTU9ERV9DVVNUT00QARIiCh5SRUZMRUNUSU9OX1BST0JFX01PREVfUkVB",
-            "TFRJTUUQAipyChlSZWZsZWN0aW9uUHJvYmVDbGVhckZsYWdzEicKI1JFRkxF",
-            "Q1RJT05fUFJPQkVfQ0xFQVJfRkxBR1NfU0tZQk9YEAASLAooUkVGTEVDVElP",
-            "Tl9QUk9CRV9DTEVBUl9GTEFHU19TT0xJRF9DT0xPUhABKqgBChpSZWZsZWN0",
-            "aW9uUHJvYmVSZWZyZXNoTW9kZRIqCiZSRUZMRUNUSU9OX1BST0JFX1JFRlJF",
-            "U0hfTU9ERV9PTl9BV0FLRRAAEi0KKVJFRkxFQ1RJT05fUFJPQkVfUkVGUkVT",
-            "SF9NT0RFX0VWRVJZX0ZSQU1FEAESLworUkVGTEVDVElPTl9QUk9CRV9SRUZS",
-            "RVNIX01PREVfVklBX1NDUklQVElORxACKssBCh5SZWZsZWN0aW9uUHJvYmVU",
-            "aW1lU2xpY2luZ01vZGUSOAo0UkVGTEVDVElPTl9QUk9CRV9USU1FX1NMSUNJ",
-            "TkdfTU9ERV9BTExfRkFDRVNfQVRfT05DRRAAEjcKM1JFRkxFQ1RJT05fUFJP",
-            "QkVfVElNRV9TTElDSU5HX01PREVfSU5ESVZJRFVBTF9GQUNFUxABEjYKMlJF",
-            "RkxFQ1RJT05fUFJPQkVfVElNRV9TTElDSU5HX01PREVfTk9fVElNRV9TTElD",
-            "SU5HEAJCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
+            "bmVudElkZW50aWZpZXIiTQoWUmVmbGVjdGlvblByb2JlRGVzdHJveRIzCgJp",
+            "ZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlm",
+            "aWVyIo8KChVSZWZsZWN0aW9uUHJvYmVVcGRhdGUSMwoCaWQYASABKAsyJy5w",
+            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIUCgdlbmFi",
+            "bGVkGAIgASgISACIAQESOgoEbW9kZRgDIAEoDjInLnBsdW1lLnNhbXBsZS51",
+            "bml0eS5SZWZsZWN0aW9uUHJvYmVNb2RlSAGIAQESSQoMcmVmcmVzaF9tb2Rl",
+            "GAQgASgOMi4ucGx1bWUuc2FtcGxlLnVuaXR5LlJlZmxlY3Rpb25Qcm9iZVJl",
+            "ZnJlc2hNb2RlSAKIAQESUgoRdGltZV9zbGljaW5nX21vZGUYBSABKA4yMi5w",
+            "bHVtZS5zYW1wbGUudW5pdHkuUmVmbGVjdGlvblByb2JlVGltZVNsaWNpbmdN",
+            "b2RlSAOIAQESRwoLY2xlYXJfZmxhZ3MYBiABKA4yLS5wbHVtZS5zYW1wbGUu",
+            "dW5pdHkuUmVmbGVjdGlvblByb2JlQ2xlYXJGbGFnc0gEiAEBEhcKCmltcG9y",
+            "dGFuY2UYByABKAVIBYgBARIWCglpbnRlbnNpdHkYCCABKAJIBogBARIcCg9u",
+            "ZWFyX2NsaXBfcGxhbmUYCSABKAJIB4gBARIbCg5mYXJfY2xpcF9wbGFuZRgK",
+            "IAEoAkgIiAEBEiMKFnJlbmRlcl9keW5hbWljX29iamVjdHMYCyABKAhICYgB",
+            "ARIbCg5ib3hfcHJvamVjdGlvbhgMIAEoCEgKiAEBEhsKDmJsZW5kX2Rpc3Rh",
+            "bmNlGA0gASgCSAuIAQESMAoGYm91bmRzGA4gASgLMhsucGx1bWUuc2FtcGxl",
+            "LmNvbW1vbi5Cb3VuZHNIDIgBARIXCgpyZXNvbHV0aW9uGA8gASgFSA2IAQES",
+            "EAoDaGRyGBAgASgISA6IAQESHAoPc2hhZG93X2Rpc3RhbmNlGBEgASgCSA+I",
+            "AQESOQoQYmFja2dyb3VuZF9jb2xvchgSIAEoCzIaLnBsdW1lLnNhbXBsZS5j",
+            "b21tb24uQ29sb3JIEIgBARIZCgxjdWxsaW5nX21hc2sYEyABKAVIEYgBARJJ",
+            "ChdjdXN0b21fYmFrZWRfdGV4dHVyZV9pZBgUIAEoCzIjLnBsdW1lLnNhbXBs",
+            "ZS51bml0eS5Bc3NldElkZW50aWZpZXJIEogBARJCChBiYWtlZF90ZXh0dXJl",
+            "X2lkGBUgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmll",
+            "ckgTiAEBQgoKCF9lbmFibGVkQgcKBV9tb2RlQg8KDV9yZWZyZXNoX21vZGVC",
+            "FAoSX3RpbWVfc2xpY2luZ19tb2RlQg4KDF9jbGVhcl9mbGFnc0INCgtfaW1w",
+            "b3J0YW5jZUIMCgpfaW50ZW5zaXR5QhIKEF9uZWFyX2NsaXBfcGxhbmVCEQoP",
+            "X2Zhcl9jbGlwX3BsYW5lQhkKF19yZW5kZXJfZHluYW1pY19vYmplY3RzQhEK",
+            "D19ib3hfcHJvamVjdGlvbkIRCg9fYmxlbmRfZGlzdGFuY2VCCQoHX2JvdW5k",
+            "c0INCgtfcmVzb2x1dGlvbkIGCgRfaGRyQhIKEF9zaGFkb3dfZGlzdGFuY2VC",
+            "EwoRX2JhY2tncm91bmRfY29sb3JCDwoNX2N1bGxpbmdfbWFza0IaChhfY3Vz",
+            "dG9tX2Jha2VkX3RleHR1cmVfaWRCEwoRX2Jha2VkX3RleHR1cmVfaWQqfAoT",
+            "UmVmbGVjdGlvblByb2JlTW9kZRIfChtSRUZMRUNUSU9OX1BST0JFX01PREVf",
+            "QkFLRUQQABIgChxSRUZMRUNUSU9OX1BST0JFX01PREVfQ1VTVE9NEAESIgoe",
+            "UkVGTEVDVElPTl9QUk9CRV9NT0RFX1JFQUxUSU1FEAIqcgoZUmVmbGVjdGlv",
+            "blByb2JlQ2xlYXJGbGFncxInCiNSRUZMRUNUSU9OX1BST0JFX0NMRUFSX0ZM",
+            "QUdTX1NLWUJPWBAAEiwKKFJFRkxFQ1RJT05fUFJPQkVfQ0xFQVJfRkxBR1Nf",
+            "U09MSURfQ09MT1IQASqoAQoaUmVmbGVjdGlvblByb2JlUmVmcmVzaE1vZGUS",
+            "KgomUkVGTEVDVElPTl9QUk9CRV9SRUZSRVNIX01PREVfT05fQVdBS0UQABIt",
+            "CilSRUZMRUNUSU9OX1BST0JFX1JFRlJFU0hfTU9ERV9FVkVSWV9GUkFNRRAB",
+            "Ei8KK1JFRkxFQ1RJT05fUFJPQkVfUkVGUkVTSF9NT0RFX1ZJQV9TQ1JJUFRJ",
+            "TkcQAirLAQoeUmVmbGVjdGlvblByb2JlVGltZVNsaWNpbmdNb2RlEjgKNFJF",
+            "RkxFQ1RJT05fUFJPQkVfVElNRV9TTElDSU5HX01PREVfQUxMX0ZBQ0VTX0FU",
+            "X09OQ0UQABI3CjNSRUZMRUNUSU9OX1BST0JFX1RJTUVfU0xJQ0lOR19NT0RF",
+            "X0lORElWSURVQUxfRkFDRVMQARI2CjJSRUZMRUNUSU9OX1BST0JFX1RJTUVf",
+            "U0xJQ0lOR19NT0RFX05PX1RJTUVfU0xJQ0lORxACQhWqAhJQTFVNRS5TYW1w",
+            "bGUuVW5pdHliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.BoundsReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.ReflectionProbeMode), typeof(global::PLUME.Sample.Unity.ReflectionProbeClearFlags), typeof(global::PLUME.Sample.Unity.ReflectionProbeRefreshMode), typeof(global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ReflectionProbeCreate), global::PLUME.Sample.Unity.ReflectionProbeCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ReflectionProbeUpdateEnabled), global::PLUME.Sample.Unity.ReflectionProbeUpdateEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ReflectionProbeUpdate), global::PLUME.Sample.Unity.ReflectionProbeUpdate.Parser, new[]{ "Id", "Mode", "RefreshMode", "TimeSlicingMode", "ClearFlags", "Importance", "Intensity", "NearClipPlane", "FarClipPlane", "RenderDynamicObjects", "BoxProjection", "BlendDistance", "Bounds", "Resolution", "Hdr", "ShadowDistance", "BackgroundColor", "CullingMask", "CustomBakedTextureId", "BakedTextureId" }, new[]{ "CustomBakedTextureId", "BakedTextureId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ReflectionProbeDestroy), global::PLUME.Sample.Unity.ReflectionProbeDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ReflectionProbeUpdate), global::PLUME.Sample.Unity.ReflectionProbeUpdate.Parser, new[]{ "Id", "Enabled", "Mode", "RefreshMode", "TimeSlicingMode", "ClearFlags", "Importance", "Intensity", "NearClipPlane", "FarClipPlane", "RenderDynamicObjects", "BoxProjection", "BlendDistance", "Bounds", "Resolution", "Hdr", "ShadowDistance", "BackgroundColor", "CullingMask", "CustomBakedTextureId", "BakedTextureId" }, new[]{ "Enabled", "Mode", "RefreshMode", "TimeSlicingMode", "ClearFlags", "Importance", "Intensity", "NearClipPlane", "FarClipPlane", "RenderDynamicObjects", "BoxProjection", "BlendDistance", "Bounds", "Resolution", "Hdr", "ShadowDistance", "BackgroundColor", "CullingMask", "CustomBakedTextureId", "BakedTextureId" }, null, null, null)
           }));
     }
     #endregion
@@ -303,16 +312,16 @@ namespace PLUME.Sample.Unity {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class ReflectionProbeUpdateEnabled : pb::IMessage<ReflectionProbeUpdateEnabled>
+  public sealed partial class ReflectionProbeDestroy : pb::IMessage<ReflectionProbeDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<ReflectionProbeUpdateEnabled> _parser = new pb::MessageParser<ReflectionProbeUpdateEnabled>(() => new ReflectionProbeUpdateEnabled());
+    private static readonly pb::MessageParser<ReflectionProbeDestroy> _parser = new pb::MessageParser<ReflectionProbeDestroy>(() => new ReflectionProbeDestroy());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ReflectionProbeUpdateEnabled> Parser { get { return _parser; } }
+    public static pb::MessageParser<ReflectionProbeDestroy> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -328,7 +337,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ReflectionProbeUpdateEnabled() {
+    public ReflectionProbeDestroy() {
       OnConstruction();
     }
 
@@ -336,16 +345,15 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ReflectionProbeUpdateEnabled(ReflectionProbeUpdateEnabled other) : this() {
+    public ReflectionProbeDestroy(ReflectionProbeDestroy other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      enabled_ = other.enabled_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ReflectionProbeUpdateEnabled Clone() {
-      return new ReflectionProbeUpdateEnabled(this);
+    public ReflectionProbeDestroy Clone() {
+      return new ReflectionProbeDestroy(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -360,27 +368,15 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "enabled" field.</summary>
-    public const int EnabledFieldNumber = 2;
-    private bool enabled_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Enabled {
-      get { return enabled_; }
-      set {
-        enabled_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as ReflectionProbeUpdateEnabled);
+      return Equals(other as ReflectionProbeDestroy);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ReflectionProbeUpdateEnabled other) {
+    public bool Equals(ReflectionProbeDestroy other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -388,7 +384,6 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
-      if (Enabled != other.Enabled) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -397,7 +392,6 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (Enabled != false) hash ^= Enabled.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -420,10 +414,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Enabled != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -438,10 +428,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Enabled != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -455,9 +441,6 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (Enabled != false) {
-        size += 1 + 1;
-      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -466,7 +449,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ReflectionProbeUpdateEnabled other) {
+    public void MergeFrom(ReflectionProbeDestroy other) {
       if (other == null) {
         return;
       }
@@ -475,9 +458,6 @@ namespace PLUME.Sample.Unity {
           Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         Id.MergeFrom(other.Id);
-      }
-      if (other.Enabled != false) {
-        Enabled = other.Enabled;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -499,10 +479,6 @@ namespace PLUME.Sample.Unity {
               Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Enabled = input.ReadBool();
             break;
           }
         }
@@ -527,10 +503,6 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 16: {
-            Enabled = input.ReadBool();
-            break;
-          }
         }
       }
     }
@@ -546,6 +518,7 @@ namespace PLUME.Sample.Unity {
   {
     private static readonly pb::MessageParser<ReflectionProbeUpdate> _parser = new pb::MessageParser<ReflectionProbeUpdate>(() => new ReflectionProbeUpdate());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<ReflectionProbeUpdate> Parser { get { return _parser; } }
@@ -573,7 +546,9 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ReflectionProbeUpdate(ReflectionProbeUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
+      enabled_ = other.enabled_;
       mode_ = other.mode_;
       refreshMode_ = other.refreshMode_;
       timeSlicingMode_ = other.timeSlicingMode_;
@@ -614,140 +589,332 @@ namespace PLUME.Sample.Unity {
       }
     }
 
+    /// <summary>Field number for the "enabled" field.</summary>
+    public const int EnabledFieldNumber = 2;
+    private readonly static bool EnabledDefaultValue = false;
+
+    private bool enabled_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Enabled {
+      get { if ((_hasBits0 & 1) != 0) { return enabled_; } else { return EnabledDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        enabled_ = value;
+      }
+    }
+    /// <summary>Gets whether the "enabled" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasEnabled {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "enabled" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearEnabled() {
+      _hasBits0 &= ~1;
+    }
+
     /// <summary>Field number for the "mode" field.</summary>
-    public const int ModeFieldNumber = 2;
-    private global::PLUME.Sample.Unity.ReflectionProbeMode mode_ = global::PLUME.Sample.Unity.ReflectionProbeMode.Baked;
+    public const int ModeFieldNumber = 3;
+    private readonly static global::PLUME.Sample.Unity.ReflectionProbeMode ModeDefaultValue = global::PLUME.Sample.Unity.ReflectionProbeMode.Baked;
+
+    private global::PLUME.Sample.Unity.ReflectionProbeMode mode_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.ReflectionProbeMode Mode {
-      get { return mode_; }
+      get { if ((_hasBits0 & 2) != 0) { return mode_; } else { return ModeDefaultValue; } }
       set {
+        _hasBits0 |= 2;
         mode_ = value;
       }
     }
+    /// <summary>Gets whether the "mode" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMode {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "mode" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMode() {
+      _hasBits0 &= ~2;
+    }
 
     /// <summary>Field number for the "refresh_mode" field.</summary>
-    public const int RefreshModeFieldNumber = 3;
-    private global::PLUME.Sample.Unity.ReflectionProbeRefreshMode refreshMode_ = global::PLUME.Sample.Unity.ReflectionProbeRefreshMode.OnAwake;
+    public const int RefreshModeFieldNumber = 4;
+    private readonly static global::PLUME.Sample.Unity.ReflectionProbeRefreshMode RefreshModeDefaultValue = global::PLUME.Sample.Unity.ReflectionProbeRefreshMode.OnAwake;
+
+    private global::PLUME.Sample.Unity.ReflectionProbeRefreshMode refreshMode_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.ReflectionProbeRefreshMode RefreshMode {
-      get { return refreshMode_; }
+      get { if ((_hasBits0 & 4) != 0) { return refreshMode_; } else { return RefreshModeDefaultValue; } }
       set {
+        _hasBits0 |= 4;
         refreshMode_ = value;
       }
     }
+    /// <summary>Gets whether the "refresh_mode" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRefreshMode {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "refresh_mode" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRefreshMode() {
+      _hasBits0 &= ~4;
+    }
 
     /// <summary>Field number for the "time_slicing_mode" field.</summary>
-    public const int TimeSlicingModeFieldNumber = 4;
-    private global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode timeSlicingMode_ = global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode.AllFacesAtOnce;
+    public const int TimeSlicingModeFieldNumber = 5;
+    private readonly static global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode TimeSlicingModeDefaultValue = global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode.AllFacesAtOnce;
+
+    private global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode timeSlicingMode_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode TimeSlicingMode {
-      get { return timeSlicingMode_; }
+      get { if ((_hasBits0 & 8) != 0) { return timeSlicingMode_; } else { return TimeSlicingModeDefaultValue; } }
       set {
+        _hasBits0 |= 8;
         timeSlicingMode_ = value;
       }
     }
+    /// <summary>Gets whether the "time_slicing_mode" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTimeSlicingMode {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "time_slicing_mode" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTimeSlicingMode() {
+      _hasBits0 &= ~8;
+    }
 
     /// <summary>Field number for the "clear_flags" field.</summary>
-    public const int ClearFlagsFieldNumber = 5;
-    private global::PLUME.Sample.Unity.ReflectionProbeClearFlags clearFlags_ = global::PLUME.Sample.Unity.ReflectionProbeClearFlags.Skybox;
+    public const int ClearFlagsFieldNumber = 6;
+    private readonly static global::PLUME.Sample.Unity.ReflectionProbeClearFlags ClearFlagsDefaultValue = global::PLUME.Sample.Unity.ReflectionProbeClearFlags.Skybox;
+
+    private global::PLUME.Sample.Unity.ReflectionProbeClearFlags clearFlags_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.ReflectionProbeClearFlags ClearFlags {
-      get { return clearFlags_; }
+      get { if ((_hasBits0 & 16) != 0) { return clearFlags_; } else { return ClearFlagsDefaultValue; } }
       set {
+        _hasBits0 |= 16;
         clearFlags_ = value;
       }
     }
+    /// <summary>Gets whether the "clear_flags" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasClearFlags {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "clear_flags" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearClearFlags() {
+      _hasBits0 &= ~16;
+    }
 
     /// <summary>Field number for the "importance" field.</summary>
-    public const int ImportanceFieldNumber = 6;
+    public const int ImportanceFieldNumber = 7;
+    private readonly static int ImportanceDefaultValue = 0;
+
     private int importance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Importance {
-      get { return importance_; }
+      get { if ((_hasBits0 & 32) != 0) { return importance_; } else { return ImportanceDefaultValue; } }
       set {
+        _hasBits0 |= 32;
         importance_ = value;
       }
     }
+    /// <summary>Gets whether the "importance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasImportance {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "importance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearImportance() {
+      _hasBits0 &= ~32;
+    }
 
     /// <summary>Field number for the "intensity" field.</summary>
-    public const int IntensityFieldNumber = 7;
+    public const int IntensityFieldNumber = 8;
+    private readonly static float IntensityDefaultValue = 0F;
+
     private float intensity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float Intensity {
-      get { return intensity_; }
+      get { if ((_hasBits0 & 64) != 0) { return intensity_; } else { return IntensityDefaultValue; } }
       set {
+        _hasBits0 |= 64;
         intensity_ = value;
       }
     }
+    /// <summary>Gets whether the "intensity" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasIntensity {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "intensity" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearIntensity() {
+      _hasBits0 &= ~64;
+    }
 
     /// <summary>Field number for the "near_clip_plane" field.</summary>
-    public const int NearClipPlaneFieldNumber = 8;
+    public const int NearClipPlaneFieldNumber = 9;
+    private readonly static float NearClipPlaneDefaultValue = 0F;
+
     private float nearClipPlane_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float NearClipPlane {
-      get { return nearClipPlane_; }
+      get { if ((_hasBits0 & 128) != 0) { return nearClipPlane_; } else { return NearClipPlaneDefaultValue; } }
       set {
+        _hasBits0 |= 128;
         nearClipPlane_ = value;
       }
     }
+    /// <summary>Gets whether the "near_clip_plane" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasNearClipPlane {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "near_clip_plane" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearNearClipPlane() {
+      _hasBits0 &= ~128;
+    }
 
     /// <summary>Field number for the "far_clip_plane" field.</summary>
-    public const int FarClipPlaneFieldNumber = 9;
+    public const int FarClipPlaneFieldNumber = 10;
+    private readonly static float FarClipPlaneDefaultValue = 0F;
+
     private float farClipPlane_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float FarClipPlane {
-      get { return farClipPlane_; }
+      get { if ((_hasBits0 & 256) != 0) { return farClipPlane_; } else { return FarClipPlaneDefaultValue; } }
       set {
+        _hasBits0 |= 256;
         farClipPlane_ = value;
       }
     }
+    /// <summary>Gets whether the "far_clip_plane" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFarClipPlane {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "far_clip_plane" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFarClipPlane() {
+      _hasBits0 &= ~256;
+    }
 
     /// <summary>Field number for the "render_dynamic_objects" field.</summary>
-    public const int RenderDynamicObjectsFieldNumber = 10;
+    public const int RenderDynamicObjectsFieldNumber = 11;
+    private readonly static bool RenderDynamicObjectsDefaultValue = false;
+
     private bool renderDynamicObjects_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool RenderDynamicObjects {
-      get { return renderDynamicObjects_; }
+      get { if ((_hasBits0 & 512) != 0) { return renderDynamicObjects_; } else { return RenderDynamicObjectsDefaultValue; } }
       set {
+        _hasBits0 |= 512;
         renderDynamicObjects_ = value;
       }
     }
+    /// <summary>Gets whether the "render_dynamic_objects" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRenderDynamicObjects {
+      get { return (_hasBits0 & 512) != 0; }
+    }
+    /// <summary>Clears the value of the "render_dynamic_objects" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRenderDynamicObjects() {
+      _hasBits0 &= ~512;
+    }
 
     /// <summary>Field number for the "box_projection" field.</summary>
-    public const int BoxProjectionFieldNumber = 11;
+    public const int BoxProjectionFieldNumber = 12;
+    private readonly static bool BoxProjectionDefaultValue = false;
+
     private bool boxProjection_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool BoxProjection {
-      get { return boxProjection_; }
+      get { if ((_hasBits0 & 1024) != 0) { return boxProjection_; } else { return BoxProjectionDefaultValue; } }
       set {
+        _hasBits0 |= 1024;
         boxProjection_ = value;
       }
     }
+    /// <summary>Gets whether the "box_projection" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBoxProjection {
+      get { return (_hasBits0 & 1024) != 0; }
+    }
+    /// <summary>Clears the value of the "box_projection" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBoxProjection() {
+      _hasBits0 &= ~1024;
+    }
 
     /// <summary>Field number for the "blend_distance" field.</summary>
-    public const int BlendDistanceFieldNumber = 12;
+    public const int BlendDistanceFieldNumber = 13;
+    private readonly static float BlendDistanceDefaultValue = 0F;
+
     private float blendDistance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float BlendDistance {
-      get { return blendDistance_; }
+      get { if ((_hasBits0 & 2048) != 0) { return blendDistance_; } else { return BlendDistanceDefaultValue; } }
       set {
+        _hasBits0 |= 2048;
         blendDistance_ = value;
       }
     }
+    /// <summary>Gets whether the "blend_distance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBlendDistance {
+      get { return (_hasBits0 & 2048) != 0; }
+    }
+    /// <summary>Clears the value of the "blend_distance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBlendDistance() {
+      _hasBits0 &= ~2048;
+    }
 
     /// <summary>Field number for the "bounds" field.</summary>
-    public const int BoundsFieldNumber = 13;
+    public const int BoundsFieldNumber = 14;
     private global::PLUME.Sample.Common.Bounds bounds_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -759,43 +926,88 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "resolution" field.</summary>
-    public const int ResolutionFieldNumber = 14;
+    public const int ResolutionFieldNumber = 15;
+    private readonly static int ResolutionDefaultValue = 0;
+
     private int resolution_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Resolution {
-      get { return resolution_; }
+      get { if ((_hasBits0 & 4096) != 0) { return resolution_; } else { return ResolutionDefaultValue; } }
       set {
+        _hasBits0 |= 4096;
         resolution_ = value;
       }
     }
+    /// <summary>Gets whether the "resolution" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasResolution {
+      get { return (_hasBits0 & 4096) != 0; }
+    }
+    /// <summary>Clears the value of the "resolution" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearResolution() {
+      _hasBits0 &= ~4096;
+    }
 
     /// <summary>Field number for the "hdr" field.</summary>
-    public const int HdrFieldNumber = 15;
+    public const int HdrFieldNumber = 16;
+    private readonly static bool HdrDefaultValue = false;
+
     private bool hdr_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Hdr {
-      get { return hdr_; }
+      get { if ((_hasBits0 & 8192) != 0) { return hdr_; } else { return HdrDefaultValue; } }
       set {
+        _hasBits0 |= 8192;
         hdr_ = value;
       }
     }
+    /// <summary>Gets whether the "hdr" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasHdr {
+      get { return (_hasBits0 & 8192) != 0; }
+    }
+    /// <summary>Clears the value of the "hdr" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearHdr() {
+      _hasBits0 &= ~8192;
+    }
 
     /// <summary>Field number for the "shadow_distance" field.</summary>
-    public const int ShadowDistanceFieldNumber = 16;
+    public const int ShadowDistanceFieldNumber = 17;
+    private readonly static float ShadowDistanceDefaultValue = 0F;
+
     private float shadowDistance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float ShadowDistance {
-      get { return shadowDistance_; }
+      get { if ((_hasBits0 & 16384) != 0) { return shadowDistance_; } else { return ShadowDistanceDefaultValue; } }
       set {
+        _hasBits0 |= 16384;
         shadowDistance_ = value;
       }
     }
+    /// <summary>Gets whether the "shadow_distance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasShadowDistance {
+      get { return (_hasBits0 & 16384) != 0; }
+    }
+    /// <summary>Clears the value of the "shadow_distance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearShadowDistance() {
+      _hasBits0 &= ~16384;
+    }
 
     /// <summary>Field number for the "background_color" field.</summary>
-    public const int BackgroundColorFieldNumber = 17;
+    public const int BackgroundColorFieldNumber = 18;
     private global::PLUME.Sample.Common.Color backgroundColor_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -807,19 +1019,34 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "culling_mask" field.</summary>
-    public const int CullingMaskFieldNumber = 18;
+    public const int CullingMaskFieldNumber = 19;
+    private readonly static int CullingMaskDefaultValue = 0;
+
     private int cullingMask_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CullingMask {
-      get { return cullingMask_; }
+      get { if ((_hasBits0 & 32768) != 0) { return cullingMask_; } else { return CullingMaskDefaultValue; } }
       set {
+        _hasBits0 |= 32768;
         cullingMask_ = value;
       }
     }
+    /// <summary>Gets whether the "culling_mask" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasCullingMask {
+      get { return (_hasBits0 & 32768) != 0; }
+    }
+    /// <summary>Clears the value of the "culling_mask" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearCullingMask() {
+      _hasBits0 &= ~32768;
+    }
 
     /// <summary>Field number for the "custom_baked_texture_id" field.</summary>
-    public const int CustomBakedTextureIdFieldNumber = 19;
+    public const int CustomBakedTextureIdFieldNumber = 20;
     private global::PLUME.Sample.Unity.AssetIdentifier customBakedTextureId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -831,7 +1058,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "baked_texture_id" field.</summary>
-    public const int BakedTextureIdFieldNumber = 20;
+    public const int BakedTextureIdFieldNumber = 21;
     private global::PLUME.Sample.Unity.AssetIdentifier bakedTextureId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -858,6 +1085,7 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
+      if (Enabled != other.Enabled) return false;
       if (Mode != other.Mode) return false;
       if (RefreshMode != other.RefreshMode) return false;
       if (TimeSlicingMode != other.TimeSlicingMode) return false;
@@ -885,23 +1113,24 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (Mode != global::PLUME.Sample.Unity.ReflectionProbeMode.Baked) hash ^= Mode.GetHashCode();
-      if (RefreshMode != global::PLUME.Sample.Unity.ReflectionProbeRefreshMode.OnAwake) hash ^= RefreshMode.GetHashCode();
-      if (TimeSlicingMode != global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode.AllFacesAtOnce) hash ^= TimeSlicingMode.GetHashCode();
-      if (ClearFlags != global::PLUME.Sample.Unity.ReflectionProbeClearFlags.Skybox) hash ^= ClearFlags.GetHashCode();
-      if (Importance != 0) hash ^= Importance.GetHashCode();
-      if (Intensity != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Intensity);
-      if (NearClipPlane != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NearClipPlane);
-      if (FarClipPlane != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FarClipPlane);
-      if (RenderDynamicObjects != false) hash ^= RenderDynamicObjects.GetHashCode();
-      if (BoxProjection != false) hash ^= BoxProjection.GetHashCode();
-      if (BlendDistance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(BlendDistance);
+      if (HasEnabled) hash ^= Enabled.GetHashCode();
+      if (HasMode) hash ^= Mode.GetHashCode();
+      if (HasRefreshMode) hash ^= RefreshMode.GetHashCode();
+      if (HasTimeSlicingMode) hash ^= TimeSlicingMode.GetHashCode();
+      if (HasClearFlags) hash ^= ClearFlags.GetHashCode();
+      if (HasImportance) hash ^= Importance.GetHashCode();
+      if (HasIntensity) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Intensity);
+      if (HasNearClipPlane) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NearClipPlane);
+      if (HasFarClipPlane) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FarClipPlane);
+      if (HasRenderDynamicObjects) hash ^= RenderDynamicObjects.GetHashCode();
+      if (HasBoxProjection) hash ^= BoxProjection.GetHashCode();
+      if (HasBlendDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(BlendDistance);
       if (bounds_ != null) hash ^= Bounds.GetHashCode();
-      if (Resolution != 0) hash ^= Resolution.GetHashCode();
-      if (Hdr != false) hash ^= Hdr.GetHashCode();
-      if (ShadowDistance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ShadowDistance);
+      if (HasResolution) hash ^= Resolution.GetHashCode();
+      if (HasHdr) hash ^= Hdr.GetHashCode();
+      if (HasShadowDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ShadowDistance);
       if (backgroundColor_ != null) hash ^= BackgroundColor.GetHashCode();
-      if (CullingMask != 0) hash ^= CullingMask.GetHashCode();
+      if (HasCullingMask) hash ^= CullingMask.GetHashCode();
       if (customBakedTextureId_ != null) hash ^= CustomBakedTextureId.GetHashCode();
       if (bakedTextureId_ != null) hash ^= BakedTextureId.GetHashCode();
       if (_unknownFields != null) {
@@ -926,80 +1155,84 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Mode != global::PLUME.Sample.Unity.ReflectionProbeMode.Baked) {
+      if (HasEnabled) {
         output.WriteRawTag(16);
+        output.WriteBool(Enabled);
+      }
+      if (HasMode) {
+        output.WriteRawTag(24);
         output.WriteEnum((int) Mode);
       }
-      if (RefreshMode != global::PLUME.Sample.Unity.ReflectionProbeRefreshMode.OnAwake) {
-        output.WriteRawTag(24);
+      if (HasRefreshMode) {
+        output.WriteRawTag(32);
         output.WriteEnum((int) RefreshMode);
       }
-      if (TimeSlicingMode != global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode.AllFacesAtOnce) {
-        output.WriteRawTag(32);
+      if (HasTimeSlicingMode) {
+        output.WriteRawTag(40);
         output.WriteEnum((int) TimeSlicingMode);
       }
-      if (ClearFlags != global::PLUME.Sample.Unity.ReflectionProbeClearFlags.Skybox) {
-        output.WriteRawTag(40);
+      if (HasClearFlags) {
+        output.WriteRawTag(48);
         output.WriteEnum((int) ClearFlags);
       }
-      if (Importance != 0) {
-        output.WriteRawTag(48);
+      if (HasImportance) {
+        output.WriteRawTag(56);
         output.WriteInt32(Importance);
       }
-      if (Intensity != 0F) {
-        output.WriteRawTag(61);
+      if (HasIntensity) {
+        output.WriteRawTag(69);
         output.WriteFloat(Intensity);
       }
-      if (NearClipPlane != 0F) {
-        output.WriteRawTag(69);
+      if (HasNearClipPlane) {
+        output.WriteRawTag(77);
         output.WriteFloat(NearClipPlane);
       }
-      if (FarClipPlane != 0F) {
-        output.WriteRawTag(77);
+      if (HasFarClipPlane) {
+        output.WriteRawTag(85);
         output.WriteFloat(FarClipPlane);
       }
-      if (RenderDynamicObjects != false) {
-        output.WriteRawTag(80);
+      if (HasRenderDynamicObjects) {
+        output.WriteRawTag(88);
         output.WriteBool(RenderDynamicObjects);
       }
-      if (BoxProjection != false) {
-        output.WriteRawTag(88);
+      if (HasBoxProjection) {
+        output.WriteRawTag(96);
         output.WriteBool(BoxProjection);
       }
-      if (BlendDistance != 0F) {
-        output.WriteRawTag(101);
+      if (HasBlendDistance) {
+        output.WriteRawTag(109);
         output.WriteFloat(BlendDistance);
       }
       if (bounds_ != null) {
-        output.WriteRawTag(106);
+        output.WriteRawTag(114);
         output.WriteMessage(Bounds);
       }
-      if (Resolution != 0) {
-        output.WriteRawTag(112);
+      if (HasResolution) {
+        output.WriteRawTag(120);
         output.WriteInt32(Resolution);
       }
-      if (Hdr != false) {
-        output.WriteRawTag(120);
+      if (HasHdr) {
+        output.WriteRawTag(128, 1);
         output.WriteBool(Hdr);
       }
-      if (ShadowDistance != 0F) {
-        output.WriteRawTag(133, 1);
+      if (HasShadowDistance) {
+        output.WriteRawTag(141, 1);
         output.WriteFloat(ShadowDistance);
       }
       if (backgroundColor_ != null) {
-        output.WriteRawTag(138, 1);
+        output.WriteRawTag(146, 1);
         output.WriteMessage(BackgroundColor);
       }
-      if (CullingMask != 0) {
-        output.WriteRawTag(144, 1);
+      if (HasCullingMask) {
+        output.WriteRawTag(152, 1);
         output.WriteInt32(CullingMask);
       }
       if (customBakedTextureId_ != null) {
-        output.WriteRawTag(154, 1);
+        output.WriteRawTag(162, 1);
         output.WriteMessage(CustomBakedTextureId);
       }
       if (bakedTextureId_ != null) {
-        output.WriteRawTag(162, 1);
+        output.WriteRawTag(170, 1);
         output.WriteMessage(BakedTextureId);
       }
       if (_unknownFields != null) {
@@ -1016,80 +1249,84 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Mode != global::PLUME.Sample.Unity.ReflectionProbeMode.Baked) {
+      if (HasEnabled) {
         output.WriteRawTag(16);
+        output.WriteBool(Enabled);
+      }
+      if (HasMode) {
+        output.WriteRawTag(24);
         output.WriteEnum((int) Mode);
       }
-      if (RefreshMode != global::PLUME.Sample.Unity.ReflectionProbeRefreshMode.OnAwake) {
-        output.WriteRawTag(24);
+      if (HasRefreshMode) {
+        output.WriteRawTag(32);
         output.WriteEnum((int) RefreshMode);
       }
-      if (TimeSlicingMode != global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode.AllFacesAtOnce) {
-        output.WriteRawTag(32);
+      if (HasTimeSlicingMode) {
+        output.WriteRawTag(40);
         output.WriteEnum((int) TimeSlicingMode);
       }
-      if (ClearFlags != global::PLUME.Sample.Unity.ReflectionProbeClearFlags.Skybox) {
-        output.WriteRawTag(40);
+      if (HasClearFlags) {
+        output.WriteRawTag(48);
         output.WriteEnum((int) ClearFlags);
       }
-      if (Importance != 0) {
-        output.WriteRawTag(48);
+      if (HasImportance) {
+        output.WriteRawTag(56);
         output.WriteInt32(Importance);
       }
-      if (Intensity != 0F) {
-        output.WriteRawTag(61);
+      if (HasIntensity) {
+        output.WriteRawTag(69);
         output.WriteFloat(Intensity);
       }
-      if (NearClipPlane != 0F) {
-        output.WriteRawTag(69);
+      if (HasNearClipPlane) {
+        output.WriteRawTag(77);
         output.WriteFloat(NearClipPlane);
       }
-      if (FarClipPlane != 0F) {
-        output.WriteRawTag(77);
+      if (HasFarClipPlane) {
+        output.WriteRawTag(85);
         output.WriteFloat(FarClipPlane);
       }
-      if (RenderDynamicObjects != false) {
-        output.WriteRawTag(80);
+      if (HasRenderDynamicObjects) {
+        output.WriteRawTag(88);
         output.WriteBool(RenderDynamicObjects);
       }
-      if (BoxProjection != false) {
-        output.WriteRawTag(88);
+      if (HasBoxProjection) {
+        output.WriteRawTag(96);
         output.WriteBool(BoxProjection);
       }
-      if (BlendDistance != 0F) {
-        output.WriteRawTag(101);
+      if (HasBlendDistance) {
+        output.WriteRawTag(109);
         output.WriteFloat(BlendDistance);
       }
       if (bounds_ != null) {
-        output.WriteRawTag(106);
+        output.WriteRawTag(114);
         output.WriteMessage(Bounds);
       }
-      if (Resolution != 0) {
-        output.WriteRawTag(112);
+      if (HasResolution) {
+        output.WriteRawTag(120);
         output.WriteInt32(Resolution);
       }
-      if (Hdr != false) {
-        output.WriteRawTag(120);
+      if (HasHdr) {
+        output.WriteRawTag(128, 1);
         output.WriteBool(Hdr);
       }
-      if (ShadowDistance != 0F) {
-        output.WriteRawTag(133, 1);
+      if (HasShadowDistance) {
+        output.WriteRawTag(141, 1);
         output.WriteFloat(ShadowDistance);
       }
       if (backgroundColor_ != null) {
-        output.WriteRawTag(138, 1);
+        output.WriteRawTag(146, 1);
         output.WriteMessage(BackgroundColor);
       }
-      if (CullingMask != 0) {
-        output.WriteRawTag(144, 1);
+      if (HasCullingMask) {
+        output.WriteRawTag(152, 1);
         output.WriteInt32(CullingMask);
       }
       if (customBakedTextureId_ != null) {
-        output.WriteRawTag(154, 1);
+        output.WriteRawTag(162, 1);
         output.WriteMessage(CustomBakedTextureId);
       }
       if (bakedTextureId_ != null) {
-        output.WriteRawTag(162, 1);
+        output.WriteRawTag(170, 1);
         output.WriteMessage(BakedTextureId);
       }
       if (_unknownFields != null) {
@@ -1105,55 +1342,58 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (Mode != global::PLUME.Sample.Unity.ReflectionProbeMode.Baked) {
+      if (HasEnabled) {
+        size += 1 + 1;
+      }
+      if (HasMode) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Mode);
       }
-      if (RefreshMode != global::PLUME.Sample.Unity.ReflectionProbeRefreshMode.OnAwake) {
+      if (HasRefreshMode) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RefreshMode);
       }
-      if (TimeSlicingMode != global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode.AllFacesAtOnce) {
+      if (HasTimeSlicingMode) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) TimeSlicingMode);
       }
-      if (ClearFlags != global::PLUME.Sample.Unity.ReflectionProbeClearFlags.Skybox) {
+      if (HasClearFlags) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ClearFlags);
       }
-      if (Importance != 0) {
+      if (HasImportance) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Importance);
       }
-      if (Intensity != 0F) {
+      if (HasIntensity) {
         size += 1 + 4;
       }
-      if (NearClipPlane != 0F) {
+      if (HasNearClipPlane) {
         size += 1 + 4;
       }
-      if (FarClipPlane != 0F) {
+      if (HasFarClipPlane) {
         size += 1 + 4;
       }
-      if (RenderDynamicObjects != false) {
+      if (HasRenderDynamicObjects) {
         size += 1 + 1;
       }
-      if (BoxProjection != false) {
+      if (HasBoxProjection) {
         size += 1 + 1;
       }
-      if (BlendDistance != 0F) {
+      if (HasBlendDistance) {
         size += 1 + 4;
       }
       if (bounds_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Bounds);
       }
-      if (Resolution != 0) {
+      if (HasResolution) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Resolution);
       }
-      if (Hdr != false) {
-        size += 1 + 1;
+      if (HasHdr) {
+        size += 2 + 1;
       }
-      if (ShadowDistance != 0F) {
+      if (HasShadowDistance) {
         size += 2 + 4;
       }
       if (backgroundColor_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(BackgroundColor);
       }
-      if (CullingMask != 0) {
+      if (HasCullingMask) {
         size += 2 + pb::CodedOutputStream.ComputeInt32Size(CullingMask);
       }
       if (customBakedTextureId_ != null) {
@@ -1180,37 +1420,40 @@ namespace PLUME.Sample.Unity {
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.Mode != global::PLUME.Sample.Unity.ReflectionProbeMode.Baked) {
+      if (other.HasEnabled) {
+        Enabled = other.Enabled;
+      }
+      if (other.HasMode) {
         Mode = other.Mode;
       }
-      if (other.RefreshMode != global::PLUME.Sample.Unity.ReflectionProbeRefreshMode.OnAwake) {
+      if (other.HasRefreshMode) {
         RefreshMode = other.RefreshMode;
       }
-      if (other.TimeSlicingMode != global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode.AllFacesAtOnce) {
+      if (other.HasTimeSlicingMode) {
         TimeSlicingMode = other.TimeSlicingMode;
       }
-      if (other.ClearFlags != global::PLUME.Sample.Unity.ReflectionProbeClearFlags.Skybox) {
+      if (other.HasClearFlags) {
         ClearFlags = other.ClearFlags;
       }
-      if (other.Importance != 0) {
+      if (other.HasImportance) {
         Importance = other.Importance;
       }
-      if (other.Intensity != 0F) {
+      if (other.HasIntensity) {
         Intensity = other.Intensity;
       }
-      if (other.NearClipPlane != 0F) {
+      if (other.HasNearClipPlane) {
         NearClipPlane = other.NearClipPlane;
       }
-      if (other.FarClipPlane != 0F) {
+      if (other.HasFarClipPlane) {
         FarClipPlane = other.FarClipPlane;
       }
-      if (other.RenderDynamicObjects != false) {
+      if (other.HasRenderDynamicObjects) {
         RenderDynamicObjects = other.RenderDynamicObjects;
       }
-      if (other.BoxProjection != false) {
+      if (other.HasBoxProjection) {
         BoxProjection = other.BoxProjection;
       }
-      if (other.BlendDistance != 0F) {
+      if (other.HasBlendDistance) {
         BlendDistance = other.BlendDistance;
       }
       if (other.bounds_ != null) {
@@ -1219,13 +1462,13 @@ namespace PLUME.Sample.Unity {
         }
         Bounds.MergeFrom(other.Bounds);
       }
-      if (other.Resolution != 0) {
+      if (other.HasResolution) {
         Resolution = other.Resolution;
       }
-      if (other.Hdr != false) {
+      if (other.HasHdr) {
         Hdr = other.Hdr;
       }
-      if (other.ShadowDistance != 0F) {
+      if (other.HasShadowDistance) {
         ShadowDistance = other.ShadowDistance;
       }
       if (other.backgroundColor_ != null) {
@@ -1234,7 +1477,7 @@ namespace PLUME.Sample.Unity {
         }
         BackgroundColor.MergeFrom(other.BackgroundColor);
       }
-      if (other.CullingMask != 0) {
+      if (other.HasCullingMask) {
         CullingMask = other.CullingMask;
       }
       if (other.customBakedTextureId_ != null) {
@@ -1272,87 +1515,91 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 16: {
-            Mode = (global::PLUME.Sample.Unity.ReflectionProbeMode) input.ReadEnum();
+            Enabled = input.ReadBool();
             break;
           }
           case 24: {
-            RefreshMode = (global::PLUME.Sample.Unity.ReflectionProbeRefreshMode) input.ReadEnum();
+            Mode = (global::PLUME.Sample.Unity.ReflectionProbeMode) input.ReadEnum();
             break;
           }
           case 32: {
-            TimeSlicingMode = (global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode) input.ReadEnum();
+            RefreshMode = (global::PLUME.Sample.Unity.ReflectionProbeRefreshMode) input.ReadEnum();
             break;
           }
           case 40: {
-            ClearFlags = (global::PLUME.Sample.Unity.ReflectionProbeClearFlags) input.ReadEnum();
+            TimeSlicingMode = (global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode) input.ReadEnum();
             break;
           }
           case 48: {
+            ClearFlags = (global::PLUME.Sample.Unity.ReflectionProbeClearFlags) input.ReadEnum();
+            break;
+          }
+          case 56: {
             Importance = input.ReadInt32();
             break;
           }
-          case 61: {
+          case 69: {
             Intensity = input.ReadFloat();
             break;
           }
-          case 69: {
+          case 77: {
             NearClipPlane = input.ReadFloat();
             break;
           }
-          case 77: {
+          case 85: {
             FarClipPlane = input.ReadFloat();
             break;
           }
-          case 80: {
+          case 88: {
             RenderDynamicObjects = input.ReadBool();
             break;
           }
-          case 88: {
+          case 96: {
             BoxProjection = input.ReadBool();
             break;
           }
-          case 101: {
+          case 109: {
             BlendDistance = input.ReadFloat();
             break;
           }
-          case 106: {
+          case 114: {
             if (bounds_ == null) {
               Bounds = new global::PLUME.Sample.Common.Bounds();
             }
             input.ReadMessage(Bounds);
             break;
           }
-          case 112: {
+          case 120: {
             Resolution = input.ReadInt32();
             break;
           }
-          case 120: {
+          case 128: {
             Hdr = input.ReadBool();
             break;
           }
-          case 133: {
+          case 141: {
             ShadowDistance = input.ReadFloat();
             break;
           }
-          case 138: {
+          case 146: {
             if (backgroundColor_ == null) {
               BackgroundColor = new global::PLUME.Sample.Common.Color();
             }
             input.ReadMessage(BackgroundColor);
             break;
           }
-          case 144: {
+          case 152: {
             CullingMask = input.ReadInt32();
             break;
           }
-          case 154: {
+          case 162: {
             if (customBakedTextureId_ == null) {
               CustomBakedTextureId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(CustomBakedTextureId);
             break;
           }
-          case 162: {
+          case 170: {
             if (bakedTextureId_ == null) {
               BakedTextureId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
@@ -1382,87 +1629,91 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 16: {
-            Mode = (global::PLUME.Sample.Unity.ReflectionProbeMode) input.ReadEnum();
+            Enabled = input.ReadBool();
             break;
           }
           case 24: {
-            RefreshMode = (global::PLUME.Sample.Unity.ReflectionProbeRefreshMode) input.ReadEnum();
+            Mode = (global::PLUME.Sample.Unity.ReflectionProbeMode) input.ReadEnum();
             break;
           }
           case 32: {
-            TimeSlicingMode = (global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode) input.ReadEnum();
+            RefreshMode = (global::PLUME.Sample.Unity.ReflectionProbeRefreshMode) input.ReadEnum();
             break;
           }
           case 40: {
-            ClearFlags = (global::PLUME.Sample.Unity.ReflectionProbeClearFlags) input.ReadEnum();
+            TimeSlicingMode = (global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode) input.ReadEnum();
             break;
           }
           case 48: {
+            ClearFlags = (global::PLUME.Sample.Unity.ReflectionProbeClearFlags) input.ReadEnum();
+            break;
+          }
+          case 56: {
             Importance = input.ReadInt32();
             break;
           }
-          case 61: {
+          case 69: {
             Intensity = input.ReadFloat();
             break;
           }
-          case 69: {
+          case 77: {
             NearClipPlane = input.ReadFloat();
             break;
           }
-          case 77: {
+          case 85: {
             FarClipPlane = input.ReadFloat();
             break;
           }
-          case 80: {
+          case 88: {
             RenderDynamicObjects = input.ReadBool();
             break;
           }
-          case 88: {
+          case 96: {
             BoxProjection = input.ReadBool();
             break;
           }
-          case 101: {
+          case 109: {
             BlendDistance = input.ReadFloat();
             break;
           }
-          case 106: {
+          case 114: {
             if (bounds_ == null) {
               Bounds = new global::PLUME.Sample.Common.Bounds();
             }
             input.ReadMessage(Bounds);
             break;
           }
-          case 112: {
+          case 120: {
             Resolution = input.ReadInt32();
             break;
           }
-          case 120: {
+          case 128: {
             Hdr = input.ReadBool();
             break;
           }
-          case 133: {
+          case 141: {
             ShadowDistance = input.ReadFloat();
             break;
           }
-          case 138: {
+          case 146: {
             if (backgroundColor_ == null) {
               BackgroundColor = new global::PLUME.Sample.Common.Color();
             }
             input.ReadMessage(BackgroundColor);
             break;
           }
-          case 144: {
+          case 152: {
             CullingMask = input.ReadInt32();
             break;
           }
-          case 154: {
+          case 162: {
             if (customBakedTextureId_ == null) {
               CustomBakedTextureId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(CustomBakedTextureId);
             break;
           }
-          case 162: {
+          case 170: {
             if (bakedTextureId_ == null) {
               BakedTextureId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }

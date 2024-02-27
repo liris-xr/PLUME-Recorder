@@ -27,26 +27,31 @@ namespace PLUME.Sample.Unity {
             "Chl1bml0eS9tZXNoX3JlbmRlcmVyLnByb3RvEhJwbHVtZS5zYW1wbGUudW5p",
             "dHkaF3VuaXR5L2lkZW50aWZpZXJzLnByb3RvGhRjb21tb24vdmVjdG9yNC5w",
             "cm90byJJChJNZXNoUmVuZGVyZXJDcmVhdGUSMwoCaWQYASABKAsyJy5wbHVt",
-            "ZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciJhChlNZXNoUmVu",
-            "ZGVyZXJVcGRhdGVFbmFibGVkEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxl",
-            "LnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISDwoHZW5hYmxlZBgCIAEoCCKO",
-            "AQobTWVzaFJlbmRlcmVyVXBkYXRlTWF0ZXJpYWxzEjMKAmlkGAEgASgLMicu",
-            "cGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISOgoNbWF0",
-            "ZXJpYWxzX2lkcxgCIAMoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElk",
-            "ZW50aWZpZXIijQIKGk1lc2hSZW5kZXJlclVwZGF0ZUxpZ2h0bWFwEjMKAmlk",
-            "GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
-            "ZXISFgoObGlnaHRtYXBfaW5kZXgYAiABKAUSOwoVbGlnaHRtYXBfc2NhbGVf",
-            "b2Zmc2V0GAMgASgLMhwucGx1bWUuc2FtcGxlLmNvbW1vbi5WZWN0b3I0Eh8K",
-            "F3JlYWx0aW1lX2xpZ2h0bWFwX2luZGV4GAQgASgFEkQKHnJlYWx0aW1lX2xp",
-            "Z2h0bWFwX3NjYWxlX29mZnNldBgFIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21t",
-            "b24uVmVjdG9yNEIVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
+            "ZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciJKChNNZXNoUmVu",
+            "ZGVyZXJEZXN0cm95EjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5",
+            "LkNvbXBvbmVudElkZW50aWZpZXIipAUKEk1lc2hSZW5kZXJlclVwZGF0ZRIz",
+            "CgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVu",
+            "dGlmaWVyEhQKB2VuYWJsZWQYAiABKAhIAIgBARJICgltYXRlcmlhbHMYAyAB",
+            "KAsyMC5wbHVtZS5zYW1wbGUudW5pdHkuTWVzaFJlbmRlcmVyVXBkYXRlLk1h",
+            "dGVyaWFsc0gBiAEBEk8KEHNoYXJlZF9tYXRlcmlhbHMYBCABKAsyMC5wbHVt",
+            "ZS5zYW1wbGUudW5pdHkuTWVzaFJlbmRlcmVyVXBkYXRlLk1hdGVyaWFsc0gC",
+            "iAEBEhsKDmxpZ2h0bWFwX2luZGV4GAUgASgFSAOIAQESQAoVbGlnaHRtYXBf",
+            "c2NhbGVfb2Zmc2V0GAYgASgLMhwucGx1bWUuc2FtcGxlLmNvbW1vbi5WZWN0",
+            "b3I0SASIAQESJAoXcmVhbHRpbWVfbGlnaHRtYXBfaW5kZXgYByABKAVIBYgB",
+            "ARJJCh5yZWFsdGltZV9saWdodG1hcF9zY2FsZV9vZmZzZXQYCCABKAsyHC5w",
+            "bHVtZS5zYW1wbGUuY29tbW9uLlZlY3RvcjRIBogBARo9CglNYXRlcmlhbHMS",
+            "MAoDaWRzGAEgAygLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRp",
+            "ZmllckIKCghfZW5hYmxlZEIMCgpfbWF0ZXJpYWxzQhMKEV9zaGFyZWRfbWF0",
+            "ZXJpYWxzQhEKD19saWdodG1hcF9pbmRleEIYChZfbGlnaHRtYXBfc2NhbGVf",
+            "b2Zmc2V0QhoKGF9yZWFsdGltZV9saWdodG1hcF9pbmRleEIhCh9fcmVhbHRp",
+            "bWVfbGlnaHRtYXBfc2NhbGVfb2Zmc2V0QhWqAhJQTFVNRS5TYW1wbGUuVW5p",
+            "dHliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererCreate), global::PLUME.Sample.Unity.MeshRendererCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererUpdateEnabled), global::PLUME.Sample.Unity.MeshRendererUpdateEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererUpdateMaterials), global::PLUME.Sample.Unity.MeshRendererUpdateMaterials.Parser, new[]{ "Id", "MaterialsIds" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererUpdateLightmap), global::PLUME.Sample.Unity.MeshRendererUpdateLightmap.Parser, new[]{ "Id", "LightmapIndex", "LightmapScaleOffset", "RealtimeLightmapIndex", "RealtimeLightmapScaleOffset" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererDestroy), global::PLUME.Sample.Unity.MeshRendererDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererUpdate), global::PLUME.Sample.Unity.MeshRendererUpdate.Parser, new[]{ "Id", "Enabled", "Materials", "SharedMaterials", "LightmapIndex", "LightmapScaleOffset", "RealtimeLightmapIndex", "RealtimeLightmapScaleOffset" }, new[]{ "Enabled", "Materials", "SharedMaterials", "LightmapIndex", "LightmapScaleOffset", "RealtimeLightmapIndex", "RealtimeLightmapScaleOffset" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials), global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials.Parser, new[]{ "Ids" }, null, null, null, null)})
           }));
     }
     #endregion
@@ -253,16 +258,16 @@ namespace PLUME.Sample.Unity {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class MeshRendererUpdateEnabled : pb::IMessage<MeshRendererUpdateEnabled>
+  public sealed partial class MeshRendererDestroy : pb::IMessage<MeshRendererDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<MeshRendererUpdateEnabled> _parser = new pb::MessageParser<MeshRendererUpdateEnabled>(() => new MeshRendererUpdateEnabled());
+    private static readonly pb::MessageParser<MeshRendererDestroy> _parser = new pb::MessageParser<MeshRendererDestroy>(() => new MeshRendererDestroy());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<MeshRendererUpdateEnabled> Parser { get { return _parser; } }
+    public static pb::MessageParser<MeshRendererDestroy> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -278,7 +283,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshRendererUpdateEnabled() {
+    public MeshRendererDestroy() {
       OnConstruction();
     }
 
@@ -286,16 +291,223 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshRendererUpdateEnabled(MeshRendererUpdateEnabled other) : this() {
+    public MeshRendererDestroy(MeshRendererDestroy other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      enabled_ = other.enabled_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshRendererUpdateEnabled Clone() {
-      return new MeshRendererUpdateEnabled(this);
+    public MeshRendererDestroy Clone() {
+      return new MeshRendererDestroy(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MeshRendererDestroy);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MeshRendererDestroy other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MeshRendererDestroy other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MeshRendererUpdate : pb::IMessage<MeshRendererUpdate>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MeshRendererUpdate> _parser = new pb::MessageParser<MeshRendererUpdate>(() => new MeshRendererUpdate());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MeshRendererUpdate> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.MeshRendererReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MeshRendererUpdate() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MeshRendererUpdate(MeshRendererUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      enabled_ = other.enabled_;
+      materials_ = other.materials_ != null ? other.materials_.Clone() : null;
+      sharedMaterials_ = other.sharedMaterials_ != null ? other.sharedMaterials_.Clone() : null;
+      lightmapIndex_ = other.lightmapIndex_;
+      lightmapScaleOffset_ = other.lightmapScaleOffset_ != null ? other.lightmapScaleOffset_.Clone() : null;
+      realtimeLightmapIndex_ = other.realtimeLightmapIndex_;
+      realtimeLightmapScaleOffset_ = other.realtimeLightmapScaleOffset_ != null ? other.realtimeLightmapScaleOffset_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MeshRendererUpdate Clone() {
+      return new MeshRendererUpdate(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -312,482 +524,84 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "enabled" field.</summary>
     public const int EnabledFieldNumber = 2;
+    private readonly static bool EnabledDefaultValue = false;
+
     private bool enabled_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Enabled {
-      get { return enabled_; }
+      get { if ((_hasBits0 & 1) != 0) { return enabled_; } else { return EnabledDefaultValue; } }
       set {
+        _hasBits0 |= 1;
         enabled_ = value;
       }
     }
-
+    /// <summary>Gets whether the "enabled" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as MeshRendererUpdateEnabled);
+    public bool HasEnabled {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "enabled" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearEnabled() {
+      _hasBits0 &= ~1;
     }
 
+    /// <summary>Field number for the "materials" field.</summary>
+    public const int MaterialsFieldNumber = 3;
+    private global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials materials_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(MeshRendererUpdateEnabled other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (Enabled != other.Enabled) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Enabled != false) hash ^= Enabled.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Enabled != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Enabled != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Enabled != false) {
-        size += 1 + 1;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(MeshRendererUpdateEnabled other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Enabled != false) {
-        Enabled = other.Enabled;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Enabled = input.ReadBool();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Enabled = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class MeshRendererUpdateMaterials : pb::IMessage<MeshRendererUpdateMaterials>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<MeshRendererUpdateMaterials> _parser = new pb::MessageParser<MeshRendererUpdateMaterials>(() => new MeshRendererUpdateMaterials());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<MeshRendererUpdateMaterials> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.MeshRendererReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshRendererUpdateMaterials() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshRendererUpdateMaterials(MeshRendererUpdateMaterials other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      materialsIds_ = other.materialsIds_.Clone();
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshRendererUpdateMaterials Clone() {
-      return new MeshRendererUpdateMaterials(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
+    public global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials Materials {
+      get { return materials_; }
       set {
-        id_ = value;
+        materials_ = value;
       }
     }
 
-    /// <summary>Field number for the "materials_ids" field.</summary>
-    public const int MaterialsIdsFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::PLUME.Sample.Unity.AssetIdentifier> _repeated_materialsIds_codec
-        = pb::FieldCodec.ForMessage(18, global::PLUME.Sample.Unity.AssetIdentifier.Parser);
-    private readonly pbc::RepeatedField<global::PLUME.Sample.Unity.AssetIdentifier> materialsIds_ = new pbc::RepeatedField<global::PLUME.Sample.Unity.AssetIdentifier>();
+    /// <summary>Field number for the "shared_materials" field.</summary>
+    public const int SharedMaterialsFieldNumber = 4;
+    private global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials sharedMaterials_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::PLUME.Sample.Unity.AssetIdentifier> MaterialsIds {
-      get { return materialsIds_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as MeshRendererUpdateMaterials);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(MeshRendererUpdateMaterials other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if(!materialsIds_.Equals(other.materialsIds_)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      hash ^= materialsIds_.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      materialsIds_.WriteTo(output, _repeated_materialsIds_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      materialsIds_.WriteTo(ref output, _repeated_materialsIds_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      size += materialsIds_.CalculateSize(_repeated_materialsIds_codec);
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(MeshRendererUpdateMaterials other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      materialsIds_.Add(other.materialsIds_);
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            materialsIds_.AddEntriesFrom(input, _repeated_materialsIds_codec);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            materialsIds_.AddEntriesFrom(ref input, _repeated_materialsIds_codec);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class MeshRendererUpdateLightmap : pb::IMessage<MeshRendererUpdateLightmap>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<MeshRendererUpdateLightmap> _parser = new pb::MessageParser<MeshRendererUpdateLightmap>(() => new MeshRendererUpdateLightmap());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<MeshRendererUpdateLightmap> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.MeshRendererReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshRendererUpdateLightmap() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshRendererUpdateLightmap(MeshRendererUpdateLightmap other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      lightmapIndex_ = other.lightmapIndex_;
-      lightmapScaleOffset_ = other.lightmapScaleOffset_ != null ? other.lightmapScaleOffset_.Clone() : null;
-      realtimeLightmapIndex_ = other.realtimeLightmapIndex_;
-      realtimeLightmapScaleOffset_ = other.realtimeLightmapScaleOffset_ != null ? other.realtimeLightmapScaleOffset_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public MeshRendererUpdateLightmap Clone() {
-      return new MeshRendererUpdateLightmap(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
+    public global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials SharedMaterials {
+      get { return sharedMaterials_; }
       set {
-        id_ = value;
+        sharedMaterials_ = value;
       }
     }
 
     /// <summary>Field number for the "lightmap_index" field.</summary>
-    public const int LightmapIndexFieldNumber = 2;
+    public const int LightmapIndexFieldNumber = 5;
+    private readonly static int LightmapIndexDefaultValue = 0;
+
     private int lightmapIndex_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int LightmapIndex {
-      get { return lightmapIndex_; }
+      get { if ((_hasBits0 & 2) != 0) { return lightmapIndex_; } else { return LightmapIndexDefaultValue; } }
       set {
+        _hasBits0 |= 2;
         lightmapIndex_ = value;
       }
     }
+    /// <summary>Gets whether the "lightmap_index" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasLightmapIndex {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "lightmap_index" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearLightmapIndex() {
+      _hasBits0 &= ~2;
+    }
 
     /// <summary>Field number for the "lightmap_scale_offset" field.</summary>
-    public const int LightmapScaleOffsetFieldNumber = 3;
+    public const int LightmapScaleOffsetFieldNumber = 6;
     private global::PLUME.Sample.Common.Vector4 lightmapScaleOffset_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -799,19 +613,34 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "realtime_lightmap_index" field.</summary>
-    public const int RealtimeLightmapIndexFieldNumber = 4;
+    public const int RealtimeLightmapIndexFieldNumber = 7;
+    private readonly static int RealtimeLightmapIndexDefaultValue = 0;
+
     private int realtimeLightmapIndex_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int RealtimeLightmapIndex {
-      get { return realtimeLightmapIndex_; }
+      get { if ((_hasBits0 & 4) != 0) { return realtimeLightmapIndex_; } else { return RealtimeLightmapIndexDefaultValue; } }
       set {
+        _hasBits0 |= 4;
         realtimeLightmapIndex_ = value;
       }
     }
+    /// <summary>Gets whether the "realtime_lightmap_index" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRealtimeLightmapIndex {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "realtime_lightmap_index" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRealtimeLightmapIndex() {
+      _hasBits0 &= ~4;
+    }
 
     /// <summary>Field number for the "realtime_lightmap_scale_offset" field.</summary>
-    public const int RealtimeLightmapScaleOffsetFieldNumber = 5;
+    public const int RealtimeLightmapScaleOffsetFieldNumber = 8;
     private global::PLUME.Sample.Common.Vector4 realtimeLightmapScaleOffset_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -825,12 +654,12 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as MeshRendererUpdateLightmap);
+      return Equals(other as MeshRendererUpdate);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(MeshRendererUpdateLightmap other) {
+    public bool Equals(MeshRendererUpdate other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -838,6 +667,9 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
+      if (Enabled != other.Enabled) return false;
+      if (!object.Equals(Materials, other.Materials)) return false;
+      if (!object.Equals(SharedMaterials, other.SharedMaterials)) return false;
       if (LightmapIndex != other.LightmapIndex) return false;
       if (!object.Equals(LightmapScaleOffset, other.LightmapScaleOffset)) return false;
       if (RealtimeLightmapIndex != other.RealtimeLightmapIndex) return false;
@@ -850,9 +682,12 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (LightmapIndex != 0) hash ^= LightmapIndex.GetHashCode();
+      if (HasEnabled) hash ^= Enabled.GetHashCode();
+      if (materials_ != null) hash ^= Materials.GetHashCode();
+      if (sharedMaterials_ != null) hash ^= SharedMaterials.GetHashCode();
+      if (HasLightmapIndex) hash ^= LightmapIndex.GetHashCode();
       if (lightmapScaleOffset_ != null) hash ^= LightmapScaleOffset.GetHashCode();
-      if (RealtimeLightmapIndex != 0) hash ^= RealtimeLightmapIndex.GetHashCode();
+      if (HasRealtimeLightmapIndex) hash ^= RealtimeLightmapIndex.GetHashCode();
       if (realtimeLightmapScaleOffset_ != null) hash ^= RealtimeLightmapScaleOffset.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -876,20 +711,32 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (LightmapIndex != 0) {
+      if (HasEnabled) {
         output.WriteRawTag(16);
+        output.WriteBool(Enabled);
+      }
+      if (materials_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Materials);
+      }
+      if (sharedMaterials_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(SharedMaterials);
+      }
+      if (HasLightmapIndex) {
+        output.WriteRawTag(40);
         output.WriteInt32(LightmapIndex);
       }
       if (lightmapScaleOffset_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(50);
         output.WriteMessage(LightmapScaleOffset);
       }
-      if (RealtimeLightmapIndex != 0) {
-        output.WriteRawTag(32);
+      if (HasRealtimeLightmapIndex) {
+        output.WriteRawTag(56);
         output.WriteInt32(RealtimeLightmapIndex);
       }
       if (realtimeLightmapScaleOffset_ != null) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(66);
         output.WriteMessage(RealtimeLightmapScaleOffset);
       }
       if (_unknownFields != null) {
@@ -906,20 +753,32 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (LightmapIndex != 0) {
+      if (HasEnabled) {
         output.WriteRawTag(16);
+        output.WriteBool(Enabled);
+      }
+      if (materials_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Materials);
+      }
+      if (sharedMaterials_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(SharedMaterials);
+      }
+      if (HasLightmapIndex) {
+        output.WriteRawTag(40);
         output.WriteInt32(LightmapIndex);
       }
       if (lightmapScaleOffset_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(50);
         output.WriteMessage(LightmapScaleOffset);
       }
-      if (RealtimeLightmapIndex != 0) {
-        output.WriteRawTag(32);
+      if (HasRealtimeLightmapIndex) {
+        output.WriteRawTag(56);
         output.WriteInt32(RealtimeLightmapIndex);
       }
       if (realtimeLightmapScaleOffset_ != null) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(66);
         output.WriteMessage(RealtimeLightmapScaleOffset);
       }
       if (_unknownFields != null) {
@@ -935,13 +794,22 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (LightmapIndex != 0) {
+      if (HasEnabled) {
+        size += 1 + 1;
+      }
+      if (materials_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Materials);
+      }
+      if (sharedMaterials_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SharedMaterials);
+      }
+      if (HasLightmapIndex) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(LightmapIndex);
       }
       if (lightmapScaleOffset_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(LightmapScaleOffset);
       }
-      if (RealtimeLightmapIndex != 0) {
+      if (HasRealtimeLightmapIndex) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(RealtimeLightmapIndex);
       }
       if (realtimeLightmapScaleOffset_ != null) {
@@ -955,7 +823,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(MeshRendererUpdateLightmap other) {
+    public void MergeFrom(MeshRendererUpdate other) {
       if (other == null) {
         return;
       }
@@ -965,7 +833,22 @@ namespace PLUME.Sample.Unity {
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.LightmapIndex != 0) {
+      if (other.HasEnabled) {
+        Enabled = other.Enabled;
+      }
+      if (other.materials_ != null) {
+        if (materials_ == null) {
+          Materials = new global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials();
+        }
+        Materials.MergeFrom(other.Materials);
+      }
+      if (other.sharedMaterials_ != null) {
+        if (sharedMaterials_ == null) {
+          SharedMaterials = new global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials();
+        }
+        SharedMaterials.MergeFrom(other.SharedMaterials);
+      }
+      if (other.HasLightmapIndex) {
         LightmapIndex = other.LightmapIndex;
       }
       if (other.lightmapScaleOffset_ != null) {
@@ -974,7 +857,7 @@ namespace PLUME.Sample.Unity {
         }
         LightmapScaleOffset.MergeFrom(other.LightmapScaleOffset);
       }
-      if (other.RealtimeLightmapIndex != 0) {
+      if (other.HasRealtimeLightmapIndex) {
         RealtimeLightmapIndex = other.RealtimeLightmapIndex;
       }
       if (other.realtimeLightmapScaleOffset_ != null) {
@@ -1006,21 +889,39 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 16: {
-            LightmapIndex = input.ReadInt32();
+            Enabled = input.ReadBool();
             break;
           }
           case 26: {
+            if (materials_ == null) {
+              Materials = new global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials();
+            }
+            input.ReadMessage(Materials);
+            break;
+          }
+          case 34: {
+            if (sharedMaterials_ == null) {
+              SharedMaterials = new global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials();
+            }
+            input.ReadMessage(SharedMaterials);
+            break;
+          }
+          case 40: {
+            LightmapIndex = input.ReadInt32();
+            break;
+          }
+          case 50: {
             if (lightmapScaleOffset_ == null) {
               LightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
             }
             input.ReadMessage(LightmapScaleOffset);
             break;
           }
-          case 32: {
+          case 56: {
             RealtimeLightmapIndex = input.ReadInt32();
             break;
           }
-          case 42: {
+          case 66: {
             if (realtimeLightmapScaleOffset_ == null) {
               RealtimeLightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
             }
@@ -1050,21 +951,39 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 16: {
-            LightmapIndex = input.ReadInt32();
+            Enabled = input.ReadBool();
             break;
           }
           case 26: {
+            if (materials_ == null) {
+              Materials = new global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials();
+            }
+            input.ReadMessage(Materials);
+            break;
+          }
+          case 34: {
+            if (sharedMaterials_ == null) {
+              SharedMaterials = new global::PLUME.Sample.Unity.MeshRendererUpdate.Types.Materials();
+            }
+            input.ReadMessage(SharedMaterials);
+            break;
+          }
+          case 40: {
+            LightmapIndex = input.ReadInt32();
+            break;
+          }
+          case 50: {
             if (lightmapScaleOffset_ == null) {
               LightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
             }
             input.ReadMessage(LightmapScaleOffset);
             break;
           }
-          case 32: {
+          case 56: {
             RealtimeLightmapIndex = input.ReadInt32();
             break;
           }
-          case 42: {
+          case 66: {
             if (realtimeLightmapScaleOffset_ == null) {
               RealtimeLightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
             }
@@ -1075,6 +994,193 @@ namespace PLUME.Sample.Unity {
       }
     }
     #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the MeshRendererUpdate message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+      public sealed partial class Materials : pb::IMessage<Materials>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<Materials> _parser = new pb::MessageParser<Materials>(() => new Materials());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<Materials> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::PLUME.Sample.Unity.MeshRendererUpdate.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Materials() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Materials(Materials other) : this() {
+          ids_ = other.ids_.Clone();
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Materials Clone() {
+          return new Materials(this);
+        }
+
+        /// <summary>Field number for the "ids" field.</summary>
+        public const int IdsFieldNumber = 1;
+        private static readonly pb::FieldCodec<global::PLUME.Sample.Unity.AssetIdentifier> _repeated_ids_codec
+            = pb::FieldCodec.ForMessage(10, global::PLUME.Sample.Unity.AssetIdentifier.Parser);
+        private readonly pbc::RepeatedField<global::PLUME.Sample.Unity.AssetIdentifier> ids_ = new pbc::RepeatedField<global::PLUME.Sample.Unity.AssetIdentifier>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public pbc::RepeatedField<global::PLUME.Sample.Unity.AssetIdentifier> Ids {
+          get { return ids_; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as Materials);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(Materials other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if(!ids_.Equals(other.ids_)) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          hash ^= ids_.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          ids_.WriteTo(output, _repeated_ids_codec);
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          ids_.WriteTo(ref output, _repeated_ids_codec);
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          size += ids_.CalculateSize(_repeated_ids_codec);
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(Materials other) {
+          if (other == null) {
+            return;
+          }
+          ids_.Add(other.ids_);
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 10: {
+                ids_.AddEntriesFrom(input, _repeated_ids_codec);
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 10: {
+                ids_.AddEntriesFrom(ref input, _repeated_ids_codec);
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+      }
+
+    }
+    #endregion
 
   }
 

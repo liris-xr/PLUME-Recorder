@@ -28,44 +28,60 @@ namespace PLUME.Sample.Unity {
             "aXR5L2lkZW50aWZpZXJzLnByb3RvGhV1bml0eS9yZW5kZXJpbmcucHJvdG8a",
             "FGNvbW1vbi92ZWN0b3IzLnByb3RvGhRjb21tb24vdmVjdG9yNC5wcm90byJE",
             "Cg1UZXJyYWluQ3JlYXRlEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVu",
-            "aXR5LkNvbXBvbmVudElkZW50aWZpZXIiXAoUVGVycmFpblVwZGF0ZUVuYWJs",
-            "ZWQSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50",
-            "SWRlbnRpZmllchIPCgdlbmFibGVkGAIgASgIIuYJCg1UZXJyYWluVXBkYXRl",
-            "EjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElk",
-            "ZW50aWZpZXISQQoPdGVycmFpbl9kYXRhX2lkGAIgASgLMiMucGx1bWUuc2Ft",
-            "cGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckgAiAEBEhUKDXRyZWVfZGlzdGFu",
-            "Y2UYAyABKAISHwoXdHJlZV9iaWxsYm9hcmRfZGlzdGFuY2UYBCABKAISHgoW",
-            "dHJlZV9jcm9zc19mYWRlX2xlbmd0aBgFIAEoAhIjCht0cmVlX21heGltdW1f",
-            "ZnVsbF9sb2RfY291bnQYBiABKAUSHgoWZGV0YWlsX29iamVjdF9kaXN0YW5j",
-            "ZRgHIAEoAhIdChVkZXRhaWxfb2JqZWN0X2RlbnNpdHkYCCABKAISHQoVaGVp",
-            "Z2h0bWFwX3BpeGVsX2Vycm9yGAkgASgCEh0KFWhlaWdodG1hcF9tYXhpbXVt",
-            "X2xvZBgKIAEoBRIYChBiYXNlbWFwX2Rpc3RhbmNlGAsgASgCEhYKDmxpZ2h0",
-            "bWFwX2luZGV4GAwgASgFEh8KF3JlYWx0aW1lX2xpZ2h0bWFwX2luZGV4GA0g",
-            "ASgFEjsKFWxpZ2h0bWFwX3NjYWxlX29mZnNldBgOIAEoCzIcLnBsdW1lLnNh",
-            "bXBsZS5jb21tb24uVmVjdG9yNBJECh5yZWFsdGltZV9saWdodG1hcF9zY2Fs",
-            "ZV9vZmZzZXQYDyABKAsyHC5wbHVtZS5zYW1wbGUuY29tbW9uLlZlY3RvcjQS",
-            "Jwofa2VlcF91bnVzZWRfcmVuZGVyaW5nX3Jlc291cmNlcxgQIAEoCBJCChNz",
-            "aGFkb3dfY2FzdGluZ19tb2RlGBEgASgOMiUucGx1bWUuc2FtcGxlLnVuaXR5",
-            "LlNoYWRvd0Nhc3RpbmdNb2RlEkgKFnJlZmxlY3Rpb25fcHJvYmVfdXNhZ2UY",
-            "EiABKA4yKC5wbHVtZS5zYW1wbGUudW5pdHkuUmVmbGVjdGlvblByb2JlVXNh",
-            "Z2USRgoUbWF0ZXJpYWxfdGVtcGxhdGVfaWQYEyABKAsyIy5wbHVtZS5zYW1w",
-            "bGUudW5pdHkuQXNzZXRJZGVudGlmaWVySAGIAQESFgoOZHJhd19oZWlnaHRt",
-            "YXAYFCABKAgSGgoSYWxsb3dfYXV0b19jb25uZWN0GBUgASgIEhMKC2dyb3Vw",
-            "aW5nX2lkGBYgASgFEhYKDmRyYXdfaW5zdGFuY2VkGBcgASgIEkYKFG5vcm1h",
-            "bG1hcF90ZXh0dXJlX2lkGBggASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFz",
-            "c2V0SWRlbnRpZmllckgCiAEBEh4KFmRyYXdfdHJlZXNfYW5kX2ZvbGlhZ2UY",
-            "GSABKAgSPQoXcGF0Y2hfYm91bmRzX211bHRpcGxpZXIYGiABKAsyHC5wbHVt",
-            "ZS5zYW1wbGUuY29tbW9uLlZlY3RvcjMSIAoYdHJlZV9sb2RfYmlhc19tdWx0",
-            "aXBsaWVyGBsgASgCEh4KFmNvbGxlY3RfZGV0YWlsX3BhdGNoZXMYHCABKAhC",
-            "EgoQX3RlcnJhaW5fZGF0YV9pZEIXChVfbWF0ZXJpYWxfdGVtcGxhdGVfaWRC",
-            "FwoVX25vcm1hbG1hcF90ZXh0dXJlX2lkQhWqAhJQTFVNRS5TYW1wbGUuVW5p",
-            "dHliBnByb3RvMw=="));
+            "aXR5LkNvbXBvbmVudElkZW50aWZpZXIiRQoOVGVycmFpbkRlc3Ryb3kSMwoC",
+            "aWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRp",
+            "ZmllciLmDwoNVGVycmFpblVwZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNh",
+            "bXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEhQKB2VuYWJsZWQYAiAB",
+            "KAhIAIgBARJBCg90ZXJyYWluX2RhdGFfaWQYAyABKAsyIy5wbHVtZS5zYW1w",
+            "bGUudW5pdHkuQXNzZXRJZGVudGlmaWVySAGIAQESGgoNdHJlZV9kaXN0YW5j",
+            "ZRgEIAEoAkgCiAEBEiQKF3RyZWVfYmlsbGJvYXJkX2Rpc3RhbmNlGAUgASgC",
+            "SAOIAQESIwoWdHJlZV9jcm9zc19mYWRlX2xlbmd0aBgGIAEoAkgEiAEBEigK",
+            "G3RyZWVfbWF4aW11bV9mdWxsX2xvZF9jb3VudBgHIAEoBUgFiAEBEiMKFmRl",
+            "dGFpbF9vYmplY3RfZGlzdGFuY2UYCCABKAJIBogBARIiChVkZXRhaWxfb2Jq",
+            "ZWN0X2RlbnNpdHkYCSABKAJIB4gBARIiChVoZWlnaHRtYXBfcGl4ZWxfZXJy",
+            "b3IYCiABKAJICIgBARIiChVoZWlnaHRtYXBfbWF4aW11bV9sb2QYCyABKAVI",
+            "CYgBARIdChBiYXNlbWFwX2Rpc3RhbmNlGAwgASgCSAqIAQESGwoObGlnaHRt",
+            "YXBfaW5kZXgYDSABKAVIC4gBARIkChdyZWFsdGltZV9saWdodG1hcF9pbmRl",
+            "eBgOIAEoBUgMiAEBEkAKFWxpZ2h0bWFwX3NjYWxlX29mZnNldBgPIAEoCzIc",
+            "LnBsdW1lLnNhbXBsZS5jb21tb24uVmVjdG9yNEgNiAEBEkkKHnJlYWx0aW1l",
+            "X2xpZ2h0bWFwX3NjYWxlX29mZnNldBgQIAEoCzIcLnBsdW1lLnNhbXBsZS5j",
+            "b21tb24uVmVjdG9yNEgOiAEBEiwKH2tlZXBfdW51c2VkX3JlbmRlcmluZ19y",
+            "ZXNvdXJjZXMYESABKAhID4gBARJHChNzaGFkb3dfY2FzdGluZ19tb2RlGBIg",
+            "ASgOMiUucGx1bWUuc2FtcGxlLnVuaXR5LlNoYWRvd0Nhc3RpbmdNb2RlSBCI",
+            "AQESTQoWcmVmbGVjdGlvbl9wcm9iZV91c2FnZRgTIAEoDjIoLnBsdW1lLnNh",
+            "bXBsZS51bml0eS5SZWZsZWN0aW9uUHJvYmVVc2FnZUgRiAEBEkYKFG1hdGVy",
+            "aWFsX3RlbXBsYXRlX2lkGBQgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFz",
+            "c2V0SWRlbnRpZmllckgSiAEBEhsKDmRyYXdfaGVpZ2h0bWFwGBUgASgISBOI",
+            "AQESHwoSYWxsb3dfYXV0b19jb25uZWN0GBYgASgISBSIAQESGAoLZ3JvdXBp",
+            "bmdfaWQYFyABKAVIFYgBARIbCg5kcmF3X2luc3RhbmNlZBgYIAEoCEgWiAEB",
+            "EkYKFG5vcm1hbG1hcF90ZXh0dXJlX2lkGBkgASgLMiMucGx1bWUuc2FtcGxl",
+            "LnVuaXR5LkFzc2V0SWRlbnRpZmllckgXiAEBEiMKFmRyYXdfdHJlZXNfYW5k",
+            "X2ZvbGlhZ2UYGiABKAhIGIgBARJCChdwYXRjaF9ib3VuZHNfbXVsdGlwbGll",
+            "chgbIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21tb24uVmVjdG9yM0gZiAEBEiUK",
+            "GHRyZWVfbG9kX2JpYXNfbXVsdGlwbGllchgcIAEoAkgaiAEBEiMKFmNvbGxl",
+            "Y3RfZGV0YWlsX3BhdGNoZXMYHSABKAhIG4gBAUIKCghfZW5hYmxlZEISChBf",
+            "dGVycmFpbl9kYXRhX2lkQhAKDl90cmVlX2Rpc3RhbmNlQhoKGF90cmVlX2Jp",
+            "bGxib2FyZF9kaXN0YW5jZUIZChdfdHJlZV9jcm9zc19mYWRlX2xlbmd0aEIe",
+            "ChxfdHJlZV9tYXhpbXVtX2Z1bGxfbG9kX2NvdW50QhkKF19kZXRhaWxfb2Jq",
+            "ZWN0X2Rpc3RhbmNlQhgKFl9kZXRhaWxfb2JqZWN0X2RlbnNpdHlCGAoWX2hl",
+            "aWdodG1hcF9waXhlbF9lcnJvckIYChZfaGVpZ2h0bWFwX21heGltdW1fbG9k",
+            "QhMKEV9iYXNlbWFwX2Rpc3RhbmNlQhEKD19saWdodG1hcF9pbmRleEIaChhf",
+            "cmVhbHRpbWVfbGlnaHRtYXBfaW5kZXhCGAoWX2xpZ2h0bWFwX3NjYWxlX29m",
+            "ZnNldEIhCh9fcmVhbHRpbWVfbGlnaHRtYXBfc2NhbGVfb2Zmc2V0QiIKIF9r",
+            "ZWVwX3VudXNlZF9yZW5kZXJpbmdfcmVzb3VyY2VzQhYKFF9zaGFkb3dfY2Fz",
+            "dGluZ19tb2RlQhkKF19yZWZsZWN0aW9uX3Byb2JlX3VzYWdlQhcKFV9tYXRl",
+            "cmlhbF90ZW1wbGF0ZV9pZEIRCg9fZHJhd19oZWlnaHRtYXBCFQoTX2FsbG93",
+            "X2F1dG9fY29ubmVjdEIOCgxfZ3JvdXBpbmdfaWRCEQoPX2RyYXdfaW5zdGFu",
+            "Y2VkQhcKFV9ub3JtYWxtYXBfdGV4dHVyZV9pZEIZChdfZHJhd190cmVlc19h",
+            "bmRfZm9saWFnZUIaChhfcGF0Y2hfYm91bmRzX211bHRpcGxpZXJCGwoZX3Ry",
+            "ZWVfbG9kX2JpYXNfbXVsdGlwbGllckIZChdfY29sbGVjdF9kZXRhaWxfcGF0",
+            "Y2hlc0IVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Unity.RenderingReflection.Descriptor, global::PLUME.Sample.Common.Vector3Reflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TerrainCreate), global::PLUME.Sample.Unity.TerrainCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TerrainUpdateEnabled), global::PLUME.Sample.Unity.TerrainUpdateEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TerrainUpdate), global::PLUME.Sample.Unity.TerrainUpdate.Parser, new[]{ "Id", "TerrainDataId", "TreeDistance", "TreeBillboardDistance", "TreeCrossFadeLength", "TreeMaximumFullLodCount", "DetailObjectDistance", "DetailObjectDensity", "HeightmapPixelError", "HeightmapMaximumLod", "BasemapDistance", "LightmapIndex", "RealtimeLightmapIndex", "LightmapScaleOffset", "RealtimeLightmapScaleOffset", "KeepUnusedRenderingResources", "ShadowCastingMode", "ReflectionProbeUsage", "MaterialTemplateId", "DrawHeightmap", "AllowAutoConnect", "GroupingId", "DrawInstanced", "NormalmapTextureId", "DrawTreesAndFoliage", "PatchBoundsMultiplier", "TreeLodBiasMultiplier", "CollectDetailPatches" }, new[]{ "TerrainDataId", "MaterialTemplateId", "NormalmapTextureId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TerrainDestroy), global::PLUME.Sample.Unity.TerrainDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TerrainUpdate), global::PLUME.Sample.Unity.TerrainUpdate.Parser, new[]{ "Id", "Enabled", "TerrainDataId", "TreeDistance", "TreeBillboardDistance", "TreeCrossFadeLength", "TreeMaximumFullLodCount", "DetailObjectDistance", "DetailObjectDensity", "HeightmapPixelError", "HeightmapMaximumLod", "BasemapDistance", "LightmapIndex", "RealtimeLightmapIndex", "LightmapScaleOffset", "RealtimeLightmapScaleOffset", "KeepUnusedRenderingResources", "ShadowCastingMode", "ReflectionProbeUsage", "MaterialTemplateId", "DrawHeightmap", "AllowAutoConnect", "GroupingId", "DrawInstanced", "NormalmapTextureId", "DrawTreesAndFoliage", "PatchBoundsMultiplier", "TreeLodBiasMultiplier", "CollectDetailPatches" }, new[]{ "Enabled", "TerrainDataId", "TreeDistance", "TreeBillboardDistance", "TreeCrossFadeLength", "TreeMaximumFullLodCount", "DetailObjectDistance", "DetailObjectDensity", "HeightmapPixelError", "HeightmapMaximumLod", "BasemapDistance", "LightmapIndex", "RealtimeLightmapIndex", "LightmapScaleOffset", "RealtimeLightmapScaleOffset", "KeepUnusedRenderingResources", "ShadowCastingMode", "ReflectionProbeUsage", "MaterialTemplateId", "DrawHeightmap", "AllowAutoConnect", "GroupingId", "DrawInstanced", "NormalmapTextureId", "DrawTreesAndFoliage", "PatchBoundsMultiplier", "TreeLodBiasMultiplier", "CollectDetailPatches" }, null, null, null)
           }));
     }
     #endregion
@@ -272,16 +288,16 @@ namespace PLUME.Sample.Unity {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class TerrainUpdateEnabled : pb::IMessage<TerrainUpdateEnabled>
+  public sealed partial class TerrainDestroy : pb::IMessage<TerrainDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<TerrainUpdateEnabled> _parser = new pb::MessageParser<TerrainUpdateEnabled>(() => new TerrainUpdateEnabled());
+    private static readonly pb::MessageParser<TerrainDestroy> _parser = new pb::MessageParser<TerrainDestroy>(() => new TerrainDestroy());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TerrainUpdateEnabled> Parser { get { return _parser; } }
+    public static pb::MessageParser<TerrainDestroy> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -297,7 +313,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TerrainUpdateEnabled() {
+    public TerrainDestroy() {
       OnConstruction();
     }
 
@@ -305,16 +321,15 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TerrainUpdateEnabled(TerrainUpdateEnabled other) : this() {
+    public TerrainDestroy(TerrainDestroy other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      enabled_ = other.enabled_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TerrainUpdateEnabled Clone() {
-      return new TerrainUpdateEnabled(this);
+    public TerrainDestroy Clone() {
+      return new TerrainDestroy(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -329,27 +344,15 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "enabled" field.</summary>
-    public const int EnabledFieldNumber = 2;
-    private bool enabled_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Enabled {
-      get { return enabled_; }
-      set {
-        enabled_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as TerrainUpdateEnabled);
+      return Equals(other as TerrainDestroy);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TerrainUpdateEnabled other) {
+    public bool Equals(TerrainDestroy other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -357,7 +360,6 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
-      if (Enabled != other.Enabled) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -366,7 +368,6 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (Enabled != false) hash ^= Enabled.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -389,10 +390,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Enabled != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -407,10 +404,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Enabled != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -424,9 +417,6 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (Enabled != false) {
-        size += 1 + 1;
-      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -435,7 +425,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TerrainUpdateEnabled other) {
+    public void MergeFrom(TerrainDestroy other) {
       if (other == null) {
         return;
       }
@@ -444,9 +434,6 @@ namespace PLUME.Sample.Unity {
           Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         Id.MergeFrom(other.Id);
-      }
-      if (other.Enabled != false) {
-        Enabled = other.Enabled;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -468,10 +455,6 @@ namespace PLUME.Sample.Unity {
               Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Enabled = input.ReadBool();
             break;
           }
         }
@@ -496,10 +479,6 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 16: {
-            Enabled = input.ReadBool();
-            break;
-          }
         }
       }
     }
@@ -515,6 +494,7 @@ namespace PLUME.Sample.Unity {
   {
     private static readonly pb::MessageParser<TerrainUpdate> _parser = new pb::MessageParser<TerrainUpdate>(() => new TerrainUpdate());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<TerrainUpdate> Parser { get { return _parser; } }
@@ -542,7 +522,9 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public TerrainUpdate(TerrainUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
+      enabled_ = other.enabled_;
       terrainDataId_ = other.terrainDataId_ != null ? other.terrainDataId_.Clone() : null;
       treeDistance_ = other.treeDistance_;
       treeBillboardDistance_ = other.treeBillboardDistance_;
@@ -591,8 +573,35 @@ namespace PLUME.Sample.Unity {
       }
     }
 
+    /// <summary>Field number for the "enabled" field.</summary>
+    public const int EnabledFieldNumber = 2;
+    private readonly static bool EnabledDefaultValue = false;
+
+    private bool enabled_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Enabled {
+      get { if ((_hasBits0 & 1) != 0) { return enabled_; } else { return EnabledDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        enabled_ = value;
+      }
+    }
+    /// <summary>Gets whether the "enabled" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasEnabled {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "enabled" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearEnabled() {
+      _hasBits0 &= ~1;
+    }
+
     /// <summary>Field number for the "terrain_data_id" field.</summary>
-    public const int TerrainDataIdFieldNumber = 2;
+    public const int TerrainDataIdFieldNumber = 3;
     private global::PLUME.Sample.Unity.AssetIdentifier terrainDataId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -604,139 +613,304 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "tree_distance" field.</summary>
-    public const int TreeDistanceFieldNumber = 3;
+    public const int TreeDistanceFieldNumber = 4;
+    private readonly static float TreeDistanceDefaultValue = 0F;
+
     private float treeDistance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float TreeDistance {
-      get { return treeDistance_; }
+      get { if ((_hasBits0 & 2) != 0) { return treeDistance_; } else { return TreeDistanceDefaultValue; } }
       set {
+        _hasBits0 |= 2;
         treeDistance_ = value;
       }
     }
+    /// <summary>Gets whether the "tree_distance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTreeDistance {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "tree_distance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTreeDistance() {
+      _hasBits0 &= ~2;
+    }
 
     /// <summary>Field number for the "tree_billboard_distance" field.</summary>
-    public const int TreeBillboardDistanceFieldNumber = 4;
+    public const int TreeBillboardDistanceFieldNumber = 5;
+    private readonly static float TreeBillboardDistanceDefaultValue = 0F;
+
     private float treeBillboardDistance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float TreeBillboardDistance {
-      get { return treeBillboardDistance_; }
+      get { if ((_hasBits0 & 4) != 0) { return treeBillboardDistance_; } else { return TreeBillboardDistanceDefaultValue; } }
       set {
+        _hasBits0 |= 4;
         treeBillboardDistance_ = value;
       }
     }
+    /// <summary>Gets whether the "tree_billboard_distance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTreeBillboardDistance {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "tree_billboard_distance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTreeBillboardDistance() {
+      _hasBits0 &= ~4;
+    }
 
     /// <summary>Field number for the "tree_cross_fade_length" field.</summary>
-    public const int TreeCrossFadeLengthFieldNumber = 5;
+    public const int TreeCrossFadeLengthFieldNumber = 6;
+    private readonly static float TreeCrossFadeLengthDefaultValue = 0F;
+
     private float treeCrossFadeLength_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float TreeCrossFadeLength {
-      get { return treeCrossFadeLength_; }
+      get { if ((_hasBits0 & 8) != 0) { return treeCrossFadeLength_; } else { return TreeCrossFadeLengthDefaultValue; } }
       set {
+        _hasBits0 |= 8;
         treeCrossFadeLength_ = value;
       }
     }
+    /// <summary>Gets whether the "tree_cross_fade_length" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTreeCrossFadeLength {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "tree_cross_fade_length" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTreeCrossFadeLength() {
+      _hasBits0 &= ~8;
+    }
 
     /// <summary>Field number for the "tree_maximum_full_lod_count" field.</summary>
-    public const int TreeMaximumFullLodCountFieldNumber = 6;
+    public const int TreeMaximumFullLodCountFieldNumber = 7;
+    private readonly static int TreeMaximumFullLodCountDefaultValue = 0;
+
     private int treeMaximumFullLodCount_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int TreeMaximumFullLodCount {
-      get { return treeMaximumFullLodCount_; }
+      get { if ((_hasBits0 & 16) != 0) { return treeMaximumFullLodCount_; } else { return TreeMaximumFullLodCountDefaultValue; } }
       set {
+        _hasBits0 |= 16;
         treeMaximumFullLodCount_ = value;
       }
     }
+    /// <summary>Gets whether the "tree_maximum_full_lod_count" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTreeMaximumFullLodCount {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "tree_maximum_full_lod_count" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTreeMaximumFullLodCount() {
+      _hasBits0 &= ~16;
+    }
 
     /// <summary>Field number for the "detail_object_distance" field.</summary>
-    public const int DetailObjectDistanceFieldNumber = 7;
+    public const int DetailObjectDistanceFieldNumber = 8;
+    private readonly static float DetailObjectDistanceDefaultValue = 0F;
+
     private float detailObjectDistance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float DetailObjectDistance {
-      get { return detailObjectDistance_; }
+      get { if ((_hasBits0 & 32) != 0) { return detailObjectDistance_; } else { return DetailObjectDistanceDefaultValue; } }
       set {
+        _hasBits0 |= 32;
         detailObjectDistance_ = value;
       }
     }
+    /// <summary>Gets whether the "detail_object_distance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDetailObjectDistance {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "detail_object_distance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDetailObjectDistance() {
+      _hasBits0 &= ~32;
+    }
 
     /// <summary>Field number for the "detail_object_density" field.</summary>
-    public const int DetailObjectDensityFieldNumber = 8;
+    public const int DetailObjectDensityFieldNumber = 9;
+    private readonly static float DetailObjectDensityDefaultValue = 0F;
+
     private float detailObjectDensity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float DetailObjectDensity {
-      get { return detailObjectDensity_; }
+      get { if ((_hasBits0 & 64) != 0) { return detailObjectDensity_; } else { return DetailObjectDensityDefaultValue; } }
       set {
+        _hasBits0 |= 64;
         detailObjectDensity_ = value;
       }
     }
+    /// <summary>Gets whether the "detail_object_density" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDetailObjectDensity {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "detail_object_density" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDetailObjectDensity() {
+      _hasBits0 &= ~64;
+    }
 
     /// <summary>Field number for the "heightmap_pixel_error" field.</summary>
-    public const int HeightmapPixelErrorFieldNumber = 9;
+    public const int HeightmapPixelErrorFieldNumber = 10;
+    private readonly static float HeightmapPixelErrorDefaultValue = 0F;
+
     private float heightmapPixelError_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float HeightmapPixelError {
-      get { return heightmapPixelError_; }
+      get { if ((_hasBits0 & 128) != 0) { return heightmapPixelError_; } else { return HeightmapPixelErrorDefaultValue; } }
       set {
+        _hasBits0 |= 128;
         heightmapPixelError_ = value;
       }
     }
+    /// <summary>Gets whether the "heightmap_pixel_error" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasHeightmapPixelError {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "heightmap_pixel_error" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearHeightmapPixelError() {
+      _hasBits0 &= ~128;
+    }
 
     /// <summary>Field number for the "heightmap_maximum_lod" field.</summary>
-    public const int HeightmapMaximumLodFieldNumber = 10;
+    public const int HeightmapMaximumLodFieldNumber = 11;
+    private readonly static int HeightmapMaximumLodDefaultValue = 0;
+
     private int heightmapMaximumLod_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int HeightmapMaximumLod {
-      get { return heightmapMaximumLod_; }
+      get { if ((_hasBits0 & 256) != 0) { return heightmapMaximumLod_; } else { return HeightmapMaximumLodDefaultValue; } }
       set {
+        _hasBits0 |= 256;
         heightmapMaximumLod_ = value;
       }
     }
+    /// <summary>Gets whether the "heightmap_maximum_lod" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasHeightmapMaximumLod {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "heightmap_maximum_lod" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearHeightmapMaximumLod() {
+      _hasBits0 &= ~256;
+    }
 
     /// <summary>Field number for the "basemap_distance" field.</summary>
-    public const int BasemapDistanceFieldNumber = 11;
+    public const int BasemapDistanceFieldNumber = 12;
+    private readonly static float BasemapDistanceDefaultValue = 0F;
+
     private float basemapDistance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float BasemapDistance {
-      get { return basemapDistance_; }
+      get { if ((_hasBits0 & 512) != 0) { return basemapDistance_; } else { return BasemapDistanceDefaultValue; } }
       set {
+        _hasBits0 |= 512;
         basemapDistance_ = value;
       }
     }
+    /// <summary>Gets whether the "basemap_distance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBasemapDistance {
+      get { return (_hasBits0 & 512) != 0; }
+    }
+    /// <summary>Clears the value of the "basemap_distance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBasemapDistance() {
+      _hasBits0 &= ~512;
+    }
 
     /// <summary>Field number for the "lightmap_index" field.</summary>
-    public const int LightmapIndexFieldNumber = 12;
+    public const int LightmapIndexFieldNumber = 13;
+    private readonly static int LightmapIndexDefaultValue = 0;
+
     private int lightmapIndex_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int LightmapIndex {
-      get { return lightmapIndex_; }
+      get { if ((_hasBits0 & 1024) != 0) { return lightmapIndex_; } else { return LightmapIndexDefaultValue; } }
       set {
+        _hasBits0 |= 1024;
         lightmapIndex_ = value;
       }
     }
+    /// <summary>Gets whether the "lightmap_index" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasLightmapIndex {
+      get { return (_hasBits0 & 1024) != 0; }
+    }
+    /// <summary>Clears the value of the "lightmap_index" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearLightmapIndex() {
+      _hasBits0 &= ~1024;
+    }
 
     /// <summary>Field number for the "realtime_lightmap_index" field.</summary>
-    public const int RealtimeLightmapIndexFieldNumber = 13;
+    public const int RealtimeLightmapIndexFieldNumber = 14;
+    private readonly static int RealtimeLightmapIndexDefaultValue = 0;
+
     private int realtimeLightmapIndex_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int RealtimeLightmapIndex {
-      get { return realtimeLightmapIndex_; }
+      get { if ((_hasBits0 & 2048) != 0) { return realtimeLightmapIndex_; } else { return RealtimeLightmapIndexDefaultValue; } }
       set {
+        _hasBits0 |= 2048;
         realtimeLightmapIndex_ = value;
       }
     }
+    /// <summary>Gets whether the "realtime_lightmap_index" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRealtimeLightmapIndex {
+      get { return (_hasBits0 & 2048) != 0; }
+    }
+    /// <summary>Clears the value of the "realtime_lightmap_index" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRealtimeLightmapIndex() {
+      _hasBits0 &= ~2048;
+    }
 
     /// <summary>Field number for the "lightmap_scale_offset" field.</summary>
-    public const int LightmapScaleOffsetFieldNumber = 14;
+    public const int LightmapScaleOffsetFieldNumber = 15;
     private global::PLUME.Sample.Common.Vector4 lightmapScaleOffset_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -748,7 +922,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "realtime_lightmap_scale_offset" field.</summary>
-    public const int RealtimeLightmapScaleOffsetFieldNumber = 15;
+    public const int RealtimeLightmapScaleOffsetFieldNumber = 16;
     private global::PLUME.Sample.Common.Vector4 realtimeLightmapScaleOffset_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -760,43 +934,88 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "keep_unused_rendering_resources" field.</summary>
-    public const int KeepUnusedRenderingResourcesFieldNumber = 16;
+    public const int KeepUnusedRenderingResourcesFieldNumber = 17;
+    private readonly static bool KeepUnusedRenderingResourcesDefaultValue = false;
+
     private bool keepUnusedRenderingResources_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool KeepUnusedRenderingResources {
-      get { return keepUnusedRenderingResources_; }
+      get { if ((_hasBits0 & 4096) != 0) { return keepUnusedRenderingResources_; } else { return KeepUnusedRenderingResourcesDefaultValue; } }
       set {
+        _hasBits0 |= 4096;
         keepUnusedRenderingResources_ = value;
       }
     }
+    /// <summary>Gets whether the "keep_unused_rendering_resources" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasKeepUnusedRenderingResources {
+      get { return (_hasBits0 & 4096) != 0; }
+    }
+    /// <summary>Clears the value of the "keep_unused_rendering_resources" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearKeepUnusedRenderingResources() {
+      _hasBits0 &= ~4096;
+    }
 
     /// <summary>Field number for the "shadow_casting_mode" field.</summary>
-    public const int ShadowCastingModeFieldNumber = 17;
-    private global::PLUME.Sample.Unity.ShadowCastingMode shadowCastingMode_ = global::PLUME.Sample.Unity.ShadowCastingMode.Off;
+    public const int ShadowCastingModeFieldNumber = 18;
+    private readonly static global::PLUME.Sample.Unity.ShadowCastingMode ShadowCastingModeDefaultValue = global::PLUME.Sample.Unity.ShadowCastingMode.Off;
+
+    private global::PLUME.Sample.Unity.ShadowCastingMode shadowCastingMode_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.ShadowCastingMode ShadowCastingMode {
-      get { return shadowCastingMode_; }
+      get { if ((_hasBits0 & 8192) != 0) { return shadowCastingMode_; } else { return ShadowCastingModeDefaultValue; } }
       set {
+        _hasBits0 |= 8192;
         shadowCastingMode_ = value;
       }
     }
+    /// <summary>Gets whether the "shadow_casting_mode" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasShadowCastingMode {
+      get { return (_hasBits0 & 8192) != 0; }
+    }
+    /// <summary>Clears the value of the "shadow_casting_mode" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearShadowCastingMode() {
+      _hasBits0 &= ~8192;
+    }
 
     /// <summary>Field number for the "reflection_probe_usage" field.</summary>
-    public const int ReflectionProbeUsageFieldNumber = 18;
-    private global::PLUME.Sample.Unity.ReflectionProbeUsage reflectionProbeUsage_ = global::PLUME.Sample.Unity.ReflectionProbeUsage.Off;
+    public const int ReflectionProbeUsageFieldNumber = 19;
+    private readonly static global::PLUME.Sample.Unity.ReflectionProbeUsage ReflectionProbeUsageDefaultValue = global::PLUME.Sample.Unity.ReflectionProbeUsage.Off;
+
+    private global::PLUME.Sample.Unity.ReflectionProbeUsage reflectionProbeUsage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.ReflectionProbeUsage ReflectionProbeUsage {
-      get { return reflectionProbeUsage_; }
+      get { if ((_hasBits0 & 16384) != 0) { return reflectionProbeUsage_; } else { return ReflectionProbeUsageDefaultValue; } }
       set {
+        _hasBits0 |= 16384;
         reflectionProbeUsage_ = value;
       }
     }
+    /// <summary>Gets whether the "reflection_probe_usage" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasReflectionProbeUsage {
+      get { return (_hasBits0 & 16384) != 0; }
+    }
+    /// <summary>Clears the value of the "reflection_probe_usage" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearReflectionProbeUsage() {
+      _hasBits0 &= ~16384;
+    }
 
     /// <summary>Field number for the "material_template_id" field.</summary>
-    public const int MaterialTemplateIdFieldNumber = 19;
+    public const int MaterialTemplateIdFieldNumber = 20;
     private global::PLUME.Sample.Unity.AssetIdentifier materialTemplateId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -808,55 +1027,115 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "draw_heightmap" field.</summary>
-    public const int DrawHeightmapFieldNumber = 20;
+    public const int DrawHeightmapFieldNumber = 21;
+    private readonly static bool DrawHeightmapDefaultValue = false;
+
     private bool drawHeightmap_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool DrawHeightmap {
-      get { return drawHeightmap_; }
+      get { if ((_hasBits0 & 32768) != 0) { return drawHeightmap_; } else { return DrawHeightmapDefaultValue; } }
       set {
+        _hasBits0 |= 32768;
         drawHeightmap_ = value;
       }
     }
+    /// <summary>Gets whether the "draw_heightmap" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDrawHeightmap {
+      get { return (_hasBits0 & 32768) != 0; }
+    }
+    /// <summary>Clears the value of the "draw_heightmap" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDrawHeightmap() {
+      _hasBits0 &= ~32768;
+    }
 
     /// <summary>Field number for the "allow_auto_connect" field.</summary>
-    public const int AllowAutoConnectFieldNumber = 21;
+    public const int AllowAutoConnectFieldNumber = 22;
+    private readonly static bool AllowAutoConnectDefaultValue = false;
+
     private bool allowAutoConnect_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool AllowAutoConnect {
-      get { return allowAutoConnect_; }
+      get { if ((_hasBits0 & 65536) != 0) { return allowAutoConnect_; } else { return AllowAutoConnectDefaultValue; } }
       set {
+        _hasBits0 |= 65536;
         allowAutoConnect_ = value;
       }
     }
+    /// <summary>Gets whether the "allow_auto_connect" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAllowAutoConnect {
+      get { return (_hasBits0 & 65536) != 0; }
+    }
+    /// <summary>Clears the value of the "allow_auto_connect" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAllowAutoConnect() {
+      _hasBits0 &= ~65536;
+    }
 
     /// <summary>Field number for the "grouping_id" field.</summary>
-    public const int GroupingIdFieldNumber = 22;
+    public const int GroupingIdFieldNumber = 23;
+    private readonly static int GroupingIdDefaultValue = 0;
+
     private int groupingId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int GroupingId {
-      get { return groupingId_; }
+      get { if ((_hasBits0 & 131072) != 0) { return groupingId_; } else { return GroupingIdDefaultValue; } }
       set {
+        _hasBits0 |= 131072;
         groupingId_ = value;
       }
     }
+    /// <summary>Gets whether the "grouping_id" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasGroupingId {
+      get { return (_hasBits0 & 131072) != 0; }
+    }
+    /// <summary>Clears the value of the "grouping_id" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearGroupingId() {
+      _hasBits0 &= ~131072;
+    }
 
     /// <summary>Field number for the "draw_instanced" field.</summary>
-    public const int DrawInstancedFieldNumber = 23;
+    public const int DrawInstancedFieldNumber = 24;
+    private readonly static bool DrawInstancedDefaultValue = false;
+
     private bool drawInstanced_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool DrawInstanced {
-      get { return drawInstanced_; }
+      get { if ((_hasBits0 & 262144) != 0) { return drawInstanced_; } else { return DrawInstancedDefaultValue; } }
       set {
+        _hasBits0 |= 262144;
         drawInstanced_ = value;
       }
     }
+    /// <summary>Gets whether the "draw_instanced" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDrawInstanced {
+      get { return (_hasBits0 & 262144) != 0; }
+    }
+    /// <summary>Clears the value of the "draw_instanced" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDrawInstanced() {
+      _hasBits0 &= ~262144;
+    }
 
     /// <summary>Field number for the "normalmap_texture_id" field.</summary>
-    public const int NormalmapTextureIdFieldNumber = 24;
+    public const int NormalmapTextureIdFieldNumber = 25;
     private global::PLUME.Sample.Unity.AssetIdentifier normalmapTextureId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -868,19 +1147,34 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "draw_trees_and_foliage" field.</summary>
-    public const int DrawTreesAndFoliageFieldNumber = 25;
+    public const int DrawTreesAndFoliageFieldNumber = 26;
+    private readonly static bool DrawTreesAndFoliageDefaultValue = false;
+
     private bool drawTreesAndFoliage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool DrawTreesAndFoliage {
-      get { return drawTreesAndFoliage_; }
+      get { if ((_hasBits0 & 524288) != 0) { return drawTreesAndFoliage_; } else { return DrawTreesAndFoliageDefaultValue; } }
       set {
+        _hasBits0 |= 524288;
         drawTreesAndFoliage_ = value;
       }
     }
+    /// <summary>Gets whether the "draw_trees_and_foliage" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDrawTreesAndFoliage {
+      get { return (_hasBits0 & 524288) != 0; }
+    }
+    /// <summary>Clears the value of the "draw_trees_and_foliage" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDrawTreesAndFoliage() {
+      _hasBits0 &= ~524288;
+    }
 
     /// <summary>Field number for the "patch_bounds_multiplier" field.</summary>
-    public const int PatchBoundsMultiplierFieldNumber = 26;
+    public const int PatchBoundsMultiplierFieldNumber = 27;
     private global::PLUME.Sample.Common.Vector3 patchBoundsMultiplier_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -892,27 +1186,57 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "tree_lod_bias_multiplier" field.</summary>
-    public const int TreeLodBiasMultiplierFieldNumber = 27;
+    public const int TreeLodBiasMultiplierFieldNumber = 28;
+    private readonly static float TreeLodBiasMultiplierDefaultValue = 0F;
+
     private float treeLodBiasMultiplier_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float TreeLodBiasMultiplier {
-      get { return treeLodBiasMultiplier_; }
+      get { if ((_hasBits0 & 1048576) != 0) { return treeLodBiasMultiplier_; } else { return TreeLodBiasMultiplierDefaultValue; } }
       set {
+        _hasBits0 |= 1048576;
         treeLodBiasMultiplier_ = value;
       }
     }
+    /// <summary>Gets whether the "tree_lod_bias_multiplier" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTreeLodBiasMultiplier {
+      get { return (_hasBits0 & 1048576) != 0; }
+    }
+    /// <summary>Clears the value of the "tree_lod_bias_multiplier" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTreeLodBiasMultiplier() {
+      _hasBits0 &= ~1048576;
+    }
 
     /// <summary>Field number for the "collect_detail_patches" field.</summary>
-    public const int CollectDetailPatchesFieldNumber = 28;
+    public const int CollectDetailPatchesFieldNumber = 29;
+    private readonly static bool CollectDetailPatchesDefaultValue = false;
+
     private bool collectDetailPatches_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool CollectDetailPatches {
-      get { return collectDetailPatches_; }
+      get { if ((_hasBits0 & 2097152) != 0) { return collectDetailPatches_; } else { return CollectDetailPatchesDefaultValue; } }
       set {
+        _hasBits0 |= 2097152;
         collectDetailPatches_ = value;
       }
+    }
+    /// <summary>Gets whether the "collect_detail_patches" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasCollectDetailPatches {
+      get { return (_hasBits0 & 2097152) != 0; }
+    }
+    /// <summary>Clears the value of the "collect_detail_patches" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearCollectDetailPatches() {
+      _hasBits0 &= ~2097152;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -931,6 +1255,7 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
+      if (Enabled != other.Enabled) return false;
       if (!object.Equals(TerrainDataId, other.TerrainDataId)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(TreeDistance, other.TreeDistance)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(TreeBillboardDistance, other.TreeBillboardDistance)) return false;
@@ -966,33 +1291,34 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
+      if (HasEnabled) hash ^= Enabled.GetHashCode();
       if (terrainDataId_ != null) hash ^= TerrainDataId.GetHashCode();
-      if (TreeDistance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(TreeDistance);
-      if (TreeBillboardDistance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(TreeBillboardDistance);
-      if (TreeCrossFadeLength != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(TreeCrossFadeLength);
-      if (TreeMaximumFullLodCount != 0) hash ^= TreeMaximumFullLodCount.GetHashCode();
-      if (DetailObjectDistance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DetailObjectDistance);
-      if (DetailObjectDensity != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DetailObjectDensity);
-      if (HeightmapPixelError != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(HeightmapPixelError);
-      if (HeightmapMaximumLod != 0) hash ^= HeightmapMaximumLod.GetHashCode();
-      if (BasemapDistance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(BasemapDistance);
-      if (LightmapIndex != 0) hash ^= LightmapIndex.GetHashCode();
-      if (RealtimeLightmapIndex != 0) hash ^= RealtimeLightmapIndex.GetHashCode();
+      if (HasTreeDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(TreeDistance);
+      if (HasTreeBillboardDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(TreeBillboardDistance);
+      if (HasTreeCrossFadeLength) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(TreeCrossFadeLength);
+      if (HasTreeMaximumFullLodCount) hash ^= TreeMaximumFullLodCount.GetHashCode();
+      if (HasDetailObjectDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DetailObjectDistance);
+      if (HasDetailObjectDensity) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DetailObjectDensity);
+      if (HasHeightmapPixelError) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(HeightmapPixelError);
+      if (HasHeightmapMaximumLod) hash ^= HeightmapMaximumLod.GetHashCode();
+      if (HasBasemapDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(BasemapDistance);
+      if (HasLightmapIndex) hash ^= LightmapIndex.GetHashCode();
+      if (HasRealtimeLightmapIndex) hash ^= RealtimeLightmapIndex.GetHashCode();
       if (lightmapScaleOffset_ != null) hash ^= LightmapScaleOffset.GetHashCode();
       if (realtimeLightmapScaleOffset_ != null) hash ^= RealtimeLightmapScaleOffset.GetHashCode();
-      if (KeepUnusedRenderingResources != false) hash ^= KeepUnusedRenderingResources.GetHashCode();
-      if (ShadowCastingMode != global::PLUME.Sample.Unity.ShadowCastingMode.Off) hash ^= ShadowCastingMode.GetHashCode();
-      if (ReflectionProbeUsage != global::PLUME.Sample.Unity.ReflectionProbeUsage.Off) hash ^= ReflectionProbeUsage.GetHashCode();
+      if (HasKeepUnusedRenderingResources) hash ^= KeepUnusedRenderingResources.GetHashCode();
+      if (HasShadowCastingMode) hash ^= ShadowCastingMode.GetHashCode();
+      if (HasReflectionProbeUsage) hash ^= ReflectionProbeUsage.GetHashCode();
       if (materialTemplateId_ != null) hash ^= MaterialTemplateId.GetHashCode();
-      if (DrawHeightmap != false) hash ^= DrawHeightmap.GetHashCode();
-      if (AllowAutoConnect != false) hash ^= AllowAutoConnect.GetHashCode();
-      if (GroupingId != 0) hash ^= GroupingId.GetHashCode();
-      if (DrawInstanced != false) hash ^= DrawInstanced.GetHashCode();
+      if (HasDrawHeightmap) hash ^= DrawHeightmap.GetHashCode();
+      if (HasAllowAutoConnect) hash ^= AllowAutoConnect.GetHashCode();
+      if (HasGroupingId) hash ^= GroupingId.GetHashCode();
+      if (HasDrawInstanced) hash ^= DrawInstanced.GetHashCode();
       if (normalmapTextureId_ != null) hash ^= NormalmapTextureId.GetHashCode();
-      if (DrawTreesAndFoliage != false) hash ^= DrawTreesAndFoliage.GetHashCode();
+      if (HasDrawTreesAndFoliage) hash ^= DrawTreesAndFoliage.GetHashCode();
       if (patchBoundsMultiplier_ != null) hash ^= PatchBoundsMultiplier.GetHashCode();
-      if (TreeLodBiasMultiplier != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(TreeLodBiasMultiplier);
-      if (CollectDetailPatches != false) hash ^= CollectDetailPatches.GetHashCode();
+      if (HasTreeLodBiasMultiplier) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(TreeLodBiasMultiplier);
+      if (HasCollectDetailPatches) hash ^= CollectDetailPatches.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1015,112 +1341,116 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
+      if (HasEnabled) {
+        output.WriteRawTag(16);
+        output.WriteBool(Enabled);
+      }
       if (terrainDataId_ != null) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteMessage(TerrainDataId);
       }
-      if (TreeDistance != 0F) {
-        output.WriteRawTag(29);
+      if (HasTreeDistance) {
+        output.WriteRawTag(37);
         output.WriteFloat(TreeDistance);
       }
-      if (TreeBillboardDistance != 0F) {
-        output.WriteRawTag(37);
+      if (HasTreeBillboardDistance) {
+        output.WriteRawTag(45);
         output.WriteFloat(TreeBillboardDistance);
       }
-      if (TreeCrossFadeLength != 0F) {
-        output.WriteRawTag(45);
+      if (HasTreeCrossFadeLength) {
+        output.WriteRawTag(53);
         output.WriteFloat(TreeCrossFadeLength);
       }
-      if (TreeMaximumFullLodCount != 0) {
-        output.WriteRawTag(48);
+      if (HasTreeMaximumFullLodCount) {
+        output.WriteRawTag(56);
         output.WriteInt32(TreeMaximumFullLodCount);
       }
-      if (DetailObjectDistance != 0F) {
-        output.WriteRawTag(61);
+      if (HasDetailObjectDistance) {
+        output.WriteRawTag(69);
         output.WriteFloat(DetailObjectDistance);
       }
-      if (DetailObjectDensity != 0F) {
-        output.WriteRawTag(69);
+      if (HasDetailObjectDensity) {
+        output.WriteRawTag(77);
         output.WriteFloat(DetailObjectDensity);
       }
-      if (HeightmapPixelError != 0F) {
-        output.WriteRawTag(77);
+      if (HasHeightmapPixelError) {
+        output.WriteRawTag(85);
         output.WriteFloat(HeightmapPixelError);
       }
-      if (HeightmapMaximumLod != 0) {
-        output.WriteRawTag(80);
+      if (HasHeightmapMaximumLod) {
+        output.WriteRawTag(88);
         output.WriteInt32(HeightmapMaximumLod);
       }
-      if (BasemapDistance != 0F) {
-        output.WriteRawTag(93);
+      if (HasBasemapDistance) {
+        output.WriteRawTag(101);
         output.WriteFloat(BasemapDistance);
       }
-      if (LightmapIndex != 0) {
-        output.WriteRawTag(96);
+      if (HasLightmapIndex) {
+        output.WriteRawTag(104);
         output.WriteInt32(LightmapIndex);
       }
-      if (RealtimeLightmapIndex != 0) {
-        output.WriteRawTag(104);
+      if (HasRealtimeLightmapIndex) {
+        output.WriteRawTag(112);
         output.WriteInt32(RealtimeLightmapIndex);
       }
       if (lightmapScaleOffset_ != null) {
-        output.WriteRawTag(114);
+        output.WriteRawTag(122);
         output.WriteMessage(LightmapScaleOffset);
       }
       if (realtimeLightmapScaleOffset_ != null) {
-        output.WriteRawTag(122);
+        output.WriteRawTag(130, 1);
         output.WriteMessage(RealtimeLightmapScaleOffset);
       }
-      if (KeepUnusedRenderingResources != false) {
-        output.WriteRawTag(128, 1);
+      if (HasKeepUnusedRenderingResources) {
+        output.WriteRawTag(136, 1);
         output.WriteBool(KeepUnusedRenderingResources);
       }
-      if (ShadowCastingMode != global::PLUME.Sample.Unity.ShadowCastingMode.Off) {
-        output.WriteRawTag(136, 1);
+      if (HasShadowCastingMode) {
+        output.WriteRawTag(144, 1);
         output.WriteEnum((int) ShadowCastingMode);
       }
-      if (ReflectionProbeUsage != global::PLUME.Sample.Unity.ReflectionProbeUsage.Off) {
-        output.WriteRawTag(144, 1);
+      if (HasReflectionProbeUsage) {
+        output.WriteRawTag(152, 1);
         output.WriteEnum((int) ReflectionProbeUsage);
       }
       if (materialTemplateId_ != null) {
-        output.WriteRawTag(154, 1);
+        output.WriteRawTag(162, 1);
         output.WriteMessage(MaterialTemplateId);
       }
-      if (DrawHeightmap != false) {
-        output.WriteRawTag(160, 1);
+      if (HasDrawHeightmap) {
+        output.WriteRawTag(168, 1);
         output.WriteBool(DrawHeightmap);
       }
-      if (AllowAutoConnect != false) {
-        output.WriteRawTag(168, 1);
+      if (HasAllowAutoConnect) {
+        output.WriteRawTag(176, 1);
         output.WriteBool(AllowAutoConnect);
       }
-      if (GroupingId != 0) {
-        output.WriteRawTag(176, 1);
+      if (HasGroupingId) {
+        output.WriteRawTag(184, 1);
         output.WriteInt32(GroupingId);
       }
-      if (DrawInstanced != false) {
-        output.WriteRawTag(184, 1);
+      if (HasDrawInstanced) {
+        output.WriteRawTag(192, 1);
         output.WriteBool(DrawInstanced);
       }
       if (normalmapTextureId_ != null) {
-        output.WriteRawTag(194, 1);
+        output.WriteRawTag(202, 1);
         output.WriteMessage(NormalmapTextureId);
       }
-      if (DrawTreesAndFoliage != false) {
-        output.WriteRawTag(200, 1);
+      if (HasDrawTreesAndFoliage) {
+        output.WriteRawTag(208, 1);
         output.WriteBool(DrawTreesAndFoliage);
       }
       if (patchBoundsMultiplier_ != null) {
-        output.WriteRawTag(210, 1);
+        output.WriteRawTag(218, 1);
         output.WriteMessage(PatchBoundsMultiplier);
       }
-      if (TreeLodBiasMultiplier != 0F) {
-        output.WriteRawTag(221, 1);
+      if (HasTreeLodBiasMultiplier) {
+        output.WriteRawTag(229, 1);
         output.WriteFloat(TreeLodBiasMultiplier);
       }
-      if (CollectDetailPatches != false) {
-        output.WriteRawTag(224, 1);
+      if (HasCollectDetailPatches) {
+        output.WriteRawTag(232, 1);
         output.WriteBool(CollectDetailPatches);
       }
       if (_unknownFields != null) {
@@ -1137,112 +1467,116 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
+      if (HasEnabled) {
+        output.WriteRawTag(16);
+        output.WriteBool(Enabled);
+      }
       if (terrainDataId_ != null) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteMessage(TerrainDataId);
       }
-      if (TreeDistance != 0F) {
-        output.WriteRawTag(29);
+      if (HasTreeDistance) {
+        output.WriteRawTag(37);
         output.WriteFloat(TreeDistance);
       }
-      if (TreeBillboardDistance != 0F) {
-        output.WriteRawTag(37);
+      if (HasTreeBillboardDistance) {
+        output.WriteRawTag(45);
         output.WriteFloat(TreeBillboardDistance);
       }
-      if (TreeCrossFadeLength != 0F) {
-        output.WriteRawTag(45);
+      if (HasTreeCrossFadeLength) {
+        output.WriteRawTag(53);
         output.WriteFloat(TreeCrossFadeLength);
       }
-      if (TreeMaximumFullLodCount != 0) {
-        output.WriteRawTag(48);
+      if (HasTreeMaximumFullLodCount) {
+        output.WriteRawTag(56);
         output.WriteInt32(TreeMaximumFullLodCount);
       }
-      if (DetailObjectDistance != 0F) {
-        output.WriteRawTag(61);
+      if (HasDetailObjectDistance) {
+        output.WriteRawTag(69);
         output.WriteFloat(DetailObjectDistance);
       }
-      if (DetailObjectDensity != 0F) {
-        output.WriteRawTag(69);
+      if (HasDetailObjectDensity) {
+        output.WriteRawTag(77);
         output.WriteFloat(DetailObjectDensity);
       }
-      if (HeightmapPixelError != 0F) {
-        output.WriteRawTag(77);
+      if (HasHeightmapPixelError) {
+        output.WriteRawTag(85);
         output.WriteFloat(HeightmapPixelError);
       }
-      if (HeightmapMaximumLod != 0) {
-        output.WriteRawTag(80);
+      if (HasHeightmapMaximumLod) {
+        output.WriteRawTag(88);
         output.WriteInt32(HeightmapMaximumLod);
       }
-      if (BasemapDistance != 0F) {
-        output.WriteRawTag(93);
+      if (HasBasemapDistance) {
+        output.WriteRawTag(101);
         output.WriteFloat(BasemapDistance);
       }
-      if (LightmapIndex != 0) {
-        output.WriteRawTag(96);
+      if (HasLightmapIndex) {
+        output.WriteRawTag(104);
         output.WriteInt32(LightmapIndex);
       }
-      if (RealtimeLightmapIndex != 0) {
-        output.WriteRawTag(104);
+      if (HasRealtimeLightmapIndex) {
+        output.WriteRawTag(112);
         output.WriteInt32(RealtimeLightmapIndex);
       }
       if (lightmapScaleOffset_ != null) {
-        output.WriteRawTag(114);
+        output.WriteRawTag(122);
         output.WriteMessage(LightmapScaleOffset);
       }
       if (realtimeLightmapScaleOffset_ != null) {
-        output.WriteRawTag(122);
+        output.WriteRawTag(130, 1);
         output.WriteMessage(RealtimeLightmapScaleOffset);
       }
-      if (KeepUnusedRenderingResources != false) {
-        output.WriteRawTag(128, 1);
+      if (HasKeepUnusedRenderingResources) {
+        output.WriteRawTag(136, 1);
         output.WriteBool(KeepUnusedRenderingResources);
       }
-      if (ShadowCastingMode != global::PLUME.Sample.Unity.ShadowCastingMode.Off) {
-        output.WriteRawTag(136, 1);
+      if (HasShadowCastingMode) {
+        output.WriteRawTag(144, 1);
         output.WriteEnum((int) ShadowCastingMode);
       }
-      if (ReflectionProbeUsage != global::PLUME.Sample.Unity.ReflectionProbeUsage.Off) {
-        output.WriteRawTag(144, 1);
+      if (HasReflectionProbeUsage) {
+        output.WriteRawTag(152, 1);
         output.WriteEnum((int) ReflectionProbeUsage);
       }
       if (materialTemplateId_ != null) {
-        output.WriteRawTag(154, 1);
+        output.WriteRawTag(162, 1);
         output.WriteMessage(MaterialTemplateId);
       }
-      if (DrawHeightmap != false) {
-        output.WriteRawTag(160, 1);
+      if (HasDrawHeightmap) {
+        output.WriteRawTag(168, 1);
         output.WriteBool(DrawHeightmap);
       }
-      if (AllowAutoConnect != false) {
-        output.WriteRawTag(168, 1);
+      if (HasAllowAutoConnect) {
+        output.WriteRawTag(176, 1);
         output.WriteBool(AllowAutoConnect);
       }
-      if (GroupingId != 0) {
-        output.WriteRawTag(176, 1);
+      if (HasGroupingId) {
+        output.WriteRawTag(184, 1);
         output.WriteInt32(GroupingId);
       }
-      if (DrawInstanced != false) {
-        output.WriteRawTag(184, 1);
+      if (HasDrawInstanced) {
+        output.WriteRawTag(192, 1);
         output.WriteBool(DrawInstanced);
       }
       if (normalmapTextureId_ != null) {
-        output.WriteRawTag(194, 1);
+        output.WriteRawTag(202, 1);
         output.WriteMessage(NormalmapTextureId);
       }
-      if (DrawTreesAndFoliage != false) {
-        output.WriteRawTag(200, 1);
+      if (HasDrawTreesAndFoliage) {
+        output.WriteRawTag(208, 1);
         output.WriteBool(DrawTreesAndFoliage);
       }
       if (patchBoundsMultiplier_ != null) {
-        output.WriteRawTag(210, 1);
+        output.WriteRawTag(218, 1);
         output.WriteMessage(PatchBoundsMultiplier);
       }
-      if (TreeLodBiasMultiplier != 0F) {
-        output.WriteRawTag(221, 1);
+      if (HasTreeLodBiasMultiplier) {
+        output.WriteRawTag(229, 1);
         output.WriteFloat(TreeLodBiasMultiplier);
       }
-      if (CollectDetailPatches != false) {
-        output.WriteRawTag(224, 1);
+      if (HasCollectDetailPatches) {
+        output.WriteRawTag(232, 1);
         output.WriteBool(CollectDetailPatches);
       }
       if (_unknownFields != null) {
@@ -1258,85 +1592,88 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
+      if (HasEnabled) {
+        size += 1 + 1;
+      }
       if (terrainDataId_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(TerrainDataId);
       }
-      if (TreeDistance != 0F) {
+      if (HasTreeDistance) {
         size += 1 + 4;
       }
-      if (TreeBillboardDistance != 0F) {
+      if (HasTreeBillboardDistance) {
         size += 1 + 4;
       }
-      if (TreeCrossFadeLength != 0F) {
+      if (HasTreeCrossFadeLength) {
         size += 1 + 4;
       }
-      if (TreeMaximumFullLodCount != 0) {
+      if (HasTreeMaximumFullLodCount) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(TreeMaximumFullLodCount);
       }
-      if (DetailObjectDistance != 0F) {
+      if (HasDetailObjectDistance) {
         size += 1 + 4;
       }
-      if (DetailObjectDensity != 0F) {
+      if (HasDetailObjectDensity) {
         size += 1 + 4;
       }
-      if (HeightmapPixelError != 0F) {
+      if (HasHeightmapPixelError) {
         size += 1 + 4;
       }
-      if (HeightmapMaximumLod != 0) {
+      if (HasHeightmapMaximumLod) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(HeightmapMaximumLod);
       }
-      if (BasemapDistance != 0F) {
+      if (HasBasemapDistance) {
         size += 1 + 4;
       }
-      if (LightmapIndex != 0) {
+      if (HasLightmapIndex) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(LightmapIndex);
       }
-      if (RealtimeLightmapIndex != 0) {
+      if (HasRealtimeLightmapIndex) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(RealtimeLightmapIndex);
       }
       if (lightmapScaleOffset_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(LightmapScaleOffset);
       }
       if (realtimeLightmapScaleOffset_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(RealtimeLightmapScaleOffset);
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(RealtimeLightmapScaleOffset);
       }
-      if (KeepUnusedRenderingResources != false) {
+      if (HasKeepUnusedRenderingResources) {
         size += 2 + 1;
       }
-      if (ShadowCastingMode != global::PLUME.Sample.Unity.ShadowCastingMode.Off) {
+      if (HasShadowCastingMode) {
         size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) ShadowCastingMode);
       }
-      if (ReflectionProbeUsage != global::PLUME.Sample.Unity.ReflectionProbeUsage.Off) {
+      if (HasReflectionProbeUsage) {
         size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) ReflectionProbeUsage);
       }
       if (materialTemplateId_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(MaterialTemplateId);
       }
-      if (DrawHeightmap != false) {
+      if (HasDrawHeightmap) {
         size += 2 + 1;
       }
-      if (AllowAutoConnect != false) {
+      if (HasAllowAutoConnect) {
         size += 2 + 1;
       }
-      if (GroupingId != 0) {
+      if (HasGroupingId) {
         size += 2 + pb::CodedOutputStream.ComputeInt32Size(GroupingId);
       }
-      if (DrawInstanced != false) {
+      if (HasDrawInstanced) {
         size += 2 + 1;
       }
       if (normalmapTextureId_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(NormalmapTextureId);
       }
-      if (DrawTreesAndFoliage != false) {
+      if (HasDrawTreesAndFoliage) {
         size += 2 + 1;
       }
       if (patchBoundsMultiplier_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PatchBoundsMultiplier);
       }
-      if (TreeLodBiasMultiplier != 0F) {
+      if (HasTreeLodBiasMultiplier) {
         size += 2 + 4;
       }
-      if (CollectDetailPatches != false) {
+      if (HasCollectDetailPatches) {
         size += 2 + 1;
       }
       if (_unknownFields != null) {
@@ -1357,43 +1694,46 @@ namespace PLUME.Sample.Unity {
         }
         Id.MergeFrom(other.Id);
       }
+      if (other.HasEnabled) {
+        Enabled = other.Enabled;
+      }
       if (other.terrainDataId_ != null) {
         if (terrainDataId_ == null) {
           TerrainDataId = new global::PLUME.Sample.Unity.AssetIdentifier();
         }
         TerrainDataId.MergeFrom(other.TerrainDataId);
       }
-      if (other.TreeDistance != 0F) {
+      if (other.HasTreeDistance) {
         TreeDistance = other.TreeDistance;
       }
-      if (other.TreeBillboardDistance != 0F) {
+      if (other.HasTreeBillboardDistance) {
         TreeBillboardDistance = other.TreeBillboardDistance;
       }
-      if (other.TreeCrossFadeLength != 0F) {
+      if (other.HasTreeCrossFadeLength) {
         TreeCrossFadeLength = other.TreeCrossFadeLength;
       }
-      if (other.TreeMaximumFullLodCount != 0) {
+      if (other.HasTreeMaximumFullLodCount) {
         TreeMaximumFullLodCount = other.TreeMaximumFullLodCount;
       }
-      if (other.DetailObjectDistance != 0F) {
+      if (other.HasDetailObjectDistance) {
         DetailObjectDistance = other.DetailObjectDistance;
       }
-      if (other.DetailObjectDensity != 0F) {
+      if (other.HasDetailObjectDensity) {
         DetailObjectDensity = other.DetailObjectDensity;
       }
-      if (other.HeightmapPixelError != 0F) {
+      if (other.HasHeightmapPixelError) {
         HeightmapPixelError = other.HeightmapPixelError;
       }
-      if (other.HeightmapMaximumLod != 0) {
+      if (other.HasHeightmapMaximumLod) {
         HeightmapMaximumLod = other.HeightmapMaximumLod;
       }
-      if (other.BasemapDistance != 0F) {
+      if (other.HasBasemapDistance) {
         BasemapDistance = other.BasemapDistance;
       }
-      if (other.LightmapIndex != 0) {
+      if (other.HasLightmapIndex) {
         LightmapIndex = other.LightmapIndex;
       }
-      if (other.RealtimeLightmapIndex != 0) {
+      if (other.HasRealtimeLightmapIndex) {
         RealtimeLightmapIndex = other.RealtimeLightmapIndex;
       }
       if (other.lightmapScaleOffset_ != null) {
@@ -1408,13 +1748,13 @@ namespace PLUME.Sample.Unity {
         }
         RealtimeLightmapScaleOffset.MergeFrom(other.RealtimeLightmapScaleOffset);
       }
-      if (other.KeepUnusedRenderingResources != false) {
+      if (other.HasKeepUnusedRenderingResources) {
         KeepUnusedRenderingResources = other.KeepUnusedRenderingResources;
       }
-      if (other.ShadowCastingMode != global::PLUME.Sample.Unity.ShadowCastingMode.Off) {
+      if (other.HasShadowCastingMode) {
         ShadowCastingMode = other.ShadowCastingMode;
       }
-      if (other.ReflectionProbeUsage != global::PLUME.Sample.Unity.ReflectionProbeUsage.Off) {
+      if (other.HasReflectionProbeUsage) {
         ReflectionProbeUsage = other.ReflectionProbeUsage;
       }
       if (other.materialTemplateId_ != null) {
@@ -1423,16 +1763,16 @@ namespace PLUME.Sample.Unity {
         }
         MaterialTemplateId.MergeFrom(other.MaterialTemplateId);
       }
-      if (other.DrawHeightmap != false) {
+      if (other.HasDrawHeightmap) {
         DrawHeightmap = other.DrawHeightmap;
       }
-      if (other.AllowAutoConnect != false) {
+      if (other.HasAllowAutoConnect) {
         AllowAutoConnect = other.AllowAutoConnect;
       }
-      if (other.GroupingId != 0) {
+      if (other.HasGroupingId) {
         GroupingId = other.GroupingId;
       }
-      if (other.DrawInstanced != false) {
+      if (other.HasDrawInstanced) {
         DrawInstanced = other.DrawInstanced;
       }
       if (other.normalmapTextureId_ != null) {
@@ -1441,7 +1781,7 @@ namespace PLUME.Sample.Unity {
         }
         NormalmapTextureId.MergeFrom(other.NormalmapTextureId);
       }
-      if (other.DrawTreesAndFoliage != false) {
+      if (other.HasDrawTreesAndFoliage) {
         DrawTreesAndFoliage = other.DrawTreesAndFoliage;
       }
       if (other.patchBoundsMultiplier_ != null) {
@@ -1450,10 +1790,10 @@ namespace PLUME.Sample.Unity {
         }
         PatchBoundsMultiplier.MergeFrom(other.PatchBoundsMultiplier);
       }
-      if (other.TreeLodBiasMultiplier != 0F) {
+      if (other.HasTreeLodBiasMultiplier) {
         TreeLodBiasMultiplier = other.TreeLodBiasMultiplier;
       }
-      if (other.CollectDetailPatches != false) {
+      if (other.HasCollectDetailPatches) {
         CollectDetailPatches = other.CollectDetailPatches;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1478,129 +1818,133 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 18: {
+          case 16: {
+            Enabled = input.ReadBool();
+            break;
+          }
+          case 26: {
             if (terrainDataId_ == null) {
               TerrainDataId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(TerrainDataId);
             break;
           }
-          case 29: {
+          case 37: {
             TreeDistance = input.ReadFloat();
             break;
           }
-          case 37: {
+          case 45: {
             TreeBillboardDistance = input.ReadFloat();
             break;
           }
-          case 45: {
+          case 53: {
             TreeCrossFadeLength = input.ReadFloat();
             break;
           }
-          case 48: {
+          case 56: {
             TreeMaximumFullLodCount = input.ReadInt32();
             break;
           }
-          case 61: {
+          case 69: {
             DetailObjectDistance = input.ReadFloat();
             break;
           }
-          case 69: {
+          case 77: {
             DetailObjectDensity = input.ReadFloat();
             break;
           }
-          case 77: {
+          case 85: {
             HeightmapPixelError = input.ReadFloat();
             break;
           }
-          case 80: {
+          case 88: {
             HeightmapMaximumLod = input.ReadInt32();
             break;
           }
-          case 93: {
+          case 101: {
             BasemapDistance = input.ReadFloat();
             break;
           }
-          case 96: {
+          case 104: {
             LightmapIndex = input.ReadInt32();
             break;
           }
-          case 104: {
+          case 112: {
             RealtimeLightmapIndex = input.ReadInt32();
             break;
           }
-          case 114: {
+          case 122: {
             if (lightmapScaleOffset_ == null) {
               LightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
             }
             input.ReadMessage(LightmapScaleOffset);
             break;
           }
-          case 122: {
+          case 130: {
             if (realtimeLightmapScaleOffset_ == null) {
               RealtimeLightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
             }
             input.ReadMessage(RealtimeLightmapScaleOffset);
             break;
           }
-          case 128: {
+          case 136: {
             KeepUnusedRenderingResources = input.ReadBool();
             break;
           }
-          case 136: {
+          case 144: {
             ShadowCastingMode = (global::PLUME.Sample.Unity.ShadowCastingMode) input.ReadEnum();
             break;
           }
-          case 144: {
+          case 152: {
             ReflectionProbeUsage = (global::PLUME.Sample.Unity.ReflectionProbeUsage) input.ReadEnum();
             break;
           }
-          case 154: {
+          case 162: {
             if (materialTemplateId_ == null) {
               MaterialTemplateId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(MaterialTemplateId);
             break;
           }
-          case 160: {
+          case 168: {
             DrawHeightmap = input.ReadBool();
             break;
           }
-          case 168: {
+          case 176: {
             AllowAutoConnect = input.ReadBool();
             break;
           }
-          case 176: {
+          case 184: {
             GroupingId = input.ReadInt32();
             break;
           }
-          case 184: {
+          case 192: {
             DrawInstanced = input.ReadBool();
             break;
           }
-          case 194: {
+          case 202: {
             if (normalmapTextureId_ == null) {
               NormalmapTextureId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(NormalmapTextureId);
             break;
           }
-          case 200: {
+          case 208: {
             DrawTreesAndFoliage = input.ReadBool();
             break;
           }
-          case 210: {
+          case 218: {
             if (patchBoundsMultiplier_ == null) {
               PatchBoundsMultiplier = new global::PLUME.Sample.Common.Vector3();
             }
             input.ReadMessage(PatchBoundsMultiplier);
             break;
           }
-          case 221: {
+          case 229: {
             TreeLodBiasMultiplier = input.ReadFloat();
             break;
           }
-          case 224: {
+          case 232: {
             CollectDetailPatches = input.ReadBool();
             break;
           }
@@ -1626,129 +1970,133 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 18: {
+          case 16: {
+            Enabled = input.ReadBool();
+            break;
+          }
+          case 26: {
             if (terrainDataId_ == null) {
               TerrainDataId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(TerrainDataId);
             break;
           }
-          case 29: {
+          case 37: {
             TreeDistance = input.ReadFloat();
             break;
           }
-          case 37: {
+          case 45: {
             TreeBillboardDistance = input.ReadFloat();
             break;
           }
-          case 45: {
+          case 53: {
             TreeCrossFadeLength = input.ReadFloat();
             break;
           }
-          case 48: {
+          case 56: {
             TreeMaximumFullLodCount = input.ReadInt32();
             break;
           }
-          case 61: {
+          case 69: {
             DetailObjectDistance = input.ReadFloat();
             break;
           }
-          case 69: {
+          case 77: {
             DetailObjectDensity = input.ReadFloat();
             break;
           }
-          case 77: {
+          case 85: {
             HeightmapPixelError = input.ReadFloat();
             break;
           }
-          case 80: {
+          case 88: {
             HeightmapMaximumLod = input.ReadInt32();
             break;
           }
-          case 93: {
+          case 101: {
             BasemapDistance = input.ReadFloat();
             break;
           }
-          case 96: {
+          case 104: {
             LightmapIndex = input.ReadInt32();
             break;
           }
-          case 104: {
+          case 112: {
             RealtimeLightmapIndex = input.ReadInt32();
             break;
           }
-          case 114: {
+          case 122: {
             if (lightmapScaleOffset_ == null) {
               LightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
             }
             input.ReadMessage(LightmapScaleOffset);
             break;
           }
-          case 122: {
+          case 130: {
             if (realtimeLightmapScaleOffset_ == null) {
               RealtimeLightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
             }
             input.ReadMessage(RealtimeLightmapScaleOffset);
             break;
           }
-          case 128: {
+          case 136: {
             KeepUnusedRenderingResources = input.ReadBool();
             break;
           }
-          case 136: {
+          case 144: {
             ShadowCastingMode = (global::PLUME.Sample.Unity.ShadowCastingMode) input.ReadEnum();
             break;
           }
-          case 144: {
+          case 152: {
             ReflectionProbeUsage = (global::PLUME.Sample.Unity.ReflectionProbeUsage) input.ReadEnum();
             break;
           }
-          case 154: {
+          case 162: {
             if (materialTemplateId_ == null) {
               MaterialTemplateId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(MaterialTemplateId);
             break;
           }
-          case 160: {
+          case 168: {
             DrawHeightmap = input.ReadBool();
             break;
           }
-          case 168: {
+          case 176: {
             AllowAutoConnect = input.ReadBool();
             break;
           }
-          case 176: {
+          case 184: {
             GroupingId = input.ReadInt32();
             break;
           }
-          case 184: {
+          case 192: {
             DrawInstanced = input.ReadBool();
             break;
           }
-          case 194: {
+          case 202: {
             if (normalmapTextureId_ == null) {
               NormalmapTextureId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(NormalmapTextureId);
             break;
           }
-          case 200: {
+          case 208: {
             DrawTreesAndFoliage = input.ReadBool();
             break;
           }
-          case 210: {
+          case 218: {
             if (patchBoundsMultiplier_ == null) {
               PatchBoundsMultiplier = new global::PLUME.Sample.Common.Vector3();
             }
             input.ReadMessage(PatchBoundsMultiplier);
             break;
           }
-          case 221: {
+          case 229: {
             TreeLodBiasMultiplier = input.ReadFloat();
             break;
           }
-          case 224: {
+          case 232: {
             CollectDetailPatches = input.ReadBool();
             break;
           }

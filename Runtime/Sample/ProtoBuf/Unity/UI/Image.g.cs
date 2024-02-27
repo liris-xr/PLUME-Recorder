@@ -27,20 +27,20 @@ namespace PLUME.Sample.Unity.UI {
             "ChR1bml0eS91aS9pbWFnZS5wcm90bxIScGx1bWUuc2FtcGxlLnVuaXR5Ghd1",
             "bml0eS9pZGVudGlmaWVycy5wcm90bxoUY29tbW9uL3ZlY3RvcjQucHJvdG8i",
             "QgoLSW1hZ2VDcmVhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5p",
-            "dHkuQ29tcG9uZW50SWRlbnRpZmllciJ0ChBJbWFnZVVwZGF0ZUNvbG9yEjMK",
-            "AmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50",
-            "aWZpZXISKwoFY29sb3IYAiABKAsyHC5wbHVtZS5zYW1wbGUuY29tbW9uLlZl",
-            "Y3RvcjQikwEKEUltYWdlVXBkYXRlU3ByaXRlEjMKAmlkGAEgASgLMicucGx1",
-            "bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISOwoJc3ByaXRl",
-            "X2lkGAIgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmll",
-            "ckgAiAEBQgwKCl9zcHJpdGVfaWRCGKoCFVBMVU1FLlNhbXBsZS5Vbml0eS5V",
-            "SWIGcHJvdG8z"));
+            "dHkuQ29tcG9uZW50SWRlbnRpZmllciJDCgxJbWFnZURlc3Ryb3kSMwoCaWQY",
+            "ASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmll",
+            "ciLJAQoLSW1hZ2VVcGRhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUu",
+            "dW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIwCgVjb2xvchgCIAEoCzIcLnBs",
+            "dW1lLnNhbXBsZS5jb21tb24uVmVjdG9yNEgAiAEBEjsKCXNwcml0ZV9pZBgD",
+            "IAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZpZXJIAYgB",
+            "AUIICgZfY29sb3JCDAoKX3Nwcml0ZV9pZEIYqgIVUExVTUUuU2FtcGxlLlVu",
+            "aXR5LlVJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageCreate), global::PLUME.Sample.Unity.UI.ImageCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageUpdateColor), global::PLUME.Sample.Unity.UI.ImageUpdateColor.Parser, new[]{ "Id", "Color" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageUpdateSprite), global::PLUME.Sample.Unity.UI.ImageUpdateSprite.Parser, new[]{ "Id", "SpriteId" }, new[]{ "SpriteId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageDestroy), global::PLUME.Sample.Unity.UI.ImageDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageUpdate), global::PLUME.Sample.Unity.UI.ImageUpdate.Parser, new[]{ "Id", "Color", "SpriteId" }, new[]{ "Color", "SpriteId" }, null, null, null)
           }));
     }
     #endregion
@@ -247,16 +247,16 @@ namespace PLUME.Sample.Unity.UI {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class ImageUpdateColor : pb::IMessage<ImageUpdateColor>
+  public sealed partial class ImageDestroy : pb::IMessage<ImageDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<ImageUpdateColor> _parser = new pb::MessageParser<ImageUpdateColor>(() => new ImageUpdateColor());
+    private static readonly pb::MessageParser<ImageDestroy> _parser = new pb::MessageParser<ImageDestroy>(() => new ImageDestroy());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ImageUpdateColor> Parser { get { return _parser; } }
+    public static pb::MessageParser<ImageDestroy> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -272,7 +272,7 @@ namespace PLUME.Sample.Unity.UI {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ImageUpdateColor() {
+    public ImageDestroy() {
       OnConstruction();
     }
 
@@ -280,16 +280,216 @@ namespace PLUME.Sample.Unity.UI {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ImageUpdateColor(ImageUpdateColor other) : this() {
+    public ImageDestroy(ImageDestroy other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      color_ = other.color_ != null ? other.color_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ImageUpdateColor Clone() {
-      return new ImageUpdateColor(this);
+    public ImageDestroy Clone() {
+      return new ImageDestroy(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as ImageDestroy);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(ImageDestroy other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(ImageDestroy other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class ImageUpdate : pb::IMessage<ImageUpdate>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ImageUpdate> _parser = new pb::MessageParser<ImageUpdate>(() => new ImageUpdate());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<ImageUpdate> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.UI.ImageReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ImageUpdate() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ImageUpdate(ImageUpdate other) : this() {
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      color_ = other.color_ != null ? other.color_.Clone() : null;
+      spriteId_ = other.spriteId_ != null ? other.spriteId_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ImageUpdate Clone() {
+      return new ImageUpdate(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -316,241 +516,8 @@ namespace PLUME.Sample.Unity.UI {
       }
     }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as ImageUpdateColor);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ImageUpdateColor other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(Color, other.Color)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (color_ != null) hash ^= Color.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (color_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Color);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (color_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Color);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (color_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ImageUpdateColor other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.color_ != null) {
-        if (color_ == null) {
-          Color = new global::PLUME.Sample.Common.Vector4();
-        }
-        Color.MergeFrom(other.Color);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (color_ == null) {
-              Color = new global::PLUME.Sample.Common.Vector4();
-            }
-            input.ReadMessage(Color);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (color_ == null) {
-              Color = new global::PLUME.Sample.Common.Vector4();
-            }
-            input.ReadMessage(Color);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class ImageUpdateSprite : pb::IMessage<ImageUpdateSprite>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<ImageUpdateSprite> _parser = new pb::MessageParser<ImageUpdateSprite>(() => new ImageUpdateSprite());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<ImageUpdateSprite> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.ImageReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ImageUpdateSprite() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ImageUpdateSprite(ImageUpdateSprite other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      spriteId_ = other.spriteId_ != null ? other.spriteId_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public ImageUpdateSprite Clone() {
-      return new ImageUpdateSprite(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
     /// <summary>Field number for the "sprite_id" field.</summary>
-    public const int SpriteIdFieldNumber = 2;
+    public const int SpriteIdFieldNumber = 3;
     private global::PLUME.Sample.Unity.AssetIdentifier spriteId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -564,12 +531,12 @@ namespace PLUME.Sample.Unity.UI {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as ImageUpdateSprite);
+      return Equals(other as ImageUpdate);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(ImageUpdateSprite other) {
+    public bool Equals(ImageUpdate other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -577,6 +544,7 @@ namespace PLUME.Sample.Unity.UI {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
+      if (!object.Equals(Color, other.Color)) return false;
       if (!object.Equals(SpriteId, other.SpriteId)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -586,6 +554,7 @@ namespace PLUME.Sample.Unity.UI {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
+      if (color_ != null) hash ^= Color.GetHashCode();
       if (spriteId_ != null) hash ^= SpriteId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -609,8 +578,12 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (spriteId_ != null) {
+      if (color_ != null) {
         output.WriteRawTag(18);
+        output.WriteMessage(Color);
+      }
+      if (spriteId_ != null) {
+        output.WriteRawTag(26);
         output.WriteMessage(SpriteId);
       }
       if (_unknownFields != null) {
@@ -627,8 +600,12 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (spriteId_ != null) {
+      if (color_ != null) {
         output.WriteRawTag(18);
+        output.WriteMessage(Color);
+      }
+      if (spriteId_ != null) {
+        output.WriteRawTag(26);
         output.WriteMessage(SpriteId);
       }
       if (_unknownFields != null) {
@@ -644,6 +621,9 @@ namespace PLUME.Sample.Unity.UI {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
+      if (color_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
+      }
       if (spriteId_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(SpriteId);
       }
@@ -655,7 +635,7 @@ namespace PLUME.Sample.Unity.UI {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(ImageUpdateSprite other) {
+    public void MergeFrom(ImageUpdate other) {
       if (other == null) {
         return;
       }
@@ -664,6 +644,12 @@ namespace PLUME.Sample.Unity.UI {
           Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         Id.MergeFrom(other.Id);
+      }
+      if (other.color_ != null) {
+        if (color_ == null) {
+          Color = new global::PLUME.Sample.Common.Vector4();
+        }
+        Color.MergeFrom(other.Color);
       }
       if (other.spriteId_ != null) {
         if (spriteId_ == null) {
@@ -694,6 +680,13 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 18: {
+            if (color_ == null) {
+              Color = new global::PLUME.Sample.Common.Vector4();
+            }
+            input.ReadMessage(Color);
+            break;
+          }
+          case 26: {
             if (spriteId_ == null) {
               SpriteId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
@@ -723,6 +716,13 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 18: {
+            if (color_ == null) {
+              Color = new global::PLUME.Sample.Common.Vector4();
+            }
+            input.ReadMessage(Color);
+            break;
+          }
+          case 26: {
             if (spriteId_ == null) {
               SpriteId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }

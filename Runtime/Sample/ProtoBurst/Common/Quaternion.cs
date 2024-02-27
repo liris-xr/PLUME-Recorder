@@ -5,7 +5,7 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Mathematics;
 
-namespace PLUME.Sample.ProtoBurst
+namespace PLUME.Sample.ProtoBurst.Common
 {
     [BurstCompile]
     [StructLayout(LayoutKind.Sequential)]

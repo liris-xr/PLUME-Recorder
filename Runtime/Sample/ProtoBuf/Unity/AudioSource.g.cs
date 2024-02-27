@@ -27,69 +27,39 @@ namespace PLUME.Sample.Unity {
             "Chh1bml0eS9hdWRpb19zb3VyY2UucHJvdG8SEnBsdW1lLnNhbXBsZS51bml0",
             "eRocY29tbW9uL2FuaW1hdGlvbl9jdXJ2ZS5wcm90bxoXdW5pdHkvaWRlbnRp",
             "ZmllcnMucHJvdG8iSAoRQXVkaW9Tb3VyY2VDcmVhdGUSMwoCaWQYASABKAsy",
-            "Jy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciKfAQoV",
-            "QXVkaW9Tb3VyY2VVcGRhdGVDbGlwEjMKAmlkGAEgASgLMicucGx1bWUuc2Ft",
-            "cGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISPwoNYXVkaW9fY2xpcF9p",
-            "ZBgCIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZpZXJI",
-            "AIgBAUIQCg5fYXVkaW9fY2xpcF9pZCKuAQoWQXVkaW9Tb3VyY2VVcGRhdGVN",
-            "aXhlchIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25l",
-            "bnRJZGVudGlmaWVyEkYKFGF1ZGlvX21peGVyX2dyb3VwX2lkGAIgASgLMiMu",
-            "cGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckgAiAEBQhcKFV9h",
-            "dWRpb19taXhlcl9ncm91cF9pZCJmChtBdWRpb1NvdXJjZVVwZGF0ZVBsYXlT",
-            "dGF0dXMSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9u",
-            "ZW50SWRlbnRpZmllchISCgppc19wbGF5aW5nGAIgASgIImIKFUF1ZGlvU291",
-            "cmNlVXBkYXRlVGltZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0",
-            "eS5Db21wb25lbnRJZGVudGlmaWVyEhQKDHRpbWVfc2FtcGxlcxgCIAEoBSJa",
-            "ChVBdWRpb1NvdXJjZVVwZGF0ZU11dGUSMwoCaWQYASABKAsyJy5wbHVtZS5z",
-            "YW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIMCgRtdXRlGAIgASgI",
-            "IqQBChdBdWRpb1NvdXJjZVVwZGF0ZUJ5cGFzcxIzCgJpZBgBIAEoCzInLnBs",
-            "dW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEhYKDmJ5cGFz",
-            "c19lZmZlY3RzGAIgASgIEh8KF2J5cGFzc19saXN0ZW5lcl9lZmZlY3RzGAMg",
-            "ASgIEhsKE2J5cGFzc19yZXZlcmJfem9uZXMYBCABKAgiYgoZQXVkaW9Tb3Vy",
-            "Y2VVcGRhdGVQcmlvcml0eRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51",
-            "bml0eS5Db21wb25lbnRJZGVudGlmaWVyEhAKCHByaW9yaXR5GAIgASgFIl4K",
-            "F0F1ZGlvU291cmNlVXBkYXRlVm9sdW1lEjMKAmlkGAEgASgLMicucGx1bWUu",
-            "c2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISDgoGdm9sdW1lGAIg",
-            "ASgCIlwKFkF1ZGlvU291cmNlVXBkYXRlUGl0Y2gSMwoCaWQYASABKAsyJy5w",
-            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchINCgVwaXRj",
-            "aBgCIAEoAiJlChpBdWRpb1NvdXJjZVVwZGF0ZVN0ZXJlb1BhbhIzCgJpZBgB",
-            "IAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVy",
-            "EhIKCnN0ZXJlb19wYW4YAiABKAIikAEKHUF1ZGlvU291cmNlVXBkYXRlU3Bh",
-            "dGlhbEJsZW5kEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNv",
-            "bXBvbmVudElkZW50aWZpZXISOgoNc3BhdGlhbF9ibGVuZBgCIAEoCzIjLnBs",
-            "dW1lLnNhbXBsZS5jb21tb24uQW5pbWF0aW9uQ3VydmUikwEKHkF1ZGlvU291",
-            "cmNlVXBkYXRlUmV2ZXJiWm9uZU1peBIzCgJpZBgBIAEoCzInLnBsdW1lLnNh",
-            "bXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEjwKD3JldmVyYl96b25l",
-            "X21peBgCIAEoCzIjLnBsdW1lLnNhbXBsZS5jb21tb24uQW5pbWF0aW9uQ3Vy",
-            "dmUiawodQXVkaW9Tb3VyY2VVcGRhdGVEb3BwbGVyTGV2ZWwSMwoCaWQYASAB",
-            "KAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIV",
-            "Cg1kb3BwbGVyX2xldmVsGAIgASgCIoMBChdBdWRpb1NvdXJjZVVwZGF0ZVNw",
-            "cmVhZBIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25l",
-            "bnRJZGVudGlmaWVyEjMKBnNwcmVhZBgCIAEoCzIjLnBsdW1lLnNhbXBsZS5j",
-            "b21tb24uQW5pbWF0aW9uQ3VydmUikgEKHkF1ZGlvU291cmNlVXBkYXRlVm9s",
-            "dW1lUm9sbG9mZhIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5D",
-            "b21wb25lbnRJZGVudGlmaWVyEjsKDnZvbHVtZV9yb2xsb2ZmGAIgASgLMiMu",
-            "cGx1bWUuc2FtcGxlLmNvbW1vbi5BbmltYXRpb25DdXJ2ZUIVqgISUExVTUUu",
-            "U2FtcGxlLlVuaXR5YgZwcm90bzM="));
+            "Jy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciJJChJB",
+            "dWRpb1NvdXJjZURlc3Ryb3kSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUu",
+            "dW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciKUCAoRQXVkaW9Tb3VyY2VVcGRh",
+            "dGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50",
+            "SWRlbnRpZmllchI/Cg1hdWRpb19jbGlwX2lkGAIgASgLMiMucGx1bWUuc2Ft",
+            "cGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckgAiAEBEkYKFGF1ZGlvX21peGVy",
+            "X2dyb3VwX2lkGAMgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRl",
+            "bnRpZmllckgBiAEBEhcKCmlzX3BsYXlpbmcYBCABKAhIAogBARIZCgx0aW1l",
+            "X3NhbXBsZXMYBSABKAVIA4gBARIRCgRtdXRlGAYgASgISASIAQESGwoOYnlw",
+            "YXNzX2VmZmVjdHMYByABKAhIBYgBARIkChdieXBhc3NfbGlzdGVuZXJfZWZm",
+            "ZWN0cxgIIAEoCEgGiAEBEiAKE2J5cGFzc19yZXZlcmJfem9uZXMYCSABKAhI",
+            "B4gBARIVCghwcmlvcml0eRgKIAEoBUgIiAEBEhMKBnZvbHVtZRgLIAEoAkgJ",
+            "iAEBEhIKBXBpdGNoGAwgASgCSAqIAQESFwoKc3RlcmVvX3BhbhgNIAEoAkgL",
+            "iAEBEj8KDXNwYXRpYWxfYmxlbmQYDiABKAsyIy5wbHVtZS5zYW1wbGUuY29t",
+            "bW9uLkFuaW1hdGlvbkN1cnZlSAyIAQESQQoPcmV2ZXJiX3pvbmVfbWl4GA8g",
+            "ASgLMiMucGx1bWUuc2FtcGxlLmNvbW1vbi5BbmltYXRpb25DdXJ2ZUgNiAEB",
+            "EhoKDWRvcHBsZXJfbGV2ZWwYECABKAJIDogBARI4CgZzcHJlYWQYESABKAsy",
+            "Iy5wbHVtZS5zYW1wbGUuY29tbW9uLkFuaW1hdGlvbkN1cnZlSA+IAQESQAoO",
+            "dm9sdW1lX3JvbGxvZmYYEiABKAsyIy5wbHVtZS5zYW1wbGUuY29tbW9uLkFu",
+            "aW1hdGlvbkN1cnZlSBCIAQFCEAoOX2F1ZGlvX2NsaXBfaWRCFwoVX2F1ZGlv",
+            "X21peGVyX2dyb3VwX2lkQg0KC19pc19wbGF5aW5nQg8KDV90aW1lX3NhbXBs",
+            "ZXNCBwoFX211dGVCEQoPX2J5cGFzc19lZmZlY3RzQhoKGF9ieXBhc3NfbGlz",
+            "dGVuZXJfZWZmZWN0c0IWChRfYnlwYXNzX3JldmVyYl96b25lc0ILCglfcHJp",
+            "b3JpdHlCCQoHX3ZvbHVtZUIICgZfcGl0Y2hCDQoLX3N0ZXJlb19wYW5CEAoO",
+            "X3NwYXRpYWxfYmxlbmRCEgoQX3JldmVyYl96b25lX21peEIQCg5fZG9wcGxl",
+            "cl9sZXZlbEIJCgdfc3ByZWFkQhEKD192b2x1bWVfcm9sbG9mZkIVqgISUExV",
+            "TUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Common.AnimationCurveReflection.Descriptor, global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceCreate), global::PLUME.Sample.Unity.AudioSourceCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateClip), global::PLUME.Sample.Unity.AudioSourceUpdateClip.Parser, new[]{ "Id", "AudioClipId" }, new[]{ "AudioClipId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateMixer), global::PLUME.Sample.Unity.AudioSourceUpdateMixer.Parser, new[]{ "Id", "AudioMixerGroupId" }, new[]{ "AudioMixerGroupId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdatePlayStatus), global::PLUME.Sample.Unity.AudioSourceUpdatePlayStatus.Parser, new[]{ "Id", "IsPlaying" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateTime), global::PLUME.Sample.Unity.AudioSourceUpdateTime.Parser, new[]{ "Id", "TimeSamples" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateMute), global::PLUME.Sample.Unity.AudioSourceUpdateMute.Parser, new[]{ "Id", "Mute" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateBypass), global::PLUME.Sample.Unity.AudioSourceUpdateBypass.Parser, new[]{ "Id", "BypassEffects", "BypassListenerEffects", "BypassReverbZones" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdatePriority), global::PLUME.Sample.Unity.AudioSourceUpdatePriority.Parser, new[]{ "Id", "Priority" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateVolume), global::PLUME.Sample.Unity.AudioSourceUpdateVolume.Parser, new[]{ "Id", "Volume" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdatePitch), global::PLUME.Sample.Unity.AudioSourceUpdatePitch.Parser, new[]{ "Id", "Pitch" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateStereoPan), global::PLUME.Sample.Unity.AudioSourceUpdateStereoPan.Parser, new[]{ "Id", "StereoPan" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateSpatialBlend), global::PLUME.Sample.Unity.AudioSourceUpdateSpatialBlend.Parser, new[]{ "Id", "SpatialBlend" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateReverbZoneMix), global::PLUME.Sample.Unity.AudioSourceUpdateReverbZoneMix.Parser, new[]{ "Id", "ReverbZoneMix" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateDopplerLevel), global::PLUME.Sample.Unity.AudioSourceUpdateDopplerLevel.Parser, new[]{ "Id", "DopplerLevel" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateSpread), global::PLUME.Sample.Unity.AudioSourceUpdateSpread.Parser, new[]{ "Id", "Spread" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdateVolumeRolloff), global::PLUME.Sample.Unity.AudioSourceUpdateVolumeRolloff.Parser, new[]{ "Id", "VolumeRolloff" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceDestroy), global::PLUME.Sample.Unity.AudioSourceDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AudioSourceUpdate), global::PLUME.Sample.Unity.AudioSourceUpdate.Parser, new[]{ "Id", "AudioClipId", "AudioMixerGroupId", "IsPlaying", "TimeSamples", "Mute", "BypassEffects", "BypassListenerEffects", "BypassReverbZones", "Priority", "Volume", "Pitch", "StereoPan", "SpatialBlend", "ReverbZoneMix", "DopplerLevel", "Spread", "VolumeRolloff" }, new[]{ "AudioClipId", "AudioMixerGroupId", "IsPlaying", "TimeSamples", "Mute", "BypassEffects", "BypassListenerEffects", "BypassReverbZones", "Priority", "Volume", "Pitch", "StereoPan", "SpatialBlend", "ReverbZoneMix", "DopplerLevel", "Spread", "VolumeRolloff" }, null, null, null)
           }));
     }
     #endregion
@@ -296,16 +266,16 @@ namespace PLUME.Sample.Unity {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateClip : pb::IMessage<AudioSourceUpdateClip>
+  public sealed partial class AudioSourceDestroy : pb::IMessage<AudioSourceDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<AudioSourceUpdateClip> _parser = new pb::MessageParser<AudioSourceUpdateClip>(() => new AudioSourceUpdateClip());
+    private static readonly pb::MessageParser<AudioSourceDestroy> _parser = new pb::MessageParser<AudioSourceDestroy>(() => new AudioSourceDestroy());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateClip> Parser { get { return _parser; } }
+    public static pb::MessageParser<AudioSourceDestroy> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -321,7 +291,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateClip() {
+    public AudioSourceDestroy() {
       OnConstruction();
     }
 
@@ -329,16 +299,233 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateClip(AudioSourceUpdateClip other) : this() {
+    public AudioSourceDestroy(AudioSourceDestroy other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      audioClipId_ = other.audioClipId_ != null ? other.audioClipId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateClip Clone() {
-      return new AudioSourceUpdateClip(this);
+    public AudioSourceDestroy Clone() {
+      return new AudioSourceDestroy(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as AudioSourceDestroy);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(AudioSourceDestroy other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(AudioSourceDestroy other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class AudioSourceUpdate : pb::IMessage<AudioSourceUpdate>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<AudioSourceUpdate> _parser = new pb::MessageParser<AudioSourceUpdate>(() => new AudioSourceUpdate());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<AudioSourceUpdate> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AudioSourceUpdate() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AudioSourceUpdate(AudioSourceUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      audioClipId_ = other.audioClipId_ != null ? other.audioClipId_.Clone() : null;
+      audioMixerGroupId_ = other.audioMixerGroupId_ != null ? other.audioMixerGroupId_.Clone() : null;
+      isPlaying_ = other.isPlaying_;
+      timeSamples_ = other.timeSamples_;
+      mute_ = other.mute_;
+      bypassEffects_ = other.bypassEffects_;
+      bypassListenerEffects_ = other.bypassListenerEffects_;
+      bypassReverbZones_ = other.bypassReverbZones_;
+      priority_ = other.priority_;
+      volume_ = other.volume_;
+      pitch_ = other.pitch_;
+      stereoPan_ = other.stereoPan_;
+      spatialBlend_ = other.spatialBlend_ != null ? other.spatialBlend_.Clone() : null;
+      reverbZoneMix_ = other.reverbZoneMix_ != null ? other.reverbZoneMix_.Clone() : null;
+      dopplerLevel_ = other.dopplerLevel_;
+      spread_ = other.spread_ != null ? other.spread_.Clone() : null;
+      volumeRolloff_ = other.volumeRolloff_ != null ? other.volumeRolloff_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AudioSourceUpdate Clone() {
+      return new AudioSourceUpdate(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -365,241 +552,8 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateClip);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateClip other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(AudioClipId, other.AudioClipId)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (audioClipId_ != null) hash ^= AudioClipId.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (audioClipId_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(AudioClipId);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (audioClipId_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(AudioClipId);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (audioClipId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AudioClipId);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateClip other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.audioClipId_ != null) {
-        if (audioClipId_ == null) {
-          AudioClipId = new global::PLUME.Sample.Unity.AssetIdentifier();
-        }
-        AudioClipId.MergeFrom(other.AudioClipId);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (audioClipId_ == null) {
-              AudioClipId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(AudioClipId);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (audioClipId_ == null) {
-              AudioClipId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(AudioClipId);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateMixer : pb::IMessage<AudioSourceUpdateMixer>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdateMixer> _parser = new pb::MessageParser<AudioSourceUpdateMixer>(() => new AudioSourceUpdateMixer());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateMixer> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateMixer() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateMixer(AudioSourceUpdateMixer other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      audioMixerGroupId_ = other.audioMixerGroupId_ != null ? other.audioMixerGroupId_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateMixer Clone() {
-      return new AudioSourceUpdateMixer(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
     /// <summary>Field number for the "audio_mixer_group_id" field.</summary>
-    public const int AudioMixerGroupIdFieldNumber = 2;
+    public const int AudioMixerGroupIdFieldNumber = 3;
     private global::PLUME.Sample.Unity.AssetIdentifier audioMixerGroupId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -610,2203 +564,278 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateMixer);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateMixer other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(AudioMixerGroupId, other.AudioMixerGroupId)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (audioMixerGroupId_ != null) hash ^= AudioMixerGroupId.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (audioMixerGroupId_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(AudioMixerGroupId);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (audioMixerGroupId_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(AudioMixerGroupId);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (audioMixerGroupId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AudioMixerGroupId);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateMixer other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.audioMixerGroupId_ != null) {
-        if (audioMixerGroupId_ == null) {
-          AudioMixerGroupId = new global::PLUME.Sample.Unity.AssetIdentifier();
-        }
-        AudioMixerGroupId.MergeFrom(other.AudioMixerGroupId);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (audioMixerGroupId_ == null) {
-              AudioMixerGroupId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(AudioMixerGroupId);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (audioMixerGroupId_ == null) {
-              AudioMixerGroupId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(AudioMixerGroupId);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdatePlayStatus : pb::IMessage<AudioSourceUpdatePlayStatus>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdatePlayStatus> _parser = new pb::MessageParser<AudioSourceUpdatePlayStatus>(() => new AudioSourceUpdatePlayStatus());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdatePlayStatus> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdatePlayStatus() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdatePlayStatus(AudioSourceUpdatePlayStatus other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      isPlaying_ = other.isPlaying_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdatePlayStatus Clone() {
-      return new AudioSourceUpdatePlayStatus(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
     /// <summary>Field number for the "is_playing" field.</summary>
-    public const int IsPlayingFieldNumber = 2;
+    public const int IsPlayingFieldNumber = 4;
+    private readonly static bool IsPlayingDefaultValue = false;
+
     private bool isPlaying_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool IsPlaying {
-      get { return isPlaying_; }
+      get { if ((_hasBits0 & 1) != 0) { return isPlaying_; } else { return IsPlayingDefaultValue; } }
       set {
+        _hasBits0 |= 1;
         isPlaying_ = value;
       }
     }
-
+    /// <summary>Gets whether the "is_playing" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdatePlayStatus);
+    public bool HasIsPlaying {
+      get { return (_hasBits0 & 1) != 0; }
     }
-
+    /// <summary>Clears the value of the "is_playing" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdatePlayStatus other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (IsPlaying != other.IsPlaying) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (IsPlaying != false) hash ^= IsPlaying.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (IsPlaying != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(IsPlaying);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (IsPlaying != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(IsPlaying);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (IsPlaying != false) {
-        size += 1 + 1;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdatePlayStatus other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.IsPlaying != false) {
-        IsPlaying = other.IsPlaying;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            IsPlaying = input.ReadBool();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            IsPlaying = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateTime : pb::IMessage<AudioSourceUpdateTime>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdateTime> _parser = new pb::MessageParser<AudioSourceUpdateTime>(() => new AudioSourceUpdateTime());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateTime> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[4]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateTime() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateTime(AudioSourceUpdateTime other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      timeSamples_ = other.timeSamples_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateTime Clone() {
-      return new AudioSourceUpdateTime(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearIsPlaying() {
+      _hasBits0 &= ~1;
     }
 
     /// <summary>Field number for the "time_samples" field.</summary>
-    public const int TimeSamplesFieldNumber = 2;
+    public const int TimeSamplesFieldNumber = 5;
+    private readonly static int TimeSamplesDefaultValue = 0;
+
     private int timeSamples_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int TimeSamples {
-      get { return timeSamples_; }
+      get { if ((_hasBits0 & 2) != 0) { return timeSamples_; } else { return TimeSamplesDefaultValue; } }
       set {
+        _hasBits0 |= 2;
         timeSamples_ = value;
       }
     }
-
+    /// <summary>Gets whether the "time_samples" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateTime);
+    public bool HasTimeSamples {
+      get { return (_hasBits0 & 2) != 0; }
     }
-
+    /// <summary>Clears the value of the "time_samples" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateTime other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (TimeSamples != other.TimeSamples) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (TimeSamples != 0) hash ^= TimeSamples.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (TimeSamples != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(TimeSamples);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (TimeSamples != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(TimeSamples);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (TimeSamples != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TimeSamples);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateTime other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.TimeSamples != 0) {
-        TimeSamples = other.TimeSamples;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            TimeSamples = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            TimeSamples = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateMute : pb::IMessage<AudioSourceUpdateMute>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdateMute> _parser = new pb::MessageParser<AudioSourceUpdateMute>(() => new AudioSourceUpdateMute());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateMute> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[5]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateMute() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateMute(AudioSourceUpdateMute other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      mute_ = other.mute_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateMute Clone() {
-      return new AudioSourceUpdateMute(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearTimeSamples() {
+      _hasBits0 &= ~2;
     }
 
     /// <summary>Field number for the "mute" field.</summary>
-    public const int MuteFieldNumber = 2;
+    public const int MuteFieldNumber = 6;
+    private readonly static bool MuteDefaultValue = false;
+
     private bool mute_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Mute {
-      get { return mute_; }
+      get { if ((_hasBits0 & 4) != 0) { return mute_; } else { return MuteDefaultValue; } }
       set {
+        _hasBits0 |= 4;
         mute_ = value;
       }
     }
-
+    /// <summary>Gets whether the "mute" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateMute);
+    public bool HasMute {
+      get { return (_hasBits0 & 4) != 0; }
     }
-
+    /// <summary>Clears the value of the "mute" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateMute other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (Mute != other.Mute) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Mute != false) hash ^= Mute.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Mute != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Mute);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Mute != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Mute);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Mute != false) {
-        size += 1 + 1;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateMute other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Mute != false) {
-        Mute = other.Mute;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Mute = input.ReadBool();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Mute = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateBypass : pb::IMessage<AudioSourceUpdateBypass>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdateBypass> _parser = new pb::MessageParser<AudioSourceUpdateBypass>(() => new AudioSourceUpdateBypass());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateBypass> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[6]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateBypass() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateBypass(AudioSourceUpdateBypass other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      bypassEffects_ = other.bypassEffects_;
-      bypassListenerEffects_ = other.bypassListenerEffects_;
-      bypassReverbZones_ = other.bypassReverbZones_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateBypass Clone() {
-      return new AudioSourceUpdateBypass(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearMute() {
+      _hasBits0 &= ~4;
     }
 
     /// <summary>Field number for the "bypass_effects" field.</summary>
-    public const int BypassEffectsFieldNumber = 2;
+    public const int BypassEffectsFieldNumber = 7;
+    private readonly static bool BypassEffectsDefaultValue = false;
+
     private bool bypassEffects_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool BypassEffects {
-      get { return bypassEffects_; }
+      get { if ((_hasBits0 & 8) != 0) { return bypassEffects_; } else { return BypassEffectsDefaultValue; } }
       set {
+        _hasBits0 |= 8;
         bypassEffects_ = value;
       }
     }
+    /// <summary>Gets whether the "bypass_effects" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBypassEffects {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "bypass_effects" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBypassEffects() {
+      _hasBits0 &= ~8;
+    }
 
     /// <summary>Field number for the "bypass_listener_effects" field.</summary>
-    public const int BypassListenerEffectsFieldNumber = 3;
+    public const int BypassListenerEffectsFieldNumber = 8;
+    private readonly static bool BypassListenerEffectsDefaultValue = false;
+
     private bool bypassListenerEffects_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool BypassListenerEffects {
-      get { return bypassListenerEffects_; }
+      get { if ((_hasBits0 & 16) != 0) { return bypassListenerEffects_; } else { return BypassListenerEffectsDefaultValue; } }
       set {
+        _hasBits0 |= 16;
         bypassListenerEffects_ = value;
       }
     }
+    /// <summary>Gets whether the "bypass_listener_effects" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBypassListenerEffects {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "bypass_listener_effects" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBypassListenerEffects() {
+      _hasBits0 &= ~16;
+    }
 
     /// <summary>Field number for the "bypass_reverb_zones" field.</summary>
-    public const int BypassReverbZonesFieldNumber = 4;
+    public const int BypassReverbZonesFieldNumber = 9;
+    private readonly static bool BypassReverbZonesDefaultValue = false;
+
     private bool bypassReverbZones_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool BypassReverbZones {
-      get { return bypassReverbZones_; }
+      get { if ((_hasBits0 & 32) != 0) { return bypassReverbZones_; } else { return BypassReverbZonesDefaultValue; } }
       set {
+        _hasBits0 |= 32;
         bypassReverbZones_ = value;
       }
     }
-
+    /// <summary>Gets whether the "bypass_reverb_zones" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateBypass);
+    public bool HasBypassReverbZones {
+      get { return (_hasBits0 & 32) != 0; }
     }
-
+    /// <summary>Clears the value of the "bypass_reverb_zones" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateBypass other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (BypassEffects != other.BypassEffects) return false;
-      if (BypassListenerEffects != other.BypassListenerEffects) return false;
-      if (BypassReverbZones != other.BypassReverbZones) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (BypassEffects != false) hash ^= BypassEffects.GetHashCode();
-      if (BypassListenerEffects != false) hash ^= BypassListenerEffects.GetHashCode();
-      if (BypassReverbZones != false) hash ^= BypassReverbZones.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (BypassEffects != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(BypassEffects);
-      }
-      if (BypassListenerEffects != false) {
-        output.WriteRawTag(24);
-        output.WriteBool(BypassListenerEffects);
-      }
-      if (BypassReverbZones != false) {
-        output.WriteRawTag(32);
-        output.WriteBool(BypassReverbZones);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (BypassEffects != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(BypassEffects);
-      }
-      if (BypassListenerEffects != false) {
-        output.WriteRawTag(24);
-        output.WriteBool(BypassListenerEffects);
-      }
-      if (BypassReverbZones != false) {
-        output.WriteRawTag(32);
-        output.WriteBool(BypassReverbZones);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (BypassEffects != false) {
-        size += 1 + 1;
-      }
-      if (BypassListenerEffects != false) {
-        size += 1 + 1;
-      }
-      if (BypassReverbZones != false) {
-        size += 1 + 1;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateBypass other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.BypassEffects != false) {
-        BypassEffects = other.BypassEffects;
-      }
-      if (other.BypassListenerEffects != false) {
-        BypassListenerEffects = other.BypassListenerEffects;
-      }
-      if (other.BypassReverbZones != false) {
-        BypassReverbZones = other.BypassReverbZones;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            BypassEffects = input.ReadBool();
-            break;
-          }
-          case 24: {
-            BypassListenerEffects = input.ReadBool();
-            break;
-          }
-          case 32: {
-            BypassReverbZones = input.ReadBool();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            BypassEffects = input.ReadBool();
-            break;
-          }
-          case 24: {
-            BypassListenerEffects = input.ReadBool();
-            break;
-          }
-          case 32: {
-            BypassReverbZones = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdatePriority : pb::IMessage<AudioSourceUpdatePriority>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdatePriority> _parser = new pb::MessageParser<AudioSourceUpdatePriority>(() => new AudioSourceUpdatePriority());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdatePriority> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[7]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdatePriority() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdatePriority(AudioSourceUpdatePriority other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      priority_ = other.priority_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdatePriority Clone() {
-      return new AudioSourceUpdatePriority(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearBypassReverbZones() {
+      _hasBits0 &= ~32;
     }
 
     /// <summary>Field number for the "priority" field.</summary>
-    public const int PriorityFieldNumber = 2;
+    public const int PriorityFieldNumber = 10;
+    private readonly static int PriorityDefaultValue = 0;
+
     private int priority_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Priority {
-      get { return priority_; }
+      get { if ((_hasBits0 & 64) != 0) { return priority_; } else { return PriorityDefaultValue; } }
       set {
+        _hasBits0 |= 64;
         priority_ = value;
       }
     }
-
+    /// <summary>Gets whether the "priority" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdatePriority);
+    public bool HasPriority {
+      get { return (_hasBits0 & 64) != 0; }
     }
-
+    /// <summary>Clears the value of the "priority" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdatePriority other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (Priority != other.Priority) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Priority != 0) hash ^= Priority.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Priority != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Priority);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Priority != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Priority);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Priority != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Priority);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdatePriority other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Priority != 0) {
-        Priority = other.Priority;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Priority = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Priority = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateVolume : pb::IMessage<AudioSourceUpdateVolume>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdateVolume> _parser = new pb::MessageParser<AudioSourceUpdateVolume>(() => new AudioSourceUpdateVolume());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateVolume> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[8]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateVolume() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateVolume(AudioSourceUpdateVolume other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      volume_ = other.volume_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateVolume Clone() {
-      return new AudioSourceUpdateVolume(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearPriority() {
+      _hasBits0 &= ~64;
     }
 
     /// <summary>Field number for the "volume" field.</summary>
-    public const int VolumeFieldNumber = 2;
+    public const int VolumeFieldNumber = 11;
+    private readonly static float VolumeDefaultValue = 0F;
+
     private float volume_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float Volume {
-      get { return volume_; }
+      get { if ((_hasBits0 & 128) != 0) { return volume_; } else { return VolumeDefaultValue; } }
       set {
+        _hasBits0 |= 128;
         volume_ = value;
       }
     }
-
+    /// <summary>Gets whether the "volume" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateVolume);
+    public bool HasVolume {
+      get { return (_hasBits0 & 128) != 0; }
     }
-
+    /// <summary>Clears the value of the "volume" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateVolume other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Volume, other.Volume)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Volume != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Volume);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Volume != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Volume);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Volume != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Volume);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Volume != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateVolume other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Volume != 0F) {
-        Volume = other.Volume;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            Volume = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            Volume = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdatePitch : pb::IMessage<AudioSourceUpdatePitch>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdatePitch> _parser = new pb::MessageParser<AudioSourceUpdatePitch>(() => new AudioSourceUpdatePitch());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdatePitch> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[9]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdatePitch() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdatePitch(AudioSourceUpdatePitch other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      pitch_ = other.pitch_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdatePitch Clone() {
-      return new AudioSourceUpdatePitch(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearVolume() {
+      _hasBits0 &= ~128;
     }
 
     /// <summary>Field number for the "pitch" field.</summary>
-    public const int PitchFieldNumber = 2;
+    public const int PitchFieldNumber = 12;
+    private readonly static float PitchDefaultValue = 0F;
+
     private float pitch_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float Pitch {
-      get { return pitch_; }
+      get { if ((_hasBits0 & 256) != 0) { return pitch_; } else { return PitchDefaultValue; } }
       set {
+        _hasBits0 |= 256;
         pitch_ = value;
       }
     }
-
+    /// <summary>Gets whether the "pitch" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdatePitch);
+    public bool HasPitch {
+      get { return (_hasBits0 & 256) != 0; }
     }
-
+    /// <summary>Clears the value of the "pitch" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdatePitch other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Pitch, other.Pitch)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Pitch != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Pitch);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Pitch != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Pitch);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Pitch != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Pitch);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Pitch != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdatePitch other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Pitch != 0F) {
-        Pitch = other.Pitch;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            Pitch = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            Pitch = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateStereoPan : pb::IMessage<AudioSourceUpdateStereoPan>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdateStereoPan> _parser = new pb::MessageParser<AudioSourceUpdateStereoPan>(() => new AudioSourceUpdateStereoPan());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateStereoPan> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[10]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateStereoPan() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateStereoPan(AudioSourceUpdateStereoPan other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      stereoPan_ = other.stereoPan_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateStereoPan Clone() {
-      return new AudioSourceUpdateStereoPan(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearPitch() {
+      _hasBits0 &= ~256;
     }
 
     /// <summary>Field number for the "stereo_pan" field.</summary>
-    public const int StereoPanFieldNumber = 2;
+    public const int StereoPanFieldNumber = 13;
+    private readonly static float StereoPanDefaultValue = 0F;
+
     private float stereoPan_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float StereoPan {
-      get { return stereoPan_; }
+      get { if ((_hasBits0 & 512) != 0) { return stereoPan_; } else { return StereoPanDefaultValue; } }
       set {
+        _hasBits0 |= 512;
         stereoPan_ = value;
       }
     }
-
+    /// <summary>Gets whether the "stereo_pan" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateStereoPan);
+    public bool HasStereoPan {
+      get { return (_hasBits0 & 512) != 0; }
     }
-
+    /// <summary>Clears the value of the "stereo_pan" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateStereoPan other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(StereoPan, other.StereoPan)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (StereoPan != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(StereoPan);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (StereoPan != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(StereoPan);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (StereoPan != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(StereoPan);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (StereoPan != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateStereoPan other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.StereoPan != 0F) {
-        StereoPan = other.StereoPan;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            StereoPan = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            StereoPan = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateSpatialBlend : pb::IMessage<AudioSourceUpdateSpatialBlend>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdateSpatialBlend> _parser = new pb::MessageParser<AudioSourceUpdateSpatialBlend>(() => new AudioSourceUpdateSpatialBlend());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateSpatialBlend> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[11]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateSpatialBlend() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateSpatialBlend(AudioSourceUpdateSpatialBlend other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      spatialBlend_ = other.spatialBlend_ != null ? other.spatialBlend_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateSpatialBlend Clone() {
-      return new AudioSourceUpdateSpatialBlend(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearStereoPan() {
+      _hasBits0 &= ~512;
     }
 
     /// <summary>Field number for the "spatial_blend" field.</summary>
-    public const int SpatialBlendFieldNumber = 2;
+    public const int SpatialBlendFieldNumber = 14;
     private global::PLUME.Sample.Common.AnimationCurve spatialBlend_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2817,241 +846,8 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateSpatialBlend);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateSpatialBlend other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(SpatialBlend, other.SpatialBlend)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (spatialBlend_ != null) hash ^= SpatialBlend.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (spatialBlend_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(SpatialBlend);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (spatialBlend_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(SpatialBlend);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (spatialBlend_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SpatialBlend);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateSpatialBlend other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.spatialBlend_ != null) {
-        if (spatialBlend_ == null) {
-          SpatialBlend = new global::PLUME.Sample.Common.AnimationCurve();
-        }
-        SpatialBlend.MergeFrom(other.SpatialBlend);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (spatialBlend_ == null) {
-              SpatialBlend = new global::PLUME.Sample.Common.AnimationCurve();
-            }
-            input.ReadMessage(SpatialBlend);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (spatialBlend_ == null) {
-              SpatialBlend = new global::PLUME.Sample.Common.AnimationCurve();
-            }
-            input.ReadMessage(SpatialBlend);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateReverbZoneMix : pb::IMessage<AudioSourceUpdateReverbZoneMix>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdateReverbZoneMix> _parser = new pb::MessageParser<AudioSourceUpdateReverbZoneMix>(() => new AudioSourceUpdateReverbZoneMix());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateReverbZoneMix> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[12]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateReverbZoneMix() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateReverbZoneMix(AudioSourceUpdateReverbZoneMix other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      reverbZoneMix_ = other.reverbZoneMix_ != null ? other.reverbZoneMix_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateReverbZoneMix Clone() {
-      return new AudioSourceUpdateReverbZoneMix(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
     /// <summary>Field number for the "reverb_zone_mix" field.</summary>
-    public const int ReverbZoneMixFieldNumber = 2;
+    public const int ReverbZoneMixFieldNumber = 15;
     private global::PLUME.Sample.Common.AnimationCurve reverbZoneMix_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3062,477 +858,35 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateReverbZoneMix);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateReverbZoneMix other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(ReverbZoneMix, other.ReverbZoneMix)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (reverbZoneMix_ != null) hash ^= ReverbZoneMix.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (reverbZoneMix_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(ReverbZoneMix);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (reverbZoneMix_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(ReverbZoneMix);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (reverbZoneMix_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ReverbZoneMix);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateReverbZoneMix other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.reverbZoneMix_ != null) {
-        if (reverbZoneMix_ == null) {
-          ReverbZoneMix = new global::PLUME.Sample.Common.AnimationCurve();
-        }
-        ReverbZoneMix.MergeFrom(other.ReverbZoneMix);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (reverbZoneMix_ == null) {
-              ReverbZoneMix = new global::PLUME.Sample.Common.AnimationCurve();
-            }
-            input.ReadMessage(ReverbZoneMix);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (reverbZoneMix_ == null) {
-              ReverbZoneMix = new global::PLUME.Sample.Common.AnimationCurve();
-            }
-            input.ReadMessage(ReverbZoneMix);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateDopplerLevel : pb::IMessage<AudioSourceUpdateDopplerLevel>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdateDopplerLevel> _parser = new pb::MessageParser<AudioSourceUpdateDopplerLevel>(() => new AudioSourceUpdateDopplerLevel());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateDopplerLevel> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[13]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateDopplerLevel() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateDopplerLevel(AudioSourceUpdateDopplerLevel other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      dopplerLevel_ = other.dopplerLevel_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateDopplerLevel Clone() {
-      return new AudioSourceUpdateDopplerLevel(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
     /// <summary>Field number for the "doppler_level" field.</summary>
-    public const int DopplerLevelFieldNumber = 2;
+    public const int DopplerLevelFieldNumber = 16;
+    private readonly static float DopplerLevelDefaultValue = 0F;
+
     private float dopplerLevel_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float DopplerLevel {
-      get { return dopplerLevel_; }
+      get { if ((_hasBits0 & 1024) != 0) { return dopplerLevel_; } else { return DopplerLevelDefaultValue; } }
       set {
+        _hasBits0 |= 1024;
         dopplerLevel_ = value;
       }
     }
-
+    /// <summary>Gets whether the "doppler_level" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateDopplerLevel);
+    public bool HasDopplerLevel {
+      get { return (_hasBits0 & 1024) != 0; }
     }
-
+    /// <summary>Clears the value of the "doppler_level" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateDopplerLevel other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(DopplerLevel, other.DopplerLevel)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (DopplerLevel != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DopplerLevel);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (DopplerLevel != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(DopplerLevel);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (DopplerLevel != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(DopplerLevel);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (DopplerLevel != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateDopplerLevel other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.DopplerLevel != 0F) {
-        DopplerLevel = other.DopplerLevel;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            DopplerLevel = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            DopplerLevel = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateSpread : pb::IMessage<AudioSourceUpdateSpread>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdateSpread> _parser = new pb::MessageParser<AudioSourceUpdateSpread>(() => new AudioSourceUpdateSpread());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateSpread> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[14]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateSpread() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateSpread(AudioSourceUpdateSpread other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      spread_ = other.spread_ != null ? other.spread_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateSpread Clone() {
-      return new AudioSourceUpdateSpread(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearDopplerLevel() {
+      _hasBits0 &= ~1024;
     }
 
     /// <summary>Field number for the "spread" field.</summary>
-    public const int SpreadFieldNumber = 2;
+    public const int SpreadFieldNumber = 17;
     private global::PLUME.Sample.Common.AnimationCurve spread_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3543,241 +897,8 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateSpread);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateSpread other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(Spread, other.Spread)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (spread_ != null) hash ^= Spread.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (spread_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Spread);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (spread_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Spread);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (spread_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Spread);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateSpread other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.spread_ != null) {
-        if (spread_ == null) {
-          Spread = new global::PLUME.Sample.Common.AnimationCurve();
-        }
-        Spread.MergeFrom(other.Spread);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (spread_ == null) {
-              Spread = new global::PLUME.Sample.Common.AnimationCurve();
-            }
-            input.ReadMessage(Spread);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (spread_ == null) {
-              Spread = new global::PLUME.Sample.Common.AnimationCurve();
-            }
-            input.ReadMessage(Spread);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class AudioSourceUpdateVolumeRolloff : pb::IMessage<AudioSourceUpdateVolumeRolloff>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<AudioSourceUpdateVolumeRolloff> _parser = new pb::MessageParser<AudioSourceUpdateVolumeRolloff>(() => new AudioSourceUpdateVolumeRolloff());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AudioSourceUpdateVolumeRolloff> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.AudioSourceReflection.Descriptor.MessageTypes[15]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateVolumeRolloff() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateVolumeRolloff(AudioSourceUpdateVolumeRolloff other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      volumeRolloff_ = other.volumeRolloff_ != null ? other.volumeRolloff_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AudioSourceUpdateVolumeRolloff Clone() {
-      return new AudioSourceUpdateVolumeRolloff(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
     /// <summary>Field number for the "volume_rolloff" field.</summary>
-    public const int VolumeRolloffFieldNumber = 2;
+    public const int VolumeRolloffFieldNumber = 18;
     private global::PLUME.Sample.Common.AnimationCurve volumeRolloff_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3791,12 +912,12 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as AudioSourceUpdateVolumeRolloff);
+      return Equals(other as AudioSourceUpdate);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AudioSourceUpdateVolumeRolloff other) {
+    public bool Equals(AudioSourceUpdate other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -3804,6 +925,22 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
+      if (!object.Equals(AudioClipId, other.AudioClipId)) return false;
+      if (!object.Equals(AudioMixerGroupId, other.AudioMixerGroupId)) return false;
+      if (IsPlaying != other.IsPlaying) return false;
+      if (TimeSamples != other.TimeSamples) return false;
+      if (Mute != other.Mute) return false;
+      if (BypassEffects != other.BypassEffects) return false;
+      if (BypassListenerEffects != other.BypassListenerEffects) return false;
+      if (BypassReverbZones != other.BypassReverbZones) return false;
+      if (Priority != other.Priority) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Volume, other.Volume)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Pitch, other.Pitch)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(StereoPan, other.StereoPan)) return false;
+      if (!object.Equals(SpatialBlend, other.SpatialBlend)) return false;
+      if (!object.Equals(ReverbZoneMix, other.ReverbZoneMix)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(DopplerLevel, other.DopplerLevel)) return false;
+      if (!object.Equals(Spread, other.Spread)) return false;
       if (!object.Equals(VolumeRolloff, other.VolumeRolloff)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -3813,6 +950,22 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
+      if (audioClipId_ != null) hash ^= AudioClipId.GetHashCode();
+      if (audioMixerGroupId_ != null) hash ^= AudioMixerGroupId.GetHashCode();
+      if (HasIsPlaying) hash ^= IsPlaying.GetHashCode();
+      if (HasTimeSamples) hash ^= TimeSamples.GetHashCode();
+      if (HasMute) hash ^= Mute.GetHashCode();
+      if (HasBypassEffects) hash ^= BypassEffects.GetHashCode();
+      if (HasBypassListenerEffects) hash ^= BypassListenerEffects.GetHashCode();
+      if (HasBypassReverbZones) hash ^= BypassReverbZones.GetHashCode();
+      if (HasPriority) hash ^= Priority.GetHashCode();
+      if (HasVolume) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Volume);
+      if (HasPitch) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Pitch);
+      if (HasStereoPan) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(StereoPan);
+      if (spatialBlend_ != null) hash ^= SpatialBlend.GetHashCode();
+      if (reverbZoneMix_ != null) hash ^= ReverbZoneMix.GetHashCode();
+      if (HasDopplerLevel) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DopplerLevel);
+      if (spread_ != null) hash ^= Spread.GetHashCode();
       if (volumeRolloff_ != null) hash ^= VolumeRolloff.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -3836,8 +989,72 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (volumeRolloff_ != null) {
+      if (audioClipId_ != null) {
         output.WriteRawTag(18);
+        output.WriteMessage(AudioClipId);
+      }
+      if (audioMixerGroupId_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(AudioMixerGroupId);
+      }
+      if (HasIsPlaying) {
+        output.WriteRawTag(32);
+        output.WriteBool(IsPlaying);
+      }
+      if (HasTimeSamples) {
+        output.WriteRawTag(40);
+        output.WriteInt32(TimeSamples);
+      }
+      if (HasMute) {
+        output.WriteRawTag(48);
+        output.WriteBool(Mute);
+      }
+      if (HasBypassEffects) {
+        output.WriteRawTag(56);
+        output.WriteBool(BypassEffects);
+      }
+      if (HasBypassListenerEffects) {
+        output.WriteRawTag(64);
+        output.WriteBool(BypassListenerEffects);
+      }
+      if (HasBypassReverbZones) {
+        output.WriteRawTag(72);
+        output.WriteBool(BypassReverbZones);
+      }
+      if (HasPriority) {
+        output.WriteRawTag(80);
+        output.WriteInt32(Priority);
+      }
+      if (HasVolume) {
+        output.WriteRawTag(93);
+        output.WriteFloat(Volume);
+      }
+      if (HasPitch) {
+        output.WriteRawTag(101);
+        output.WriteFloat(Pitch);
+      }
+      if (HasStereoPan) {
+        output.WriteRawTag(109);
+        output.WriteFloat(StereoPan);
+      }
+      if (spatialBlend_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(SpatialBlend);
+      }
+      if (reverbZoneMix_ != null) {
+        output.WriteRawTag(122);
+        output.WriteMessage(ReverbZoneMix);
+      }
+      if (HasDopplerLevel) {
+        output.WriteRawTag(133, 1);
+        output.WriteFloat(DopplerLevel);
+      }
+      if (spread_ != null) {
+        output.WriteRawTag(138, 1);
+        output.WriteMessage(Spread);
+      }
+      if (volumeRolloff_ != null) {
+        output.WriteRawTag(146, 1);
         output.WriteMessage(VolumeRolloff);
       }
       if (_unknownFields != null) {
@@ -3854,8 +1071,72 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (volumeRolloff_ != null) {
+      if (audioClipId_ != null) {
         output.WriteRawTag(18);
+        output.WriteMessage(AudioClipId);
+      }
+      if (audioMixerGroupId_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(AudioMixerGroupId);
+      }
+      if (HasIsPlaying) {
+        output.WriteRawTag(32);
+        output.WriteBool(IsPlaying);
+      }
+      if (HasTimeSamples) {
+        output.WriteRawTag(40);
+        output.WriteInt32(TimeSamples);
+      }
+      if (HasMute) {
+        output.WriteRawTag(48);
+        output.WriteBool(Mute);
+      }
+      if (HasBypassEffects) {
+        output.WriteRawTag(56);
+        output.WriteBool(BypassEffects);
+      }
+      if (HasBypassListenerEffects) {
+        output.WriteRawTag(64);
+        output.WriteBool(BypassListenerEffects);
+      }
+      if (HasBypassReverbZones) {
+        output.WriteRawTag(72);
+        output.WriteBool(BypassReverbZones);
+      }
+      if (HasPriority) {
+        output.WriteRawTag(80);
+        output.WriteInt32(Priority);
+      }
+      if (HasVolume) {
+        output.WriteRawTag(93);
+        output.WriteFloat(Volume);
+      }
+      if (HasPitch) {
+        output.WriteRawTag(101);
+        output.WriteFloat(Pitch);
+      }
+      if (HasStereoPan) {
+        output.WriteRawTag(109);
+        output.WriteFloat(StereoPan);
+      }
+      if (spatialBlend_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(SpatialBlend);
+      }
+      if (reverbZoneMix_ != null) {
+        output.WriteRawTag(122);
+        output.WriteMessage(ReverbZoneMix);
+      }
+      if (HasDopplerLevel) {
+        output.WriteRawTag(133, 1);
+        output.WriteFloat(DopplerLevel);
+      }
+      if (spread_ != null) {
+        output.WriteRawTag(138, 1);
+        output.WriteMessage(Spread);
+      }
+      if (volumeRolloff_ != null) {
+        output.WriteRawTag(146, 1);
         output.WriteMessage(VolumeRolloff);
       }
       if (_unknownFields != null) {
@@ -3871,8 +1152,56 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
+      if (audioClipId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AudioClipId);
+      }
+      if (audioMixerGroupId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AudioMixerGroupId);
+      }
+      if (HasIsPlaying) {
+        size += 1 + 1;
+      }
+      if (HasTimeSamples) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TimeSamples);
+      }
+      if (HasMute) {
+        size += 1 + 1;
+      }
+      if (HasBypassEffects) {
+        size += 1 + 1;
+      }
+      if (HasBypassListenerEffects) {
+        size += 1 + 1;
+      }
+      if (HasBypassReverbZones) {
+        size += 1 + 1;
+      }
+      if (HasPriority) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Priority);
+      }
+      if (HasVolume) {
+        size += 1 + 4;
+      }
+      if (HasPitch) {
+        size += 1 + 4;
+      }
+      if (HasStereoPan) {
+        size += 1 + 4;
+      }
+      if (spatialBlend_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SpatialBlend);
+      }
+      if (reverbZoneMix_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ReverbZoneMix);
+      }
+      if (HasDopplerLevel) {
+        size += 2 + 4;
+      }
+      if (spread_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Spread);
+      }
       if (volumeRolloff_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(VolumeRolloff);
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(VolumeRolloff);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3882,7 +1211,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AudioSourceUpdateVolumeRolloff other) {
+    public void MergeFrom(AudioSourceUpdate other) {
       if (other == null) {
         return;
       }
@@ -3891,6 +1220,69 @@ namespace PLUME.Sample.Unity {
           Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         Id.MergeFrom(other.Id);
+      }
+      if (other.audioClipId_ != null) {
+        if (audioClipId_ == null) {
+          AudioClipId = new global::PLUME.Sample.Unity.AssetIdentifier();
+        }
+        AudioClipId.MergeFrom(other.AudioClipId);
+      }
+      if (other.audioMixerGroupId_ != null) {
+        if (audioMixerGroupId_ == null) {
+          AudioMixerGroupId = new global::PLUME.Sample.Unity.AssetIdentifier();
+        }
+        AudioMixerGroupId.MergeFrom(other.AudioMixerGroupId);
+      }
+      if (other.HasIsPlaying) {
+        IsPlaying = other.IsPlaying;
+      }
+      if (other.HasTimeSamples) {
+        TimeSamples = other.TimeSamples;
+      }
+      if (other.HasMute) {
+        Mute = other.Mute;
+      }
+      if (other.HasBypassEffects) {
+        BypassEffects = other.BypassEffects;
+      }
+      if (other.HasBypassListenerEffects) {
+        BypassListenerEffects = other.BypassListenerEffects;
+      }
+      if (other.HasBypassReverbZones) {
+        BypassReverbZones = other.BypassReverbZones;
+      }
+      if (other.HasPriority) {
+        Priority = other.Priority;
+      }
+      if (other.HasVolume) {
+        Volume = other.Volume;
+      }
+      if (other.HasPitch) {
+        Pitch = other.Pitch;
+      }
+      if (other.HasStereoPan) {
+        StereoPan = other.StereoPan;
+      }
+      if (other.spatialBlend_ != null) {
+        if (spatialBlend_ == null) {
+          SpatialBlend = new global::PLUME.Sample.Common.AnimationCurve();
+        }
+        SpatialBlend.MergeFrom(other.SpatialBlend);
+      }
+      if (other.reverbZoneMix_ != null) {
+        if (reverbZoneMix_ == null) {
+          ReverbZoneMix = new global::PLUME.Sample.Common.AnimationCurve();
+        }
+        ReverbZoneMix.MergeFrom(other.ReverbZoneMix);
+      }
+      if (other.HasDopplerLevel) {
+        DopplerLevel = other.DopplerLevel;
+      }
+      if (other.spread_ != null) {
+        if (spread_ == null) {
+          Spread = new global::PLUME.Sample.Common.AnimationCurve();
+        }
+        Spread.MergeFrom(other.Spread);
       }
       if (other.volumeRolloff_ != null) {
         if (volumeRolloff_ == null) {
@@ -3921,6 +1313,85 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 18: {
+            if (audioClipId_ == null) {
+              AudioClipId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(AudioClipId);
+            break;
+          }
+          case 26: {
+            if (audioMixerGroupId_ == null) {
+              AudioMixerGroupId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(AudioMixerGroupId);
+            break;
+          }
+          case 32: {
+            IsPlaying = input.ReadBool();
+            break;
+          }
+          case 40: {
+            TimeSamples = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            Mute = input.ReadBool();
+            break;
+          }
+          case 56: {
+            BypassEffects = input.ReadBool();
+            break;
+          }
+          case 64: {
+            BypassListenerEffects = input.ReadBool();
+            break;
+          }
+          case 72: {
+            BypassReverbZones = input.ReadBool();
+            break;
+          }
+          case 80: {
+            Priority = input.ReadInt32();
+            break;
+          }
+          case 93: {
+            Volume = input.ReadFloat();
+            break;
+          }
+          case 101: {
+            Pitch = input.ReadFloat();
+            break;
+          }
+          case 109: {
+            StereoPan = input.ReadFloat();
+            break;
+          }
+          case 114: {
+            if (spatialBlend_ == null) {
+              SpatialBlend = new global::PLUME.Sample.Common.AnimationCurve();
+            }
+            input.ReadMessage(SpatialBlend);
+            break;
+          }
+          case 122: {
+            if (reverbZoneMix_ == null) {
+              ReverbZoneMix = new global::PLUME.Sample.Common.AnimationCurve();
+            }
+            input.ReadMessage(ReverbZoneMix);
+            break;
+          }
+          case 133: {
+            DopplerLevel = input.ReadFloat();
+            break;
+          }
+          case 138: {
+            if (spread_ == null) {
+              Spread = new global::PLUME.Sample.Common.AnimationCurve();
+            }
+            input.ReadMessage(Spread);
+            break;
+          }
+          case 146: {
             if (volumeRolloff_ == null) {
               VolumeRolloff = new global::PLUME.Sample.Common.AnimationCurve();
             }
@@ -3950,6 +1421,85 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 18: {
+            if (audioClipId_ == null) {
+              AudioClipId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(AudioClipId);
+            break;
+          }
+          case 26: {
+            if (audioMixerGroupId_ == null) {
+              AudioMixerGroupId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(AudioMixerGroupId);
+            break;
+          }
+          case 32: {
+            IsPlaying = input.ReadBool();
+            break;
+          }
+          case 40: {
+            TimeSamples = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            Mute = input.ReadBool();
+            break;
+          }
+          case 56: {
+            BypassEffects = input.ReadBool();
+            break;
+          }
+          case 64: {
+            BypassListenerEffects = input.ReadBool();
+            break;
+          }
+          case 72: {
+            BypassReverbZones = input.ReadBool();
+            break;
+          }
+          case 80: {
+            Priority = input.ReadInt32();
+            break;
+          }
+          case 93: {
+            Volume = input.ReadFloat();
+            break;
+          }
+          case 101: {
+            Pitch = input.ReadFloat();
+            break;
+          }
+          case 109: {
+            StereoPan = input.ReadFloat();
+            break;
+          }
+          case 114: {
+            if (spatialBlend_ == null) {
+              SpatialBlend = new global::PLUME.Sample.Common.AnimationCurve();
+            }
+            input.ReadMessage(SpatialBlend);
+            break;
+          }
+          case 122: {
+            if (reverbZoneMix_ == null) {
+              ReverbZoneMix = new global::PLUME.Sample.Common.AnimationCurve();
+            }
+            input.ReadMessage(ReverbZoneMix);
+            break;
+          }
+          case 133: {
+            DopplerLevel = input.ReadFloat();
+            break;
+          }
+          case 138: {
+            if (spread_ == null) {
+              Spread = new global::PLUME.Sample.Common.AnimationCurve();
+            }
+            input.ReadMessage(Spread);
+            break;
+          }
+          case 146: {
             if (volumeRolloff_ == null) {
               VolumeRolloff = new global::PLUME.Sample.Common.AnimationCurve();
             }

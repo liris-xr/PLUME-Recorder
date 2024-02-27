@@ -10,10 +10,10 @@ namespace PLUME.Base.Module.Unity.Transform.Job
     internal struct MergePositionStatesJob : IJobParallelForBatch
     {
         [ReadOnly] public NativeArray<TransformPositionState> PositionStatesWorkCopy;
-        [ReadOnly] public NativeArray<ObjectIdentifier> IdentifiersWorkCopy;
+        [ReadOnly] public NativeArray<ComponentIdentifier> IdentifiersWorkCopy;
 
         [NativeDisableParallelForRestriction]
-        public NativeHashMap<ObjectIdentifier, TransformPositionState> PositionStates;
+        public NativeHashMap<ComponentIdentifier, TransformPositionState> PositionStates;
 
         public void Execute(int startIndex, int count)
         {

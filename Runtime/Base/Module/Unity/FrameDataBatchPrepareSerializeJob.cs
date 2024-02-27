@@ -1,5 +1,6 @@
 using System.Threading;
 using PLUME.Sample.ProtoBurst;
+using PLUME.Sample.ProtoBurst.Unity;
 using ProtoBurst;
 using ProtoBurst.Message;
 using Unity.Burst;
@@ -7,7 +8,7 @@ using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Jobs;
 
-namespace PLUME.Base.Module
+namespace PLUME.Base.Module.Unity
 {
     [BurstCompile]
     public struct FrameDataBatchPrepareSerializeJob<T> : IJobParallelForBatch where T : unmanaged, IProtoBurstMessage

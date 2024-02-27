@@ -1,63 +1,35 @@
-using System;
-using PLUME.Base.Module.Unity.MeshFilter.Sample;
+using System.Collections.Generic;
 using PLUME.Core.Recorder.Module.Frame;
-using Unity.Collections;
+using PLUME.Sample.Unity;
 
 namespace PLUME.Base.Module.Unity.MeshFilter
 {
-    public struct MeshFilterFrameData : IFrameData, IDisposable
+    public class MeshFilterFrameData : IFrameData
     {
-        private NativeList<MeshFilterUpdate> _updateSamples;
-        private NativeList<MeshFilterCreate> _createSamples;
-        private NativeList<MeshFilterDestroy> _destroySamples;
+        private readonly List<MeshFilterCreate> _createSamples = new();
+        private readonly List<MeshFilterDestroy> _destroySamples = new();
+        private readonly List<MeshFilterUpdate> _updateSamples = new();
 
-        public MeshFilterFrameData(NativeList<MeshFilterUpdate> updateSamples,
-            NativeList<MeshFilterCreate> createSamples, NativeList<MeshFilterDestroy> destroySamples)
+        public void AddCreateSample(MeshFilterCreate sample)
         {
-            _updateSamples = updateSamples;
-            _createSamples = createSamples;
-            _destroySamples = destroySamples;
+            _createSamples.Add(sample);
+        }
+
+        public void AddDestroySample(MeshFilterDestroy sample)
+        {
+            _destroySamples.Add(sample);
+        }
+
+        public void AddUpdateSample(MeshFilterUpdate sample)
+        {
+            _updateSamples.Add(sample);
         }
 
         public void Serialize(FrameDataWriter frameDataWriter)
         {
-            SerializeCreateSamples(frameDataWriter);
-            SerializeDestroySamples(frameDataWriter);
-            SerializeUpdateSamples(frameDataWriter);
-        }
-
-        private void SerializeUpdateSamples(FrameDataWriter frameDataWriter)
-        {
-            var prepareSerializeJob = new FrameDataBatchPrepareSerializeJob<MeshFilterUpdate>();
-            var serializeJob = new FrameDataBatchSerializeJob<MeshFilterUpdate>();
-            var batchSerializer =
-                new FrameDataBatchSerializer<MeshFilterUpdate>(prepareSerializeJob, serializeJob);
-            frameDataWriter.WriteBatch(_updateSamples.AsArray(), batchSerializer);
-        }
-
-        private void SerializeCreateSamples(FrameDataWriter frameDataWriter)
-        {
-            var prepareSerializeJob = new FrameDataBatchPrepareSerializeJob<MeshFilterCreate>();
-            var serializeJob = new FrameDataBatchSerializeJob<MeshFilterCreate>();
-            var batchSerializer =
-                new FrameDataBatchSerializer<MeshFilterCreate>(prepareSerializeJob, serializeJob);
-            frameDataWriter.WriteBatch(_createSamples.AsArray(), batchSerializer);
-        }
-
-        private void SerializeDestroySamples(FrameDataWriter frameDataWriter)
-        {
-            var prepareSerializeJob = new FrameDataBatchPrepareSerializeJob<MeshFilterDestroy>();
-            var serializeJob = new FrameDataBatchSerializeJob<MeshFilterDestroy>();
-            var batchSerializer =
-                new FrameDataBatchSerializer<MeshFilterDestroy>(prepareSerializeJob, serializeJob);
-            frameDataWriter.WriteBatch(_destroySamples.AsArray(), batchSerializer);
-        }
-
-        public void Dispose()
-        {
-            _updateSamples.Dispose();
-            _createSamples.Dispose();
-            _destroySamples.Dispose();
+            frameDataWriter.WriteManagedBatch(_createSamples);
+            frameDataWriter.WriteManagedBatch(_destroySamples);
+            frameDataWriter.WriteManagedBatch(_updateSamples);
         }
     }
 }

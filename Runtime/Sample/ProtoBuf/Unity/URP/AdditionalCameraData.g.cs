@@ -28,34 +28,45 @@ namespace PLUME.Sample.Unity.URP {
             "bWUuc2FtcGxlLnVuaXR5LnVycBoXdW5pdHkvaWRlbnRpZmllcnMucHJvdG8a",
             "FXVuaXR5L3JlbmRlcmluZy5wcm90byJRChpBZGRpdGlvbmFsQ2FtZXJhRGF0",
             "YUNyZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
-            "b25lbnRJZGVudGlmaWVyIuAFChpBZGRpdGlvbmFsQ2FtZXJhRGF0YVVwZGF0",
-            "ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJ",
-            "ZGVudGlmaWVyEg8KB3ZlcnNpb24YAiABKAISFgoOcmVuZGVyX3NoYWRvd3MY",
-            "AyABKAgSSwoVcmVxdWlyZXNfZGVwdGhfb3B0aW9uGAQgASgOMiwucGx1bWUu",
-            "c2FtcGxlLnVuaXR5LnVycC5DYW1lcmFPdmVycmlkZU9wdGlvbhJLChVyZXF1",
-            "aXJlc19jb2xvcl9vcHRpb24YBSABKA4yLC5wbHVtZS5zYW1wbGUudW5pdHku",
-            "dXJwLkNhbWVyYU92ZXJyaWRlT3B0aW9uEj0KC3JlbmRlcl90eXBlGAYgASgO",
-            "MigucGx1bWUuc2FtcGxlLnVuaXR5LnVycC5DYW1lcmFSZW5kZXJUeXBlEh4K",
-            "FnJlcXVpcmVzX2RlcHRoX3RleHR1cmUYByABKAgSHgoWcmVxdWlyZXNfY29s",
-            "b3JfdGV4dHVyZRgIIAEoCBIZChF2b2x1bWVfbGF5ZXJfbWFzaxgJIAEoBRJM",
-            "ChF2b2x1bWVfdHJpZ2dlcl9pZBgKIAEoCzIxLnBsdW1lLnNhbXBsZS51bml0",
-            "eS5UcmFuc2Zvcm1HYW1lT2JqZWN0SWRlbnRpZmllchIeChZyZW5kZXJfcG9z",
-            "dF9wcm9jZXNzaW5nGAsgASgIEjoKDGFudGlhbGlhc2luZxgMIAEoDjIkLnBs",
-            "dW1lLnNhbXBsZS51bml0eS5BbnRpYWxpYXNpbmdNb2RlEkUKFGFudGlhbGlh",
-            "c2luZ19xdWFsaXR5GA0gASgOMicucGx1bWUuc2FtcGxlLnVuaXR5LkFudGlh",
-            "bGlhc2luZ1F1YWxpdHkSEAoIc3RvcF9uYW4YDiABKAgSEQoJZGl0aGVyaW5n",
-            "GA8gASgIEhoKEmFsbG93X3hyX3JlbmRlcmluZxgQIAEoCCqHAQoUQ2FtZXJh",
-            "T3ZlcnJpZGVPcHRpb24SHgoaQ0FNRVJBX09WRVJSSURFX09QVElPTl9PRkYQ",
-            "ABIdChlDQU1FUkFfT1ZFUlJJREVfT1BUSU9OX09OEAESMAosQ0FNRVJBX09W",
-            "RVJSSURFX09QVElPTl9VU0VfUElQRUxJTkVfU0VUVElOR1MQAipPChBDYW1l",
-            "cmFSZW5kZXJUeXBlEhsKF0NBTUVSQV9SRU5ERVJfVFlQRV9CQVNFEAASHgoa",
-            "Q0FNRVJBX1JFTkRFUl9UWVBFX09WRVJMQVkQAUIZqgIWUExVTUUuU2FtcGxl",
-            "LlVuaXR5LlVSUGIGcHJvdG8z"));
+            "b25lbnRJZGVudGlmaWVyIlIKG0FkZGl0aW9uYWxDYW1lcmFEYXRhRGVzdHJv",
+            "eRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJ",
+            "ZGVudGlmaWVyIt0IChpBZGRpdGlvbmFsQ2FtZXJhRGF0YVVwZGF0ZRIzCgJp",
+            "ZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlm",
+            "aWVyEhQKB3ZlcnNpb24YAiABKAJIAIgBARIbCg5yZW5kZXJfc2hhZG93cxgD",
+            "IAEoCEgBiAEBElAKFXJlcXVpcmVzX2RlcHRoX29wdGlvbhgEIAEoDjIsLnBs",
+            "dW1lLnNhbXBsZS51bml0eS51cnAuQ2FtZXJhT3ZlcnJpZGVPcHRpb25IAogB",
+            "ARJQChVyZXF1aXJlc19jb2xvcl9vcHRpb24YBSABKA4yLC5wbHVtZS5zYW1w",
+            "bGUudW5pdHkudXJwLkNhbWVyYU92ZXJyaWRlT3B0aW9uSAOIAQESQgoLcmVu",
+            "ZGVyX3R5cGUYBiABKA4yKC5wbHVtZS5zYW1wbGUudW5pdHkudXJwLkNhbWVy",
+            "YVJlbmRlclR5cGVIBIgBARIjChZyZXF1aXJlc19kZXB0aF90ZXh0dXJlGAcg",
+            "ASgISAWIAQESIwoWcmVxdWlyZXNfY29sb3JfdGV4dHVyZRgIIAEoCEgGiAEB",
+            "Eh4KEXZvbHVtZV9sYXllcl9tYXNrGAkgASgFSAeIAQESRwoRdm9sdW1lX3Ry",
+            "aWdnZXJfaWQYCiABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50",
+            "SWRlbnRpZmllckgIiAEBEiMKFnJlbmRlcl9wb3N0X3Byb2Nlc3NpbmcYCyAB",
+            "KAhICYgBARI/CgxhbnRpYWxpYXNpbmcYDCABKA4yJC5wbHVtZS5zYW1wbGUu",
+            "dW5pdHkuQW50aWFsaWFzaW5nTW9kZUgKiAEBEkoKFGFudGlhbGlhc2luZ19x",
+            "dWFsaXR5GA0gASgOMicucGx1bWUuc2FtcGxlLnVuaXR5LkFudGlhbGlhc2lu",
+            "Z1F1YWxpdHlIC4gBARIVCghzdG9wX25hbhgOIAEoCEgMiAEBEhYKCWRpdGhl",
+            "cmluZxgPIAEoCEgNiAEBEh8KEmFsbG93X3hyX3JlbmRlcmluZxgQIAEoCEgO",
+            "iAEBQgoKCF92ZXJzaW9uQhEKD19yZW5kZXJfc2hhZG93c0IYChZfcmVxdWly",
+            "ZXNfZGVwdGhfb3B0aW9uQhgKFl9yZXF1aXJlc19jb2xvcl9vcHRpb25CDgoM",
+            "X3JlbmRlcl90eXBlQhkKF19yZXF1aXJlc19kZXB0aF90ZXh0dXJlQhkKF19y",
+            "ZXF1aXJlc19jb2xvcl90ZXh0dXJlQhQKEl92b2x1bWVfbGF5ZXJfbWFza0IU",
+            "ChJfdm9sdW1lX3RyaWdnZXJfaWRCGQoXX3JlbmRlcl9wb3N0X3Byb2Nlc3Np",
+            "bmdCDwoNX2FudGlhbGlhc2luZ0IXChVfYW50aWFsaWFzaW5nX3F1YWxpdHlC",
+            "CwoJX3N0b3BfbmFuQgwKCl9kaXRoZXJpbmdCFQoTX2FsbG93X3hyX3JlbmRl",
+            "cmluZyqHAQoUQ2FtZXJhT3ZlcnJpZGVPcHRpb24SHgoaQ0FNRVJBX09WRVJS",
+            "SURFX09QVElPTl9PRkYQABIdChlDQU1FUkFfT1ZFUlJJREVfT1BUSU9OX09O",
+            "EAESMAosQ0FNRVJBX09WRVJSSURFX09QVElPTl9VU0VfUElQRUxJTkVfU0VU",
+            "VElOR1MQAipPChBDYW1lcmFSZW5kZXJUeXBlEhsKF0NBTUVSQV9SRU5ERVJf",
+            "VFlQRV9CQVNFEAASHgoaQ0FNRVJBX1JFTkRFUl9UWVBFX09WRVJMQVkQAUIZ",
+            "qgIWUExVTUUuU2FtcGxlLlVuaXR5LlVSUGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Unity.RenderingReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.URP.CameraOverrideOption), typeof(global::PLUME.Sample.Unity.URP.CameraRenderType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.AdditionalCameraDataCreate), global::PLUME.Sample.Unity.URP.AdditionalCameraDataCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.AdditionalCameraDataUpdate), global::PLUME.Sample.Unity.URP.AdditionalCameraDataUpdate.Parser, new[]{ "Id", "Version", "RenderShadows", "RequiresDepthOption", "RequiresColorOption", "RenderType", "RequiresDepthTexture", "RequiresColorTexture", "VolumeLayerMask", "VolumeTriggerId", "RenderPostProcessing", "Antialiasing", "AntialiasingQuality", "StopNan", "Dithering", "AllowXrRendering" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.AdditionalCameraDataDestroy), global::PLUME.Sample.Unity.URP.AdditionalCameraDataDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.AdditionalCameraDataUpdate), global::PLUME.Sample.Unity.URP.AdditionalCameraDataUpdate.Parser, new[]{ "Id", "Version", "RenderShadows", "RequiresDepthOption", "RequiresColorOption", "RenderType", "RequiresDepthTexture", "RequiresColorTexture", "VolumeLayerMask", "VolumeTriggerId", "RenderPostProcessing", "Antialiasing", "AntialiasingQuality", "StopNan", "Dithering", "AllowXrRendering" }, new[]{ "Version", "RenderShadows", "RequiresDepthOption", "RequiresColorOption", "RenderType", "RequiresDepthTexture", "RequiresColorTexture", "VolumeLayerMask", "VolumeTriggerId", "RenderPostProcessing", "Antialiasing", "AntialiasingQuality", "StopNan", "Dithering", "AllowXrRendering" }, null, null, null)
           }));
     }
     #endregion
@@ -276,6 +287,205 @@ namespace PLUME.Sample.Unity.URP {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class AdditionalCameraDataDestroy : pb::IMessage<AdditionalCameraDataDestroy>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<AdditionalCameraDataDestroy> _parser = new pb::MessageParser<AdditionalCameraDataDestroy>(() => new AdditionalCameraDataDestroy());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<AdditionalCameraDataDestroy> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.URP.AdditionalCameraDataReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AdditionalCameraDataDestroy() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AdditionalCameraDataDestroy(AdditionalCameraDataDestroy other) : this() {
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AdditionalCameraDataDestroy Clone() {
+      return new AdditionalCameraDataDestroy(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as AdditionalCameraDataDestroy);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(AdditionalCameraDataDestroy other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(AdditionalCameraDataDestroy other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class AdditionalCameraDataUpdate : pb::IMessage<AdditionalCameraDataUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -283,6 +493,7 @@ namespace PLUME.Sample.Unity.URP {
   {
     private static readonly pb::MessageParser<AdditionalCameraDataUpdate> _parser = new pb::MessageParser<AdditionalCameraDataUpdate>(() => new AdditionalCameraDataUpdate());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<AdditionalCameraDataUpdate> Parser { get { return _parser; } }
@@ -290,7 +501,7 @@ namespace PLUME.Sample.Unity.URP {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.URP.AdditionalCameraDataReflection.Descriptor.MessageTypes[1]; }
+      get { return global::PLUME.Sample.Unity.URP.AdditionalCameraDataReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -310,6 +521,7 @@ namespace PLUME.Sample.Unity.URP {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AdditionalCameraDataUpdate(AdditionalCameraDataUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
       version_ = other.version_;
       renderShadows_ = other.renderShadows_;
@@ -349,106 +561,226 @@ namespace PLUME.Sample.Unity.URP {
 
     /// <summary>Field number for the "version" field.</summary>
     public const int VersionFieldNumber = 2;
+    private readonly static float VersionDefaultValue = 0F;
+
     private float version_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float Version {
-      get { return version_; }
+      get { if ((_hasBits0 & 1) != 0) { return version_; } else { return VersionDefaultValue; } }
       set {
+        _hasBits0 |= 1;
         version_ = value;
       }
+    }
+    /// <summary>Gets whether the "version" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasVersion {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "version" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearVersion() {
+      _hasBits0 &= ~1;
     }
 
     /// <summary>Field number for the "render_shadows" field.</summary>
     public const int RenderShadowsFieldNumber = 3;
+    private readonly static bool RenderShadowsDefaultValue = false;
+
     private bool renderShadows_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool RenderShadows {
-      get { return renderShadows_; }
+      get { if ((_hasBits0 & 2) != 0) { return renderShadows_; } else { return RenderShadowsDefaultValue; } }
       set {
+        _hasBits0 |= 2;
         renderShadows_ = value;
       }
+    }
+    /// <summary>Gets whether the "render_shadows" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRenderShadows {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "render_shadows" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRenderShadows() {
+      _hasBits0 &= ~2;
     }
 
     /// <summary>Field number for the "requires_depth_option" field.</summary>
     public const int RequiresDepthOptionFieldNumber = 4;
-    private global::PLUME.Sample.Unity.URP.CameraOverrideOption requiresDepthOption_ = global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off;
+    private readonly static global::PLUME.Sample.Unity.URP.CameraOverrideOption RequiresDepthOptionDefaultValue = global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off;
+
+    private global::PLUME.Sample.Unity.URP.CameraOverrideOption requiresDepthOption_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.URP.CameraOverrideOption RequiresDepthOption {
-      get { return requiresDepthOption_; }
+      get { if ((_hasBits0 & 4) != 0) { return requiresDepthOption_; } else { return RequiresDepthOptionDefaultValue; } }
       set {
+        _hasBits0 |= 4;
         requiresDepthOption_ = value;
       }
+    }
+    /// <summary>Gets whether the "requires_depth_option" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRequiresDepthOption {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "requires_depth_option" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRequiresDepthOption() {
+      _hasBits0 &= ~4;
     }
 
     /// <summary>Field number for the "requires_color_option" field.</summary>
     public const int RequiresColorOptionFieldNumber = 5;
-    private global::PLUME.Sample.Unity.URP.CameraOverrideOption requiresColorOption_ = global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off;
+    private readonly static global::PLUME.Sample.Unity.URP.CameraOverrideOption RequiresColorOptionDefaultValue = global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off;
+
+    private global::PLUME.Sample.Unity.URP.CameraOverrideOption requiresColorOption_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.URP.CameraOverrideOption RequiresColorOption {
-      get { return requiresColorOption_; }
+      get { if ((_hasBits0 & 8) != 0) { return requiresColorOption_; } else { return RequiresColorOptionDefaultValue; } }
       set {
+        _hasBits0 |= 8;
         requiresColorOption_ = value;
       }
+    }
+    /// <summary>Gets whether the "requires_color_option" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRequiresColorOption {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "requires_color_option" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRequiresColorOption() {
+      _hasBits0 &= ~8;
     }
 
     /// <summary>Field number for the "render_type" field.</summary>
     public const int RenderTypeFieldNumber = 6;
-    private global::PLUME.Sample.Unity.URP.CameraRenderType renderType_ = global::PLUME.Sample.Unity.URP.CameraRenderType.Base;
+    private readonly static global::PLUME.Sample.Unity.URP.CameraRenderType RenderTypeDefaultValue = global::PLUME.Sample.Unity.URP.CameraRenderType.Base;
+
+    private global::PLUME.Sample.Unity.URP.CameraRenderType renderType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.URP.CameraRenderType RenderType {
-      get { return renderType_; }
+      get { if ((_hasBits0 & 16) != 0) { return renderType_; } else { return RenderTypeDefaultValue; } }
       set {
+        _hasBits0 |= 16;
         renderType_ = value;
       }
+    }
+    /// <summary>Gets whether the "render_type" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRenderType {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "render_type" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRenderType() {
+      _hasBits0 &= ~16;
     }
 
     /// <summary>Field number for the "requires_depth_texture" field.</summary>
     public const int RequiresDepthTextureFieldNumber = 7;
+    private readonly static bool RequiresDepthTextureDefaultValue = false;
+
     private bool requiresDepthTexture_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool RequiresDepthTexture {
-      get { return requiresDepthTexture_; }
+      get { if ((_hasBits0 & 32) != 0) { return requiresDepthTexture_; } else { return RequiresDepthTextureDefaultValue; } }
       set {
+        _hasBits0 |= 32;
         requiresDepthTexture_ = value;
       }
+    }
+    /// <summary>Gets whether the "requires_depth_texture" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRequiresDepthTexture {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "requires_depth_texture" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRequiresDepthTexture() {
+      _hasBits0 &= ~32;
     }
 
     /// <summary>Field number for the "requires_color_texture" field.</summary>
     public const int RequiresColorTextureFieldNumber = 8;
+    private readonly static bool RequiresColorTextureDefaultValue = false;
+
     private bool requiresColorTexture_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool RequiresColorTexture {
-      get { return requiresColorTexture_; }
+      get { if ((_hasBits0 & 64) != 0) { return requiresColorTexture_; } else { return RequiresColorTextureDefaultValue; } }
       set {
+        _hasBits0 |= 64;
         requiresColorTexture_ = value;
       }
+    }
+    /// <summary>Gets whether the "requires_color_texture" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRequiresColorTexture {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "requires_color_texture" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRequiresColorTexture() {
+      _hasBits0 &= ~64;
     }
 
     /// <summary>Field number for the "volume_layer_mask" field.</summary>
     public const int VolumeLayerMaskFieldNumber = 9;
+    private readonly static int VolumeLayerMaskDefaultValue = 0;
+
     private int volumeLayerMask_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int VolumeLayerMask {
-      get { return volumeLayerMask_; }
+      get { if ((_hasBits0 & 128) != 0) { return volumeLayerMask_; } else { return VolumeLayerMaskDefaultValue; } }
       set {
+        _hasBits0 |= 128;
         volumeLayerMask_ = value;
       }
+    }
+    /// <summary>Gets whether the "volume_layer_mask" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasVolumeLayerMask {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "volume_layer_mask" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearVolumeLayerMask() {
+      _hasBits0 &= ~128;
     }
 
     /// <summary>Field number for the "volume_trigger_id" field.</summary>
     public const int VolumeTriggerIdFieldNumber = 10;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier volumeTriggerId_;
+    private global::PLUME.Sample.Unity.ComponentIdentifier volumeTriggerId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier VolumeTriggerId {
+    public global::PLUME.Sample.Unity.ComponentIdentifier VolumeTriggerId {
       get { return volumeTriggerId_; }
       set {
         volumeTriggerId_ = value;
@@ -457,74 +789,164 @@ namespace PLUME.Sample.Unity.URP {
 
     /// <summary>Field number for the "render_post_processing" field.</summary>
     public const int RenderPostProcessingFieldNumber = 11;
+    private readonly static bool RenderPostProcessingDefaultValue = false;
+
     private bool renderPostProcessing_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool RenderPostProcessing {
-      get { return renderPostProcessing_; }
+      get { if ((_hasBits0 & 256) != 0) { return renderPostProcessing_; } else { return RenderPostProcessingDefaultValue; } }
       set {
+        _hasBits0 |= 256;
         renderPostProcessing_ = value;
       }
+    }
+    /// <summary>Gets whether the "render_post_processing" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRenderPostProcessing {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "render_post_processing" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRenderPostProcessing() {
+      _hasBits0 &= ~256;
     }
 
     /// <summary>Field number for the "antialiasing" field.</summary>
     public const int AntialiasingFieldNumber = 12;
-    private global::PLUME.Sample.Unity.AntialiasingMode antialiasing_ = global::PLUME.Sample.Unity.AntialiasingMode.None;
+    private readonly static global::PLUME.Sample.Unity.AntialiasingMode AntialiasingDefaultValue = global::PLUME.Sample.Unity.AntialiasingMode.None;
+
+    private global::PLUME.Sample.Unity.AntialiasingMode antialiasing_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.AntialiasingMode Antialiasing {
-      get { return antialiasing_; }
+      get { if ((_hasBits0 & 512) != 0) { return antialiasing_; } else { return AntialiasingDefaultValue; } }
       set {
+        _hasBits0 |= 512;
         antialiasing_ = value;
       }
+    }
+    /// <summary>Gets whether the "antialiasing" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAntialiasing {
+      get { return (_hasBits0 & 512) != 0; }
+    }
+    /// <summary>Clears the value of the "antialiasing" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAntialiasing() {
+      _hasBits0 &= ~512;
     }
 
     /// <summary>Field number for the "antialiasing_quality" field.</summary>
     public const int AntialiasingQualityFieldNumber = 13;
-    private global::PLUME.Sample.Unity.AntialiasingQuality antialiasingQuality_ = global::PLUME.Sample.Unity.AntialiasingQuality.Low;
+    private readonly static global::PLUME.Sample.Unity.AntialiasingQuality AntialiasingQualityDefaultValue = global::PLUME.Sample.Unity.AntialiasingQuality.Low;
+
+    private global::PLUME.Sample.Unity.AntialiasingQuality antialiasingQuality_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.AntialiasingQuality AntialiasingQuality {
-      get { return antialiasingQuality_; }
+      get { if ((_hasBits0 & 1024) != 0) { return antialiasingQuality_; } else { return AntialiasingQualityDefaultValue; } }
       set {
+        _hasBits0 |= 1024;
         antialiasingQuality_ = value;
       }
+    }
+    /// <summary>Gets whether the "antialiasing_quality" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAntialiasingQuality {
+      get { return (_hasBits0 & 1024) != 0; }
+    }
+    /// <summary>Clears the value of the "antialiasing_quality" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAntialiasingQuality() {
+      _hasBits0 &= ~1024;
     }
 
     /// <summary>Field number for the "stop_nan" field.</summary>
     public const int StopNanFieldNumber = 14;
+    private readonly static bool StopNanDefaultValue = false;
+
     private bool stopNan_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool StopNan {
-      get { return stopNan_; }
+      get { if ((_hasBits0 & 2048) != 0) { return stopNan_; } else { return StopNanDefaultValue; } }
       set {
+        _hasBits0 |= 2048;
         stopNan_ = value;
       }
+    }
+    /// <summary>Gets whether the "stop_nan" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasStopNan {
+      get { return (_hasBits0 & 2048) != 0; }
+    }
+    /// <summary>Clears the value of the "stop_nan" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearStopNan() {
+      _hasBits0 &= ~2048;
     }
 
     /// <summary>Field number for the "dithering" field.</summary>
     public const int DitheringFieldNumber = 15;
+    private readonly static bool DitheringDefaultValue = false;
+
     private bool dithering_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Dithering {
-      get { return dithering_; }
+      get { if ((_hasBits0 & 4096) != 0) { return dithering_; } else { return DitheringDefaultValue; } }
       set {
+        _hasBits0 |= 4096;
         dithering_ = value;
       }
+    }
+    /// <summary>Gets whether the "dithering" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDithering {
+      get { return (_hasBits0 & 4096) != 0; }
+    }
+    /// <summary>Clears the value of the "dithering" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDithering() {
+      _hasBits0 &= ~4096;
     }
 
     /// <summary>Field number for the "allow_xr_rendering" field.</summary>
     public const int AllowXrRenderingFieldNumber = 16;
+    private readonly static bool AllowXrRenderingDefaultValue = false;
+
     private bool allowXrRendering_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool AllowXrRendering {
-      get { return allowXrRendering_; }
+      get { if ((_hasBits0 & 8192) != 0) { return allowXrRendering_; } else { return AllowXrRenderingDefaultValue; } }
       set {
+        _hasBits0 |= 8192;
         allowXrRendering_ = value;
       }
+    }
+    /// <summary>Gets whether the "allow_xr_rendering" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAllowXrRendering {
+      get { return (_hasBits0 & 8192) != 0; }
+    }
+    /// <summary>Clears the value of the "allow_xr_rendering" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAllowXrRendering() {
+      _hasBits0 &= ~8192;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -566,21 +988,21 @@ namespace PLUME.Sample.Unity.URP {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (Version != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Version);
-      if (RenderShadows != false) hash ^= RenderShadows.GetHashCode();
-      if (RequiresDepthOption != global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off) hash ^= RequiresDepthOption.GetHashCode();
-      if (RequiresColorOption != global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off) hash ^= RequiresColorOption.GetHashCode();
-      if (RenderType != global::PLUME.Sample.Unity.URP.CameraRenderType.Base) hash ^= RenderType.GetHashCode();
-      if (RequiresDepthTexture != false) hash ^= RequiresDepthTexture.GetHashCode();
-      if (RequiresColorTexture != false) hash ^= RequiresColorTexture.GetHashCode();
-      if (VolumeLayerMask != 0) hash ^= VolumeLayerMask.GetHashCode();
+      if (HasVersion) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Version);
+      if (HasRenderShadows) hash ^= RenderShadows.GetHashCode();
+      if (HasRequiresDepthOption) hash ^= RequiresDepthOption.GetHashCode();
+      if (HasRequiresColorOption) hash ^= RequiresColorOption.GetHashCode();
+      if (HasRenderType) hash ^= RenderType.GetHashCode();
+      if (HasRequiresDepthTexture) hash ^= RequiresDepthTexture.GetHashCode();
+      if (HasRequiresColorTexture) hash ^= RequiresColorTexture.GetHashCode();
+      if (HasVolumeLayerMask) hash ^= VolumeLayerMask.GetHashCode();
       if (volumeTriggerId_ != null) hash ^= VolumeTriggerId.GetHashCode();
-      if (RenderPostProcessing != false) hash ^= RenderPostProcessing.GetHashCode();
-      if (Antialiasing != global::PLUME.Sample.Unity.AntialiasingMode.None) hash ^= Antialiasing.GetHashCode();
-      if (AntialiasingQuality != global::PLUME.Sample.Unity.AntialiasingQuality.Low) hash ^= AntialiasingQuality.GetHashCode();
-      if (StopNan != false) hash ^= StopNan.GetHashCode();
-      if (Dithering != false) hash ^= Dithering.GetHashCode();
-      if (AllowXrRendering != false) hash ^= AllowXrRendering.GetHashCode();
+      if (HasRenderPostProcessing) hash ^= RenderPostProcessing.GetHashCode();
+      if (HasAntialiasing) hash ^= Antialiasing.GetHashCode();
+      if (HasAntialiasingQuality) hash ^= AntialiasingQuality.GetHashCode();
+      if (HasStopNan) hash ^= StopNan.GetHashCode();
+      if (HasDithering) hash ^= Dithering.GetHashCode();
+      if (HasAllowXrRendering) hash ^= AllowXrRendering.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -603,35 +1025,35 @@ namespace PLUME.Sample.Unity.URP {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Version != 0F) {
+      if (HasVersion) {
         output.WriteRawTag(21);
         output.WriteFloat(Version);
       }
-      if (RenderShadows != false) {
+      if (HasRenderShadows) {
         output.WriteRawTag(24);
         output.WriteBool(RenderShadows);
       }
-      if (RequiresDepthOption != global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off) {
+      if (HasRequiresDepthOption) {
         output.WriteRawTag(32);
         output.WriteEnum((int) RequiresDepthOption);
       }
-      if (RequiresColorOption != global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off) {
+      if (HasRequiresColorOption) {
         output.WriteRawTag(40);
         output.WriteEnum((int) RequiresColorOption);
       }
-      if (RenderType != global::PLUME.Sample.Unity.URP.CameraRenderType.Base) {
+      if (HasRenderType) {
         output.WriteRawTag(48);
         output.WriteEnum((int) RenderType);
       }
-      if (RequiresDepthTexture != false) {
+      if (HasRequiresDepthTexture) {
         output.WriteRawTag(56);
         output.WriteBool(RequiresDepthTexture);
       }
-      if (RequiresColorTexture != false) {
+      if (HasRequiresColorTexture) {
         output.WriteRawTag(64);
         output.WriteBool(RequiresColorTexture);
       }
-      if (VolumeLayerMask != 0) {
+      if (HasVolumeLayerMask) {
         output.WriteRawTag(72);
         output.WriteInt32(VolumeLayerMask);
       }
@@ -639,27 +1061,27 @@ namespace PLUME.Sample.Unity.URP {
         output.WriteRawTag(82);
         output.WriteMessage(VolumeTriggerId);
       }
-      if (RenderPostProcessing != false) {
+      if (HasRenderPostProcessing) {
         output.WriteRawTag(88);
         output.WriteBool(RenderPostProcessing);
       }
-      if (Antialiasing != global::PLUME.Sample.Unity.AntialiasingMode.None) {
+      if (HasAntialiasing) {
         output.WriteRawTag(96);
         output.WriteEnum((int) Antialiasing);
       }
-      if (AntialiasingQuality != global::PLUME.Sample.Unity.AntialiasingQuality.Low) {
+      if (HasAntialiasingQuality) {
         output.WriteRawTag(104);
         output.WriteEnum((int) AntialiasingQuality);
       }
-      if (StopNan != false) {
+      if (HasStopNan) {
         output.WriteRawTag(112);
         output.WriteBool(StopNan);
       }
-      if (Dithering != false) {
+      if (HasDithering) {
         output.WriteRawTag(120);
         output.WriteBool(Dithering);
       }
-      if (AllowXrRendering != false) {
+      if (HasAllowXrRendering) {
         output.WriteRawTag(128, 1);
         output.WriteBool(AllowXrRendering);
       }
@@ -677,35 +1099,35 @@ namespace PLUME.Sample.Unity.URP {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Version != 0F) {
+      if (HasVersion) {
         output.WriteRawTag(21);
         output.WriteFloat(Version);
       }
-      if (RenderShadows != false) {
+      if (HasRenderShadows) {
         output.WriteRawTag(24);
         output.WriteBool(RenderShadows);
       }
-      if (RequiresDepthOption != global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off) {
+      if (HasRequiresDepthOption) {
         output.WriteRawTag(32);
         output.WriteEnum((int) RequiresDepthOption);
       }
-      if (RequiresColorOption != global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off) {
+      if (HasRequiresColorOption) {
         output.WriteRawTag(40);
         output.WriteEnum((int) RequiresColorOption);
       }
-      if (RenderType != global::PLUME.Sample.Unity.URP.CameraRenderType.Base) {
+      if (HasRenderType) {
         output.WriteRawTag(48);
         output.WriteEnum((int) RenderType);
       }
-      if (RequiresDepthTexture != false) {
+      if (HasRequiresDepthTexture) {
         output.WriteRawTag(56);
         output.WriteBool(RequiresDepthTexture);
       }
-      if (RequiresColorTexture != false) {
+      if (HasRequiresColorTexture) {
         output.WriteRawTag(64);
         output.WriteBool(RequiresColorTexture);
       }
-      if (VolumeLayerMask != 0) {
+      if (HasVolumeLayerMask) {
         output.WriteRawTag(72);
         output.WriteInt32(VolumeLayerMask);
       }
@@ -713,27 +1135,27 @@ namespace PLUME.Sample.Unity.URP {
         output.WriteRawTag(82);
         output.WriteMessage(VolumeTriggerId);
       }
-      if (RenderPostProcessing != false) {
+      if (HasRenderPostProcessing) {
         output.WriteRawTag(88);
         output.WriteBool(RenderPostProcessing);
       }
-      if (Antialiasing != global::PLUME.Sample.Unity.AntialiasingMode.None) {
+      if (HasAntialiasing) {
         output.WriteRawTag(96);
         output.WriteEnum((int) Antialiasing);
       }
-      if (AntialiasingQuality != global::PLUME.Sample.Unity.AntialiasingQuality.Low) {
+      if (HasAntialiasingQuality) {
         output.WriteRawTag(104);
         output.WriteEnum((int) AntialiasingQuality);
       }
-      if (StopNan != false) {
+      if (HasStopNan) {
         output.WriteRawTag(112);
         output.WriteBool(StopNan);
       }
-      if (Dithering != false) {
+      if (HasDithering) {
         output.WriteRawTag(120);
         output.WriteBool(Dithering);
       }
-      if (AllowXrRendering != false) {
+      if (HasAllowXrRendering) {
         output.WriteRawTag(128, 1);
         output.WriteBool(AllowXrRendering);
       }
@@ -750,49 +1172,49 @@ namespace PLUME.Sample.Unity.URP {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (Version != 0F) {
+      if (HasVersion) {
         size += 1 + 4;
       }
-      if (RenderShadows != false) {
+      if (HasRenderShadows) {
         size += 1 + 1;
       }
-      if (RequiresDepthOption != global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off) {
+      if (HasRequiresDepthOption) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RequiresDepthOption);
       }
-      if (RequiresColorOption != global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off) {
+      if (HasRequiresColorOption) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RequiresColorOption);
       }
-      if (RenderType != global::PLUME.Sample.Unity.URP.CameraRenderType.Base) {
+      if (HasRenderType) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RenderType);
       }
-      if (RequiresDepthTexture != false) {
+      if (HasRequiresDepthTexture) {
         size += 1 + 1;
       }
-      if (RequiresColorTexture != false) {
+      if (HasRequiresColorTexture) {
         size += 1 + 1;
       }
-      if (VolumeLayerMask != 0) {
+      if (HasVolumeLayerMask) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(VolumeLayerMask);
       }
       if (volumeTriggerId_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(VolumeTriggerId);
       }
-      if (RenderPostProcessing != false) {
+      if (HasRenderPostProcessing) {
         size += 1 + 1;
       }
-      if (Antialiasing != global::PLUME.Sample.Unity.AntialiasingMode.None) {
+      if (HasAntialiasing) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Antialiasing);
       }
-      if (AntialiasingQuality != global::PLUME.Sample.Unity.AntialiasingQuality.Low) {
+      if (HasAntialiasingQuality) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) AntialiasingQuality);
       }
-      if (StopNan != false) {
+      if (HasStopNan) {
         size += 1 + 1;
       }
-      if (Dithering != false) {
+      if (HasDithering) {
         size += 1 + 1;
       }
-      if (AllowXrRendering != false) {
+      if (HasAllowXrRendering) {
         size += 2 + 1;
       }
       if (_unknownFields != null) {
@@ -813,52 +1235,52 @@ namespace PLUME.Sample.Unity.URP {
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.Version != 0F) {
+      if (other.HasVersion) {
         Version = other.Version;
       }
-      if (other.RenderShadows != false) {
+      if (other.HasRenderShadows) {
         RenderShadows = other.RenderShadows;
       }
-      if (other.RequiresDepthOption != global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off) {
+      if (other.HasRequiresDepthOption) {
         RequiresDepthOption = other.RequiresDepthOption;
       }
-      if (other.RequiresColorOption != global::PLUME.Sample.Unity.URP.CameraOverrideOption.Off) {
+      if (other.HasRequiresColorOption) {
         RequiresColorOption = other.RequiresColorOption;
       }
-      if (other.RenderType != global::PLUME.Sample.Unity.URP.CameraRenderType.Base) {
+      if (other.HasRenderType) {
         RenderType = other.RenderType;
       }
-      if (other.RequiresDepthTexture != false) {
+      if (other.HasRequiresDepthTexture) {
         RequiresDepthTexture = other.RequiresDepthTexture;
       }
-      if (other.RequiresColorTexture != false) {
+      if (other.HasRequiresColorTexture) {
         RequiresColorTexture = other.RequiresColorTexture;
       }
-      if (other.VolumeLayerMask != 0) {
+      if (other.HasVolumeLayerMask) {
         VolumeLayerMask = other.VolumeLayerMask;
       }
       if (other.volumeTriggerId_ != null) {
         if (volumeTriggerId_ == null) {
-          VolumeTriggerId = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+          VolumeTriggerId = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         VolumeTriggerId.MergeFrom(other.VolumeTriggerId);
       }
-      if (other.RenderPostProcessing != false) {
+      if (other.HasRenderPostProcessing) {
         RenderPostProcessing = other.RenderPostProcessing;
       }
-      if (other.Antialiasing != global::PLUME.Sample.Unity.AntialiasingMode.None) {
+      if (other.HasAntialiasing) {
         Antialiasing = other.Antialiasing;
       }
-      if (other.AntialiasingQuality != global::PLUME.Sample.Unity.AntialiasingQuality.Low) {
+      if (other.HasAntialiasingQuality) {
         AntialiasingQuality = other.AntialiasingQuality;
       }
-      if (other.StopNan != false) {
+      if (other.HasStopNan) {
         StopNan = other.StopNan;
       }
-      if (other.Dithering != false) {
+      if (other.HasDithering) {
         Dithering = other.Dithering;
       }
-      if (other.AllowXrRendering != false) {
+      if (other.HasAllowXrRendering) {
         AllowXrRendering = other.AllowXrRendering;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -917,7 +1339,7 @@ namespace PLUME.Sample.Unity.URP {
           }
           case 82: {
             if (volumeTriggerId_ == null) {
-              VolumeTriggerId = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              VolumeTriggerId = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(VolumeTriggerId);
             break;
@@ -1002,7 +1424,7 @@ namespace PLUME.Sample.Unity.URP {
           }
           case 82: {
             if (volumeTriggerId_ == null) {
-              VolumeTriggerId = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              VolumeTriggerId = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(VolumeTriggerId);
             break;

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using PLUME.Sample.ProtoBurst;
 using Unity.Collections;
 using UnityEngine;
 using UnityRuntimeGuid;
@@ -14,9 +13,43 @@ namespace PLUME.Core.Object.SafeRef
     {
         private readonly Dictionary<int, IObjectSafeRef> _cachedRefs = new();
 
-        public ObjectSafeRef<TObject> GetOrCreateTypedObjectSafeRef<TObject>(TObject obj) where TObject : UnityObject
+        public ObjectSafeRef<GameObject> GetOrCreateGameObjectSafeRef(GameObject go)
         {
-            return (ObjectSafeRef<TObject>)GetOrCreateObjectSafeRef(obj);
+            if(go == null)
+                return ObjectSafeRef<GameObject>.Null;
+            
+            if(GetOrCreateObjectSafeRef(go) is ObjectSafeRef<GameObject> goRef)
+            {
+                return goRef;
+            }
+            
+            return ObjectSafeRef<GameObject>.Null;
+        }
+
+        public ComponentSafeRef<TC> GetOrCreateComponentSafeRef<TC>(TC component) where TC : Component
+        {
+            if(component == null)
+                return ComponentSafeRef<TC>.Null;
+            
+            if(GetOrCreateObjectSafeRef(component) is ComponentSafeRef<TC> componentSafeRef)
+            {
+                return componentSafeRef;
+            }
+            
+            return ComponentSafeRef<TC>.Null;
+        }
+
+        public AssetSafeRef<TA> GetOrCreateAssetSafeRef<TA>(TA asset) where TA : UnityObject
+        {
+            if (asset == null)
+                return AssetSafeRef<TA>.Null;
+
+            if (GetOrCreateObjectSafeRef(asset) is AssetSafeRef<TA> assetSafeRef)
+            {
+                return assetSafeRef;
+            }
+
+            return AssetSafeRef<TA>.Null;
         }
 
         /// <summary>
@@ -34,7 +67,7 @@ namespace PLUME.Core.Object.SafeRef
 
             var instanceId = obj.GetInstanceID();
 
-            if (_cachedRefs.TryGetValue(instanceId, out var cachedRef) && cachedRef.ObjectType == obj.GetType())
+            if (_cachedRefs.TryGetValue(instanceId, out var cachedRef))
             {
                 return cachedRef;
             }
@@ -45,13 +78,14 @@ namespace PLUME.Core.Object.SafeRef
             {
                 var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
                 var sceneGuidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(obj);
-                objRef = CreateSceneObjectSafeRef(obj, sceneGuidRegistryEntry);
+                objRef = CreateGameObjectSafeRef(go, sceneGuidRegistryEntry);
             }
             else if (obj is Component component && component.gameObject.scene.IsValid())
             {
                 var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
                 var sceneGuidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(obj);
-                objRef = CreateSceneObjectSafeRef(obj, sceneGuidRegistryEntry);
+                var gameObjectRef = GetOrCreateGameObjectSafeRef(component.gameObject);
+                objRef = CreateComponentSafeRef(component, gameObjectRef, sceneGuidRegistryEntry);
             }
             else
             {
@@ -64,16 +98,24 @@ namespace PLUME.Core.Object.SafeRef
             return objRef;
         }
 
-        private static IObjectSafeRef CreateSceneObjectSafeRef(UnityObject obj, SceneGuidRegistryEntry guidEntry)
+        private static ObjectSafeRef<GameObject> CreateGameObjectSafeRef(GameObject go, GuidRegistryEntry guidEntry)
         {
-            var objRefType = typeof(SceneObjectSafeRef<>).MakeGenericType(obj.GetType());
-            var objRefCtor = objRefType.GetConstructor(new[] { obj.GetType(), typeof(Guid) });
-            return (IObjectSafeRef)objRefCtor!.Invoke(new object[] { obj, new Guid(guidEntry.guid) });
+            return new ObjectSafeRef<GameObject>(go, new Guid(guidEntry.guid));
+        }
+
+        private static IObjectSafeRef CreateComponentSafeRef(Component component,
+            ObjectSafeRef<GameObject> gameObjectRef, GuidRegistryEntry guidEntry)
+        {
+            var objRefType = typeof(ComponentSafeRef<>).MakeGenericType(component.GetType());
+            var objRefCtor = objRefType.GetConstructor(new[]
+                { component.GetType(), typeof(Guid), typeof(ObjectSafeRef<GameObject>) });
+            return (IObjectSafeRef)objRefCtor!.Invoke(new object[]
+                { component, new Guid(guidEntry.guid), gameObjectRef });
         }
 
         private static IObjectSafeRef CreateAssetObjectSafeRef(UnityObject obj, AssetGuidRegistryEntry guidEntry)
         {
-            var objRefType = typeof(AssetObjectSafeRef<>).MakeGenericType(obj.GetType());
+            var objRefType = typeof(AssetSafeRef<>).MakeGenericType(obj.GetType());
             var objRefCtor =
                 objRefType.GetConstructor(new[] { obj.GetType(), typeof(Guid), typeof(FixedString512Bytes) });
             return (IObjectSafeRef)objRefCtor!.Invoke(new object[]

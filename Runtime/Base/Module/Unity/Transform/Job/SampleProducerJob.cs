@@ -1,7 +1,6 @@
 using PLUME.Base.Module.Unity.Transform.Sample;
 using PLUME.Base.Module.Unity.Transform.State;
 using PLUME.Core.Object;
-using PLUME.Sample.ProtoBurst;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
@@ -11,14 +10,13 @@ namespace PLUME.Base.Module.Unity.Transform.Job
     [BurstCompile]
     internal struct SampleProducerJob : IJobParallelForBatch
     {
-        [ReadOnly] public NativeArray<ObjectIdentifier> TransformIdentifiers;
-        [ReadOnly] public NativeHashMap<ObjectIdentifier, ObjectIdentifier> GameObjectsIdentifiers;
+        [ReadOnly] public NativeArray<ComponentIdentifier> Identifiers;
 
-        public NativeHashMap<ObjectIdentifier, TransformPositionState> PositionStates;
-        public NativeHashMap<ObjectIdentifier, TransformHierarchyState> HierarchyStates;
+        public NativeHashMap<ComponentIdentifier, TransformPositionState> PositionStates;
+        public NativeHashMap<ComponentIdentifier, TransformHierarchyState> HierarchyStates;
 
-        [ReadOnly] public NativeHashSet<ObjectIdentifier>.ReadOnly CreatedInFrameIdentifiers;
-        [ReadOnly] public NativeHashSet<ObjectIdentifier>.ReadOnly DestroyedInFrameIdentifiers;
+        [ReadOnly] public NativeHashSet<ComponentIdentifier>.ReadOnly CreatedInFrameIdentifiers;
+        [ReadOnly] public NativeHashSet<ComponentIdentifier>.ReadOnly DestroyedInFrameIdentifiers;
 
         [WriteOnly] public NativeList<TransformUpdate>.ParallelWriter UpdateSamples;
         [WriteOnly] public NativeList<TransformCreate>.ParallelWriter CreateSamples;
@@ -28,14 +26,12 @@ namespace PLUME.Base.Module.Unity.Transform.Job
         {
             for (var idx = startIndex; idx < startIndex + count; ++idx)
             {
-                var transformIdentifier = TransformIdentifiers[idx];
-                var gameObjectIdentifier = GameObjectsIdentifiers[transformIdentifier];
-                var identifier = new TransformGameObjectIdentifier(transformIdentifier, gameObjectIdentifier);
+                var identifier = Identifiers[idx];
 
-                var hierarchyState = HierarchyStates[transformIdentifier];
-                var positionState = PositionStates[transformIdentifier];
-                var createdInFrame = CreatedInFrameIdentifiers.Contains(transformIdentifier);
-                var destroyedInFrame = DestroyedInFrameIdentifiers.Contains(transformIdentifier);
+                var hierarchyState = HierarchyStates[identifier];
+                var positionState = PositionStates[identifier];
+                var createdInFrame = CreatedInFrameIdentifiers.Contains(identifier);
+                var destroyedInFrame = DestroyedInFrameIdentifiers.Contains(identifier);
 
                 if (destroyedInFrame)
                 {
@@ -80,8 +76,8 @@ namespace PLUME.Base.Module.Unity.Transform.Job
                 
                 positionState.MarkClean();
                 hierarchyState.MarkClean();
-                PositionStates[transformIdentifier] = positionState;
-                HierarchyStates[transformIdentifier] = hierarchyState;
+                PositionStates[identifier] = positionState;
+                HierarchyStates[identifier] = hierarchyState;
 
                 UpdateSamples.AddNoResize(updateSample);
             }

@@ -29,38 +29,37 @@ namespace PLUME.Sample.Unity.XRITK {
             "byJPChhYUkJhc2VJbnRlcmFjdGFibGVDcmVhdGUSMwoCaWQYASABKAsyJy5w",
             "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciJQChlYUkJh",
             "c2VJbnRlcmFjdGFibGVEZXN0cm95EjMKAmlkGAEgASgLMicucGx1bWUuc2Ft",
-            "cGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIiZAocWFJCYXNlSW50ZXJh",
-            "Y3RhYmxlU2V0RW5hYmxlZBIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51",
-            "bml0eS5Db21wb25lbnRJZGVudGlmaWVyEg8KB2VuYWJsZWQYAiABKAgiogEK",
-            "HFhSQmFzZUludGVyYWN0YWJsZUhvdmVyRW50ZXISMwoCaWQYASABKAsyJy5w",
-            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchJNChJpbnRl",
-            "cmFjdG9yX2N1cnJlbnQYAiABKAsyMS5wbHVtZS5zYW1wbGUudW5pdHkuVHJh",
-            "bnNmb3JtR2FtZU9iamVjdElkZW50aWZpZXIioQEKG1hSQmFzZUludGVyYWN0",
-            "YWJsZUhvdmVyRXhpdBIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0",
-            "eS5Db21wb25lbnRJZGVudGlmaWVyEk0KEmludGVyYWN0b3JfY3VycmVudBgC",
-            "IAEoCzIxLnBsdW1lLnNhbXBsZS51bml0eS5UcmFuc2Zvcm1HYW1lT2JqZWN0",
-            "SWRlbnRpZmllciKjAQodWFJCYXNlSW50ZXJhY3RhYmxlU2VsZWN0RW50ZXIS",
-            "MwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRl",
-            "bnRpZmllchJNChJpbnRlcmFjdG9yX2N1cnJlbnQYAiABKAsyMS5wbHVtZS5z",
-            "YW1wbGUudW5pdHkuVHJhbnNmb3JtR2FtZU9iamVjdElkZW50aWZpZXIiogEK",
-            "HFhSQmFzZUludGVyYWN0YWJsZVNlbGVjdEV4aXQSMwoCaWQYASABKAsyJy5w",
-            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchJNChJpbnRl",
-            "cmFjdG9yX2N1cnJlbnQYAiABKAsyMS5wbHVtZS5zYW1wbGUudW5pdHkuVHJh",
-            "bnNmb3JtR2FtZU9iamVjdElkZW50aWZpZXIipQEKH1hSQmFzZUludGVyYWN0",
-            "YWJsZUFjdGl2YXRlRW50ZXISMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUu",
-            "dW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchJNChJpbnRlcmFjdG9yX2N1cnJl",
-            "bnQYAiABKAsyMS5wbHVtZS5zYW1wbGUudW5pdHkuVHJhbnNmb3JtR2FtZU9i",
-            "amVjdElkZW50aWZpZXIipAEKHlhSQmFzZUludGVyYWN0YWJsZUFjdGl2YXRl",
-            "RXhpdBIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25l",
-            "bnRJZGVudGlmaWVyEk0KEmludGVyYWN0b3JfY3VycmVudBgCIAEoCzIxLnBs",
-            "dW1lLnNhbXBsZS51bml0eS5UcmFuc2Zvcm1HYW1lT2JqZWN0SWRlbnRpZmll",
-            "ckIbqgIYUExVTUUuU2FtcGxlLlVuaXR5LlhSSVRLYgZwcm90bzM="));
+            "cGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIicQoYWFJCYXNlSW50ZXJh",
+            "Y3RhYmxlVXBkYXRlEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5",
+            "LkNvbXBvbmVudElkZW50aWZpZXISFAoHZW5hYmxlZBgCIAEoCEgAiAEBQgoK",
+            "CF9lbmFibGVkIpgBChxYUkJhc2VJbnRlcmFjdGFibGVIb3ZlckVudGVyEjMK",
+            "AmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50",
+            "aWZpZXISQwoSaW50ZXJhY3Rvcl9jdXJyZW50GAIgASgLMicucGx1bWUuc2Ft",
+            "cGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIilwEKG1hSQmFzZUludGVy",
+            "YWN0YWJsZUhvdmVyRXhpdBIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51",
+            "bml0eS5Db21wb25lbnRJZGVudGlmaWVyEkMKEmludGVyYWN0b3JfY3VycmVu",
+            "dBgCIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlm",
+            "aWVyIpkBCh1YUkJhc2VJbnRlcmFjdGFibGVTZWxlY3RFbnRlchIzCgJpZBgB",
+            "IAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVy",
+            "EkMKEmludGVyYWN0b3JfY3VycmVudBgCIAEoCzInLnBsdW1lLnNhbXBsZS51",
+            "bml0eS5Db21wb25lbnRJZGVudGlmaWVyIpgBChxYUkJhc2VJbnRlcmFjdGFi",
+            "bGVTZWxlY3RFeGl0EjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5",
+            "LkNvbXBvbmVudElkZW50aWZpZXISQwoSaW50ZXJhY3Rvcl9jdXJyZW50GAIg",
+            "ASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIi",
+            "mwEKH1hSQmFzZUludGVyYWN0YWJsZUFjdGl2YXRlRW50ZXISMwoCaWQYASAB",
+            "KAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchJD",
+            "ChJpbnRlcmFjdG9yX2N1cnJlbnQYAiABKAsyJy5wbHVtZS5zYW1wbGUudW5p",
+            "dHkuQ29tcG9uZW50SWRlbnRpZmllciKaAQoeWFJCYXNlSW50ZXJhY3RhYmxl",
+            "QWN0aXZhdGVFeGl0EjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5",
+            "LkNvbXBvbmVudElkZW50aWZpZXISQwoSaW50ZXJhY3Rvcl9jdXJyZW50GAIg",
+            "ASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXJC",
+            "G6oCGFBMVU1FLlNhbXBsZS5Vbml0eS5YUklUS2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.XRITK.XRBaseInteractableCreate), global::PLUME.Sample.Unity.XRITK.XRBaseInteractableCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.XRITK.XRBaseInteractableDestroy), global::PLUME.Sample.Unity.XRITK.XRBaseInteractableDestroy.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.XRITK.XRBaseInteractableSetEnabled), global::PLUME.Sample.Unity.XRITK.XRBaseInteractableSetEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.XRITK.XRBaseInteractableUpdate), global::PLUME.Sample.Unity.XRITK.XRBaseInteractableUpdate.Parser, new[]{ "Id", "Enabled" }, new[]{ "Enabled" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.XRITK.XRBaseInteractableHoverEnter), global::PLUME.Sample.Unity.XRITK.XRBaseInteractableHoverEnter.Parser, new[]{ "Id", "InteractorCurrent" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.XRITK.XRBaseInteractableHoverExit), global::PLUME.Sample.Unity.XRITK.XRBaseInteractableHoverExit.Parser, new[]{ "Id", "InteractorCurrent" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.XRITK.XRBaseInteractableSelectEnter), global::PLUME.Sample.Unity.XRITK.XRBaseInteractableSelectEnter.Parser, new[]{ "Id", "InteractorCurrent" }, null, null, null, null),
@@ -472,16 +471,17 @@ namespace PLUME.Sample.Unity.XRITK {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class XRBaseInteractableSetEnabled : pb::IMessage<XRBaseInteractableSetEnabled>
+  public sealed partial class XRBaseInteractableUpdate : pb::IMessage<XRBaseInteractableUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<XRBaseInteractableSetEnabled> _parser = new pb::MessageParser<XRBaseInteractableSetEnabled>(() => new XRBaseInteractableSetEnabled());
+    private static readonly pb::MessageParser<XRBaseInteractableUpdate> _parser = new pb::MessageParser<XRBaseInteractableUpdate>(() => new XRBaseInteractableUpdate());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<XRBaseInteractableSetEnabled> Parser { get { return _parser; } }
+    public static pb::MessageParser<XRBaseInteractableUpdate> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -497,7 +497,7 @@ namespace PLUME.Sample.Unity.XRITK {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public XRBaseInteractableSetEnabled() {
+    public XRBaseInteractableUpdate() {
       OnConstruction();
     }
 
@@ -505,7 +505,8 @@ namespace PLUME.Sample.Unity.XRITK {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public XRBaseInteractableSetEnabled(XRBaseInteractableSetEnabled other) : this() {
+    public XRBaseInteractableUpdate(XRBaseInteractableUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
       enabled_ = other.enabled_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -513,8 +514,8 @@ namespace PLUME.Sample.Unity.XRITK {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public XRBaseInteractableSetEnabled Clone() {
-      return new XRBaseInteractableSetEnabled(this);
+    public XRBaseInteractableUpdate Clone() {
+      return new XRBaseInteractableUpdate(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -531,25 +532,40 @@ namespace PLUME.Sample.Unity.XRITK {
 
     /// <summary>Field number for the "enabled" field.</summary>
     public const int EnabledFieldNumber = 2;
+    private readonly static bool EnabledDefaultValue = false;
+
     private bool enabled_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Enabled {
-      get { return enabled_; }
+      get { if ((_hasBits0 & 1) != 0) { return enabled_; } else { return EnabledDefaultValue; } }
       set {
+        _hasBits0 |= 1;
         enabled_ = value;
       }
+    }
+    /// <summary>Gets whether the "enabled" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasEnabled {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "enabled" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearEnabled() {
+      _hasBits0 &= ~1;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as XRBaseInteractableSetEnabled);
+      return Equals(other as XRBaseInteractableUpdate);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(XRBaseInteractableSetEnabled other) {
+    public bool Equals(XRBaseInteractableUpdate other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -566,7 +582,7 @@ namespace PLUME.Sample.Unity.XRITK {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (Enabled != false) hash ^= Enabled.GetHashCode();
+      if (HasEnabled) hash ^= Enabled.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -589,7 +605,7 @@ namespace PLUME.Sample.Unity.XRITK {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Enabled != false) {
+      if (HasEnabled) {
         output.WriteRawTag(16);
         output.WriteBool(Enabled);
       }
@@ -607,7 +623,7 @@ namespace PLUME.Sample.Unity.XRITK {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Enabled != false) {
+      if (HasEnabled) {
         output.WriteRawTag(16);
         output.WriteBool(Enabled);
       }
@@ -624,7 +640,7 @@ namespace PLUME.Sample.Unity.XRITK {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (Enabled != false) {
+      if (HasEnabled) {
         size += 1 + 1;
       }
       if (_unknownFields != null) {
@@ -635,7 +651,7 @@ namespace PLUME.Sample.Unity.XRITK {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(XRBaseInteractableSetEnabled other) {
+    public void MergeFrom(XRBaseInteractableUpdate other) {
       if (other == null) {
         return;
       }
@@ -645,7 +661,7 @@ namespace PLUME.Sample.Unity.XRITK {
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.Enabled != false) {
+      if (other.HasEnabled) {
         Enabled = other.Enabled;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -767,10 +783,10 @@ namespace PLUME.Sample.Unity.XRITK {
 
     /// <summary>Field number for the "interactor_current" field.</summary>
     public const int InteractorCurrentFieldNumber = 2;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier interactorCurrent_;
+    private global::PLUME.Sample.Unity.ComponentIdentifier interactorCurrent_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier InteractorCurrent {
+    public global::PLUME.Sample.Unity.ComponentIdentifier InteractorCurrent {
       get { return interactorCurrent_; }
       set {
         interactorCurrent_ = value;
@@ -883,7 +899,7 @@ namespace PLUME.Sample.Unity.XRITK {
       }
       if (other.interactorCurrent_ != null) {
         if (interactorCurrent_ == null) {
-          InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+          InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         InteractorCurrent.MergeFrom(other.InteractorCurrent);
       }
@@ -911,7 +927,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;
@@ -940,7 +956,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;
@@ -1012,10 +1028,10 @@ namespace PLUME.Sample.Unity.XRITK {
 
     /// <summary>Field number for the "interactor_current" field.</summary>
     public const int InteractorCurrentFieldNumber = 2;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier interactorCurrent_;
+    private global::PLUME.Sample.Unity.ComponentIdentifier interactorCurrent_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier InteractorCurrent {
+    public global::PLUME.Sample.Unity.ComponentIdentifier InteractorCurrent {
       get { return interactorCurrent_; }
       set {
         interactorCurrent_ = value;
@@ -1128,7 +1144,7 @@ namespace PLUME.Sample.Unity.XRITK {
       }
       if (other.interactorCurrent_ != null) {
         if (interactorCurrent_ == null) {
-          InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+          InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         InteractorCurrent.MergeFrom(other.InteractorCurrent);
       }
@@ -1156,7 +1172,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;
@@ -1185,7 +1201,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;
@@ -1257,10 +1273,10 @@ namespace PLUME.Sample.Unity.XRITK {
 
     /// <summary>Field number for the "interactor_current" field.</summary>
     public const int InteractorCurrentFieldNumber = 2;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier interactorCurrent_;
+    private global::PLUME.Sample.Unity.ComponentIdentifier interactorCurrent_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier InteractorCurrent {
+    public global::PLUME.Sample.Unity.ComponentIdentifier InteractorCurrent {
       get { return interactorCurrent_; }
       set {
         interactorCurrent_ = value;
@@ -1373,7 +1389,7 @@ namespace PLUME.Sample.Unity.XRITK {
       }
       if (other.interactorCurrent_ != null) {
         if (interactorCurrent_ == null) {
-          InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+          InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         InteractorCurrent.MergeFrom(other.InteractorCurrent);
       }
@@ -1401,7 +1417,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;
@@ -1430,7 +1446,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;
@@ -1502,10 +1518,10 @@ namespace PLUME.Sample.Unity.XRITK {
 
     /// <summary>Field number for the "interactor_current" field.</summary>
     public const int InteractorCurrentFieldNumber = 2;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier interactorCurrent_;
+    private global::PLUME.Sample.Unity.ComponentIdentifier interactorCurrent_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier InteractorCurrent {
+    public global::PLUME.Sample.Unity.ComponentIdentifier InteractorCurrent {
       get { return interactorCurrent_; }
       set {
         interactorCurrent_ = value;
@@ -1618,7 +1634,7 @@ namespace PLUME.Sample.Unity.XRITK {
       }
       if (other.interactorCurrent_ != null) {
         if (interactorCurrent_ == null) {
-          InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+          InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         InteractorCurrent.MergeFrom(other.InteractorCurrent);
       }
@@ -1646,7 +1662,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;
@@ -1675,7 +1691,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;
@@ -1747,10 +1763,10 @@ namespace PLUME.Sample.Unity.XRITK {
 
     /// <summary>Field number for the "interactor_current" field.</summary>
     public const int InteractorCurrentFieldNumber = 2;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier interactorCurrent_;
+    private global::PLUME.Sample.Unity.ComponentIdentifier interactorCurrent_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier InteractorCurrent {
+    public global::PLUME.Sample.Unity.ComponentIdentifier InteractorCurrent {
       get { return interactorCurrent_; }
       set {
         interactorCurrent_ = value;
@@ -1863,7 +1879,7 @@ namespace PLUME.Sample.Unity.XRITK {
       }
       if (other.interactorCurrent_ != null) {
         if (interactorCurrent_ == null) {
-          InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+          InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         InteractorCurrent.MergeFrom(other.InteractorCurrent);
       }
@@ -1891,7 +1907,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;
@@ -1920,7 +1936,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;
@@ -1992,10 +2008,10 @@ namespace PLUME.Sample.Unity.XRITK {
 
     /// <summary>Field number for the "interactor_current" field.</summary>
     public const int InteractorCurrentFieldNumber = 2;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier interactorCurrent_;
+    private global::PLUME.Sample.Unity.ComponentIdentifier interactorCurrent_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier InteractorCurrent {
+    public global::PLUME.Sample.Unity.ComponentIdentifier InteractorCurrent {
       get { return interactorCurrent_; }
       set {
         interactorCurrent_ = value;
@@ -2108,7 +2124,7 @@ namespace PLUME.Sample.Unity.XRITK {
       }
       if (other.interactorCurrent_ != null) {
         if (interactorCurrent_ == null) {
-          InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+          InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         InteractorCurrent.MergeFrom(other.InteractorCurrent);
       }
@@ -2136,7 +2152,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;
@@ -2165,7 +2181,7 @@ namespace PLUME.Sample.Unity.XRITK {
           }
           case 18: {
             if (interactorCurrent_ == null) {
-              InteractorCurrent = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              InteractorCurrent = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(InteractorCurrent);
             break;

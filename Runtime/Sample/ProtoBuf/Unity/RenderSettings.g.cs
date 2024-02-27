@@ -26,44 +26,56 @@ namespace PLUME.Sample.Unity {
           string.Concat(
             "Cht1bml0eS9yZW5kZXJfc2V0dGluZ3MucHJvdG8SEnBsdW1lLnNhbXBsZS51",
             "bml0eRoSY29tbW9uL2NvbG9yLnByb3RvGiNjb21tb24vc3BoZXJpY2FsX2hh",
-            "cm1vbmljc19sMi5wcm90bxoXdW5pdHkvaWRlbnRpZmllcnMucHJvdG8i6AgK",
-            "FFJlbmRlclNldHRpbmdzVXBkYXRlEjkKFWFtYmllbnRfZXF1YXRvcl9jb2xv",
-            "chgBIAEoCzIaLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3ISOAoUYW1iaWVu",
-            "dF9ncm91bmRfY29sb3IYAiABKAsyGi5wbHVtZS5zYW1wbGUuY29tbW9uLkNv",
-            "bG9yEhkKEWFtYmllbnRfaW50ZW5zaXR5GAMgASgCEjEKDWFtYmllbnRfbGln",
-            "aHQYBCABKAsyGi5wbHVtZS5zYW1wbGUuY29tbW9uLkNvbG9yEjUKDGFtYmll",
-            "bnRfbW9kZRgFIAEoDjIfLnBsdW1lLnNhbXBsZS51bml0eS5BbWJpZW50TW9k",
-            "ZRJACg1hbWJpZW50X3Byb2JlGAYgASgLMikucGx1bWUuc2FtcGxlLmNvbW1v",
-            "bi5TcGhlcmljYWxIYXJtb25pY3NMMhI1ChFhbWJpZW50X3NreV9jb2xvchgH",
-            "IAEoCzIaLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3ISRgoUY3VzdG9tX3Jl",
-            "ZmxlY3Rpb25faWQYCCABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJ",
-            "ZGVudGlmaWVySACIAQESSgoXZGVmYXVsdF9yZWZsZWN0aW9uX21vZGUYCSAB",
-            "KA4yKS5wbHVtZS5zYW1wbGUudW5pdHkuRGVmYXVsdFJlZmxlY3Rpb25Nb2Rl",
-            "EiUKHWRlZmF1bHRfcmVmbGVjdGlvbl9yZXNvbHV0aW9uGAogASgFEhgKEGZs",
-            "YXJlX2ZhZGVfc3BlZWQYCyABKAISFgoOZmxhcmVfc3RyZW5ndGgYDCABKAIS",
-            "CwoDZm9nGA0gASgIEi0KCWZvZ19jb2xvchgOIAEoCzIaLnBsdW1lLnNhbXBs",
-            "ZS5jb21tb24uQ29sb3ISEwoLZm9nX2RlbnNpdHkYDyABKAISGAoQZm9nX2Vu",
-            "ZF9kaXN0YW5jZRgQIAEoAhItCghmb2dfbW9kZRgRIAEoDjIbLnBsdW1lLnNh",
-            "bXBsZS51bml0eS5Gb2dNb2RlEhoKEmZvZ19zdGFydF9kaXN0YW5jZRgSIAEo",
-            "AhIVCg1oYWxvX3N0cmVuZ3RoGBMgASgCEhoKEnJlZmxlY3Rpb25fYm91bmNl",
-            "cxgUIAEoBRIcChRyZWZsZWN0aW9uX2ludGVuc2l0eRgVIAEoAhI7Cglza3li",
-            "b3hfaWQYFiABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVudGlm",
-            "aWVySAGIAQESPAoYc3VidHJhY3RpdmVfc2hhZG93X2NvbG9yGBcgASgLMhou",
-            "cGx1bWUuc2FtcGxlLmNvbW1vbi5Db2xvchI8CgZzdW5faWQYGCABKAsyJy5w",
-            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllckgCiAEBQhcK",
-            "FV9jdXN0b21fcmVmbGVjdGlvbl9pZEIMCgpfc2t5Ym94X2lkQgkKB19zdW5f",
-            "aWQqcQoLQW1iaWVudE1vZGUSFwoTQU1CSUVOVF9NT0RFX1NLWUJPWBAAEhkK",
-            "FUFNQklFTlRfTU9ERV9UUklMSUdIVBABEhUKEUFNQklFTlRfTU9ERV9GTEFU",
-            "EAISFwoTQU1CSUVOVF9NT0RFX0NVU1RPTRADKl8KFURlZmF1bHRSZWZsZWN0",
-            "aW9uTW9kZRIiCh5ERUZBVUxUX1JFRkxFQ1RJT05fTU9ERV9TS1lCT1gQABIi",
-            "Ch5ERUZBVUxUX1JFRkxFQ1RJT05fTU9ERV9DVVNUT00QASpaCgdGb2dNb2Rl",
-            "EhMKD0ZPR19NT0RFX0xJTkVBUhAAEhgKFEZPR19NT0RFX0VYUE9ORU5USUFM",
-            "EAESIAocRk9HX01PREVfRVhQT05FTlRJQUxfU1FVQVJFRBACQhWqAhJQTFVN",
-            "RS5TYW1wbGUuVW5pdHliBnByb3RvMw=="));
+            "cm1vbmljc19sMi5wcm90bxoXdW5pdHkvaWRlbnRpZmllcnMucHJvdG8iiQ0K",
+            "FFJlbmRlclNldHRpbmdzVXBkYXRlEj4KFWFtYmllbnRfZXF1YXRvcl9jb2xv",
+            "chgBIAEoCzIaLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3JIAIgBARI9ChRh",
+            "bWJpZW50X2dyb3VuZF9jb2xvchgCIAEoCzIaLnBsdW1lLnNhbXBsZS5jb21t",
+            "b24uQ29sb3JIAYgBARIeChFhbWJpZW50X2ludGVuc2l0eRgDIAEoAkgCiAEB",
+            "EjYKDWFtYmllbnRfbGlnaHQYBCABKAsyGi5wbHVtZS5zYW1wbGUuY29tbW9u",
+            "LkNvbG9ySAOIAQESOgoMYW1iaWVudF9tb2RlGAUgASgOMh8ucGx1bWUuc2Ft",
+            "cGxlLnVuaXR5LkFtYmllbnRNb2RlSASIAQESRQoNYW1iaWVudF9wcm9iZRgG",
+            "IAEoCzIpLnBsdW1lLnNhbXBsZS5jb21tb24uU3BoZXJpY2FsSGFybW9uaWNz",
+            "TDJIBYgBARI6ChFhbWJpZW50X3NreV9jb2xvchgHIAEoCzIaLnBsdW1lLnNh",
+            "bXBsZS5jb21tb24uQ29sb3JIBogBARJGChRjdXN0b21fcmVmbGVjdGlvbl9p",
+            "ZBgIIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZpZXJI",
+            "B4gBARJPChdkZWZhdWx0X3JlZmxlY3Rpb25fbW9kZRgJIAEoDjIpLnBsdW1l",
+            "LnNhbXBsZS51bml0eS5EZWZhdWx0UmVmbGVjdGlvbk1vZGVICIgBARIqCh1k",
+            "ZWZhdWx0X3JlZmxlY3Rpb25fcmVzb2x1dGlvbhgKIAEoBUgJiAEBEh0KEGZs",
+            "YXJlX2ZhZGVfc3BlZWQYCyABKAJICogBARIbCg5mbGFyZV9zdHJlbmd0aBgM",
+            "IAEoAkgLiAEBEhAKA2ZvZxgNIAEoCEgMiAEBEjIKCWZvZ19jb2xvchgOIAEo",
+            "CzIaLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3JIDYgBARIYCgtmb2dfZGVu",
+            "c2l0eRgPIAEoAkgOiAEBEh0KEGZvZ19lbmRfZGlzdGFuY2UYECABKAJID4gB",
+            "ARIyCghmb2dfbW9kZRgRIAEoDjIbLnBsdW1lLnNhbXBsZS51bml0eS5Gb2dN",
+            "b2RlSBCIAQESHwoSZm9nX3N0YXJ0X2Rpc3RhbmNlGBIgASgCSBGIAQESGgoN",
+            "aGFsb19zdHJlbmd0aBgTIAEoAkgSiAEBEh8KEnJlZmxlY3Rpb25fYm91bmNl",
+            "cxgUIAEoBUgTiAEBEiEKFHJlZmxlY3Rpb25faW50ZW5zaXR5GBUgASgCSBSI",
+            "AQESOwoJc2t5Ym94X2lkGBYgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFz",
+            "c2V0SWRlbnRpZmllckgViAEBEkEKGHN1YnRyYWN0aXZlX3NoYWRvd19jb2xv",
+            "chgXIAEoCzIaLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3JIFogBARI8CgZz",
+            "dW5faWQYGCABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRl",
+            "bnRpZmllckgXiAEBQhgKFl9hbWJpZW50X2VxdWF0b3JfY29sb3JCFwoVX2Ft",
+            "YmllbnRfZ3JvdW5kX2NvbG9yQhQKEl9hbWJpZW50X2ludGVuc2l0eUIQCg5f",
+            "YW1iaWVudF9saWdodEIPCg1fYW1iaWVudF9tb2RlQhAKDl9hbWJpZW50X3By",
+            "b2JlQhQKEl9hbWJpZW50X3NreV9jb2xvckIXChVfY3VzdG9tX3JlZmxlY3Rp",
+            "b25faWRCGgoYX2RlZmF1bHRfcmVmbGVjdGlvbl9tb2RlQiAKHl9kZWZhdWx0",
+            "X3JlZmxlY3Rpb25fcmVzb2x1dGlvbkITChFfZmxhcmVfZmFkZV9zcGVlZEIR",
+            "Cg9fZmxhcmVfc3RyZW5ndGhCBgoEX2ZvZ0IMCgpfZm9nX2NvbG9yQg4KDF9m",
+            "b2dfZGVuc2l0eUITChFfZm9nX2VuZF9kaXN0YW5jZUILCglfZm9nX21vZGVC",
+            "FQoTX2ZvZ19zdGFydF9kaXN0YW5jZUIQCg5faGFsb19zdHJlbmd0aEIVChNf",
+            "cmVmbGVjdGlvbl9ib3VuY2VzQhcKFV9yZWZsZWN0aW9uX2ludGVuc2l0eUIM",
+            "Cgpfc2t5Ym94X2lkQhsKGV9zdWJ0cmFjdGl2ZV9zaGFkb3dfY29sb3JCCQoH",
+            "X3N1bl9pZCpxCgtBbWJpZW50TW9kZRIXChNBTUJJRU5UX01PREVfU0tZQk9Y",
+            "EAASGQoVQU1CSUVOVF9NT0RFX1RSSUxJR0hUEAESFQoRQU1CSUVOVF9NT0RF",
+            "X0ZMQVQQAhIXChNBTUJJRU5UX01PREVfQ1VTVE9NEAMqXwoVRGVmYXVsdFJl",
+            "ZmxlY3Rpb25Nb2RlEiIKHkRFRkFVTFRfUkVGTEVDVElPTl9NT0RFX1NLWUJP",
+            "WBAAEiIKHkRFRkFVTFRfUkVGTEVDVElPTl9NT0RFX0NVU1RPTRABKloKB0Zv",
+            "Z01vZGUSEwoPRk9HX01PREVfTElORUFSEAASGAoURk9HX01PREVfRVhQT05F",
+            "TlRJQUwQARIgChxGT0dfTU9ERV9FWFBPTkVOVElBTF9TUVVBUkVEEAJCFaoC",
+            "ElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Common.ColorReflection.Descriptor, global::PLUME.Sample.Common.SphericalHarmonicsL2Reflection.Descriptor, global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.AmbientMode), typeof(global::PLUME.Sample.Unity.DefaultReflectionMode), typeof(global::PLUME.Sample.Unity.FogMode), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.RenderSettingsUpdate), global::PLUME.Sample.Unity.RenderSettingsUpdate.Parser, new[]{ "AmbientEquatorColor", "AmbientGroundColor", "AmbientIntensity", "AmbientLight", "AmbientMode", "AmbientProbe", "AmbientSkyColor", "CustomReflectionId", "DefaultReflectionMode", "DefaultReflectionResolution", "FlareFadeSpeed", "FlareStrength", "Fog", "FogColor", "FogDensity", "FogEndDistance", "FogMode", "FogStartDistance", "HaloStrength", "ReflectionBounces", "ReflectionIntensity", "SkyboxId", "SubtractiveShadowColor", "SunId" }, new[]{ "CustomReflectionId", "SkyboxId", "SunId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.RenderSettingsUpdate), global::PLUME.Sample.Unity.RenderSettingsUpdate.Parser, new[]{ "AmbientEquatorColor", "AmbientGroundColor", "AmbientIntensity", "AmbientLight", "AmbientMode", "AmbientProbe", "AmbientSkyColor", "CustomReflectionId", "DefaultReflectionMode", "DefaultReflectionResolution", "FlareFadeSpeed", "FlareStrength", "Fog", "FogColor", "FogDensity", "FogEndDistance", "FogMode", "FogStartDistance", "HaloStrength", "ReflectionBounces", "ReflectionIntensity", "SkyboxId", "SubtractiveShadowColor", "SunId" }, new[]{ "AmbientEquatorColor", "AmbientGroundColor", "AmbientIntensity", "AmbientLight", "AmbientMode", "AmbientProbe", "AmbientSkyColor", "CustomReflectionId", "DefaultReflectionMode", "DefaultReflectionResolution", "FlareFadeSpeed", "FlareStrength", "Fog", "FogColor", "FogDensity", "FogEndDistance", "FogMode", "FogStartDistance", "HaloStrength", "ReflectionBounces", "ReflectionIntensity", "SkyboxId", "SubtractiveShadowColor", "SunId" }, null, null, null)
           }));
     }
     #endregion
@@ -99,6 +111,7 @@ namespace PLUME.Sample.Unity {
   {
     private static readonly pb::MessageParser<RenderSettingsUpdate> _parser = new pb::MessageParser<RenderSettingsUpdate>(() => new RenderSettingsUpdate());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<RenderSettingsUpdate> Parser { get { return _parser; } }
@@ -126,6 +139,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public RenderSettingsUpdate(RenderSettingsUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
       ambientEquatorColor_ = other.ambientEquatorColor_ != null ? other.ambientEquatorColor_.Clone() : null;
       ambientGroundColor_ = other.ambientGroundColor_ != null ? other.ambientGroundColor_.Clone() : null;
       ambientIntensity_ = other.ambientIntensity_;
@@ -185,14 +199,29 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "ambient_intensity" field.</summary>
     public const int AmbientIntensityFieldNumber = 3;
+    private readonly static float AmbientIntensityDefaultValue = 0F;
+
     private float ambientIntensity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float AmbientIntensity {
-      get { return ambientIntensity_; }
+      get { if ((_hasBits0 & 1) != 0) { return ambientIntensity_; } else { return AmbientIntensityDefaultValue; } }
       set {
+        _hasBits0 |= 1;
         ambientIntensity_ = value;
       }
+    }
+    /// <summary>Gets whether the "ambient_intensity" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAmbientIntensity {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "ambient_intensity" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAmbientIntensity() {
+      _hasBits0 &= ~1;
     }
 
     /// <summary>Field number for the "ambient_light" field.</summary>
@@ -209,14 +238,29 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "ambient_mode" field.</summary>
     public const int AmbientModeFieldNumber = 5;
-    private global::PLUME.Sample.Unity.AmbientMode ambientMode_ = global::PLUME.Sample.Unity.AmbientMode.Skybox;
+    private readonly static global::PLUME.Sample.Unity.AmbientMode AmbientModeDefaultValue = global::PLUME.Sample.Unity.AmbientMode.Skybox;
+
+    private global::PLUME.Sample.Unity.AmbientMode ambientMode_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.AmbientMode AmbientMode {
-      get { return ambientMode_; }
+      get { if ((_hasBits0 & 2) != 0) { return ambientMode_; } else { return AmbientModeDefaultValue; } }
       set {
+        _hasBits0 |= 2;
         ambientMode_ = value;
       }
+    }
+    /// <summary>Gets whether the "ambient_mode" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAmbientMode {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "ambient_mode" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAmbientMode() {
+      _hasBits0 &= ~2;
     }
 
     /// <summary>Field number for the "ambient_probe" field.</summary>
@@ -257,62 +301,137 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "default_reflection_mode" field.</summary>
     public const int DefaultReflectionModeFieldNumber = 9;
-    private global::PLUME.Sample.Unity.DefaultReflectionMode defaultReflectionMode_ = global::PLUME.Sample.Unity.DefaultReflectionMode.Skybox;
+    private readonly static global::PLUME.Sample.Unity.DefaultReflectionMode DefaultReflectionModeDefaultValue = global::PLUME.Sample.Unity.DefaultReflectionMode.Skybox;
+
+    private global::PLUME.Sample.Unity.DefaultReflectionMode defaultReflectionMode_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.DefaultReflectionMode DefaultReflectionMode {
-      get { return defaultReflectionMode_; }
+      get { if ((_hasBits0 & 4) != 0) { return defaultReflectionMode_; } else { return DefaultReflectionModeDefaultValue; } }
       set {
+        _hasBits0 |= 4;
         defaultReflectionMode_ = value;
       }
+    }
+    /// <summary>Gets whether the "default_reflection_mode" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDefaultReflectionMode {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "default_reflection_mode" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDefaultReflectionMode() {
+      _hasBits0 &= ~4;
     }
 
     /// <summary>Field number for the "default_reflection_resolution" field.</summary>
     public const int DefaultReflectionResolutionFieldNumber = 10;
+    private readonly static int DefaultReflectionResolutionDefaultValue = 0;
+
     private int defaultReflectionResolution_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int DefaultReflectionResolution {
-      get { return defaultReflectionResolution_; }
+      get { if ((_hasBits0 & 8) != 0) { return defaultReflectionResolution_; } else { return DefaultReflectionResolutionDefaultValue; } }
       set {
+        _hasBits0 |= 8;
         defaultReflectionResolution_ = value;
       }
+    }
+    /// <summary>Gets whether the "default_reflection_resolution" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDefaultReflectionResolution {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "default_reflection_resolution" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDefaultReflectionResolution() {
+      _hasBits0 &= ~8;
     }
 
     /// <summary>Field number for the "flare_fade_speed" field.</summary>
     public const int FlareFadeSpeedFieldNumber = 11;
+    private readonly static float FlareFadeSpeedDefaultValue = 0F;
+
     private float flareFadeSpeed_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float FlareFadeSpeed {
-      get { return flareFadeSpeed_; }
+      get { if ((_hasBits0 & 16) != 0) { return flareFadeSpeed_; } else { return FlareFadeSpeedDefaultValue; } }
       set {
+        _hasBits0 |= 16;
         flareFadeSpeed_ = value;
       }
+    }
+    /// <summary>Gets whether the "flare_fade_speed" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFlareFadeSpeed {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "flare_fade_speed" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFlareFadeSpeed() {
+      _hasBits0 &= ~16;
     }
 
     /// <summary>Field number for the "flare_strength" field.</summary>
     public const int FlareStrengthFieldNumber = 12;
+    private readonly static float FlareStrengthDefaultValue = 0F;
+
     private float flareStrength_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float FlareStrength {
-      get { return flareStrength_; }
+      get { if ((_hasBits0 & 32) != 0) { return flareStrength_; } else { return FlareStrengthDefaultValue; } }
       set {
+        _hasBits0 |= 32;
         flareStrength_ = value;
       }
+    }
+    /// <summary>Gets whether the "flare_strength" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFlareStrength {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "flare_strength" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFlareStrength() {
+      _hasBits0 &= ~32;
     }
 
     /// <summary>Field number for the "fog" field.</summary>
     public const int FogFieldNumber = 13;
+    private readonly static bool FogDefaultValue = false;
+
     private bool fog_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Fog {
-      get { return fog_; }
+      get { if ((_hasBits0 & 64) != 0) { return fog_; } else { return FogDefaultValue; } }
       set {
+        _hasBits0 |= 64;
         fog_ = value;
       }
+    }
+    /// <summary>Gets whether the "fog" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFog {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "fog" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFog() {
+      _hasBits0 &= ~64;
     }
 
     /// <summary>Field number for the "fog_color" field.</summary>
@@ -329,86 +448,191 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "fog_density" field.</summary>
     public const int FogDensityFieldNumber = 15;
+    private readonly static float FogDensityDefaultValue = 0F;
+
     private float fogDensity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float FogDensity {
-      get { return fogDensity_; }
+      get { if ((_hasBits0 & 128) != 0) { return fogDensity_; } else { return FogDensityDefaultValue; } }
       set {
+        _hasBits0 |= 128;
         fogDensity_ = value;
       }
+    }
+    /// <summary>Gets whether the "fog_density" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFogDensity {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "fog_density" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFogDensity() {
+      _hasBits0 &= ~128;
     }
 
     /// <summary>Field number for the "fog_end_distance" field.</summary>
     public const int FogEndDistanceFieldNumber = 16;
+    private readonly static float FogEndDistanceDefaultValue = 0F;
+
     private float fogEndDistance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float FogEndDistance {
-      get { return fogEndDistance_; }
+      get { if ((_hasBits0 & 256) != 0) { return fogEndDistance_; } else { return FogEndDistanceDefaultValue; } }
       set {
+        _hasBits0 |= 256;
         fogEndDistance_ = value;
       }
+    }
+    /// <summary>Gets whether the "fog_end_distance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFogEndDistance {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "fog_end_distance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFogEndDistance() {
+      _hasBits0 &= ~256;
     }
 
     /// <summary>Field number for the "fog_mode" field.</summary>
     public const int FogModeFieldNumber = 17;
-    private global::PLUME.Sample.Unity.FogMode fogMode_ = global::PLUME.Sample.Unity.FogMode.Linear;
+    private readonly static global::PLUME.Sample.Unity.FogMode FogModeDefaultValue = global::PLUME.Sample.Unity.FogMode.Linear;
+
+    private global::PLUME.Sample.Unity.FogMode fogMode_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.FogMode FogMode {
-      get { return fogMode_; }
+      get { if ((_hasBits0 & 512) != 0) { return fogMode_; } else { return FogModeDefaultValue; } }
       set {
+        _hasBits0 |= 512;
         fogMode_ = value;
       }
+    }
+    /// <summary>Gets whether the "fog_mode" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFogMode {
+      get { return (_hasBits0 & 512) != 0; }
+    }
+    /// <summary>Clears the value of the "fog_mode" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFogMode() {
+      _hasBits0 &= ~512;
     }
 
     /// <summary>Field number for the "fog_start_distance" field.</summary>
     public const int FogStartDistanceFieldNumber = 18;
+    private readonly static float FogStartDistanceDefaultValue = 0F;
+
     private float fogStartDistance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float FogStartDistance {
-      get { return fogStartDistance_; }
+      get { if ((_hasBits0 & 1024) != 0) { return fogStartDistance_; } else { return FogStartDistanceDefaultValue; } }
       set {
+        _hasBits0 |= 1024;
         fogStartDistance_ = value;
       }
+    }
+    /// <summary>Gets whether the "fog_start_distance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFogStartDistance {
+      get { return (_hasBits0 & 1024) != 0; }
+    }
+    /// <summary>Clears the value of the "fog_start_distance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFogStartDistance() {
+      _hasBits0 &= ~1024;
     }
 
     /// <summary>Field number for the "halo_strength" field.</summary>
     public const int HaloStrengthFieldNumber = 19;
+    private readonly static float HaloStrengthDefaultValue = 0F;
+
     private float haloStrength_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float HaloStrength {
-      get { return haloStrength_; }
+      get { if ((_hasBits0 & 2048) != 0) { return haloStrength_; } else { return HaloStrengthDefaultValue; } }
       set {
+        _hasBits0 |= 2048;
         haloStrength_ = value;
       }
+    }
+    /// <summary>Gets whether the "halo_strength" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasHaloStrength {
+      get { return (_hasBits0 & 2048) != 0; }
+    }
+    /// <summary>Clears the value of the "halo_strength" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearHaloStrength() {
+      _hasBits0 &= ~2048;
     }
 
     /// <summary>Field number for the "reflection_bounces" field.</summary>
     public const int ReflectionBouncesFieldNumber = 20;
+    private readonly static int ReflectionBouncesDefaultValue = 0;
+
     private int reflectionBounces_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int ReflectionBounces {
-      get { return reflectionBounces_; }
+      get { if ((_hasBits0 & 4096) != 0) { return reflectionBounces_; } else { return ReflectionBouncesDefaultValue; } }
       set {
+        _hasBits0 |= 4096;
         reflectionBounces_ = value;
       }
+    }
+    /// <summary>Gets whether the "reflection_bounces" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasReflectionBounces {
+      get { return (_hasBits0 & 4096) != 0; }
+    }
+    /// <summary>Clears the value of the "reflection_bounces" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearReflectionBounces() {
+      _hasBits0 &= ~4096;
     }
 
     /// <summary>Field number for the "reflection_intensity" field.</summary>
     public const int ReflectionIntensityFieldNumber = 21;
+    private readonly static float ReflectionIntensityDefaultValue = 0F;
+
     private float reflectionIntensity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float ReflectionIntensity {
-      get { return reflectionIntensity_; }
+      get { if ((_hasBits0 & 8192) != 0) { return reflectionIntensity_; } else { return ReflectionIntensityDefaultValue; } }
       set {
+        _hasBits0 |= 8192;
         reflectionIntensity_ = value;
       }
+    }
+    /// <summary>Gets whether the "reflection_intensity" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasReflectionIntensity {
+      get { return (_hasBits0 & 8192) != 0; }
+    }
+    /// <summary>Clears the value of the "reflection_intensity" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearReflectionIntensity() {
+      _hasBits0 &= ~8192;
     }
 
     /// <summary>Field number for the "skybox_id" field.</summary>
@@ -495,25 +719,25 @@ namespace PLUME.Sample.Unity {
       int hash = 1;
       if (ambientEquatorColor_ != null) hash ^= AmbientEquatorColor.GetHashCode();
       if (ambientGroundColor_ != null) hash ^= AmbientGroundColor.GetHashCode();
-      if (AmbientIntensity != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(AmbientIntensity);
+      if (HasAmbientIntensity) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(AmbientIntensity);
       if (ambientLight_ != null) hash ^= AmbientLight.GetHashCode();
-      if (AmbientMode != global::PLUME.Sample.Unity.AmbientMode.Skybox) hash ^= AmbientMode.GetHashCode();
+      if (HasAmbientMode) hash ^= AmbientMode.GetHashCode();
       if (ambientProbe_ != null) hash ^= AmbientProbe.GetHashCode();
       if (ambientSkyColor_ != null) hash ^= AmbientSkyColor.GetHashCode();
       if (customReflectionId_ != null) hash ^= CustomReflectionId.GetHashCode();
-      if (DefaultReflectionMode != global::PLUME.Sample.Unity.DefaultReflectionMode.Skybox) hash ^= DefaultReflectionMode.GetHashCode();
-      if (DefaultReflectionResolution != 0) hash ^= DefaultReflectionResolution.GetHashCode();
-      if (FlareFadeSpeed != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FlareFadeSpeed);
-      if (FlareStrength != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FlareStrength);
-      if (Fog != false) hash ^= Fog.GetHashCode();
+      if (HasDefaultReflectionMode) hash ^= DefaultReflectionMode.GetHashCode();
+      if (HasDefaultReflectionResolution) hash ^= DefaultReflectionResolution.GetHashCode();
+      if (HasFlareFadeSpeed) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FlareFadeSpeed);
+      if (HasFlareStrength) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FlareStrength);
+      if (HasFog) hash ^= Fog.GetHashCode();
       if (fogColor_ != null) hash ^= FogColor.GetHashCode();
-      if (FogDensity != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FogDensity);
-      if (FogEndDistance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FogEndDistance);
-      if (FogMode != global::PLUME.Sample.Unity.FogMode.Linear) hash ^= FogMode.GetHashCode();
-      if (FogStartDistance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FogStartDistance);
-      if (HaloStrength != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(HaloStrength);
-      if (ReflectionBounces != 0) hash ^= ReflectionBounces.GetHashCode();
-      if (ReflectionIntensity != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ReflectionIntensity);
+      if (HasFogDensity) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FogDensity);
+      if (HasFogEndDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FogEndDistance);
+      if (HasFogMode) hash ^= FogMode.GetHashCode();
+      if (HasFogStartDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FogStartDistance);
+      if (HasHaloStrength) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(HaloStrength);
+      if (HasReflectionBounces) hash ^= ReflectionBounces.GetHashCode();
+      if (HasReflectionIntensity) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ReflectionIntensity);
       if (skyboxId_ != null) hash ^= SkyboxId.GetHashCode();
       if (subtractiveShadowColor_ != null) hash ^= SubtractiveShadowColor.GetHashCode();
       if (sunId_ != null) hash ^= SunId.GetHashCode();
@@ -543,7 +767,7 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteMessage(AmbientGroundColor);
       }
-      if (AmbientIntensity != 0F) {
+      if (HasAmbientIntensity) {
         output.WriteRawTag(29);
         output.WriteFloat(AmbientIntensity);
       }
@@ -551,7 +775,7 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(34);
         output.WriteMessage(AmbientLight);
       }
-      if (AmbientMode != global::PLUME.Sample.Unity.AmbientMode.Skybox) {
+      if (HasAmbientMode) {
         output.WriteRawTag(40);
         output.WriteEnum((int) AmbientMode);
       }
@@ -567,23 +791,23 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(66);
         output.WriteMessage(CustomReflectionId);
       }
-      if (DefaultReflectionMode != global::PLUME.Sample.Unity.DefaultReflectionMode.Skybox) {
+      if (HasDefaultReflectionMode) {
         output.WriteRawTag(72);
         output.WriteEnum((int) DefaultReflectionMode);
       }
-      if (DefaultReflectionResolution != 0) {
+      if (HasDefaultReflectionResolution) {
         output.WriteRawTag(80);
         output.WriteInt32(DefaultReflectionResolution);
       }
-      if (FlareFadeSpeed != 0F) {
+      if (HasFlareFadeSpeed) {
         output.WriteRawTag(93);
         output.WriteFloat(FlareFadeSpeed);
       }
-      if (FlareStrength != 0F) {
+      if (HasFlareStrength) {
         output.WriteRawTag(101);
         output.WriteFloat(FlareStrength);
       }
-      if (Fog != false) {
+      if (HasFog) {
         output.WriteRawTag(104);
         output.WriteBool(Fog);
       }
@@ -591,31 +815,31 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(114);
         output.WriteMessage(FogColor);
       }
-      if (FogDensity != 0F) {
+      if (HasFogDensity) {
         output.WriteRawTag(125);
         output.WriteFloat(FogDensity);
       }
-      if (FogEndDistance != 0F) {
+      if (HasFogEndDistance) {
         output.WriteRawTag(133, 1);
         output.WriteFloat(FogEndDistance);
       }
-      if (FogMode != global::PLUME.Sample.Unity.FogMode.Linear) {
+      if (HasFogMode) {
         output.WriteRawTag(136, 1);
         output.WriteEnum((int) FogMode);
       }
-      if (FogStartDistance != 0F) {
+      if (HasFogStartDistance) {
         output.WriteRawTag(149, 1);
         output.WriteFloat(FogStartDistance);
       }
-      if (HaloStrength != 0F) {
+      if (HasHaloStrength) {
         output.WriteRawTag(157, 1);
         output.WriteFloat(HaloStrength);
       }
-      if (ReflectionBounces != 0) {
+      if (HasReflectionBounces) {
         output.WriteRawTag(160, 1);
         output.WriteInt32(ReflectionBounces);
       }
-      if (ReflectionIntensity != 0F) {
+      if (HasReflectionIntensity) {
         output.WriteRawTag(173, 1);
         output.WriteFloat(ReflectionIntensity);
       }
@@ -649,7 +873,7 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteMessage(AmbientGroundColor);
       }
-      if (AmbientIntensity != 0F) {
+      if (HasAmbientIntensity) {
         output.WriteRawTag(29);
         output.WriteFloat(AmbientIntensity);
       }
@@ -657,7 +881,7 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(34);
         output.WriteMessage(AmbientLight);
       }
-      if (AmbientMode != global::PLUME.Sample.Unity.AmbientMode.Skybox) {
+      if (HasAmbientMode) {
         output.WriteRawTag(40);
         output.WriteEnum((int) AmbientMode);
       }
@@ -673,23 +897,23 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(66);
         output.WriteMessage(CustomReflectionId);
       }
-      if (DefaultReflectionMode != global::PLUME.Sample.Unity.DefaultReflectionMode.Skybox) {
+      if (HasDefaultReflectionMode) {
         output.WriteRawTag(72);
         output.WriteEnum((int) DefaultReflectionMode);
       }
-      if (DefaultReflectionResolution != 0) {
+      if (HasDefaultReflectionResolution) {
         output.WriteRawTag(80);
         output.WriteInt32(DefaultReflectionResolution);
       }
-      if (FlareFadeSpeed != 0F) {
+      if (HasFlareFadeSpeed) {
         output.WriteRawTag(93);
         output.WriteFloat(FlareFadeSpeed);
       }
-      if (FlareStrength != 0F) {
+      if (HasFlareStrength) {
         output.WriteRawTag(101);
         output.WriteFloat(FlareStrength);
       }
-      if (Fog != false) {
+      if (HasFog) {
         output.WriteRawTag(104);
         output.WriteBool(Fog);
       }
@@ -697,31 +921,31 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(114);
         output.WriteMessage(FogColor);
       }
-      if (FogDensity != 0F) {
+      if (HasFogDensity) {
         output.WriteRawTag(125);
         output.WriteFloat(FogDensity);
       }
-      if (FogEndDistance != 0F) {
+      if (HasFogEndDistance) {
         output.WriteRawTag(133, 1);
         output.WriteFloat(FogEndDistance);
       }
-      if (FogMode != global::PLUME.Sample.Unity.FogMode.Linear) {
+      if (HasFogMode) {
         output.WriteRawTag(136, 1);
         output.WriteEnum((int) FogMode);
       }
-      if (FogStartDistance != 0F) {
+      if (HasFogStartDistance) {
         output.WriteRawTag(149, 1);
         output.WriteFloat(FogStartDistance);
       }
-      if (HaloStrength != 0F) {
+      if (HasHaloStrength) {
         output.WriteRawTag(157, 1);
         output.WriteFloat(HaloStrength);
       }
-      if (ReflectionBounces != 0) {
+      if (HasReflectionBounces) {
         output.WriteRawTag(160, 1);
         output.WriteInt32(ReflectionBounces);
       }
-      if (ReflectionIntensity != 0F) {
+      if (HasReflectionIntensity) {
         output.WriteRawTag(173, 1);
         output.WriteFloat(ReflectionIntensity);
       }
@@ -753,13 +977,13 @@ namespace PLUME.Sample.Unity {
       if (ambientGroundColor_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(AmbientGroundColor);
       }
-      if (AmbientIntensity != 0F) {
+      if (HasAmbientIntensity) {
         size += 1 + 4;
       }
       if (ambientLight_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(AmbientLight);
       }
-      if (AmbientMode != global::PLUME.Sample.Unity.AmbientMode.Skybox) {
+      if (HasAmbientMode) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) AmbientMode);
       }
       if (ambientProbe_ != null) {
@@ -771,43 +995,43 @@ namespace PLUME.Sample.Unity {
       if (customReflectionId_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(CustomReflectionId);
       }
-      if (DefaultReflectionMode != global::PLUME.Sample.Unity.DefaultReflectionMode.Skybox) {
+      if (HasDefaultReflectionMode) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) DefaultReflectionMode);
       }
-      if (DefaultReflectionResolution != 0) {
+      if (HasDefaultReflectionResolution) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(DefaultReflectionResolution);
       }
-      if (FlareFadeSpeed != 0F) {
+      if (HasFlareFadeSpeed) {
         size += 1 + 4;
       }
-      if (FlareStrength != 0F) {
+      if (HasFlareStrength) {
         size += 1 + 4;
       }
-      if (Fog != false) {
+      if (HasFog) {
         size += 1 + 1;
       }
       if (fogColor_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(FogColor);
       }
-      if (FogDensity != 0F) {
+      if (HasFogDensity) {
         size += 1 + 4;
       }
-      if (FogEndDistance != 0F) {
+      if (HasFogEndDistance) {
         size += 2 + 4;
       }
-      if (FogMode != global::PLUME.Sample.Unity.FogMode.Linear) {
+      if (HasFogMode) {
         size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) FogMode);
       }
-      if (FogStartDistance != 0F) {
+      if (HasFogStartDistance) {
         size += 2 + 4;
       }
-      if (HaloStrength != 0F) {
+      if (HasHaloStrength) {
         size += 2 + 4;
       }
-      if (ReflectionBounces != 0) {
+      if (HasReflectionBounces) {
         size += 2 + pb::CodedOutputStream.ComputeInt32Size(ReflectionBounces);
       }
-      if (ReflectionIntensity != 0F) {
+      if (HasReflectionIntensity) {
         size += 2 + 4;
       }
       if (skyboxId_ != null) {
@@ -843,7 +1067,7 @@ namespace PLUME.Sample.Unity {
         }
         AmbientGroundColor.MergeFrom(other.AmbientGroundColor);
       }
-      if (other.AmbientIntensity != 0F) {
+      if (other.HasAmbientIntensity) {
         AmbientIntensity = other.AmbientIntensity;
       }
       if (other.ambientLight_ != null) {
@@ -852,7 +1076,7 @@ namespace PLUME.Sample.Unity {
         }
         AmbientLight.MergeFrom(other.AmbientLight);
       }
-      if (other.AmbientMode != global::PLUME.Sample.Unity.AmbientMode.Skybox) {
+      if (other.HasAmbientMode) {
         AmbientMode = other.AmbientMode;
       }
       if (other.ambientProbe_ != null) {
@@ -873,19 +1097,19 @@ namespace PLUME.Sample.Unity {
         }
         CustomReflectionId.MergeFrom(other.CustomReflectionId);
       }
-      if (other.DefaultReflectionMode != global::PLUME.Sample.Unity.DefaultReflectionMode.Skybox) {
+      if (other.HasDefaultReflectionMode) {
         DefaultReflectionMode = other.DefaultReflectionMode;
       }
-      if (other.DefaultReflectionResolution != 0) {
+      if (other.HasDefaultReflectionResolution) {
         DefaultReflectionResolution = other.DefaultReflectionResolution;
       }
-      if (other.FlareFadeSpeed != 0F) {
+      if (other.HasFlareFadeSpeed) {
         FlareFadeSpeed = other.FlareFadeSpeed;
       }
-      if (other.FlareStrength != 0F) {
+      if (other.HasFlareStrength) {
         FlareStrength = other.FlareStrength;
       }
-      if (other.Fog != false) {
+      if (other.HasFog) {
         Fog = other.Fog;
       }
       if (other.fogColor_ != null) {
@@ -894,25 +1118,25 @@ namespace PLUME.Sample.Unity {
         }
         FogColor.MergeFrom(other.FogColor);
       }
-      if (other.FogDensity != 0F) {
+      if (other.HasFogDensity) {
         FogDensity = other.FogDensity;
       }
-      if (other.FogEndDistance != 0F) {
+      if (other.HasFogEndDistance) {
         FogEndDistance = other.FogEndDistance;
       }
-      if (other.FogMode != global::PLUME.Sample.Unity.FogMode.Linear) {
+      if (other.HasFogMode) {
         FogMode = other.FogMode;
       }
-      if (other.FogStartDistance != 0F) {
+      if (other.HasFogStartDistance) {
         FogStartDistance = other.FogStartDistance;
       }
-      if (other.HaloStrength != 0F) {
+      if (other.HasHaloStrength) {
         HaloStrength = other.HaloStrength;
       }
-      if (other.ReflectionBounces != 0) {
+      if (other.HasReflectionBounces) {
         ReflectionBounces = other.ReflectionBounces;
       }
-      if (other.ReflectionIntensity != 0F) {
+      if (other.HasReflectionIntensity) {
         ReflectionIntensity = other.ReflectionIntensity;
       }
       if (other.skyboxId_ != null) {

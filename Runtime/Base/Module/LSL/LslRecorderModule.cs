@@ -1,6 +1,6 @@
 namespace PLUME.Base.Module.LSL
 {
-    public class LslRecorderModuleBase : RecorderModuleBase
+    public class LslRecorderModule : RecorderModule
     {
         
     }

@@ -11,7 +11,7 @@ namespace PLUME.Base.Module.Unity.Transform
     public class DynamicTransformAccessArray : IDisposable
     {
         private TransformAccessArray _transformAccessArray;
-        private NativeList<ObjectIdentifier> _alignedIdentifiers;
+        private NativeList<ComponentIdentifier> _alignedIdentifiers;
         private readonly Dictionary<int, int> _instanceIdToIndex;
 
         public int Length => _transformAccessArray.length;
@@ -20,7 +20,7 @@ namespace PLUME.Base.Module.Unity.Transform
         public DynamicTransformAccessArray(int initialCapacity = 1000, int desiredJobCount = -1)
         {
             _transformAccessArray = new TransformAccessArray(initialCapacity, desiredJobCount);
-            _alignedIdentifiers = new NativeList<ObjectIdentifier>(initialCapacity, Allocator.Persistent);
+            _alignedIdentifiers = new NativeList<ComponentIdentifier>(initialCapacity, Allocator.Persistent);
             _instanceIdToIndex = new Dictionary<int, int>(initialCapacity);
         }
 
@@ -31,7 +31,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _instanceIdToIndex.Clear();
         }
 
-        public bool TryAdd(ObjectSafeRef<UnityEngine.Transform> objRef)
+        public bool TryAdd(ComponentSafeRef<UnityEngine.Transform> objRef)
         {
             if (Contains(objRef))
                 return false;
@@ -40,16 +40,16 @@ namespace PLUME.Base.Module.Unity.Transform
             return true;
         }
 
-        public void Add(ObjectSafeRef<UnityEngine.Transform> objRef)
+        public void Add(ComponentSafeRef<UnityEngine.Transform> objRef)
         {
             EnsureCapacity(_transformAccessArray.length + 1);
 
             if (Contains(objRef))
-                throw new InvalidOperationException($"Transform {objRef.TypedObject.name} is already in the list");
+                throw new InvalidOperationException($"Transform {objRef.Component.name} is already in the list");
 
-            _transformAccessArray.Add(objRef.TypedObject);
+            _transformAccessArray.Add(objRef.Component);
             _alignedIdentifiers.Add(objRef.Identifier);
-            _instanceIdToIndex.Add(objRef.Identifier.InstanceId, _transformAccessArray.length - 1);
+            _instanceIdToIndex.Add(objRef.Identifier.ComponentId.InstanceId, _transformAccessArray.length - 1);
         }
 
         private void EnsureCapacity(int capacity)
@@ -75,19 +75,14 @@ namespace PLUME.Base.Module.Unity.Transform
         /// </summary>
         /// <param name="objRef">The transform to find.</param>
         /// <returns>The index of the transform in the list, or -1 if it is not in the list.</returns>
-        public int IndexOf(ObjectSafeRef<UnityEngine.Transform> objRef)
+        public int IndexOf(ComponentSafeRef<UnityEngine.Transform> objRef)
         {
-            if (_instanceIdToIndex.TryGetValue(objRef.Identifier.InstanceId, out var index))
-            {
-                return index;
-            }
-
-            return -1;
+            return _instanceIdToIndex.GetValueOrDefault(objRef.Identifier.ComponentId.InstanceId, -1);
         }
 
-        public bool Contains(ObjectSafeRef<UnityEngine.Transform> objRef)
+        public bool Contains(ComponentSafeRef<UnityEngine.Transform> objRef)
         {
-            return _instanceIdToIndex.ContainsKey(objRef.Identifier.InstanceId);
+            return _instanceIdToIndex.ContainsKey(objRef.Identifier.ComponentId.InstanceId);
         }
 
         /// <summary>
@@ -96,7 +91,7 @@ namespace PLUME.Base.Module.Unity.Transform
         /// </summary>
         /// <param name="objRef">The transform to remove.</param>
         /// <returns>True if the transform was removed, false otherwise.</returns>
-        public bool TryRemove(ObjectSafeRef<UnityEngine.Transform> objRef)
+        public bool TryRemove(ComponentSafeRef<UnityEngine.Transform> objRef)
         {
             var index = IndexOf(objRef);
 
@@ -114,12 +109,12 @@ namespace PLUME.Base.Module.Unity.Transform
         /// <param name="objRef">The transform to remove.</param>
         /// <exception cref="InvalidOperationException">Thrown if the transform is not in the list.</exception>
         /// <returns>The index of the removed transform.</returns>
-        public int RemoveSwapBack(ObjectSafeRef<UnityEngine.Transform> objRef)
+        public int RemoveSwapBack(ComponentSafeRef<UnityEngine.Transform> objRef)
         {
             var index = IndexOf(objRef);
 
             if (index == -1)
-                throw new InvalidOperationException($"Transform {objRef.TypedObject.name} is not in the list");
+                throw new InvalidOperationException($"Transform {objRef.Component.name} is not in the list");
 
             RemoveAtSwapBack(index);
             return index;
@@ -143,13 +138,13 @@ namespace PLUME.Base.Module.Unity.Transform
 
             _transformAccessArray.RemoveAtSwapBack(index);
             _alignedIdentifiers.RemoveAtSwapBack(index);
-            _instanceIdToIndex.Remove(identifier.InstanceId);
+            _instanceIdToIndex.Remove(identifier.ComponentId.InstanceId);
 
             // Update the index of swapped element, in the case where the removed element was the last one
             // then instanceId == lastInstanceId and we do not need to update the index.
-            if (identifier.InstanceId != lastIdentifier.InstanceId)
+            if (identifier.ComponentId.InstanceId != lastIdentifier.ComponentId.InstanceId)
             {
-                _instanceIdToIndex[lastIdentifier.InstanceId] = index;
+                _instanceIdToIndex[lastIdentifier.ComponentId.InstanceId] = index;
             }
         }
 
@@ -165,7 +160,7 @@ namespace PLUME.Base.Module.Unity.Transform
             return _transformAccessArray;
         }
 
-        public NativeList<ObjectIdentifier> GetAlignedIdentifiers()
+        public NativeList<ComponentIdentifier> GetAlignedIdentifiers()
         {
             return _alignedIdentifiers;
         }

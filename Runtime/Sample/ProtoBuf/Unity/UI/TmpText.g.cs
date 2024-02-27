@@ -28,33 +28,35 @@ namespace PLUME.Sample.Unity.UI {
             "Ghd1bml0eS9pZGVudGlmaWVycy5wcm90bxoUY29tbW9uL3ZlY3RvcjQucHJv",
             "dG8aEmNvbW1vbi9jb2xvci5wcm90byJECg1UTVBUZXh0Q3JlYXRlEjMKAmlk",
             "GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
-            "ZXIiVwoSVE1QVGV4dFVwZGF0ZVZhbHVlEjMKAmlkGAEgASgLMicucGx1bWUu",
-            "c2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISDAoEdGV4dBgCIAEo",
-            "CSL3AQoRVE1QVGV4dFVwZGF0ZUZvbnQSMwoCaWQYASABKAsyJy5wbHVtZS5z",
-            "YW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchI5Cgdmb250X2lkGAIg",
-            "ASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckgAiAEB",
-            "EhIKCmZvbnRfc3R5bGUYAyABKAUSEQoJZm9udF9zaXplGAQgASgCEhEKCWF1",
-            "dG9fc2l6ZRgFIAEoCBIVCg1mb250X3NpemVfbWluGAYgASgCEhUKDWZvbnRf",
-            "c2l6ZV9tYXgYByABKAJCCgoIX2ZvbnRfaWQidAoSVE1QVGV4dFVwZGF0ZUNv",
-            "bG9yEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVu",
-            "dElkZW50aWZpZXISKQoFY29sb3IYAiABKAsyGi5wbHVtZS5zYW1wbGUuY29t",
-            "bW9uLkNvbG9yIs8CChNUTVBUZXh0VXBkYXRlRXh0cmFzEjMKAmlkGAEgASgL",
-            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISGQoR",
-            "Y2hhcmFjdGVyX3NwYWNpbmcYAiABKAISFAoMd29yZF9zcGFjaW5nGAMgASgC",
-            "EhQKDGxpbmVfc3BhY2luZxgEIAEoAhIZChFwYXJhZ3JhcGhfc3BhY2luZxgF",
-            "IAEoAhIYChB3cmFwcGluZ19lbmFibGVkGAYgASgIEhEKCWFsaWdubWVudBgH",
-            "IAEoBRIQCghvdmVyZmxvdxgIIAEoBRIaChJob3Jpem9udGFsX21hcHBpbmcY",
-            "CSABKAUSGAoQdmVydGljYWxfbWFwcGluZxgKIAEoBRIsCgZtYXJnaW4YCyAB",
-            "KAsyHC5wbHVtZS5zYW1wbGUuY29tbW9uLlZlY3RvcjRCGKoCFVBMVU1FLlNh",
-            "bXBsZS5Vbml0eS5VSWIGcHJvdG8z"));
+            "ZXIiRQoOVE1QVGV4dERlc3Ryb3kSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1w",
+            "bGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciKdBwoNVE1QVGV4dFVwZGF0",
+            "ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJ",
+            "ZGVudGlmaWVyEhEKBHRleHQYAiABKAlIAIgBARI5Cgdmb250X2lkGAMgASgL",
+            "MiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckgBiAEBEhcK",
+            "CmZvbnRfc3R5bGUYBCABKAVIAogBARIWCglmb250X3NpemUYBSABKAJIA4gB",
+            "ARIWCglhdXRvX3NpemUYBiABKAhIBIgBARIaCg1mb250X3NpemVfbWluGAcg",
+            "ASgCSAWIAQESGgoNZm9udF9zaXplX21heBgIIAEoAkgGiAEBEi4KBWNvbG9y",
+            "GAkgASgLMhoucGx1bWUuc2FtcGxlLmNvbW1vbi5Db2xvckgHiAEBEh4KEWNo",
+            "YXJhY3Rlcl9zcGFjaW5nGAogASgCSAiIAQESGQoMd29yZF9zcGFjaW5nGAsg",
+            "ASgCSAmIAQESGQoMbGluZV9zcGFjaW5nGAwgASgCSAqIAQESHgoRcGFyYWdy",
+            "YXBoX3NwYWNpbmcYDSABKAJIC4gBARIdChB3cmFwcGluZ19lbmFibGVkGA4g",
+            "ASgISAyIAQESFgoJYWxpZ25tZW50GA8gASgFSA2IAQESFQoIb3ZlcmZsb3cY",
+            "ECABKAVIDogBARIfChJob3Jpem9udGFsX21hcHBpbmcYESABKAVID4gBARId",
+            "ChB2ZXJ0aWNhbF9tYXBwaW5nGBIgASgFSBCIAQESMQoGbWFyZ2luGBMgASgL",
+            "MhwucGx1bWUuc2FtcGxlLmNvbW1vbi5WZWN0b3I0SBGIAQFCBwoFX3RleHRC",
+            "CgoIX2ZvbnRfaWRCDQoLX2ZvbnRfc3R5bGVCDAoKX2ZvbnRfc2l6ZUIMCgpf",
+            "YXV0b19zaXplQhAKDl9mb250X3NpemVfbWluQhAKDl9mb250X3NpemVfbWF4",
+            "QggKBl9jb2xvckIUChJfY2hhcmFjdGVyX3NwYWNpbmdCDwoNX3dvcmRfc3Bh",
+            "Y2luZ0IPCg1fbGluZV9zcGFjaW5nQhQKEl9wYXJhZ3JhcGhfc3BhY2luZ0IT",
+            "ChFfd3JhcHBpbmdfZW5hYmxlZEIMCgpfYWxpZ25tZW50QgsKCV9vdmVyZmxv",
+            "d0IVChNfaG9yaXpvbnRhbF9tYXBwaW5nQhMKEV92ZXJ0aWNhbF9tYXBwaW5n",
+            "QgkKB19tYXJnaW5CGKoCFVBMVU1FLlNhbXBsZS5Vbml0eS5VSWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TMPTextCreate), global::PLUME.Sample.Unity.UI.TMPTextCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TMPTextUpdateValue), global::PLUME.Sample.Unity.UI.TMPTextUpdateValue.Parser, new[]{ "Id", "Text" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TMPTextUpdateFont), global::PLUME.Sample.Unity.UI.TMPTextUpdateFont.Parser, new[]{ "Id", "FontId", "FontStyle", "FontSize", "AutoSize", "FontSizeMin", "FontSizeMax" }, new[]{ "FontId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TMPTextUpdateColor), global::PLUME.Sample.Unity.UI.TMPTextUpdateColor.Parser, new[]{ "Id", "Color" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TMPTextUpdateExtras), global::PLUME.Sample.Unity.UI.TMPTextUpdateExtras.Parser, new[]{ "Id", "CharacterSpacing", "WordSpacing", "LineSpacing", "ParagraphSpacing", "WrappingEnabled", "Alignment", "Overflow", "HorizontalMapping", "VerticalMapping", "Margin" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TMPTextDestroy), global::PLUME.Sample.Unity.UI.TMPTextDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TMPTextUpdate), global::PLUME.Sample.Unity.UI.TMPTextUpdate.Parser, new[]{ "Id", "Text", "FontId", "FontStyle", "FontSize", "AutoSize", "FontSizeMin", "FontSizeMax", "Color", "CharacterSpacing", "WordSpacing", "LineSpacing", "ParagraphSpacing", "WrappingEnabled", "Alignment", "Overflow", "HorizontalMapping", "VerticalMapping", "Margin" }, new[]{ "Text", "FontId", "FontStyle", "FontSize", "AutoSize", "FontSizeMin", "FontSizeMax", "Color", "CharacterSpacing", "WordSpacing", "LineSpacing", "ParagraphSpacing", "WrappingEnabled", "Alignment", "Overflow", "HorizontalMapping", "VerticalMapping", "Margin" }, null, null, null)
           }));
     }
     #endregion
@@ -261,16 +263,16 @@ namespace PLUME.Sample.Unity.UI {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class TMPTextUpdateValue : pb::IMessage<TMPTextUpdateValue>
+  public sealed partial class TMPTextDestroy : pb::IMessage<TMPTextDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<TMPTextUpdateValue> _parser = new pb::MessageParser<TMPTextUpdateValue>(() => new TMPTextUpdateValue());
+    private static readonly pb::MessageParser<TMPTextDestroy> _parser = new pb::MessageParser<TMPTextDestroy>(() => new TMPTextDestroy());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TMPTextUpdateValue> Parser { get { return _parser; } }
+    public static pb::MessageParser<TMPTextDestroy> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -286,7 +288,7 @@ namespace PLUME.Sample.Unity.UI {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateValue() {
+    public TMPTextDestroy() {
       OnConstruction();
     }
 
@@ -294,16 +296,234 @@ namespace PLUME.Sample.Unity.UI {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateValue(TMPTextUpdateValue other) : this() {
+    public TMPTextDestroy(TMPTextDestroy other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      text_ = other.text_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateValue Clone() {
-      return new TMPTextUpdateValue(this);
+    public TMPTextDestroy Clone() {
+      return new TMPTextDestroy(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as TMPTextDestroy);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(TMPTextDestroy other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(TMPTextDestroy other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class TMPTextUpdate : pb::IMessage<TMPTextUpdate>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<TMPTextUpdate> _parser = new pb::MessageParser<TMPTextUpdate>(() => new TMPTextUpdate());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<TMPTextUpdate> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.UI.TmpTextReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TMPTextUpdate() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TMPTextUpdate(TMPTextUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      text_ = other.text_;
+      fontId_ = other.fontId_ != null ? other.fontId_.Clone() : null;
+      fontStyle_ = other.fontStyle_;
+      fontSize_ = other.fontSize_;
+      autoSize_ = other.autoSize_;
+      fontSizeMin_ = other.fontSizeMin_;
+      fontSizeMax_ = other.fontSizeMax_;
+      color_ = other.color_ != null ? other.color_.Clone() : null;
+      characterSpacing_ = other.characterSpacing_;
+      wordSpacing_ = other.wordSpacing_;
+      lineSpacing_ = other.lineSpacing_;
+      paragraphSpacing_ = other.paragraphSpacing_;
+      wrappingEnabled_ = other.wrappingEnabled_;
+      alignment_ = other.alignment_;
+      overflow_ = other.overflow_;
+      horizontalMapping_ = other.horizontalMapping_;
+      verticalMapping_ = other.verticalMapping_;
+      margin_ = other.margin_ != null ? other.margin_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TMPTextUpdate Clone() {
+      return new TMPTextUpdate(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -320,247 +540,32 @@ namespace PLUME.Sample.Unity.UI {
 
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 2;
-    private string text_ = "";
+    private readonly static string TextDefaultValue = "";
+
+    private string text_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Text {
-      get { return text_; }
+      get { return text_ ?? TextDefaultValue; }
       set {
         text_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
-
+    /// <summary>Gets whether the "text" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as TMPTextUpdateValue);
+    public bool HasText {
+      get { return text_ != null; }
     }
-
+    /// <summary>Clears the value of the "text" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TMPTextUpdateValue other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (Text != other.Text) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Text.Length != 0) hash ^= Text.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Text.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Text);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Text.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Text);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Text.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Text);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TMPTextUpdateValue other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Text.Length != 0) {
-        Text = other.Text;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            Text = input.ReadString();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            Text = input.ReadString();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class TMPTextUpdateFont : pb::IMessage<TMPTextUpdateFont>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<TMPTextUpdateFont> _parser = new pb::MessageParser<TMPTextUpdateFont>(() => new TMPTextUpdateFont());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TMPTextUpdateFont> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TmpTextReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateFont() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateFont(TMPTextUpdateFont other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      fontId_ = other.fontId_ != null ? other.fontId_.Clone() : null;
-      fontStyle_ = other.fontStyle_;
-      fontSize_ = other.fontSize_;
-      autoSize_ = other.autoSize_;
-      fontSizeMin_ = other.fontSizeMin_;
-      fontSizeMax_ = other.fontSizeMax_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateFont Clone() {
-      return new TMPTextUpdateFont(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearText() {
+      text_ = null;
     }
 
     /// <summary>Field number for the "font_id" field.</summary>
-    public const int FontIdFieldNumber = 2;
+    public const int FontIdFieldNumber = 3;
     private global::PLUME.Sample.Unity.AssetIdentifier fontId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -572,420 +577,142 @@ namespace PLUME.Sample.Unity.UI {
     }
 
     /// <summary>Field number for the "font_style" field.</summary>
-    public const int FontStyleFieldNumber = 3;
+    public const int FontStyleFieldNumber = 4;
+    private readonly static int FontStyleDefaultValue = 0;
+
     private int fontStyle_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int FontStyle {
-      get { return fontStyle_; }
+      get { if ((_hasBits0 & 1) != 0) { return fontStyle_; } else { return FontStyleDefaultValue; } }
       set {
+        _hasBits0 |= 1;
         fontStyle_ = value;
       }
     }
+    /// <summary>Gets whether the "font_style" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFontStyle {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "font_style" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFontStyle() {
+      _hasBits0 &= ~1;
+    }
 
     /// <summary>Field number for the "font_size" field.</summary>
-    public const int FontSizeFieldNumber = 4;
+    public const int FontSizeFieldNumber = 5;
+    private readonly static float FontSizeDefaultValue = 0F;
+
     private float fontSize_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float FontSize {
-      get { return fontSize_; }
+      get { if ((_hasBits0 & 2) != 0) { return fontSize_; } else { return FontSizeDefaultValue; } }
       set {
+        _hasBits0 |= 2;
         fontSize_ = value;
       }
     }
+    /// <summary>Gets whether the "font_size" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFontSize {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "font_size" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFontSize() {
+      _hasBits0 &= ~2;
+    }
 
     /// <summary>Field number for the "auto_size" field.</summary>
-    public const int AutoSizeFieldNumber = 5;
+    public const int AutoSizeFieldNumber = 6;
+    private readonly static bool AutoSizeDefaultValue = false;
+
     private bool autoSize_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool AutoSize {
-      get { return autoSize_; }
+      get { if ((_hasBits0 & 4) != 0) { return autoSize_; } else { return AutoSizeDefaultValue; } }
       set {
+        _hasBits0 |= 4;
         autoSize_ = value;
       }
     }
+    /// <summary>Gets whether the "auto_size" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAutoSize {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "auto_size" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAutoSize() {
+      _hasBits0 &= ~4;
+    }
 
     /// <summary>Field number for the "font_size_min" field.</summary>
-    public const int FontSizeMinFieldNumber = 6;
+    public const int FontSizeMinFieldNumber = 7;
+    private readonly static float FontSizeMinDefaultValue = 0F;
+
     private float fontSizeMin_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float FontSizeMin {
-      get { return fontSizeMin_; }
+      get { if ((_hasBits0 & 8) != 0) { return fontSizeMin_; } else { return FontSizeMinDefaultValue; } }
       set {
+        _hasBits0 |= 8;
         fontSizeMin_ = value;
       }
     }
+    /// <summary>Gets whether the "font_size_min" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFontSizeMin {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "font_size_min" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFontSizeMin() {
+      _hasBits0 &= ~8;
+    }
 
     /// <summary>Field number for the "font_size_max" field.</summary>
-    public const int FontSizeMaxFieldNumber = 7;
+    public const int FontSizeMaxFieldNumber = 8;
+    private readonly static float FontSizeMaxDefaultValue = 0F;
+
     private float fontSizeMax_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float FontSizeMax {
-      get { return fontSizeMax_; }
+      get { if ((_hasBits0 & 16) != 0) { return fontSizeMax_; } else { return FontSizeMaxDefaultValue; } }
       set {
+        _hasBits0 |= 16;
         fontSizeMax_ = value;
       }
     }
-
+    /// <summary>Gets whether the "font_size_max" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as TMPTextUpdateFont);
+    public bool HasFontSizeMax {
+      get { return (_hasBits0 & 16) != 0; }
     }
-
+    /// <summary>Clears the value of the "font_size_max" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TMPTextUpdateFont other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(FontId, other.FontId)) return false;
-      if (FontStyle != other.FontStyle) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FontSize, other.FontSize)) return false;
-      if (AutoSize != other.AutoSize) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FontSizeMin, other.FontSizeMin)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FontSizeMax, other.FontSizeMax)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (fontId_ != null) hash ^= FontId.GetHashCode();
-      if (FontStyle != 0) hash ^= FontStyle.GetHashCode();
-      if (FontSize != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FontSize);
-      if (AutoSize != false) hash ^= AutoSize.GetHashCode();
-      if (FontSizeMin != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FontSizeMin);
-      if (FontSizeMax != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FontSizeMax);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (fontId_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(FontId);
-      }
-      if (FontStyle != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(FontStyle);
-      }
-      if (FontSize != 0F) {
-        output.WriteRawTag(37);
-        output.WriteFloat(FontSize);
-      }
-      if (AutoSize != false) {
-        output.WriteRawTag(40);
-        output.WriteBool(AutoSize);
-      }
-      if (FontSizeMin != 0F) {
-        output.WriteRawTag(53);
-        output.WriteFloat(FontSizeMin);
-      }
-      if (FontSizeMax != 0F) {
-        output.WriteRawTag(61);
-        output.WriteFloat(FontSizeMax);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (fontId_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(FontId);
-      }
-      if (FontStyle != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(FontStyle);
-      }
-      if (FontSize != 0F) {
-        output.WriteRawTag(37);
-        output.WriteFloat(FontSize);
-      }
-      if (AutoSize != false) {
-        output.WriteRawTag(40);
-        output.WriteBool(AutoSize);
-      }
-      if (FontSizeMin != 0F) {
-        output.WriteRawTag(53);
-        output.WriteFloat(FontSizeMin);
-      }
-      if (FontSizeMax != 0F) {
-        output.WriteRawTag(61);
-        output.WriteFloat(FontSizeMax);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (fontId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(FontId);
-      }
-      if (FontStyle != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FontStyle);
-      }
-      if (FontSize != 0F) {
-        size += 1 + 4;
-      }
-      if (AutoSize != false) {
-        size += 1 + 1;
-      }
-      if (FontSizeMin != 0F) {
-        size += 1 + 4;
-      }
-      if (FontSizeMax != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TMPTextUpdateFont other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.fontId_ != null) {
-        if (fontId_ == null) {
-          FontId = new global::PLUME.Sample.Unity.AssetIdentifier();
-        }
-        FontId.MergeFrom(other.FontId);
-      }
-      if (other.FontStyle != 0) {
-        FontStyle = other.FontStyle;
-      }
-      if (other.FontSize != 0F) {
-        FontSize = other.FontSize;
-      }
-      if (other.AutoSize != false) {
-        AutoSize = other.AutoSize;
-      }
-      if (other.FontSizeMin != 0F) {
-        FontSizeMin = other.FontSizeMin;
-      }
-      if (other.FontSizeMax != 0F) {
-        FontSizeMax = other.FontSizeMax;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (fontId_ == null) {
-              FontId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(FontId);
-            break;
-          }
-          case 24: {
-            FontStyle = input.ReadInt32();
-            break;
-          }
-          case 37: {
-            FontSize = input.ReadFloat();
-            break;
-          }
-          case 40: {
-            AutoSize = input.ReadBool();
-            break;
-          }
-          case 53: {
-            FontSizeMin = input.ReadFloat();
-            break;
-          }
-          case 61: {
-            FontSizeMax = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (fontId_ == null) {
-              FontId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(FontId);
-            break;
-          }
-          case 24: {
-            FontStyle = input.ReadInt32();
-            break;
-          }
-          case 37: {
-            FontSize = input.ReadFloat();
-            break;
-          }
-          case 40: {
-            AutoSize = input.ReadBool();
-            break;
-          }
-          case 53: {
-            FontSizeMin = input.ReadFloat();
-            break;
-          }
-          case 61: {
-            FontSizeMax = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class TMPTextUpdateColor : pb::IMessage<TMPTextUpdateColor>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<TMPTextUpdateColor> _parser = new pb::MessageParser<TMPTextUpdateColor>(() => new TMPTextUpdateColor());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TMPTextUpdateColor> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TmpTextReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateColor() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateColor(TMPTextUpdateColor other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      color_ = other.color_ != null ? other.color_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateColor Clone() {
-      return new TMPTextUpdateColor(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearFontSizeMax() {
+      _hasBits0 &= ~16;
     }
 
     /// <summary>Field number for the "color" field.</summary>
-    public const int ColorFieldNumber = 2;
+    public const int ColorFieldNumber = 9;
     private global::PLUME.Sample.Common.Color color_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -996,358 +723,251 @@ namespace PLUME.Sample.Unity.UI {
       }
     }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as TMPTextUpdateColor);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TMPTextUpdateColor other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(Color, other.Color)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (color_ != null) hash ^= Color.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (color_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Color);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (color_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Color);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (color_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TMPTextUpdateColor other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.color_ != null) {
-        if (color_ == null) {
-          Color = new global::PLUME.Sample.Common.Color();
-        }
-        Color.MergeFrom(other.Color);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (color_ == null) {
-              Color = new global::PLUME.Sample.Common.Color();
-            }
-            input.ReadMessage(Color);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (color_ == null) {
-              Color = new global::PLUME.Sample.Common.Color();
-            }
-            input.ReadMessage(Color);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class TMPTextUpdateExtras : pb::IMessage<TMPTextUpdateExtras>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<TMPTextUpdateExtras> _parser = new pb::MessageParser<TMPTextUpdateExtras>(() => new TMPTextUpdateExtras());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TMPTextUpdateExtras> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TmpTextReflection.Descriptor.MessageTypes[4]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateExtras() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateExtras(TMPTextUpdateExtras other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      characterSpacing_ = other.characterSpacing_;
-      wordSpacing_ = other.wordSpacing_;
-      lineSpacing_ = other.lineSpacing_;
-      paragraphSpacing_ = other.paragraphSpacing_;
-      wrappingEnabled_ = other.wrappingEnabled_;
-      alignment_ = other.alignment_;
-      overflow_ = other.overflow_;
-      horizontalMapping_ = other.horizontalMapping_;
-      verticalMapping_ = other.verticalMapping_;
-      margin_ = other.margin_ != null ? other.margin_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TMPTextUpdateExtras Clone() {
-      return new TMPTextUpdateExtras(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
     /// <summary>Field number for the "character_spacing" field.</summary>
-    public const int CharacterSpacingFieldNumber = 2;
+    public const int CharacterSpacingFieldNumber = 10;
+    private readonly static float CharacterSpacingDefaultValue = 0F;
+
     private float characterSpacing_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float CharacterSpacing {
-      get { return characterSpacing_; }
+      get { if ((_hasBits0 & 32) != 0) { return characterSpacing_; } else { return CharacterSpacingDefaultValue; } }
       set {
+        _hasBits0 |= 32;
         characterSpacing_ = value;
       }
     }
+    /// <summary>Gets whether the "character_spacing" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasCharacterSpacing {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "character_spacing" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearCharacterSpacing() {
+      _hasBits0 &= ~32;
+    }
 
     /// <summary>Field number for the "word_spacing" field.</summary>
-    public const int WordSpacingFieldNumber = 3;
+    public const int WordSpacingFieldNumber = 11;
+    private readonly static float WordSpacingDefaultValue = 0F;
+
     private float wordSpacing_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float WordSpacing {
-      get { return wordSpacing_; }
+      get { if ((_hasBits0 & 64) != 0) { return wordSpacing_; } else { return WordSpacingDefaultValue; } }
       set {
+        _hasBits0 |= 64;
         wordSpacing_ = value;
       }
     }
+    /// <summary>Gets whether the "word_spacing" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasWordSpacing {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "word_spacing" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearWordSpacing() {
+      _hasBits0 &= ~64;
+    }
 
     /// <summary>Field number for the "line_spacing" field.</summary>
-    public const int LineSpacingFieldNumber = 4;
+    public const int LineSpacingFieldNumber = 12;
+    private readonly static float LineSpacingDefaultValue = 0F;
+
     private float lineSpacing_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float LineSpacing {
-      get { return lineSpacing_; }
+      get { if ((_hasBits0 & 128) != 0) { return lineSpacing_; } else { return LineSpacingDefaultValue; } }
       set {
+        _hasBits0 |= 128;
         lineSpacing_ = value;
       }
     }
+    /// <summary>Gets whether the "line_spacing" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasLineSpacing {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "line_spacing" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearLineSpacing() {
+      _hasBits0 &= ~128;
+    }
 
     /// <summary>Field number for the "paragraph_spacing" field.</summary>
-    public const int ParagraphSpacingFieldNumber = 5;
+    public const int ParagraphSpacingFieldNumber = 13;
+    private readonly static float ParagraphSpacingDefaultValue = 0F;
+
     private float paragraphSpacing_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float ParagraphSpacing {
-      get { return paragraphSpacing_; }
+      get { if ((_hasBits0 & 256) != 0) { return paragraphSpacing_; } else { return ParagraphSpacingDefaultValue; } }
       set {
+        _hasBits0 |= 256;
         paragraphSpacing_ = value;
       }
     }
+    /// <summary>Gets whether the "paragraph_spacing" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasParagraphSpacing {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "paragraph_spacing" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearParagraphSpacing() {
+      _hasBits0 &= ~256;
+    }
 
     /// <summary>Field number for the "wrapping_enabled" field.</summary>
-    public const int WrappingEnabledFieldNumber = 6;
+    public const int WrappingEnabledFieldNumber = 14;
+    private readonly static bool WrappingEnabledDefaultValue = false;
+
     private bool wrappingEnabled_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool WrappingEnabled {
-      get { return wrappingEnabled_; }
+      get { if ((_hasBits0 & 512) != 0) { return wrappingEnabled_; } else { return WrappingEnabledDefaultValue; } }
       set {
+        _hasBits0 |= 512;
         wrappingEnabled_ = value;
       }
     }
+    /// <summary>Gets whether the "wrapping_enabled" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasWrappingEnabled {
+      get { return (_hasBits0 & 512) != 0; }
+    }
+    /// <summary>Clears the value of the "wrapping_enabled" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearWrappingEnabled() {
+      _hasBits0 &= ~512;
+    }
 
     /// <summary>Field number for the "alignment" field.</summary>
-    public const int AlignmentFieldNumber = 7;
+    public const int AlignmentFieldNumber = 15;
+    private readonly static int AlignmentDefaultValue = 0;
+
     private int alignment_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Alignment {
-      get { return alignment_; }
+      get { if ((_hasBits0 & 1024) != 0) { return alignment_; } else { return AlignmentDefaultValue; } }
       set {
+        _hasBits0 |= 1024;
         alignment_ = value;
       }
     }
+    /// <summary>Gets whether the "alignment" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAlignment {
+      get { return (_hasBits0 & 1024) != 0; }
+    }
+    /// <summary>Clears the value of the "alignment" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAlignment() {
+      _hasBits0 &= ~1024;
+    }
 
     /// <summary>Field number for the "overflow" field.</summary>
-    public const int OverflowFieldNumber = 8;
+    public const int OverflowFieldNumber = 16;
+    private readonly static int OverflowDefaultValue = 0;
+
     private int overflow_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Overflow {
-      get { return overflow_; }
+      get { if ((_hasBits0 & 2048) != 0) { return overflow_; } else { return OverflowDefaultValue; } }
       set {
+        _hasBits0 |= 2048;
         overflow_ = value;
       }
     }
+    /// <summary>Gets whether the "overflow" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasOverflow {
+      get { return (_hasBits0 & 2048) != 0; }
+    }
+    /// <summary>Clears the value of the "overflow" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearOverflow() {
+      _hasBits0 &= ~2048;
+    }
 
     /// <summary>Field number for the "horizontal_mapping" field.</summary>
-    public const int HorizontalMappingFieldNumber = 9;
+    public const int HorizontalMappingFieldNumber = 17;
+    private readonly static int HorizontalMappingDefaultValue = 0;
+
     private int horizontalMapping_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int HorizontalMapping {
-      get { return horizontalMapping_; }
+      get { if ((_hasBits0 & 4096) != 0) { return horizontalMapping_; } else { return HorizontalMappingDefaultValue; } }
       set {
+        _hasBits0 |= 4096;
         horizontalMapping_ = value;
       }
     }
+    /// <summary>Gets whether the "horizontal_mapping" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasHorizontalMapping {
+      get { return (_hasBits0 & 4096) != 0; }
+    }
+    /// <summary>Clears the value of the "horizontal_mapping" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearHorizontalMapping() {
+      _hasBits0 &= ~4096;
+    }
 
     /// <summary>Field number for the "vertical_mapping" field.</summary>
-    public const int VerticalMappingFieldNumber = 10;
+    public const int VerticalMappingFieldNumber = 18;
+    private readonly static int VerticalMappingDefaultValue = 0;
+
     private int verticalMapping_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int VerticalMapping {
-      get { return verticalMapping_; }
+      get { if ((_hasBits0 & 8192) != 0) { return verticalMapping_; } else { return VerticalMappingDefaultValue; } }
       set {
+        _hasBits0 |= 8192;
         verticalMapping_ = value;
       }
     }
+    /// <summary>Gets whether the "vertical_mapping" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasVerticalMapping {
+      get { return (_hasBits0 & 8192) != 0; }
+    }
+    /// <summary>Clears the value of the "vertical_mapping" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearVerticalMapping() {
+      _hasBits0 &= ~8192;
+    }
 
     /// <summary>Field number for the "margin" field.</summary>
-    public const int MarginFieldNumber = 11;
+    public const int MarginFieldNumber = 19;
     private global::PLUME.Sample.Common.Vector4 margin_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1361,12 +981,12 @@ namespace PLUME.Sample.Unity.UI {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as TMPTextUpdateExtras);
+      return Equals(other as TMPTextUpdate);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TMPTextUpdateExtras other) {
+    public bool Equals(TMPTextUpdate other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1374,6 +994,14 @@ namespace PLUME.Sample.Unity.UI {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
+      if (Text != other.Text) return false;
+      if (!object.Equals(FontId, other.FontId)) return false;
+      if (FontStyle != other.FontStyle) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FontSize, other.FontSize)) return false;
+      if (AutoSize != other.AutoSize) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FontSizeMin, other.FontSizeMin)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FontSizeMax, other.FontSizeMax)) return false;
+      if (!object.Equals(Color, other.Color)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(CharacterSpacing, other.CharacterSpacing)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(WordSpacing, other.WordSpacing)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(LineSpacing, other.LineSpacing)) return false;
@@ -1392,15 +1020,23 @@ namespace PLUME.Sample.Unity.UI {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (CharacterSpacing != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(CharacterSpacing);
-      if (WordSpacing != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(WordSpacing);
-      if (LineSpacing != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(LineSpacing);
-      if (ParagraphSpacing != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ParagraphSpacing);
-      if (WrappingEnabled != false) hash ^= WrappingEnabled.GetHashCode();
-      if (Alignment != 0) hash ^= Alignment.GetHashCode();
-      if (Overflow != 0) hash ^= Overflow.GetHashCode();
-      if (HorizontalMapping != 0) hash ^= HorizontalMapping.GetHashCode();
-      if (VerticalMapping != 0) hash ^= VerticalMapping.GetHashCode();
+      if (HasText) hash ^= Text.GetHashCode();
+      if (fontId_ != null) hash ^= FontId.GetHashCode();
+      if (HasFontStyle) hash ^= FontStyle.GetHashCode();
+      if (HasFontSize) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FontSize);
+      if (HasAutoSize) hash ^= AutoSize.GetHashCode();
+      if (HasFontSizeMin) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FontSizeMin);
+      if (HasFontSizeMax) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FontSizeMax);
+      if (color_ != null) hash ^= Color.GetHashCode();
+      if (HasCharacterSpacing) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(CharacterSpacing);
+      if (HasWordSpacing) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(WordSpacing);
+      if (HasLineSpacing) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(LineSpacing);
+      if (HasParagraphSpacing) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ParagraphSpacing);
+      if (HasWrappingEnabled) hash ^= WrappingEnabled.GetHashCode();
+      if (HasAlignment) hash ^= Alignment.GetHashCode();
+      if (HasOverflow) hash ^= Overflow.GetHashCode();
+      if (HasHorizontalMapping) hash ^= HorizontalMapping.GetHashCode();
+      if (HasVerticalMapping) hash ^= VerticalMapping.GetHashCode();
       if (margin_ != null) hash ^= Margin.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1424,44 +1060,76 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (CharacterSpacing != 0F) {
-        output.WriteRawTag(21);
+      if (HasText) {
+        output.WriteRawTag(18);
+        output.WriteString(Text);
+      }
+      if (fontId_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(FontId);
+      }
+      if (HasFontStyle) {
+        output.WriteRawTag(32);
+        output.WriteInt32(FontStyle);
+      }
+      if (HasFontSize) {
+        output.WriteRawTag(45);
+        output.WriteFloat(FontSize);
+      }
+      if (HasAutoSize) {
+        output.WriteRawTag(48);
+        output.WriteBool(AutoSize);
+      }
+      if (HasFontSizeMin) {
+        output.WriteRawTag(61);
+        output.WriteFloat(FontSizeMin);
+      }
+      if (HasFontSizeMax) {
+        output.WriteRawTag(69);
+        output.WriteFloat(FontSizeMax);
+      }
+      if (color_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(Color);
+      }
+      if (HasCharacterSpacing) {
+        output.WriteRawTag(85);
         output.WriteFloat(CharacterSpacing);
       }
-      if (WordSpacing != 0F) {
-        output.WriteRawTag(29);
+      if (HasWordSpacing) {
+        output.WriteRawTag(93);
         output.WriteFloat(WordSpacing);
       }
-      if (LineSpacing != 0F) {
-        output.WriteRawTag(37);
+      if (HasLineSpacing) {
+        output.WriteRawTag(101);
         output.WriteFloat(LineSpacing);
       }
-      if (ParagraphSpacing != 0F) {
-        output.WriteRawTag(45);
+      if (HasParagraphSpacing) {
+        output.WriteRawTag(109);
         output.WriteFloat(ParagraphSpacing);
       }
-      if (WrappingEnabled != false) {
-        output.WriteRawTag(48);
+      if (HasWrappingEnabled) {
+        output.WriteRawTag(112);
         output.WriteBool(WrappingEnabled);
       }
-      if (Alignment != 0) {
-        output.WriteRawTag(56);
+      if (HasAlignment) {
+        output.WriteRawTag(120);
         output.WriteInt32(Alignment);
       }
-      if (Overflow != 0) {
-        output.WriteRawTag(64);
+      if (HasOverflow) {
+        output.WriteRawTag(128, 1);
         output.WriteInt32(Overflow);
       }
-      if (HorizontalMapping != 0) {
-        output.WriteRawTag(72);
+      if (HasHorizontalMapping) {
+        output.WriteRawTag(136, 1);
         output.WriteInt32(HorizontalMapping);
       }
-      if (VerticalMapping != 0) {
-        output.WriteRawTag(80);
+      if (HasVerticalMapping) {
+        output.WriteRawTag(144, 1);
         output.WriteInt32(VerticalMapping);
       }
       if (margin_ != null) {
-        output.WriteRawTag(90);
+        output.WriteRawTag(154, 1);
         output.WriteMessage(Margin);
       }
       if (_unknownFields != null) {
@@ -1478,44 +1146,76 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (CharacterSpacing != 0F) {
-        output.WriteRawTag(21);
+      if (HasText) {
+        output.WriteRawTag(18);
+        output.WriteString(Text);
+      }
+      if (fontId_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(FontId);
+      }
+      if (HasFontStyle) {
+        output.WriteRawTag(32);
+        output.WriteInt32(FontStyle);
+      }
+      if (HasFontSize) {
+        output.WriteRawTag(45);
+        output.WriteFloat(FontSize);
+      }
+      if (HasAutoSize) {
+        output.WriteRawTag(48);
+        output.WriteBool(AutoSize);
+      }
+      if (HasFontSizeMin) {
+        output.WriteRawTag(61);
+        output.WriteFloat(FontSizeMin);
+      }
+      if (HasFontSizeMax) {
+        output.WriteRawTag(69);
+        output.WriteFloat(FontSizeMax);
+      }
+      if (color_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(Color);
+      }
+      if (HasCharacterSpacing) {
+        output.WriteRawTag(85);
         output.WriteFloat(CharacterSpacing);
       }
-      if (WordSpacing != 0F) {
-        output.WriteRawTag(29);
+      if (HasWordSpacing) {
+        output.WriteRawTag(93);
         output.WriteFloat(WordSpacing);
       }
-      if (LineSpacing != 0F) {
-        output.WriteRawTag(37);
+      if (HasLineSpacing) {
+        output.WriteRawTag(101);
         output.WriteFloat(LineSpacing);
       }
-      if (ParagraphSpacing != 0F) {
-        output.WriteRawTag(45);
+      if (HasParagraphSpacing) {
+        output.WriteRawTag(109);
         output.WriteFloat(ParagraphSpacing);
       }
-      if (WrappingEnabled != false) {
-        output.WriteRawTag(48);
+      if (HasWrappingEnabled) {
+        output.WriteRawTag(112);
         output.WriteBool(WrappingEnabled);
       }
-      if (Alignment != 0) {
-        output.WriteRawTag(56);
+      if (HasAlignment) {
+        output.WriteRawTag(120);
         output.WriteInt32(Alignment);
       }
-      if (Overflow != 0) {
-        output.WriteRawTag(64);
+      if (HasOverflow) {
+        output.WriteRawTag(128, 1);
         output.WriteInt32(Overflow);
       }
-      if (HorizontalMapping != 0) {
-        output.WriteRawTag(72);
+      if (HasHorizontalMapping) {
+        output.WriteRawTag(136, 1);
         output.WriteInt32(HorizontalMapping);
       }
-      if (VerticalMapping != 0) {
-        output.WriteRawTag(80);
+      if (HasVerticalMapping) {
+        output.WriteRawTag(144, 1);
         output.WriteInt32(VerticalMapping);
       }
       if (margin_ != null) {
-        output.WriteRawTag(90);
+        output.WriteRawTag(154, 1);
         output.WriteMessage(Margin);
       }
       if (_unknownFields != null) {
@@ -1531,35 +1231,59 @@ namespace PLUME.Sample.Unity.UI {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (CharacterSpacing != 0F) {
+      if (HasText) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Text);
+      }
+      if (fontId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(FontId);
+      }
+      if (HasFontStyle) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FontStyle);
+      }
+      if (HasFontSize) {
         size += 1 + 4;
       }
-      if (WordSpacing != 0F) {
-        size += 1 + 4;
-      }
-      if (LineSpacing != 0F) {
-        size += 1 + 4;
-      }
-      if (ParagraphSpacing != 0F) {
-        size += 1 + 4;
-      }
-      if (WrappingEnabled != false) {
+      if (HasAutoSize) {
         size += 1 + 1;
       }
-      if (Alignment != 0) {
+      if (HasFontSizeMin) {
+        size += 1 + 4;
+      }
+      if (HasFontSizeMax) {
+        size += 1 + 4;
+      }
+      if (color_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
+      }
+      if (HasCharacterSpacing) {
+        size += 1 + 4;
+      }
+      if (HasWordSpacing) {
+        size += 1 + 4;
+      }
+      if (HasLineSpacing) {
+        size += 1 + 4;
+      }
+      if (HasParagraphSpacing) {
+        size += 1 + 4;
+      }
+      if (HasWrappingEnabled) {
+        size += 1 + 1;
+      }
+      if (HasAlignment) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Alignment);
       }
-      if (Overflow != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Overflow);
+      if (HasOverflow) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(Overflow);
       }
-      if (HorizontalMapping != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(HorizontalMapping);
+      if (HasHorizontalMapping) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(HorizontalMapping);
       }
-      if (VerticalMapping != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(VerticalMapping);
+      if (HasVerticalMapping) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(VerticalMapping);
       }
       if (margin_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Margin);
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Margin);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1569,7 +1293,7 @@ namespace PLUME.Sample.Unity.UI {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TMPTextUpdateExtras other) {
+    public void MergeFrom(TMPTextUpdate other) {
       if (other == null) {
         return;
       }
@@ -1579,31 +1303,61 @@ namespace PLUME.Sample.Unity.UI {
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.CharacterSpacing != 0F) {
+      if (other.HasText) {
+        Text = other.Text;
+      }
+      if (other.fontId_ != null) {
+        if (fontId_ == null) {
+          FontId = new global::PLUME.Sample.Unity.AssetIdentifier();
+        }
+        FontId.MergeFrom(other.FontId);
+      }
+      if (other.HasFontStyle) {
+        FontStyle = other.FontStyle;
+      }
+      if (other.HasFontSize) {
+        FontSize = other.FontSize;
+      }
+      if (other.HasAutoSize) {
+        AutoSize = other.AutoSize;
+      }
+      if (other.HasFontSizeMin) {
+        FontSizeMin = other.FontSizeMin;
+      }
+      if (other.HasFontSizeMax) {
+        FontSizeMax = other.FontSizeMax;
+      }
+      if (other.color_ != null) {
+        if (color_ == null) {
+          Color = new global::PLUME.Sample.Common.Color();
+        }
+        Color.MergeFrom(other.Color);
+      }
+      if (other.HasCharacterSpacing) {
         CharacterSpacing = other.CharacterSpacing;
       }
-      if (other.WordSpacing != 0F) {
+      if (other.HasWordSpacing) {
         WordSpacing = other.WordSpacing;
       }
-      if (other.LineSpacing != 0F) {
+      if (other.HasLineSpacing) {
         LineSpacing = other.LineSpacing;
       }
-      if (other.ParagraphSpacing != 0F) {
+      if (other.HasParagraphSpacing) {
         ParagraphSpacing = other.ParagraphSpacing;
       }
-      if (other.WrappingEnabled != false) {
+      if (other.HasWrappingEnabled) {
         WrappingEnabled = other.WrappingEnabled;
       }
-      if (other.Alignment != 0) {
+      if (other.HasAlignment) {
         Alignment = other.Alignment;
       }
-      if (other.Overflow != 0) {
+      if (other.HasOverflow) {
         Overflow = other.Overflow;
       }
-      if (other.HorizontalMapping != 0) {
+      if (other.HasHorizontalMapping) {
         HorizontalMapping = other.HorizontalMapping;
       }
-      if (other.VerticalMapping != 0) {
+      if (other.HasVerticalMapping) {
         VerticalMapping = other.VerticalMapping;
       }
       if (other.margin_ != null) {
@@ -1634,43 +1388,81 @@ namespace PLUME.Sample.Unity.UI {
             input.ReadMessage(Id);
             break;
           }
-          case 21: {
-            CharacterSpacing = input.ReadFloat();
+          case 18: {
+            Text = input.ReadString();
             break;
           }
-          case 29: {
-            WordSpacing = input.ReadFloat();
+          case 26: {
+            if (fontId_ == null) {
+              FontId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(FontId);
             break;
           }
-          case 37: {
-            LineSpacing = input.ReadFloat();
+          case 32: {
+            FontStyle = input.ReadInt32();
             break;
           }
           case 45: {
-            ParagraphSpacing = input.ReadFloat();
+            FontSize = input.ReadFloat();
             break;
           }
           case 48: {
+            AutoSize = input.ReadBool();
+            break;
+          }
+          case 61: {
+            FontSizeMin = input.ReadFloat();
+            break;
+          }
+          case 69: {
+            FontSizeMax = input.ReadFloat();
+            break;
+          }
+          case 74: {
+            if (color_ == null) {
+              Color = new global::PLUME.Sample.Common.Color();
+            }
+            input.ReadMessage(Color);
+            break;
+          }
+          case 85: {
+            CharacterSpacing = input.ReadFloat();
+            break;
+          }
+          case 93: {
+            WordSpacing = input.ReadFloat();
+            break;
+          }
+          case 101: {
+            LineSpacing = input.ReadFloat();
+            break;
+          }
+          case 109: {
+            ParagraphSpacing = input.ReadFloat();
+            break;
+          }
+          case 112: {
             WrappingEnabled = input.ReadBool();
             break;
           }
-          case 56: {
+          case 120: {
             Alignment = input.ReadInt32();
             break;
           }
-          case 64: {
+          case 128: {
             Overflow = input.ReadInt32();
             break;
           }
-          case 72: {
+          case 136: {
             HorizontalMapping = input.ReadInt32();
             break;
           }
-          case 80: {
+          case 144: {
             VerticalMapping = input.ReadInt32();
             break;
           }
-          case 90: {
+          case 154: {
             if (margin_ == null) {
               Margin = new global::PLUME.Sample.Common.Vector4();
             }
@@ -1699,43 +1491,81 @@ namespace PLUME.Sample.Unity.UI {
             input.ReadMessage(Id);
             break;
           }
-          case 21: {
-            CharacterSpacing = input.ReadFloat();
+          case 18: {
+            Text = input.ReadString();
             break;
           }
-          case 29: {
-            WordSpacing = input.ReadFloat();
+          case 26: {
+            if (fontId_ == null) {
+              FontId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(FontId);
             break;
           }
-          case 37: {
-            LineSpacing = input.ReadFloat();
+          case 32: {
+            FontStyle = input.ReadInt32();
             break;
           }
           case 45: {
-            ParagraphSpacing = input.ReadFloat();
+            FontSize = input.ReadFloat();
             break;
           }
           case 48: {
+            AutoSize = input.ReadBool();
+            break;
+          }
+          case 61: {
+            FontSizeMin = input.ReadFloat();
+            break;
+          }
+          case 69: {
+            FontSizeMax = input.ReadFloat();
+            break;
+          }
+          case 74: {
+            if (color_ == null) {
+              Color = new global::PLUME.Sample.Common.Color();
+            }
+            input.ReadMessage(Color);
+            break;
+          }
+          case 85: {
+            CharacterSpacing = input.ReadFloat();
+            break;
+          }
+          case 93: {
+            WordSpacing = input.ReadFloat();
+            break;
+          }
+          case 101: {
+            LineSpacing = input.ReadFloat();
+            break;
+          }
+          case 109: {
+            ParagraphSpacing = input.ReadFloat();
+            break;
+          }
+          case 112: {
             WrappingEnabled = input.ReadBool();
             break;
           }
-          case 56: {
+          case 120: {
             Alignment = input.ReadInt32();
             break;
           }
-          case 64: {
+          case 128: {
             Overflow = input.ReadInt32();
             break;
           }
-          case 72: {
+          case 136: {
             HorizontalMapping = input.ReadInt32();
             break;
           }
-          case 80: {
+          case 144: {
             VerticalMapping = input.ReadInt32();
             break;
           }
-          case 90: {
+          case 154: {
             if (margin_ == null) {
               Margin = new global::PLUME.Sample.Common.Vector4();
             }

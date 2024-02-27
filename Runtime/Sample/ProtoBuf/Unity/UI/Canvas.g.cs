@@ -27,15 +27,17 @@ namespace PLUME.Sample.Unity.UI {
             "ChV1bml0eS91aS9jYW52YXMucHJvdG8SEnBsdW1lLnNhbXBsZS51bml0eRoX",
             "dW5pdHkvaWRlbnRpZmllcnMucHJvdG8iQwoMQ2FudmFzQ3JlYXRlEjMKAmlk",
             "GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
-            "ZXIiYgoWQ2FudmFzVXBkYXRlUmVuZGVyTW9kZRIzCgJpZBgBIAEoCzInLnBs",
-            "dW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEhMKC3JlbmRl",
-            "cl9tb2RlGAIgASgFQhiqAhVQTFVNRS5TYW1wbGUuVW5pdHkuVUliBnByb3Rv",
-            "Mw=="));
+            "ZXIiRAoNQ2FudmFzRGVzdHJveRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBs",
+            "ZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIm0KDENhbnZhc1VwZGF0ZRIz",
+            "CgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVu",
+            "dGlmaWVyEhgKC3JlbmRlcl9tb2RlGAIgASgFSACIAQFCDgoMX3JlbmRlcl9t",
+            "b2RlQhiqAhVQTFVNRS5TYW1wbGUuVW5pdHkuVUliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasCreate), global::PLUME.Sample.Unity.UI.CanvasCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasUpdateRenderMode), global::PLUME.Sample.Unity.UI.CanvasUpdateRenderMode.Parser, new[]{ "Id", "RenderMode" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasDestroy), global::PLUME.Sample.Unity.UI.CanvasDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasUpdate), global::PLUME.Sample.Unity.UI.CanvasUpdate.Parser, new[]{ "Id", "RenderMode" }, new[]{ "RenderMode" }, null, null, null)
           }));
     }
     #endregion
@@ -242,16 +244,16 @@ namespace PLUME.Sample.Unity.UI {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class CanvasUpdateRenderMode : pb::IMessage<CanvasUpdateRenderMode>
+  public sealed partial class CanvasDestroy : pb::IMessage<CanvasDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<CanvasUpdateRenderMode> _parser = new pb::MessageParser<CanvasUpdateRenderMode>(() => new CanvasUpdateRenderMode());
+    private static readonly pb::MessageParser<CanvasDestroy> _parser = new pb::MessageParser<CanvasDestroy>(() => new CanvasDestroy());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<CanvasUpdateRenderMode> Parser { get { return _parser; } }
+    public static pb::MessageParser<CanvasDestroy> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -267,7 +269,7 @@ namespace PLUME.Sample.Unity.UI {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public CanvasUpdateRenderMode() {
+    public CanvasDestroy() {
       OnConstruction();
     }
 
@@ -275,16 +277,15 @@ namespace PLUME.Sample.Unity.UI {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public CanvasUpdateRenderMode(CanvasUpdateRenderMode other) : this() {
+    public CanvasDestroy(CanvasDestroy other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      renderMode_ = other.renderMode_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public CanvasUpdateRenderMode Clone() {
-      return new CanvasUpdateRenderMode(this);
+    public CanvasDestroy Clone() {
+      return new CanvasDestroy(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -299,27 +300,15 @@ namespace PLUME.Sample.Unity.UI {
       }
     }
 
-    /// <summary>Field number for the "render_mode" field.</summary>
-    public const int RenderModeFieldNumber = 2;
-    private int renderMode_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int RenderMode {
-      get { return renderMode_; }
-      set {
-        renderMode_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as CanvasUpdateRenderMode);
+      return Equals(other as CanvasDestroy);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(CanvasUpdateRenderMode other) {
+    public bool Equals(CanvasDestroy other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -327,7 +316,6 @@ namespace PLUME.Sample.Unity.UI {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
-      if (RenderMode != other.RenderMode) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -336,7 +324,6 @@ namespace PLUME.Sample.Unity.UI {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (RenderMode != 0) hash ^= RenderMode.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -359,7 +346,238 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (RenderMode != 0) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CanvasDestroy other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class CanvasUpdate : pb::IMessage<CanvasUpdate>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CanvasUpdate> _parser = new pb::MessageParser<CanvasUpdate>(() => new CanvasUpdate());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CanvasUpdate> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.UI.CanvasReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CanvasUpdate() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CanvasUpdate(CanvasUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      renderMode_ = other.renderMode_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CanvasUpdate Clone() {
+      return new CanvasUpdate(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "render_mode" field.</summary>
+    public const int RenderModeFieldNumber = 2;
+    private readonly static int RenderModeDefaultValue = 0;
+
+    private int renderMode_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RenderMode {
+      get { if ((_hasBits0 & 1) != 0) { return renderMode_; } else { return RenderModeDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        renderMode_ = value;
+      }
+    }
+    /// <summary>Gets whether the "render_mode" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRenderMode {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "render_mode" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRenderMode() {
+      _hasBits0 &= ~1;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CanvasUpdate);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CanvasUpdate other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      if (RenderMode != other.RenderMode) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (HasRenderMode) hash ^= RenderMode.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (HasRenderMode) {
         output.WriteRawTag(16);
         output.WriteInt32(RenderMode);
       }
@@ -377,7 +595,7 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (RenderMode != 0) {
+      if (HasRenderMode) {
         output.WriteRawTag(16);
         output.WriteInt32(RenderMode);
       }
@@ -394,7 +612,7 @@ namespace PLUME.Sample.Unity.UI {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (RenderMode != 0) {
+      if (HasRenderMode) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(RenderMode);
       }
       if (_unknownFields != null) {
@@ -405,7 +623,7 @@ namespace PLUME.Sample.Unity.UI {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(CanvasUpdateRenderMode other) {
+    public void MergeFrom(CanvasUpdate other) {
       if (other == null) {
         return;
       }
@@ -415,7 +633,7 @@ namespace PLUME.Sample.Unity.UI {
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.RenderMode != 0) {
+      if (other.HasRenderMode) {
         RenderMode = other.RenderMode;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);

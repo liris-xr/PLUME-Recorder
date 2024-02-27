@@ -27,31 +27,33 @@ namespace PLUME.Sample.Unity.UI {
             "ChN1bml0eS91aS90ZXh0LnByb3RvEhJwbHVtZS5zYW1wbGUudW5pdHkaF3Vu",
             "aXR5L2lkZW50aWZpZXJzLnByb3RvGhJjb21tb24vY29sb3IucHJvdG8iQQoK",
             "VGV4dENyZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5D",
-            "b21wb25lbnRJZGVudGlmaWVyIlQKD1RleHRVcGRhdGVWYWx1ZRIzCgJpZBgB",
-            "IAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVy",
-            "EgwKBHRleHQYAiABKAkiswEKDlRleHRVcGRhdGVGb250EjMKAmlkGAEgASgL",
-            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISOQoH",
-            "Zm9udF9pZBgCIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50",
-            "aWZpZXJIAIgBARISCgpmb250X3N0eWxlGAMgASgFEhEKCWZvbnRfc2l6ZRgE",
-            "IAEoBUIKCghfZm9udF9pZCJxCg9UZXh0VXBkYXRlQ29sb3ISMwoCaWQYASAB",
-            "KAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIp",
-            "CgVjb2xvchgCIAEoCzIaLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3IivAIK",
-            "EFRleHRVcGRhdGVFeHRyYXMSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUu",
-            "dW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIUCgxsaW5lX3NwYWNpbmcYAiAB",
-            "KAISGQoRc3VwcG9ydF9yaWNoX3RleHQYAyABKAgSEQoJYWxpZ25tZW50GAQg",
-            "ASgFEhkKEWFsaWduX2J5X2dlb21ldHJ5GAUgASgIEhsKE2hvcml6b250YWxf",
-            "b3ZlcmZsb3cYBiABKAUSGQoRdmVydGljYWxfb3ZlcmZsb3cYByABKAUSIAoY",
-            "cmVzaXplX3RleHRfZm9yX2Jlc3RfZml0GAggASgIEhwKFHJlc2l6ZV90ZXh0",
-            "X21pbl9zaXplGAkgASgFEhwKFHJlc2l6ZV90ZXh0X21heF9zaXplGAogASgF",
-            "QhiqAhVQTFVNRS5TYW1wbGUuVW5pdHkuVUliBnByb3RvMw=="));
+            "b21wb25lbnRJZGVudGlmaWVyIkIKC1RleHREZXN0cm95EjMKAmlkGAEgASgL",
+            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIimwYK",
+            "D1RleHRVcGRhdGVWYWx1ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51",
+            "bml0eS5Db21wb25lbnRJZGVudGlmaWVyEhEKBHRleHQYAiABKAlIAIgBARI5",
+            "Cgdmb250X2lkGAMgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRl",
+            "bnRpZmllckgBiAEBEhcKCmZvbnRfc3R5bGUYBCABKAVIAogBARIWCglmb250",
+            "X3NpemUYBSABKAVIA4gBARIuCgVjb2xvchgGIAEoCzIaLnBsdW1lLnNhbXBs",
+            "ZS5jb21tb24uQ29sb3JIBIgBARIZCgxsaW5lX3NwYWNpbmcYByABKAJIBYgB",
+            "ARIeChFzdXBwb3J0X3JpY2hfdGV4dBgIIAEoCEgGiAEBEhYKCWFsaWdubWVu",
+            "dBgJIAEoBUgHiAEBEh4KEWFsaWduX2J5X2dlb21ldHJ5GAogASgISAiIAQES",
+            "IAoTaG9yaXpvbnRhbF9vdmVyZmxvdxgLIAEoBUgJiAEBEh4KEXZlcnRpY2Fs",
+            "X292ZXJmbG93GAwgASgFSAqIAQESJQoYcmVzaXplX3RleHRfZm9yX2Jlc3Rf",
+            "Zml0GA0gASgISAuIAQESIQoUcmVzaXplX3RleHRfbWluX3NpemUYDiABKAVI",
+            "DIgBARIhChRyZXNpemVfdGV4dF9tYXhfc2l6ZRgPIAEoBUgNiAEBQgcKBV90",
+            "ZXh0QgoKCF9mb250X2lkQg0KC19mb250X3N0eWxlQgwKCl9mb250X3NpemVC",
+            "CAoGX2NvbG9yQg8KDV9saW5lX3NwYWNpbmdCFAoSX3N1cHBvcnRfcmljaF90",
+            "ZXh0QgwKCl9hbGlnbm1lbnRCFAoSX2FsaWduX2J5X2dlb21ldHJ5QhYKFF9o",
+            "b3Jpem9udGFsX292ZXJmbG93QhQKEl92ZXJ0aWNhbF9vdmVyZmxvd0IbChlf",
+            "cmVzaXplX3RleHRfZm9yX2Jlc3RfZml0QhcKFV9yZXNpemVfdGV4dF9taW5f",
+            "c2l6ZUIXChVfcmVzaXplX3RleHRfbWF4X3NpemVCGKoCFVBMVU1FLlNhbXBs",
+            "ZS5Vbml0eS5VSWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextCreate), global::PLUME.Sample.Unity.UI.TextCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextUpdateValue), global::PLUME.Sample.Unity.UI.TextUpdateValue.Parser, new[]{ "Id", "Text" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextUpdateFont), global::PLUME.Sample.Unity.UI.TextUpdateFont.Parser, new[]{ "Id", "FontId", "FontStyle", "FontSize" }, new[]{ "FontId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextUpdateColor), global::PLUME.Sample.Unity.UI.TextUpdateColor.Parser, new[]{ "Id", "Color" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextUpdateExtras), global::PLUME.Sample.Unity.UI.TextUpdateExtras.Parser, new[]{ "Id", "LineSpacing", "SupportRichText", "Alignment", "AlignByGeometry", "HorizontalOverflow", "VerticalOverflow", "ResizeTextForBestFit", "ResizeTextMinSize", "ResizeTextMaxSize" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextDestroy), global::PLUME.Sample.Unity.UI.TextDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextUpdateValue), global::PLUME.Sample.Unity.UI.TextUpdateValue.Parser, new[]{ "Id", "Text", "FontId", "FontStyle", "FontSize", "Color", "LineSpacing", "SupportRichText", "Alignment", "AlignByGeometry", "HorizontalOverflow", "VerticalOverflow", "ResizeTextForBestFit", "ResizeTextMinSize", "ResizeTextMaxSize" }, new[]{ "Text", "FontId", "FontStyle", "FontSize", "Color", "LineSpacing", "SupportRichText", "Alignment", "AlignByGeometry", "HorizontalOverflow", "VerticalOverflow", "ResizeTextForBestFit", "ResizeTextMinSize", "ResizeTextMaxSize" }, null, null, null)
           }));
     }
     #endregion
@@ -258,6 +260,205 @@ namespace PLUME.Sample.Unity.UI {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class TextDestroy : pb::IMessage<TextDestroy>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<TextDestroy> _parser = new pb::MessageParser<TextDestroy>(() => new TextDestroy());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<TextDestroy> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TextDestroy() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TextDestroy(TextDestroy other) : this() {
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TextDestroy Clone() {
+      return new TextDestroy(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as TextDestroy);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(TextDestroy other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(TextDestroy other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class TextUpdateValue : pb::IMessage<TextUpdateValue>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -265,6 +466,7 @@ namespace PLUME.Sample.Unity.UI {
   {
     private static readonly pb::MessageParser<TextUpdateValue> _parser = new pb::MessageParser<TextUpdateValue>(() => new TextUpdateValue());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<TextUpdateValue> Parser { get { return _parser; } }
@@ -272,7 +474,7 @@ namespace PLUME.Sample.Unity.UI {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[1]; }
+      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -292,8 +494,22 @@ namespace PLUME.Sample.Unity.UI {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public TextUpdateValue(TextUpdateValue other) : this() {
+      _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
       text_ = other.text_;
+      fontId_ = other.fontId_ != null ? other.fontId_.Clone() : null;
+      fontStyle_ = other.fontStyle_;
+      fontSize_ = other.fontSize_;
+      color_ = other.color_ != null ? other.color_.Clone() : null;
+      lineSpacing_ = other.lineSpacing_;
+      supportRichText_ = other.supportRichText_;
+      alignment_ = other.alignment_;
+      alignByGeometry_ = other.alignByGeometry_;
+      horizontalOverflow_ = other.horizontalOverflow_;
+      verticalOverflow_ = other.verticalOverflow_;
+      resizeTextForBestFit_ = other.resizeTextForBestFit_;
+      resizeTextMinSize_ = other.resizeTextMinSize_;
+      resizeTextMaxSize_ = other.resizeTextMaxSize_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -317,14 +533,349 @@ namespace PLUME.Sample.Unity.UI {
 
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 2;
-    private string text_ = "";
+    private readonly static string TextDefaultValue = "";
+
+    private string text_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Text {
-      get { return text_; }
+      get { return text_ ?? TextDefaultValue; }
       set {
         text_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
+    }
+    /// <summary>Gets whether the "text" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasText {
+      get { return text_ != null; }
+    }
+    /// <summary>Clears the value of the "text" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearText() {
+      text_ = null;
+    }
+
+    /// <summary>Field number for the "font_id" field.</summary>
+    public const int FontIdFieldNumber = 3;
+    private global::PLUME.Sample.Unity.AssetIdentifier fontId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.AssetIdentifier FontId {
+      get { return fontId_; }
+      set {
+        fontId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "font_style" field.</summary>
+    public const int FontStyleFieldNumber = 4;
+    private readonly static int FontStyleDefaultValue = 0;
+
+    private int fontStyle_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int FontStyle {
+      get { if ((_hasBits0 & 1) != 0) { return fontStyle_; } else { return FontStyleDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        fontStyle_ = value;
+      }
+    }
+    /// <summary>Gets whether the "font_style" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFontStyle {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "font_style" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFontStyle() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "font_size" field.</summary>
+    public const int FontSizeFieldNumber = 5;
+    private readonly static int FontSizeDefaultValue = 0;
+
+    private int fontSize_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int FontSize {
+      get { if ((_hasBits0 & 2) != 0) { return fontSize_; } else { return FontSizeDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        fontSize_ = value;
+      }
+    }
+    /// <summary>Gets whether the "font_size" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFontSize {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "font_size" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFontSize() {
+      _hasBits0 &= ~2;
+    }
+
+    /// <summary>Field number for the "color" field.</summary>
+    public const int ColorFieldNumber = 6;
+    private global::PLUME.Sample.Common.Color color_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Color Color {
+      get { return color_; }
+      set {
+        color_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "line_spacing" field.</summary>
+    public const int LineSpacingFieldNumber = 7;
+    private readonly static float LineSpacingDefaultValue = 0F;
+
+    private float lineSpacing_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float LineSpacing {
+      get { if ((_hasBits0 & 4) != 0) { return lineSpacing_; } else { return LineSpacingDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        lineSpacing_ = value;
+      }
+    }
+    /// <summary>Gets whether the "line_spacing" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasLineSpacing {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "line_spacing" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearLineSpacing() {
+      _hasBits0 &= ~4;
+    }
+
+    /// <summary>Field number for the "support_rich_text" field.</summary>
+    public const int SupportRichTextFieldNumber = 8;
+    private readonly static bool SupportRichTextDefaultValue = false;
+
+    private bool supportRichText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool SupportRichText {
+      get { if ((_hasBits0 & 8) != 0) { return supportRichText_; } else { return SupportRichTextDefaultValue; } }
+      set {
+        _hasBits0 |= 8;
+        supportRichText_ = value;
+      }
+    }
+    /// <summary>Gets whether the "support_rich_text" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSupportRichText {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "support_rich_text" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSupportRichText() {
+      _hasBits0 &= ~8;
+    }
+
+    /// <summary>Field number for the "alignment" field.</summary>
+    public const int AlignmentFieldNumber = 9;
+    private readonly static int AlignmentDefaultValue = 0;
+
+    private int alignment_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Alignment {
+      get { if ((_hasBits0 & 16) != 0) { return alignment_; } else { return AlignmentDefaultValue; } }
+      set {
+        _hasBits0 |= 16;
+        alignment_ = value;
+      }
+    }
+    /// <summary>Gets whether the "alignment" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAlignment {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "alignment" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAlignment() {
+      _hasBits0 &= ~16;
+    }
+
+    /// <summary>Field number for the "align_by_geometry" field.</summary>
+    public const int AlignByGeometryFieldNumber = 10;
+    private readonly static bool AlignByGeometryDefaultValue = false;
+
+    private bool alignByGeometry_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool AlignByGeometry {
+      get { if ((_hasBits0 & 32) != 0) { return alignByGeometry_; } else { return AlignByGeometryDefaultValue; } }
+      set {
+        _hasBits0 |= 32;
+        alignByGeometry_ = value;
+      }
+    }
+    /// <summary>Gets whether the "align_by_geometry" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAlignByGeometry {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "align_by_geometry" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAlignByGeometry() {
+      _hasBits0 &= ~32;
+    }
+
+    /// <summary>Field number for the "horizontal_overflow" field.</summary>
+    public const int HorizontalOverflowFieldNumber = 11;
+    private readonly static int HorizontalOverflowDefaultValue = 0;
+
+    private int horizontalOverflow_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int HorizontalOverflow {
+      get { if ((_hasBits0 & 64) != 0) { return horizontalOverflow_; } else { return HorizontalOverflowDefaultValue; } }
+      set {
+        _hasBits0 |= 64;
+        horizontalOverflow_ = value;
+      }
+    }
+    /// <summary>Gets whether the "horizontal_overflow" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasHorizontalOverflow {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "horizontal_overflow" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearHorizontalOverflow() {
+      _hasBits0 &= ~64;
+    }
+
+    /// <summary>Field number for the "vertical_overflow" field.</summary>
+    public const int VerticalOverflowFieldNumber = 12;
+    private readonly static int VerticalOverflowDefaultValue = 0;
+
+    private int verticalOverflow_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int VerticalOverflow {
+      get { if ((_hasBits0 & 128) != 0) { return verticalOverflow_; } else { return VerticalOverflowDefaultValue; } }
+      set {
+        _hasBits0 |= 128;
+        verticalOverflow_ = value;
+      }
+    }
+    /// <summary>Gets whether the "vertical_overflow" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasVerticalOverflow {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "vertical_overflow" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearVerticalOverflow() {
+      _hasBits0 &= ~128;
+    }
+
+    /// <summary>Field number for the "resize_text_for_best_fit" field.</summary>
+    public const int ResizeTextForBestFitFieldNumber = 13;
+    private readonly static bool ResizeTextForBestFitDefaultValue = false;
+
+    private bool resizeTextForBestFit_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool ResizeTextForBestFit {
+      get { if ((_hasBits0 & 256) != 0) { return resizeTextForBestFit_; } else { return ResizeTextForBestFitDefaultValue; } }
+      set {
+        _hasBits0 |= 256;
+        resizeTextForBestFit_ = value;
+      }
+    }
+    /// <summary>Gets whether the "resize_text_for_best_fit" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasResizeTextForBestFit {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "resize_text_for_best_fit" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearResizeTextForBestFit() {
+      _hasBits0 &= ~256;
+    }
+
+    /// <summary>Field number for the "resize_text_min_size" field.</summary>
+    public const int ResizeTextMinSizeFieldNumber = 14;
+    private readonly static int ResizeTextMinSizeDefaultValue = 0;
+
+    private int resizeTextMinSize_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ResizeTextMinSize {
+      get { if ((_hasBits0 & 512) != 0) { return resizeTextMinSize_; } else { return ResizeTextMinSizeDefaultValue; } }
+      set {
+        _hasBits0 |= 512;
+        resizeTextMinSize_ = value;
+      }
+    }
+    /// <summary>Gets whether the "resize_text_min_size" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasResizeTextMinSize {
+      get { return (_hasBits0 & 512) != 0; }
+    }
+    /// <summary>Clears the value of the "resize_text_min_size" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearResizeTextMinSize() {
+      _hasBits0 &= ~512;
+    }
+
+    /// <summary>Field number for the "resize_text_max_size" field.</summary>
+    public const int ResizeTextMaxSizeFieldNumber = 15;
+    private readonly static int ResizeTextMaxSizeDefaultValue = 0;
+
+    private int resizeTextMaxSize_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ResizeTextMaxSize {
+      get { if ((_hasBits0 & 1024) != 0) { return resizeTextMaxSize_; } else { return ResizeTextMaxSizeDefaultValue; } }
+      set {
+        _hasBits0 |= 1024;
+        resizeTextMaxSize_ = value;
+      }
+    }
+    /// <summary>Gets whether the "resize_text_max_size" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasResizeTextMaxSize {
+      get { return (_hasBits0 & 1024) != 0; }
+    }
+    /// <summary>Clears the value of the "resize_text_max_size" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearResizeTextMaxSize() {
+      _hasBits0 &= ~1024;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -344,6 +895,19 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (!object.Equals(Id, other.Id)) return false;
       if (Text != other.Text) return false;
+      if (!object.Equals(FontId, other.FontId)) return false;
+      if (FontStyle != other.FontStyle) return false;
+      if (FontSize != other.FontSize) return false;
+      if (!object.Equals(Color, other.Color)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(LineSpacing, other.LineSpacing)) return false;
+      if (SupportRichText != other.SupportRichText) return false;
+      if (Alignment != other.Alignment) return false;
+      if (AlignByGeometry != other.AlignByGeometry) return false;
+      if (HorizontalOverflow != other.HorizontalOverflow) return false;
+      if (VerticalOverflow != other.VerticalOverflow) return false;
+      if (ResizeTextForBestFit != other.ResizeTextForBestFit) return false;
+      if (ResizeTextMinSize != other.ResizeTextMinSize) return false;
+      if (ResizeTextMaxSize != other.ResizeTextMaxSize) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -352,7 +916,20 @@ namespace PLUME.Sample.Unity.UI {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (Text.Length != 0) hash ^= Text.GetHashCode();
+      if (HasText) hash ^= Text.GetHashCode();
+      if (fontId_ != null) hash ^= FontId.GetHashCode();
+      if (HasFontStyle) hash ^= FontStyle.GetHashCode();
+      if (HasFontSize) hash ^= FontSize.GetHashCode();
+      if (color_ != null) hash ^= Color.GetHashCode();
+      if (HasLineSpacing) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(LineSpacing);
+      if (HasSupportRichText) hash ^= SupportRichText.GetHashCode();
+      if (HasAlignment) hash ^= Alignment.GetHashCode();
+      if (HasAlignByGeometry) hash ^= AlignByGeometry.GetHashCode();
+      if (HasHorizontalOverflow) hash ^= HorizontalOverflow.GetHashCode();
+      if (HasVerticalOverflow) hash ^= VerticalOverflow.GetHashCode();
+      if (HasResizeTextForBestFit) hash ^= ResizeTextForBestFit.GetHashCode();
+      if (HasResizeTextMinSize) hash ^= ResizeTextMinSize.GetHashCode();
+      if (HasResizeTextMaxSize) hash ^= ResizeTextMaxSize.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -375,9 +952,61 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Text.Length != 0) {
+      if (HasText) {
         output.WriteRawTag(18);
         output.WriteString(Text);
+      }
+      if (fontId_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(FontId);
+      }
+      if (HasFontStyle) {
+        output.WriteRawTag(32);
+        output.WriteInt32(FontStyle);
+      }
+      if (HasFontSize) {
+        output.WriteRawTag(40);
+        output.WriteInt32(FontSize);
+      }
+      if (color_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(Color);
+      }
+      if (HasLineSpacing) {
+        output.WriteRawTag(61);
+        output.WriteFloat(LineSpacing);
+      }
+      if (HasSupportRichText) {
+        output.WriteRawTag(64);
+        output.WriteBool(SupportRichText);
+      }
+      if (HasAlignment) {
+        output.WriteRawTag(72);
+        output.WriteInt32(Alignment);
+      }
+      if (HasAlignByGeometry) {
+        output.WriteRawTag(80);
+        output.WriteBool(AlignByGeometry);
+      }
+      if (HasHorizontalOverflow) {
+        output.WriteRawTag(88);
+        output.WriteInt32(HorizontalOverflow);
+      }
+      if (HasVerticalOverflow) {
+        output.WriteRawTag(96);
+        output.WriteInt32(VerticalOverflow);
+      }
+      if (HasResizeTextForBestFit) {
+        output.WriteRawTag(104);
+        output.WriteBool(ResizeTextForBestFit);
+      }
+      if (HasResizeTextMinSize) {
+        output.WriteRawTag(112);
+        output.WriteInt32(ResizeTextMinSize);
+      }
+      if (HasResizeTextMaxSize) {
+        output.WriteRawTag(120);
+        output.WriteInt32(ResizeTextMaxSize);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -393,9 +1022,61 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Text.Length != 0) {
+      if (HasText) {
         output.WriteRawTag(18);
         output.WriteString(Text);
+      }
+      if (fontId_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(FontId);
+      }
+      if (HasFontStyle) {
+        output.WriteRawTag(32);
+        output.WriteInt32(FontStyle);
+      }
+      if (HasFontSize) {
+        output.WriteRawTag(40);
+        output.WriteInt32(FontSize);
+      }
+      if (color_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(Color);
+      }
+      if (HasLineSpacing) {
+        output.WriteRawTag(61);
+        output.WriteFloat(LineSpacing);
+      }
+      if (HasSupportRichText) {
+        output.WriteRawTag(64);
+        output.WriteBool(SupportRichText);
+      }
+      if (HasAlignment) {
+        output.WriteRawTag(72);
+        output.WriteInt32(Alignment);
+      }
+      if (HasAlignByGeometry) {
+        output.WriteRawTag(80);
+        output.WriteBool(AlignByGeometry);
+      }
+      if (HasHorizontalOverflow) {
+        output.WriteRawTag(88);
+        output.WriteInt32(HorizontalOverflow);
+      }
+      if (HasVerticalOverflow) {
+        output.WriteRawTag(96);
+        output.WriteInt32(VerticalOverflow);
+      }
+      if (HasResizeTextForBestFit) {
+        output.WriteRawTag(104);
+        output.WriteBool(ResizeTextForBestFit);
+      }
+      if (HasResizeTextMinSize) {
+        output.WriteRawTag(112);
+        output.WriteInt32(ResizeTextMinSize);
+      }
+      if (HasResizeTextMaxSize) {
+        output.WriteRawTag(120);
+        output.WriteInt32(ResizeTextMaxSize);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -410,8 +1091,47 @@ namespace PLUME.Sample.Unity.UI {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (Text.Length != 0) {
+      if (HasText) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Text);
+      }
+      if (fontId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(FontId);
+      }
+      if (HasFontStyle) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FontStyle);
+      }
+      if (HasFontSize) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FontSize);
+      }
+      if (color_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
+      }
+      if (HasLineSpacing) {
+        size += 1 + 4;
+      }
+      if (HasSupportRichText) {
+        size += 1 + 1;
+      }
+      if (HasAlignment) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Alignment);
+      }
+      if (HasAlignByGeometry) {
+        size += 1 + 1;
+      }
+      if (HasHorizontalOverflow) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(HorizontalOverflow);
+      }
+      if (HasVerticalOverflow) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(VerticalOverflow);
+      }
+      if (HasResizeTextForBestFit) {
+        size += 1 + 1;
+      }
+      if (HasResizeTextMinSize) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResizeTextMinSize);
+      }
+      if (HasResizeTextMaxSize) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResizeTextMaxSize);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -431,293 +1151,8 @@ namespace PLUME.Sample.Unity.UI {
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.Text.Length != 0) {
+      if (other.HasText) {
         Text = other.Text;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            Text = input.ReadString();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            Text = input.ReadString();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class TextUpdateFont : pb::IMessage<TextUpdateFont>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<TextUpdateFont> _parser = new pb::MessageParser<TextUpdateFont>(() => new TextUpdateFont());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TextUpdateFont> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextUpdateFont() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextUpdateFont(TextUpdateFont other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      fontId_ = other.fontId_ != null ? other.fontId_.Clone() : null;
-      fontStyle_ = other.fontStyle_;
-      fontSize_ = other.fontSize_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextUpdateFont Clone() {
-      return new TextUpdateFont(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "font_id" field.</summary>
-    public const int FontIdFieldNumber = 2;
-    private global::PLUME.Sample.Unity.AssetIdentifier fontId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.AssetIdentifier FontId {
-      get { return fontId_; }
-      set {
-        fontId_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "font_style" field.</summary>
-    public const int FontStyleFieldNumber = 3;
-    private int fontStyle_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int FontStyle {
-      get { return fontStyle_; }
-      set {
-        fontStyle_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "font_size" field.</summary>
-    public const int FontSizeFieldNumber = 4;
-    private int fontSize_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int FontSize {
-      get { return fontSize_; }
-      set {
-        fontSize_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as TextUpdateFont);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TextUpdateFont other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(FontId, other.FontId)) return false;
-      if (FontStyle != other.FontStyle) return false;
-      if (FontSize != other.FontSize) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (fontId_ != null) hash ^= FontId.GetHashCode();
-      if (FontStyle != 0) hash ^= FontStyle.GetHashCode();
-      if (FontSize != 0) hash ^= FontSize.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (fontId_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(FontId);
-      }
-      if (FontStyle != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(FontStyle);
-      }
-      if (FontSize != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(FontSize);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (fontId_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(FontId);
-      }
-      if (FontStyle != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(FontStyle);
-      }
-      if (FontSize != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(FontSize);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (fontId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(FontId);
-      }
-      if (FontStyle != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FontStyle);
-      }
-      if (FontSize != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FontSize);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TextUpdateFont other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
       }
       if (other.fontId_ != null) {
         if (fontId_ == null) {
@@ -725,266 +1160,11 @@ namespace PLUME.Sample.Unity.UI {
         }
         FontId.MergeFrom(other.FontId);
       }
-      if (other.FontStyle != 0) {
+      if (other.HasFontStyle) {
         FontStyle = other.FontStyle;
       }
-      if (other.FontSize != 0) {
+      if (other.HasFontSize) {
         FontSize = other.FontSize;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (fontId_ == null) {
-              FontId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(FontId);
-            break;
-          }
-          case 24: {
-            FontStyle = input.ReadInt32();
-            break;
-          }
-          case 32: {
-            FontSize = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (fontId_ == null) {
-              FontId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(FontId);
-            break;
-          }
-          case 24: {
-            FontStyle = input.ReadInt32();
-            break;
-          }
-          case 32: {
-            FontSize = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class TextUpdateColor : pb::IMessage<TextUpdateColor>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<TextUpdateColor> _parser = new pb::MessageParser<TextUpdateColor>(() => new TextUpdateColor());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TextUpdateColor> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextUpdateColor() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextUpdateColor(TextUpdateColor other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      color_ = other.color_ != null ? other.color_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextUpdateColor Clone() {
-      return new TextUpdateColor(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "color" field.</summary>
-    public const int ColorFieldNumber = 2;
-    private global::PLUME.Sample.Common.Color color_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Color Color {
-      get { return color_; }
-      set {
-        color_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as TextUpdateColor);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TextUpdateColor other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(Color, other.Color)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (color_ != null) hash ^= Color.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (color_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Color);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (color_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Color);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (color_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TextUpdateColor other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
       }
       if (other.color_ != null) {
         if (color_ == null) {
@@ -992,478 +1172,31 @@ namespace PLUME.Sample.Unity.UI {
         }
         Color.MergeFrom(other.Color);
       }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (color_ == null) {
-              Color = new global::PLUME.Sample.Common.Color();
-            }
-            input.ReadMessage(Color);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (color_ == null) {
-              Color = new global::PLUME.Sample.Common.Color();
-            }
-            input.ReadMessage(Color);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class TextUpdateExtras : pb::IMessage<TextUpdateExtras>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<TextUpdateExtras> _parser = new pb::MessageParser<TextUpdateExtras>(() => new TextUpdateExtras());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TextUpdateExtras> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.UI.TextReflection.Descriptor.MessageTypes[4]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextUpdateExtras() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextUpdateExtras(TextUpdateExtras other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      lineSpacing_ = other.lineSpacing_;
-      supportRichText_ = other.supportRichText_;
-      alignment_ = other.alignment_;
-      alignByGeometry_ = other.alignByGeometry_;
-      horizontalOverflow_ = other.horizontalOverflow_;
-      verticalOverflow_ = other.verticalOverflow_;
-      resizeTextForBestFit_ = other.resizeTextForBestFit_;
-      resizeTextMinSize_ = other.resizeTextMinSize_;
-      resizeTextMaxSize_ = other.resizeTextMaxSize_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TextUpdateExtras Clone() {
-      return new TextUpdateExtras(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "line_spacing" field.</summary>
-    public const int LineSpacingFieldNumber = 2;
-    private float lineSpacing_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float LineSpacing {
-      get { return lineSpacing_; }
-      set {
-        lineSpacing_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "support_rich_text" field.</summary>
-    public const int SupportRichTextFieldNumber = 3;
-    private bool supportRichText_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool SupportRichText {
-      get { return supportRichText_; }
-      set {
-        supportRichText_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "alignment" field.</summary>
-    public const int AlignmentFieldNumber = 4;
-    private int alignment_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Alignment {
-      get { return alignment_; }
-      set {
-        alignment_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "align_by_geometry" field.</summary>
-    public const int AlignByGeometryFieldNumber = 5;
-    private bool alignByGeometry_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool AlignByGeometry {
-      get { return alignByGeometry_; }
-      set {
-        alignByGeometry_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "horizontal_overflow" field.</summary>
-    public const int HorizontalOverflowFieldNumber = 6;
-    private int horizontalOverflow_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int HorizontalOverflow {
-      get { return horizontalOverflow_; }
-      set {
-        horizontalOverflow_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "vertical_overflow" field.</summary>
-    public const int VerticalOverflowFieldNumber = 7;
-    private int verticalOverflow_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int VerticalOverflow {
-      get { return verticalOverflow_; }
-      set {
-        verticalOverflow_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "resize_text_for_best_fit" field.</summary>
-    public const int ResizeTextForBestFitFieldNumber = 8;
-    private bool resizeTextForBestFit_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool ResizeTextForBestFit {
-      get { return resizeTextForBestFit_; }
-      set {
-        resizeTextForBestFit_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "resize_text_min_size" field.</summary>
-    public const int ResizeTextMinSizeFieldNumber = 9;
-    private int resizeTextMinSize_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int ResizeTextMinSize {
-      get { return resizeTextMinSize_; }
-      set {
-        resizeTextMinSize_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "resize_text_max_size" field.</summary>
-    public const int ResizeTextMaxSizeFieldNumber = 10;
-    private int resizeTextMaxSize_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int ResizeTextMaxSize {
-      get { return resizeTextMaxSize_; }
-      set {
-        resizeTextMaxSize_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as TextUpdateExtras);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TextUpdateExtras other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(LineSpacing, other.LineSpacing)) return false;
-      if (SupportRichText != other.SupportRichText) return false;
-      if (Alignment != other.Alignment) return false;
-      if (AlignByGeometry != other.AlignByGeometry) return false;
-      if (HorizontalOverflow != other.HorizontalOverflow) return false;
-      if (VerticalOverflow != other.VerticalOverflow) return false;
-      if (ResizeTextForBestFit != other.ResizeTextForBestFit) return false;
-      if (ResizeTextMinSize != other.ResizeTextMinSize) return false;
-      if (ResizeTextMaxSize != other.ResizeTextMaxSize) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (LineSpacing != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(LineSpacing);
-      if (SupportRichText != false) hash ^= SupportRichText.GetHashCode();
-      if (Alignment != 0) hash ^= Alignment.GetHashCode();
-      if (AlignByGeometry != false) hash ^= AlignByGeometry.GetHashCode();
-      if (HorizontalOverflow != 0) hash ^= HorizontalOverflow.GetHashCode();
-      if (VerticalOverflow != 0) hash ^= VerticalOverflow.GetHashCode();
-      if (ResizeTextForBestFit != false) hash ^= ResizeTextForBestFit.GetHashCode();
-      if (ResizeTextMinSize != 0) hash ^= ResizeTextMinSize.GetHashCode();
-      if (ResizeTextMaxSize != 0) hash ^= ResizeTextMaxSize.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (LineSpacing != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(LineSpacing);
-      }
-      if (SupportRichText != false) {
-        output.WriteRawTag(24);
-        output.WriteBool(SupportRichText);
-      }
-      if (Alignment != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Alignment);
-      }
-      if (AlignByGeometry != false) {
-        output.WriteRawTag(40);
-        output.WriteBool(AlignByGeometry);
-      }
-      if (HorizontalOverflow != 0) {
-        output.WriteRawTag(48);
-        output.WriteInt32(HorizontalOverflow);
-      }
-      if (VerticalOverflow != 0) {
-        output.WriteRawTag(56);
-        output.WriteInt32(VerticalOverflow);
-      }
-      if (ResizeTextForBestFit != false) {
-        output.WriteRawTag(64);
-        output.WriteBool(ResizeTextForBestFit);
-      }
-      if (ResizeTextMinSize != 0) {
-        output.WriteRawTag(72);
-        output.WriteInt32(ResizeTextMinSize);
-      }
-      if (ResizeTextMaxSize != 0) {
-        output.WriteRawTag(80);
-        output.WriteInt32(ResizeTextMaxSize);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (LineSpacing != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(LineSpacing);
-      }
-      if (SupportRichText != false) {
-        output.WriteRawTag(24);
-        output.WriteBool(SupportRichText);
-      }
-      if (Alignment != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Alignment);
-      }
-      if (AlignByGeometry != false) {
-        output.WriteRawTag(40);
-        output.WriteBool(AlignByGeometry);
-      }
-      if (HorizontalOverflow != 0) {
-        output.WriteRawTag(48);
-        output.WriteInt32(HorizontalOverflow);
-      }
-      if (VerticalOverflow != 0) {
-        output.WriteRawTag(56);
-        output.WriteInt32(VerticalOverflow);
-      }
-      if (ResizeTextForBestFit != false) {
-        output.WriteRawTag(64);
-        output.WriteBool(ResizeTextForBestFit);
-      }
-      if (ResizeTextMinSize != 0) {
-        output.WriteRawTag(72);
-        output.WriteInt32(ResizeTextMinSize);
-      }
-      if (ResizeTextMaxSize != 0) {
-        output.WriteRawTag(80);
-        output.WriteInt32(ResizeTextMaxSize);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (LineSpacing != 0F) {
-        size += 1 + 4;
-      }
-      if (SupportRichText != false) {
-        size += 1 + 1;
-      }
-      if (Alignment != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Alignment);
-      }
-      if (AlignByGeometry != false) {
-        size += 1 + 1;
-      }
-      if (HorizontalOverflow != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(HorizontalOverflow);
-      }
-      if (VerticalOverflow != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(VerticalOverflow);
-      }
-      if (ResizeTextForBestFit != false) {
-        size += 1 + 1;
-      }
-      if (ResizeTextMinSize != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResizeTextMinSize);
-      }
-      if (ResizeTextMaxSize != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResizeTextMaxSize);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TextUpdateExtras other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.LineSpacing != 0F) {
+      if (other.HasLineSpacing) {
         LineSpacing = other.LineSpacing;
       }
-      if (other.SupportRichText != false) {
+      if (other.HasSupportRichText) {
         SupportRichText = other.SupportRichText;
       }
-      if (other.Alignment != 0) {
+      if (other.HasAlignment) {
         Alignment = other.Alignment;
       }
-      if (other.AlignByGeometry != false) {
+      if (other.HasAlignByGeometry) {
         AlignByGeometry = other.AlignByGeometry;
       }
-      if (other.HorizontalOverflow != 0) {
+      if (other.HasHorizontalOverflow) {
         HorizontalOverflow = other.HorizontalOverflow;
       }
-      if (other.VerticalOverflow != 0) {
+      if (other.HasVerticalOverflow) {
         VerticalOverflow = other.VerticalOverflow;
       }
-      if (other.ResizeTextForBestFit != false) {
+      if (other.HasResizeTextForBestFit) {
         ResizeTextForBestFit = other.ResizeTextForBestFit;
       }
-      if (other.ResizeTextMinSize != 0) {
+      if (other.HasResizeTextMinSize) {
         ResizeTextMinSize = other.ResizeTextMinSize;
       }
-      if (other.ResizeTextMaxSize != 0) {
+      if (other.HasResizeTextMaxSize) {
         ResizeTextMaxSize = other.ResizeTextMaxSize;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1488,39 +1221,65 @@ namespace PLUME.Sample.Unity.UI {
             input.ReadMessage(Id);
             break;
           }
-          case 21: {
-            LineSpacing = input.ReadFloat();
+          case 18: {
+            Text = input.ReadString();
             break;
           }
-          case 24: {
-            SupportRichText = input.ReadBool();
+          case 26: {
+            if (fontId_ == null) {
+              FontId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(FontId);
             break;
           }
           case 32: {
-            Alignment = input.ReadInt32();
+            FontStyle = input.ReadInt32();
             break;
           }
           case 40: {
-            AlignByGeometry = input.ReadBool();
+            FontSize = input.ReadInt32();
             break;
           }
-          case 48: {
-            HorizontalOverflow = input.ReadInt32();
+          case 50: {
+            if (color_ == null) {
+              Color = new global::PLUME.Sample.Common.Color();
+            }
+            input.ReadMessage(Color);
             break;
           }
-          case 56: {
-            VerticalOverflow = input.ReadInt32();
+          case 61: {
+            LineSpacing = input.ReadFloat();
             break;
           }
           case 64: {
-            ResizeTextForBestFit = input.ReadBool();
+            SupportRichText = input.ReadBool();
             break;
           }
           case 72: {
-            ResizeTextMinSize = input.ReadInt32();
+            Alignment = input.ReadInt32();
             break;
           }
           case 80: {
+            AlignByGeometry = input.ReadBool();
+            break;
+          }
+          case 88: {
+            HorizontalOverflow = input.ReadInt32();
+            break;
+          }
+          case 96: {
+            VerticalOverflow = input.ReadInt32();
+            break;
+          }
+          case 104: {
+            ResizeTextForBestFit = input.ReadBool();
+            break;
+          }
+          case 112: {
+            ResizeTextMinSize = input.ReadInt32();
+            break;
+          }
+          case 120: {
             ResizeTextMaxSize = input.ReadInt32();
             break;
           }
@@ -1546,39 +1305,65 @@ namespace PLUME.Sample.Unity.UI {
             input.ReadMessage(Id);
             break;
           }
-          case 21: {
-            LineSpacing = input.ReadFloat();
+          case 18: {
+            Text = input.ReadString();
             break;
           }
-          case 24: {
-            SupportRichText = input.ReadBool();
+          case 26: {
+            if (fontId_ == null) {
+              FontId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(FontId);
             break;
           }
           case 32: {
-            Alignment = input.ReadInt32();
+            FontStyle = input.ReadInt32();
             break;
           }
           case 40: {
-            AlignByGeometry = input.ReadBool();
+            FontSize = input.ReadInt32();
             break;
           }
-          case 48: {
-            HorizontalOverflow = input.ReadInt32();
+          case 50: {
+            if (color_ == null) {
+              Color = new global::PLUME.Sample.Common.Color();
+            }
+            input.ReadMessage(Color);
             break;
           }
-          case 56: {
-            VerticalOverflow = input.ReadInt32();
+          case 61: {
+            LineSpacing = input.ReadFloat();
             break;
           }
           case 64: {
-            ResizeTextForBestFit = input.ReadBool();
+            SupportRichText = input.ReadBool();
             break;
           }
           case 72: {
-            ResizeTextMinSize = input.ReadInt32();
+            Alignment = input.ReadInt32();
             break;
           }
           case 80: {
+            AlignByGeometry = input.ReadBool();
+            break;
+          }
+          case 88: {
+            HorizontalOverflow = input.ReadInt32();
+            break;
+          }
+          case 96: {
+            VerticalOverflow = input.ReadInt32();
+            break;
+          }
+          case 104: {
+            ResizeTextForBestFit = input.ReadBool();
+            break;
+          }
+          case 112: {
+            ResizeTextMinSize = input.ReadInt32();
+            break;
+          }
+          case 120: {
             ResizeTextMaxSize = input.ReadInt32();
             break;
           }

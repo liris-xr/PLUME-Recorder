@@ -25,33 +25,22 @@ namespace PLUME.Sample.Unity {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Chd1bml0eS9nYW1lX29iamVjdC5wcm90bxIScGx1bWUuc2FtcGxlLnVuaXR5",
-            "Ghd1bml0eS9pZGVudGlmaWVycy5wcm90byJRChBHYW1lT2JqZWN0Q3JlYXRl",
-            "Ej0KAmlkGAEgASgLMjEucGx1bWUuc2FtcGxlLnVuaXR5LlRyYW5zZm9ybUdh",
-            "bWVPYmplY3RJZGVudGlmaWVyIlIKEUdhbWVPYmplY3REZXN0cm95Ej0KAmlk",
-            "GAEgASgLMjEucGx1bWUuc2FtcGxlLnVuaXR5LlRyYW5zZm9ybUdhbWVPYmpl",
-            "Y3RJZGVudGlmaWVyImMKFEdhbWVPYmplY3RVcGRhdGVOYW1lEj0KAmlkGAEg",
-            "ASgLMjEucGx1bWUuc2FtcGxlLnVuaXR5LlRyYW5zZm9ybUdhbWVPYmplY3RJ",
-            "ZGVudGlmaWVyEgwKBG5hbWUYAiABKAkiawoaR2FtZU9iamVjdFVwZGF0ZUFj",
-            "dGl2ZVNlbGYSPQoCaWQYASABKAsyMS5wbHVtZS5zYW1wbGUudW5pdHkuVHJh",
-            "bnNmb3JtR2FtZU9iamVjdElkZW50aWZpZXISDgoGYWN0aXZlGAIgASgIImEK",
-            "E0dhbWVPYmplY3RVcGRhdGVUYWcSPQoCaWQYASABKAsyMS5wbHVtZS5zYW1w",
-            "bGUudW5pdHkuVHJhbnNmb3JtR2FtZU9iamVjdElkZW50aWZpZXISCwoDdGFn",
-            "GAIgASgJImUKFUdhbWVPYmplY3RVcGRhdGVMYXllchI9CgJpZBgBIAEoCzIx",
-            "LnBsdW1lLnNhbXBsZS51bml0eS5UcmFuc2Zvcm1HYW1lT2JqZWN0SWRlbnRp",
-            "ZmllchINCgVsYXllchgCIAEoBSJoChVHYW1lT2JqZWN0VXBkYXRlU2NlbmUS",
-            "PQoCaWQYASABKAsyMS5wbHVtZS5zYW1wbGUudW5pdHkuVHJhbnNmb3JtR2Ft",
-            "ZU9iamVjdElkZW50aWZpZXISEAoIc2NlbmVfaWQYAiABKAVCFaoCElBMVU1F",
-            "LlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
+            "Ghd1bml0eS9pZGVudGlmaWVycy5wcm90byJEChBHYW1lT2JqZWN0Q3JlYXRl",
+            "EjAKAmlkGAEgASgLMiQucGx1bWUuc2FtcGxlLnVuaXR5Lk9iamVjdElkZW50",
+            "aWZpZXIiRQoRR2FtZU9iamVjdERlc3Ryb3kSMAoCaWQYASABKAsyJC5wbHVt",
+            "ZS5zYW1wbGUudW5pdHkuT2JqZWN0SWRlbnRpZmllciLcAQoQR2FtZU9iamVj",
+            "dFVwZGF0ZRIwCgJpZBgBIAEoCzIkLnBsdW1lLnNhbXBsZS51bml0eS5PYmpl",
+            "Y3RJZGVudGlmaWVyEhEKBG5hbWUYAiABKAlIAIgBARITCgZhY3RpdmUYAyAB",
+            "KAhIAYgBARIQCgN0YWcYBCABKAlIAogBARISCgVsYXllchgFIAEoBUgDiAEB",
+            "EhUKCHNjZW5lX2lkGAYgASgFSASIAQFCBwoFX25hbWVCCQoHX2FjdGl2ZUIG",
+            "CgRfdGFnQggKBl9sYXllckILCglfc2NlbmVfaWRCFaoCElBMVU1FLlNhbXBs",
+            "ZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectCreate), global::PLUME.Sample.Unity.GameObjectCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectDestroy), global::PLUME.Sample.Unity.GameObjectDestroy.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectUpdateName), global::PLUME.Sample.Unity.GameObjectUpdateName.Parser, new[]{ "Id", "Name" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectUpdateActiveSelf), global::PLUME.Sample.Unity.GameObjectUpdateActiveSelf.Parser, new[]{ "Id", "Active" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectUpdateTag), global::PLUME.Sample.Unity.GameObjectUpdateTag.Parser, new[]{ "Id", "Tag" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectUpdateLayer), global::PLUME.Sample.Unity.GameObjectUpdateLayer.Parser, new[]{ "Id", "Layer" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectUpdateScene), global::PLUME.Sample.Unity.GameObjectUpdateScene.Parser, new[]{ "Id", "SceneId" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectUpdate), global::PLUME.Sample.Unity.GameObjectUpdate.Parser, new[]{ "Id", "Name", "Active", "Tag", "Layer", "SceneId" }, new[]{ "Name", "Active", "Tag", "Layer", "SceneId" }, null, null, null)
           }));
     }
     #endregion
@@ -105,10 +94,10 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier id_;
+    private global::PLUME.Sample.Unity.ObjectIdentifier id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier Id {
+    public global::PLUME.Sample.Unity.ObjectIdentifier Id {
       get { return id_; }
       set {
         id_ = value;
@@ -202,7 +191,7 @@ namespace PLUME.Sample.Unity {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+          Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
         }
         Id.MergeFrom(other.Id);
       }
@@ -223,7 +212,7 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;
@@ -245,7 +234,7 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;
@@ -304,10 +293,10 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier id_;
+    private global::PLUME.Sample.Unity.ObjectIdentifier id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier Id {
+    public global::PLUME.Sample.Unity.ObjectIdentifier Id {
       get { return id_; }
       set {
         id_ = value;
@@ -401,7 +390,7 @@ namespace PLUME.Sample.Unity {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+          Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
         }
         Id.MergeFrom(other.Id);
       }
@@ -422,7 +411,7 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;
@@ -444,7 +433,7 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;
@@ -457,16 +446,17 @@ namespace PLUME.Sample.Unity {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class GameObjectUpdateName : pb::IMessage<GameObjectUpdateName>
+  public sealed partial class GameObjectUpdate : pb::IMessage<GameObjectUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<GameObjectUpdateName> _parser = new pb::MessageParser<GameObjectUpdateName>(() => new GameObjectUpdateName());
+    private static readonly pb::MessageParser<GameObjectUpdate> _parser = new pb::MessageParser<GameObjectUpdate>(() => new GameObjectUpdate());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<GameObjectUpdateName> Parser { get { return _parser; } }
+    public static pb::MessageParser<GameObjectUpdate> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -482,7 +472,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateName() {
+    public GameObjectUpdate() {
       OnConstruction();
     }
 
@@ -490,24 +480,29 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateName(GameObjectUpdateName other) : this() {
+    public GameObjectUpdate(GameObjectUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
       name_ = other.name_;
+      active_ = other.active_;
+      tag_ = other.tag_;
+      layer_ = other.layer_;
+      sceneId_ = other.sceneId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateName Clone() {
-      return new GameObjectUpdateName(this);
+    public GameObjectUpdate Clone() {
+      return new GameObjectUpdate(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier id_;
+    private global::PLUME.Sample.Unity.ObjectIdentifier id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier Id {
+    public global::PLUME.Sample.Unity.ObjectIdentifier Id {
       get { return id_; }
       set {
         id_ = value;
@@ -516,25 +511,146 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "name" field.</summary>
     public const int NameFieldNumber = 2;
-    private string name_ = "";
+    private readonly static string NameDefaultValue = "";
+
+    private string name_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Name {
-      get { return name_; }
+      get { return name_ ?? NameDefaultValue; }
       set {
         name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
+    }
+    /// <summary>Gets whether the "name" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasName {
+      get { return name_ != null; }
+    }
+    /// <summary>Clears the value of the "name" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearName() {
+      name_ = null;
+    }
+
+    /// <summary>Field number for the "active" field.</summary>
+    public const int ActiveFieldNumber = 3;
+    private readonly static bool ActiveDefaultValue = false;
+
+    private bool active_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Active {
+      get { if ((_hasBits0 & 1) != 0) { return active_; } else { return ActiveDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        active_ = value;
+      }
+    }
+    /// <summary>Gets whether the "active" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasActive {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "active" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearActive() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "tag" field.</summary>
+    public const int TagFieldNumber = 4;
+    private readonly static string TagDefaultValue = "";
+
+    private string tag_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Tag {
+      get { return tag_ ?? TagDefaultValue; }
+      set {
+        tag_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "tag" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTag {
+      get { return tag_ != null; }
+    }
+    /// <summary>Clears the value of the "tag" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTag() {
+      tag_ = null;
+    }
+
+    /// <summary>Field number for the "layer" field.</summary>
+    public const int LayerFieldNumber = 5;
+    private readonly static int LayerDefaultValue = 0;
+
+    private int layer_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Layer {
+      get { if ((_hasBits0 & 2) != 0) { return layer_; } else { return LayerDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        layer_ = value;
+      }
+    }
+    /// <summary>Gets whether the "layer" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasLayer {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "layer" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearLayer() {
+      _hasBits0 &= ~2;
+    }
+
+    /// <summary>Field number for the "scene_id" field.</summary>
+    public const int SceneIdFieldNumber = 6;
+    private readonly static int SceneIdDefaultValue = 0;
+
+    private int sceneId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int SceneId {
+      get { if ((_hasBits0 & 4) != 0) { return sceneId_; } else { return SceneIdDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        sceneId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "scene_id" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSceneId {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "scene_id" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSceneId() {
+      _hasBits0 &= ~4;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as GameObjectUpdateName);
+      return Equals(other as GameObjectUpdate);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(GameObjectUpdateName other) {
+    public bool Equals(GameObjectUpdate other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -543,949 +659,9 @@ namespace PLUME.Sample.Unity {
       }
       if (!object.Equals(Id, other.Id)) return false;
       if (Name != other.Name) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Name.Length != 0) hash ^= Name.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Name.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Name);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Name.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Name);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Name.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(GameObjectUpdateName other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Name.Length != 0) {
-        Name = other.Name;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            Name = input.ReadString();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            Name = input.ReadString();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class GameObjectUpdateActiveSelf : pb::IMessage<GameObjectUpdateActiveSelf>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<GameObjectUpdateActiveSelf> _parser = new pb::MessageParser<GameObjectUpdateActiveSelf>(() => new GameObjectUpdateActiveSelf());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<GameObjectUpdateActiveSelf> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.GameObjectReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateActiveSelf() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateActiveSelf(GameObjectUpdateActiveSelf other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      active_ = other.active_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateActiveSelf Clone() {
-      return new GameObjectUpdateActiveSelf(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "active" field.</summary>
-    public const int ActiveFieldNumber = 2;
-    private bool active_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Active {
-      get { return active_; }
-      set {
-        active_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as GameObjectUpdateActiveSelf);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(GameObjectUpdateActiveSelf other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
       if (Active != other.Active) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Active != false) hash ^= Active.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Active != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Active);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Active != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Active);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Active != false) {
-        size += 1 + 1;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(GameObjectUpdateActiveSelf other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Active != false) {
-        Active = other.Active;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Active = input.ReadBool();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Active = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class GameObjectUpdateTag : pb::IMessage<GameObjectUpdateTag>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<GameObjectUpdateTag> _parser = new pb::MessageParser<GameObjectUpdateTag>(() => new GameObjectUpdateTag());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<GameObjectUpdateTag> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.GameObjectReflection.Descriptor.MessageTypes[4]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateTag() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateTag(GameObjectUpdateTag other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      tag_ = other.tag_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateTag Clone() {
-      return new GameObjectUpdateTag(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "tag" field.</summary>
-    public const int TagFieldNumber = 2;
-    private string tag_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Tag {
-      get { return tag_; }
-      set {
-        tag_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as GameObjectUpdateTag);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(GameObjectUpdateTag other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
       if (Tag != other.Tag) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Tag.Length != 0) hash ^= Tag.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Tag.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Tag);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Tag.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Tag);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Tag.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tag);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(GameObjectUpdateTag other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Tag.Length != 0) {
-        Tag = other.Tag;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            Tag = input.ReadString();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            Tag = input.ReadString();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class GameObjectUpdateLayer : pb::IMessage<GameObjectUpdateLayer>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<GameObjectUpdateLayer> _parser = new pb::MessageParser<GameObjectUpdateLayer>(() => new GameObjectUpdateLayer());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<GameObjectUpdateLayer> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.GameObjectReflection.Descriptor.MessageTypes[5]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateLayer() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateLayer(GameObjectUpdateLayer other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      layer_ = other.layer_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateLayer Clone() {
-      return new GameObjectUpdateLayer(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "layer" field.</summary>
-    public const int LayerFieldNumber = 2;
-    private int layer_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Layer {
-      get { return layer_; }
-      set {
-        layer_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as GameObjectUpdateLayer);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(GameObjectUpdateLayer other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
       if (Layer != other.Layer) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Layer != 0) hash ^= Layer.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Layer != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Layer);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Layer != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Layer);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Layer != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Layer);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(GameObjectUpdateLayer other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Layer != 0) {
-        Layer = other.Layer;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Layer = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Layer = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class GameObjectUpdateScene : pb::IMessage<GameObjectUpdateScene>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<GameObjectUpdateScene> _parser = new pb::MessageParser<GameObjectUpdateScene>(() => new GameObjectUpdateScene());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<GameObjectUpdateScene> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.GameObjectReflection.Descriptor.MessageTypes[6]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateScene() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateScene(GameObjectUpdateScene other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      sceneId_ = other.sceneId_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public GameObjectUpdateScene Clone() {
-      return new GameObjectUpdateScene(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.TransformGameObjectIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.TransformGameObjectIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "scene_id" field.</summary>
-    public const int SceneIdFieldNumber = 2;
-    private int sceneId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int SceneId {
-      get { return sceneId_; }
-      set {
-        sceneId_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as GameObjectUpdateScene);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(GameObjectUpdateScene other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
       if (SceneId != other.SceneId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1495,7 +671,11 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (SceneId != 0) hash ^= SceneId.GetHashCode();
+      if (HasName) hash ^= Name.GetHashCode();
+      if (HasActive) hash ^= Active.GetHashCode();
+      if (HasTag) hash ^= Tag.GetHashCode();
+      if (HasLayer) hash ^= Layer.GetHashCode();
+      if (HasSceneId) hash ^= SceneId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1518,8 +698,24 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (SceneId != 0) {
-        output.WriteRawTag(16);
+      if (HasName) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (HasActive) {
+        output.WriteRawTag(24);
+        output.WriteBool(Active);
+      }
+      if (HasTag) {
+        output.WriteRawTag(34);
+        output.WriteString(Tag);
+      }
+      if (HasLayer) {
+        output.WriteRawTag(40);
+        output.WriteInt32(Layer);
+      }
+      if (HasSceneId) {
+        output.WriteRawTag(48);
         output.WriteInt32(SceneId);
       }
       if (_unknownFields != null) {
@@ -1536,8 +732,24 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (SceneId != 0) {
-        output.WriteRawTag(16);
+      if (HasName) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (HasActive) {
+        output.WriteRawTag(24);
+        output.WriteBool(Active);
+      }
+      if (HasTag) {
+        output.WriteRawTag(34);
+        output.WriteString(Tag);
+      }
+      if (HasLayer) {
+        output.WriteRawTag(40);
+        output.WriteInt32(Layer);
+      }
+      if (HasSceneId) {
+        output.WriteRawTag(48);
         output.WriteInt32(SceneId);
       }
       if (_unknownFields != null) {
@@ -1553,7 +765,19 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (SceneId != 0) {
+      if (HasName) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (HasActive) {
+        size += 1 + 1;
+      }
+      if (HasTag) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tag);
+      }
+      if (HasLayer) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Layer);
+      }
+      if (HasSceneId) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(SceneId);
       }
       if (_unknownFields != null) {
@@ -1564,17 +788,29 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(GameObjectUpdateScene other) {
+    public void MergeFrom(GameObjectUpdate other) {
       if (other == null) {
         return;
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+          Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.SceneId != 0) {
+      if (other.HasName) {
+        Name = other.Name;
+      }
+      if (other.HasActive) {
+        Active = other.Active;
+      }
+      if (other.HasTag) {
+        Tag = other.Tag;
+      }
+      if (other.HasLayer) {
+        Layer = other.Layer;
+      }
+      if (other.HasSceneId) {
         SceneId = other.SceneId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1594,12 +830,28 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;
           }
-          case 16: {
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 24: {
+            Active = input.ReadBool();
+            break;
+          }
+          case 34: {
+            Tag = input.ReadString();
+            break;
+          }
+          case 40: {
+            Layer = input.ReadInt32();
+            break;
+          }
+          case 48: {
             SceneId = input.ReadInt32();
             break;
           }
@@ -1620,12 +872,28 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.TransformGameObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;
           }
-          case 16: {
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 24: {
+            Active = input.ReadBool();
+            break;
+          }
+          case 34: {
+            Tag = input.ReadString();
+            break;
+          }
+          case 40: {
+            Layer = input.ReadInt32();
+            break;
+          }
+          case 48: {
             SceneId = input.ReadInt32();
             break;
           }

@@ -1,4 +1,5 @@
-using PLUME.Sample.ProtoBurst;
+using PLUME.Core.Object;
+using PLUME.Sample.ProtoBurst.Unity;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
@@ -13,9 +14,9 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
 
         private static readonly uint IdentifierFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.LengthDelimited);
 
-        private TransformGameObjectIdentifier _identifier;
+        private ComponentIdentifier _identifier;
 
-        public TransformCreate(TransformGameObjectIdentifier identifier)
+        public TransformCreate(ComponentIdentifier identifier)
         {
             _identifier = identifier;
         }

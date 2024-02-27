@@ -4,7 +4,7 @@ using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
 
-namespace PLUME.Base.Module
+namespace PLUME.Base.Module.Unity
 {
     public abstract class FrameDataRecorderModuleBase<TFrameData> : IFrameDataRecorderModule
         where TFrameData : IFrameData

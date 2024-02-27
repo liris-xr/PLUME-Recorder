@@ -7,7 +7,6 @@ using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
-using PLUME.Sample.ProtoBurst;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine.Scripting;
@@ -15,14 +14,12 @@ using UnityEngine.Scripting;
 namespace PLUME.Base.Module.Unity.Transform
 {
     [Preserve]
-    internal class
-        TransformRecorderModule : ObjectFrameDataRecorderModuleBase<UnityEngine.Transform, TransformFrameData>
+    internal class TransformRecorderModule : ComponentRecorderModule<UnityEngine.Transform, TransformFrameData>
     {
         private DynamicTransformAccessArray _transformAccessArray;
 
-        private NativeHashMap<ObjectIdentifier, ObjectIdentifier> _gameObjectIdentifiers;
-        private NativeHashMap<ObjectIdentifier, TransformPositionState> _positionStates;
-        private NativeHashMap<ObjectIdentifier, TransformHierarchyState> _hierarchyStates;
+        private NativeHashMap<ComponentIdentifier, TransformPositionState> _positionStates;
+        private NativeHashMap<ComponentIdentifier, TransformHierarchyState> _hierarchyStates;
 
         private TransformPositionStateUpdater _transformPositionStateUpdater;
 
@@ -35,9 +32,10 @@ namespace PLUME.Base.Module.Unity.Transform
 
             _transformAccessArray = new DynamicTransformAccessArray();
 
-            _positionStates = new NativeHashMap<ObjectIdentifier, TransformPositionState>(1000, Allocator.Persistent);
-            _gameObjectIdentifiers = new NativeHashMap<ObjectIdentifier, ObjectIdentifier>(1000, Allocator.Persistent);
-            _hierarchyStates = new NativeHashMap<ObjectIdentifier, TransformHierarchyState>(1000, Allocator.Persistent);
+            _positionStates =
+                new NativeHashMap<ComponentIdentifier, TransformPositionState>(1000, Allocator.Persistent);
+            _hierarchyStates =
+                new NativeHashMap<ComponentIdentifier, TransformHierarchyState>(1000, Allocator.Persistent);
 
             _transformPositionStateUpdater = new TransformPositionStateUpdater(_positionStates, _transformAccessArray,
                 angularThreshold, positionThresholdSq, scaleThresholdSq);
@@ -51,30 +49,22 @@ namespace PLUME.Base.Module.Unity.Transform
             _transformPositionStateUpdater.Dispose();
             _transformAccessArray.Dispose();
             _positionStates.Dispose();
-            _gameObjectIdentifiers.Dispose();
             _hierarchyStates.Dispose();
         }
 
-        protected override void OnStartRecordingObject(ObjectSafeRef<UnityEngine.Transform> objSafeRef, Record record,
+        protected override void OnStartRecordingObject(ComponentSafeRef<UnityEngine.Transform> objSafeRef,
+            Record record,
             RecorderContext ctx)
         {
-            var t = objSafeRef.TypedObject;
-            var goSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(t.gameObject);
+            var t = objSafeRef.Component;
 
             var siblingIndex = t.GetSiblingIndex();
             var localScale = t.localScale;
             t.GetLocalPositionAndRotation(out var localPosition, out var localRotation);
 
-            var parentIdentifier = TransformGameObjectIdentifier.Null;
-
-            if (t.parent != null)
-            {
-                var parentTransformSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(t.parent);
-                var parentGoSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(t.gameObject);
-                parentIdentifier =
-                    new TransformGameObjectIdentifier(parentTransformSafeRef.Identifier, parentGoSafeRef.Identifier);
-            }
-
+            var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t.parent);
+            var parentIdentifier = parentSafeRef.Identifier;
+            
             var initialPositionState = new TransformPositionState
             {
                 LocalPosition = localPosition,
@@ -89,16 +79,14 @@ namespace PLUME.Base.Module.Unity.Transform
             };
 
             _transformAccessArray.Add(objSafeRef);
-            _gameObjectIdentifiers.Add(objSafeRef.Identifier, goSafeRef.Identifier);
             _positionStates.Add(objSafeRef.Identifier, initialPositionState);
             _hierarchyStates.Add(objSafeRef.Identifier, initialHierarchyState);
         }
 
-        protected override void OnStopRecordingObject(ObjectSafeRef<UnityEngine.Transform> objSafeRef, Record record,
+        protected override void OnStopRecordingObject(ComponentSafeRef<UnityEngine.Transform> objSafeRef, Record record,
             RecorderContext recorderContext)
         {
             _transformAccessArray.RemoveSwapBack(objSafeRef);
-            _gameObjectIdentifiers.Remove(objSafeRef.Identifier);
             _hierarchyStates.Remove(objSafeRef.Identifier);
             _positionStates.Remove(objSafeRef.Identifier);
         }
@@ -108,21 +96,13 @@ namespace PLUME.Base.Module.Unity.Transform
             if (!IsRecording)
                 return;
 
-            var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(t);
+            var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t);
 
             if (!IsRecordingObject(tSafeRef))
                 return;
 
-            var parentIdentifier = TransformGameObjectIdentifier.Null;
-
-            if (parent != null)
-            {
-                var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(parent);
-                var parentGameObjectSafeRef =
-                    ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(parent.gameObject);
-                parentIdentifier =
-                    new TransformGameObjectIdentifier(parentSafeRef.Identifier, parentGameObjectSafeRef.Identifier);
-            }
+            var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(parent);
+            var parentIdentifier = parentSafeRef.Identifier;
 
             var hierarchyState = _hierarchyStates[tSafeRef.Identifier];
             hierarchyState.ParentDirty = parentIdentifier != hierarchyState.ParentIdentifier;
@@ -135,7 +115,7 @@ namespace PLUME.Base.Module.Unity.Transform
             if (!IsRecording)
                 return;
 
-            var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(t);
+            var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t);
 
             if (!IsRecordingObject(tSafeRef))
                 return;
@@ -150,7 +130,6 @@ namespace PLUME.Base.Module.Unity.Transform
         {
             _transformPositionStateUpdater.Complete();
             _transformAccessArray.Clear();
-            _gameObjectIdentifiers.Clear();
             _hierarchyStates.Clear();
             _positionStates.Clear();
         }
@@ -166,25 +145,26 @@ namespace PLUME.Base.Module.Unity.Transform
             _transformPositionStateUpdater.Complete();
             _transformPositionStateUpdater.MergePolledPositions();
 
-            var updateSamples = new NativeList<TransformUpdate>(RecordedObjects.Count, Allocator.Persistent);
-            var createSamples = new NativeList<TransformCreate>(CreatedObjectsIdentifier.Count, Allocator.Persistent);
+            var updateSamples =
+                new NativeList<TransformUpdate>(RecordedComponents.Count, Allocator.Persistent);
+            var createSamples =
+                new NativeList<TransformCreate>(CreatedComponentsIdentifier.Count, Allocator.Persistent);
             var destroySamples =
-                new NativeList<TransformDestroy>(DestroyedObjectsIdentifier.Count, Allocator.Persistent);
+                new NativeList<TransformDestroy>(DestroyedComponentsIdentifier.Count, Allocator.Persistent);
 
-            var recordedObjectsIdentifier = RecordedObjectsIdentifier.ToNativeArray(Allocator.Persistent);
+            var recordedObjectsIdentifier = RecordedComponentsIdentifier.ToNativeArray(Allocator.Persistent);
 
             new SampleProducerJob
             {
-                CreatedInFrameIdentifiers = CreatedObjectsIdentifier,
-                DestroyedInFrameIdentifiers = DestroyedObjectsIdentifier,
-                TransformIdentifiers = recordedObjectsIdentifier,
-                GameObjectsIdentifiers = _gameObjectIdentifiers,
+                CreatedInFrameIdentifiers = CreatedComponentsIdentifier,
+                DestroyedInFrameIdentifiers = DestroyedComponentsIdentifier,
+                Identifiers = recordedObjectsIdentifier,
                 PositionStates = _positionStates,
                 HierarchyStates = _hierarchyStates,
                 UpdateSamples = updateSamples.AsParallelWriter(),
                 CreateSamples = createSamples.AsParallelWriter(),
                 DestroySamples = destroySamples.AsParallelWriter()
-            }.RunBatch(RecordedObjects.Count);
+            }.RunBatch(RecordedComponents.Count);
 
             recordedObjectsIdentifier.Dispose();
 

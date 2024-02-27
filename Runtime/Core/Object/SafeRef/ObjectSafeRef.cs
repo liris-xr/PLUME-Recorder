@@ -1,5 +1,4 @@
 using System;
-using Guid = PLUME.Sample.ProtoBurst.Guid;
 using UnityObject = UnityEngine.Object;
 
 namespace PLUME.Core.Object.SafeRef
@@ -10,26 +9,24 @@ namespace PLUME.Core.Object.SafeRef
     /// data about objects that have been destroyed and for which the reference is no longer valid.
     /// </summary>
     /// <typeparam name="TObject">The type of the Unity object to reference.</typeparam>
-    public abstract class ObjectSafeRef<TObject> : IObjectSafeRef where TObject : UnityObject
+    public class ObjectSafeRef<TObject> : IObjectSafeRef where TObject : UnityObject
     {
-        public Type ObjectType => typeof(TObject);
-
+        public static ObjectSafeRef<TObject> Null { get; } = new(ObjectIdentifier.Null);
+        
         public ObjectIdentifier Identifier { get; }
-
-        public readonly TObject TypedObject;
-
-        public UnityObject Object => TypedObject;
+        
+        public readonly TObject Object;
 
         internal ObjectSafeRef(ObjectIdentifier identifier)
         {
             Identifier = identifier;
-            TypedObject = null;
+            Object = null;
         }
 
         internal ObjectSafeRef(TObject @object, Guid guid)
         {
             Identifier = new ObjectIdentifier(@object.GetInstanceID(), guid);
-            TypedObject = @object;
+            Object = @object;
         }
 
         public bool Equals(ObjectSafeRef<TObject> other)
@@ -49,7 +46,7 @@ namespace PLUME.Core.Object.SafeRef
 
         public override string ToString()
         {
-            return (TypedObject == null ? "null" : TypedObject.name) + $" ({typeof(TObject)}): {Identifier}";
+            return (Object == null ? "null" : Object.name) + $" ({typeof(TObject)}): {Identifier}";
         }
     }
 }

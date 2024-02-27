@@ -16,7 +16,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             _frameDataRawBytes = frameDataRawBytes;
         }
 
-        public void Write(IMessage sample)
+        public void WriteManaged<T>(T sample) where T : IMessage
         {
             var frameDataRawBytes = new NativeList<byte>(Allocator.Persistent);
             var bufferWriter = new BufferWriter(frameDataRawBytes);
@@ -26,15 +26,15 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             var sampleSize = sample.CalculateSize();
             var packedSampleSize = Any.ComputeSize(sampleTypeUrlBytes.Length, sampleSize);
-            var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(Sample.ProtoBurst.Frame.DataFieldTag) +
+            var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(Sample.ProtoBurst.Unity.Frame.DataFieldTag) +
                                        BufferWriterExtensions.ComputeLengthPrefixSize(packedSampleSize) +
                                        packedSampleSize;
 
             frameDataRawBytes.SetCapacity(serializedSampleSize);
 
-            bufferWriter.WriteTag(Sample.ProtoBurst.Frame.DataFieldTag);
-            bufferWriter.WriteLength(serializedSampleSize);
-            Any.WriteTo(ref sampleTypeUrlBytes, ref sample, ref bufferWriter);
+            bufferWriter.WriteTag(Sample.ProtoBurst.Unity.Frame.DataFieldTag);
+            bufferWriter.WriteLength(packedSampleSize);
+            Any.WriteManagedTo(ref sampleTypeUrlBytes, ref sample, ref bufferWriter);
 
             WriteRaw(frameDataRawBytes);
 
@@ -42,7 +42,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             sampleTypeUrl.Dispose();
         }
 
-        public void WriteBatch(IList<IMessage> samples)
+        public void WriteManagedBatch<T>(IList<T> samples) where T : IMessage
         {
             if (samples.Count == 0)
                 return;
@@ -59,15 +59,15 @@ namespace PLUME.Core.Recorder.Module.Frame
                 var sample = samples[sampleIdx];
                 var sampleSize = sample.CalculateSize();
                 var packedSampleSize = Any.ComputeSize(sampleTypeUrlBytes.Length, sampleSize);
-                var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(Sample.ProtoBurst.Frame.DataFieldTag) +
+                var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(Sample.ProtoBurst.Unity.Frame.DataFieldTag) +
                                            BufferWriterExtensions.ComputeLengthPrefixSize(packedSampleSize) +
                                            packedSampleSize;
 
                 frameDataRawBytes.SetCapacity(frameDataRawBytes.Length + serializedSampleSize);
 
-                bufferWriter.WriteTag(Sample.ProtoBurst.Frame.DataFieldTag);
-                bufferWriter.WriteLength(serializedSampleSize);
-                Any.WriteTo(ref sampleTypeUrlBytes, ref sample, ref bufferWriter);
+                bufferWriter.WriteTag(Sample.ProtoBurst.Unity.Frame.DataFieldTag);
+                bufferWriter.WriteLength(packedSampleSize);
+                Any.WriteManagedTo(ref sampleTypeUrlBytes, ref sample, ref bufferWriter);
             }
             
             WriteRaw(frameDataRawBytes);
@@ -86,14 +86,14 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             var sampleSize = sample.ComputeSize();
             var packedSampleSize = Any.ComputeSize(sampleTypeUrlBytes.Length, sampleSize);
-            var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(Sample.ProtoBurst.Frame.DataFieldTag) +
+            var serializedSampleSize = BufferWriterExtensions.ComputeTagSize(Sample.ProtoBurst.Unity.Frame.DataFieldTag) +
                                        BufferWriterExtensions.ComputeLengthPrefixSize(packedSampleSize) +
                                        packedSampleSize;
 
             frameDataRawBytes.SetCapacity(serializedSampleSize);
 
-            bufferWriter.WriteTag(Sample.ProtoBurst.Frame.DataFieldTag);
-            bufferWriter.WriteLength(serializedSampleSize);
+            bufferWriter.WriteTag(Sample.ProtoBurst.Unity.Frame.DataFieldTag);
+            bufferWriter.WriteLength(packedSampleSize);
             Any.WriteTo(ref sampleTypeUrlBytes, ref sample, ref bufferWriter);
 
             WriteRaw(frameDataRawBytes);

@@ -28,90 +28,77 @@ namespace PLUME.Sample.Unity {
             "eS9pZGVudGlmaWVycy5wcm90bxoWY29tbW9uL21hdHJpeDR4NC5wcm90bxoU",
             "Y29tbW9uL3ZlY3RvcjQucHJvdG8aEmNvbW1vbi9jb2xvci5wcm90byJCCgtM",
             "aWdodENyZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5D",
-            "b21wb25lbnRJZGVudGlmaWVyIloKEkxpZ2h0VXBkYXRlRW5hYmxlZBIzCgJp",
-            "ZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlm",
-            "aWVyEg8KB2VuYWJsZWQYAiABKAgicwoPTGlnaHRVcGRhdGVUeXBlEjMKAmlk",
-            "GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
-            "ZXISKwoEdHlwZRgCIAEoDjIdLnBsdW1lLnNhbXBsZS51bml0eS5MaWdodFR5",
-            "cGUidgoQTGlnaHRVcGRhdGVTaGFwZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNh",
-            "bXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEi0KBXNoYXBlGAIgASgO",
-            "Mh4ucGx1bWUuc2FtcGxlLnVuaXR5LkxpZ2h0U2hhcGUiXgoUTGlnaHRVcGRh",
-            "dGVJbnRlbnNpdHkSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
-            "Q29tcG9uZW50SWRlbnRpZmllchIRCglpbnRlbnNpdHkYAiABKAIiawoaTGln",
-            "aHRVcGRhdGVCb3VuY2VJbnRlbnNpdHkSMwoCaWQYASABKAsyJy5wbHVtZS5z",
-            "YW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIYChBib3VuY2VfaW50",
-            "ZW5zaXR5GAIgASgCIlYKEExpZ2h0VXBkYXRlUmFuZ2USMwoCaWQYASABKAsy",
-            "Jy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchINCgVy",
-            "YW5nZRgCIAEoAiKsAQoQTGlnaHRVcGRhdGVDb2xvchIzCgJpZBgBIAEoCzIn",
-            "LnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEikKBWNv",
-            "bG9yGAIgASgLMhoucGx1bWUuc2FtcGxlLmNvbW1vbi5Db2xvchIZChFjb2xv",
-            "cl90ZW1wZXJhdHVyZRgDIAEoAhIdChV1c2VfY29sb3JfdGVtcGVyYXR1cmUY",
-            "BCABKAgieQoUTGlnaHRVcGRhdGVTcG90QW5nbGUSMwoCaWQYASABKAsyJy5w",
-            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchISCgpzcG90",
-            "X2FuZ2xlGAIgASgCEhgKEGlubmVyX3Nwb3RfYW5nbGUYAyABKAIilAUKEkxp",
-            "Z2h0VXBkYXRlU2hhZG93cxIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51",
-            "bml0eS5Db21wb25lbnRJZGVudGlmaWVyEjEKB3NoYWRvd3MYAiABKA4yIC5w",
-            "bHVtZS5zYW1wbGUudW5pdHkuTGlnaHRTaGFkb3dzEhcKD3NoYWRvd19zdHJl",
-            "bmd0aBgDIAEoAhJEChFzaGFkb3dfcmVzb2x1dGlvbhgEIAEoDjIpLnBsdW1l",
-            "LnNhbXBsZS51bml0eS5MaWdodFNoYWRvd1Jlc29sdXRpb24SPgoWc2hhZG93",
-            "X21hdHJpeF9vdmVycmlkZRgFIAEoCzIeLnBsdW1lLnNhbXBsZS5jb21tb24u",
-            "TWF0cml4NHg0EiIKGnVzZV9zaGFkb3dfbWF0cml4X292ZXJyaWRlGAYgASgI",
-            "EhMKC3NoYWRvd19iaWFzGAcgASgCEhoKEnNoYWRvd19ub3JtYWxfYmlhcxgI",
-            "IAEoAhIZChFzaGFkb3dfbmVhcl9wbGFuZRgJIAEoAhIvCid1c2Vfdmlld19m",
-            "cnVzdHVtX2Zvcl9zaGFkb3dfY2FzdGVyX2N1bGwYCiABKAgSIwobbGF5ZXJf",
-            "c2hhZG93X2N1bGxfZGlzdGFuY2VzGAsgAygCEiUKGHNoYWRvd19jdXN0b21f",
-            "cmVzb2x1dGlvbhgMIAEoBUgAiAEBElAKGGxpZ2h0X3NoYWRvd19jYXN0ZXJf",
-            "bW9kZRgNIAEoDjIpLnBsdW1lLnNhbXBsZS51bml0eS5MaWdodFNoYWRvd0Nh",
-            "c3Rlck1vZGVIAYgBAUIbChlfc2hhZG93X2N1c3RvbV9yZXNvbHV0aW9uQhsK",
-            "GV9saWdodF9zaGFkb3dfY2FzdGVyX21vZGUicgodTGlnaHRVcGRhdGVSZW5k",
-            "ZXJpbmdMYXllck1hc2sSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5p",
-            "dHkuQ29tcG9uZW50SWRlbnRpZmllchIcChRyZW5kZXJpbmdfbGF5ZXJfbWFz",
-            "axgCIAEoBSLFAQoSTGlnaHRVcGRhdGVDdWxsaW5nEjMKAmlkGAEgASgLMicu",
-            "cGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISFAoMY3Vs",
-            "bGluZ19tYXNrGAIgASgFEj4KGGJvdW5kaW5nX3NwaGVyZV9vdmVycmlkZRgD",
-            "IAEoCzIcLnBsdW1lLnNhbXBsZS5jb21tb24uVmVjdG9yNBIkChx1c2VfYm91",
-            "bmRpbmdfc3BoZXJlX292ZXJyaWRlGAQgASgIIr0BChFMaWdodFVwZGF0ZUNv",
-            "b2tpZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25l",
-            "bnRJZGVudGlmaWVyEjsKCWNvb2tpZV9pZBgCIAEoCzIjLnBsdW1lLnNhbXBs",
-            "ZS51bml0eS5Bc3NldElkZW50aWZpZXJIAIgBARIYCgtjb29raWVfc2l6ZRgD",
-            "IAEoAkgBiAEBQgwKCl9jb29raWVfaWRCDgoMX2Nvb2tpZV9zaXplIpABChBM",
-            "aWdodFVwZGF0ZUZsYXJlEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVu",
-            "aXR5LkNvbXBvbmVudElkZW50aWZpZXISOgoIZmxhcmVfaWQYAiABKAsyIy5w",
-            "bHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVudGlmaWVySACIAQFCCwoJX2Zs",
-            "YXJlX2lkKpYBCglMaWdodFR5cGUSEwoPTElHSFRfVFlQRV9TUE9UEAASGgoW",
-            "TElHSFRfVFlQRV9ESVJFQ1RJT05BTBABEhQKEExJR0hUX1RZUEVfUE9JTlQQ",
-            "AhITCg9MSUdIVF9UWVBFX0FSRUEQAxIYChRMSUdIVF9UWVBFX1JFQ1RBTkdM",
-            "RRAEEhMKD0xJR0hUX1RZUEVfRElTQxAFKlAKCkxpZ2h0U2hhcGUSFAoQTElH",
-            "SFRfU0hBUEVfQ09ORRAAEhcKE0xJR0hUX1NIQVBFX1BZUkFNSUQQARITCg9M",
-            "SUdIVF9TSEFQRV9CT1gQAiqZAQoVTGlnaHRTaGFkb3dDYXN0ZXJNb2RlEiQK",
-            "IExJR0hUX1NIQURPV19DQVNURVJfTU9ERV9ERUZBVUxUEAASMQotTElHSFRf",
-            "U0hBRE9XX0NBU1RFUl9NT0RFX05PTl9MSUdIVE1BUFBFRF9PTkxZEAESJwoj",
-            "TElHSFRfU0hBRE9XX0NBU1RFUl9NT0RFX0VWRVJZVEhJTkcQAirYAQoVTGln",
-            "aHRTaGFkb3dSZXNvbHV0aW9uEjEKLUxJR0hUX1NIQURPV19SRVNPTFVUSU9O",
-            "X0ZST01fUVVBTElUWV9TRVRUSU5HUxAAEh8KG0xJR0hUX1NIQURPV19SRVNP",
-            "TFVUSU9OX0xPVxABEiIKHkxJR0hUX1NIQURPV19SRVNPTFVUSU9OX01FRElV",
-            "TRACEiAKHExJR0hUX1NIQURPV19SRVNPTFVUSU9OX0hJR0gQAxIlCiFMSUdI",
-            "VF9TSEFET1dfUkVTT0xVVElPTl9WRVJZX0hJR0gQBCpWCgxMaWdodFNoYWRv",
-            "d3MSFgoSTElHSFRfU0hBRE9XU19OT05FEAASFgoSTElHSFRfU0hBRE9XU19I",
-            "QVJEEAESFgoSTElHSFRfU0hBRE9XU19TT0ZUEAJCFaoCElBMVU1FLlNhbXBs",
-            "ZS5Vbml0eWIGcHJvdG8z"));
+            "b21wb25lbnRJZGVudGlmaWVyIkMKDExpZ2h0RGVzdHJveRIzCgJpZBgBIAEo",
+            "CzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyItcP",
+            "CgtMaWdodFVwZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0",
+            "eS5Db21wb25lbnRJZGVudGlmaWVyEhQKB2VuYWJsZWQYAiABKAhIAIgBARIw",
+            "CgR0eXBlGAMgASgOMh0ucGx1bWUuc2FtcGxlLnVuaXR5LkxpZ2h0VHlwZUgB",
+            "iAEBEjIKBXNoYXBlGAQgASgOMh4ucGx1bWUuc2FtcGxlLnVuaXR5LkxpZ2h0",
+            "U2hhcGVIAogBARIWCglpbnRlbnNpdHkYBSABKAJIA4gBARIdChBib3VuY2Vf",
+            "aW50ZW5zaXR5GAYgASgCSASIAQESEgoFcmFuZ2UYByABKAJIBYgBARIuCgVj",
+            "b2xvchgIIAEoCzIaLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3JIBogBARIe",
+            "ChFjb2xvcl90ZW1wZXJhdHVyZRgJIAEoAkgHiAEBEiIKFXVzZV9jb2xvcl90",
+            "ZW1wZXJhdHVyZRgKIAEoCEgIiAEBEhcKCnNwb3RfYW5nbGUYCyABKAJICYgB",
+            "ARIdChBpbm5lcl9zcG90X2FuZ2xlGAwgASgCSAqIAQESNgoHc2hhZG93cxgN",
+            "IAEoDjIgLnBsdW1lLnNhbXBsZS51bml0eS5MaWdodFNoYWRvd3NIC4gBARIc",
+            "Cg9zaGFkb3dfc3RyZW5ndGgYDiABKAJIDIgBARJJChFzaGFkb3dfcmVzb2x1",
+            "dGlvbhgPIAEoDjIpLnBsdW1lLnNhbXBsZS51bml0eS5MaWdodFNoYWRvd1Jl",
+            "c29sdXRpb25IDYgBARJDChZzaGFkb3dfbWF0cml4X292ZXJyaWRlGBAgASgL",
+            "Mh4ucGx1bWUuc2FtcGxlLmNvbW1vbi5NYXRyaXg0eDRIDogBARInChp1c2Vf",
+            "c2hhZG93X21hdHJpeF9vdmVycmlkZRgRIAEoCEgPiAEBEhgKC3NoYWRvd19i",
+            "aWFzGBIgASgCSBCIAQESHwoSc2hhZG93X25vcm1hbF9iaWFzGBMgASgCSBGI",
+            "AQESHgoRc2hhZG93X25lYXJfcGxhbmUYFCABKAJIEogBARI0Cid1c2Vfdmll",
+            "d19mcnVzdHVtX2Zvcl9zaGFkb3dfY2FzdGVyX2N1bGwYFSABKAhIE4gBARJW",
+            "ChtsYXllcl9zaGFkb3dfY3VsbF9kaXN0YW5jZXMYFiABKAsyLC5wbHVtZS5z",
+            "YW1wbGUudW5pdHkuTGF5ZXJTaGFkb3dDdWxsRGlzdGFuY2VzSBSIAQESJQoY",
+            "c2hhZG93X2N1c3RvbV9yZXNvbHV0aW9uGBcgASgFSBWIAQESUAoYbGlnaHRf",
+            "c2hhZG93X2Nhc3Rlcl9tb2RlGBggASgOMikucGx1bWUuc2FtcGxlLnVuaXR5",
+            "LkxpZ2h0U2hhZG93Q2FzdGVyTW9kZUgWiAEBEiEKFHJlbmRlcmluZ19sYXll",
+            "cl9tYXNrGBkgASgFSBeIAQESGQoMY3VsbGluZ19tYXNrGBogASgFSBiIAQES",
+            "QwoYYm91bmRpbmdfc3BoZXJlX292ZXJyaWRlGBsgASgLMhwucGx1bWUuc2Ft",
+            "cGxlLmNvbW1vbi5WZWN0b3I0SBmIAQESKQocdXNlX2JvdW5kaW5nX3NwaGVy",
+            "ZV9vdmVycmlkZRgcIAEoCEgaiAEBEjsKCWNvb2tpZV9pZBgdIAEoCzIjLnBs",
+            "dW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZpZXJIG4gBARIYCgtjb29r",
+            "aWVfc2l6ZRgeIAEoAkgciAEBEjoKCGZsYXJlX2lkGB8gASgLMiMucGx1bWUu",
+            "c2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckgdiAEBQgoKCF9lbmFibGVk",
+            "QgcKBV90eXBlQggKBl9zaGFwZUIMCgpfaW50ZW5zaXR5QhMKEV9ib3VuY2Vf",
+            "aW50ZW5zaXR5QggKBl9yYW5nZUIICgZfY29sb3JCFAoSX2NvbG9yX3RlbXBl",
+            "cmF0dXJlQhgKFl91c2VfY29sb3JfdGVtcGVyYXR1cmVCDQoLX3Nwb3RfYW5n",
+            "bGVCEwoRX2lubmVyX3Nwb3RfYW5nbGVCCgoIX3NoYWRvd3NCEgoQX3NoYWRv",
+            "d19zdHJlbmd0aEIUChJfc2hhZG93X3Jlc29sdXRpb25CGQoXX3NoYWRvd19t",
+            "YXRyaXhfb3ZlcnJpZGVCHQobX3VzZV9zaGFkb3dfbWF0cml4X292ZXJyaWRl",
+            "Qg4KDF9zaGFkb3dfYmlhc0IVChNfc2hhZG93X25vcm1hbF9iaWFzQhQKEl9z",
+            "aGFkb3dfbmVhcl9wbGFuZUIqCihfdXNlX3ZpZXdfZnJ1c3R1bV9mb3Jfc2hh",
+            "ZG93X2Nhc3Rlcl9jdWxsQh4KHF9sYXllcl9zaGFkb3dfY3VsbF9kaXN0YW5j",
+            "ZXNCGwoZX3NoYWRvd19jdXN0b21fcmVzb2x1dGlvbkIbChlfbGlnaHRfc2hh",
+            "ZG93X2Nhc3Rlcl9tb2RlQhcKFV9yZW5kZXJpbmdfbGF5ZXJfbWFza0IPCg1f",
+            "Y3VsbGluZ19tYXNrQhsKGV9ib3VuZGluZ19zcGhlcmVfb3ZlcnJpZGVCHwod",
+            "X3VzZV9ib3VuZGluZ19zcGhlcmVfb3ZlcnJpZGVCDAoKX2Nvb2tpZV9pZEIO",
+            "CgxfY29va2llX3NpemVCCwoJX2ZsYXJlX2lkIi0KGExheWVyU2hhZG93Q3Vs",
+            "bERpc3RhbmNlcxIRCglkaXN0YW5jZXMYASADKAIqlgEKCUxpZ2h0VHlwZRIT",
+            "Cg9MSUdIVF9UWVBFX1NQT1QQABIaChZMSUdIVF9UWVBFX0RJUkVDVElPTkFM",
+            "EAESFAoQTElHSFRfVFlQRV9QT0lOVBACEhMKD0xJR0hUX1RZUEVfQVJFQRAD",
+            "EhgKFExJR0hUX1RZUEVfUkVDVEFOR0xFEAQSEwoPTElHSFRfVFlQRV9ESVND",
+            "EAUqUAoKTGlnaHRTaGFwZRIUChBMSUdIVF9TSEFQRV9DT05FEAASFwoTTElH",
+            "SFRfU0hBUEVfUFlSQU1JRBABEhMKD0xJR0hUX1NIQVBFX0JPWBACKpkBChVM",
+            "aWdodFNoYWRvd0Nhc3Rlck1vZGUSJAogTElHSFRfU0hBRE9XX0NBU1RFUl9N",
+            "T0RFX0RFRkFVTFQQABIxCi1MSUdIVF9TSEFET1dfQ0FTVEVSX01PREVfTk9O",
+            "X0xJR0hUTUFQUEVEX09OTFkQARInCiNMSUdIVF9TSEFET1dfQ0FTVEVSX01P",
+            "REVfRVZFUllUSElORxACKtgBChVMaWdodFNoYWRvd1Jlc29sdXRpb24SMQot",
+            "TElHSFRfU0hBRE9XX1JFU09MVVRJT05fRlJPTV9RVUFMSVRZX1NFVFRJTkdT",
+            "EAASHwobTElHSFRfU0hBRE9XX1JFU09MVVRJT05fTE9XEAESIgoeTElHSFRf",
+            "U0hBRE9XX1JFU09MVVRJT05fTUVESVVNEAISIAocTElHSFRfU0hBRE9XX1JF",
+            "U09MVVRJT05fSElHSBADEiUKIUxJR0hUX1NIQURPV19SRVNPTFVUSU9OX1ZF",
+            "UllfSElHSBAEKlYKDExpZ2h0U2hhZG93cxIWChJMSUdIVF9TSEFET1dTX05P",
+            "TkUQABIWChJMSUdIVF9TSEFET1dTX0hBUkQQARIWChJMSUdIVF9TSEFET1dT",
+            "X1NPRlQQAkIVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Matrix4X4Reflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.LightType), typeof(global::PLUME.Sample.Unity.LightShape), typeof(global::PLUME.Sample.Unity.LightShadowCasterMode), typeof(global::PLUME.Sample.Unity.LightShadowResolution), typeof(global::PLUME.Sample.Unity.LightShadows), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightCreate), global::PLUME.Sample.Unity.LightCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateEnabled), global::PLUME.Sample.Unity.LightUpdateEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateType), global::PLUME.Sample.Unity.LightUpdateType.Parser, new[]{ "Id", "Type" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateShape), global::PLUME.Sample.Unity.LightUpdateShape.Parser, new[]{ "Id", "Shape" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateIntensity), global::PLUME.Sample.Unity.LightUpdateIntensity.Parser, new[]{ "Id", "Intensity" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateBounceIntensity), global::PLUME.Sample.Unity.LightUpdateBounceIntensity.Parser, new[]{ "Id", "BounceIntensity" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateRange), global::PLUME.Sample.Unity.LightUpdateRange.Parser, new[]{ "Id", "Range" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateColor), global::PLUME.Sample.Unity.LightUpdateColor.Parser, new[]{ "Id", "Color", "ColorTemperature", "UseColorTemperature" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateSpotAngle), global::PLUME.Sample.Unity.LightUpdateSpotAngle.Parser, new[]{ "Id", "SpotAngle", "InnerSpotAngle" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateShadows), global::PLUME.Sample.Unity.LightUpdateShadows.Parser, new[]{ "Id", "Shadows", "ShadowStrength", "ShadowResolution", "ShadowMatrixOverride", "UseShadowMatrixOverride", "ShadowBias", "ShadowNormalBias", "ShadowNearPlane", "UseViewFrustumForShadowCasterCull", "LayerShadowCullDistances", "ShadowCustomResolution", "LightShadowCasterMode" }, new[]{ "ShadowCustomResolution", "LightShadowCasterMode" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateRenderingLayerMask), global::PLUME.Sample.Unity.LightUpdateRenderingLayerMask.Parser, new[]{ "Id", "RenderingLayerMask" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateCulling), global::PLUME.Sample.Unity.LightUpdateCulling.Parser, new[]{ "Id", "CullingMask", "BoundingSphereOverride", "UseBoundingSphereOverride" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateCookie), global::PLUME.Sample.Unity.LightUpdateCookie.Parser, new[]{ "Id", "CookieId", "CookieSize" }, new[]{ "CookieId", "CookieSize" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdateFlare), global::PLUME.Sample.Unity.LightUpdateFlare.Parser, new[]{ "Id", "FlareId" }, new[]{ "FlareId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightDestroy), global::PLUME.Sample.Unity.LightDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdate), global::PLUME.Sample.Unity.LightUpdate.Parser, new[]{ "Id", "Enabled", "Type", "Shape", "Intensity", "BounceIntensity", "Range", "Color", "ColorTemperature", "UseColorTemperature", "SpotAngle", "InnerSpotAngle", "Shadows", "ShadowStrength", "ShadowResolution", "ShadowMatrixOverride", "UseShadowMatrixOverride", "ShadowBias", "ShadowNormalBias", "ShadowNearPlane", "UseViewFrustumForShadowCasterCull", "LayerShadowCullDistances", "ShadowCustomResolution", "LightShadowCasterMode", "RenderingLayerMask", "CullingMask", "BoundingSphereOverride", "UseBoundingSphereOverride", "CookieId", "CookieSize", "FlareId" }, new[]{ "Enabled", "Type", "Shape", "Intensity", "BounceIntensity", "Range", "Color", "ColorTemperature", "UseColorTemperature", "SpotAngle", "InnerSpotAngle", "Shadows", "ShadowStrength", "ShadowResolution", "ShadowMatrixOverride", "UseShadowMatrixOverride", "ShadowBias", "ShadowNormalBias", "ShadowNearPlane", "UseViewFrustumForShadowCasterCull", "LayerShadowCullDistances", "ShadowCustomResolution", "LightShadowCasterMode", "RenderingLayerMask", "CullingMask", "BoundingSphereOverride", "UseBoundingSphereOverride", "CookieId", "CookieSize", "FlareId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LayerShadowCullDistances), global::PLUME.Sample.Unity.LayerShadowCullDistances.Parser, new[]{ "Distances" }, null, null, null, null)
           }));
     }
     #endregion
@@ -356,16 +343,16 @@ namespace PLUME.Sample.Unity {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateEnabled : pb::IMessage<LightUpdateEnabled>
+  public sealed partial class LightDestroy : pb::IMessage<LightDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<LightUpdateEnabled> _parser = new pb::MessageParser<LightUpdateEnabled>(() => new LightUpdateEnabled());
+    private static readonly pb::MessageParser<LightDestroy> _parser = new pb::MessageParser<LightDestroy>(() => new LightDestroy());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateEnabled> Parser { get { return _parser; } }
+    public static pb::MessageParser<LightDestroy> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -381,7 +368,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateEnabled() {
+    public LightDestroy() {
       OnConstruction();
     }
 
@@ -389,16 +376,246 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateEnabled(LightUpdateEnabled other) : this() {
+    public LightDestroy(LightDestroy other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      enabled_ = other.enabled_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateEnabled Clone() {
-      return new LightUpdateEnabled(this);
+    public LightDestroy Clone() {
+      return new LightDestroy(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as LightDestroy);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(LightDestroy other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(LightDestroy other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class LightUpdate : pb::IMessage<LightUpdate>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<LightUpdate> _parser = new pb::MessageParser<LightUpdate>(() => new LightUpdate());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<LightUpdate> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LightUpdate() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LightUpdate(LightUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      enabled_ = other.enabled_;
+      type_ = other.type_;
+      shape_ = other.shape_;
+      intensity_ = other.intensity_;
+      bounceIntensity_ = other.bounceIntensity_;
+      range_ = other.range_;
+      color_ = other.color_ != null ? other.color_.Clone() : null;
+      colorTemperature_ = other.colorTemperature_;
+      useColorTemperature_ = other.useColorTemperature_;
+      spotAngle_ = other.spotAngle_;
+      innerSpotAngle_ = other.innerSpotAngle_;
+      shadows_ = other.shadows_;
+      shadowStrength_ = other.shadowStrength_;
+      shadowResolution_ = other.shadowResolution_;
+      shadowMatrixOverride_ = other.shadowMatrixOverride_ != null ? other.shadowMatrixOverride_.Clone() : null;
+      useShadowMatrixOverride_ = other.useShadowMatrixOverride_;
+      shadowBias_ = other.shadowBias_;
+      shadowNormalBias_ = other.shadowNormalBias_;
+      shadowNearPlane_ = other.shadowNearPlane_;
+      useViewFrustumForShadowCasterCull_ = other.useViewFrustumForShadowCasterCull_;
+      layerShadowCullDistances_ = other.layerShadowCullDistances_ != null ? other.layerShadowCullDistances_.Clone() : null;
+      shadowCustomResolution_ = other.shadowCustomResolution_;
+      lightShadowCasterMode_ = other.lightShadowCasterMode_;
+      renderingLayerMask_ = other.renderingLayerMask_;
+      cullingMask_ = other.cullingMask_;
+      boundingSphereOverride_ = other.boundingSphereOverride_ != null ? other.boundingSphereOverride_.Clone() : null;
+      useBoundingSphereOverride_ = other.useBoundingSphereOverride_;
+      cookieId_ = other.cookieId_ != null ? other.cookieId_.Clone() : null;
+      cookieSize_ = other.cookieSize_;
+      flareId_ = other.flareId_ != null ? other.flareId_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LightUpdate Clone() {
+      return new LightUpdate(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -415,1424 +632,168 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "enabled" field.</summary>
     public const int EnabledFieldNumber = 2;
+    private readonly static bool EnabledDefaultValue = false;
+
     private bool enabled_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Enabled {
-      get { return enabled_; }
+      get { if ((_hasBits0 & 1) != 0) { return enabled_; } else { return EnabledDefaultValue; } }
       set {
+        _hasBits0 |= 1;
         enabled_ = value;
       }
     }
-
+    /// <summary>Gets whether the "enabled" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateEnabled);
+    public bool HasEnabled {
+      get { return (_hasBits0 & 1) != 0; }
     }
-
+    /// <summary>Clears the value of the "enabled" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateEnabled other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (Enabled != other.Enabled) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Enabled != false) hash ^= Enabled.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Enabled != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Enabled != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Enabled != false) {
-        size += 1 + 1;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateEnabled other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Enabled != false) {
-        Enabled = other.Enabled;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Enabled = input.ReadBool();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Enabled = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateType : pb::IMessage<LightUpdateType>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateType> _parser = new pb::MessageParser<LightUpdateType>(() => new LightUpdateType());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateType> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateType() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateType(LightUpdateType other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      type_ = other.type_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateType Clone() {
-      return new LightUpdateType(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearEnabled() {
+      _hasBits0 &= ~1;
     }
 
     /// <summary>Field number for the "type" field.</summary>
-    public const int TypeFieldNumber = 2;
-    private global::PLUME.Sample.Unity.LightType type_ = global::PLUME.Sample.Unity.LightType.Spot;
+    public const int TypeFieldNumber = 3;
+    private readonly static global::PLUME.Sample.Unity.LightType TypeDefaultValue = global::PLUME.Sample.Unity.LightType.Spot;
+
+    private global::PLUME.Sample.Unity.LightType type_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.LightType Type {
-      get { return type_; }
+      get { if ((_hasBits0 & 2) != 0) { return type_; } else { return TypeDefaultValue; } }
       set {
+        _hasBits0 |= 2;
         type_ = value;
       }
     }
-
+    /// <summary>Gets whether the "type" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateType);
+    public bool HasType {
+      get { return (_hasBits0 & 2) != 0; }
     }
-
+    /// <summary>Clears the value of the "type" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateType other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (Type != other.Type) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Type != global::PLUME.Sample.Unity.LightType.Spot) hash ^= Type.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Type != global::PLUME.Sample.Unity.LightType.Spot) {
-        output.WriteRawTag(16);
-        output.WriteEnum((int) Type);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Type != global::PLUME.Sample.Unity.LightType.Spot) {
-        output.WriteRawTag(16);
-        output.WriteEnum((int) Type);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Type != global::PLUME.Sample.Unity.LightType.Spot) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateType other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Type != global::PLUME.Sample.Unity.LightType.Spot) {
-        Type = other.Type;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Type = (global::PLUME.Sample.Unity.LightType) input.ReadEnum();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Type = (global::PLUME.Sample.Unity.LightType) input.ReadEnum();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateShape : pb::IMessage<LightUpdateShape>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateShape> _parser = new pb::MessageParser<LightUpdateShape>(() => new LightUpdateShape());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateShape> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateShape() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateShape(LightUpdateShape other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      shape_ = other.shape_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateShape Clone() {
-      return new LightUpdateShape(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearType() {
+      _hasBits0 &= ~2;
     }
 
     /// <summary>Field number for the "shape" field.</summary>
-    public const int ShapeFieldNumber = 2;
-    private global::PLUME.Sample.Unity.LightShape shape_ = global::PLUME.Sample.Unity.LightShape.Cone;
+    public const int ShapeFieldNumber = 4;
+    private readonly static global::PLUME.Sample.Unity.LightShape ShapeDefaultValue = global::PLUME.Sample.Unity.LightShape.Cone;
+
+    private global::PLUME.Sample.Unity.LightShape shape_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.LightShape Shape {
-      get { return shape_; }
+      get { if ((_hasBits0 & 4) != 0) { return shape_; } else { return ShapeDefaultValue; } }
       set {
+        _hasBits0 |= 4;
         shape_ = value;
       }
     }
-
+    /// <summary>Gets whether the "shape" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateShape);
+    public bool HasShape {
+      get { return (_hasBits0 & 4) != 0; }
     }
-
+    /// <summary>Clears the value of the "shape" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateShape other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (Shape != other.Shape) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Shape != global::PLUME.Sample.Unity.LightShape.Cone) hash ^= Shape.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Shape != global::PLUME.Sample.Unity.LightShape.Cone) {
-        output.WriteRawTag(16);
-        output.WriteEnum((int) Shape);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Shape != global::PLUME.Sample.Unity.LightShape.Cone) {
-        output.WriteRawTag(16);
-        output.WriteEnum((int) Shape);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Shape != global::PLUME.Sample.Unity.LightShape.Cone) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Shape);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateShape other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Shape != global::PLUME.Sample.Unity.LightShape.Cone) {
-        Shape = other.Shape;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Shape = (global::PLUME.Sample.Unity.LightShape) input.ReadEnum();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Shape = (global::PLUME.Sample.Unity.LightShape) input.ReadEnum();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateIntensity : pb::IMessage<LightUpdateIntensity>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateIntensity> _parser = new pb::MessageParser<LightUpdateIntensity>(() => new LightUpdateIntensity());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateIntensity> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[4]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateIntensity() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateIntensity(LightUpdateIntensity other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      intensity_ = other.intensity_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateIntensity Clone() {
-      return new LightUpdateIntensity(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearShape() {
+      _hasBits0 &= ~4;
     }
 
     /// <summary>Field number for the "intensity" field.</summary>
-    public const int IntensityFieldNumber = 2;
+    public const int IntensityFieldNumber = 5;
+    private readonly static float IntensityDefaultValue = 0F;
+
     private float intensity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float Intensity {
-      get { return intensity_; }
+      get { if ((_hasBits0 & 8) != 0) { return intensity_; } else { return IntensityDefaultValue; } }
       set {
+        _hasBits0 |= 8;
         intensity_ = value;
       }
     }
-
+    /// <summary>Gets whether the "intensity" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateIntensity);
+    public bool HasIntensity {
+      get { return (_hasBits0 & 8) != 0; }
     }
-
+    /// <summary>Clears the value of the "intensity" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateIntensity other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Intensity, other.Intensity)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Intensity != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Intensity);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Intensity != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Intensity);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Intensity != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Intensity);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Intensity != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateIntensity other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Intensity != 0F) {
-        Intensity = other.Intensity;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            Intensity = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            Intensity = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateBounceIntensity : pb::IMessage<LightUpdateBounceIntensity>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateBounceIntensity> _parser = new pb::MessageParser<LightUpdateBounceIntensity>(() => new LightUpdateBounceIntensity());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateBounceIntensity> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[5]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateBounceIntensity() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateBounceIntensity(LightUpdateBounceIntensity other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      bounceIntensity_ = other.bounceIntensity_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateBounceIntensity Clone() {
-      return new LightUpdateBounceIntensity(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearIntensity() {
+      _hasBits0 &= ~8;
     }
 
     /// <summary>Field number for the "bounce_intensity" field.</summary>
-    public const int BounceIntensityFieldNumber = 2;
+    public const int BounceIntensityFieldNumber = 6;
+    private readonly static float BounceIntensityDefaultValue = 0F;
+
     private float bounceIntensity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float BounceIntensity {
-      get { return bounceIntensity_; }
+      get { if ((_hasBits0 & 16) != 0) { return bounceIntensity_; } else { return BounceIntensityDefaultValue; } }
       set {
+        _hasBits0 |= 16;
         bounceIntensity_ = value;
       }
     }
-
+    /// <summary>Gets whether the "bounce_intensity" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateBounceIntensity);
+    public bool HasBounceIntensity {
+      get { return (_hasBits0 & 16) != 0; }
     }
-
+    /// <summary>Clears the value of the "bounce_intensity" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateBounceIntensity other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(BounceIntensity, other.BounceIntensity)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (BounceIntensity != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(BounceIntensity);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (BounceIntensity != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(BounceIntensity);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (BounceIntensity != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(BounceIntensity);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (BounceIntensity != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateBounceIntensity other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.BounceIntensity != 0F) {
-        BounceIntensity = other.BounceIntensity;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            BounceIntensity = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            BounceIntensity = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateRange : pb::IMessage<LightUpdateRange>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateRange> _parser = new pb::MessageParser<LightUpdateRange>(() => new LightUpdateRange());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateRange> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[6]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateRange() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateRange(LightUpdateRange other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      range_ = other.range_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateRange Clone() {
-      return new LightUpdateRange(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearBounceIntensity() {
+      _hasBits0 &= ~16;
     }
 
     /// <summary>Field number for the "range" field.</summary>
-    public const int RangeFieldNumber = 2;
+    public const int RangeFieldNumber = 7;
+    private readonly static float RangeDefaultValue = 0F;
+
     private float range_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float Range {
-      get { return range_; }
+      get { if ((_hasBits0 & 32) != 0) { return range_; } else { return RangeDefaultValue; } }
       set {
+        _hasBits0 |= 32;
         range_ = value;
       }
     }
-
+    /// <summary>Gets whether the "range" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateRange);
+    public bool HasRange {
+      get { return (_hasBits0 & 32) != 0; }
     }
-
+    /// <summary>Clears the value of the "range" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateRange other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Range, other.Range)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Range != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Range);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Range != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Range);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Range != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Range);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Range != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateRange other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Range != 0F) {
-        Range = other.Range;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            Range = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            Range = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateColor : pb::IMessage<LightUpdateColor>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateColor> _parser = new pb::MessageParser<LightUpdateColor>(() => new LightUpdateColor());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateColor> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[7]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateColor() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateColor(LightUpdateColor other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      color_ = other.color_ != null ? other.color_.Clone() : null;
-      colorTemperature_ = other.colorTemperature_;
-      useColorTemperature_ = other.useColorTemperature_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateColor Clone() {
-      return new LightUpdateColor(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearRange() {
+      _hasBits0 &= ~32;
     }
 
     /// <summary>Field number for the "color" field.</summary>
-    public const int ColorFieldNumber = 2;
+    public const int ColorFieldNumber = 8;
     private global::PLUME.Sample.Common.Color color_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1844,634 +805,196 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "color_temperature" field.</summary>
-    public const int ColorTemperatureFieldNumber = 3;
+    public const int ColorTemperatureFieldNumber = 9;
+    private readonly static float ColorTemperatureDefaultValue = 0F;
+
     private float colorTemperature_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float ColorTemperature {
-      get { return colorTemperature_; }
+      get { if ((_hasBits0 & 64) != 0) { return colorTemperature_; } else { return ColorTemperatureDefaultValue; } }
       set {
+        _hasBits0 |= 64;
         colorTemperature_ = value;
       }
     }
+    /// <summary>Gets whether the "color_temperature" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasColorTemperature {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "color_temperature" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearColorTemperature() {
+      _hasBits0 &= ~64;
+    }
 
     /// <summary>Field number for the "use_color_temperature" field.</summary>
-    public const int UseColorTemperatureFieldNumber = 4;
+    public const int UseColorTemperatureFieldNumber = 10;
+    private readonly static bool UseColorTemperatureDefaultValue = false;
+
     private bool useColorTemperature_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool UseColorTemperature {
-      get { return useColorTemperature_; }
+      get { if ((_hasBits0 & 128) != 0) { return useColorTemperature_; } else { return UseColorTemperatureDefaultValue; } }
       set {
+        _hasBits0 |= 128;
         useColorTemperature_ = value;
       }
     }
-
+    /// <summary>Gets whether the "use_color_temperature" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateColor);
+    public bool HasUseColorTemperature {
+      get { return (_hasBits0 & 128) != 0; }
     }
-
+    /// <summary>Clears the value of the "use_color_temperature" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateColor other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(Color, other.Color)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ColorTemperature, other.ColorTemperature)) return false;
-      if (UseColorTemperature != other.UseColorTemperature) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (color_ != null) hash ^= Color.GetHashCode();
-      if (ColorTemperature != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ColorTemperature);
-      if (UseColorTemperature != false) hash ^= UseColorTemperature.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (color_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Color);
-      }
-      if (ColorTemperature != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(ColorTemperature);
-      }
-      if (UseColorTemperature != false) {
-        output.WriteRawTag(32);
-        output.WriteBool(UseColorTemperature);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (color_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Color);
-      }
-      if (ColorTemperature != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(ColorTemperature);
-      }
-      if (UseColorTemperature != false) {
-        output.WriteRawTag(32);
-        output.WriteBool(UseColorTemperature);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (color_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
-      }
-      if (ColorTemperature != 0F) {
-        size += 1 + 4;
-      }
-      if (UseColorTemperature != false) {
-        size += 1 + 1;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateColor other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.color_ != null) {
-        if (color_ == null) {
-          Color = new global::PLUME.Sample.Common.Color();
-        }
-        Color.MergeFrom(other.Color);
-      }
-      if (other.ColorTemperature != 0F) {
-        ColorTemperature = other.ColorTemperature;
-      }
-      if (other.UseColorTemperature != false) {
-        UseColorTemperature = other.UseColorTemperature;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (color_ == null) {
-              Color = new global::PLUME.Sample.Common.Color();
-            }
-            input.ReadMessage(Color);
-            break;
-          }
-          case 29: {
-            ColorTemperature = input.ReadFloat();
-            break;
-          }
-          case 32: {
-            UseColorTemperature = input.ReadBool();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (color_ == null) {
-              Color = new global::PLUME.Sample.Common.Color();
-            }
-            input.ReadMessage(Color);
-            break;
-          }
-          case 29: {
-            ColorTemperature = input.ReadFloat();
-            break;
-          }
-          case 32: {
-            UseColorTemperature = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateSpotAngle : pb::IMessage<LightUpdateSpotAngle>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateSpotAngle> _parser = new pb::MessageParser<LightUpdateSpotAngle>(() => new LightUpdateSpotAngle());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateSpotAngle> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[8]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateSpotAngle() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateSpotAngle(LightUpdateSpotAngle other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      spotAngle_ = other.spotAngle_;
-      innerSpotAngle_ = other.innerSpotAngle_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateSpotAngle Clone() {
-      return new LightUpdateSpotAngle(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearUseColorTemperature() {
+      _hasBits0 &= ~128;
     }
 
     /// <summary>Field number for the "spot_angle" field.</summary>
-    public const int SpotAngleFieldNumber = 2;
+    public const int SpotAngleFieldNumber = 11;
+    private readonly static float SpotAngleDefaultValue = 0F;
+
     private float spotAngle_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float SpotAngle {
-      get { return spotAngle_; }
+      get { if ((_hasBits0 & 256) != 0) { return spotAngle_; } else { return SpotAngleDefaultValue; } }
       set {
+        _hasBits0 |= 256;
         spotAngle_ = value;
       }
     }
+    /// <summary>Gets whether the "spot_angle" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSpotAngle {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "spot_angle" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSpotAngle() {
+      _hasBits0 &= ~256;
+    }
 
     /// <summary>Field number for the "inner_spot_angle" field.</summary>
-    public const int InnerSpotAngleFieldNumber = 3;
+    public const int InnerSpotAngleFieldNumber = 12;
+    private readonly static float InnerSpotAngleDefaultValue = 0F;
+
     private float innerSpotAngle_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float InnerSpotAngle {
-      get { return innerSpotAngle_; }
+      get { if ((_hasBits0 & 512) != 0) { return innerSpotAngle_; } else { return InnerSpotAngleDefaultValue; } }
       set {
+        _hasBits0 |= 512;
         innerSpotAngle_ = value;
       }
     }
-
+    /// <summary>Gets whether the "inner_spot_angle" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateSpotAngle);
+    public bool HasInnerSpotAngle {
+      get { return (_hasBits0 & 512) != 0; }
     }
-
+    /// <summary>Clears the value of the "inner_spot_angle" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateSpotAngle other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(SpotAngle, other.SpotAngle)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(InnerSpotAngle, other.InnerSpotAngle)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (SpotAngle != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(SpotAngle);
-      if (InnerSpotAngle != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(InnerSpotAngle);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (SpotAngle != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(SpotAngle);
-      }
-      if (InnerSpotAngle != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(InnerSpotAngle);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (SpotAngle != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(SpotAngle);
-      }
-      if (InnerSpotAngle != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(InnerSpotAngle);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (SpotAngle != 0F) {
-        size += 1 + 4;
-      }
-      if (InnerSpotAngle != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateSpotAngle other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.SpotAngle != 0F) {
-        SpotAngle = other.SpotAngle;
-      }
-      if (other.InnerSpotAngle != 0F) {
-        InnerSpotAngle = other.InnerSpotAngle;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            SpotAngle = input.ReadFloat();
-            break;
-          }
-          case 29: {
-            InnerSpotAngle = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 21: {
-            SpotAngle = input.ReadFloat();
-            break;
-          }
-          case 29: {
-            InnerSpotAngle = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateShadows : pb::IMessage<LightUpdateShadows>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateShadows> _parser = new pb::MessageParser<LightUpdateShadows>(() => new LightUpdateShadows());
-    private pb::UnknownFieldSet _unknownFields;
-    private int _hasBits0;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateShadows> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[9]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateShadows() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateShadows(LightUpdateShadows other) : this() {
-      _hasBits0 = other._hasBits0;
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      shadows_ = other.shadows_;
-      shadowStrength_ = other.shadowStrength_;
-      shadowResolution_ = other.shadowResolution_;
-      shadowMatrixOverride_ = other.shadowMatrixOverride_ != null ? other.shadowMatrixOverride_.Clone() : null;
-      useShadowMatrixOverride_ = other.useShadowMatrixOverride_;
-      shadowBias_ = other.shadowBias_;
-      shadowNormalBias_ = other.shadowNormalBias_;
-      shadowNearPlane_ = other.shadowNearPlane_;
-      useViewFrustumForShadowCasterCull_ = other.useViewFrustumForShadowCasterCull_;
-      layerShadowCullDistances_ = other.layerShadowCullDistances_.Clone();
-      shadowCustomResolution_ = other.shadowCustomResolution_;
-      lightShadowCasterMode_ = other.lightShadowCasterMode_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateShadows Clone() {
-      return new LightUpdateShadows(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearInnerSpotAngle() {
+      _hasBits0 &= ~512;
     }
 
     /// <summary>Field number for the "shadows" field.</summary>
-    public const int ShadowsFieldNumber = 2;
-    private global::PLUME.Sample.Unity.LightShadows shadows_ = global::PLUME.Sample.Unity.LightShadows.None;
+    public const int ShadowsFieldNumber = 13;
+    private readonly static global::PLUME.Sample.Unity.LightShadows ShadowsDefaultValue = global::PLUME.Sample.Unity.LightShadows.None;
+
+    private global::PLUME.Sample.Unity.LightShadows shadows_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.LightShadows Shadows {
-      get { return shadows_; }
+      get { if ((_hasBits0 & 1024) != 0) { return shadows_; } else { return ShadowsDefaultValue; } }
       set {
+        _hasBits0 |= 1024;
         shadows_ = value;
       }
     }
+    /// <summary>Gets whether the "shadows" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasShadows {
+      get { return (_hasBits0 & 1024) != 0; }
+    }
+    /// <summary>Clears the value of the "shadows" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearShadows() {
+      _hasBits0 &= ~1024;
+    }
 
     /// <summary>Field number for the "shadow_strength" field.</summary>
-    public const int ShadowStrengthFieldNumber = 3;
+    public const int ShadowStrengthFieldNumber = 14;
+    private readonly static float ShadowStrengthDefaultValue = 0F;
+
     private float shadowStrength_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float ShadowStrength {
-      get { return shadowStrength_; }
+      get { if ((_hasBits0 & 2048) != 0) { return shadowStrength_; } else { return ShadowStrengthDefaultValue; } }
       set {
+        _hasBits0 |= 2048;
         shadowStrength_ = value;
       }
     }
+    /// <summary>Gets whether the "shadow_strength" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasShadowStrength {
+      get { return (_hasBits0 & 2048) != 0; }
+    }
+    /// <summary>Clears the value of the "shadow_strength" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearShadowStrength() {
+      _hasBits0 &= ~2048;
+    }
 
     /// <summary>Field number for the "shadow_resolution" field.</summary>
-    public const int ShadowResolutionFieldNumber = 4;
-    private global::PLUME.Sample.Unity.LightShadowResolution shadowResolution_ = global::PLUME.Sample.Unity.LightShadowResolution.FromQualitySettings;
+    public const int ShadowResolutionFieldNumber = 15;
+    private readonly static global::PLUME.Sample.Unity.LightShadowResolution ShadowResolutionDefaultValue = global::PLUME.Sample.Unity.LightShadowResolution.FromQualitySettings;
+
+    private global::PLUME.Sample.Unity.LightShadowResolution shadowResolution_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.LightShadowResolution ShadowResolution {
-      get { return shadowResolution_; }
+      get { if ((_hasBits0 & 4096) != 0) { return shadowResolution_; } else { return ShadowResolutionDefaultValue; } }
       set {
+        _hasBits0 |= 4096;
         shadowResolution_ = value;
       }
     }
+    /// <summary>Gets whether the "shadow_resolution" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasShadowResolution {
+      get { return (_hasBits0 & 4096) != 0; }
+    }
+    /// <summary>Clears the value of the "shadow_resolution" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearShadowResolution() {
+      _hasBits0 &= ~4096;
+    }
 
     /// <summary>Field number for the "shadow_matrix_override" field.</summary>
-    public const int ShadowMatrixOverrideFieldNumber = 5;
+    public const int ShadowMatrixOverrideFieldNumber = 16;
     private global::PLUME.Sample.Common.Matrix4x4 shadowMatrixOverride_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2483,81 +1006,157 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "use_shadow_matrix_override" field.</summary>
-    public const int UseShadowMatrixOverrideFieldNumber = 6;
+    public const int UseShadowMatrixOverrideFieldNumber = 17;
+    private readonly static bool UseShadowMatrixOverrideDefaultValue = false;
+
     private bool useShadowMatrixOverride_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool UseShadowMatrixOverride {
-      get { return useShadowMatrixOverride_; }
+      get { if ((_hasBits0 & 8192) != 0) { return useShadowMatrixOverride_; } else { return UseShadowMatrixOverrideDefaultValue; } }
       set {
+        _hasBits0 |= 8192;
         useShadowMatrixOverride_ = value;
       }
     }
+    /// <summary>Gets whether the "use_shadow_matrix_override" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasUseShadowMatrixOverride {
+      get { return (_hasBits0 & 8192) != 0; }
+    }
+    /// <summary>Clears the value of the "use_shadow_matrix_override" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearUseShadowMatrixOverride() {
+      _hasBits0 &= ~8192;
+    }
 
     /// <summary>Field number for the "shadow_bias" field.</summary>
-    public const int ShadowBiasFieldNumber = 7;
+    public const int ShadowBiasFieldNumber = 18;
+    private readonly static float ShadowBiasDefaultValue = 0F;
+
     private float shadowBias_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float ShadowBias {
-      get { return shadowBias_; }
+      get { if ((_hasBits0 & 16384) != 0) { return shadowBias_; } else { return ShadowBiasDefaultValue; } }
       set {
+        _hasBits0 |= 16384;
         shadowBias_ = value;
       }
     }
+    /// <summary>Gets whether the "shadow_bias" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasShadowBias {
+      get { return (_hasBits0 & 16384) != 0; }
+    }
+    /// <summary>Clears the value of the "shadow_bias" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearShadowBias() {
+      _hasBits0 &= ~16384;
+    }
 
     /// <summary>Field number for the "shadow_normal_bias" field.</summary>
-    public const int ShadowNormalBiasFieldNumber = 8;
+    public const int ShadowNormalBiasFieldNumber = 19;
+    private readonly static float ShadowNormalBiasDefaultValue = 0F;
+
     private float shadowNormalBias_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float ShadowNormalBias {
-      get { return shadowNormalBias_; }
+      get { if ((_hasBits0 & 32768) != 0) { return shadowNormalBias_; } else { return ShadowNormalBiasDefaultValue; } }
       set {
+        _hasBits0 |= 32768;
         shadowNormalBias_ = value;
       }
     }
+    /// <summary>Gets whether the "shadow_normal_bias" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasShadowNormalBias {
+      get { return (_hasBits0 & 32768) != 0; }
+    }
+    /// <summary>Clears the value of the "shadow_normal_bias" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearShadowNormalBias() {
+      _hasBits0 &= ~32768;
+    }
 
     /// <summary>Field number for the "shadow_near_plane" field.</summary>
-    public const int ShadowNearPlaneFieldNumber = 9;
+    public const int ShadowNearPlaneFieldNumber = 20;
+    private readonly static float ShadowNearPlaneDefaultValue = 0F;
+
     private float shadowNearPlane_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float ShadowNearPlane {
-      get { return shadowNearPlane_; }
+      get { if ((_hasBits0 & 65536) != 0) { return shadowNearPlane_; } else { return ShadowNearPlaneDefaultValue; } }
       set {
+        _hasBits0 |= 65536;
         shadowNearPlane_ = value;
       }
     }
+    /// <summary>Gets whether the "shadow_near_plane" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasShadowNearPlane {
+      get { return (_hasBits0 & 65536) != 0; }
+    }
+    /// <summary>Clears the value of the "shadow_near_plane" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearShadowNearPlane() {
+      _hasBits0 &= ~65536;
+    }
 
     /// <summary>Field number for the "use_view_frustum_for_shadow_caster_cull" field.</summary>
-    public const int UseViewFrustumForShadowCasterCullFieldNumber = 10;
+    public const int UseViewFrustumForShadowCasterCullFieldNumber = 21;
+    private readonly static bool UseViewFrustumForShadowCasterCullDefaultValue = false;
+
     private bool useViewFrustumForShadowCasterCull_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool UseViewFrustumForShadowCasterCull {
-      get { return useViewFrustumForShadowCasterCull_; }
+      get { if ((_hasBits0 & 131072) != 0) { return useViewFrustumForShadowCasterCull_; } else { return UseViewFrustumForShadowCasterCullDefaultValue; } }
       set {
+        _hasBits0 |= 131072;
         useViewFrustumForShadowCasterCull_ = value;
       }
     }
+    /// <summary>Gets whether the "use_view_frustum_for_shadow_caster_cull" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasUseViewFrustumForShadowCasterCull {
+      get { return (_hasBits0 & 131072) != 0; }
+    }
+    /// <summary>Clears the value of the "use_view_frustum_for_shadow_caster_cull" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearUseViewFrustumForShadowCasterCull() {
+      _hasBits0 &= ~131072;
+    }
 
     /// <summary>Field number for the "layer_shadow_cull_distances" field.</summary>
-    public const int LayerShadowCullDistancesFieldNumber = 11;
-    private static readonly pb::FieldCodec<float> _repeated_layerShadowCullDistances_codec
-        = pb::FieldCodec.ForFloat(90);
-    private readonly pbc::RepeatedField<float> layerShadowCullDistances_ = new pbc::RepeatedField<float>();
+    public const int LayerShadowCullDistancesFieldNumber = 22;
+    private global::PLUME.Sample.Unity.LayerShadowCullDistances layerShadowCullDistances_;
     /// <summary>
     /// Only for directional lights
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<float> LayerShadowCullDistances {
+    public global::PLUME.Sample.Unity.LayerShadowCullDistances LayerShadowCullDistances {
       get { return layerShadowCullDistances_; }
+      set {
+        layerShadowCullDistances_ = value;
+      }
     }
 
     /// <summary>Field number for the "shadow_custom_resolution" field.</summary>
-    public const int ShadowCustomResolutionFieldNumber = 12;
+    public const int ShadowCustomResolutionFieldNumber = 23;
     private readonly static int ShadowCustomResolutionDefaultValue = 0;
 
     private int shadowCustomResolution_;
@@ -2567,9 +1166,9 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int ShadowCustomResolution {
-      get { if ((_hasBits0 & 1) != 0) { return shadowCustomResolution_; } else { return ShadowCustomResolutionDefaultValue; } }
+      get { if ((_hasBits0 & 262144) != 0) { return shadowCustomResolution_; } else { return ShadowCustomResolutionDefaultValue; } }
       set {
-        _hasBits0 |= 1;
+        _hasBits0 |= 262144;
         shadowCustomResolution_ = value;
       }
     }
@@ -2577,17 +1176,17 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasShadowCustomResolution {
-      get { return (_hasBits0 & 1) != 0; }
+      get { return (_hasBits0 & 262144) != 0; }
     }
     /// <summary>Clears the value of the "shadow_custom_resolution" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearShadowCustomResolution() {
-      _hasBits0 &= ~1;
+      _hasBits0 &= ~262144;
     }
 
     /// <summary>Field number for the "light_shadow_caster_mode" field.</summary>
-    public const int LightShadowCasterModeFieldNumber = 13;
+    public const int LightShadowCasterModeFieldNumber = 24;
     private readonly static global::PLUME.Sample.Unity.LightShadowCasterMode LightShadowCasterModeDefaultValue = global::PLUME.Sample.Unity.LightShadowCasterMode.Default;
 
     private global::PLUME.Sample.Unity.LightShadowCasterMode lightShadowCasterMode_;
@@ -2597,9 +1196,9 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.LightShadowCasterMode LightShadowCasterMode {
-      get { if ((_hasBits0 & 2) != 0) { return lightShadowCasterMode_; } else { return LightShadowCasterModeDefaultValue; } }
+      get { if ((_hasBits0 & 524288) != 0) { return lightShadowCasterMode_; } else { return LightShadowCasterModeDefaultValue; } }
       set {
-        _hasBits0 |= 2;
+        _hasBits0 |= 524288;
         lightShadowCasterMode_ = value;
       }
     }
@@ -2607,756 +1206,71 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasLightShadowCasterMode {
-      get { return (_hasBits0 & 2) != 0; }
+      get { return (_hasBits0 & 524288) != 0; }
     }
     /// <summary>Clears the value of the "light_shadow_caster_mode" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearLightShadowCasterMode() {
-      _hasBits0 &= ~2;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateShadows);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateShadows other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (Shadows != other.Shadows) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ShadowStrength, other.ShadowStrength)) return false;
-      if (ShadowResolution != other.ShadowResolution) return false;
-      if (!object.Equals(ShadowMatrixOverride, other.ShadowMatrixOverride)) return false;
-      if (UseShadowMatrixOverride != other.UseShadowMatrixOverride) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ShadowBias, other.ShadowBias)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ShadowNormalBias, other.ShadowNormalBias)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ShadowNearPlane, other.ShadowNearPlane)) return false;
-      if (UseViewFrustumForShadowCasterCull != other.UseViewFrustumForShadowCasterCull) return false;
-      if(!layerShadowCullDistances_.Equals(other.layerShadowCullDistances_)) return false;
-      if (ShadowCustomResolution != other.ShadowCustomResolution) return false;
-      if (LightShadowCasterMode != other.LightShadowCasterMode) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (Shadows != global::PLUME.Sample.Unity.LightShadows.None) hash ^= Shadows.GetHashCode();
-      if (ShadowStrength != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ShadowStrength);
-      if (ShadowResolution != global::PLUME.Sample.Unity.LightShadowResolution.FromQualitySettings) hash ^= ShadowResolution.GetHashCode();
-      if (shadowMatrixOverride_ != null) hash ^= ShadowMatrixOverride.GetHashCode();
-      if (UseShadowMatrixOverride != false) hash ^= UseShadowMatrixOverride.GetHashCode();
-      if (ShadowBias != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ShadowBias);
-      if (ShadowNormalBias != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ShadowNormalBias);
-      if (ShadowNearPlane != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ShadowNearPlane);
-      if (UseViewFrustumForShadowCasterCull != false) hash ^= UseViewFrustumForShadowCasterCull.GetHashCode();
-      hash ^= layerShadowCullDistances_.GetHashCode();
-      if (HasShadowCustomResolution) hash ^= ShadowCustomResolution.GetHashCode();
-      if (HasLightShadowCasterMode) hash ^= LightShadowCasterMode.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Shadows != global::PLUME.Sample.Unity.LightShadows.None) {
-        output.WriteRawTag(16);
-        output.WriteEnum((int) Shadows);
-      }
-      if (ShadowStrength != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(ShadowStrength);
-      }
-      if (ShadowResolution != global::PLUME.Sample.Unity.LightShadowResolution.FromQualitySettings) {
-        output.WriteRawTag(32);
-        output.WriteEnum((int) ShadowResolution);
-      }
-      if (shadowMatrixOverride_ != null) {
-        output.WriteRawTag(42);
-        output.WriteMessage(ShadowMatrixOverride);
-      }
-      if (UseShadowMatrixOverride != false) {
-        output.WriteRawTag(48);
-        output.WriteBool(UseShadowMatrixOverride);
-      }
-      if (ShadowBias != 0F) {
-        output.WriteRawTag(61);
-        output.WriteFloat(ShadowBias);
-      }
-      if (ShadowNormalBias != 0F) {
-        output.WriteRawTag(69);
-        output.WriteFloat(ShadowNormalBias);
-      }
-      if (ShadowNearPlane != 0F) {
-        output.WriteRawTag(77);
-        output.WriteFloat(ShadowNearPlane);
-      }
-      if (UseViewFrustumForShadowCasterCull != false) {
-        output.WriteRawTag(80);
-        output.WriteBool(UseViewFrustumForShadowCasterCull);
-      }
-      layerShadowCullDistances_.WriteTo(output, _repeated_layerShadowCullDistances_codec);
-      if (HasShadowCustomResolution) {
-        output.WriteRawTag(96);
-        output.WriteInt32(ShadowCustomResolution);
-      }
-      if (HasLightShadowCasterMode) {
-        output.WriteRawTag(104);
-        output.WriteEnum((int) LightShadowCasterMode);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (Shadows != global::PLUME.Sample.Unity.LightShadows.None) {
-        output.WriteRawTag(16);
-        output.WriteEnum((int) Shadows);
-      }
-      if (ShadowStrength != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(ShadowStrength);
-      }
-      if (ShadowResolution != global::PLUME.Sample.Unity.LightShadowResolution.FromQualitySettings) {
-        output.WriteRawTag(32);
-        output.WriteEnum((int) ShadowResolution);
-      }
-      if (shadowMatrixOverride_ != null) {
-        output.WriteRawTag(42);
-        output.WriteMessage(ShadowMatrixOverride);
-      }
-      if (UseShadowMatrixOverride != false) {
-        output.WriteRawTag(48);
-        output.WriteBool(UseShadowMatrixOverride);
-      }
-      if (ShadowBias != 0F) {
-        output.WriteRawTag(61);
-        output.WriteFloat(ShadowBias);
-      }
-      if (ShadowNormalBias != 0F) {
-        output.WriteRawTag(69);
-        output.WriteFloat(ShadowNormalBias);
-      }
-      if (ShadowNearPlane != 0F) {
-        output.WriteRawTag(77);
-        output.WriteFloat(ShadowNearPlane);
-      }
-      if (UseViewFrustumForShadowCasterCull != false) {
-        output.WriteRawTag(80);
-        output.WriteBool(UseViewFrustumForShadowCasterCull);
-      }
-      layerShadowCullDistances_.WriteTo(ref output, _repeated_layerShadowCullDistances_codec);
-      if (HasShadowCustomResolution) {
-        output.WriteRawTag(96);
-        output.WriteInt32(ShadowCustomResolution);
-      }
-      if (HasLightShadowCasterMode) {
-        output.WriteRawTag(104);
-        output.WriteEnum((int) LightShadowCasterMode);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (Shadows != global::PLUME.Sample.Unity.LightShadows.None) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Shadows);
-      }
-      if (ShadowStrength != 0F) {
-        size += 1 + 4;
-      }
-      if (ShadowResolution != global::PLUME.Sample.Unity.LightShadowResolution.FromQualitySettings) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ShadowResolution);
-      }
-      if (shadowMatrixOverride_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ShadowMatrixOverride);
-      }
-      if (UseShadowMatrixOverride != false) {
-        size += 1 + 1;
-      }
-      if (ShadowBias != 0F) {
-        size += 1 + 4;
-      }
-      if (ShadowNormalBias != 0F) {
-        size += 1 + 4;
-      }
-      if (ShadowNearPlane != 0F) {
-        size += 1 + 4;
-      }
-      if (UseViewFrustumForShadowCasterCull != false) {
-        size += 1 + 1;
-      }
-      size += layerShadowCullDistances_.CalculateSize(_repeated_layerShadowCullDistances_codec);
-      if (HasShadowCustomResolution) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ShadowCustomResolution);
-      }
-      if (HasLightShadowCasterMode) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) LightShadowCasterMode);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateShadows other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.Shadows != global::PLUME.Sample.Unity.LightShadows.None) {
-        Shadows = other.Shadows;
-      }
-      if (other.ShadowStrength != 0F) {
-        ShadowStrength = other.ShadowStrength;
-      }
-      if (other.ShadowResolution != global::PLUME.Sample.Unity.LightShadowResolution.FromQualitySettings) {
-        ShadowResolution = other.ShadowResolution;
-      }
-      if (other.shadowMatrixOverride_ != null) {
-        if (shadowMatrixOverride_ == null) {
-          ShadowMatrixOverride = new global::PLUME.Sample.Common.Matrix4x4();
-        }
-        ShadowMatrixOverride.MergeFrom(other.ShadowMatrixOverride);
-      }
-      if (other.UseShadowMatrixOverride != false) {
-        UseShadowMatrixOverride = other.UseShadowMatrixOverride;
-      }
-      if (other.ShadowBias != 0F) {
-        ShadowBias = other.ShadowBias;
-      }
-      if (other.ShadowNormalBias != 0F) {
-        ShadowNormalBias = other.ShadowNormalBias;
-      }
-      if (other.ShadowNearPlane != 0F) {
-        ShadowNearPlane = other.ShadowNearPlane;
-      }
-      if (other.UseViewFrustumForShadowCasterCull != false) {
-        UseViewFrustumForShadowCasterCull = other.UseViewFrustumForShadowCasterCull;
-      }
-      layerShadowCullDistances_.Add(other.layerShadowCullDistances_);
-      if (other.HasShadowCustomResolution) {
-        ShadowCustomResolution = other.ShadowCustomResolution;
-      }
-      if (other.HasLightShadowCasterMode) {
-        LightShadowCasterMode = other.LightShadowCasterMode;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Shadows = (global::PLUME.Sample.Unity.LightShadows) input.ReadEnum();
-            break;
-          }
-          case 29: {
-            ShadowStrength = input.ReadFloat();
-            break;
-          }
-          case 32: {
-            ShadowResolution = (global::PLUME.Sample.Unity.LightShadowResolution) input.ReadEnum();
-            break;
-          }
-          case 42: {
-            if (shadowMatrixOverride_ == null) {
-              ShadowMatrixOverride = new global::PLUME.Sample.Common.Matrix4x4();
-            }
-            input.ReadMessage(ShadowMatrixOverride);
-            break;
-          }
-          case 48: {
-            UseShadowMatrixOverride = input.ReadBool();
-            break;
-          }
-          case 61: {
-            ShadowBias = input.ReadFloat();
-            break;
-          }
-          case 69: {
-            ShadowNormalBias = input.ReadFloat();
-            break;
-          }
-          case 77: {
-            ShadowNearPlane = input.ReadFloat();
-            break;
-          }
-          case 80: {
-            UseViewFrustumForShadowCasterCull = input.ReadBool();
-            break;
-          }
-          case 90:
-          case 93: {
-            layerShadowCullDistances_.AddEntriesFrom(input, _repeated_layerShadowCullDistances_codec);
-            break;
-          }
-          case 96: {
-            ShadowCustomResolution = input.ReadInt32();
-            break;
-          }
-          case 104: {
-            LightShadowCasterMode = (global::PLUME.Sample.Unity.LightShadowCasterMode) input.ReadEnum();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Shadows = (global::PLUME.Sample.Unity.LightShadows) input.ReadEnum();
-            break;
-          }
-          case 29: {
-            ShadowStrength = input.ReadFloat();
-            break;
-          }
-          case 32: {
-            ShadowResolution = (global::PLUME.Sample.Unity.LightShadowResolution) input.ReadEnum();
-            break;
-          }
-          case 42: {
-            if (shadowMatrixOverride_ == null) {
-              ShadowMatrixOverride = new global::PLUME.Sample.Common.Matrix4x4();
-            }
-            input.ReadMessage(ShadowMatrixOverride);
-            break;
-          }
-          case 48: {
-            UseShadowMatrixOverride = input.ReadBool();
-            break;
-          }
-          case 61: {
-            ShadowBias = input.ReadFloat();
-            break;
-          }
-          case 69: {
-            ShadowNormalBias = input.ReadFloat();
-            break;
-          }
-          case 77: {
-            ShadowNearPlane = input.ReadFloat();
-            break;
-          }
-          case 80: {
-            UseViewFrustumForShadowCasterCull = input.ReadBool();
-            break;
-          }
-          case 90:
-          case 93: {
-            layerShadowCullDistances_.AddEntriesFrom(ref input, _repeated_layerShadowCullDistances_codec);
-            break;
-          }
-          case 96: {
-            ShadowCustomResolution = input.ReadInt32();
-            break;
-          }
-          case 104: {
-            LightShadowCasterMode = (global::PLUME.Sample.Unity.LightShadowCasterMode) input.ReadEnum();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateRenderingLayerMask : pb::IMessage<LightUpdateRenderingLayerMask>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateRenderingLayerMask> _parser = new pb::MessageParser<LightUpdateRenderingLayerMask>(() => new LightUpdateRenderingLayerMask());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateRenderingLayerMask> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[10]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateRenderingLayerMask() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateRenderingLayerMask(LightUpdateRenderingLayerMask other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      renderingLayerMask_ = other.renderingLayerMask_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateRenderingLayerMask Clone() {
-      return new LightUpdateRenderingLayerMask(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+      _hasBits0 &= ~524288;
     }
 
     /// <summary>Field number for the "rendering_layer_mask" field.</summary>
-    public const int RenderingLayerMaskFieldNumber = 2;
+    public const int RenderingLayerMaskFieldNumber = 25;
+    private readonly static int RenderingLayerMaskDefaultValue = 0;
+
     private int renderingLayerMask_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int RenderingLayerMask {
-      get { return renderingLayerMask_; }
+      get { if ((_hasBits0 & 1048576) != 0) { return renderingLayerMask_; } else { return RenderingLayerMaskDefaultValue; } }
       set {
+        _hasBits0 |= 1048576;
         renderingLayerMask_ = value;
       }
     }
-
+    /// <summary>Gets whether the "rendering_layer_mask" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateRenderingLayerMask);
+    public bool HasRenderingLayerMask {
+      get { return (_hasBits0 & 1048576) != 0; }
     }
-
+    /// <summary>Clears the value of the "rendering_layer_mask" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateRenderingLayerMask other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (RenderingLayerMask != other.RenderingLayerMask) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (RenderingLayerMask != 0) hash ^= RenderingLayerMask.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (RenderingLayerMask != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(RenderingLayerMask);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (RenderingLayerMask != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(RenderingLayerMask);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (RenderingLayerMask != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RenderingLayerMask);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateRenderingLayerMask other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.RenderingLayerMask != 0) {
-        RenderingLayerMask = other.RenderingLayerMask;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            RenderingLayerMask = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            RenderingLayerMask = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateCulling : pb::IMessage<LightUpdateCulling>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateCulling> _parser = new pb::MessageParser<LightUpdateCulling>(() => new LightUpdateCulling());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateCulling> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[11]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateCulling() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateCulling(LightUpdateCulling other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      cullingMask_ = other.cullingMask_;
-      boundingSphereOverride_ = other.boundingSphereOverride_ != null ? other.boundingSphereOverride_.Clone() : null;
-      useBoundingSphereOverride_ = other.useBoundingSphereOverride_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateCulling Clone() {
-      return new LightUpdateCulling(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearRenderingLayerMask() {
+      _hasBits0 &= ~1048576;
     }
 
     /// <summary>Field number for the "culling_mask" field.</summary>
-    public const int CullingMaskFieldNumber = 2;
+    public const int CullingMaskFieldNumber = 26;
+    private readonly static int CullingMaskDefaultValue = 0;
+
     private int cullingMask_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CullingMask {
-      get { return cullingMask_; }
+      get { if ((_hasBits0 & 2097152) != 0) { return cullingMask_; } else { return CullingMaskDefaultValue; } }
       set {
+        _hasBits0 |= 2097152;
         cullingMask_ = value;
       }
     }
+    /// <summary>Gets whether the "culling_mask" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasCullingMask {
+      get { return (_hasBits0 & 2097152) != 0; }
+    }
+    /// <summary>Clears the value of the "culling_mask" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearCullingMask() {
+      _hasBits0 &= ~2097152;
+    }
 
     /// <summary>Field number for the "bounding_sphere_override" field.</summary>
-    public const int BoundingSphereOverrideFieldNumber = 3;
+    public const int BoundingSphereOverrideFieldNumber = 27;
     private global::PLUME.Sample.Common.Vector4 boundingSphereOverride_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3368,303 +1282,34 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "use_bounding_sphere_override" field.</summary>
-    public const int UseBoundingSphereOverrideFieldNumber = 4;
+    public const int UseBoundingSphereOverrideFieldNumber = 28;
+    private readonly static bool UseBoundingSphereOverrideDefaultValue = false;
+
     private bool useBoundingSphereOverride_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool UseBoundingSphereOverride {
-      get { return useBoundingSphereOverride_; }
+      get { if ((_hasBits0 & 4194304) != 0) { return useBoundingSphereOverride_; } else { return UseBoundingSphereOverrideDefaultValue; } }
       set {
+        _hasBits0 |= 4194304;
         useBoundingSphereOverride_ = value;
       }
     }
-
+    /// <summary>Gets whether the "use_bounding_sphere_override" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateCulling);
+    public bool HasUseBoundingSphereOverride {
+      get { return (_hasBits0 & 4194304) != 0; }
     }
-
+    /// <summary>Clears the value of the "use_bounding_sphere_override" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateCulling other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (CullingMask != other.CullingMask) return false;
-      if (!object.Equals(BoundingSphereOverride, other.BoundingSphereOverride)) return false;
-      if (UseBoundingSphereOverride != other.UseBoundingSphereOverride) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (CullingMask != 0) hash ^= CullingMask.GetHashCode();
-      if (boundingSphereOverride_ != null) hash ^= BoundingSphereOverride.GetHashCode();
-      if (UseBoundingSphereOverride != false) hash ^= UseBoundingSphereOverride.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (CullingMask != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(CullingMask);
-      }
-      if (boundingSphereOverride_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(BoundingSphereOverride);
-      }
-      if (UseBoundingSphereOverride != false) {
-        output.WriteRawTag(32);
-        output.WriteBool(UseBoundingSphereOverride);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (CullingMask != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(CullingMask);
-      }
-      if (boundingSphereOverride_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(BoundingSphereOverride);
-      }
-      if (UseBoundingSphereOverride != false) {
-        output.WriteRawTag(32);
-        output.WriteBool(UseBoundingSphereOverride);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (CullingMask != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CullingMask);
-      }
-      if (boundingSphereOverride_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(BoundingSphereOverride);
-      }
-      if (UseBoundingSphereOverride != false) {
-        size += 1 + 1;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateCulling other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.CullingMask != 0) {
-        CullingMask = other.CullingMask;
-      }
-      if (other.boundingSphereOverride_ != null) {
-        if (boundingSphereOverride_ == null) {
-          BoundingSphereOverride = new global::PLUME.Sample.Common.Vector4();
-        }
-        BoundingSphereOverride.MergeFrom(other.BoundingSphereOverride);
-      }
-      if (other.UseBoundingSphereOverride != false) {
-        UseBoundingSphereOverride = other.UseBoundingSphereOverride;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            CullingMask = input.ReadInt32();
-            break;
-          }
-          case 26: {
-            if (boundingSphereOverride_ == null) {
-              BoundingSphereOverride = new global::PLUME.Sample.Common.Vector4();
-            }
-            input.ReadMessage(BoundingSphereOverride);
-            break;
-          }
-          case 32: {
-            UseBoundingSphereOverride = input.ReadBool();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            CullingMask = input.ReadInt32();
-            break;
-          }
-          case 26: {
-            if (boundingSphereOverride_ == null) {
-              BoundingSphereOverride = new global::PLUME.Sample.Common.Vector4();
-            }
-            input.ReadMessage(BoundingSphereOverride);
-            break;
-          }
-          case 32: {
-            UseBoundingSphereOverride = input.ReadBool();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateCookie : pb::IMessage<LightUpdateCookie>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateCookie> _parser = new pb::MessageParser<LightUpdateCookie>(() => new LightUpdateCookie());
-    private pb::UnknownFieldSet _unknownFields;
-    private int _hasBits0;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateCookie> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[12]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateCookie() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateCookie(LightUpdateCookie other) : this() {
-      _hasBits0 = other._hasBits0;
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      cookieId_ = other.cookieId_ != null ? other.cookieId_.Clone() : null;
-      cookieSize_ = other.cookieSize_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateCookie Clone() {
-      return new LightUpdateCookie(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+    public void ClearUseBoundingSphereOverride() {
+      _hasBits0 &= ~4194304;
     }
 
     /// <summary>Field number for the "cookie_id" field.</summary>
-    public const int CookieIdFieldNumber = 2;
+    public const int CookieIdFieldNumber = 29;
     private global::PLUME.Sample.Unity.AssetIdentifier cookieId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3676,16 +1321,16 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "cookie_size" field.</summary>
-    public const int CookieSizeFieldNumber = 3;
+    public const int CookieSizeFieldNumber = 30;
     private readonly static float CookieSizeDefaultValue = 0F;
 
     private float cookieSize_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float CookieSize {
-      get { if ((_hasBits0 & 1) != 0) { return cookieSize_; } else { return CookieSizeDefaultValue; } }
+      get { if ((_hasBits0 & 8388608) != 0) { return cookieSize_; } else { return CookieSizeDefaultValue; } }
       set {
-        _hasBits0 |= 1;
+        _hasBits0 |= 8388608;
         cookieSize_ = value;
       }
     }
@@ -3693,274 +1338,17 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasCookieSize {
-      get { return (_hasBits0 & 1) != 0; }
+      get { return (_hasBits0 & 8388608) != 0; }
     }
     /// <summary>Clears the value of the "cookie_size" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearCookieSize() {
-      _hasBits0 &= ~1;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as LightUpdateCookie);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateCookie other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(CookieId, other.CookieId)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(CookieSize, other.CookieSize)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
-      if (cookieId_ != null) hash ^= CookieId.GetHashCode();
-      if (HasCookieSize) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(CookieSize);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (cookieId_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(CookieId);
-      }
-      if (HasCookieSize) {
-        output.WriteRawTag(29);
-        output.WriteFloat(CookieSize);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (id_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Id);
-      }
-      if (cookieId_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(CookieId);
-      }
-      if (HasCookieSize) {
-        output.WriteRawTag(29);
-        output.WriteFloat(CookieSize);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (id_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (cookieId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(CookieId);
-      }
-      if (HasCookieSize) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateCookie other) {
-      if (other == null) {
-        return;
-      }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-        }
-        Id.MergeFrom(other.Id);
-      }
-      if (other.cookieId_ != null) {
-        if (cookieId_ == null) {
-          CookieId = new global::PLUME.Sample.Unity.AssetIdentifier();
-        }
-        CookieId.MergeFrom(other.CookieId);
-      }
-      if (other.HasCookieSize) {
-        CookieSize = other.CookieSize;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (cookieId_ == null) {
-              CookieId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(CookieId);
-            break;
-          }
-          case 29: {
-            CookieSize = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (cookieId_ == null) {
-              CookieId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(CookieId);
-            break;
-          }
-          case 29: {
-            CookieSize = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class LightUpdateFlare : pb::IMessage<LightUpdateFlare>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<LightUpdateFlare> _parser = new pb::MessageParser<LightUpdateFlare>(() => new LightUpdateFlare());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<LightUpdateFlare> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[13]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateFlare() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateFlare(LightUpdateFlare other) : this() {
-      id_ = other.id_ != null ? other.id_.Clone() : null;
-      flareId_ = other.flareId_ != null ? other.flareId_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public LightUpdateFlare Clone() {
-      return new LightUpdateFlare(this);
-    }
-
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
+      _hasBits0 &= ~8388608;
     }
 
     /// <summary>Field number for the "flare_id" field.</summary>
-    public const int FlareIdFieldNumber = 2;
+    public const int FlareIdFieldNumber = 31;
     private global::PLUME.Sample.Unity.AssetIdentifier flareId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -3974,12 +1362,12 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as LightUpdateFlare);
+      return Equals(other as LightUpdate);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(LightUpdateFlare other) {
+    public bool Equals(LightUpdate other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -3987,6 +1375,35 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
+      if (Enabled != other.Enabled) return false;
+      if (Type != other.Type) return false;
+      if (Shape != other.Shape) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Intensity, other.Intensity)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(BounceIntensity, other.BounceIntensity)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Range, other.Range)) return false;
+      if (!object.Equals(Color, other.Color)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ColorTemperature, other.ColorTemperature)) return false;
+      if (UseColorTemperature != other.UseColorTemperature) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(SpotAngle, other.SpotAngle)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(InnerSpotAngle, other.InnerSpotAngle)) return false;
+      if (Shadows != other.Shadows) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ShadowStrength, other.ShadowStrength)) return false;
+      if (ShadowResolution != other.ShadowResolution) return false;
+      if (!object.Equals(ShadowMatrixOverride, other.ShadowMatrixOverride)) return false;
+      if (UseShadowMatrixOverride != other.UseShadowMatrixOverride) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ShadowBias, other.ShadowBias)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ShadowNormalBias, other.ShadowNormalBias)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ShadowNearPlane, other.ShadowNearPlane)) return false;
+      if (UseViewFrustumForShadowCasterCull != other.UseViewFrustumForShadowCasterCull) return false;
+      if (!object.Equals(LayerShadowCullDistances, other.LayerShadowCullDistances)) return false;
+      if (ShadowCustomResolution != other.ShadowCustomResolution) return false;
+      if (LightShadowCasterMode != other.LightShadowCasterMode) return false;
+      if (RenderingLayerMask != other.RenderingLayerMask) return false;
+      if (CullingMask != other.CullingMask) return false;
+      if (!object.Equals(BoundingSphereOverride, other.BoundingSphereOverride)) return false;
+      if (UseBoundingSphereOverride != other.UseBoundingSphereOverride) return false;
+      if (!object.Equals(CookieId, other.CookieId)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(CookieSize, other.CookieSize)) return false;
       if (!object.Equals(FlareId, other.FlareId)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -3996,6 +1413,35 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
+      if (HasEnabled) hash ^= Enabled.GetHashCode();
+      if (HasType) hash ^= Type.GetHashCode();
+      if (HasShape) hash ^= Shape.GetHashCode();
+      if (HasIntensity) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Intensity);
+      if (HasBounceIntensity) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(BounceIntensity);
+      if (HasRange) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Range);
+      if (color_ != null) hash ^= Color.GetHashCode();
+      if (HasColorTemperature) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ColorTemperature);
+      if (HasUseColorTemperature) hash ^= UseColorTemperature.GetHashCode();
+      if (HasSpotAngle) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(SpotAngle);
+      if (HasInnerSpotAngle) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(InnerSpotAngle);
+      if (HasShadows) hash ^= Shadows.GetHashCode();
+      if (HasShadowStrength) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ShadowStrength);
+      if (HasShadowResolution) hash ^= ShadowResolution.GetHashCode();
+      if (shadowMatrixOverride_ != null) hash ^= ShadowMatrixOverride.GetHashCode();
+      if (HasUseShadowMatrixOverride) hash ^= UseShadowMatrixOverride.GetHashCode();
+      if (HasShadowBias) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ShadowBias);
+      if (HasShadowNormalBias) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ShadowNormalBias);
+      if (HasShadowNearPlane) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ShadowNearPlane);
+      if (HasUseViewFrustumForShadowCasterCull) hash ^= UseViewFrustumForShadowCasterCull.GetHashCode();
+      if (layerShadowCullDistances_ != null) hash ^= LayerShadowCullDistances.GetHashCode();
+      if (HasShadowCustomResolution) hash ^= ShadowCustomResolution.GetHashCode();
+      if (HasLightShadowCasterMode) hash ^= LightShadowCasterMode.GetHashCode();
+      if (HasRenderingLayerMask) hash ^= RenderingLayerMask.GetHashCode();
+      if (HasCullingMask) hash ^= CullingMask.GetHashCode();
+      if (boundingSphereOverride_ != null) hash ^= BoundingSphereOverride.GetHashCode();
+      if (HasUseBoundingSphereOverride) hash ^= UseBoundingSphereOverride.GetHashCode();
+      if (cookieId_ != null) hash ^= CookieId.GetHashCode();
+      if (HasCookieSize) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(CookieSize);
       if (flareId_ != null) hash ^= FlareId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -4019,8 +1465,124 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
+      if (HasEnabled) {
+        output.WriteRawTag(16);
+        output.WriteBool(Enabled);
+      }
+      if (HasType) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) Type);
+      }
+      if (HasShape) {
+        output.WriteRawTag(32);
+        output.WriteEnum((int) Shape);
+      }
+      if (HasIntensity) {
+        output.WriteRawTag(45);
+        output.WriteFloat(Intensity);
+      }
+      if (HasBounceIntensity) {
+        output.WriteRawTag(53);
+        output.WriteFloat(BounceIntensity);
+      }
+      if (HasRange) {
+        output.WriteRawTag(61);
+        output.WriteFloat(Range);
+      }
+      if (color_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(Color);
+      }
+      if (HasColorTemperature) {
+        output.WriteRawTag(77);
+        output.WriteFloat(ColorTemperature);
+      }
+      if (HasUseColorTemperature) {
+        output.WriteRawTag(80);
+        output.WriteBool(UseColorTemperature);
+      }
+      if (HasSpotAngle) {
+        output.WriteRawTag(93);
+        output.WriteFloat(SpotAngle);
+      }
+      if (HasInnerSpotAngle) {
+        output.WriteRawTag(101);
+        output.WriteFloat(InnerSpotAngle);
+      }
+      if (HasShadows) {
+        output.WriteRawTag(104);
+        output.WriteEnum((int) Shadows);
+      }
+      if (HasShadowStrength) {
+        output.WriteRawTag(117);
+        output.WriteFloat(ShadowStrength);
+      }
+      if (HasShadowResolution) {
+        output.WriteRawTag(120);
+        output.WriteEnum((int) ShadowResolution);
+      }
+      if (shadowMatrixOverride_ != null) {
+        output.WriteRawTag(130, 1);
+        output.WriteMessage(ShadowMatrixOverride);
+      }
+      if (HasUseShadowMatrixOverride) {
+        output.WriteRawTag(136, 1);
+        output.WriteBool(UseShadowMatrixOverride);
+      }
+      if (HasShadowBias) {
+        output.WriteRawTag(149, 1);
+        output.WriteFloat(ShadowBias);
+      }
+      if (HasShadowNormalBias) {
+        output.WriteRawTag(157, 1);
+        output.WriteFloat(ShadowNormalBias);
+      }
+      if (HasShadowNearPlane) {
+        output.WriteRawTag(165, 1);
+        output.WriteFloat(ShadowNearPlane);
+      }
+      if (HasUseViewFrustumForShadowCasterCull) {
+        output.WriteRawTag(168, 1);
+        output.WriteBool(UseViewFrustumForShadowCasterCull);
+      }
+      if (layerShadowCullDistances_ != null) {
+        output.WriteRawTag(178, 1);
+        output.WriteMessage(LayerShadowCullDistances);
+      }
+      if (HasShadowCustomResolution) {
+        output.WriteRawTag(184, 1);
+        output.WriteInt32(ShadowCustomResolution);
+      }
+      if (HasLightShadowCasterMode) {
+        output.WriteRawTag(192, 1);
+        output.WriteEnum((int) LightShadowCasterMode);
+      }
+      if (HasRenderingLayerMask) {
+        output.WriteRawTag(200, 1);
+        output.WriteInt32(RenderingLayerMask);
+      }
+      if (HasCullingMask) {
+        output.WriteRawTag(208, 1);
+        output.WriteInt32(CullingMask);
+      }
+      if (boundingSphereOverride_ != null) {
+        output.WriteRawTag(218, 1);
+        output.WriteMessage(BoundingSphereOverride);
+      }
+      if (HasUseBoundingSphereOverride) {
+        output.WriteRawTag(224, 1);
+        output.WriteBool(UseBoundingSphereOverride);
+      }
+      if (cookieId_ != null) {
+        output.WriteRawTag(234, 1);
+        output.WriteMessage(CookieId);
+      }
+      if (HasCookieSize) {
+        output.WriteRawTag(245, 1);
+        output.WriteFloat(CookieSize);
+      }
       if (flareId_ != null) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(250, 1);
         output.WriteMessage(FlareId);
       }
       if (_unknownFields != null) {
@@ -4037,8 +1599,124 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
+      if (HasEnabled) {
+        output.WriteRawTag(16);
+        output.WriteBool(Enabled);
+      }
+      if (HasType) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) Type);
+      }
+      if (HasShape) {
+        output.WriteRawTag(32);
+        output.WriteEnum((int) Shape);
+      }
+      if (HasIntensity) {
+        output.WriteRawTag(45);
+        output.WriteFloat(Intensity);
+      }
+      if (HasBounceIntensity) {
+        output.WriteRawTag(53);
+        output.WriteFloat(BounceIntensity);
+      }
+      if (HasRange) {
+        output.WriteRawTag(61);
+        output.WriteFloat(Range);
+      }
+      if (color_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(Color);
+      }
+      if (HasColorTemperature) {
+        output.WriteRawTag(77);
+        output.WriteFloat(ColorTemperature);
+      }
+      if (HasUseColorTemperature) {
+        output.WriteRawTag(80);
+        output.WriteBool(UseColorTemperature);
+      }
+      if (HasSpotAngle) {
+        output.WriteRawTag(93);
+        output.WriteFloat(SpotAngle);
+      }
+      if (HasInnerSpotAngle) {
+        output.WriteRawTag(101);
+        output.WriteFloat(InnerSpotAngle);
+      }
+      if (HasShadows) {
+        output.WriteRawTag(104);
+        output.WriteEnum((int) Shadows);
+      }
+      if (HasShadowStrength) {
+        output.WriteRawTag(117);
+        output.WriteFloat(ShadowStrength);
+      }
+      if (HasShadowResolution) {
+        output.WriteRawTag(120);
+        output.WriteEnum((int) ShadowResolution);
+      }
+      if (shadowMatrixOverride_ != null) {
+        output.WriteRawTag(130, 1);
+        output.WriteMessage(ShadowMatrixOverride);
+      }
+      if (HasUseShadowMatrixOverride) {
+        output.WriteRawTag(136, 1);
+        output.WriteBool(UseShadowMatrixOverride);
+      }
+      if (HasShadowBias) {
+        output.WriteRawTag(149, 1);
+        output.WriteFloat(ShadowBias);
+      }
+      if (HasShadowNormalBias) {
+        output.WriteRawTag(157, 1);
+        output.WriteFloat(ShadowNormalBias);
+      }
+      if (HasShadowNearPlane) {
+        output.WriteRawTag(165, 1);
+        output.WriteFloat(ShadowNearPlane);
+      }
+      if (HasUseViewFrustumForShadowCasterCull) {
+        output.WriteRawTag(168, 1);
+        output.WriteBool(UseViewFrustumForShadowCasterCull);
+      }
+      if (layerShadowCullDistances_ != null) {
+        output.WriteRawTag(178, 1);
+        output.WriteMessage(LayerShadowCullDistances);
+      }
+      if (HasShadowCustomResolution) {
+        output.WriteRawTag(184, 1);
+        output.WriteInt32(ShadowCustomResolution);
+      }
+      if (HasLightShadowCasterMode) {
+        output.WriteRawTag(192, 1);
+        output.WriteEnum((int) LightShadowCasterMode);
+      }
+      if (HasRenderingLayerMask) {
+        output.WriteRawTag(200, 1);
+        output.WriteInt32(RenderingLayerMask);
+      }
+      if (HasCullingMask) {
+        output.WriteRawTag(208, 1);
+        output.WriteInt32(CullingMask);
+      }
+      if (boundingSphereOverride_ != null) {
+        output.WriteRawTag(218, 1);
+        output.WriteMessage(BoundingSphereOverride);
+      }
+      if (HasUseBoundingSphereOverride) {
+        output.WriteRawTag(224, 1);
+        output.WriteBool(UseBoundingSphereOverride);
+      }
+      if (cookieId_ != null) {
+        output.WriteRawTag(234, 1);
+        output.WriteMessage(CookieId);
+      }
+      if (HasCookieSize) {
+        output.WriteRawTag(245, 1);
+        output.WriteFloat(CookieSize);
+      }
       if (flareId_ != null) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(250, 1);
         output.WriteMessage(FlareId);
       }
       if (_unknownFields != null) {
@@ -4054,8 +1732,95 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
+      if (HasEnabled) {
+        size += 1 + 1;
+      }
+      if (HasType) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+      }
+      if (HasShape) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Shape);
+      }
+      if (HasIntensity) {
+        size += 1 + 4;
+      }
+      if (HasBounceIntensity) {
+        size += 1 + 4;
+      }
+      if (HasRange) {
+        size += 1 + 4;
+      }
+      if (color_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
+      }
+      if (HasColorTemperature) {
+        size += 1 + 4;
+      }
+      if (HasUseColorTemperature) {
+        size += 1 + 1;
+      }
+      if (HasSpotAngle) {
+        size += 1 + 4;
+      }
+      if (HasInnerSpotAngle) {
+        size += 1 + 4;
+      }
+      if (HasShadows) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Shadows);
+      }
+      if (HasShadowStrength) {
+        size += 1 + 4;
+      }
+      if (HasShadowResolution) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ShadowResolution);
+      }
+      if (shadowMatrixOverride_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(ShadowMatrixOverride);
+      }
+      if (HasUseShadowMatrixOverride) {
+        size += 2 + 1;
+      }
+      if (HasShadowBias) {
+        size += 2 + 4;
+      }
+      if (HasShadowNormalBias) {
+        size += 2 + 4;
+      }
+      if (HasShadowNearPlane) {
+        size += 2 + 4;
+      }
+      if (HasUseViewFrustumForShadowCasterCull) {
+        size += 2 + 1;
+      }
+      if (layerShadowCullDistances_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(LayerShadowCullDistances);
+      }
+      if (HasShadowCustomResolution) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(ShadowCustomResolution);
+      }
+      if (HasLightShadowCasterMode) {
+        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) LightShadowCasterMode);
+      }
+      if (HasRenderingLayerMask) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RenderingLayerMask);
+      }
+      if (HasCullingMask) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(CullingMask);
+      }
+      if (boundingSphereOverride_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(BoundingSphereOverride);
+      }
+      if (HasUseBoundingSphereOverride) {
+        size += 2 + 1;
+      }
+      if (cookieId_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(CookieId);
+      }
+      if (HasCookieSize) {
+        size += 2 + 4;
+      }
       if (flareId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(FlareId);
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(FlareId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4065,7 +1830,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(LightUpdateFlare other) {
+    public void MergeFrom(LightUpdate other) {
       if (other == null) {
         return;
       }
@@ -4074,6 +1839,108 @@ namespace PLUME.Sample.Unity {
           Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         Id.MergeFrom(other.Id);
+      }
+      if (other.HasEnabled) {
+        Enabled = other.Enabled;
+      }
+      if (other.HasType) {
+        Type = other.Type;
+      }
+      if (other.HasShape) {
+        Shape = other.Shape;
+      }
+      if (other.HasIntensity) {
+        Intensity = other.Intensity;
+      }
+      if (other.HasBounceIntensity) {
+        BounceIntensity = other.BounceIntensity;
+      }
+      if (other.HasRange) {
+        Range = other.Range;
+      }
+      if (other.color_ != null) {
+        if (color_ == null) {
+          Color = new global::PLUME.Sample.Common.Color();
+        }
+        Color.MergeFrom(other.Color);
+      }
+      if (other.HasColorTemperature) {
+        ColorTemperature = other.ColorTemperature;
+      }
+      if (other.HasUseColorTemperature) {
+        UseColorTemperature = other.UseColorTemperature;
+      }
+      if (other.HasSpotAngle) {
+        SpotAngle = other.SpotAngle;
+      }
+      if (other.HasInnerSpotAngle) {
+        InnerSpotAngle = other.InnerSpotAngle;
+      }
+      if (other.HasShadows) {
+        Shadows = other.Shadows;
+      }
+      if (other.HasShadowStrength) {
+        ShadowStrength = other.ShadowStrength;
+      }
+      if (other.HasShadowResolution) {
+        ShadowResolution = other.ShadowResolution;
+      }
+      if (other.shadowMatrixOverride_ != null) {
+        if (shadowMatrixOverride_ == null) {
+          ShadowMatrixOverride = new global::PLUME.Sample.Common.Matrix4x4();
+        }
+        ShadowMatrixOverride.MergeFrom(other.ShadowMatrixOverride);
+      }
+      if (other.HasUseShadowMatrixOverride) {
+        UseShadowMatrixOverride = other.UseShadowMatrixOverride;
+      }
+      if (other.HasShadowBias) {
+        ShadowBias = other.ShadowBias;
+      }
+      if (other.HasShadowNormalBias) {
+        ShadowNormalBias = other.ShadowNormalBias;
+      }
+      if (other.HasShadowNearPlane) {
+        ShadowNearPlane = other.ShadowNearPlane;
+      }
+      if (other.HasUseViewFrustumForShadowCasterCull) {
+        UseViewFrustumForShadowCasterCull = other.UseViewFrustumForShadowCasterCull;
+      }
+      if (other.layerShadowCullDistances_ != null) {
+        if (layerShadowCullDistances_ == null) {
+          LayerShadowCullDistances = new global::PLUME.Sample.Unity.LayerShadowCullDistances();
+        }
+        LayerShadowCullDistances.MergeFrom(other.LayerShadowCullDistances);
+      }
+      if (other.HasShadowCustomResolution) {
+        ShadowCustomResolution = other.ShadowCustomResolution;
+      }
+      if (other.HasLightShadowCasterMode) {
+        LightShadowCasterMode = other.LightShadowCasterMode;
+      }
+      if (other.HasRenderingLayerMask) {
+        RenderingLayerMask = other.RenderingLayerMask;
+      }
+      if (other.HasCullingMask) {
+        CullingMask = other.CullingMask;
+      }
+      if (other.boundingSphereOverride_ != null) {
+        if (boundingSphereOverride_ == null) {
+          BoundingSphereOverride = new global::PLUME.Sample.Common.Vector4();
+        }
+        BoundingSphereOverride.MergeFrom(other.BoundingSphereOverride);
+      }
+      if (other.HasUseBoundingSphereOverride) {
+        UseBoundingSphereOverride = other.UseBoundingSphereOverride;
+      }
+      if (other.cookieId_ != null) {
+        if (cookieId_ == null) {
+          CookieId = new global::PLUME.Sample.Unity.AssetIdentifier();
+        }
+        CookieId.MergeFrom(other.CookieId);
+      }
+      if (other.HasCookieSize) {
+        CookieSize = other.CookieSize;
       }
       if (other.flareId_ != null) {
         if (flareId_ == null) {
@@ -4103,7 +1970,138 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 18: {
+          case 16: {
+            Enabled = input.ReadBool();
+            break;
+          }
+          case 24: {
+            Type = (global::PLUME.Sample.Unity.LightType) input.ReadEnum();
+            break;
+          }
+          case 32: {
+            Shape = (global::PLUME.Sample.Unity.LightShape) input.ReadEnum();
+            break;
+          }
+          case 45: {
+            Intensity = input.ReadFloat();
+            break;
+          }
+          case 53: {
+            BounceIntensity = input.ReadFloat();
+            break;
+          }
+          case 61: {
+            Range = input.ReadFloat();
+            break;
+          }
+          case 66: {
+            if (color_ == null) {
+              Color = new global::PLUME.Sample.Common.Color();
+            }
+            input.ReadMessage(Color);
+            break;
+          }
+          case 77: {
+            ColorTemperature = input.ReadFloat();
+            break;
+          }
+          case 80: {
+            UseColorTemperature = input.ReadBool();
+            break;
+          }
+          case 93: {
+            SpotAngle = input.ReadFloat();
+            break;
+          }
+          case 101: {
+            InnerSpotAngle = input.ReadFloat();
+            break;
+          }
+          case 104: {
+            Shadows = (global::PLUME.Sample.Unity.LightShadows) input.ReadEnum();
+            break;
+          }
+          case 117: {
+            ShadowStrength = input.ReadFloat();
+            break;
+          }
+          case 120: {
+            ShadowResolution = (global::PLUME.Sample.Unity.LightShadowResolution) input.ReadEnum();
+            break;
+          }
+          case 130: {
+            if (shadowMatrixOverride_ == null) {
+              ShadowMatrixOverride = new global::PLUME.Sample.Common.Matrix4x4();
+            }
+            input.ReadMessage(ShadowMatrixOverride);
+            break;
+          }
+          case 136: {
+            UseShadowMatrixOverride = input.ReadBool();
+            break;
+          }
+          case 149: {
+            ShadowBias = input.ReadFloat();
+            break;
+          }
+          case 157: {
+            ShadowNormalBias = input.ReadFloat();
+            break;
+          }
+          case 165: {
+            ShadowNearPlane = input.ReadFloat();
+            break;
+          }
+          case 168: {
+            UseViewFrustumForShadowCasterCull = input.ReadBool();
+            break;
+          }
+          case 178: {
+            if (layerShadowCullDistances_ == null) {
+              LayerShadowCullDistances = new global::PLUME.Sample.Unity.LayerShadowCullDistances();
+            }
+            input.ReadMessage(LayerShadowCullDistances);
+            break;
+          }
+          case 184: {
+            ShadowCustomResolution = input.ReadInt32();
+            break;
+          }
+          case 192: {
+            LightShadowCasterMode = (global::PLUME.Sample.Unity.LightShadowCasterMode) input.ReadEnum();
+            break;
+          }
+          case 200: {
+            RenderingLayerMask = input.ReadInt32();
+            break;
+          }
+          case 208: {
+            CullingMask = input.ReadInt32();
+            break;
+          }
+          case 218: {
+            if (boundingSphereOverride_ == null) {
+              BoundingSphereOverride = new global::PLUME.Sample.Common.Vector4();
+            }
+            input.ReadMessage(BoundingSphereOverride);
+            break;
+          }
+          case 224: {
+            UseBoundingSphereOverride = input.ReadBool();
+            break;
+          }
+          case 234: {
+            if (cookieId_ == null) {
+              CookieId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(CookieId);
+            break;
+          }
+          case 245: {
+            CookieSize = input.ReadFloat();
+            break;
+          }
+          case 250: {
             if (flareId_ == null) {
               FlareId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
@@ -4132,11 +2130,323 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 18: {
+          case 16: {
+            Enabled = input.ReadBool();
+            break;
+          }
+          case 24: {
+            Type = (global::PLUME.Sample.Unity.LightType) input.ReadEnum();
+            break;
+          }
+          case 32: {
+            Shape = (global::PLUME.Sample.Unity.LightShape) input.ReadEnum();
+            break;
+          }
+          case 45: {
+            Intensity = input.ReadFloat();
+            break;
+          }
+          case 53: {
+            BounceIntensity = input.ReadFloat();
+            break;
+          }
+          case 61: {
+            Range = input.ReadFloat();
+            break;
+          }
+          case 66: {
+            if (color_ == null) {
+              Color = new global::PLUME.Sample.Common.Color();
+            }
+            input.ReadMessage(Color);
+            break;
+          }
+          case 77: {
+            ColorTemperature = input.ReadFloat();
+            break;
+          }
+          case 80: {
+            UseColorTemperature = input.ReadBool();
+            break;
+          }
+          case 93: {
+            SpotAngle = input.ReadFloat();
+            break;
+          }
+          case 101: {
+            InnerSpotAngle = input.ReadFloat();
+            break;
+          }
+          case 104: {
+            Shadows = (global::PLUME.Sample.Unity.LightShadows) input.ReadEnum();
+            break;
+          }
+          case 117: {
+            ShadowStrength = input.ReadFloat();
+            break;
+          }
+          case 120: {
+            ShadowResolution = (global::PLUME.Sample.Unity.LightShadowResolution) input.ReadEnum();
+            break;
+          }
+          case 130: {
+            if (shadowMatrixOverride_ == null) {
+              ShadowMatrixOverride = new global::PLUME.Sample.Common.Matrix4x4();
+            }
+            input.ReadMessage(ShadowMatrixOverride);
+            break;
+          }
+          case 136: {
+            UseShadowMatrixOverride = input.ReadBool();
+            break;
+          }
+          case 149: {
+            ShadowBias = input.ReadFloat();
+            break;
+          }
+          case 157: {
+            ShadowNormalBias = input.ReadFloat();
+            break;
+          }
+          case 165: {
+            ShadowNearPlane = input.ReadFloat();
+            break;
+          }
+          case 168: {
+            UseViewFrustumForShadowCasterCull = input.ReadBool();
+            break;
+          }
+          case 178: {
+            if (layerShadowCullDistances_ == null) {
+              LayerShadowCullDistances = new global::PLUME.Sample.Unity.LayerShadowCullDistances();
+            }
+            input.ReadMessage(LayerShadowCullDistances);
+            break;
+          }
+          case 184: {
+            ShadowCustomResolution = input.ReadInt32();
+            break;
+          }
+          case 192: {
+            LightShadowCasterMode = (global::PLUME.Sample.Unity.LightShadowCasterMode) input.ReadEnum();
+            break;
+          }
+          case 200: {
+            RenderingLayerMask = input.ReadInt32();
+            break;
+          }
+          case 208: {
+            CullingMask = input.ReadInt32();
+            break;
+          }
+          case 218: {
+            if (boundingSphereOverride_ == null) {
+              BoundingSphereOverride = new global::PLUME.Sample.Common.Vector4();
+            }
+            input.ReadMessage(BoundingSphereOverride);
+            break;
+          }
+          case 224: {
+            UseBoundingSphereOverride = input.ReadBool();
+            break;
+          }
+          case 234: {
+            if (cookieId_ == null) {
+              CookieId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(CookieId);
+            break;
+          }
+          case 245: {
+            CookieSize = input.ReadFloat();
+            break;
+          }
+          case 250: {
             if (flareId_ == null) {
               FlareId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(FlareId);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class LayerShadowCullDistances : pb::IMessage<LayerShadowCullDistances>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<LayerShadowCullDistances> _parser = new pb::MessageParser<LayerShadowCullDistances>(() => new LayerShadowCullDistances());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<LayerShadowCullDistances> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.LightReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LayerShadowCullDistances() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LayerShadowCullDistances(LayerShadowCullDistances other) : this() {
+      distances_ = other.distances_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LayerShadowCullDistances Clone() {
+      return new LayerShadowCullDistances(this);
+    }
+
+    /// <summary>Field number for the "distances" field.</summary>
+    public const int DistancesFieldNumber = 1;
+    private static readonly pb::FieldCodec<float> _repeated_distances_codec
+        = pb::FieldCodec.ForFloat(10);
+    private readonly pbc::RepeatedField<float> distances_ = new pbc::RepeatedField<float>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<float> Distances {
+      get { return distances_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as LayerShadowCullDistances);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(LayerShadowCullDistances other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!distances_.Equals(other.distances_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= distances_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      distances_.WriteTo(output, _repeated_distances_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      distances_.WriteTo(ref output, _repeated_distances_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += distances_.CalculateSize(_repeated_distances_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(LayerShadowCullDistances other) {
+      if (other == null) {
+        return;
+      }
+      distances_.Add(other.distances_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10:
+          case 13: {
+            distances_.AddEntriesFrom(input, _repeated_distances_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10:
+          case 13: {
+            distances_.AddEntriesFrom(ref input, _repeated_distances_codec);
             break;
           }
         }

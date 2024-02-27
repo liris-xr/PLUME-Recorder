@@ -27,21 +27,22 @@ namespace PLUME.Sample.Unity {
             "Chx1bml0eS90ZXJyYWluX2NvbGxpZGVyLnByb3RvEhJwbHVtZS5zYW1wbGUu",
             "dW5pdHkaF3VuaXR5L2lkZW50aWZpZXJzLnByb3RvIkwKFVRlcnJhaW5Db2xs",
             "aWRlckNyZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5D",
-            "b21wb25lbnRJZGVudGlmaWVyImQKHFRlcnJhaW5Db2xsaWRlclVwZGF0ZUVu",
-            "YWJsZWQSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9u",
-            "ZW50SWRlbnRpZmllchIPCgdlbmFibGVkGAIgASgIIvIBChVUZXJyYWluQ29s",
-            "bGlkZXJVcGRhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
-            "Q29tcG9uZW50SWRlbnRpZmllchJBCg90ZXJyYWluX2RhdGFfaWQYAiABKAsy",
-            "Iy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVudGlmaWVySACIAQESPQoL",
-            "bWF0ZXJpYWxfaWQYAyABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJ",
-            "ZGVudGlmaWVySAGIAQFCEgoQX3RlcnJhaW5fZGF0YV9pZEIOCgxfbWF0ZXJp",
-            "YWxfaWRCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
+            "b21wb25lbnRJZGVudGlmaWVyIk0KFlRlcnJhaW5Db2xsaWRlckRlc3Ryb3kS",
+            "MwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRl",
+            "bnRpZmllciKUAgoVVGVycmFpbkNvbGxpZGVyVXBkYXRlEjMKAmlkGAEgASgL",
+            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISFAoH",
+            "ZW5hYmxlZBgCIAEoCEgAiAEBEkEKD3RlcnJhaW5fZGF0YV9pZBgDIAEoCzIj",
+            "LnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZpZXJIAYgBARI9Cgtt",
+            "YXRlcmlhbF9pZBgEIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElk",
+            "ZW50aWZpZXJIAogBAUIKCghfZW5hYmxlZEISChBfdGVycmFpbl9kYXRhX2lk",
+            "Qg4KDF9tYXRlcmlhbF9pZEIVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TerrainColliderCreate), global::PLUME.Sample.Unity.TerrainColliderCreate.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TerrainColliderUpdateEnabled), global::PLUME.Sample.Unity.TerrainColliderUpdateEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TerrainColliderUpdate), global::PLUME.Sample.Unity.TerrainColliderUpdate.Parser, new[]{ "Id", "TerrainDataId", "MaterialId" }, new[]{ "TerrainDataId", "MaterialId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TerrainColliderDestroy), global::PLUME.Sample.Unity.TerrainColliderDestroy.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TerrainColliderUpdate), global::PLUME.Sample.Unity.TerrainColliderUpdate.Parser, new[]{ "Id", "Enabled", "TerrainDataId", "MaterialId" }, new[]{ "Enabled", "TerrainDataId", "MaterialId" }, null, null, null)
           }));
     }
     #endregion
@@ -248,16 +249,16 @@ namespace PLUME.Sample.Unity {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class TerrainColliderUpdateEnabled : pb::IMessage<TerrainColliderUpdateEnabled>
+  public sealed partial class TerrainColliderDestroy : pb::IMessage<TerrainColliderDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<TerrainColliderUpdateEnabled> _parser = new pb::MessageParser<TerrainColliderUpdateEnabled>(() => new TerrainColliderUpdateEnabled());
+    private static readonly pb::MessageParser<TerrainColliderDestroy> _parser = new pb::MessageParser<TerrainColliderDestroy>(() => new TerrainColliderDestroy());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<TerrainColliderUpdateEnabled> Parser { get { return _parser; } }
+    public static pb::MessageParser<TerrainColliderDestroy> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -273,7 +274,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TerrainColliderUpdateEnabled() {
+    public TerrainColliderDestroy() {
       OnConstruction();
     }
 
@@ -281,16 +282,15 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TerrainColliderUpdateEnabled(TerrainColliderUpdateEnabled other) : this() {
+    public TerrainColliderDestroy(TerrainColliderDestroy other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      enabled_ = other.enabled_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public TerrainColliderUpdateEnabled Clone() {
-      return new TerrainColliderUpdateEnabled(this);
+    public TerrainColliderDestroy Clone() {
+      return new TerrainColliderDestroy(this);
     }
 
     /// <summary>Field number for the "id" field.</summary>
@@ -305,27 +305,15 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "enabled" field.</summary>
-    public const int EnabledFieldNumber = 2;
-    private bool enabled_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Enabled {
-      get { return enabled_; }
-      set {
-        enabled_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as TerrainColliderUpdateEnabled);
+      return Equals(other as TerrainColliderDestroy);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(TerrainColliderUpdateEnabled other) {
+    public bool Equals(TerrainColliderDestroy other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -333,7 +321,6 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
-      if (Enabled != other.Enabled) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -342,7 +329,6 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (Enabled != false) hash ^= Enabled.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -365,10 +351,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Enabled != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -383,10 +365,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (Enabled != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -400,9 +378,6 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (Enabled != false) {
-        size += 1 + 1;
-      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -411,7 +386,7 @@ namespace PLUME.Sample.Unity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(TerrainColliderUpdateEnabled other) {
+    public void MergeFrom(TerrainColliderDestroy other) {
       if (other == null) {
         return;
       }
@@ -420,9 +395,6 @@ namespace PLUME.Sample.Unity {
           Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         Id.MergeFrom(other.Id);
-      }
-      if (other.Enabled != false) {
-        Enabled = other.Enabled;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -444,10 +416,6 @@ namespace PLUME.Sample.Unity {
               Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
             input.ReadMessage(Id);
-            break;
-          }
-          case 16: {
-            Enabled = input.ReadBool();
             break;
           }
         }
@@ -472,10 +440,6 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 16: {
-            Enabled = input.ReadBool();
-            break;
-          }
         }
       }
     }
@@ -491,6 +455,7 @@ namespace PLUME.Sample.Unity {
   {
     private static readonly pb::MessageParser<TerrainColliderUpdate> _parser = new pb::MessageParser<TerrainColliderUpdate>(() => new TerrainColliderUpdate());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<TerrainColliderUpdate> Parser { get { return _parser; } }
@@ -518,7 +483,9 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public TerrainColliderUpdate(TerrainColliderUpdate other) : this() {
+      _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
+      enabled_ = other.enabled_;
       terrainDataId_ = other.terrainDataId_ != null ? other.terrainDataId_.Clone() : null;
       materialId_ = other.materialId_ != null ? other.materialId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -542,8 +509,35 @@ namespace PLUME.Sample.Unity {
       }
     }
 
+    /// <summary>Field number for the "enabled" field.</summary>
+    public const int EnabledFieldNumber = 2;
+    private readonly static bool EnabledDefaultValue = false;
+
+    private bool enabled_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Enabled {
+      get { if ((_hasBits0 & 1) != 0) { return enabled_; } else { return EnabledDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        enabled_ = value;
+      }
+    }
+    /// <summary>Gets whether the "enabled" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasEnabled {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "enabled" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearEnabled() {
+      _hasBits0 &= ~1;
+    }
+
     /// <summary>Field number for the "terrain_data_id" field.</summary>
-    public const int TerrainDataIdFieldNumber = 2;
+    public const int TerrainDataIdFieldNumber = 3;
     private global::PLUME.Sample.Unity.AssetIdentifier terrainDataId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -555,7 +549,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "material_id" field.</summary>
-    public const int MaterialIdFieldNumber = 3;
+    public const int MaterialIdFieldNumber = 4;
     private global::PLUME.Sample.Unity.AssetIdentifier materialId_;
     /// <summary>
     /// Physic material of the terrain (friction, bounciness)
@@ -585,6 +579,7 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
+      if (Enabled != other.Enabled) return false;
       if (!object.Equals(TerrainDataId, other.TerrainDataId)) return false;
       if (!object.Equals(MaterialId, other.MaterialId)) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -595,6 +590,7 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
+      if (HasEnabled) hash ^= Enabled.GetHashCode();
       if (terrainDataId_ != null) hash ^= TerrainDataId.GetHashCode();
       if (materialId_ != null) hash ^= MaterialId.GetHashCode();
       if (_unknownFields != null) {
@@ -619,12 +615,16 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
+      if (HasEnabled) {
+        output.WriteRawTag(16);
+        output.WriteBool(Enabled);
+      }
       if (terrainDataId_ != null) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteMessage(TerrainDataId);
       }
       if (materialId_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteMessage(MaterialId);
       }
       if (_unknownFields != null) {
@@ -641,12 +641,16 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
+      if (HasEnabled) {
+        output.WriteRawTag(16);
+        output.WriteBool(Enabled);
+      }
       if (terrainDataId_ != null) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteMessage(TerrainDataId);
       }
       if (materialId_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteMessage(MaterialId);
       }
       if (_unknownFields != null) {
@@ -661,6 +665,9 @@ namespace PLUME.Sample.Unity {
       int size = 0;
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (HasEnabled) {
+        size += 1 + 1;
       }
       if (terrainDataId_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(TerrainDataId);
@@ -685,6 +692,9 @@ namespace PLUME.Sample.Unity {
           Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
         Id.MergeFrom(other.Id);
+      }
+      if (other.HasEnabled) {
+        Enabled = other.Enabled;
       }
       if (other.terrainDataId_ != null) {
         if (terrainDataId_ == null) {
@@ -720,14 +730,18 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 18: {
+          case 16: {
+            Enabled = input.ReadBool();
+            break;
+          }
+          case 26: {
             if (terrainDataId_ == null) {
               TerrainDataId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(TerrainDataId);
             break;
           }
-          case 26: {
+          case 34: {
             if (materialId_ == null) {
               MaterialId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
@@ -756,14 +770,18 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 18: {
+          case 16: {
+            Enabled = input.ReadBool();
+            break;
+          }
+          case 26: {
             if (terrainDataId_ == null) {
               TerrainDataId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(TerrainDataId);
             break;
           }
-          case 26: {
+          case 34: {
             if (materialId_ == null) {
               MaterialId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }

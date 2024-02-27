@@ -1,19 +1,49 @@
 using System;
-using Guid = PLUME.Sample.ProtoBurst.Guid;
+using ProtoBurst;
+using ProtoBurst.Packages.ProtoBurst.Runtime;
+using Unity.Burst;
+using Unity.Collections;
 
 namespace PLUME.Core.Object
 {
-    public readonly struct ObjectIdentifier : IEquatable<ObjectIdentifier>
+    [BurstCompile]
+    public readonly struct ObjectIdentifier : IObjectIdentifier, IProtoBurstMessage, IEquatable<ObjectIdentifier>
     {
+        public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.ObjectIdentifier";
+
         public static ObjectIdentifier Null { get; } = new(0, Guid.Null);
 
-        public readonly int InstanceId;
-        public readonly Guid GlobalId;
+        private static readonly uint IdFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.LengthDelimited);
 
-        public ObjectIdentifier(int instanceId, Guid globalId)
+        public readonly int InstanceId;
+        
+        public readonly Guid Guid;
+        
+        public ObjectIdentifier(int instanceId, Guid guid)
         {
             InstanceId = instanceId;
-            GlobalId = globalId;
+            Guid = guid;
+        }
+
+        public int ComputeSize()
+        {
+            return BufferWriterExtensions.ComputeTagSize(IdFieldTag) +
+                   BufferWriterExtensions.ComputeLengthPrefixSize(Guid.Size) +
+                   Guid.Size;
+        }
+
+        public void WriteTo(ref BufferWriter bufferWriter)
+        {
+            var guid = Guid;
+
+            bufferWriter.WriteTag(IdFieldTag);
+            bufferWriter.WriteLength(Guid.Size);
+            guid.WriteTo(ref bufferWriter);
+        }
+
+        public SampleTypeUrl GetTypeUrl(Allocator allocator)
+        {
+            return SampleTypeUrl.Alloc(TypeUrl, allocator);
         }
 
         public bool Equals(ObjectIdentifier other)
@@ -31,9 +61,19 @@ namespace PLUME.Core.Object
             return InstanceId;
         }
 
+        public static bool operator ==(ObjectIdentifier lhs, ObjectIdentifier rhs)
+        {
+            return lhs.Equals(rhs);
+        }
+
+        public static bool operator !=(ObjectIdentifier lhs, ObjectIdentifier rhs)
+        {
+            return !(lhs == rhs);
+        }
+        
         public override string ToString()
         {
-            return $"Instance ID: {InstanceId}, Global ID: {GlobalId}";
+            return $"Instance ID: {InstanceId}, Global ID: {Guid}";
         }
     }
 }

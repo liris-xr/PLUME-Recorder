@@ -15,13 +15,13 @@ namespace PLUME.Base.Module.Unity.Transform
         private readonly float _scaleThresholdSq;
         
         private readonly DynamicTransformAccessArray _transformAccessArray;
-        private NativeHashMap<ObjectIdentifier, TransformPositionState> _positionStates;
+        private NativeHashMap<ComponentIdentifier, TransformPositionState> _positionStates;
 
-        private NativeArray<ObjectIdentifier> _identifiersWorkCopy;
+        private NativeArray<ComponentIdentifier> _identifiersWorkCopy;
         private NativeArray<TransformPositionState> _positionStatesWorkCopy;
         private JobHandle _pollNewPositionStatesJobHandle;
 
-        internal TransformPositionStateUpdater(NativeHashMap<ObjectIdentifier, TransformPositionState> positionStates,
+        internal TransformPositionStateUpdater(NativeHashMap<ComponentIdentifier, TransformPositionState> positionStates,
             DynamicTransformAccessArray transformAccessArray,
             float angularThreshold, float positionThresholdSq, float scaleThresholdSq)
         {

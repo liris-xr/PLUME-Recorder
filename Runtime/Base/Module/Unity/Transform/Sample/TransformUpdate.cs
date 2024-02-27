@@ -1,4 +1,7 @@
+using PLUME.Core.Object;
 using PLUME.Sample.ProtoBurst;
+using PLUME.Sample.ProtoBurst.Common;
+using PLUME.Sample.ProtoBurst.Unity;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
@@ -19,10 +22,10 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
         private static readonly uint LocalRotationFieldTag = WireFormat.MakeTag(5, WireFormat.WireType.LengthDelimited);
         private static readonly uint LocalScaleFieldTag = WireFormat.MakeTag(6, WireFormat.WireType.LengthDelimited);
 
-        private TransformGameObjectIdentifier _identifier;
+        private ComponentIdentifier _identifier;
 
         private bool _hasParentField;
-        private TransformGameObjectIdentifier _parent;
+        private ComponentIdentifier _parent;
         
         private bool _hasSiblingIndexField;
         private int _siblingIndex;
@@ -36,7 +39,7 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
         private bool _hasLocalScaleField;
         private Vector3 _localScale;
 
-        public TransformUpdate(TransformGameObjectIdentifier identifier)
+        public TransformUpdate(ComponentIdentifier identifier)
         {
             _identifier = identifier;
             
@@ -137,7 +140,7 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
             return SampleTypeUrl.Alloc(TypeUrl, allocator);
         }
 
-        public void SetParent(TransformGameObjectIdentifier parent)
+        public void SetParent(ComponentIdentifier parent)
         {
             _hasParentField = true;
             _parent = parent;

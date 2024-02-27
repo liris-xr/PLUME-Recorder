@@ -1,11 +1,10 @@
 using System;
-using Cysharp.Threading.Tasks;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module;
 
 namespace PLUME.Base.Module
 {
-    public abstract class RecorderModuleBase : IRecorderModule
+    public abstract class RecorderModule : IRecorderModule
     {
         public bool IsRecording { get; private set; }
 
@@ -36,7 +35,7 @@ namespace PLUME.Base.Module
         void IRecorderModule.StopRecording(Record record, RecorderContext recorderContext)
         {
             CheckIsRecording();
-            OnForceStopRecording(record, recorderContext);
+            OnStopRecording(record, recorderContext);
             IsRecording = false;
         }
 
@@ -52,26 +51,6 @@ namespace PLUME.Base.Module
         {
         }
 
-        protected virtual void OnEarlyUpdate(long deltaTime, Record record, RecorderContext context)
-        {
-        }
-
-        protected virtual void OnPreUpdate(long deltaTime, Record record, RecorderContext context)
-        {
-        }
-
-        protected virtual void OnUpdate(long deltaTime, Record record, RecorderContext context)
-        {
-        }
-
-        protected virtual void OnPreLateUpdate(long deltaTime, Record record, RecorderContext context)
-        {
-        }
-
-        protected virtual void OnPostLateUpdate(long deltaTime, Record record, RecorderContext context)
-        {
-        }
-
         protected virtual void OnCreate(RecorderContext ctx)
         {
         }
@@ -84,12 +63,7 @@ namespace PLUME.Base.Module
         {
         }
 
-        protected virtual UniTask OnStopRecording(Record record, RecorderContext recorderContext)
-        {
-            return UniTask.CompletedTask;
-        }
-
-        protected virtual void OnForceStopRecording(Record record, RecorderContext recorderContext)
+        protected virtual void OnStopRecording(Record record, RecorderContext recorderContext)
         {
         }
     }

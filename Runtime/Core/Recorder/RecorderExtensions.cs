@@ -70,14 +70,14 @@ namespace PLUME.Core.Recorder
         public static void StartRecordingObject<T>(T obj, bool markCreated = true) where T : UnityEngine.Object
         {
             CheckInstantiated();
-            var objectSafeRef = Instance._context.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(obj);
+            var objectSafeRef = Instance._context.ObjectSafeRefProvider.GetOrCreateObjectSafeRef(obj);
             Instance.StartRecordingObjectInternal(objectSafeRef, markCreated);
         }
 
         public static void StopRecordingObject<T>(T obj, bool markDestroyed = true) where T : UnityEngine.Object
         {
             CheckInstantiated();
-            var objectSafeRef = Instance._context.ObjectSafeRefProvider.GetOrCreateTypedObjectSafeRef(obj);
+            var objectSafeRef = Instance._context.ObjectSafeRefProvider.GetOrCreateObjectSafeRef(obj);
             Instance.StopRecordingObjectInternal(objectSafeRef, markDestroyed);
         }
 

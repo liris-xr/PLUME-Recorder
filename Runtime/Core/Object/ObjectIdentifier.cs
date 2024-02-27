@@ -50,7 +50,8 @@ namespace PLUME.Core.Object
         {
             return InstanceId == other.InstanceId;
         }
-
+        
+        [BurstDiscard]
         public override bool Equals(object obj)
         {
             return obj is ObjectIdentifier other && Equals(other);
@@ -60,17 +61,8 @@ namespace PLUME.Core.Object
         {
             return InstanceId;
         }
-
-        public static bool operator ==(ObjectIdentifier lhs, ObjectIdentifier rhs)
-        {
-            return lhs.Equals(rhs);
-        }
-
-        public static bool operator !=(ObjectIdentifier lhs, ObjectIdentifier rhs)
-        {
-            return !(lhs == rhs);
-        }
         
+        [BurstDiscard]
         public override string ToString()
         {
             return $"Instance ID: {InstanceId}, Global ID: {Guid}";

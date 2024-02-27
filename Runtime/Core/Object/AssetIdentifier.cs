@@ -57,25 +57,16 @@ namespace PLUME.Core.Object
         {
             return AssetId.Equals(other.AssetId);
         }
-
+        
+        [BurstDiscard]
         public override bool Equals(object obj)
         {
             return obj is AssetIdentifier other && Equals(other);
         }
-
+        
         public override int GetHashCode()
         {
             return AssetId.GetHashCode();
-        }
-
-        public static bool operator ==(AssetIdentifier lhs, AssetIdentifier rhs)
-        {
-            return lhs.Equals(rhs);
-        }
-
-        public static bool operator !=(AssetIdentifier lhs, AssetIdentifier rhs)
-        {
-            return !lhs.Equals(rhs);
         }
     }
 }

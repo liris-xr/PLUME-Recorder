@@ -31,7 +31,7 @@ namespace PLUME.Core.Object.SafeRef
 
         public bool Equals(GameObjectSafeRef other)
         {
-            return Identifier == other.Identifier;
+            return Identifier.Equals(other.Identifier);
         }
 
         public override bool Equals(object obj)

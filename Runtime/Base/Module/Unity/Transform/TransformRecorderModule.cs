@@ -105,7 +105,7 @@ namespace PLUME.Base.Module.Unity.Transform
             var parentIdentifier = parentSafeRef.ComponentIdentifier;
 
             var hierarchyState = _hierarchyStates[tSafeRef.ComponentIdentifier];
-            hierarchyState.ParentDirty = parentIdentifier != hierarchyState.ParentIdentifier;
+            hierarchyState.ParentDirty = !parentIdentifier.Equals(hierarchyState.ParentIdentifier);
             hierarchyState.ParentIdentifier = parentIdentifier;
             _hierarchyStates[tSafeRef.ComponentIdentifier] = hierarchyState;
         }

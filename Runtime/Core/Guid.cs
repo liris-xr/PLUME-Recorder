@@ -10,7 +10,7 @@ namespace PLUME.Core
     /// A 128-bit globally unique identifier.
     /// </summary>
     [BurstCompile]
-    public struct Guid
+    public struct Guid : IEquatable<Guid>
     {
         // 32 hex characters + 4 hyphens
         public const int Size = 36 * sizeof(byte);
@@ -37,6 +37,22 @@ namespace PLUME.Core
         public override string ToString()
         {
             return _guid.ToString();
+        }
+
+        public bool Equals(Guid other)
+        {
+            return _guid.Equals(other._guid);
+        }
+
+        [BurstDiscard]
+        public override bool Equals(object obj)
+        {
+            return obj is Guid other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return _guid.GetHashCode();
         }
     }
 }

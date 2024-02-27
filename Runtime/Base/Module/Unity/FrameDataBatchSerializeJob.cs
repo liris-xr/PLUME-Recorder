@@ -1,4 +1,3 @@
-using PLUME.Sample.ProtoBurst;
 using PLUME.Sample.ProtoBurst.Unity;
 using ProtoBurst;
 using ProtoBurst.Message;

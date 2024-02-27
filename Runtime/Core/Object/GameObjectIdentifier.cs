@@ -58,28 +58,5 @@ namespace PLUME.Core.Object
             return GameObjectId.Equals(other.GameObjectId) &&
                    TransformId.Equals(other.TransformId);
         }
-        
-        public override bool Equals(object obj)
-        {
-            return obj is GameObjectIdentifier other && Equals(other);
-        }
-
-        public override int GetHashCode()
-        {
-            var hash = 23;
-            hash = hash * 37 + GameObjectId.GetHashCode();
-            hash = hash * 37 + TransformId.GetHashCode();
-            return hash;
-        }
-
-        public static bool operator ==(GameObjectIdentifier lhs, GameObjectIdentifier rhs)
-        {
-            return lhs.Equals(rhs);
-        }
-
-        public static bool operator !=(GameObjectIdentifier lhs, GameObjectIdentifier rhs)
-        {
-            return !lhs.Equals(rhs);
-        }
     }
 }

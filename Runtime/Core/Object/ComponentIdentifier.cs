@@ -58,28 +58,16 @@ namespace PLUME.Core.Object
             return ComponentId.Equals(other.ComponentId) &&
                    GameObjectId.Equals(other.GameObjectId);
         }
-
+        
+        [BurstDiscard]
         public override bool Equals(object obj)
         {
             return obj is ComponentIdentifier other && Equals(other);
         }
-
+        
         public override int GetHashCode()
         {
-            var hash = 23;
-            hash = hash * 37 + ComponentId.GetHashCode();
-            hash = hash * 37 + GameObjectId.GetHashCode();
-            return hash;
-        }
-
-        public static bool operator ==(ComponentIdentifier lhs, ComponentIdentifier rhs)
-        {
-            return lhs.Equals(rhs);
-        }
-
-        public static bool operator !=(ComponentIdentifier lhs, ComponentIdentifier rhs)
-        {
-            return !lhs.Equals(rhs);
+            return ComponentId.InstanceId;
         }
     }
 }

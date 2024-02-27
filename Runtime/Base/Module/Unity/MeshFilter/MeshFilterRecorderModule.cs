@@ -20,13 +20,42 @@ namespace PLUME.Base.Module.Unity.MeshFilter
         {
             _frameData = _frameDataPool.Get();
             
-            GameObjectHooks.OnAddComponent += (go, component) =>
-            {
-                if (component is UnityEngine.MeshFilter meshFilter)
-                    OnCreateMeshFilter(meshFilter, ctx);
-            };
+            ObjectHooks.OnBeforeDestroy += obj => OnBeforeDestroy(obj, ctx);
+            GameObjectHooks.OnAddComponent += (go, component) => OnAddComponent(go, component, ctx);
             MeshFilterHooks.OnSetMesh += (mf, mesh) => OnSetMesh(mf, mesh, false, ctx);
             MeshFilterHooks.OnSetSharedMesh += (mf, mesh) => OnSetMesh(mf, mesh, true, ctx);
+        }
+        
+        private void OnBeforeDestroy(Object obj, RecorderContext ctx)
+        {
+            if (obj is not UnityEngine.MeshFilter meshFilter)
+                return;
+            
+            if (!ctx.IsRecording)
+                return;
+
+            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(meshFilter);
+
+            if (!IsRecordingObject(objSafeRef))
+                return;
+
+            StopRecordingObject(objSafeRef, true, ctx);
+        }
+
+        private void OnAddComponent(UnityEngine.GameObject go, Component component, RecorderContext ctx)
+        {
+            if (component is not UnityEngine.MeshFilter meshFilter)
+                return;
+
+            if (!ctx.IsRecording)
+                return;
+
+            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(meshFilter);
+
+            if (!IsRecordingObject(objSafeRef))
+                return;
+
+            StartRecordingObject(objSafeRef, true, ctx);
         }
 
         protected override void OnObjectMarkedCreated(ComponentSafeRef<UnityEngine.MeshFilter> objSafeRef)
@@ -37,19 +66,6 @@ namespace PLUME.Base.Module.Unity.MeshFilter
         protected override void OnObjectMarkedDestroyed(ComponentSafeRef<UnityEngine.MeshFilter> objSafeRef)
         {
             _frameData.AddDestroySample(new MeshFilterDestroy { Id = objSafeRef.ToIdentifierPayload() });
-        }
-
-        private void OnCreateMeshFilter(UnityEngine.MeshFilter meshFilter, RecorderContext ctx)
-        {
-            if (!ctx.IsRecording)
-                return;
-
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(meshFilter);
-
-            if (!IsRecordingObject(objSafeRef))
-                return;
-
-            StartRecordingObject(objSafeRef, true, ctx);
         }
         
         private void OnSetMesh(UnityEngine.MeshFilter meshFilter, Mesh mesh, bool isSharedMesh, RecorderContext ctx)

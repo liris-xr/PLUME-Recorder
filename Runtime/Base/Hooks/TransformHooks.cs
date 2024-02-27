@@ -10,31 +10,31 @@ namespace PLUME.Base.Hooks
 
         public static Action<Transform, int> OnSetSiblingIndex;
         
-        [RegisterMethodHook(typeof(Transform), nameof(Transform.SetParent), typeof(Transform))]
+        [RegisterHookAfterMethod(typeof(Transform), nameof(Transform.SetParent), typeof(Transform))]
         public static void SetParentHook(Transform transform, Transform parent)
         {
             OnSetParent?.Invoke(transform, parent);
         }
         
-        [RegisterPropertySetterHook(typeof(Transform), nameof(Transform.parent))]
+        [RegisterHookAfterPropertySetter(typeof(Transform), nameof(Transform.parent))]
         public static void ParentPropertySetterHook(Transform transform, Transform parent)
         {
             OnSetParent?.Invoke(transform, parent);
         }
         
-        [RegisterMethodHook(typeof(Transform), nameof(Transform.SetSiblingIndex), typeof(int))]
+        [RegisterHookAfterMethod(typeof(Transform), nameof(Transform.SetSiblingIndex), typeof(int))]
         public static void SetSiblingIndexHook(Transform transform, int siblingIdx)
         {
             OnSetSiblingIndex?.Invoke(transform, siblingIdx);
         }
         
-        [RegisterMethodHook(typeof(Transform), nameof(Transform.SetAsLastSibling))]
+        [RegisterHookAfterMethod(typeof(Transform), nameof(Transform.SetAsLastSibling))]
         public static void SetAsLastSiblingHook(Transform transform)
         {
             OnSetSiblingIndex?.Invoke(transform, transform.GetSiblingIndex());
         }
         
-        [RegisterMethodHook(typeof(Transform), nameof(Transform.SetAsFirstSibling))]
+        [RegisterHookAfterMethod(typeof(Transform), nameof(Transform.SetAsFirstSibling))]
         public static void SetAsFirstSiblingHook(Transform transform)
         {
             OnSetSiblingIndex?.Invoke(transform, transform.GetSiblingIndex());

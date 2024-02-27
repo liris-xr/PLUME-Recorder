@@ -9,11 +9,11 @@ namespace PLUME.Editor.Core.Hooks
 {
     public static class MethodHookBuilder
     {
-        public static MethodHook CreateHook(
-            string name,
-            MethodBase targetMethod,
-            MethodInfo hookMethod)
+        public static MethodHook CreateHook(string name, MethodBase targetMethod, MethodInfo hookMethod,
+            bool insertAfter = true)
         {
+            CheckHookSignatureValidity(hookMethod, targetMethod, insertAfter);
+
             var targetMethodReturnValue = targetMethod switch
             {
                 ConstructorInfo ctor => ctor.DeclaringType,
@@ -32,8 +32,6 @@ namespace PLUME.Editor.Core.Hooks
             // Add parameters
             targetMethodParameters.AddRange(targetMethod.GetParameters()
                 .Select(parameter => parameter.ParameterType));
-
-            CheckHookSignatureValidity(hookMethod, targetMethod);
 
             return new MethodHook(name, targetMethod, (processor, instruction) =>
             {
@@ -61,52 +59,67 @@ namespace PLUME.Editor.Core.Hooks
                 // Copy the parameters to local variables
                 foreach (var variable in tmpVariables.Reverse())
                 {
-                    // Push the parameter back onto the stack for the original method call
                     newInstructions.Add(processor.Create(OpCodes.Stloc_S, variable));
                 }
 
-                // Push the parameter back onto the stack for the original method call
+                // Push the parameter back onto the stack for the original method call or the hook call if inserted before
                 foreach (var variable in tmpVariables)
                 {
                     newInstructions.Add(processor.Create(OpCodes.Ldloc_S, variable));
                 }
 
-                // Call the original method
-                newInstructions.Add(processor.Create(instruction.OpCode, targetMethodRef));
-
-                if (targetMethodReturnValue != typeof(void))
+                if (insertAfter)
                 {
-                    returnValue = new VariableDefinition(targetMethodReturnValue.AsTypeReference(module));
-                    processor.Body.Variables.Add(returnValue);
+                    // Call the original method
+                    newInstructions.Add(processor.Create(instruction.OpCode, targetMethodRef));
 
-                    // Duplicate the return value so that the hooked method can pop it for its own use
-                    newInstructions.Add(processor.Create(OpCodes.Dup));
-                    newInstructions.Add(processor.Create(OpCodes.Stloc_S, returnValue));
+                    // Store the result from the call if any
+                    if (targetMethodReturnValue != typeof(void))
+                    {
+                        returnValue = new VariableDefinition(targetMethodReturnValue.AsTypeReference(module));
+                        processor.Body.Variables.Add(returnValue);
+
+                        // Duplicate the return value so that the hooked method can pop it for its own use
+                        newInstructions.Add(processor.Create(OpCodes.Dup));
+                        newInstructions.Add(processor.Create(OpCodes.Stloc_S, returnValue));
+                    }
+
+                    // Reload the parameters from the local variables for the hook call
+                    foreach (var variable in tmpVariables)
+                    {
+                        newInstructions.Add(processor.Create(OpCodes.Ldloc_S, variable));
+                    }
+
+                    // Load the return value onto the stack
+                    if (returnValue != null)
+                    {
+                        newInstructions.Add(processor.Create(OpCodes.Ldloc_S, returnValue));
+                    }
+
+                    // Call the hook
+                    newInstructions.Add(processor.Create(OpCodes.Call, hookMethodRef));
                 }
-
-                // Reload the parameters from the local variables for the hook call
-                foreach (var variable in tmpVariables)
+                else
                 {
-                    newInstructions.Add(processor.Create(OpCodes.Ldloc_S, variable));
-                }
+                    // Call the hook method
+                    newInstructions.Add(processor.Create(OpCodes.Call, hookMethodRef));
 
-                // Load the return value onto the stack
-                if (returnValue != null)
-                {
-                    newInstructions.Add(processor.Create(OpCodes.Ldloc_S, returnValue));
-                }
+                    // Reload the parameters from the local variables for the original call
+                    foreach (var variable in tmpVariables)
+                    {
+                        newInstructions.Add(processor.Create(OpCodes.Ldloc_S, variable));
+                    }
 
-                // Call the hook
-                newInstructions.Add(processor.Create(OpCodes.Call, hookMethodRef));
+                    // Call the original method
+                    newInstructions.Add(processor.Create(OpCodes.Call, targetMethodRef));
+                }
 
                 // Replace the instructions starting from the first parameter load
                 processor.ReplaceWithRange(instruction, newInstructions);
             });
         }
 
-        private static void CheckHookSignatureValidity(
-            MethodInfo hookMethod,
-            MethodBase targetMethod)
+        private static void CheckHookSignatureValidity(MethodInfo hookMethod, MethodBase targetMethod, bool insertAfter)
         {
             if (hookMethod.ReturnType != typeof(void))
                 throw new ArgumentException("Invalid return type for hook method. It should be 'void'");

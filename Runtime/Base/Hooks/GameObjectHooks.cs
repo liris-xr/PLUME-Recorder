@@ -18,7 +18,7 @@ namespace PLUME.Base.Hooks
 
         public static Action<GameObject, string> OnSetTag;
 
-        [RegisterConstructorHook(typeof(GameObject))]
+        [RegisterHookAfterConstructor(typeof(GameObject))]
         public static void ConstructorHook(GameObject go)
         {
             if (go != null)
@@ -27,26 +27,26 @@ namespace PLUME.Base.Hooks
             }
         }
 
-        [RegisterConstructorHook(typeof(GameObject), typeof(string))]
+        [RegisterHookAfterConstructor(typeof(GameObject), typeof(string))]
         public static void ConstructorHook(string name, GameObject go)
         {
             OnCreate?.Invoke(go);
         }
 
-        [RegisterConstructorHook(typeof(GameObject), typeof(string), typeof(Type[]))]
+        [RegisterHookAfterConstructor(typeof(GameObject), typeof(string), typeof(Type[]))]
         public static void ConstructorHook(string name, Type[] components, GameObject go)
         {
             OnCreate?.Invoke(go);
         }
 
-        [RegisterMethodHook(typeof(GameObject), nameof(GameObject.CreatePrimitive), typeof(PrimitiveType))]
+        [RegisterHookAfterMethod(typeof(GameObject), nameof(GameObject.CreatePrimitive), typeof(PrimitiveType))]
         public static void CreatePrimitiveHook(PrimitiveType type, GameObject go)
         {
             OnCreate?.Invoke(go);
         }
 
         [SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
-        [RegisterMethodHook(typeof(GameObject), nameof(GameObject.AddComponent), typeof(Type))]
+        [RegisterHookAfterMethod(typeof(GameObject), nameof(GameObject.AddComponent), typeof(Type))]
         public static void AddComponentHook(GameObject go, Type componentType, Component component)
         {
             if (component != null)
@@ -55,7 +55,7 @@ namespace PLUME.Base.Hooks
             }
         }
 
-        [RegisterMethodHook(typeof(GameObject), nameof(GameObject.AddComponent))]
+        [RegisterHookAfterMethod(typeof(GameObject), nameof(GameObject.AddComponent))]
         public static void AddComponentHook(GameObject go, Component component)
         {
             if (component != null)
@@ -64,7 +64,7 @@ namespace PLUME.Base.Hooks
             }
         }
 
-        [RegisterMethodHook(typeof(GameObject), nameof(GameObject.SetGameObjectsActive), typeof(NativeArray<int>),
+        [RegisterHookAfterMethod(typeof(GameObject), nameof(GameObject.SetGameObjectsActive), typeof(NativeArray<int>),
             typeof(bool))]
         public static void SetGameObjectsActiveHook(NativeArray<int> instanceIDs, bool active)
         {
@@ -72,7 +72,7 @@ namespace PLUME.Base.Hooks
             Logger.LogWarning("SetGameObjectsActiveHook not implemented");
         }
 
-        [RegisterMethodHook(typeof(GameObject), nameof(GameObject.SetGameObjectsActive), typeof(ReadOnlySpan<int>),
+        [RegisterHookAfterMethod(typeof(GameObject), nameof(GameObject.SetGameObjectsActive), typeof(ReadOnlySpan<int>),
             typeof(bool))]
         public static void SetGameObjectsActiveHook(ReadOnlySpan<int> instanceIDs, bool active)
         {
@@ -80,7 +80,7 @@ namespace PLUME.Base.Hooks
             Logger.LogWarning("SetGameObjectsActiveHook not implemented");
         }
 
-        [RegisterMethodHook(typeof(GameObject), nameof(GameObject.InstantiateGameObjects), typeof(int), typeof(int),
+        [RegisterHookAfterMethod(typeof(GameObject), nameof(GameObject.InstantiateGameObjects), typeof(int), typeof(int),
             typeof(NativeArray<int>), typeof(NativeArray<int>), typeof(Scene))]
         public static void InstantiateGameObjectsHook(int sourceInstanceID, int count, NativeArray<int> newInstanceIDs,
             NativeArray<int> newTransformInstanceIDs, Scene destinationScene)
@@ -89,13 +89,13 @@ namespace PLUME.Base.Hooks
             Logger.LogWarning("InstantiateGameObjectsHook not implemented");
         }
         
-        [RegisterMethodHook(typeof(GameObject), nameof(GameObject.SetActive), typeof(bool))]
+        [RegisterHookAfterMethod(typeof(GameObject), nameof(GameObject.SetActive), typeof(bool))]
         public static void SetActiveHook(GameObject go, bool active)
         {
             OnSetActive?.Invoke(go, active);
         }
 
-        [RegisterPropertySetterHook(typeof(GameObject), nameof(GameObject.tag))]
+        [RegisterHookAfterPropertySetter(typeof(GameObject), nameof(GameObject.tag))]
         public static void SetTagHook(GameObject go, string tag)
         {
             OnSetTag?.Invoke(go, tag);

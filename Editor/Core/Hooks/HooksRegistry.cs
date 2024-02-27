@@ -51,14 +51,14 @@ namespace PLUME.Editor.Core.Hooks
                     throw new InvalidOperationException($"Method {result.method} has a null target method.");
                 }
 
-                RegisterHook(result.attribute.TargetMethod, result.method);
+                RegisterHook(result.attribute.TargetMethod, result.method, result.attribute.InsertAfter);
                 sb.AppendLine($"{result.method} registered for target {result.attribute.TargetMethod.DeclaringType?.Name + "::" + result.attribute.TargetMethod}");
             }
             
             Logger.Log(sb.ToString());
         }
 
-        private void RegisterHook(MethodBase targetMethod, MethodInfo hookMethod)
+        private void RegisterHook(MethodBase targetMethod, MethodInfo hookMethod, bool insertAfter = true)
         {
             if (targetMethod == null)
                 throw new ArgumentNullException(nameof(targetMethod));
@@ -66,7 +66,7 @@ namespace PLUME.Editor.Core.Hooks
                 throw new ArgumentNullException(nameof(hookMethod));
 
             var hook = MethodHookBuilder.CreateHook(hookMethod.DeclaringType?.Name + "." + hookMethod.Name,
-                targetMethod, hookMethod);
+                targetMethod, hookMethod, insertAfter);
             _hooks.Add(hook);
         }
 

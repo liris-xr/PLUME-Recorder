@@ -65,31 +65,31 @@ namespace PLUME.Base.Hooks
 
         public static Action<Renderer, MaterialPropertyBlock, int?> OnSetPropertyBlock;
         
-        [RegisterPropertySetterHook(typeof(Renderer), nameof(Renderer.material))]
+        [RegisterHookAfterPropertySetter(typeof(Renderer), nameof(Renderer.material))]
         public static void SetMaterialHook(Renderer renderer, Material material)
         {
             OnSetMaterial?.Invoke(renderer, material);
         }
         
-        [RegisterPropertySetterHook(typeof(Renderer), nameof(Renderer.materials))]
+        [RegisterHookAfterPropertySetter(typeof(Renderer), nameof(Renderer.materials))]
         public static void SetMaterialsHook(Renderer renderer, IEnumerable<Material> materials)
         {
             OnSetMaterials?.Invoke(renderer, materials);
         }
         
-        [RegisterPropertySetterHook(typeof(Renderer), nameof(Renderer.sharedMaterial))]
+        [RegisterHookAfterPropertySetter(typeof(Renderer), nameof(Renderer.sharedMaterial))]
         public static void SetSharedMaterialHook(Renderer renderer, Material sharedMaterial)
         {
             OnSetSharedMaterial?.Invoke(renderer, sharedMaterial);
         }
         
-        [RegisterPropertySetterHook(typeof(Renderer), nameof(Renderer.sharedMaterials))]
+        [RegisterHookAfterPropertySetter(typeof(Renderer), nameof(Renderer.sharedMaterials))]
         public static void SetSharedMaterialsHook(Renderer renderer, IEnumerable<Material> sharedMaterials)
         {
             OnSetSharedMaterials?.Invoke(renderer, sharedMaterials);
         }
         
-        [RegisterPropertySetterHook(typeof(Renderer), nameof(Renderer.enabled))]
+        [RegisterHookAfterPropertySetter(typeof(Renderer), nameof(Renderer.enabled))]
         public static void SetEnabledHook(Renderer renderer, bool enabled)
         {
             OnSetEnabled?.Invoke(renderer, enabled);

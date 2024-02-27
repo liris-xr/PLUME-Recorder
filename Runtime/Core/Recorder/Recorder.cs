@@ -47,6 +47,7 @@ namespace PLUME.Core.Recorder
             ApplicationPauseDetector.EnsureExists();
 
             var recordClock = new Clock();
+            _context.IsRecording = true;
             _context.CurrentRecord = new Record(recordClock, recordIdentifier, Allocator.Persistent);
             
             _status = RecorderStatus.Recording;
@@ -72,8 +73,6 @@ namespace PLUME.Core.Recorder
         /// <exception cref="InvalidOperationException">Thrown if called when the recorder is not recording.</exception>
         private async UniTask StopRecordingInternal()
         {
-            // TODO: Should wait for end of frame to stop recording (?)
-            
             if (_status is RecorderStatus.Stopping)
                 throw new InvalidOperationException("Recorder is already stopping.");
 
@@ -101,8 +100,13 @@ namespace PLUME.Core.Recorder
             _status = RecorderStatus.Stopped;
 
             ApplicationPauseDetector.Destroy();
-            _context.CurrentRecord.Dispose();
-            _context.CurrentRecord = null;
+            _context.IsRecording = true;
+
+            if (_context.CurrentRecord != null)
+            {
+                _context.CurrentRecord.Dispose();
+                _context.CurrentRecord = null;
+            }
 
             Logger.Log("Recorder stopped.");
         }
@@ -125,8 +129,12 @@ namespace PLUME.Core.Recorder
             _dataDispatcher.Stop();
             _status = RecorderStatus.Stopped;
 
-            _context.CurrentRecord.Dispose();
-            _context.CurrentRecord = null;
+            _context.IsRecording = false;
+            if (_context.CurrentRecord != null)
+            {
+                _context.CurrentRecord.Dispose();
+                _context.CurrentRecord = null;
+            }
 
             stopwatch.Stop();
             Logger.Log("Recorder force stopped after " + stopwatch.ElapsedMilliseconds + "ms.");

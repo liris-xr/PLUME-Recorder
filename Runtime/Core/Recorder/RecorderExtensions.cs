@@ -53,15 +53,13 @@ namespace PLUME.Core.Recorder
             Instance._record.RecordTimestampedSample(marker);
         }
 
-        public static void StartRecordingObject<T>(ObjectSafeRef<T> objectSafeRef, bool markCreated = true)
-            where T : UnityEngine.Object
+        public static void StartRecordingObject(IObjectSafeRef objectSafeRef, bool markCreated = true)
         {
             CheckInstantiated();
             Instance.StartRecordingObjectInternal(objectSafeRef, markCreated);
         }
 
-        public static void StopRecordingObject<T>(ObjectSafeRef<T> objectSafeRef, bool markDestroyed = true)
-            where T : UnityEngine.Object
+        public static void StopRecordingObject(IObjectSafeRef objectSafeRef, bool markDestroyed = true)
         {
             CheckInstantiated();
             Instance.StopRecordingObjectInternal(objectSafeRef, markDestroyed);

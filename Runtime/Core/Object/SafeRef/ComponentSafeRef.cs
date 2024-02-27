@@ -2,29 +2,37 @@ using UnityEngine;
 
 namespace PLUME.Core.Object.SafeRef
 {
-    public class ComponentSafeRef<TC> : IObjectSafeRef where TC : Component
+    public class ComponentSafeRef<TC> : IObjectSafeRef<TC, ComponentIdentifier> where TC : Component
     {
-        public static ComponentSafeRef<TC> Null { get; } =
-            new(null, ComponentIdentifier.Null, ObjectSafeRef<GameObject>.Null);
+        public static ComponentSafeRef<TC> Null { get; } = new(null, ComponentIdentifier.Null, GameObjectSafeRef.Null);
 
         public TC Component { get; }
-        public ComponentIdentifier Identifier { get; }
-        public ObjectSafeRef<GameObject> ParentSafeRef { get; }
+        public ComponentIdentifier ComponentIdentifier { get; }
+        public GameObjectSafeRef ParentSafeRef { get; }
 
-        internal ComponentSafeRef(TC component, ComponentIdentifier identifier,
-            ObjectSafeRef<GameObject> gameObjectSafeRef)
+        internal ComponentSafeRef(TC component, ComponentIdentifier componentIdentifier, GameObjectSafeRef gameObjectSafeRef)
         {
             Component = component;
-            Identifier = identifier;
+            ComponentIdentifier = componentIdentifier;
             ParentSafeRef = gameObjectSafeRef;
         }
 
-        public ComponentSafeRef(TC component, Guid guid, ObjectSafeRef<GameObject> gameObjectSafeRef)
+        internal ComponentSafeRef(TC component, Guid guid, GameObjectSafeRef gameObjectSafeRef)
         {
             var objectIdentifier = new ObjectIdentifier(component.GetInstanceID(), guid);
             ParentSafeRef = gameObjectSafeRef;
-            Identifier = new ComponentIdentifier(objectIdentifier, gameObjectSafeRef.Identifier);
+            ComponentIdentifier = new ComponentIdentifier(objectIdentifier, gameObjectSafeRef.Identifier);
             Component = component;
+        }
+        
+        public TC GetObject()
+        {
+            return Component;
+        }
+
+        public ComponentIdentifier GetIdentifier()
+        {
+            return ComponentIdentifier;
         }
     }
 }

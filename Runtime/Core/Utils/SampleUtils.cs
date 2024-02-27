@@ -42,42 +42,33 @@ namespace PLUME.Core.Utils
 
             return new AssetIdentifier
             {
-                Id = guidRegistryEntry.guid,
+                Id = { Id = guidRegistryEntry.guid },
                 Path = guidRegistryEntry.assetBundlePath
             };
         }
-        
+
         public static ComponentIdentifier ToIdentifierPayload(this Component component)
         {
             var guidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
             var componentGuidRegistryEntry = guidRegistry.GetOrCreateEntry(component);
-            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreateEntry(component.gameObject);
 
             return new ComponentIdentifier
             {
-                ComponentId = componentGuidRegistryEntry.guid,
-                GameObjectId = gameObjectGuidRegistryEntry.guid
+                ComponentId = { Id = componentGuidRegistryEntry.guid },
+                GameObjectId = component.gameObject.ToIdentifierPayload()
             };
         }
 
-        public static ObjectIdentifier ToIdentifierPayload(this GameObject go)
+        public static GameObjectIdentifier ToIdentifierPayload(this GameObject go)
         {
             var guidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
             var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go);
+            var transformGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go.transform);
 
-            return new ObjectIdentifier
+            return new GameObjectIdentifier
             {
-                Id = gameObjectGuidRegistryEntry.guid
-            };
-        }
-        
-        public static AssetIdentifier ToAssetIdentifierPayload<T>(this AssetSafeRef<T> asset)
-            where T : UnityEngine.Object
-        {
-            return new AssetIdentifier
-            {
-                Id = asset.Identifier.Id.Guid.ToString(),
-                Path = asset.Identifier.Path.ToString()
+                GameObjectId = { Id = gameObjectGuidRegistryEntry.guid },
+                TransformId = { Id = transformGuidRegistryEntry.guid }
             };
         }
 
@@ -85,16 +76,27 @@ namespace PLUME.Core.Utils
         {
             return new ComponentIdentifier
             {
-                ComponentId = component.Identifier.ComponentId.Guid.ToString(),
-                GameObjectId = component.Identifier.ParentId.Guid.ToString()
+                ComponentId = { Id = component.ComponentIdentifier.ComponentId.Guid.ToString() },
+                GameObjectId = component.ParentSafeRef.ToIdentifierPayload()
             };
         }
-        
-        public static ObjectIdentifier ToIdentifierPayload(this ObjectSafeRef<GameObject> goRef)
+
+        public static AssetIdentifier ToAssetIdentifierPayload<T>(this AssetSafeRef<T> asset)
+            where T : UnityEngine.Object
         {
-            return new ObjectIdentifier
+            return new AssetIdentifier
             {
-                Id = goRef.Identifier.Guid.ToString()
+                Id = { Id = asset.Identifier.Id.Guid.ToString() },
+                Path = asset.Identifier.Path.ToString()
+            };
+        }
+
+        public static GameObjectIdentifier ToIdentifierPayload(this GameObjectSafeRef goRef)
+        {
+            return new GameObjectIdentifier
+            {
+                GameObjectId = { Id = goRef.Identifier.GameObjectId.ToString() },
+                TransformId = { Id = goRef.Identifier.TransformId.Guid.ToString() }
             };
         }
 

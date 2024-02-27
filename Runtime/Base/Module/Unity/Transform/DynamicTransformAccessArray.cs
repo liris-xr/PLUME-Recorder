@@ -48,8 +48,8 @@ namespace PLUME.Base.Module.Unity.Transform
                 throw new InvalidOperationException($"Transform {objRef.Component.name} is already in the list");
 
             _transformAccessArray.Add(objRef.Component);
-            _alignedIdentifiers.Add(objRef.Identifier);
-            _instanceIdToIndex.Add(objRef.Identifier.ComponentId.InstanceId, _transformAccessArray.length - 1);
+            _alignedIdentifiers.Add(objRef.ComponentIdentifier);
+            _instanceIdToIndex.Add(objRef.ComponentIdentifier.ComponentId.InstanceId, _transformAccessArray.length - 1);
         }
 
         private void EnsureCapacity(int capacity)
@@ -77,12 +77,12 @@ namespace PLUME.Base.Module.Unity.Transform
         /// <returns>The index of the transform in the list, or -1 if it is not in the list.</returns>
         public int IndexOf(ComponentSafeRef<UnityEngine.Transform> objRef)
         {
-            return _instanceIdToIndex.GetValueOrDefault(objRef.Identifier.ComponentId.InstanceId, -1);
+            return _instanceIdToIndex.GetValueOrDefault(objRef.ComponentIdentifier.ComponentId.InstanceId, -1);
         }
 
         public bool Contains(ComponentSafeRef<UnityEngine.Transform> objRef)
         {
-            return _instanceIdToIndex.ContainsKey(objRef.Identifier.ComponentId.InstanceId);
+            return _instanceIdToIndex.ContainsKey(objRef.ComponentIdentifier.ComponentId.InstanceId);
         }
 
         /// <summary>

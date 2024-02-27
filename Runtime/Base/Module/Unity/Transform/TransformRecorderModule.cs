@@ -63,7 +63,7 @@ namespace PLUME.Base.Module.Unity.Transform
             t.GetLocalPositionAndRotation(out var localPosition, out var localRotation);
 
             var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t.parent);
-            var parentIdentifier = parentSafeRef.Identifier;
+            var parentIdentifier = parentSafeRef.ComponentIdentifier;
             
             var initialPositionState = new TransformPositionState
             {
@@ -79,16 +79,16 @@ namespace PLUME.Base.Module.Unity.Transform
             };
 
             _transformAccessArray.Add(objSafeRef);
-            _positionStates.Add(objSafeRef.Identifier, initialPositionState);
-            _hierarchyStates.Add(objSafeRef.Identifier, initialHierarchyState);
+            _positionStates.Add(objSafeRef.ComponentIdentifier, initialPositionState);
+            _hierarchyStates.Add(objSafeRef.ComponentIdentifier, initialHierarchyState);
         }
 
         protected override void OnStopRecordingObject(ComponentSafeRef<UnityEngine.Transform> objSafeRef, Record record,
             RecorderContext recorderContext)
         {
             _transformAccessArray.RemoveSwapBack(objSafeRef);
-            _hierarchyStates.Remove(objSafeRef.Identifier);
-            _positionStates.Remove(objSafeRef.Identifier);
+            _hierarchyStates.Remove(objSafeRef.ComponentIdentifier);
+            _positionStates.Remove(objSafeRef.ComponentIdentifier);
         }
 
         private void OnSetParent(UnityEngine.Transform t, UnityEngine.Transform parent, RecorderContext ctx)
@@ -102,12 +102,12 @@ namespace PLUME.Base.Module.Unity.Transform
                 return;
 
             var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(parent);
-            var parentIdentifier = parentSafeRef.Identifier;
+            var parentIdentifier = parentSafeRef.ComponentIdentifier;
 
-            var hierarchyState = _hierarchyStates[tSafeRef.Identifier];
+            var hierarchyState = _hierarchyStates[tSafeRef.ComponentIdentifier];
             hierarchyState.ParentDirty = parentIdentifier != hierarchyState.ParentIdentifier;
             hierarchyState.ParentIdentifier = parentIdentifier;
-            _hierarchyStates[tSafeRef.Identifier] = hierarchyState;
+            _hierarchyStates[tSafeRef.ComponentIdentifier] = hierarchyState;
         }
 
         private void OnSetSiblingIndex(UnityEngine.Transform t, int siblingIndex, RecorderContext ctx)
@@ -120,10 +120,10 @@ namespace PLUME.Base.Module.Unity.Transform
             if (!IsRecordingObject(tSafeRef))
                 return;
 
-            var hierarchyState = _hierarchyStates[tSafeRef.Identifier];
+            var hierarchyState = _hierarchyStates[tSafeRef.ComponentIdentifier];
             hierarchyState.SiblingIndexDirty = siblingIndex != hierarchyState.SiblingIndex;
             hierarchyState.SiblingIndex = siblingIndex;
-            _hierarchyStates[tSafeRef.Identifier] = hierarchyState;
+            _hierarchyStates[tSafeRef.ComponentIdentifier] = hierarchyState;
         }
 
         protected override void OnStopRecording(Record record, RecorderContext recorderContext)

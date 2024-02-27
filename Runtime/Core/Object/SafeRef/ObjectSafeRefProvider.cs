@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using Unity.Collections;
 using UnityEngine;
 using UnityRuntimeGuid;
@@ -13,29 +14,29 @@ namespace PLUME.Core.Object.SafeRef
     {
         private readonly Dictionary<int, IObjectSafeRef> _cachedRefs = new();
 
-        public ObjectSafeRef<GameObject> GetOrCreateGameObjectSafeRef(GameObject go)
+        public GameObjectSafeRef GetOrCreateGameObjectSafeRef(GameObject go)
         {
-            if(go == null)
-                return ObjectSafeRef<GameObject>.Null;
-            
-            if(GetOrCreateObjectSafeRef(go) is ObjectSafeRef<GameObject> goRef)
+            if (go == null)
+                return GameObjectSafeRef.Null;
+
+            if (GetOrCreateObjectSafeRef(go) is GameObjectSafeRef goRef)
             {
                 return goRef;
             }
-            
-            return ObjectSafeRef<GameObject>.Null;
+
+            return GameObjectSafeRef.Null;
         }
 
         public ComponentSafeRef<TC> GetOrCreateComponentSafeRef<TC>(TC component) where TC : Component
         {
-            if(component == null)
+            if (component == null)
                 return ComponentSafeRef<TC>.Null;
-            
-            if(GetOrCreateObjectSafeRef(component) is ComponentSafeRef<TC> componentSafeRef)
+
+            if (GetOrCreateObjectSafeRef(component) is ComponentSafeRef<TC> componentSafeRef)
             {
                 return componentSafeRef;
             }
-            
+
             return ComponentSafeRef<TC>.Null;
         }
 
@@ -77,15 +78,16 @@ namespace PLUME.Core.Object.SafeRef
             if (obj is GameObject go && go.scene.IsValid())
             {
                 var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
-                var sceneGuidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(obj);
-                objRef = CreateGameObjectSafeRef(go, sceneGuidRegistryEntry);
+                var goRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go);
+                var transformRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go.transform);
+                objRef = CreateGameObjectSafeRef(go, goRegistryEntry, transformRegistryEntry);
             }
             else if (obj is Component component && component.gameObject.scene.IsValid())
             {
                 var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
-                var sceneGuidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(obj);
+                var guidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(obj);
                 var gameObjectRef = GetOrCreateGameObjectSafeRef(component.gameObject);
-                objRef = CreateComponentSafeRef(component, gameObjectRef, sceneGuidRegistryEntry);
+                objRef = CreateComponentSafeRef(component, gameObjectRef, guidRegistryEntry);
             }
             else
             {
@@ -98,31 +100,36 @@ namespace PLUME.Core.Object.SafeRef
             return objRef;
         }
 
-        private static ObjectSafeRef<GameObject> CreateGameObjectSafeRef(GameObject go, GuidRegistryEntry guidEntry)
+        private static GameObjectSafeRef CreateGameObjectSafeRef(GameObject go, GuidRegistryEntry goGuid,
+            GuidRegistryEntry tGuid)
         {
-            return new ObjectSafeRef<GameObject>(go, new Guid(guidEntry.guid));
+            var goRef = new GameObjectSafeRef(go, new Guid(goGuid.guid), ComponentSafeRef<Transform>.Null);
+            var tRef = new ComponentSafeRef<Transform>(go.transform, new Guid(tGuid.guid), GameObjectSafeRef.Null);
+            goRef.TransformSafeRef = tRef;
+            return goRef;
         }
 
-        private static IObjectSafeRef CreateComponentSafeRef(Component component,
-            ObjectSafeRef<GameObject> gameObjectRef, GuidRegistryEntry guidEntry)
+        private static IObjectSafeRef CreateComponentSafeRef(Component component, GameObjectSafeRef gameObjectRef,
+            GuidRegistryEntry guidEntry)
         {
-            var objRefType = typeof(ComponentSafeRef<>).MakeGenericType(component.GetType());
-            var objRefCtor = objRefType.GetConstructor(new[]
-                { component.GetType(), typeof(Guid), typeof(ObjectSafeRef<GameObject>) });
-            return (IObjectSafeRef)objRefCtor!.Invoke(new object[]
-                { component, new Guid(guidEntry.guid), gameObjectRef });
+            var type = typeof(ComponentSafeRef<>).MakeGenericType(component.GetType());
+            const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
+            var parametersType = new[] { component.GetType(), typeof(Guid), typeof(GameObjectSafeRef) };
+            var parameters = new object[] { component, new Guid(guidEntry.guid), gameObjectRef };
+            var objRefCtor = type.GetConstructor(flags, null, parametersType, null);
+            return (IObjectSafeRef)objRefCtor!.Invoke(parameters);
         }
 
         private static IObjectSafeRef CreateAssetObjectSafeRef(UnityObject obj, AssetGuidRegistryEntry guidEntry)
         {
-            var objRefType = typeof(AssetSafeRef<>).MakeGenericType(obj.GetType());
-            var objRefCtor =
-                objRefType.GetConstructor(new[] { obj.GetType(), typeof(Guid), typeof(FixedString512Bytes) });
-            return (IObjectSafeRef)objRefCtor!.Invoke(new object[]
-            {
-                obj, new Guid(guidEntry.guid),
-                new FixedString512Bytes(guidEntry.assetBundlePath)
-            });
+            var type = typeof(AssetSafeRef<>).MakeGenericType(obj.GetType());
+            const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
+            var parametersType = new[] { obj.GetType(), typeof(Guid), typeof(FixedString512Bytes) };
+            var parameters = new object[]
+                { obj, new Guid(guidEntry.guid), new FixedString512Bytes(guidEntry.assetBundlePath) };
+
+            var ctor = type.GetConstructor(flags, null, parametersType, null);
+            return (IObjectSafeRef)ctor!.Invoke(parameters);
         }
     }
 }

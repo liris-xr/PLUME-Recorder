@@ -10,41 +10,43 @@ using Object = UnityEngine.Object;
 
 namespace PLUME.Base.Module.Unity
 {
-    public abstract class ObjectRecorderModule<TObject, TFrameData> : IObjectRecorderModule, IFrameDataRecorderModule
-        where TObject : Object where TFrameData : IFrameData
+    public abstract class ObjectRecorderModule<TObject, TObjectIdentifier, TObjectSafeRef, TFrameData> :
+        IObjectRecorderModule, IFrameDataRecorderModule
+        where TObject : Object
+        where TObjectIdentifier : unmanaged, IObjectIdentifier, IEquatable<TObjectIdentifier>
+        where TObjectSafeRef : IObjectSafeRef<TObject, TObjectIdentifier>
+        where TFrameData : IFrameData
     {
-        public Type SupportedObjectType => typeof(TObject);
-
         public bool IsRecording { get; private set; }
 
         private readonly Dictionary<FrameInfo, TFrameData> _framesData = new(FrameInfoComparer.Instance);
 
-        private readonly List<ObjectSafeRef<TObject>> _recordedObjects = new();
-        private NativeHashSet<ObjectIdentifier> _recordedObjectsIdentifier;
-        private NativeHashSet<ObjectIdentifier> _createdObjectsIdentifier;
-        private NativeHashSet<ObjectIdentifier> _destroyedObjectsIdentifier;
+        private readonly List<TObjectSafeRef> _recordedObjects = new();
+        private NativeHashSet<TObjectIdentifier> _recordedObjectsIdentifier;
+        private NativeHashSet<TObjectIdentifier> _createdObjectsIdentifier;
+        private NativeHashSet<TObjectIdentifier> _destroyedObjectsIdentifier;
 
-        protected IReadOnlyList<ObjectSafeRef<TObject>> RecordedObjects => _recordedObjects;
+        protected IReadOnlyList<TObjectSafeRef> RecordedObjects => _recordedObjects;
 
-        protected NativeHashSet<ObjectIdentifier>.ReadOnly RecordedObjectsIdentifier =>
+        protected NativeHashSet<TObjectIdentifier>.ReadOnly RecordedObjectsIdentifier =>
             _recordedObjectsIdentifier.AsReadOnly();
 
-        protected NativeHashSet<ObjectIdentifier>.ReadOnly CreatedObjectsIdentifier =>
+        protected NativeHashSet<TObjectIdentifier>.ReadOnly CreatedObjectsIdentifier =>
             _createdObjectsIdentifier.AsReadOnly();
 
-        protected NativeHashSet<ObjectIdentifier>.ReadOnly DestroyedObjectsIdentifier =>
+        protected NativeHashSet<TObjectIdentifier>.ReadOnly DestroyedObjectsIdentifier =>
             _destroyedObjectsIdentifier.AsReadOnly();
 
         /// <summary>
         /// List of objects to remove from the recorded objects list after frame data collection.
         /// </summary>
-        private readonly List<ObjectSafeRef<TObject>> _objectsToRemove = new();
+        private readonly List<TObjectSafeRef> _objectsToRemove = new();
 
         void IRecorderModule.Create(RecorderContext recorderContext)
         {
-            _recordedObjectsIdentifier = new NativeHashSet<ObjectIdentifier>(1000, Allocator.Persistent);
-            _createdObjectsIdentifier = new NativeHashSet<ObjectIdentifier>(1000, Allocator.Persistent);
-            _destroyedObjectsIdentifier = new NativeHashSet<ObjectIdentifier>(1000, Allocator.Persistent);
+            _recordedObjectsIdentifier = new NativeHashSet<TObjectIdentifier>(1000, Allocator.Persistent);
+            _createdObjectsIdentifier = new NativeHashSet<TObjectIdentifier>(1000, Allocator.Persistent);
+            _destroyedObjectsIdentifier = new NativeHashSet<TObjectIdentifier>(1000, Allocator.Persistent);
             OnCreate(recorderContext);
         }
 
@@ -56,12 +58,13 @@ namespace PLUME.Base.Module.Unity
             _destroyedObjectsIdentifier.Dispose();
         }
 
-        public void StartRecordingObject(ObjectSafeRef<TObject> objSafeRef, bool markCreated, Record record,
+        public void StartRecordingObject(TObjectSafeRef objSafeRef, bool markCreated,
+            Record record,
             RecorderContext ctx)
         {
             CheckIsRecording();
 
-            if (!_recordedObjectsIdentifier.Add(objSafeRef.Identifier))
+            if (!_recordedObjectsIdentifier.Add(objSafeRef.GetIdentifier()))
                 throw new InvalidOperationException("Object is already being recorded.");
 
             _recordedObjects.Add(objSafeRef);
@@ -70,19 +73,20 @@ namespace PLUME.Base.Module.Unity
             if (!markCreated)
                 return;
 
-            var markedCreated = _createdObjectsIdentifier.Add(objSafeRef.Identifier);
-            _destroyedObjectsIdentifier.Remove(objSafeRef.Identifier);
+            var markedCreated = _createdObjectsIdentifier.Add(objSafeRef.GetIdentifier());
+            _destroyedObjectsIdentifier.Remove(objSafeRef.GetIdentifier());
 
             if (markedCreated)
                 OnObjectMarkedCreated(objSafeRef);
         }
 
-        public void StopRecordingObject(ObjectSafeRef<TObject> objSafeRef, bool markDestroyed, Record record,
+        public void StopRecordingObject(TObjectSafeRef objSafeRef, bool markDestroyed,
+            Record record,
             RecorderContext ctx)
         {
             CheckIsRecording();
 
-            if (!_recordedObjectsIdentifier.Contains(objSafeRef.Identifier))
+            if (!_recordedObjectsIdentifier.Contains(objSafeRef.GetIdentifier()))
                 throw new InvalidOperationException("Object is not being recorded.");
 
             // Deferred removal (after frame data collection)
@@ -90,8 +94,8 @@ namespace PLUME.Base.Module.Unity
 
             if (markDestroyed)
             {
-                var markedDestroyed = _destroyedObjectsIdentifier.Add(objSafeRef.Identifier);
-                _createdObjectsIdentifier.Remove(objSafeRef.Identifier);
+                var markedDestroyed = _destroyedObjectsIdentifier.Add(objSafeRef.GetIdentifier());
+                _createdObjectsIdentifier.Remove(objSafeRef.GetIdentifier());
 
                 if (markedDestroyed)
                     OnObjectMarkedDestroyed(objSafeRef);
@@ -101,7 +105,7 @@ namespace PLUME.Base.Module.Unity
         public void StartRecordingObject(IObjectSafeRef objSafeRef, bool markCreated, Record record,
             RecorderContext ctx)
         {
-            if (objSafeRef is not ObjectSafeRef<TObject> tObjSafeRef)
+            if (objSafeRef is not TObjectSafeRef tObjSafeRef)
             {
                 throw new InvalidOperationException($"Object is not of type {typeof(TObject).Name}");
             }
@@ -112,7 +116,7 @@ namespace PLUME.Base.Module.Unity
         public void StopRecordingObject(IObjectSafeRef objSafeRef, bool markDestroyed, Record record,
             RecorderContext ctx)
         {
-            if (objSafeRef is not ObjectSafeRef<TObject> tObjSafeRef)
+            if (objSafeRef is not TObjectSafeRef tObjSafeRef)
             {
                 throw new InvalidOperationException($"Object is not of type {typeof(TObject).Name}");
             }
@@ -122,7 +126,7 @@ namespace PLUME.Base.Module.Unity
 
         public bool IsObjectSupported(IObjectSafeRef objSafeRef)
         {
-            return objSafeRef is ObjectSafeRef<TObject>;
+            return objSafeRef is TObjectSafeRef;
         }
 
         void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo, Record record, RecorderContext context)
@@ -142,7 +146,7 @@ namespace PLUME.Base.Module.Unity
 
             foreach (var toRemove in _objectsToRemove)
             {
-                _recordedObjectsIdentifier.Remove(toRemove.Identifier);
+                _recordedObjectsIdentifier.Remove(toRemove.GetIdentifier());
                 _recordedObjects.Remove(toRemove);
                 OnStopRecordingObject(toRemove, record, context);
             }
@@ -174,7 +178,8 @@ namespace PLUME.Base.Module.Unity
 
         public bool IsRecordingObject(IObjectSafeRef objSafeRef)
         {
-            return objSafeRef is ObjectSafeRef<TObject> tObjSafeRef && _recordedObjects.Contains(tObjSafeRef);
+            return objSafeRef is TObjectSafeRef tObjSafeRef &&
+                   _recordedObjects.Contains(tObjSafeRef);
         }
 
         void IRecorderModule.Awake(RecorderContext context)
@@ -229,21 +234,21 @@ namespace PLUME.Base.Module.Unity
         {
         }
 
-        protected virtual void OnStartRecordingObject(ObjectSafeRef<TObject> objSafeRef, Record record,
+        protected virtual void OnStartRecordingObject(TObjectSafeRef objSafeRef, Record record,
             RecorderContext ctx)
         {
         }
 
-        protected virtual void OnStopRecordingObject(ObjectSafeRef<TObject> objSafeRef, Record record,
+        protected virtual void OnStopRecordingObject(TObjectSafeRef objSafeRef, Record record,
             RecorderContext recorderContext)
         {
         }
 
-        protected virtual void OnObjectMarkedCreated(ObjectSafeRef<TObject> objSafeRef)
+        protected virtual void OnObjectMarkedCreated(TObjectSafeRef objSafeRef)
         {
         }
 
-        protected virtual void OnObjectMarkedDestroyed(ObjectSafeRef<TObject> objSafeRef)
+        protected virtual void OnObjectMarkedDestroyed(TObjectSafeRef objSafeRef)
         {
         }
 

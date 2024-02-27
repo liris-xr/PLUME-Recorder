@@ -11,43 +11,40 @@ namespace PLUME.Core.Object
     {
         public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.ComponentIdentifier";
 
-        public static ComponentIdentifier Null { get; } =
-            new(ObjectIdentifier.Null, ObjectIdentifier.Null);
+        public static ComponentIdentifier Null { get; } = new(ObjectIdentifier.Null, GameObjectIdentifier.Null);
 
-        private static readonly uint ComponentGuidFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.LengthDelimited);
-        private static readonly uint ParentGuidFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
+        private static readonly uint ComponentIdFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.LengthDelimited);
+        private static readonly uint GameObjectIdFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
 
         public readonly ObjectIdentifier ComponentId;
-        public readonly ObjectIdentifier ParentId;
+        public readonly GameObjectIdentifier GameObjectId;
 
-        public ComponentIdentifier(ObjectIdentifier componentId, ObjectIdentifier parentId)
+        public ComponentIdentifier(ObjectIdentifier componentId, GameObjectIdentifier gameObjectId)
         {
             ComponentId = componentId;
-            ParentId = parentId;
+            GameObjectId = gameObjectId;
         }
 
         public int ComputeSize()
         {
-            return BufferWriterExtensions.ComputeTagSize(ComponentGuidFieldTag) +
-                   BufferWriterExtensions.ComputeLengthPrefixSize(Guid.Size) +
-                   Guid.Size +
-                   BufferWriterExtensions.ComputeTagSize(ParentGuidFieldTag) +
-                   BufferWriterExtensions.ComputeLengthPrefixSize(Guid.Size) +
-                   Guid.Size;
+            var componentId = ComponentId;
+            var gameObjectId = GameObjectId;
+            
+            return BufferWriterExtensions.ComputeTagSize(ComponentIdFieldTag) +
+                   BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref componentId) +
+                   BufferWriterExtensions.ComputeTagSize(GameObjectIdFieldTag) +
+                   BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref gameObjectId);
         }
 
         public void WriteTo(ref BufferWriter bufferWriter)
         {
-            var componentGuid = ComponentId.Guid;
-            var parentGuid = ParentId.Guid;
-
-            bufferWriter.WriteTag(ComponentGuidFieldTag);
-            bufferWriter.WriteLength(Guid.Size);
-            componentGuid.WriteTo(ref bufferWriter);
-
-            bufferWriter.WriteTag(ParentGuidFieldTag);
-            bufferWriter.WriteLength(Guid.Size);
-            parentGuid.WriteTo(ref bufferWriter);
+            var componentId = ComponentId;
+            var gameObjectId = GameObjectId;
+            
+            bufferWriter.WriteTag(ComponentIdFieldTag);
+            bufferWriter.WriteLengthPrefixedMessage(ref componentId);
+            bufferWriter.WriteTag(GameObjectIdFieldTag);
+            bufferWriter.WriteLengthPrefixedMessage(ref gameObjectId);
         }
 
         public SampleTypeUrl GetTypeUrl(Allocator allocator)
@@ -58,7 +55,7 @@ namespace PLUME.Core.Object
         public bool Equals(ComponentIdentifier other)
         {
             return ComponentId.Equals(other.ComponentId) &&
-                   ParentId.Equals(other.ParentId);
+                   GameObjectId.Equals(other.GameObjectId);
         }
 
         public override bool Equals(object obj)
@@ -70,7 +67,7 @@ namespace PLUME.Core.Object
         {
             var hash = 23;
             hash = hash * 37 + ComponentId.GetHashCode();
-            hash = hash * 37 + ParentId.GetHashCode();
+            hash = hash * 37 + GameObjectId.GetHashCode();
             return hash;
         }
 

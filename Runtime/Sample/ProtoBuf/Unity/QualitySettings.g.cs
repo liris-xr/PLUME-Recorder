@@ -40,7 +40,6 @@ namespace PLUME.Sample.Unity {
 
   }
   #region Messages
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class QualitySettingsUpdate : pb::IMessage<QualitySettingsUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

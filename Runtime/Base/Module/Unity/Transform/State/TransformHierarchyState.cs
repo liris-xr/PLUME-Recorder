@@ -6,17 +6,17 @@ namespace PLUME.Base.Module.Unity.Transform.State
     [BurstCompile]
     internal struct TransformHierarchyState
     {
-        public ComponentIdentifier ParentIdentifier;
-        public bool ParentDirty;
+        public ComponentIdentifier ParentTransformId;
+        public bool ParentTransformIdDirty;
 
         public int SiblingIndex;
         public bool SiblingIndexDirty;
 
-        public bool IsDirty => ParentDirty || SiblingIndexDirty;
+        public bool IsDirty => ParentTransformIdDirty || SiblingIndexDirty;
 
         public void MarkClean()
         {
-            ParentDirty = false;
+            ParentTransformIdDirty = false;
             SiblingIndexDirty = false;
         }
     }

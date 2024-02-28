@@ -126,7 +126,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
             var initialHierarchyState = new TransformHierarchyState
             {
-                ParentIdentifier = parentIdentifier,
+                ParentTransformId = parentIdentifier,
                 SiblingIndex = siblingIndex
             };
 
@@ -164,8 +164,8 @@ namespace PLUME.Base.Module.Unity.Transform
 
             var idx = _identifierToIndex[tSafeRef.ComponentIdentifier];
             var hierarchyState = _alignedHierarchyStates[idx];
-            hierarchyState.ParentDirty = !parentIdentifier.Equals(hierarchyState.ParentIdentifier);
-            hierarchyState.ParentIdentifier = parentIdentifier;
+            hierarchyState.ParentTransformIdDirty = !parentIdentifier.Equals(hierarchyState.ParentTransformId);
+            hierarchyState.ParentTransformId = parentIdentifier;
             _alignedHierarchyStates[idx] = hierarchyState;
         }
 

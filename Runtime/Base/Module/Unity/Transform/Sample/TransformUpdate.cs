@@ -23,8 +23,8 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
 
         private ComponentIdentifier _identifier;
 
-        private bool _hasParentField;
-        private ComponentIdentifier _parent;
+        private bool _hasParentTransformIdField;
+        private ComponentIdentifier _parentTransformId;
         
         private bool _hasSiblingIndexField;
         private int _siblingIndex;
@@ -42,8 +42,8 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
         {
             _identifier = identifier;
             
-            _hasParentField = false;
-            _parent = default;
+            _hasParentTransformIdField = false;
+            _parentTransformId = default;
             
             _hasSiblingIndexField = false;
             _siblingIndex = default;
@@ -63,10 +63,10 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
             bufferWriter.WriteTag(IdentifierFieldTag);
             bufferWriter.WriteLengthPrefixedMessage(ref _identifier);
 
-            if (_hasParentField)
+            if (_hasParentTransformIdField)
             {
                 bufferWriter.WriteTag(ParentIdentifierFieldTag);
-                bufferWriter.WriteLengthPrefixedMessage(ref _parent);
+                bufferWriter.WriteLengthPrefixedMessage(ref _parentTransformId);
             }
             
             if (_hasSiblingIndexField)
@@ -101,10 +101,10 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
             size += BufferWriterExtensions.ComputeTagSize(IdentifierFieldTag) +
                     BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref _identifier);
 
-            if (_hasParentField)
+            if (_hasParentTransformIdField)
             {
                 size += BufferWriterExtensions.ComputeTagSize(ParentIdentifierFieldTag) +
-                        BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref _parent);
+                        BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref _parentTransformId);
             }
             
             if (_hasSiblingIndexField)
@@ -142,8 +142,8 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetParent(ComponentIdentifier parent)
         {
-            _hasParentField = true;
-            _parent = parent;
+            _hasParentTransformIdField = true;
+            _parentTransformId = parent;
         }
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

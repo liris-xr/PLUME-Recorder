@@ -29,30 +29,30 @@ namespace PLUME.Sample.Unity {
             "Ghd1bml0eS9pZGVudGlmaWVycy5wcm90byJGCg9UcmFuc2Zvcm1DcmVhdGUS",
             "MwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRl",
             "bnRpZmllciJHChBUcmFuc2Zvcm1EZXN0cm95EjMKAmlkGAEgASgLMicucGx1",
-            "bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIipgMKD1RyYW5z",
+            "bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIiugMKD1RyYW5z",
             "Zm9ybVVwZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5D",
-            "b21wb25lbnRJZGVudGlmaWVyEj8KCXBhcmVudF9pZBgCIAEoCzInLnBsdW1l",
-            "LnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVySACIAQESGAoLc2li",
-            "bGluZ19pZHgYAyABKAVIAYgBARI5Cg5sb2NhbF9wb3NpdGlvbhgEIAEoCzIc",
-            "LnBsdW1lLnNhbXBsZS5jb21tb24uVmVjdG9yM0gCiAEBEjwKDmxvY2FsX3Jv",
-            "dGF0aW9uGAUgASgLMh8ucGx1bWUuc2FtcGxlLmNvbW1vbi5RdWF0ZXJuaW9u",
-            "SAOIAQESNgoLbG9jYWxfc2NhbGUYBiABKAsyHC5wbHVtZS5zYW1wbGUuY29t",
-            "bW9uLlZlY3RvcjNIBIgBAUIMCgpfcGFyZW50X2lkQg4KDF9zaWJsaW5nX2lk",
-            "eEIRCg9fbG9jYWxfcG9zaXRpb25CEQoPX2xvY2FsX3JvdGF0aW9uQg4KDF9s",
-            "b2NhbF9zY2FsZUIVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
+            "b21wb25lbnRJZGVudGlmaWVyEkkKE3BhcmVudF90cmFuc2Zvcm1faWQYAiAB",
+            "KAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllckgA",
+            "iAEBEhgKC3NpYmxpbmdfaWR4GAMgASgFSAGIAQESOQoObG9jYWxfcG9zaXRp",
+            "b24YBCABKAsyHC5wbHVtZS5zYW1wbGUuY29tbW9uLlZlY3RvcjNIAogBARI8",
+            "Cg5sb2NhbF9yb3RhdGlvbhgFIAEoCzIfLnBsdW1lLnNhbXBsZS5jb21tb24u",
+            "UXVhdGVybmlvbkgDiAEBEjYKC2xvY2FsX3NjYWxlGAYgASgLMhwucGx1bWUu",
+            "c2FtcGxlLmNvbW1vbi5WZWN0b3IzSASIAQFCFgoUX3BhcmVudF90cmFuc2Zv",
+            "cm1faWRCDgoMX3NpYmxpbmdfaWR4QhEKD19sb2NhbF9wb3NpdGlvbkIRCg9f",
+            "bG9jYWxfcm90YXRpb25CDgoMX2xvY2FsX3NjYWxlQhWqAhJQTFVNRS5TYW1w",
+            "bGUuVW5pdHliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Common.Vector3Reflection.Descriptor, global::PLUME.Sample.Common.QuaternionReflection.Descriptor, global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformCreate), global::PLUME.Sample.Unity.TransformCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformDestroy), global::PLUME.Sample.Unity.TransformDestroy.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformUpdate), global::PLUME.Sample.Unity.TransformUpdate.Parser, new[]{ "Id", "ParentId", "SiblingIdx", "LocalPosition", "LocalRotation", "LocalScale" }, new[]{ "ParentId", "SiblingIdx", "LocalPosition", "LocalRotation", "LocalScale" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.TransformUpdate), global::PLUME.Sample.Unity.TransformUpdate.Parser, new[]{ "Id", "ParentTransformId", "SiblingIdx", "LocalPosition", "LocalRotation", "LocalScale" }, new[]{ "ParentTransformId", "SiblingIdx", "LocalPosition", "LocalRotation", "LocalScale" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class TransformCreate : pb::IMessage<TransformCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -251,7 +251,6 @@ namespace PLUME.Sample.Unity {
 
   }
 
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class TransformDestroy : pb::IMessage<TransformDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -450,7 +449,6 @@ namespace PLUME.Sample.Unity {
 
   }
 
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class TransformUpdate : pb::IMessage<TransformUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -488,7 +486,7 @@ namespace PLUME.Sample.Unity {
     public TransformUpdate(TransformUpdate other) : this() {
       _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      parentId_ = other.parentId_ != null ? other.parentId_.Clone() : null;
+      parentTransformId_ = other.parentTransformId_ != null ? other.parentTransformId_.Clone() : null;
       siblingIdx_ = other.siblingIdx_;
       localPosition_ = other.localPosition_ != null ? other.localPosition_.Clone() : null;
       localRotation_ = other.localRotation_ != null ? other.localRotation_.Clone() : null;
@@ -514,15 +512,15 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "parent_id" field.</summary>
-    public const int ParentIdFieldNumber = 2;
-    private global::PLUME.Sample.Unity.ComponentIdentifier parentId_;
+    /// <summary>Field number for the "parent_transform_id" field.</summary>
+    public const int ParentTransformIdFieldNumber = 2;
+    private global::PLUME.Sample.Unity.ComponentIdentifier parentTransformId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ComponentIdentifier ParentId {
-      get { return parentId_; }
+    public global::PLUME.Sample.Unity.ComponentIdentifier ParentTransformId {
+      get { return parentTransformId_; }
       set {
-        parentId_ = value;
+        parentTransformId_ = value;
       }
     }
 
@@ -605,7 +603,7 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(ParentId, other.ParentId)) return false;
+      if (!object.Equals(ParentTransformId, other.ParentTransformId)) return false;
       if (SiblingIdx != other.SiblingIdx) return false;
       if (!object.Equals(LocalPosition, other.LocalPosition)) return false;
       if (!object.Equals(LocalRotation, other.LocalRotation)) return false;
@@ -618,7 +616,7 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (parentId_ != null) hash ^= ParentId.GetHashCode();
+      if (parentTransformId_ != null) hash ^= ParentTransformId.GetHashCode();
       if (HasSiblingIdx) hash ^= SiblingIdx.GetHashCode();
       if (localPosition_ != null) hash ^= LocalPosition.GetHashCode();
       if (localRotation_ != null) hash ^= LocalRotation.GetHashCode();
@@ -645,9 +643,9 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (parentId_ != null) {
+      if (parentTransformId_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(ParentId);
+        output.WriteMessage(ParentTransformId);
       }
       if (HasSiblingIdx) {
         output.WriteRawTag(24);
@@ -679,9 +677,9 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (parentId_ != null) {
+      if (parentTransformId_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(ParentId);
+        output.WriteMessage(ParentTransformId);
       }
       if (HasSiblingIdx) {
         output.WriteRawTag(24);
@@ -712,8 +710,8 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (parentId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ParentId);
+      if (parentTransformId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ParentTransformId);
       }
       if (HasSiblingIdx) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(SiblingIdx);
@@ -745,11 +743,11 @@ namespace PLUME.Sample.Unity {
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.parentId_ != null) {
-        if (parentId_ == null) {
-          ParentId = new global::PLUME.Sample.Unity.ComponentIdentifier();
+      if (other.parentTransformId_ != null) {
+        if (parentTransformId_ == null) {
+          ParentTransformId = new global::PLUME.Sample.Unity.ComponentIdentifier();
         }
-        ParentId.MergeFrom(other.ParentId);
+        ParentTransformId.MergeFrom(other.ParentTransformId);
       }
       if (other.HasSiblingIdx) {
         SiblingIdx = other.SiblingIdx;
@@ -795,10 +793,10 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 18: {
-            if (parentId_ == null) {
-              ParentId = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            if (parentTransformId_ == null) {
+              ParentTransformId = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
-            input.ReadMessage(ParentId);
+            input.ReadMessage(ParentTransformId);
             break;
           }
           case 24: {
@@ -849,10 +847,10 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 18: {
-            if (parentId_ == null) {
-              ParentId = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            if (parentTransformId_ == null) {
+              ParentTransformId = new global::PLUME.Sample.Unity.ComponentIdentifier();
             }
-            input.ReadMessage(ParentId);
+            input.ReadMessage(ParentTransformId);
             break;
           }
           case 24: {

@@ -48,9 +48,9 @@ namespace PLUME.Base.Module.Unity.Transform.Job
 
                 var updateSample = new TransformUpdate(identifier);
                 
-                if(hierarchyState.ParentDirty || createdInFrame)
+                if(hierarchyState.ParentTransformIdDirty || createdInFrame)
                 {
-                    updateSample.SetParent(hierarchyState.ParentIdentifier);
+                    updateSample.SetParent(hierarchyState.ParentTransformId);
                 }
                 
                 if(hierarchyState.SiblingIndexDirty || createdInFrame)

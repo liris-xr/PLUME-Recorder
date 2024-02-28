@@ -26,16 +26,16 @@ namespace PLUME.Sample {
           string.Concat(
             "ChVyZWNvcmRfbWV0YWRhdGEucHJvdG8SDHBsdW1lLnNhbXBsZRoUcmVjb3Jk",
             "X3ZlcnNpb24ucHJvdG8aH2dvb2dsZS9wcm90b2J1Zi90aW1lc3RhbXAucHJv",
-            "dG8i4gEKDlJlY29yZE1ldGFkYXRhEjcKEHJlY29yZGVyX3ZlcnNpb24YASAB",
+            "dG8i3AEKDlJlY29yZE1ldGFkYXRhEjcKEHJlY29yZGVyX3ZlcnNpb24YASAB",
             "KAsyHS5wbHVtZS5zYW1wbGUuUmVjb3JkZXJWZXJzaW9uEi4KCmNyZWF0ZWRf",
-            "YXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmlkZW50",
-            "aWZpZXIYAyABKAkSEgoKc2VxdWVudGlhbBgEIAEoCBIWCg5leHRyYV9tZXRh",
-            "ZGF0YRgFIAEoCRIVCg1zYW1wbGVzX2NvdW50GAYgASgGEhAKCGR1cmF0aW9u",
-            "GAcgASgGQg+qAgxQTFVNRS5TYW1wbGViBnByb3RvMw=="));
+            "YXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEgwKBG5hbWUY",
+            "AyABKAkSEgoKc2VxdWVudGlhbBgEIAEoCBIWCg5leHRyYV9tZXRhZGF0YRgF",
+            "IAEoCRIVCg1zYW1wbGVzX2NvdW50GAYgASgGEhAKCGR1cmF0aW9uGAcgASgG",
+            "Qg+qAgxQTFVNRS5TYW1wbGViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.RecordVersionReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.RecordMetadata), global::PLUME.Sample.RecordMetadata.Parser, new[]{ "RecorderVersion", "CreatedAt", "Identifier", "Sequential", "ExtraMetadata", "SamplesCount", "Duration" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.RecordMetadata), global::PLUME.Sample.RecordMetadata.Parser, new[]{ "RecorderVersion", "CreatedAt", "Name", "Sequential", "ExtraMetadata", "SamplesCount", "Duration" }, null, null, null, null)
           }));
     }
     #endregion
@@ -78,7 +78,7 @@ namespace PLUME.Sample {
     public RecordMetadata(RecordMetadata other) : this() {
       recorderVersion_ = other.recorderVersion_ != null ? other.recorderVersion_.Clone() : null;
       createdAt_ = other.createdAt_ != null ? other.createdAt_.Clone() : null;
-      identifier_ = other.identifier_;
+      name_ = other.name_;
       sequential_ = other.sequential_;
       extraMetadata_ = other.extraMetadata_;
       samplesCount_ = other.samplesCount_;
@@ -116,15 +116,15 @@ namespace PLUME.Sample {
       }
     }
 
-    /// <summary>Field number for the "identifier" field.</summary>
-    public const int IdentifierFieldNumber = 3;
-    private string identifier_ = "";
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 3;
+    private string name_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Identifier {
-      get { return identifier_; }
+    public string Name {
+      get { return name_; }
       set {
-        identifier_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -196,7 +196,7 @@ namespace PLUME.Sample {
       }
       if (!object.Equals(RecorderVersion, other.RecorderVersion)) return false;
       if (!object.Equals(CreatedAt, other.CreatedAt)) return false;
-      if (Identifier != other.Identifier) return false;
+      if (Name != other.Name) return false;
       if (Sequential != other.Sequential) return false;
       if (ExtraMetadata != other.ExtraMetadata) return false;
       if (SamplesCount != other.SamplesCount) return false;
@@ -210,7 +210,7 @@ namespace PLUME.Sample {
       int hash = 1;
       if (recorderVersion_ != null) hash ^= RecorderVersion.GetHashCode();
       if (createdAt_ != null) hash ^= CreatedAt.GetHashCode();
-      if (Identifier.Length != 0) hash ^= Identifier.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
       if (Sequential != false) hash ^= Sequential.GetHashCode();
       if (ExtraMetadata.Length != 0) hash ^= ExtraMetadata.GetHashCode();
       if (SamplesCount != 0UL) hash ^= SamplesCount.GetHashCode();
@@ -241,9 +241,9 @@ namespace PLUME.Sample {
         output.WriteRawTag(18);
         output.WriteMessage(CreatedAt);
       }
-      if (Identifier.Length != 0) {
+      if (Name.Length != 0) {
         output.WriteRawTag(26);
-        output.WriteString(Identifier);
+        output.WriteString(Name);
       }
       if (Sequential != false) {
         output.WriteRawTag(32);
@@ -279,9 +279,9 @@ namespace PLUME.Sample {
         output.WriteRawTag(18);
         output.WriteMessage(CreatedAt);
       }
-      if (Identifier.Length != 0) {
+      if (Name.Length != 0) {
         output.WriteRawTag(26);
-        output.WriteString(Identifier);
+        output.WriteString(Name);
       }
       if (Sequential != false) {
         output.WriteRawTag(32);
@@ -315,8 +315,8 @@ namespace PLUME.Sample {
       if (createdAt_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(CreatedAt);
       }
-      if (Identifier.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Identifier);
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
       if (Sequential != false) {
         size += 1 + 1;
@@ -354,8 +354,8 @@ namespace PLUME.Sample {
         }
         CreatedAt.MergeFrom(other.CreatedAt);
       }
-      if (other.Identifier.Length != 0) {
-        Identifier = other.Identifier;
+      if (other.Name.Length != 0) {
+        Name = other.Name;
       }
       if (other.Sequential != false) {
         Sequential = other.Sequential;
@@ -399,7 +399,7 @@ namespace PLUME.Sample {
             break;
           }
           case 26: {
-            Identifier = input.ReadString();
+            Name = input.ReadString();
             break;
           }
           case 32: {
@@ -448,7 +448,7 @@ namespace PLUME.Sample {
             break;
           }
           case 26: {
-            Identifier = input.ReadString();
+            Name = input.ReadString();
             break;
           }
           case 32: {

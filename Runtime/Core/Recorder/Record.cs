@@ -9,11 +9,18 @@ namespace PLUME.Core.Recorder
 {
     public class Record : IDisposable
     {
-        public readonly RecordIdentifier Identifier;
-        
+        public readonly RecordMetadata Metadata;
+
+        /// <summary>
+        /// Relative time since the recording started. This is the time that should be used for timestamping samples.
+        /// </summary>
         public long Time => InternalClock.ElapsedNanoseconds;
+
+        /// <summary>
+        /// Relative time since the recording started. This is the time that should be used for timestamping samples inside fixed updates.
+        /// </summary>
         public long FixedTime { get; internal set; }
-        
+
         internal readonly Clock InternalClock;
 
         private DataChunks _timelessDataBuffer;
@@ -21,10 +28,10 @@ namespace PLUME.Core.Recorder
         private readonly object _timelessDataBufferLock = new();
         private readonly object _timestampedDataBufferLock = new();
 
-        internal Record(Clock clock, RecordIdentifier identifier, Allocator allocator)
+        internal Record(Clock clock, RecordMetadata metadata, Allocator allocator)
         {
             InternalClock = clock;
-            Identifier = identifier;
+            Metadata = metadata;
             _timelessDataBuffer = new DataChunks(allocator);
             _dataChunksTimestampedDataBuffer = new DataChunksTimestamped(allocator);
         }
@@ -45,7 +52,7 @@ namespace PLUME.Core.Recorder
                     sampleBytes.AddRange(bytesPtr, sampleSize);
                 }
             }
-            
+
             RecordTimelessSample(sampleBytes, typeUrl);
             typeUrl.Dispose();
             sampleBytes.Dispose();
@@ -57,7 +64,7 @@ namespace PLUME.Core.Recorder
         {
             RecordTimestampedSample(msg, Time);
         }
-        
+
         // ReSharper restore Unity.ExpensiveCode
 
         public void RecordTimestampedSample(IMessage msg, long timestamp)
@@ -74,7 +81,7 @@ namespace PLUME.Core.Recorder
                     sampleBytes.AddRange(bytesPtr, sampleSize);
                 }
             }
-            
+
             RecordTimestampedSample(sampleBytes, typeUrl, timestamp);
             typeUrl.Dispose();
             sampleBytes.Dispose();

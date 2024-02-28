@@ -27,10 +27,10 @@ namespace PLUME.Core.Recorder
                 throw new InvalidOperationException("PLUME recorder instance is not created yet.");
         }
 
-        public static void StartRecording(RecordIdentifier recordIdentifier)
+        public static void StartRecording(string name, string extraMetadata = "")
         {
             CheckInstantiated();
-            Instance.StartRecordingInternal(recordIdentifier);
+            Instance.StartRecordingInternal(name, extraMetadata);
         }
 
         public static async UniTask StopRecording()

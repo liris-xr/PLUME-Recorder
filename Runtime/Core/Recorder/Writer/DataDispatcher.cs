@@ -16,9 +16,7 @@ namespace PLUME.Core.Recorder.Writer
 
         internal void Start(Record record)
         {
-            var recordIdentifier = record.Identifier;
-            
-            var fileDataWriter = new FileDataWriter(recordIdentifier);
+            var fileDataWriter = new FileDataWriter(record);
             _outputs = new IDataWriter[] { fileDataWriter };
             
             // var networkDataWriter = new NetworkDataWriter(recordIdentifier);

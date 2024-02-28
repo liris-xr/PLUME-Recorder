@@ -14,9 +14,8 @@ namespace PLUME.Tests
             PlumeRecorder.Instantiate();
             var go1 = new GameObject("go1");
             var go2 = new GameObject("go2");
-            var recordIdentifier = new RecordIdentifier("test");
 
-            PlumeRecorder.StartRecording(recordIdentifier);
+            PlumeRecorder.StartRecording("test");
             PlumeRecorder.StartRecordingObject(go1.transform);
             PlumeRecorder.StartRecordingObject(go2.transform);
             PlumeRecorder.RecordMarker("Start");

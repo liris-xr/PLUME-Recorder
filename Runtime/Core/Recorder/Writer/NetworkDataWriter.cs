@@ -12,7 +12,7 @@ namespace PLUME.Core.Recorder.Writer
     {
         private readonly Stream _stream;
 
-        public NetworkDataWriter(RecordIdentifier recordIdentifier)
+        public NetworkDataWriter(RecordMetadata recordMetadata)
         {
             // Create a tcp server
             var server = new TcpListener(IPAddress.Parse("127.0.0.1"), 8000);

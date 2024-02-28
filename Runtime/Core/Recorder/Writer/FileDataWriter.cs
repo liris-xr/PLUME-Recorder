@@ -1,5 +1,8 @@
 using System;
 using System.IO;
+using System.Linq;
+using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 using K4os.Compression.LZ4;
 using K4os.Compression.LZ4.Internal;
 using K4os.Compression.LZ4.Streams;
@@ -13,12 +16,18 @@ namespace PLUME.Core.Recorder.Writer
     public class FileDataWriter : IDataWriter, IDisposable
     {
         private readonly Stream _stream;
+        private readonly Stream _metadataStream;
 
-        public FileDataWriter(RecordIdentifier recordIdentifier)
+        private Sample.RecordMetadata _metadata;
+        private bool _isSequential;
+        private ulong _sampleCount;
+        private long _lastWrittenTimestamp;
+        
+        public FileDataWriter(Record record)
         {
             var outputDir = Application.persistentDataPath;
 
-            var filePath = Path.Combine(outputDir, GenerateFileName(recordIdentifier));
+            GenerateFilePath(outputDir, record.Metadata, out var filePath, out var metadataFilePath);
 
             PinnedMemory.MaxPooledSize = 0;
 
@@ -35,44 +44,86 @@ namespace PLUME.Core.Recorder.Writer
             }
 
             _stream = LZ4Stream.Encode(File.Create(filePath), LZ4Level.L00_FAST);
+            _metadataStream = File.Create(metadataFilePath);
+
+            _metadata = new Sample.RecordMetadata
+            {
+                Name = record.Metadata.Name,
+                ExtraMetadata = record.Metadata.ExtraMetadata,
+                Sequential = true,
+                RecorderVersion = PlumeRecorder.Version,
+                CreatedAt = Timestamp.FromDateTime(record.Metadata.StartTime),
+            };
         }
 
-        private static string GenerateFileName(RecordIdentifier recordIdentifier)
+        private static void GenerateFilePath(string outputDir, RecordMetadata recordMetadata,
+            out string filePath, out string metadataPath)
         {
-            // TODO: check if file exists and prefix with number if it does
-            return recordIdentifier.Identifier + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".plm";
-        }
+            var invalidChars = Path.GetInvalidFileNameChars();
+            var name = recordMetadata.Name;
+            var safeName = new string(name.Select(c => invalidChars.Contains(c) ? '_' : c).ToArray());
 
-        private static string GenerateMetadataFileName(string recordName)
-        {
-            // TODO: check if file exists and prefix with number if it does
-            return recordName + ".plm.meta";
+            var formattedDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH-mm-sszz");
+            var filenameBase = $"{safeName}_{formattedDateTime}";
+            const string fileExtension = ".plm";
+
+            var i = 0;
+
+            do
+            {
+                var suffix = i == 0 ? "" : "_" + i;
+                filePath = Path.Join(outputDir, filenameBase + suffix + fileExtension);
+                ++i;
+            } while (File.Exists(filePath));
+
+            metadataPath = filePath + ".meta";
         }
 
         public void WriteTimelessData(DataChunks dataChunks)
         {
+            if (dataChunks.IsEmpty()) return;
+            _stream.Write(dataChunks.GetDataSpan());
+            _sampleCount += (ulong)dataChunks.ChunksCount;
+            UpdateMetadata();
         }
 
         public void WriteTimestampedData(DataChunksTimestamped dataChunks)
         {
-            // TODO: create a local buffer
-            // TODO: update metadata file
+            if (dataChunks.IsEmpty()) return;
             _stream.Write(dataChunks.GetDataSpan());
+            var lastTimestamp = dataChunks.Timestamps[^1];
+            _isSequential &= lastTimestamp >= _lastWrittenTimestamp;
+            _lastWrittenTimestamp = lastTimestamp;
+            _sampleCount += (ulong)dataChunks.ChunksCount;
+            UpdateMetadata();
+        }
+
+        private void UpdateMetadata()
+        {
+            _metadataStream.SetLength(0);
+            _metadataStream.Position = 0;
+            _metadata.SamplesCount = _sampleCount;
+            _metadata.Sequential = _isSequential;
+            _metadata.Duration = (ulong)Math.Max(0, _lastWrittenTimestamp);
+            _metadata.WriteDelimitedTo(_metadataStream);
         }
 
         public void Flush()
         {
             _stream.Flush();
+            _metadataStream.Flush();
         }
 
         public void Close()
         {
             _stream.Close();
+            _metadataStream.Close();
         }
 
         public void Dispose()
         {
             _stream.Dispose();
+            _metadataStream.Dispose();
         }
     }
 }

@@ -6,6 +6,7 @@ using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Recorder.Writer;
 using PLUME.Core.Scripts;
+using PLUME.Sample;
 using PLUME.Sample.Common;
 using Unity.Collections;
 using UnityEngine;
@@ -19,6 +20,14 @@ namespace PLUME.Core.Recorder
     /// </summary>
     public sealed partial class PlumeRecorder : IDisposable
     {
+        public static readonly RecorderVersion Version = new()
+        {
+            Name = "PLUME Recorder",
+            Major = "1",
+            Minor = "0",
+            Patch = "0",
+        };
+        
         private RecorderStatus _status = RecorderStatus.Stopped;
 
         private readonly RecorderContext _context;
@@ -35,7 +44,7 @@ namespace PLUME.Core.Recorder
         /// Starts the recording process. If the recorder is already recording, throw a <see cref="InvalidOperationException"/> exception.
         /// </summary>
         /// <exception cref="InvalidOperationException"></exception>
-        private void StartRecordingInternal(RecordIdentifier recordIdentifier)
+        private void StartRecordingInternal(string name, string extraMetadata)
         {
             if (_status is RecorderStatus.Stopping)
                 throw new InvalidOperationException(
@@ -46,9 +55,10 @@ namespace PLUME.Core.Recorder
 
             ApplicationPauseDetector.EnsureExists();
 
+            var recordMetadata = new RecordMetadata(name, extraMetadata, DateTime.UtcNow);
             var recordClock = new Clock();
             _context.IsRecording = true;
-            _context.CurrentRecord = new Record(recordClock, recordIdentifier, Allocator.Persistent);
+            _context.CurrentRecord = new Record(recordClock, recordMetadata, Allocator.Persistent);
             
             _status = RecorderStatus.Recording;
 

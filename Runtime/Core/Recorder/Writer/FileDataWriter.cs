@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 using K4os.Compression.LZ4;
 using K4os.Compression.LZ4.Internal;
 using K4os.Compression.LZ4.Streams;
@@ -17,7 +18,7 @@ namespace PLUME.Core.Recorder.Writer
     {
         private readonly Stream _stream;
         private readonly Stream _metaStream;
-
+        
         private readonly Sample.RecordMetadata _metadata;
         private readonly RecordMetrics _metrics;
         
@@ -43,15 +44,9 @@ namespace PLUME.Core.Recorder.Writer
 
             _stream = LZ4Stream.Encode(File.Create(filePath), LZ4Level.L00_FAST);
             _metaStream = File.Create(metaFilePath);
-
-            _metadata = record.Metadata.ToPayload();
-            _metrics = new RecordMetrics
-            {
-                NSamples = 0,
-                Duration = 0,
-                IsSequential = true
-            };
             
+            _metadata = record.Metadata.ToPayload();
+            _metrics = new RecordMetrics();
             UpdateMetaFile();
         }
 

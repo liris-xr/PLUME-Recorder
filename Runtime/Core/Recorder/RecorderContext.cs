@@ -12,7 +12,7 @@ namespace PLUME.Core.Recorder
         public readonly ObjectSafeRefProvider ObjectSafeRefProvider;
         public readonly ISettingsProvider SettingsProvider;
         
-        public RecorderStatus Status { get; internal set; }
+        public RecorderStatus Status { get; internal set; } = RecorderStatus.Stopped;
         public bool IsRecording => Status == RecorderStatus.Recording;
         public Record CurrentRecord { get; internal set; }
 

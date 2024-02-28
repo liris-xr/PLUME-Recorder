@@ -31,6 +31,6 @@ namespace PLUME.Core.Recorder
             return _clock.IsRunning;
         }
 
-        public long ElapsedNanoseconds => _clock.ElapsedTicks * (1_000_000_000 / Stopwatch.Frequency);
+        public ulong ElapsedNanoseconds => (ulong)(_clock.ElapsedTicks * (1_000_000_000 / Stopwatch.Frequency));
     }
 }

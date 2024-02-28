@@ -4,10 +4,10 @@ namespace PLUME.Core.Recorder.Module.Frame
 {
     public readonly struct FrameInfo
     {
-        public readonly long Timestamp;
+        public readonly ulong Timestamp;
         public readonly int FrameNumber;
 
-        public FrameInfo(long timestamp, int frameNumber)
+        public FrameInfo(ulong timestamp, int frameNumber)
         {
             Timestamp = timestamp;
             FrameNumber = frameNumber;

@@ -86,42 +86,42 @@ namespace PLUME.Base.Module.Unity
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.FixedUpdate(long fixedDeltaTime, RecorderContext ctx)
+        void IFrameDataRecorderModule.FixedUpdate(ulong fixedDeltaTime, RecorderContext ctx)
         {
             OnFixedUpdate(fixedDeltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.EarlyUpdate(long deltaTime, RecorderContext ctx)
+        void IFrameDataRecorderModule.EarlyUpdate(ulong deltaTime, RecorderContext ctx)
         {
             OnEarlyUpdate(deltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.PreUpdate(long deltaTime, RecorderContext ctx)
+        void IFrameDataRecorderModule.PreUpdate(ulong deltaTime, RecorderContext ctx)
         {
             OnPreUpdate(deltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.Update(long deltaTime, RecorderContext ctx)
+        void IFrameDataRecorderModule.Update(ulong deltaTime, RecorderContext ctx)
         {
             OnUpdate(deltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.PreLateUpdate(long deltaTime, RecorderContext ctx)
+        void IFrameDataRecorderModule.PreLateUpdate(ulong deltaTime, RecorderContext ctx)
         {
             OnPreLateUpdate(deltaTime, ctx);
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        void IFrameDataRecorderModule.PostLateUpdate(long deltaTime, RecorderContext ctx)
+        void IFrameDataRecorderModule.PostLateUpdate(ulong deltaTime, RecorderContext ctx)
         {
             OnPostLateUpdate(deltaTime, ctx);
         }
@@ -132,37 +132,37 @@ namespace PLUME.Base.Module.Unity
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnFixedUpdate(long fixedDeltaTime, RecorderContext ctx)
+        protected virtual void OnFixedUpdate(ulong fixedDeltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnEarlyUpdate(long deltaTime, RecorderContext ctx)
+        protected virtual void OnEarlyUpdate(ulong deltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnPreUpdate(long deltaTime, RecorderContext ctx)
+        protected virtual void OnPreUpdate(ulong deltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnUpdate(long deltaTime, RecorderContext ctx)
+        protected virtual void OnUpdate(ulong deltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnPreLateUpdate(long deltaTime, RecorderContext ctx)
+        protected virtual void OnPreLateUpdate(ulong deltaTime, RecorderContext ctx)
         {
         }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 
-        protected virtual void OnPostLateUpdate(long deltaTime, RecorderContext ctx)
+        protected virtual void OnPostLateUpdate(ulong deltaTime, RecorderContext ctx)
         {
         }
 

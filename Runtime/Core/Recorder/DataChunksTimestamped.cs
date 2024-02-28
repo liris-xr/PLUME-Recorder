@@ -11,7 +11,7 @@ namespace PLUME.Core.Recorder
     public struct DataChunksTimestamped : IDisposable
     {
         internal DataChunks DataChunks;
-        internal NativeList<long> Timestamps;
+        internal NativeList<ulong> Timestamps;
 
         public int ChunksCount => DataChunks.ChunksCount;
         public int DataLength => DataChunks.DataLength;
@@ -19,14 +19,14 @@ namespace PLUME.Core.Recorder
         public DataChunksTimestamped(Allocator allocator)
         {
             DataChunks = new DataChunks(allocator);
-            Timestamps = new NativeList<long>(allocator);
+            Timestamps = new NativeList<ulong>(allocator);
         }
 
         public DataChunksTimestamped(ReadOnlySpan<byte> chunksData, ReadOnlySpan<int> chunksLength,
-            ReadOnlySpan<long> timestamps, Allocator allocator)
+            ReadOnlySpan<ulong> timestamps, Allocator allocator)
         {
             DataChunks = new DataChunks(chunksData, chunksLength, allocator);
-            Timestamps = new NativeList<long>(timestamps.Length, allocator);
+            Timestamps = new NativeList<ulong>(timestamps.Length, allocator);
             Timestamps.ResizeUninitialized(timestamps.Length);
             timestamps.CopyTo(Timestamps.AsArray().AsSpan());
         }
@@ -34,11 +34,11 @@ namespace PLUME.Core.Recorder
         public DataChunksTimestamped(DataChunksTimestamped other, Allocator allocator)
         {
             DataChunks = new DataChunks(other.DataChunks, allocator);
-            Timestamps = new NativeList<long>(other.Timestamps.Length, allocator);
+            Timestamps = new NativeList<ulong>(other.Timestamps.Length, allocator);
             Timestamps.AddRange(other.Timestamps.AsArray());
         }
 
-        public void Add(DataChunks chunks, long timestamp)
+        public void Add(DataChunks chunks, ulong timestamp)
         {
             CheckIsCreated();
 
@@ -61,7 +61,7 @@ namespace PLUME.Core.Recorder
             Timestamps[nearestChunkIndex] = timestamp;
         }
 
-        public void Add(ReadOnlySpan<byte> chunkData, long timestamp)
+        public void Add(ReadOnlySpan<byte> chunkData, ulong timestamp)
         {
             CheckIsCreated();
             if (chunkData.Length == 0)
@@ -105,7 +105,7 @@ namespace PLUME.Core.Recorder
             return true;
         }
 
-        public bool TryRemoveAllBeforeTimestamp(long timestamp, DataChunksTimestamped dst, bool inclusive)
+        public bool TryRemoveAllBeforeTimestamp(ulong timestamp, DataChunksTimestamped dst, bool inclusive)
         {
             CheckIsCreated();
             dst.Clear();

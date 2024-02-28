@@ -9,13 +9,13 @@ namespace PLUME.Tests
     [TestFixture]
     public class TestTimestampedDataChunks
     {
-        private const long AnyTimestamp = 5L;
-        private const long BeforeAllTimestamp = 0L;
-        private const long InBetweenTimestamp = 2L;
-        private const long AfterAllTimestamp = 4L;
+        private const ulong AnyTimestamp = 5L;
+        private const ulong BeforeAllTimestamp = 0L;
+        private const ulong InBetweenTimestamp = 2L;
+        private const ulong AfterAllTimestamp = 4L;
 
-        private const long FirstTimestamp = 1L;
-        private const long SecondTimestamp = 3L;
+        private const ulong FirstTimestamp = 1L;
+        private const ulong SecondTimestamp = 3L;
 
         private static readonly byte[] EmptyChunk = Array.Empty<byte>();
         private static readonly byte[] NonEmptyChunk = { 42, 56, 21 };
@@ -30,7 +30,7 @@ namespace PLUME.Tests
         {
             var dataChunks = (ReadOnlySpan<byte>)FirstDataChunk.Concat(SecondDataChunk).ToArray();
             var chunksLength = (ReadOnlySpan<int>)new[] { FirstDataChunk.Length, SecondDataChunk.Length };
-            var timestamps = (ReadOnlySpan<long>)new[] { FirstTimestamp, SecondTimestamp };
+            var timestamps = (ReadOnlySpan<ulong>)new[] { FirstTimestamp, SecondTimestamp };
             _nonEmptyDataChunksTimestamped =
                 new DataChunksTimestamped(dataChunks, chunksLength, timestamps, Allocator.Persistent);
         }

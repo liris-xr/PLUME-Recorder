@@ -1,4 +1,5 @@
 using System;
+using Google.Protobuf.WellKnownTypes;
 
 namespace PLUME.Core.Recorder
 {
@@ -21,6 +22,17 @@ namespace PLUME.Core.Recorder
             Name = name;
             ExtraMetadata = extraMetadata;
             StartTime = dateTime;
+        }
+
+        public PLUME.Sample.RecordMetadata ToPayload()
+        {
+            return new PLUME.Sample.RecordMetadata
+            {
+                Name = Name,
+                ExtraMetadata = ExtraMetadata,
+                StartTime = Timestamp.FromDateTime(StartTime),
+                RecorderVersion = PlumeRecorder.Version
+            };
         }
     }
 }

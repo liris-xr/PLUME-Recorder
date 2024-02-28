@@ -16,11 +16,11 @@ namespace PLUME.Sample.ProtoBurst
         public static readonly uint PayloadFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
 
         private readonly bool _hasTimestamp;
-        private readonly long _timestamp;
+        private readonly ulong _timestamp;
 
         private NativeList<byte> _payloadRawBytes;
 
-        private PackedSample(long timestamp, NativeList<byte> payloadRawBytes)
+        private PackedSample(ulong timestamp, NativeList<byte> payloadRawBytes)
         {
             _hasTimestamp = true;
             _timestamp = timestamp;
@@ -34,13 +34,13 @@ namespace PLUME.Sample.ProtoBurst
             _payloadRawBytes = payloadRawBytes;
         }
 
-        public static PackedSample Pack(long timestamp, ref Any payload, Allocator allocator)
+        public static PackedSample Pack(ulong timestamp, ref Any payload, Allocator allocator)
         {
             var payloadRawBytes = payload.ToBytes(allocator);
             return new PackedSample(timestamp, payloadRawBytes);
         }
 
-        public static PackedSample Pack(long timestamp,
+        public static PackedSample Pack(ulong timestamp,
             ref NativeList<byte> payloadValueBytes,
             ref NativeList<byte> payloadTypeUrlBytes,
             Allocator allocator)
@@ -62,7 +62,7 @@ namespace PLUME.Sample.ProtoBurst
             return new PackedSample(payloadRawBytes);
         }
 
-        public static PackedSample Pack<T>(long timestamp, ref T message, Allocator allocator)
+        public static PackedSample Pack<T>(ulong timestamp, ref T message, Allocator allocator)
             where T : unmanaged, IProtoBurstMessage
         {
             var payload = Any.Pack(ref message, allocator);
@@ -76,7 +76,7 @@ namespace PLUME.Sample.ProtoBurst
             if (_hasTimestamp)
             {
                 bufferWriter.WriteTag(TimestampFieldTag);
-                bufferWriter.WriteInt64(_timestamp);
+                bufferWriter.WriteUInt64(_timestamp);
             }
 
             bufferWriter.WriteTag(PayloadFieldTag);
@@ -90,7 +90,7 @@ namespace PLUME.Sample.ProtoBurst
             if (_hasTimestamp)
             {
                 size += BufferWriterExtensions.ComputeTagSize(TimestampFieldTag) +
-                        BufferWriterExtensions.ComputeInt64Size(_timestamp);
+                        BufferWriterExtensions.ComputeUInt64Size(_timestamp);
             }
 
             size += BufferWriterExtensions.ComputeTagSize(PayloadFieldTag) +

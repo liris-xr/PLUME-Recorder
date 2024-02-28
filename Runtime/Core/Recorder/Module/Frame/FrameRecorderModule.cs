@@ -27,11 +27,11 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         private BlockingCollection<FrameInfo> _frameQueue;
 
-        private long _updateInterval; // in nanoseconds
+        private ulong _updateInterval; // in nanoseconds
 
-        private long _lastUpdateTime; // in nanoseconds
-        private long _lastFixedUpdateTime; // in nanoseconds
-        private long _deltaTime; // in nanoseconds
+        private ulong _lastUpdateTime; // in nanoseconds
+        private ulong _lastFixedUpdateTime; // in nanoseconds
+        private ulong _deltaTime; // in nanoseconds
         private bool _shouldRunUpdate;
 
         void IRecorderModule.Create(RecorderContext ctx)
@@ -40,7 +40,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             _frameDataRecorderModules = ctx.Modules.OfType<IFrameDataRecorderModule>().ToArray();
 
             var settings = ctx.SettingsProvider.GetOrCreate<FrameRecorderModuleSettings>();
-            _updateInterval = (long)(1_000_000_000 / settings.UpdateRate);
+            _updateInterval = (ulong)(1_000_000_000 / settings.UpdateRate);
 
             PlayerLoopUtils.InjectEarlyUpdate<RecorderEarlyUpdate>(() => EarlyUpdate(ctx));
             PlayerLoopUtils.InjectPreUpdate<RecorderPreUpdate>(() => PreUpdate(ctx));
@@ -120,7 +120,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             if (fixedUpdateDt < _updateInterval)
                 return;
             
-            var nFixedUpdates = fixedUpdateDt / _updateInterval;
+            var nFixedUpdates = (int) (fixedUpdateDt / _updateInterval);
             var fixedTime = _lastFixedUpdateTime;
 
             ctx.CurrentRecord.FixedTime = fixedTime;
@@ -150,10 +150,10 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             var time = ctx.CurrentRecord.Time;
             var updateDt = time - _lastUpdateTime;
-            var nextUpdateDt = time + Time.unscaledTimeAsDouble * 1_000_000_000 - _lastUpdateTime;
+            var nextUpdateDt = (ulong) (time + Time.unscaledTimeAsDouble * 1_000_000_000 - _lastUpdateTime);
 
             // If the next frame is closer to the update interval than the current frame, wait for next frame
-            if (Math.Abs(nextUpdateDt - _updateInterval) < Math.Abs(updateDt - _updateInterval))
+            if (Math.Abs((long) nextUpdateDt - (long) _updateInterval) < Math.Abs((long) updateDt - (long) _updateInterval))
             {
                 _shouldRunUpdate = false;
                 return;
@@ -223,7 +223,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             PushFrame(timestamp, frame, ctx);
         }
 
-        private void PushFrame(long timestamp, int frameNumber, RecorderContext ctx)
+        private void PushFrame(ulong timestamp, int frameNumber, RecorderContext ctx)
         {
             var frame = new FrameInfo(timestamp, frameNumber);
 

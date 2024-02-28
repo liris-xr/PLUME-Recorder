@@ -2,10 +2,10 @@ using System;
 using System.IO;
 using System.Linq;
 using Google.Protobuf;
-using Google.Protobuf.WellKnownTypes;
 using K4os.Compression.LZ4;
 using K4os.Compression.LZ4.Internal;
 using K4os.Compression.LZ4.Streams;
+using PLUME.Sample;
 using UnityEngine;
 
 namespace PLUME.Core.Recorder.Writer
@@ -16,18 +16,16 @@ namespace PLUME.Core.Recorder.Writer
     public class FileDataWriter : IDataWriter, IDisposable
     {
         private readonly Stream _stream;
-        private readonly Stream _metadataStream;
+        private readonly Stream _metaStream;
 
-        private Sample.RecordMetadata _metadata;
-        private bool _isSequential;
-        private ulong _sampleCount;
-        private long _lastWrittenTimestamp;
+        private readonly Sample.RecordMetadata _metadata;
+        private readonly RecordMetrics _metrics;
         
         public FileDataWriter(Record record)
         {
             var outputDir = Application.persistentDataPath;
 
-            GenerateFilePath(outputDir, record.Metadata, out var filePath, out var metadataFilePath);
+            GenerateFilePath(outputDir, record.Metadata, out var filePath, out var metaFilePath);
 
             PinnedMemory.MaxPooledSize = 0;
 
@@ -44,16 +42,17 @@ namespace PLUME.Core.Recorder.Writer
             }
 
             _stream = LZ4Stream.Encode(File.Create(filePath), LZ4Level.L00_FAST);
-            _metadataStream = File.Create(metadataFilePath);
+            _metaStream = File.Create(metaFilePath);
 
-            _metadata = new Sample.RecordMetadata
+            _metadata = record.Metadata.ToPayload();
+            _metrics = new RecordMetrics
             {
-                Name = record.Metadata.Name,
-                ExtraMetadata = record.Metadata.ExtraMetadata,
-                Sequential = true,
-                RecorderVersion = PlumeRecorder.Version,
-                CreatedAt = Timestamp.FromDateTime(record.Metadata.StartTime),
+                NSamples = 0,
+                Duration = 0,
+                IsSequential = true
             };
+            
+            UpdateMetaFile();
         }
 
         private static void GenerateFilePath(string outputDir, RecordMetadata recordMetadata,
@@ -83,47 +82,45 @@ namespace PLUME.Core.Recorder.Writer
         {
             if (dataChunks.IsEmpty()) return;
             _stream.Write(dataChunks.GetDataSpan());
-            _sampleCount += (ulong)dataChunks.ChunksCount;
-            UpdateMetadata();
+            _metrics.NSamples += (ulong)dataChunks.ChunksCount;
+            UpdateMetaFile();
         }
 
         public void WriteTimestampedData(DataChunksTimestamped dataChunks)
         {
             if (dataChunks.IsEmpty()) return;
             _stream.Write(dataChunks.GetDataSpan());
-            var lastTimestamp = dataChunks.Timestamps[^1];
-            _isSequential &= lastTimestamp >= _lastWrittenTimestamp;
-            _lastWrittenTimestamp = lastTimestamp;
-            _sampleCount += (ulong)dataChunks.ChunksCount;
-            UpdateMetadata();
+            var timestamp = (ulong) Math.Max(0, dataChunks.Timestamps[^1]);
+            _metrics.IsSequential &= timestamp >= _metrics.Duration;
+            _metrics.Duration = timestamp;
+            _metrics.NSamples += (ulong)dataChunks.ChunksCount;
+            UpdateMetaFile();
         }
 
-        private void UpdateMetadata()
+        private void UpdateMetaFile()
         {
-            _metadataStream.SetLength(0);
-            _metadataStream.Position = 0;
-            _metadata.SamplesCount = _sampleCount;
-            _metadata.Sequential = _isSequential;
-            _metadata.Duration = (ulong)Math.Max(0, _lastWrittenTimestamp);
-            _metadata.WriteDelimitedTo(_metadataStream);
+            _metaStream.SetLength(0);
+            _metaStream.Position = 0;
+            _metadata.WriteDelimitedTo(_metaStream);
+            _metrics.WriteDelimitedTo(_metaStream);
         }
 
         public void Flush()
         {
             _stream.Flush();
-            _metadataStream.Flush();
+            _metaStream.Flush();
         }
 
         public void Close()
         {
             _stream.Close();
-            _metadataStream.Close();
+            _metaStream.Close();
         }
 
         public void Dispose()
         {
             _stream.Dispose();
-            _metadataStream.Dispose();
+            _metaStream.Dispose();
         }
     }
 }

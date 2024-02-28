@@ -26,7 +26,7 @@ namespace PLUME.Sample {
           string.Concat(
             "ChNwYWNrZWRfc2FtcGxlLnByb3RvEgxwbHVtZS5zYW1wbGUaGWdvb2dsZS9w",
             "cm90b2J1Zi9hbnkucHJvdG8iWwoMUGFja2VkU2FtcGxlEhYKCXRpbWVzdGFt",
-            "cBgBIAEoA0gAiAEBEiUKB3BheWxvYWQYAiABKAsyFC5nb29nbGUucHJvdG9i",
+            "cBgBIAEoBEgAiAEBEiUKB3BheWxvYWQYAiABKAsyFC5nb29nbGUucHJvdG9i",
             "dWYuQW55QgwKCl90aW1lc3RhbXBCD6oCDFBMVU1FLlNhbXBsZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, },
@@ -87,12 +87,12 @@ namespace PLUME.Sample {
 
     /// <summary>Field number for the "timestamp" field.</summary>
     public const int TimestampFieldNumber = 1;
-    private readonly static long TimestampDefaultValue = 0L;
+    private readonly static ulong TimestampDefaultValue = 0UL;
 
-    private long timestamp_;
+    private ulong timestamp_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public long Timestamp {
+    public ulong Timestamp {
       get { if ((_hasBits0 & 1) != 0) { return timestamp_; } else { return TimestampDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -170,7 +170,7 @@ namespace PLUME.Sample {
     #else
       if (HasTimestamp) {
         output.WriteRawTag(8);
-        output.WriteInt64(Timestamp);
+        output.WriteUInt64(Timestamp);
       }
       if (payload_ != null) {
         output.WriteRawTag(18);
@@ -188,7 +188,7 @@ namespace PLUME.Sample {
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
       if (HasTimestamp) {
         output.WriteRawTag(8);
-        output.WriteInt64(Timestamp);
+        output.WriteUInt64(Timestamp);
       }
       if (payload_ != null) {
         output.WriteRawTag(18);
@@ -205,7 +205,7 @@ namespace PLUME.Sample {
     public int CalculateSize() {
       int size = 0;
       if (HasTimestamp) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Timestamp);
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Timestamp);
       }
       if (payload_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Payload);
@@ -247,7 +247,7 @@ namespace PLUME.Sample {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Timestamp = input.ReadInt64();
+            Timestamp = input.ReadUInt64();
             break;
           }
           case 18: {
@@ -273,7 +273,7 @@ namespace PLUME.Sample {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Timestamp = input.ReadInt64();
+            Timestamp = input.ReadUInt64();
             break;
           }
           case 18: {

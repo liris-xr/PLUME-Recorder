@@ -14,27 +14,27 @@ namespace PLUME.Core.Recorder.Module.Frame
         
         internal void SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter);
 
-        internal void FixedUpdate(long fixedDeltaTime, RecorderContext ctx)
+        internal void FixedUpdate(ulong fixedDeltaTime, RecorderContext ctx)
         {
         }
 
-        internal void EarlyUpdate(long deltaTime, RecorderContext ctx)
+        internal void EarlyUpdate(ulong deltaTime, RecorderContext ctx)
         {
         }
 
-        internal void PreUpdate(long deltaTime, RecorderContext ctx)
+        internal void PreUpdate(ulong deltaTime, RecorderContext ctx)
         {
         }
 
-        internal void Update(long deltaTime, RecorderContext ctx)
+        internal void Update(ulong deltaTime, RecorderContext ctx)
         {
         }
 
-        internal void PreLateUpdate(long deltaTime, RecorderContext ctx)
+        internal void PreLateUpdate(ulong deltaTime, RecorderContext ctx)
         {
         }
 
-        internal void PostLateUpdate(long deltaTime, RecorderContext ctx)
+        internal void PostLateUpdate(ulong deltaTime, RecorderContext ctx)
         {
         }
     }

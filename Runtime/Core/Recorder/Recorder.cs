@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using Cysharp.Threading.Tasks;
+using Google.Protobuf.WellKnownTypes;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
@@ -27,7 +28,7 @@ namespace PLUME.Core.Recorder
             Minor = "0",
             Patch = "0",
         };
-        
+
         private RecorderStatus _status = RecorderStatus.Stopped;
 
         private readonly RecorderContext _context;
@@ -55,11 +56,16 @@ namespace PLUME.Core.Recorder
 
             ApplicationPauseDetector.EnsureExists();
 
-            var recordMetadata = new RecordMetadata(name, extraMetadata, DateTime.UtcNow);
+            var createdAt = DateTime.UtcNow;
+            var recordMetadata = new RecordMetadata(name, extraMetadata, createdAt);
             var recordClock = new Clock();
+            var record = new Record(recordClock, recordMetadata, Allocator.Persistent);
+
+            RecordMetadata(record);
+
             _context.IsRecording = true;
-            _context.CurrentRecord = new Record(recordClock, recordMetadata, Allocator.Persistent);
-            
+            _context.CurrentRecord = record;
+
             _status = RecorderStatus.Recording;
 
             _dataDispatcher.Start(_context.CurrentRecord);
@@ -73,6 +79,17 @@ namespace PLUME.Core.Recorder
             recordClock.Start();
 
             Logger.Log("Recorder started.");
+        }
+
+        private static void RecordMetadata(Record record)
+        {
+            record.RecordTimelessManagedSample(new PLUME.Sample.RecordMetadata
+            {
+                Name = record.Metadata.Name,
+                ExtraMetadata = record.Metadata.ExtraMetadata,
+                RecorderVersion = Version,
+                StartTime = Timestamp.FromDateTime(record.Metadata.StartTime)
+            });
         }
 
         /// <summary>
@@ -163,7 +180,7 @@ namespace PLUME.Core.Recorder
                 if (module is not IObjectRecorderModule objectRecorderModule)
                     continue;
 
-                if(!objectRecorderModule.IsObjectSupported(objectSafeRef))
+                if (!objectRecorderModule.IsObjectSupported(objectSafeRef))
                     continue;
 
                 if (objectRecorderModule.IsRecordingObject(objectSafeRef))
@@ -185,7 +202,7 @@ namespace PLUME.Core.Recorder
                 if (module is not IObjectRecorderModule objectRecorderModule)
                     continue;
 
-                if(!objectRecorderModule.IsObjectSupported(objectSafeRef))
+                if (!objectRecorderModule.IsObjectSupported(objectSafeRef))
                     continue;
 
                 if (!objectRecorderModule.IsRecordingObject(objectSafeRef))
@@ -194,12 +211,12 @@ namespace PLUME.Core.Recorder
                 objectRecorderModule.StopRecordingObject(objectSafeRef, markDestroyed, _context);
             }
         }
-        
+
         private void RecordMarkerInternal(string label)
         {
             EnsureIsRecording();
             var marker = new Marker { Label = label };
-            _context.CurrentRecord.RecordTimestampedSample(marker);
+            _context.CurrentRecord.RecordTimestampedManagedSample(marker);
         }
 
         private void OnApplicationPaused()
@@ -238,7 +255,7 @@ namespace PLUME.Core.Recorder
             if (_status is RecorderStatus.Recording or RecorderStatus.Stopping)
                 ForceStopRecordingInternal();
         }
-        
+
         private void Awake()
         {
             // ReSharper disable once ForCanBeConvertedToForeach

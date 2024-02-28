@@ -14,12 +14,12 @@ namespace PLUME.Core.Recorder
         /// <summary>
         /// Relative time since the recording started. This is the time that should be used for timestamping samples.
         /// </summary>
-        public long Time => InternalClock.ElapsedNanoseconds;
+        public ulong Time => InternalClock.ElapsedNanoseconds;
 
         /// <summary>
         /// Relative time since the recording started. This is the time that should be used for timestamping samples inside fixed updates.
         /// </summary>
-        public long FixedTime { get; internal set; }
+        public ulong FixedTime { get; internal set; }
 
         internal readonly Clock InternalClock;
 
@@ -38,7 +38,7 @@ namespace PLUME.Core.Recorder
 
         // ReSharper restore Unity.ExpensiveCode
 
-        public void RecordTimelessPackedSample(IMessage msg)
+        public void RecordTimelessManagedSample<T>(T msg) where T : IMessage
         {
             var typeUrl = SampleTypeUrl.Alloc(msg.Descriptor, Allocator.Persistent);
             var sampleSize = msg.CalculateSize();
@@ -60,14 +60,14 @@ namespace PLUME.Core.Recorder
 
         // ReSharper restore Unity.ExpensiveCode
 
-        public void RecordTimestampedSample(IMessage msg)
+        public void RecordTimestampedManagedSample<T>(T msg) where T : IMessage
         {
-            RecordTimestampedSample(msg, Time);
+            RecordTimestampedManagedSample(msg, Time);
         }
 
         // ReSharper restore Unity.ExpensiveCode
 
-        public void RecordTimestampedSample(IMessage msg, long timestamp)
+        public void RecordTimestampedManagedSample<T>(T msg, ulong timestamp) where T : IMessage
         {
             var typeUrl = SampleTypeUrl.Alloc(msg.Descriptor, Allocator.Persistent);
             var sampleSize = msg.CalculateSize();
@@ -101,7 +101,7 @@ namespace PLUME.Core.Recorder
             RecordTimestampedSample(msg, Time);
         }
 
-        public void RecordTimestampedSample<T>(T msg, long timestamp) where T : unmanaged, IProtoBurstMessage
+        public void RecordTimestampedSample<T>(T msg, ulong timestamp) where T : unmanaged, IProtoBurstMessage
         {
             var typeUrl = msg.GetTypeUrl(Allocator.Persistent);
             var sampleBytes = msg.ToBytes(Allocator.Persistent);
@@ -138,7 +138,7 @@ namespace PLUME.Core.Recorder
             RecordTimestampedSample(sampleBytes, typeUrl, Time);
         }
 
-        public void RecordTimestampedSample(NativeList<byte> sampleBytes, SampleTypeUrl typeUrl, long timestamp)
+        public void RecordTimestampedSample(NativeList<byte> sampleBytes, SampleTypeUrl typeUrl, ulong timestamp)
         {
             var typeUrlBytes = typeUrl.AsList();
             var packedSample = PackedSample.Pack(timestamp, ref sampleBytes, ref typeUrlBytes, Allocator.Persistent);
@@ -177,7 +177,7 @@ namespace PLUME.Core.Recorder
             }
         }
 
-        internal bool TryRemoveAllTimestampedDataChunksBeforeTimestamp(long timestamp, DataChunksTimestamped dst,
+        internal bool TryRemoveAllTimestampedDataChunksBeforeTimestamp(ulong timestamp, DataChunksTimestamped dst,
             bool inclusive)
         {
             lock (_timestampedDataBufferLock)

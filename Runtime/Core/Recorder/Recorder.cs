@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 using Cysharp.Threading.Tasks;
-using Google.Protobuf.WellKnownTypes;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
@@ -28,9 +27,7 @@ namespace PLUME.Core.Recorder
             Minor = "0",
             Patch = "0",
         };
-
-        private RecorderStatus _status = RecorderStatus.Stopped;
-
+        
         private readonly RecorderContext _context;
         private readonly DataDispatcher _dataDispatcher;
         private bool _wantsToQuit;
@@ -47,11 +44,11 @@ namespace PLUME.Core.Recorder
         /// <exception cref="InvalidOperationException"></exception>
         private void StartRecordingInternal(string name, string extraMetadata)
         {
-            if (_status is RecorderStatus.Stopping)
+            if (_context.Status is RecorderStatus.Stopping)
                 throw new InvalidOperationException(
                     "Recorder is stopping. You cannot start it again until it is stopped.");
 
-            if (_status is RecorderStatus.Recording)
+            if (_context.Status is RecorderStatus.Recording)
                 throw new InvalidOperationException("Recorder is already recording.");
 
             ApplicationPauseDetector.EnsureExists();
@@ -61,12 +58,11 @@ namespace PLUME.Core.Recorder
             var recordClock = new Clock();
             var record = new Record(recordClock, recordMetadata, Allocator.Persistent);
 
-            RecordMetadata(record);
+            // Record the metadata first
+            record.RecordTimelessManagedSample(recordMetadata.ToPayload());
 
-            _context.IsRecording = true;
             _context.CurrentRecord = record;
-
-            _status = RecorderStatus.Recording;
+            _context.Status = RecorderStatus.Recording;
 
             _dataDispatcher.Start(_context.CurrentRecord);
 
@@ -81,17 +77,6 @@ namespace PLUME.Core.Recorder
             Logger.Log("Recorder started.");
         }
 
-        private static void RecordMetadata(Record record)
-        {
-            record.RecordTimelessManagedSample(new PLUME.Sample.RecordMetadata
-            {
-                Name = record.Metadata.Name,
-                ExtraMetadata = record.Metadata.ExtraMetadata,
-                RecorderVersion = Version,
-                StartTime = Timestamp.FromDateTime(record.Metadata.StartTime)
-            });
-        }
-
         /// <summary>
         /// Stops the recording process. If the recorder is not recording, throw a <see cref="InvalidOperationException"/> exception.
         /// This method calls the <see cref="IRecorderModule.StopRecording"/> method on all the recorder modules and stops the <see cref="FrameRecorder"/>.
@@ -100,16 +85,16 @@ namespace PLUME.Core.Recorder
         /// <exception cref="InvalidOperationException">Thrown if called when the recorder is not recording.</exception>
         private async UniTask StopRecordingInternal()
         {
-            if (_status is RecorderStatus.Stopping)
+            if (_context.Status is RecorderStatus.Stopping)
                 throw new InvalidOperationException("Recorder is already stopping.");
 
-            if (_status is not RecorderStatus.Recording)
+            if (_context.Status is not RecorderStatus.Recording)
                 throw new InvalidOperationException("Recorder is not recording.");
 
             Logger.Log("Stopping recorder...");
 
             _context.CurrentRecord.InternalClock.Stop();
-            _status = RecorderStatus.Stopping;
+            _context.Status = RecorderStatus.Stopping;
 
             if (_context.TryGetRecorderModule(out FrameRecorderModule frameRecorderModule))
             {
@@ -123,11 +108,9 @@ namespace PLUME.Core.Recorder
             }
 
             await _dataDispatcher.StopAsync();
-
-            _status = RecorderStatus.Stopped;
-
+            
             ApplicationPauseDetector.Destroy();
-            _context.IsRecording = true;
+            _context.Status = RecorderStatus.Stopped;
 
             if (_context.CurrentRecord != null)
             {
@@ -140,7 +123,7 @@ namespace PLUME.Core.Recorder
 
         private void ForceStopRecordingInternal()
         {
-            if (_status is RecorderStatus.Stopped)
+            if (_context.Status is RecorderStatus.Stopped)
                 throw new InvalidOperationException("Recorder is already stopped.");
 
             Logger.Log("Force stopping recorder...");
@@ -154,9 +137,8 @@ namespace PLUME.Core.Recorder
             }
 
             _dataDispatcher.Stop();
-            _status = RecorderStatus.Stopped;
-
-            _context.IsRecording = false;
+            _context.Status = RecorderStatus.Stopped;
+            
             if (_context.CurrentRecord != null)
             {
                 _context.CurrentRecord.Dispose();
@@ -229,10 +211,10 @@ namespace PLUME.Core.Recorder
             if (Application.isEditor)
                 return true;
 
-            if (_status is RecorderStatus.Stopped)
+            if (_context.Status is RecorderStatus.Stopped)
                 return true;
 
-            if (_status is RecorderStatus.Recording)
+            if (_context.Status is RecorderStatus.Recording)
             {
                 var stopTask = StopRecordingInternal();
                 if (!stopTask.Status.IsCompleted())
@@ -245,14 +227,14 @@ namespace PLUME.Core.Recorder
             if (_wantsToQuit)
                 return false;
 
-            UniTask.WaitUntil(() => _status is RecorderStatus.Stopped).ContinueWith(Application.Quit).Forget();
+            UniTask.WaitUntil(() => _context.Status is RecorderStatus.Stopped).ContinueWith(Application.Quit).Forget();
             _wantsToQuit = true;
             return false;
         }
 
         private void OnApplicationQuitting()
         {
-            if (_status is RecorderStatus.Recording or RecorderStatus.Stopping)
+            if (_context.Status is RecorderStatus.Recording or RecorderStatus.Stopping)
                 ForceStopRecordingInternal();
         }
 
@@ -272,7 +254,7 @@ namespace PLUME.Core.Recorder
         /// <exception cref="InvalidOperationException">Thrown if the recorder is not recording.</exception>
         private void EnsureIsRecording()
         {
-            if (_status is not RecorderStatus.Recording)
+            if (_context.Status is not RecorderStatus.Recording)
                 throw new InvalidOperationException("Recorder is not recording.");
         }
 

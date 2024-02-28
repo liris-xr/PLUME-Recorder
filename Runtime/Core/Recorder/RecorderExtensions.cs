@@ -13,13 +13,13 @@ namespace PLUME.Core.Recorder
     {
         public static PlumeRecorder Instance { get; private set; }
         
-        public static RecorderStatus Status => Instance._status;
+        public static RecorderStatus Status => Instance._context.Status;
 
-        public static bool IsRecording => Instance._status is RecorderStatus.Recording;
+        public static bool IsRecording => Instance._context.Status is RecorderStatus.Recording;
 
-        public static bool IsStopping => Instance._status is RecorderStatus.Stopping;
+        public static bool IsStopping => Instance._context.Status is RecorderStatus.Stopping;
 
-        public static bool IsStopped => Instance._status is RecorderStatus.Stopped;
+        public static bool IsStopped => Instance._context.Status is RecorderStatus.Stopped;
 
         private static void CheckInstantiated()
         {

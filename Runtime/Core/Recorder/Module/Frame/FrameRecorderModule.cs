@@ -75,12 +75,10 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         void IRecorderModule.StopRecording(RecorderContext ctx)
         {
-            ctx.IsRecording = false;
             _shouldRunUpdate = false;
             _shouldSerialize = false;
             _serializationThread.Join();
             _serializationThread = null;
-            ctx.CurrentRecord = null;
         }
 
         internal async UniTask CompleteSerializationAsync()

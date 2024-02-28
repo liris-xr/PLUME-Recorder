@@ -116,10 +116,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
             var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t.parent);
             var parentIdentifier = parentSafeRef.ComponentIdentifier;
-
-            Debug.Log(tSafeRef.ComponentIdentifier.ComponentId.Guid + " is child of " +
-                      parentIdentifier.ComponentId.Guid);
-
+            
             var initialPositionState = new TransformPositionState
             {
                 LocalPosition = localPosition,
@@ -141,8 +138,6 @@ namespace PLUME.Base.Module.Unity.Transform
             _alignedPositionStates.Add(initialPositionState);
             _alignedHierarchyStates.Add(initialHierarchyState);
             _alignedFlagsStates.Add(initialFlagsState);
-
-            Debug.Log(tSafeRef.ComponentIdentifier.ComponentId.Guid + " index " + idx);
         }
 
         protected override void OnStopRecordingObject(TransformSafeRef tSafeRef, RecorderContext ctx)

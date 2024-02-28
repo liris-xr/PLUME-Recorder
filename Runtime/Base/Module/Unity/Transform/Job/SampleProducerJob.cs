@@ -31,50 +31,50 @@ namespace PLUME.Base.Module.Unity.Transform.Job
 
                 var createdInFrame = flagsState.IsCreatedInFrame;
                 var destroyedInFrame = flagsState.IsDestroyedInFrame;
-                
+
                 if (destroyedInFrame)
                 {
                     DestroySamples.AddNoResize(new TransformDestroy(identifier));
                     continue;
                 }
-                
+
                 if (createdInFrame)
                 {
                     CreateSamples.AddNoResize(new TransformCreate(identifier));
                 }
-                
+
                 if (!createdInFrame && !positionState.IsDirty && !hierarchyState.IsDirty)
                     continue;
 
                 var updateSample = new TransformUpdate(identifier);
-                
-                if(hierarchyState.ParentTransformIdDirty || createdInFrame)
+
+                if (hierarchyState.ParentTransformIdDirty || createdInFrame)
                 {
                     updateSample.SetParent(hierarchyState.ParentTransformId);
                 }
-                
-                if(hierarchyState.SiblingIndexDirty || createdInFrame)
+
+                if (hierarchyState.SiblingIndexDirty || createdInFrame)
                 {
                     updateSample.SetSiblingIndex(hierarchyState.SiblingIndex);
                 }
-                
+
                 if (positionState.LocalPositionDirty || createdInFrame)
                 {
                     updateSample.SetLocalPosition(positionState.LocalPosition);
                 }
-                
+
                 if (positionState.LocalRotationDirty || createdInFrame)
                 {
                     updateSample.SetLocalRotation(positionState.LocalRotation);
                 }
-                
+
                 if (positionState.LocalScaleDirty || createdInFrame)
                 {
                     updateSample.SetLocalScale(positionState.LocalScale);
                 }
-                
+
                 UpdateSamples.AddNoResize(updateSample);
-                
+
                 positionState.MarkClean();
                 hierarchyState.MarkClean();
                 flagsState.MarkClean();

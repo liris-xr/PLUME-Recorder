@@ -28,14 +28,21 @@ namespace PLUME.Core.Object.SafeRef
             TransformSafeRef = new ComponentSafeRef<Transform>(go.transform, transformGuid, this);
         }
 
-        public bool Equals(GameObjectSafeRef other)
+        protected bool Equals(GameObjectSafeRef other)
         {
             return Identifier.Equals(other.Identifier);
         }
 
+        public bool Equals(IObjectSafeRef other)
+        {
+            return other is GameObjectSafeRef gameObjectSafeRef && Equals(gameObjectSafeRef);
+        }
+
         public override bool Equals(object obj)
         {
-            return obj is GameObjectSafeRef other && Equals(other);
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj.GetType() == GetType() && Equals((GameObjectSafeRef)obj);
         }
 
         public override int GetHashCode()

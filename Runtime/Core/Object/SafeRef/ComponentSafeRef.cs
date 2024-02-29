@@ -34,5 +34,27 @@ namespace PLUME.Core.Object.SafeRef
         {
             return ComponentIdentifier;
         }
+
+        private bool Equals(ComponentSafeRef<TC> other)
+        {
+            return ComponentIdentifier.Equals(other.ComponentIdentifier);
+        }
+
+        public bool Equals(IObjectSafeRef other)
+        {
+            return other is ComponentSafeRef<TC> componentSafeRef && Equals(componentSafeRef);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj.GetType() == GetType() && Equals((ComponentSafeRef<TC>)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return ComponentIdentifier.GetHashCode();
+        }
     }
 }

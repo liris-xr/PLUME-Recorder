@@ -1,3 +1,5 @@
+using System;
+
 namespace PLUME.Core.Object.SafeRef
 {
     /// <summary>
@@ -5,7 +7,7 @@ namespace PLUME.Core.Object.SafeRef
     /// destroyed, the identifier is still valid and can be used to identify the object. This is useful for recording
     /// data about objects that have been destroyed and for which the reference is no longer valid.
     /// </summary>
-    public interface IObjectSafeRef
+    public interface IObjectSafeRef : IEquatable<IObjectSafeRef>
     {
     }
 

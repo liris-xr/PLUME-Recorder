@@ -8,7 +8,7 @@ namespace PLUME.Core.Object.SafeRef
         public static readonly AssetSafeRef<TObject> Null = new();
 
         public readonly AssetIdentifier Identifier;
-        
+
         public readonly TObject Asset;
 
         private AssetSafeRef()
@@ -31,6 +31,28 @@ namespace PLUME.Core.Object.SafeRef
         public AssetIdentifier GetIdentifier()
         {
             return Identifier;
+        }
+
+        private bool Equals(AssetSafeRef<TObject> other)
+        {
+            return Identifier.Equals(other.Identifier);
+        }
+
+        public bool Equals(IObjectSafeRef other)
+        {
+            return other is AssetSafeRef<TObject> assetSafeRef && Equals(assetSafeRef);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj.GetType() == GetType() && Equals((AssetSafeRef<TObject>)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Identifier.GetHashCode();
         }
     }
 }

@@ -36,25 +36,27 @@ namespace PLUME.Editor.Core.Hooks
                 .Where(v => v.attribute != null);
 
             var sb = new StringBuilder();
-            sb.AppendLine("Registered hooks:");
-            
+            sb.AppendLine("Hook registration results:");
+
             foreach (var result in registerHookAttributes)
             {
                 if (!result.method.IsPublic)
                 {
-                    throw new InvalidOperationException(
-                        $"Method {result.method} is not public. Only public methods can be registered as hooks.");
+                    sb.AppendLine(
+                        $"SKIPPED: {result.method} is not public. Only public methods can be registered as hooks.");
                 }
-
-                if (result.attribute.TargetMethod == null)
+                else if (result.attribute.TargetMethod == null)
                 {
-                    throw new InvalidOperationException($"Method {result.method} has a null target method.");
+                    sb.AppendLine($"SKIPPED: {result.method} target method not found.");
                 }
-
-                RegisterHook(result.attribute.TargetMethod, result.method, result.attribute.InsertAfter);
-                sb.AppendLine($"{result.method} registered for target {result.attribute.TargetMethod.DeclaringType?.Name + "::" + result.attribute.TargetMethod}");
+                else
+                {
+                    RegisterHook(result.attribute.TargetMethod, result.method, result.attribute.InsertAfter);
+                    sb.AppendLine(
+                        $"SUCCESS: {result.method} registered for target {result.attribute.TargetMethod.DeclaringType?.Name + "::" + result.attribute.TargetMethod}");
+                }
             }
-            
+
             Logger.Log(sb.ToString());
         }
 

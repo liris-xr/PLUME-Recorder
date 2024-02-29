@@ -63,8 +63,8 @@ namespace PLUME.Base.Hooks
                 OnAddComponent?.Invoke(go, component);
             }
         }
-
-        [RegisterHookAfterMethod(typeof(GameObject), nameof(GameObject.SetGameObjectsActive), typeof(NativeArray<int>),
+        
+        [RegisterHookAfterMethod(typeof(GameObject), "SetGameObjectsActive", typeof(NativeArray<int>),
             typeof(bool))]
         public static void SetGameObjectsActiveHook(NativeArray<int> instanceIDs, bool active)
         {
@@ -72,7 +72,7 @@ namespace PLUME.Base.Hooks
             Logger.LogWarning("SetGameObjectsActiveHook not implemented");
         }
 
-        [RegisterHookAfterMethod(typeof(GameObject), nameof(GameObject.SetGameObjectsActive), typeof(ReadOnlySpan<int>),
+        [RegisterHookAfterMethod(typeof(GameObject), "SetGameObjectsActive", typeof(ReadOnlySpan<int>),
             typeof(bool))]
         public static void SetGameObjectsActiveHook(ReadOnlySpan<int> instanceIDs, bool active)
         {
@@ -80,7 +80,7 @@ namespace PLUME.Base.Hooks
             Logger.LogWarning("SetGameObjectsActiveHook not implemented");
         }
 
-        [RegisterHookAfterMethod(typeof(GameObject), nameof(GameObject.InstantiateGameObjects), typeof(int), typeof(int),
+        [RegisterHookAfterMethod(typeof(GameObject), "InstantiateGameObjects", typeof(int), typeof(int),
             typeof(NativeArray<int>), typeof(NativeArray<int>), typeof(Scene))]
         public static void InstantiateGameObjectsHook(int sourceInstanceID, int count, NativeArray<int> newInstanceIDs,
             NativeArray<int> newTransformInstanceIDs, Scene destinationScene)

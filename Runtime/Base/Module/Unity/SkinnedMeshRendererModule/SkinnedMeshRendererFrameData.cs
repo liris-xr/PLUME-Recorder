@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity;
-using UnityEngine;
 
-namespace PLUME
+namespace PLUME.Base.Module.Unity.SkinnedMeshRendererModule
 {
     public class SkinnedMeshRendererFrameData : PooledFrameData<SkinnedMeshRendererFrameData>
     {

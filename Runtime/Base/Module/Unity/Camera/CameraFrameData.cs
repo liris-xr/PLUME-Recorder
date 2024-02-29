@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using PLUME.Base.Module.Unity.MeshRenderer;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity;
 
-namespace PLUME
+namespace PLUME.Base.Module.Unity.Camera
 {
     public class CameraFrameData : PooledFrameData<MeshRendererFrameData>
     {

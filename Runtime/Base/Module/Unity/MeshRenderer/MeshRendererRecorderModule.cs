@@ -1,5 +1,4 @@
 using PLUME.Base.Hooks;
-using PLUME.Base.Module.Unity;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Utils;
@@ -8,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Scripting;
 using MeshRendererSafeRef = PLUME.Core.Object.SafeRef.ComponentSafeRef<UnityEngine.MeshRenderer>;
 
-namespace PLUME
+namespace PLUME.Base.Module.Unity.MeshRenderer
 {
     [Preserve]
     public class MeshRendererRecorderModule : ComponentRecorderModule<UnityEngine.MeshRenderer, MeshRendererFrameData>
@@ -158,7 +157,7 @@ namespace PLUME
             _frameData.AddUpdateSample(updateSample);
         }
 
-        private void OnSetLightmapIndex(MeshRenderer meshRenderer, int lightmapIndex, RecorderContext ctx)
+        private void OnSetLightmapIndex(UnityEngine.MeshRenderer meshRenderer, int lightmapIndex, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
                 return;
@@ -177,7 +176,7 @@ namespace PLUME
             _frameData.AddUpdateSample(updateSample);
         }
 
-        private void OnSetLightmapScaleOffset(MeshRenderer meshRenderer, Vector4 lightmapScaleOffset,
+        private void OnSetLightmapScaleOffset(UnityEngine.MeshRenderer meshRenderer, Vector4 lightmapScaleOffset,
             RecorderContext ctx)
         {
             if (!ctx.IsRecording)
@@ -203,7 +202,7 @@ namespace PLUME
             _frameData.AddUpdateSample(updateSample);
         }
 
-        private void OnSetRealtimeLightmapIndex(MeshRenderer meshRenderer, int realtimeLightmapIndex,
+        private void OnSetRealtimeLightmapIndex(UnityEngine.MeshRenderer meshRenderer, int realtimeLightmapIndex,
             RecorderContext ctx)
         {
             if (!ctx.IsRecording)
@@ -223,7 +222,7 @@ namespace PLUME
             _frameData.AddUpdateSample(updateSample);
         }
 
-        private void OnSetRealtimeLightmapScaleOffset(MeshRenderer meshRenderer, Vector4 realtimeLightmapScaleOffset,
+        private void OnSetRealtimeLightmapScaleOffset(UnityEngine.MeshRenderer meshRenderer, Vector4 realtimeLightmapScaleOffset,
             RecorderContext ctx)
         {
             if (!ctx.IsRecording)

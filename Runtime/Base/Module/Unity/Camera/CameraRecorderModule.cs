@@ -1,10 +1,8 @@
-using PLUME.Base.Module.Unity;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using UnityEngine.Scripting;
-using CameraSafeRef = PLUME.Core.Object.SafeRef.ComponentSafeRef<UnityEngine.Camera>;
 
-namespace PLUME
+namespace PLUME.Base.Module.Unity.Camera
 {
     [Preserve]
     public class CameraRecorderModule : ComponentRecorderModule<UnityEngine.Camera, CameraFrameData>

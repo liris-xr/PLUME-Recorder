@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity;
 
-namespace PLUME
+namespace PLUME.Base.Module.Unity.MeshRenderer
 {
     public class MeshRendererFrameData : PooledFrameData<MeshRendererFrameData>
     {

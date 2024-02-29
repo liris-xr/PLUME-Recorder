@@ -1,5 +1,4 @@
 using PLUME.Base.Hooks;
-using PLUME.Base.Module.Unity;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Utils;
@@ -9,7 +8,7 @@ using UnityEngine.Scripting;
 using Object = UnityEngine.Object;
 using SkinnedMeshRendererSafeRef = PLUME.Core.Object.SafeRef.ComponentSafeRef<UnityEngine.SkinnedMeshRenderer>;
 
-namespace PLUME
+namespace PLUME.Base.Module.Unity.SkinnedMeshRendererModule
 {
     [Preserve]
     public class SkinnedMeshRendererRecorderModule : ComponentRecorderModule<UnityEngine.SkinnedMeshRenderer, SkinnedMeshRendererFrameData>
@@ -162,7 +161,7 @@ namespace PLUME
             }
         }
         
-        private void OnSetBones(SkinnedMeshRenderer skinnedMeshRenderer, Transform[] bones, RecorderContext ctx)
+        private void OnSetBones(SkinnedMeshRenderer skinnedMeshRenderer, UnityEngine.Transform[] bones, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
                 return;

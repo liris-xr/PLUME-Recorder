@@ -16,8 +16,8 @@ namespace PLUME.Tests
             var go2 = new GameObject("go2");
 
             PlumeRecorder.StartRecording("test");
-            PlumeRecorder.StartRecordingObject(go1.transform);
-            PlumeRecorder.StartRecordingObject(go2.transform);
+            PlumeRecorder.StartRecordingGameObject(go1);
+            PlumeRecorder.StartRecordingGameObject(go2);
             PlumeRecorder.RecordMarker("Start");
             await PlumeRecorder.StopRecording();
         });

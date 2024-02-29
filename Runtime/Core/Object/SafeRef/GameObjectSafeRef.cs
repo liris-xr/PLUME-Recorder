@@ -1,21 +1,25 @@
+using System;
 using UnityEngine;
 
 namespace PLUME.Core.Object.SafeRef
 {
-    public class GameObjectSafeRef : IObjectSafeRef<GameObject, GameObjectIdentifier>
+    public class GameObjectSafeRef : IObjectSafeRef<GameObjectIdentifier>, IEquatable<GameObjectSafeRef>
     {
         public static readonly GameObjectSafeRef Null = new();
-
+        
+        public readonly GameObject GameObject;
         public readonly GameObjectIdentifier Identifier;
 
-        public readonly GameObject GameObject;
+        public GameObject Object => GameObject;
+        UnityEngine.Object IObjectSafeRef.Object => GameObject;
+        IObjectIdentifier IObjectSafeRef.Identifier => Identifier;
+        GameObjectIdentifier IObjectSafeRef<GameObjectIdentifier>.Identifier => Identifier;
 
-        public readonly ComponentSafeRef<Transform> TransformSafeRef;
+        public bool IsNull => Identifier.Equals(GameObjectIdentifier.Null);
 
-        private GameObjectSafeRef()
+        internal GameObjectSafeRef()
         {
             Identifier = GameObjectIdentifier.Null;
-            TransformSafeRef = ComponentSafeRef<Transform>.Null;
             GameObject = null;
         }
 
@@ -25,12 +29,18 @@ namespace PLUME.Core.Object.SafeRef
             var tIdentifier = new Identifier(go.transform.GetInstanceID(), transformGuid);
             Identifier = new GameObjectIdentifier(goIdentifier, tIdentifier);
             GameObject = go;
-            TransformSafeRef = new ComponentSafeRef<Transform>(go.transform, transformGuid, this);
         }
 
-        protected bool Equals(GameObjectSafeRef other)
+        public bool Equals(GameObjectSafeRef other)
         {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
             return Identifier.Equals(other.Identifier);
+        }
+
+        public bool Equals(IObjectSafeRef<GameObjectIdentifier> other)
+        {
+            return other is GameObjectSafeRef gameObjectSafeRef && Equals(gameObjectSafeRef);
         }
 
         public bool Equals(IObjectSafeRef other)
@@ -42,7 +52,8 @@ namespace PLUME.Core.Object.SafeRef
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((GameObjectSafeRef)obj);
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((GameObjectSafeRef)obj);
         }
 
         public override int GetHashCode()
@@ -53,16 +64,6 @@ namespace PLUME.Core.Object.SafeRef
         public override string ToString()
         {
             return (GameObject == null ? "null" : GameObject.name) + $" ({typeof(GameObject)}): {Identifier}";
-        }
-
-        public GameObject GetObject()
-        {
-            return GameObject;
-        }
-
-        public GameObjectIdentifier GetIdentifier()
-        {
-            return Identifier;
         }
     }
 }

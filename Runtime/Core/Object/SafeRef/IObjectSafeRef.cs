@@ -9,14 +9,16 @@ namespace PLUME.Core.Object.SafeRef
     /// </summary>
     public interface IObjectSafeRef : IEquatable<IObjectSafeRef>
     {
+        public IObjectIdentifier Identifier { get; }
+
+        public UnityEngine.Object Object { get; }
+
+        public bool IsNull { get; }
     }
-
-    public interface IObjectSafeRef<out TO, out TI> : IObjectSafeRef
-        where TO : UnityEngine.Object
-        where TI : unmanaged, IObjectIdentifier
+    
+    public interface IObjectSafeRef<out TObjectIdentifier> : IObjectSafeRef
+        where TObjectIdentifier : unmanaged, IObjectIdentifier
     {
-        public TO GetObject();
-
-        public TI GetIdentifier();
+        public new TObjectIdentifier Identifier { get; }
     }
 }

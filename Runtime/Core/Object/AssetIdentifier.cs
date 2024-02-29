@@ -57,7 +57,12 @@ namespace PLUME.Core.Object
         {
             return AssetId.Equals(other.AssetId);
         }
-        
+
+        public bool Equals(IObjectIdentifier other)
+        {
+            return other is AssetIdentifier assetIdentifier && Equals(assetIdentifier);
+        }
+
         [BurstDiscard]
         public override bool Equals(object obj)
         {

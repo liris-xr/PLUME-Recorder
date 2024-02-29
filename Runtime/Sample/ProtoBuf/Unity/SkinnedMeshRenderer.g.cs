@@ -25,42 +25,26 @@ namespace PLUME.Sample.Unity {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CiF1bml0eS9za2lubmVkX21lc2hfcmVuZGVyZXIucHJvdG8SEnBsdW1lLnNh",
-            "bXBsZS51bml0eRoXdW5pdHkvaWRlbnRpZmllcnMucHJvdG8aE2NvbW1vbi9i",
-            "b3VuZHMucHJvdG8aFGNvbW1vbi92ZWN0b3I0LnByb3RvIlAKGVNraW5uZWRN",
-            "ZXNoUmVuZGVyZXJDcmVhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUu",
-            "dW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciJRChpTa2lubmVkTWVzaFJlbmRl",
-            "cmVyRGVzdHJveRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5D",
-            "b21wb25lbnRJZGVudGlmaWVyIv0HChlTa2lubmVkTWVzaFJlbmRlcmVyVXBk",
-            "YXRlEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVu",
-            "dElkZW50aWZpZXISFAoHZW5hYmxlZBgCIAEoCEgAiAEBEjkKB21lc2hfaWQY",
-            "AyABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVudGlmaWVySAGI",
-            "AQESTwoJbWF0ZXJpYWxzGAQgASgLMjcucGx1bWUuc2FtcGxlLnVuaXR5LlNr",
-            "aW5uZWRNZXNoUmVuZGVyZXJVcGRhdGUuTWF0ZXJpYWxzSAKIAQESRwoFYm9u",
-            "ZXMYBSABKAsyMy5wbHVtZS5zYW1wbGUudW5pdHkuU2tpbm5lZE1lc2hSZW5k",
-            "ZXJlclVwZGF0ZS5Cb25lc0gDiAEBEjYKDGxvY2FsX2JvdW5kcxgGIAEoCzIb",
-            "LnBsdW1lLnNhbXBsZS5jb21tb24uQm91bmRzSASIAQESNgoMd29ybGRfYm91",
-            "bmRzGAcgASgLMhsucGx1bWUuc2FtcGxlLmNvbW1vbi5Cb3VuZHNIBYgBARIb",
-            "Cg5saWdodG1hcF9pbmRleBgIIAEoBUgGiAEBEkAKFWxpZ2h0bWFwX3NjYWxl",
-            "X29mZnNldBgJIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21tb24uVmVjdG9yNEgH",
-            "iAEBEiQKF3JlYWx0aW1lX2xpZ2h0bWFwX2luZGV4GAogASgFSAiIAQESSQoe",
-            "cmVhbHRpbWVfbGlnaHRtYXBfc2NhbGVfb2Zmc2V0GAsgASgLMhwucGx1bWUu",
-            "c2FtcGxlLmNvbW1vbi5WZWN0b3I0SAmIAQEaPQoJTWF0ZXJpYWxzEjAKA2lk",
-            "cxgBIAMoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZpZXIa",
-            "ggEKBUJvbmVzEjoKCWJvbmVzX2lkcxgBIAMoCzInLnBsdW1lLnNhbXBsZS51",
-            "bml0eS5Db21wb25lbnRJZGVudGlmaWVyEj0KDHJvb3RfYm9uZV9pZBgCIAEo",
-            "CzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyQgoK",
-            "CF9lbmFibGVkQgoKCF9tZXNoX2lkQgwKCl9tYXRlcmlhbHNCCAoGX2JvbmVz",
-            "Qg8KDV9sb2NhbF9ib3VuZHNCDwoNX3dvcmxkX2JvdW5kc0IRCg9fbGlnaHRt",
-            "YXBfaW5kZXhCGAoWX2xpZ2h0bWFwX3NjYWxlX29mZnNldEIaChhfcmVhbHRp",
-            "bWVfbGlnaHRtYXBfaW5kZXhCIQofX3JlYWx0aW1lX2xpZ2h0bWFwX3NjYWxl",
-            "X29mZnNldEIVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
+            "bXBsZS51bml0eRoXdW5pdHkvaWRlbnRpZmllcnMucHJvdG8iUAoZU2tpbm5l",
+            "ZE1lc2hSZW5kZXJlckNyZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBs",
+            "ZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIlEKGlNraW5uZWRNZXNoUmVu",
+            "ZGVyZXJEZXN0cm95EjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5",
+            "LkNvbXBvbmVudElkZW50aWZpZXIi7wIKGVNraW5uZWRNZXNoUmVuZGVyZXJV",
+            "cGRhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9u",
+            "ZW50SWRlbnRpZmllchI5CgdtZXNoX2lkGAIgASgLMiMucGx1bWUuc2FtcGxl",
+            "LnVuaXR5LkFzc2V0SWRlbnRpZmllckgAiAEBEkcKBWJvbmVzGAMgASgLMjMu",
+            "cGx1bWUuc2FtcGxlLnVuaXR5LlNraW5uZWRNZXNoUmVuZGVyZXJVcGRhdGUu",
+            "Qm9uZXNIAYgBARqCAQoFQm9uZXMSOgoJYm9uZXNfaWRzGAEgAygLMicucGx1",
+            "bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISPQoMcm9vdF9i",
+            "b25lX2lkGAIgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElk",
+            "ZW50aWZpZXJCCgoIX21lc2hfaWRCCAoGX2JvbmVzQhWqAhJQTFVNRS5TYW1w",
+            "bGUuVW5pdHliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.BoundsReflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererCreate), global::PLUME.Sample.Unity.SkinnedMeshRendererCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererDestroy), global::PLUME.Sample.Unity.SkinnedMeshRendererDestroy.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Parser, new[]{ "Id", "Enabled", "MeshId", "Materials", "Bones", "LocalBounds", "WorldBounds", "LightmapIndex", "LightmapScaleOffset", "RealtimeLightmapIndex", "RealtimeLightmapScaleOffset" }, new[]{ "Enabled", "MeshId", "Materials", "Bones", "LocalBounds", "WorldBounds", "LightmapIndex", "LightmapScaleOffset", "RealtimeLightmapIndex", "RealtimeLightmapScaleOffset" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Materials), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Materials.Parser, new[]{ "Ids" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones.Parser, new[]{ "BonesIds", "RootBoneId" }, null, null, null, null)})
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Parser, new[]{ "Id", "MeshId", "Bones" }, new[]{ "MeshId", "Bones" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones.Parser, new[]{ "BonesIds", "RootBoneId" }, null, null, null, null)})
           }));
     }
     #endregion
@@ -473,7 +457,6 @@ namespace PLUME.Sample.Unity {
   {
     private static readonly pb::MessageParser<SkinnedMeshRendererUpdate> _parser = new pb::MessageParser<SkinnedMeshRendererUpdate>(() => new SkinnedMeshRendererUpdate());
     private pb::UnknownFieldSet _unknownFields;
-    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<SkinnedMeshRendererUpdate> Parser { get { return _parser; } }
@@ -501,18 +484,9 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public SkinnedMeshRendererUpdate(SkinnedMeshRendererUpdate other) : this() {
-      _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      enabled_ = other.enabled_;
       meshId_ = other.meshId_ != null ? other.meshId_.Clone() : null;
-      materials_ = other.materials_ != null ? other.materials_.Clone() : null;
       bones_ = other.bones_ != null ? other.bones_.Clone() : null;
-      localBounds_ = other.localBounds_ != null ? other.localBounds_.Clone() : null;
-      worldBounds_ = other.worldBounds_ != null ? other.worldBounds_.Clone() : null;
-      lightmapIndex_ = other.lightmapIndex_;
-      lightmapScaleOffset_ = other.lightmapScaleOffset_ != null ? other.lightmapScaleOffset_.Clone() : null;
-      realtimeLightmapIndex_ = other.realtimeLightmapIndex_;
-      realtimeLightmapScaleOffset_ = other.realtimeLightmapScaleOffset_ != null ? other.realtimeLightmapScaleOffset_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -534,35 +508,8 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "enabled" field.</summary>
-    public const int EnabledFieldNumber = 2;
-    private readonly static bool EnabledDefaultValue = false;
-
-    private bool enabled_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Enabled {
-      get { if ((_hasBits0 & 1) != 0) { return enabled_; } else { return EnabledDefaultValue; } }
-      set {
-        _hasBits0 |= 1;
-        enabled_ = value;
-      }
-    }
-    /// <summary>Gets whether the "enabled" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasEnabled {
-      get { return (_hasBits0 & 1) != 0; }
-    }
-    /// <summary>Clears the value of the "enabled" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearEnabled() {
-      _hasBits0 &= ~1;
-    }
-
     /// <summary>Field number for the "mesh_id" field.</summary>
-    public const int MeshIdFieldNumber = 3;
+    public const int MeshIdFieldNumber = 2;
     private global::PLUME.Sample.Unity.AssetIdentifier meshId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -573,20 +520,8 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "materials" field.</summary>
-    public const int MaterialsFieldNumber = 4;
-    private global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Materials materials_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Materials Materials {
-      get { return materials_; }
-      set {
-        materials_ = value;
-      }
-    }
-
     /// <summary>Field number for the "bones" field.</summary>
-    public const int BonesFieldNumber = 5;
+    public const int BonesFieldNumber = 3;
     private global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones bones_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -594,108 +529,6 @@ namespace PLUME.Sample.Unity {
       get { return bones_; }
       set {
         bones_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "local_bounds" field.</summary>
-    public const int LocalBoundsFieldNumber = 6;
-    private global::PLUME.Sample.Common.Bounds localBounds_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Bounds LocalBounds {
-      get { return localBounds_; }
-      set {
-        localBounds_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "world_bounds" field.</summary>
-    public const int WorldBoundsFieldNumber = 7;
-    private global::PLUME.Sample.Common.Bounds worldBounds_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Bounds WorldBounds {
-      get { return worldBounds_; }
-      set {
-        worldBounds_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "lightmap_index" field.</summary>
-    public const int LightmapIndexFieldNumber = 8;
-    private readonly static int LightmapIndexDefaultValue = 0;
-
-    private int lightmapIndex_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int LightmapIndex {
-      get { if ((_hasBits0 & 2) != 0) { return lightmapIndex_; } else { return LightmapIndexDefaultValue; } }
-      set {
-        _hasBits0 |= 2;
-        lightmapIndex_ = value;
-      }
-    }
-    /// <summary>Gets whether the "lightmap_index" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasLightmapIndex {
-      get { return (_hasBits0 & 2) != 0; }
-    }
-    /// <summary>Clears the value of the "lightmap_index" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearLightmapIndex() {
-      _hasBits0 &= ~2;
-    }
-
-    /// <summary>Field number for the "lightmap_scale_offset" field.</summary>
-    public const int LightmapScaleOffsetFieldNumber = 9;
-    private global::PLUME.Sample.Common.Vector4 lightmapScaleOffset_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Vector4 LightmapScaleOffset {
-      get { return lightmapScaleOffset_; }
-      set {
-        lightmapScaleOffset_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "realtime_lightmap_index" field.</summary>
-    public const int RealtimeLightmapIndexFieldNumber = 10;
-    private readonly static int RealtimeLightmapIndexDefaultValue = 0;
-
-    private int realtimeLightmapIndex_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int RealtimeLightmapIndex {
-      get { if ((_hasBits0 & 4) != 0) { return realtimeLightmapIndex_; } else { return RealtimeLightmapIndexDefaultValue; } }
-      set {
-        _hasBits0 |= 4;
-        realtimeLightmapIndex_ = value;
-      }
-    }
-    /// <summary>Gets whether the "realtime_lightmap_index" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasRealtimeLightmapIndex {
-      get { return (_hasBits0 & 4) != 0; }
-    }
-    /// <summary>Clears the value of the "realtime_lightmap_index" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearRealtimeLightmapIndex() {
-      _hasBits0 &= ~4;
-    }
-
-    /// <summary>Field number for the "realtime_lightmap_scale_offset" field.</summary>
-    public const int RealtimeLightmapScaleOffsetFieldNumber = 11;
-    private global::PLUME.Sample.Common.Vector4 realtimeLightmapScaleOffset_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Vector4 RealtimeLightmapScaleOffset {
-      get { return realtimeLightmapScaleOffset_; }
-      set {
-        realtimeLightmapScaleOffset_ = value;
       }
     }
 
@@ -715,16 +548,8 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
-      if (Enabled != other.Enabled) return false;
       if (!object.Equals(MeshId, other.MeshId)) return false;
-      if (!object.Equals(Materials, other.Materials)) return false;
       if (!object.Equals(Bones, other.Bones)) return false;
-      if (!object.Equals(LocalBounds, other.LocalBounds)) return false;
-      if (!object.Equals(WorldBounds, other.WorldBounds)) return false;
-      if (LightmapIndex != other.LightmapIndex) return false;
-      if (!object.Equals(LightmapScaleOffset, other.LightmapScaleOffset)) return false;
-      if (RealtimeLightmapIndex != other.RealtimeLightmapIndex) return false;
-      if (!object.Equals(RealtimeLightmapScaleOffset, other.RealtimeLightmapScaleOffset)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -733,16 +558,8 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (HasEnabled) hash ^= Enabled.GetHashCode();
       if (meshId_ != null) hash ^= MeshId.GetHashCode();
-      if (materials_ != null) hash ^= Materials.GetHashCode();
       if (bones_ != null) hash ^= Bones.GetHashCode();
-      if (localBounds_ != null) hash ^= LocalBounds.GetHashCode();
-      if (worldBounds_ != null) hash ^= WorldBounds.GetHashCode();
-      if (HasLightmapIndex) hash ^= LightmapIndex.GetHashCode();
-      if (lightmapScaleOffset_ != null) hash ^= LightmapScaleOffset.GetHashCode();
-      if (HasRealtimeLightmapIndex) hash ^= RealtimeLightmapIndex.GetHashCode();
-      if (realtimeLightmapScaleOffset_ != null) hash ^= RealtimeLightmapScaleOffset.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -765,45 +582,13 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (HasEnabled) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
       if (meshId_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteMessage(MeshId);
       }
-      if (materials_ != null) {
-        output.WriteRawTag(34);
-        output.WriteMessage(Materials);
-      }
       if (bones_ != null) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(26);
         output.WriteMessage(Bones);
-      }
-      if (localBounds_ != null) {
-        output.WriteRawTag(50);
-        output.WriteMessage(LocalBounds);
-      }
-      if (worldBounds_ != null) {
-        output.WriteRawTag(58);
-        output.WriteMessage(WorldBounds);
-      }
-      if (HasLightmapIndex) {
-        output.WriteRawTag(64);
-        output.WriteInt32(LightmapIndex);
-      }
-      if (lightmapScaleOffset_ != null) {
-        output.WriteRawTag(74);
-        output.WriteMessage(LightmapScaleOffset);
-      }
-      if (HasRealtimeLightmapIndex) {
-        output.WriteRawTag(80);
-        output.WriteInt32(RealtimeLightmapIndex);
-      }
-      if (realtimeLightmapScaleOffset_ != null) {
-        output.WriteRawTag(90);
-        output.WriteMessage(RealtimeLightmapScaleOffset);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -819,45 +604,13 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (HasEnabled) {
-        output.WriteRawTag(16);
-        output.WriteBool(Enabled);
-      }
       if (meshId_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteMessage(MeshId);
       }
-      if (materials_ != null) {
-        output.WriteRawTag(34);
-        output.WriteMessage(Materials);
-      }
       if (bones_ != null) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(26);
         output.WriteMessage(Bones);
-      }
-      if (localBounds_ != null) {
-        output.WriteRawTag(50);
-        output.WriteMessage(LocalBounds);
-      }
-      if (worldBounds_ != null) {
-        output.WriteRawTag(58);
-        output.WriteMessage(WorldBounds);
-      }
-      if (HasLightmapIndex) {
-        output.WriteRawTag(64);
-        output.WriteInt32(LightmapIndex);
-      }
-      if (lightmapScaleOffset_ != null) {
-        output.WriteRawTag(74);
-        output.WriteMessage(LightmapScaleOffset);
-      }
-      if (HasRealtimeLightmapIndex) {
-        output.WriteRawTag(80);
-        output.WriteInt32(RealtimeLightmapIndex);
-      }
-      if (realtimeLightmapScaleOffset_ != null) {
-        output.WriteRawTag(90);
-        output.WriteMessage(RealtimeLightmapScaleOffset);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -872,35 +625,11 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (HasEnabled) {
-        size += 1 + 1;
-      }
       if (meshId_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(MeshId);
       }
-      if (materials_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Materials);
-      }
       if (bones_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Bones);
-      }
-      if (localBounds_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LocalBounds);
-      }
-      if (worldBounds_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(WorldBounds);
-      }
-      if (HasLightmapIndex) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LightmapIndex);
-      }
-      if (lightmapScaleOffset_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LightmapScaleOffset);
-      }
-      if (HasRealtimeLightmapIndex) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RealtimeLightmapIndex);
-      }
-      if (realtimeLightmapScaleOffset_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(RealtimeLightmapScaleOffset);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -920,56 +649,17 @@ namespace PLUME.Sample.Unity {
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.HasEnabled) {
-        Enabled = other.Enabled;
-      }
       if (other.meshId_ != null) {
         if (meshId_ == null) {
           MeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
         }
         MeshId.MergeFrom(other.MeshId);
       }
-      if (other.materials_ != null) {
-        if (materials_ == null) {
-          Materials = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Materials();
-        }
-        Materials.MergeFrom(other.Materials);
-      }
       if (other.bones_ != null) {
         if (bones_ == null) {
           Bones = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones();
         }
         Bones.MergeFrom(other.Bones);
-      }
-      if (other.localBounds_ != null) {
-        if (localBounds_ == null) {
-          LocalBounds = new global::PLUME.Sample.Common.Bounds();
-        }
-        LocalBounds.MergeFrom(other.LocalBounds);
-      }
-      if (other.worldBounds_ != null) {
-        if (worldBounds_ == null) {
-          WorldBounds = new global::PLUME.Sample.Common.Bounds();
-        }
-        WorldBounds.MergeFrom(other.WorldBounds);
-      }
-      if (other.HasLightmapIndex) {
-        LightmapIndex = other.LightmapIndex;
-      }
-      if (other.lightmapScaleOffset_ != null) {
-        if (lightmapScaleOffset_ == null) {
-          LightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
-        }
-        LightmapScaleOffset.MergeFrom(other.LightmapScaleOffset);
-      }
-      if (other.HasRealtimeLightmapIndex) {
-        RealtimeLightmapIndex = other.RealtimeLightmapIndex;
-      }
-      if (other.realtimeLightmapScaleOffset_ != null) {
-        if (realtimeLightmapScaleOffset_ == null) {
-          RealtimeLightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
-        }
-        RealtimeLightmapScaleOffset.MergeFrom(other.RealtimeLightmapScaleOffset);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -993,65 +683,18 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 16: {
-            Enabled = input.ReadBool();
-            break;
-          }
-          case 26: {
+          case 18: {
             if (meshId_ == null) {
               MeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(MeshId);
             break;
           }
-          case 34: {
-            if (materials_ == null) {
-              Materials = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Materials();
-            }
-            input.ReadMessage(Materials);
-            break;
-          }
-          case 42: {
+          case 26: {
             if (bones_ == null) {
               Bones = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones();
             }
             input.ReadMessage(Bones);
-            break;
-          }
-          case 50: {
-            if (localBounds_ == null) {
-              LocalBounds = new global::PLUME.Sample.Common.Bounds();
-            }
-            input.ReadMessage(LocalBounds);
-            break;
-          }
-          case 58: {
-            if (worldBounds_ == null) {
-              WorldBounds = new global::PLUME.Sample.Common.Bounds();
-            }
-            input.ReadMessage(WorldBounds);
-            break;
-          }
-          case 64: {
-            LightmapIndex = input.ReadInt32();
-            break;
-          }
-          case 74: {
-            if (lightmapScaleOffset_ == null) {
-              LightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
-            }
-            input.ReadMessage(LightmapScaleOffset);
-            break;
-          }
-          case 80: {
-            RealtimeLightmapIndex = input.ReadInt32();
-            break;
-          }
-          case 90: {
-            if (realtimeLightmapScaleOffset_ == null) {
-              RealtimeLightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
-            }
-            input.ReadMessage(RealtimeLightmapScaleOffset);
             break;
           }
         }
@@ -1076,65 +719,18 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 16: {
-            Enabled = input.ReadBool();
-            break;
-          }
-          case 26: {
+          case 18: {
             if (meshId_ == null) {
               MeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(MeshId);
             break;
           }
-          case 34: {
-            if (materials_ == null) {
-              Materials = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Materials();
-            }
-            input.ReadMessage(Materials);
-            break;
-          }
-          case 42: {
+          case 26: {
             if (bones_ == null) {
               Bones = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones();
             }
             input.ReadMessage(Bones);
-            break;
-          }
-          case 50: {
-            if (localBounds_ == null) {
-              LocalBounds = new global::PLUME.Sample.Common.Bounds();
-            }
-            input.ReadMessage(LocalBounds);
-            break;
-          }
-          case 58: {
-            if (worldBounds_ == null) {
-              WorldBounds = new global::PLUME.Sample.Common.Bounds();
-            }
-            input.ReadMessage(WorldBounds);
-            break;
-          }
-          case 64: {
-            LightmapIndex = input.ReadInt32();
-            break;
-          }
-          case 74: {
-            if (lightmapScaleOffset_ == null) {
-              LightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
-            }
-            input.ReadMessage(LightmapScaleOffset);
-            break;
-          }
-          case 80: {
-            RealtimeLightmapIndex = input.ReadInt32();
-            break;
-          }
-          case 90: {
-            if (realtimeLightmapScaleOffset_ == null) {
-              RealtimeLightmapScaleOffset = new global::PLUME.Sample.Common.Vector4();
-            }
-            input.ReadMessage(RealtimeLightmapScaleOffset);
             break;
           }
         }
@@ -1147,185 +743,6 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static partial class Types {
-      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-      public sealed partial class Materials : pb::IMessage<Materials>
-      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-          , pb::IBufferMessage
-      #endif
-      {
-        private static readonly pb::MessageParser<Materials> _parser = new pb::MessageParser<Materials>(() => new Materials());
-        private pb::UnknownFieldSet _unknownFields;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public static pb::MessageParser<Materials> Parser { get { return _parser; } }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public static pbr::MessageDescriptor Descriptor {
-          get { return global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Descriptor.NestedTypes[0]; }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        pbr::MessageDescriptor pb::IMessage.Descriptor {
-          get { return Descriptor; }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public Materials() {
-          OnConstruction();
-        }
-
-        partial void OnConstruction();
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public Materials(Materials other) : this() {
-          ids_ = other.ids_.Clone();
-          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public Materials Clone() {
-          return new Materials(this);
-        }
-
-        /// <summary>Field number for the "ids" field.</summary>
-        public const int IdsFieldNumber = 1;
-        private static readonly pb::FieldCodec<global::PLUME.Sample.Unity.AssetIdentifier> _repeated_ids_codec
-            = pb::FieldCodec.ForMessage(10, global::PLUME.Sample.Unity.AssetIdentifier.Parser);
-        private readonly pbc::RepeatedField<global::PLUME.Sample.Unity.AssetIdentifier> ids_ = new pbc::RepeatedField<global::PLUME.Sample.Unity.AssetIdentifier>();
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public pbc::RepeatedField<global::PLUME.Sample.Unity.AssetIdentifier> Ids {
-          get { return ids_; }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public override bool Equals(object other) {
-          return Equals(other as Materials);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public bool Equals(Materials other) {
-          if (ReferenceEquals(other, null)) {
-            return false;
-          }
-          if (ReferenceEquals(other, this)) {
-            return true;
-          }
-          if(!ids_.Equals(other.ids_)) return false;
-          return Equals(_unknownFields, other._unknownFields);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public override int GetHashCode() {
-          int hash = 1;
-          hash ^= ids_.GetHashCode();
-          if (_unknownFields != null) {
-            hash ^= _unknownFields.GetHashCode();
-          }
-          return hash;
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public override string ToString() {
-          return pb::JsonFormatter.ToDiagnosticString(this);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public void WriteTo(pb::CodedOutputStream output) {
-        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-          output.WriteRawMessage(this);
-        #else
-          ids_.WriteTo(output, _repeated_ids_codec);
-          if (_unknownFields != null) {
-            _unknownFields.WriteTo(output);
-          }
-        #endif
-        }
-
-        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-          ids_.WriteTo(ref output, _repeated_ids_codec);
-          if (_unknownFields != null) {
-            _unknownFields.WriteTo(ref output);
-          }
-        }
-        #endif
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public int CalculateSize() {
-          int size = 0;
-          size += ids_.CalculateSize(_repeated_ids_codec);
-          if (_unknownFields != null) {
-            size += _unknownFields.CalculateSize();
-          }
-          return size;
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public void MergeFrom(Materials other) {
-          if (other == null) {
-            return;
-          }
-          ids_.Add(other.ids_);
-          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public void MergeFrom(pb::CodedInputStream input) {
-        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-          input.ReadRawMessage(this);
-        #else
-          uint tag;
-          while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
-              default:
-                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-                break;
-              case 10: {
-                ids_.AddEntriesFrom(input, _repeated_ids_codec);
-                break;
-              }
-            }
-          }
-        #endif
-        }
-
-        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-          uint tag;
-          while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
-              default:
-                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-                break;
-              case 10: {
-                ids_.AddEntriesFrom(ref input, _repeated_ids_codec);
-                break;
-              }
-            }
-          }
-        }
-        #endif
-
-      }
-
       [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
       public sealed partial class Bones : pb::IMessage<Bones>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -1341,7 +758,7 @@ namespace PLUME.Sample.Unity {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public static pbr::MessageDescriptor Descriptor {
-          get { return global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Descriptor.NestedTypes[1]; }
+          get { return global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Descriptor.NestedTypes[0]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -58,5 +58,10 @@ namespace PLUME.Core.Object
             return GameObjectId.Equals(other.GameObjectId) &&
                    TransformId.Equals(other.TransformId);
         }
+        
+        public bool Equals(IObjectIdentifier other)
+        {
+            return other is GameObjectIdentifier gameObjectIdentifier && Equals(gameObjectIdentifier);
+        }
     }
 }

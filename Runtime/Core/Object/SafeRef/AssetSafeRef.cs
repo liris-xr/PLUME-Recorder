@@ -3,56 +3,80 @@ using UnityObject = UnityEngine.Object;
 
 namespace PLUME.Core.Object.SafeRef
 {
-    public class AssetSafeRef<TObject> : IObjectSafeRef<TObject, AssetIdentifier> where TObject : UnityObject
+    public interface IAssetSafeRef : IObjectSafeRef<AssetIdentifier>
     {
-        public static readonly AssetSafeRef<TObject> Null = new();
+        public UnityObject Asset { get; }
+    }
 
-        public readonly AssetIdentifier Identifier;
+    public interface IAssetSafeRef<out TA> : IAssetSafeRef where TA : UnityObject
+    {
+        public new TA Asset { get; }
+    }
 
-        public readonly TObject Asset;
+    public class AssetSafeRef<TA> : IAssetSafeRef<TA> where TA : UnityObject
+    {
+        public static readonly AssetSafeRef<TA> Null = new();
+        
+        public TA Asset { get; }
+        public AssetIdentifier Identifier { get; }
 
-        private AssetSafeRef()
+        UnityObject IAssetSafeRef.Asset => Asset;
+        UnityObject IObjectSafeRef.Object => Asset;
+        IObjectIdentifier IObjectSafeRef.Identifier => Identifier;
+
+        public bool IsNull => Identifier.Equals(AssetIdentifier.Null);
+
+        internal AssetSafeRef()
         {
             Asset = null;
             Identifier = AssetIdentifier.Null;
         }
 
-        internal AssetSafeRef(TObject asset, Guid guid, FixedString512Bytes assetPath)
+        internal AssetSafeRef(TA asset, Guid guid, FixedString512Bytes assetPath)
         {
             Asset = asset;
-            Identifier = new AssetIdentifier(new Identifier(asset.GetInstanceID(), guid), assetPath);
+            var identifier = new Identifier(asset.GetInstanceID(), guid);
+            Identifier = new AssetIdentifier(identifier, assetPath);
         }
 
-        public TObject GetObject()
+        public bool Equals(AssetSafeRef<TA> other)
         {
-            return Asset;
-        }
-
-        public AssetIdentifier GetIdentifier()
-        {
-            return Identifier;
-        }
-
-        private bool Equals(AssetSafeRef<TObject> other)
-        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
             return Identifier.Equals(other.Identifier);
+        }
+
+        public bool Equals(IObjectSafeRef<AssetIdentifier> other)
+        {
+            return other is AssetSafeRef<TA> assetSafeRef && Equals(assetSafeRef);
         }
 
         public bool Equals(IObjectSafeRef other)
         {
-            return other is AssetSafeRef<TObject> assetSafeRef && Equals(assetSafeRef);
+            return other is AssetSafeRef<TA> assetSafeRef && Equals(assetSafeRef);
         }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((AssetSafeRef<TObject>)obj);
+            if (obj.GetType() != GetType()) return false;
+            return Equals((AssetSafeRef<TA>)obj);
         }
 
         public override int GetHashCode()
         {
             return Identifier.GetHashCode();
+        }
+
+        public static bool operator ==(AssetSafeRef<TA> left, AssetSafeRef<TA> right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(AssetSafeRef<TA> left, AssetSafeRef<TA> right)
+        {
+            return !(left == right);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace PLUME.Base.Module.Unity
         IObjectRecorderModule, IFrameDataRecorderModule
         where TObject : Object
         where TObjectIdentifier : unmanaged, IObjectIdentifier, IEquatable<TObjectIdentifier>
-        where TObjectSafeRef : IObjectSafeRef<TObject, TObjectIdentifier>
+        where TObjectSafeRef : IObjectSafeRef<TObjectIdentifier>
         where TFrameData : IFrameData
     {
         private readonly Dictionary<FrameInfo, TFrameData> _framesData = new(FrameInfoComparer.Instance);
@@ -60,7 +60,7 @@ namespace PLUME.Base.Module.Unity
         {
             CheckIsRecording(ctx);
 
-            if (!_recordedObjectsIdentifier.Add(objSafeRef.GetIdentifier()))
+            if (!_recordedObjectsIdentifier.Add(objSafeRef.Identifier))
                 throw new InvalidOperationException("Object is already being recorded.");
 
             _recordedObjects.Add(objSafeRef);
@@ -69,8 +69,8 @@ namespace PLUME.Base.Module.Unity
             if (!markCreated)
                 return;
 
-            var markedCreated = _createdObjectsIdentifier.Add(objSafeRef.GetIdentifier());
-            _destroyedObjectsIdentifier.Remove(objSafeRef.GetIdentifier());
+            var markedCreated = _createdObjectsIdentifier.Add(objSafeRef.Identifier);
+            _destroyedObjectsIdentifier.Remove(objSafeRef.Identifier);
 
             if (markedCreated)
                 OnObjectMarkedCreated(objSafeRef, ctx);
@@ -80,7 +80,7 @@ namespace PLUME.Base.Module.Unity
         {
             CheckIsRecording(ctx);
 
-            if (!_recordedObjectsIdentifier.Contains(objSafeRef.GetIdentifier()))
+            if (!_recordedObjectsIdentifier.Contains(objSafeRef.Identifier))
                 throw new InvalidOperationException("Object is not being recorded.");
 
             // Deferred removal (after frame data collection)
@@ -88,8 +88,8 @@ namespace PLUME.Base.Module.Unity
 
             if (markDestroyed)
             {
-                var markedDestroyed = _destroyedObjectsIdentifier.Add(objSafeRef.GetIdentifier());
-                _createdObjectsIdentifier.Remove(objSafeRef.GetIdentifier());
+                var markedDestroyed = _destroyedObjectsIdentifier.Add(objSafeRef.Identifier);
+                _createdObjectsIdentifier.Remove(objSafeRef.Identifier);
 
                 if (markedDestroyed)
                     OnObjectMarkedDestroyed(objSafeRef, ctx);
@@ -127,7 +127,9 @@ namespace PLUME.Base.Module.Unity
 
         void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
+            OnBeforeCollectFrameData(frameInfo, ctx);
             var frameData = CollectFrameData(frameInfo, ctx);
+            OnAfterCollectFrameData(frameInfo, ctx);
 
             lock (_framesData)
             {
@@ -142,7 +144,7 @@ namespace PLUME.Base.Module.Unity
 
             foreach (var toRemove in _objectsToRemove)
             {
-                _recordedObjectsIdentifier.Remove(toRemove.GetIdentifier());
+                _recordedObjectsIdentifier.Remove(toRemove.Identifier);
                 _recordedObjects.Remove(toRemove);
                 OnStopRecordingObject(toRemove, ctx);
             }
@@ -277,7 +279,15 @@ namespace PLUME.Base.Module.Unity
             OnPostLateUpdate(deltaTime, ctx);
         }
 
+        protected virtual void OnBeforeCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        {
+        }
+        
         protected abstract TFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx);
+        
+        protected virtual void OnAfterCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        {
+        }
 
         // ReSharper restore Unity.PerformanceCriticalContext
 

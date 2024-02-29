@@ -2,42 +2,57 @@ using UnityEngine;
 
 namespace PLUME.Core.Object.SafeRef
 {
-    public class ComponentSafeRef<TC> : IObjectSafeRef<TC, ComponentIdentifier> where TC : Component
+    public interface IComponentSafeRef : IObjectSafeRef<ComponentIdentifier>
+    {
+        public Component Component { get; }
+        
+        public GameObjectSafeRef GameObjectSafeRef { get; }
+    }
+
+    public interface IComponentSafeRef<out TC> : IComponentSafeRef where TC : Component
+    {
+        public new TC Component { get; }
+    }
+
+    public class ComponentSafeRef<TC> : IComponentSafeRef<TC> where TC : Component
     {
         public static readonly ComponentSafeRef<TC> Null = new();
+        
+        public TC Component { get; }
+        public ComponentIdentifier Identifier { get; }
+        public GameObjectSafeRef GameObjectSafeRef { get; }
 
-        public readonly TC Component;
-        public readonly ComponentIdentifier ComponentIdentifier;
-        public readonly GameObjectSafeRef ParentSafeRef;
+        Component IComponentSafeRef.Component => Component;
+        UnityEngine.Object IObjectSafeRef.Object => Component;
+        IObjectIdentifier IObjectSafeRef.Identifier => Identifier;
 
-        private ComponentSafeRef()
+        public bool IsNull => Identifier.Equals(ComponentIdentifier.Null);
+
+        internal ComponentSafeRef()
         {
             Component = null;
-            ComponentIdentifier = ComponentIdentifier.Null;
-            ParentSafeRef = GameObjectSafeRef.Null;
+            Identifier = ComponentIdentifier.Null;
+            GameObjectSafeRef = new GameObjectSafeRef();
         }
 
         internal ComponentSafeRef(TC component, Guid guid, GameObjectSafeRef gameObjectSafeRef)
         {
-            var objectIdentifier = new Identifier(component.GetInstanceID(), guid);
-            ParentSafeRef = gameObjectSafeRef;
-            ComponentIdentifier = new ComponentIdentifier(objectIdentifier, gameObjectSafeRef.Identifier);
             Component = component;
-        }
-        
-        public TC GetObject()
-        {
-            return Component;
+            var identifier = new Identifier(component.GetInstanceID(), guid);
+            Identifier = new ComponentIdentifier(identifier, gameObjectSafeRef.Identifier);
+            GameObjectSafeRef = gameObjectSafeRef;
         }
 
-        public ComponentIdentifier GetIdentifier()
+        public bool Equals(ComponentSafeRef<TC> other)
         {
-            return ComponentIdentifier;
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Identifier.Equals(other.Identifier);
         }
 
-        private bool Equals(ComponentSafeRef<TC> other)
+        public bool Equals(IObjectSafeRef<ComponentIdentifier> other)
         {
-            return ComponentIdentifier.Equals(other.ComponentIdentifier);
+            return other is ComponentSafeRef<TC> componentSafeRef && Equals(componentSafeRef);
         }
 
         public bool Equals(IObjectSafeRef other)
@@ -49,12 +64,23 @@ namespace PLUME.Core.Object.SafeRef
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((ComponentSafeRef<TC>)obj);
+            if (obj.GetType() != GetType()) return false;
+            return Equals((ComponentSafeRef<TC>)obj);
         }
 
         public override int GetHashCode()
         {
-            return ComponentIdentifier.GetHashCode();
+            return Identifier.GetHashCode();
+        }
+
+        public static bool operator ==(ComponentSafeRef<TC> left, ComponentSafeRef<TC> right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(ComponentSafeRef<TC> left, ComponentSafeRef<TC> right)
+        {
+            return !(left == right);
         }
     }
 }

@@ -6,23 +6,25 @@ namespace PLUME.Base.Module.Unity.MeshFilter
 {
     public class MeshFilterFrameData : PooledFrameData<MeshFilterFrameData>
     {
+        public static readonly FrameDataPool<MeshFilterFrameData> Pool = new();
+        
         private readonly List<MeshFilterCreate> _createSamples = new();
         private readonly List<MeshFilterDestroy> _destroySamples = new();
         private readonly List<MeshFilterUpdate> _updateSamples = new();
 
-        public void AddCreateSample(MeshFilterCreate sample)
+        public void AddCreateSamples(IEnumerable<MeshFilterCreate> samples)
         {
-            _createSamples.Add(sample);
+            _createSamples.AddRange(samples);
         }
 
-        public void AddDestroySample(MeshFilterDestroy sample)
+        public void AddDestroySamples(IEnumerable<MeshFilterDestroy> samples)
         {
-            _destroySamples.Add(sample);
+            _destroySamples.AddRange(samples);
         }
 
-        public void AddUpdateSample(MeshFilterUpdate sample)
+        public void AddUpdateSamples(IEnumerable<MeshFilterUpdate> samples)
         {
-            _updateSamples.Add(sample);
+            _updateSamples.AddRange(samples);
         }
 
         public override void Serialize(FrameDataWriter frameDataWriter)

@@ -13,7 +13,7 @@ namespace PLUME.Core.Recorder.Module.Frame
                 () =>
                 {
                     var pooledFrameData = new T();
-                    pooledFrameData.Pool = this;
+                    pooledFrameData.PoolInternal = this;
                     return pooledFrameData;
                 },
                 pooledFrameData => { pooledFrameData.Clear(); }, null, null, false, defaultCapacity, maxSize);

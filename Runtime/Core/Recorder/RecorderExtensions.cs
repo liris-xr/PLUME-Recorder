@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
@@ -20,6 +21,8 @@ namespace PLUME.Core.Recorder
         public static bool IsStopping => Instance._context.Status is RecorderStatus.Stopping;
 
         public static bool IsStopped => Instance._context.Status is RecorderStatus.Stopped;
+        
+        private static readonly List<Component> _tmpComponents = new();
 
         private static void CheckInstantiated()
         {
@@ -50,32 +53,45 @@ namespace PLUME.Core.Recorder
             Instance.RecordMarkerInternal(label);
         }
 
-        public static void StartRecordingObject(IObjectSafeRef objectSafeRef, bool markCreated = true)
+        public static void StartRecordingGameObject(GameObject go, bool markCreated = true)
         {
             CheckInstantiated();
-            Instance.StartRecordingObjectInternal(objectSafeRef, markCreated);
+            var safeRefProvider = Instance._context.ObjectSafeRefProvider;
+            
+            go.GetComponentsInChildren(_tmpComponents);
+            
+            foreach (var component in _tmpComponents)
+            {
+                var componentSafeRef = safeRefProvider.GetOrCreateComponentSafeRef(component);
+
+                // Start recording nested GameObjects. This also applies to the given GameObject itself.
+                if (component is Transform)
+                {
+                    Instance.StartRecordingObjectInternal(componentSafeRef.GameObjectSafeRef, markCreated);
+                }
+                
+                Instance.StartRecordingObjectInternal(componentSafeRef, markCreated);
+            }
         }
 
-        public static void StopRecordingObject(IObjectSafeRef objectSafeRef, bool markDestroyed = true)
+        public static void StopRecordingGameObject(GameObject go, bool markDestroyed = true)
         {
             CheckInstantiated();
-            Instance.StopRecordingObjectInternal(objectSafeRef, markDestroyed);
-        }
-
-        // TODO: if game object, also start recording all components (?)
-        public static void StartRecordingObject<T>(T obj, bool markCreated = true) where T : UnityEngine.Object
-        {
-            CheckInstantiated();
-            var objectSafeRef = Instance._context.ObjectSafeRefProvider.GetOrCreateObjectSafeRef(obj);
-            Instance.StartRecordingObjectInternal(objectSafeRef, markCreated);
-        }
-
-        // TODO: if game object, also stop recording all components (?)
-        public static void StopRecordingObject<T>(T obj, bool markDestroyed = true) where T : UnityEngine.Object
-        {
-            CheckInstantiated();
-            var objectSafeRef = Instance._context.ObjectSafeRefProvider.GetOrCreateObjectSafeRef(obj);
-            Instance.StopRecordingObjectInternal(objectSafeRef, markDestroyed);
+            var safeRefProvider = Instance._context.ObjectSafeRefProvider;
+            
+            go.GetComponentsInChildren(_tmpComponents);
+            
+            foreach (var component in _tmpComponents)
+            {
+                var componentSafeRef = safeRefProvider.GetOrCreateComponentSafeRef(component);
+                Instance.StopRecordingObjectInternal(componentSafeRef, markDestroyed);
+                
+                // Stop recording nested GameObjects. This also applies to the given GameObject itself.
+                if (component is Transform)
+                {
+                    Instance.StopRecordingObjectInternal(componentSafeRef.GameObjectSafeRef, markDestroyed);
+                }
+            }
         }
 
         /// <summary>

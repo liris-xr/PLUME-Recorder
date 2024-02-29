@@ -9,9 +9,7 @@ namespace PLUME.Base.Module.Unity.Camera
     {
         protected override CameraFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
-            throw new System.NotImplementedException();
+            return CameraFrameData.Pool.Get();
         }
-        
-        //TODO : Implement recorder module
     }
 }

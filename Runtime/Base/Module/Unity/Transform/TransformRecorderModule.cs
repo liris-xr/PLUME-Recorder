@@ -8,9 +8,8 @@ using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using Unity.Collections;
 using Unity.Jobs;
-using UnityEngine;
 using UnityEngine.Scripting;
-using TransformSafeRef = PLUME.Core.Object.SafeRef.ComponentSafeRef<UnityEngine.Transform>;
+using TransformSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.Transform>;
 
 namespace PLUME.Base.Module.Unity.Transform
 {
@@ -41,31 +40,10 @@ namespace PLUME.Base.Module.Unity.Transform
             _alignedPositionStates = new NativeList<TransformPositionState>(1000, Allocator.Persistent);
             _alignedHierarchyStates = new NativeList<TransformHierarchyState>(1000, Allocator.Persistent);
             _alignedFlagsStates = new NativeList<TransformFlagsState>(1000, Allocator.Persistent);
-
-            ObjectHooks.OnBeforeDestroy += obj => OnBeforeDestroy(obj, ctx);
+            
             GameObjectHooks.OnCreate += go => OnCreateGameObject(go, ctx);
             TransformHooks.OnSetParent += (t, parent) => OnSetParent(t, parent, ctx);
             TransformHooks.OnSetSiblingIndex += (t, siblingIdx) => OnSetSiblingIndex(t, siblingIdx, ctx);
-        }
-
-        private void OnBeforeDestroy(Object obj, RecorderContext ctx)
-        {
-            if (!ctx.IsRecording)
-                return;
-
-            TransformSafeRef tSafeRef;
-
-            if (obj is UnityEngine.GameObject go)
-                tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
-            else if (obj is UnityEngine.Transform t)
-                tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t);
-            else
-                return;
-
-            if (!IsRecordingObject(tSafeRef))
-                return;
-
-            StopRecordingObject(tSafeRef, true, ctx);
         }
 
         private void OnCreateGameObject(UnityEngine.GameObject go, RecorderContext ctx)
@@ -92,7 +70,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnObjectMarkedCreated(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
-            var idx = _identifierToIndex[tSafeRef.ComponentIdentifier];
+            var idx = _identifierToIndex[tSafeRef.Identifier];
             var flagsState = _alignedFlagsStates[idx];
             flagsState.MarkCreatedInFrame();
             _alignedFlagsStates[idx] = flagsState;
@@ -100,7 +78,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnObjectMarkedDestroyed(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
-            var idx = _identifierToIndex[tSafeRef.ComponentIdentifier];
+            var idx = _identifierToIndex[tSafeRef.Identifier];
             var flagsState = _alignedFlagsStates[idx];
             flagsState.MarkDestroyedInFrame();
             _alignedFlagsStates[idx] = flagsState;
@@ -115,7 +93,7 @@ namespace PLUME.Base.Module.Unity.Transform
             t.GetLocalPositionAndRotation(out var localPosition, out var localRotation);
 
             var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t.parent);
-            var parentIdentifier = parentSafeRef.ComponentIdentifier;
+            var parentIdentifier = parentSafeRef.Identifier;
             
             var initialPositionState = new TransformPositionState
             {
@@ -134,7 +112,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
             var idx = _transformAccessArray.Length;
             _transformAccessArray.Add(tSafeRef);
-            _identifierToIndex.Add(tSafeRef.ComponentIdentifier, idx);
+            _identifierToIndex.Add(tSafeRef.Identifier, idx);
             _alignedPositionStates.Add(initialPositionState);
             _alignedHierarchyStates.Add(initialHierarchyState);
             _alignedFlagsStates.Add(initialFlagsState);
@@ -143,7 +121,7 @@ namespace PLUME.Base.Module.Unity.Transform
         protected override void OnStopRecordingObject(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
             var idx = _transformAccessArray.RemoveSwapBack(tSafeRef);
-            _identifierToIndex.Remove(tSafeRef.ComponentIdentifier);
+            _identifierToIndex.Remove(tSafeRef.Identifier);
             _alignedHierarchyStates.RemoveAtSwapBack(idx);
             _alignedPositionStates.RemoveAtSwapBack(idx);
             _alignedFlagsStates.RemoveAtSwapBack(idx);
@@ -160,9 +138,9 @@ namespace PLUME.Base.Module.Unity.Transform
                 return;
 
             var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(parent);
-            var parentIdentifier = parentSafeRef.ComponentIdentifier;
+            var parentIdentifier = parentSafeRef.Identifier;
 
-            var idx = _identifierToIndex[tSafeRef.ComponentIdentifier];
+            var idx = _identifierToIndex[tSafeRef.Identifier];
             var hierarchyState = _alignedHierarchyStates[idx];
             hierarchyState.ParentTransformIdDirty = !parentIdentifier.Equals(hierarchyState.ParentTransformId);
             hierarchyState.ParentTransformId = parentIdentifier;
@@ -179,7 +157,7 @@ namespace PLUME.Base.Module.Unity.Transform
             if (!IsRecordingObject(tSafeRef))
                 return;
 
-            var idx = _identifierToIndex[tSafeRef.ComponentIdentifier];
+            var idx = _identifierToIndex[tSafeRef.Identifier];
             var hierarchyState = _alignedHierarchyStates[idx];
             hierarchyState.SiblingIndexDirty = siblingIndex != hierarchyState.SiblingIndex;
             hierarchyState.SiblingIndex = siblingIndex;

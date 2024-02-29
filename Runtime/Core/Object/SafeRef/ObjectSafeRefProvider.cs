@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using Unity.Collections;
 using UnityEngine;
@@ -19,114 +21,85 @@ namespace PLUME.Core.Object.SafeRef
             if (go == null)
                 return GameObjectSafeRef.Null;
 
-            if (GetOrCreateObjectSafeRef(go) is GameObjectSafeRef goRef)
-            {
-                return goRef;
-            }
+            var instanceId = go.GetInstanceID();
 
-            return GameObjectSafeRef.Null;
+            if (_cachedRefs.TryGetValue(instanceId, out var cachedRef) && cachedRef is GameObjectSafeRef goRef)
+                return goRef;
+
+            if (!go.scene.IsValid())
+                return GameObjectSafeRef.Null;
+
+            var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
+            var goRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go);
+            var transformRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go.transform);
+            var goGuid = new Guid(goRegistryEntry.guid);
+            var transformGuid = new Guid(transformRegistryEntry.guid);
+            goRef = new GameObjectSafeRef(go, goGuid, transformGuid);
+            _cachedRefs[instanceId] = goRef;
+            return goRef;
         }
 
-        public ComponentSafeRef<TC> GetOrCreateComponentSafeRef<TC>(TC component) where TC : Component
+        public IComponentSafeRef<TC> GetOrCreateComponentSafeRef<TC>(TC component) where TC : Component
         {
             if (component == null)
                 return ComponentSafeRef<TC>.Null;
 
-            if (GetOrCreateObjectSafeRef(component) is ComponentSafeRef<TC> componentSafeRef)
-            {
-                return componentSafeRef;
-            }
+            var instanceId = component.GetInstanceID();
 
-            return ComponentSafeRef<TC>.Null;
+            if (_cachedRefs.TryGetValue(instanceId, out var cachedRef) &&
+                cachedRef is IComponentSafeRef<TC> componentSafeRef)
+                return componentSafeRef;
+
+            if (!component.gameObject.scene.IsValid())
+                return ComponentSafeRef<TC>.Null;
+
+            var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
+            var guidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(component);
+            var gameObjectRef = GetOrCreateGameObjectSafeRef(component.gameObject);
+            var goGuid = new Guid(guidRegistryEntry.guid);
+            componentSafeRef = CreateComponentSafeRef(component, gameObjectRef, goGuid);
+            _cachedRefs[instanceId] = componentSafeRef;
+            return componentSafeRef;
         }
 
-        public AssetSafeRef<TA> GetOrCreateAssetSafeRef<TA>(TA asset) where TA : UnityObject
+        public IAssetSafeRef<TA> GetOrCreateAssetSafeRef<TA>(TA asset) where TA : UnityObject
         {
             if (asset == null)
                 return AssetSafeRef<TA>.Null;
 
-            if (GetOrCreateObjectSafeRef(asset) is AssetSafeRef<TA> assetSafeRef)
-            {
+            var instanceId = asset.GetInstanceID();
+
+            if (_cachedRefs.TryGetValue(instanceId, out var cachedRef) && cachedRef is IAssetSafeRef<TA> assetSafeRef)
                 return assetSafeRef;
-            }
 
-            return AssetSafeRef<TA>.Null;
+            var assetsGuidRegistry = AssetsGuidRegistry.GetOrCreate();
+            var assetsGuidRegistryEntry = assetsGuidRegistry.GetOrCreateEntry(asset);
+            var assetBundlePath = new FixedString512Bytes(assetsGuidRegistryEntry.assetBundlePath);
+            var assetGuid = new Guid(assetsGuidRegistryEntry.guid);
+            assetSafeRef = CreateAssetObjectSafeRef<TA>(asset, assetGuid, assetBundlePath);
+            _cachedRefs[instanceId] = assetSafeRef;
+            return assetSafeRef;
         }
 
-        /// <summary>
-        /// Returns an <see cref="ObjectSafeRef{TObject}"/> as an <see cref="IObjectSafeRef"/> instance for the given Unity object.
-        /// Uses a cache to avoid having to query the GUID registries every time this function is called.
-        /// When called from a script for an object contained a scene, make sure that the scene is loaded before calling
-        /// this method, otherwise this method will throw an exception.
-        /// </summary>
-        /// <param name="obj">The Unity object for which to get the safe reference.</param>
-        /// <returns>An instance of <see cref="ObjectSafeRef{TObject}"/> for the given object.</returns>
-        public IObjectSafeRef GetOrCreateObjectSafeRef(UnityObject obj)
+        private static IComponentSafeRef<TC> CreateComponentSafeRef<TC>(TC component,
+            GameObjectSafeRef gameObjectRef,
+            Guid guid) where TC : Component
         {
-            if (obj == null)
-                return null;
-
-            var instanceId = obj.GetInstanceID();
-
-            if (_cachedRefs.TryGetValue(instanceId, out var cachedRef))
-            {
-                return cachedRef;
-            }
-
-            IObjectSafeRef objRef;
-
-            if (obj is GameObject go && go.scene.IsValid())
-            {
-                var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
-                var goRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go);
-                var transformRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go.transform);
-                objRef = CreateGameObjectSafeRef(go, goRegistryEntry, transformRegistryEntry);
-            }
-            else if (obj is Component component && component.gameObject.scene.IsValid())
-            {
-                var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
-                var guidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(obj);
-                var gameObjectRef = GetOrCreateGameObjectSafeRef(component.gameObject);
-                objRef = CreateComponentSafeRef(component, gameObjectRef, guidRegistryEntry);
-            }
-            else
-            {
-                var assetsGuidRegistry = AssetsGuidRegistry.GetOrCreate();
-                var assetsGuidRegistryEntry = assetsGuidRegistry.GetOrCreateEntry(obj);
-                objRef = CreateAssetObjectSafeRef(obj, assetsGuidRegistryEntry);
-            }
-
-            _cachedRefs[instanceId] = objRef;
-            return objRef;
-        }
-
-        private static GameObjectSafeRef CreateGameObjectSafeRef(GameObject go, GuidRegistryEntry goGuid,
-            GuidRegistryEntry tGuid)
-        {
-            return new GameObjectSafeRef(go, new Guid(goGuid.guid), new Guid(tGuid.guid));
-        }
-
-        private static IObjectSafeRef CreateComponentSafeRef(Component component, GameObjectSafeRef gameObjectRef,
-            GuidRegistryEntry guidEntry)
-        {
+            const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
             var type = typeof(ComponentSafeRef<>).MakeGenericType(component.GetType());
-            const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
-            var parametersType = new[] { component.GetType(), typeof(Guid), typeof(GameObjectSafeRef) };
-            var parameters = new object[] { component, new Guid(guidEntry.guid), gameObjectRef };
-            var objRefCtor = type.GetConstructor(flags, null, parametersType, null);
-            return (IObjectSafeRef)objRefCtor!.Invoke(parameters);
+            var parameters = new object[] { component, guid, gameObjectRef };
+            return (IComponentSafeRef<TC>)Activator.CreateInstance(type, flags, null, parameters,
+                CultureInfo.InvariantCulture);
         }
 
-        private static IObjectSafeRef CreateAssetObjectSafeRef(UnityObject obj, AssetGuidRegistryEntry guidEntry)
+        private static IAssetSafeRef<TA> CreateAssetObjectSafeRef<TA>(TA obj, Guid guid,
+            FixedString512Bytes assetPath) where TA : UnityObject
         {
-            var type = typeof(AssetSafeRef<>).MakeGenericType(obj.GetType());
             const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
-            var parametersType = new[] { obj.GetType(), typeof(Guid), typeof(FixedString512Bytes) };
-            var parameters = new object[]
-                { obj, new Guid(guidEntry.guid), new FixedString512Bytes(guidEntry.assetBundlePath) };
-
-            var ctor = type.GetConstructor(flags, null, parametersType, null);
-            return (IObjectSafeRef)ctor!.Invoke(parameters);
+            var type = typeof(AssetSafeRef<>).MakeGenericType(obj.GetType());
+            var parameters = new object[] { obj, guid, assetPath };
+            return (IAssetSafeRef<TA>)Activator.CreateInstance(type, flags, null, parameters,
+                CultureInfo.InvariantCulture);
         }
     }
 }

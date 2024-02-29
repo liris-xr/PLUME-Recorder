@@ -24,7 +24,7 @@ namespace PLUME.Base.Module.Unity
 
         public void Execute(int startIndex, int count)
         {
-            var batchBytes = new NativeList<byte>(Allocator.Temp);
+            var batchBytes = new NativeList<byte>(Allocator.TempJob);
             var bufferWriter = new BufferWriter(batchBytes);
             
             for (var i = startIndex; i < startIndex + count; i++)

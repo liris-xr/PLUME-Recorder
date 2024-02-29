@@ -71,20 +71,20 @@ namespace PLUME.Core.Utils
             };
         }
 
-        public static ComponentIdentifier ToIdentifierPayload<T>(this ComponentSafeRef<T> component) where T : Component
+        public static ComponentIdentifier ToIdentifierPayload<T>(this IComponentSafeRef<T> component) where T : Component
         {
             return new ComponentIdentifier
             {
-                ComponentId = component.ComponentIdentifier.ComponentId.Guid.ToString(),
+                ComponentId = component.Identifier.ComponentId.Guid.ToString(),
                 ParentId = new GameObjectIdentifier
                 {
-                    GameObjectId = component.ComponentIdentifier.GameObjectId.GameObjectId.Guid.ToString(),
-                    TransformId = component.ParentSafeRef.Identifier.TransformId.Guid.ToString()
+                    GameObjectId = component.Identifier.GameObjectId.GameObjectId.Guid.ToString(),
+                    TransformId = component.GameObjectSafeRef.Identifier.TransformId.Guid.ToString()
                 }
             };
         }
 
-        public static AssetIdentifier ToAssetIdentifierPayload<T>(this AssetSafeRef<T> asset)
+        public static AssetIdentifier ToAssetIdentifierPayload<T>(this IAssetSafeRef<T> asset)
             where T : UnityEngine.Object
         {
             return new AssetIdentifier

@@ -59,6 +59,11 @@ namespace PLUME.Core.Object
                    GameObjectId.Equals(other.GameObjectId);
         }
         
+        public bool Equals(IObjectIdentifier other)
+        {
+            return other is ComponentIdentifier componentIdentifier && Equals(componentIdentifier);
+        }
+        
         [BurstDiscard]
         public override bool Equals(object obj)
         {

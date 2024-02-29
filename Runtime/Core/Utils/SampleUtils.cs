@@ -76,7 +76,11 @@ namespace PLUME.Core.Utils
             return new ComponentIdentifier
             {
                 ComponentId = component.ComponentIdentifier.ComponentId.Guid.ToString(),
-                ParentId = component.ParentSafeRef.ToIdentifierPayload()
+                ParentId = new GameObjectIdentifier
+                {
+                    GameObjectId = component.ComponentIdentifier.GameObjectId.GameObjectId.Guid.ToString(),
+                    TransformId = component.ParentSafeRef.Identifier.TransformId.Guid.ToString()
+                }
             };
         }
 

@@ -103,10 +103,7 @@ namespace PLUME.Core.Object.SafeRef
         private static GameObjectSafeRef CreateGameObjectSafeRef(GameObject go, GuidRegistryEntry goGuid,
             GuidRegistryEntry tGuid)
         {
-            var goRef = new GameObjectSafeRef(go, new Guid(goGuid.guid), ComponentSafeRef<Transform>.Null);
-            var tRef = new ComponentSafeRef<Transform>(go.transform, new Guid(tGuid.guid), GameObjectSafeRef.Null);
-            goRef.TransformSafeRef = tRef;
-            return goRef;
+            return new GameObjectSafeRef(go, new Guid(goGuid.guid), new Guid(tGuid.guid));
         }
 
         private static IObjectSafeRef CreateComponentSafeRef(Component component, GameObjectSafeRef gameObjectRef,

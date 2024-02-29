@@ -36,6 +36,16 @@ namespace PLUME.Core
         {
         }
     }
+    
+    [AttributeUsage(AttributeTargets.Method)]
+    public class RegisterHookBeforePropertyGetterAttribute : RegisterHookAttribute
+    {
+        public RegisterHookBeforePropertyGetterAttribute(Type declaringType, string propertyName) : base(
+            declaringType.GetProperty(propertyName,
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.GetGetMethod(), false)
+        {
+        }
+    }
 
     [AttributeUsage(AttributeTargets.Method)]
     public class RegisterHookAfterConstructorAttribute : RegisterHookAttribute

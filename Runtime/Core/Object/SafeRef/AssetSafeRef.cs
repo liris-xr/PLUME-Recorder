@@ -5,15 +5,16 @@ namespace PLUME.Core.Object.SafeRef
 {
     public class AssetSafeRef<TObject> : IObjectSafeRef<TObject, AssetIdentifier> where TObject : UnityObject
     {
-        public static AssetSafeRef<TObject> Null { get; } = new(null, AssetIdentifier.Null);
+        public static readonly AssetSafeRef<TObject> Null = new();
 
-        public AssetIdentifier Identifier { get; }
-        public TObject Asset { get; }
+        public readonly AssetIdentifier Identifier;
+        
+        public readonly TObject Asset;
 
-        internal AssetSafeRef(TObject asset, AssetIdentifier identifier)
+        private AssetSafeRef()
         {
-            Asset = asset;
-            Identifier = identifier;
+            Asset = null;
+            Identifier = AssetIdentifier.Null;
         }
 
         internal AssetSafeRef(TObject asset, Guid guid, FixedString512Bytes assetPath)

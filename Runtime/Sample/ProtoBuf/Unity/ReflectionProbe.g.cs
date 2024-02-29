@@ -112,6 +112,7 @@ namespace PLUME.Sample.Unity {
   #endregion
 
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ReflectionProbeCreate : pb::IMessage<ReflectionProbeCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -310,6 +311,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ReflectionProbeDestroy : pb::IMessage<ReflectionProbeDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -508,6 +510,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ReflectionProbeUpdate : pb::IMessage<ReflectionProbeUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

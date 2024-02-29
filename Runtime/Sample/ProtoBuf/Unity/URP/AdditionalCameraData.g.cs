@@ -87,6 +87,7 @@ namespace PLUME.Sample.Unity.URP {
   #endregion
 
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class AdditionalCameraDataCreate : pb::IMessage<AdditionalCameraDataCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -285,6 +286,7 @@ namespace PLUME.Sample.Unity.URP {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class AdditionalCameraDataDestroy : pb::IMessage<AdditionalCameraDataDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -483,6 +485,7 @@ namespace PLUME.Sample.Unity.URP {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class AdditionalCameraDataUpdate : pb::IMessage<AdditionalCameraDataUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

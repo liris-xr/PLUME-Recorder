@@ -25,16 +25,16 @@ namespace PLUME.Sample.Unity {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Chd1bml0eS9nYW1lX29iamVjdC5wcm90bxIScGx1bWUuc2FtcGxlLnVuaXR5",
-            "Ghd1bml0eS9pZGVudGlmaWVycy5wcm90byJEChBHYW1lT2JqZWN0Q3JlYXRl",
-            "EjAKAmlkGAEgASgLMiQucGx1bWUuc2FtcGxlLnVuaXR5Lk9iamVjdElkZW50",
-            "aWZpZXIiRQoRR2FtZU9iamVjdERlc3Ryb3kSMAoCaWQYASABKAsyJC5wbHVt",
-            "ZS5zYW1wbGUudW5pdHkuT2JqZWN0SWRlbnRpZmllciLcAQoQR2FtZU9iamVj",
-            "dFVwZGF0ZRIwCgJpZBgBIAEoCzIkLnBsdW1lLnNhbXBsZS51bml0eS5PYmpl",
-            "Y3RJZGVudGlmaWVyEhEKBG5hbWUYAiABKAlIAIgBARITCgZhY3RpdmUYAyAB",
-            "KAhIAYgBARIQCgN0YWcYBCABKAlIAogBARISCgVsYXllchgFIAEoBUgDiAEB",
-            "EhUKCHNjZW5lX2lkGAYgASgFSASIAQFCBwoFX25hbWVCCQoHX2FjdGl2ZUIG",
-            "CgRfdGFnQggKBl9sYXllckILCglfc2NlbmVfaWRCFaoCElBMVU1FLlNhbXBs",
-            "ZS5Vbml0eWIGcHJvdG8z"));
+            "Ghd1bml0eS9pZGVudGlmaWVycy5wcm90byJIChBHYW1lT2JqZWN0Q3JlYXRl",
+            "EjQKAmlkGAEgASgLMigucGx1bWUuc2FtcGxlLnVuaXR5LkdhbWVPYmplY3RJ",
+            "ZGVudGlmaWVyIkkKEUdhbWVPYmplY3REZXN0cm95EjQKAmlkGAEgASgLMigu",
+            "cGx1bWUuc2FtcGxlLnVuaXR5LkdhbWVPYmplY3RJZGVudGlmaWVyIuABChBH",
+            "YW1lT2JqZWN0VXBkYXRlEjQKAmlkGAEgASgLMigucGx1bWUuc2FtcGxlLnVu",
+            "aXR5LkdhbWVPYmplY3RJZGVudGlmaWVyEhEKBG5hbWUYAiABKAlIAIgBARIT",
+            "CgZhY3RpdmUYAyABKAhIAYgBARIQCgN0YWcYBCABKAlIAogBARISCgVsYXll",
+            "chgFIAEoBUgDiAEBEhUKCHNjZW5lX2lkGAYgASgFSASIAQFCBwoFX25hbWVC",
+            "CQoHX2FjdGl2ZUIGCgRfdGFnQggKBl9sYXllckILCglfc2NlbmVfaWRCFaoC",
+            "ElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -47,6 +47,7 @@ namespace PLUME.Sample.Unity {
 
   }
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class GameObjectCreate : pb::IMessage<GameObjectCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -93,10 +94,10 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ObjectIdentifier id_;
+    private global::PLUME.Sample.Unity.GameObjectIdentifier id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ObjectIdentifier Id {
+    public global::PLUME.Sample.Unity.GameObjectIdentifier Id {
       get { return id_; }
       set {
         id_ = value;
@@ -190,7 +191,7 @@ namespace PLUME.Sample.Unity {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
+          Id = new global::PLUME.Sample.Unity.GameObjectIdentifier();
         }
         Id.MergeFrom(other.Id);
       }
@@ -211,7 +212,7 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.GameObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;
@@ -233,7 +234,7 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.GameObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;
@@ -245,6 +246,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class GameObjectDestroy : pb::IMessage<GameObjectDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -291,10 +293,10 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ObjectIdentifier id_;
+    private global::PLUME.Sample.Unity.GameObjectIdentifier id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ObjectIdentifier Id {
+    public global::PLUME.Sample.Unity.GameObjectIdentifier Id {
       get { return id_; }
       set {
         id_ = value;
@@ -388,7 +390,7 @@ namespace PLUME.Sample.Unity {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
+          Id = new global::PLUME.Sample.Unity.GameObjectIdentifier();
         }
         Id.MergeFrom(other.Id);
       }
@@ -409,7 +411,7 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.GameObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;
@@ -431,7 +433,7 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.GameObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;
@@ -443,6 +445,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class GameObjectUpdate : pb::IMessage<GameObjectUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -496,10 +499,10 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::PLUME.Sample.Unity.ObjectIdentifier id_;
+    private global::PLUME.Sample.Unity.GameObjectIdentifier id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.ObjectIdentifier Id {
+    public global::PLUME.Sample.Unity.GameObjectIdentifier Id {
       get { return id_; }
       set {
         id_ = value;
@@ -791,7 +794,7 @@ namespace PLUME.Sample.Unity {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
+          Id = new global::PLUME.Sample.Unity.GameObjectIdentifier();
         }
         Id.MergeFrom(other.Id);
       }
@@ -827,7 +830,7 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.GameObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;
@@ -869,7 +872,7 @@ namespace PLUME.Sample.Unity {
             break;
           case 10: {
             if (id_ == null) {
-              Id = new global::PLUME.Sample.Unity.ObjectIdentifier();
+              Id = new global::PLUME.Sample.Unity.GameObjectIdentifier();
             }
             input.ReadMessage(Id);
             break;

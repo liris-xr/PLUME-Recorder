@@ -46,7 +46,11 @@ namespace PLUME.Core.Recorder.Writer
             _metaStream = File.Create(metaFilePath);
             
             _metadata = record.Metadata.ToPayload();
-            _metrics = new RecordMetrics();
+            _metrics = new RecordMetrics
+            {
+                IsSequential = true
+            };
+            
             UpdateMetaFile();
         }
 
@@ -85,7 +89,7 @@ namespace PLUME.Core.Recorder.Writer
         {
             if (dataChunks.IsEmpty()) return;
             _stream.Write(dataChunks.GetDataSpan());
-            var timestamp = (ulong) Math.Max(0, dataChunks.Timestamps[^1]);
+            var timestamp = Math.Max(0, dataChunks.Timestamps[^1]);
             _metrics.IsSequential &= timestamp >= _metrics.Duration;
             _metrics.Duration = timestamp;
             _metrics.NSamples += (ulong)dataChunks.ChunksCount;

@@ -103,6 +103,7 @@ namespace PLUME.Sample.Unity {
   #endregion
 
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class RenderSettingsUpdate : pb::IMessage<RenderSettingsUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

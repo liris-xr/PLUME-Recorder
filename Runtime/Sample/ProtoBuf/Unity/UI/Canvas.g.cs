@@ -28,22 +28,82 @@ namespace PLUME.Sample.Unity.UI {
             "dW5pdHkvaWRlbnRpZmllcnMucHJvdG8iQwoMQ2FudmFzQ3JlYXRlEjMKAmlk",
             "GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
             "ZXIiRAoNQ2FudmFzRGVzdHJveRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBs",
-            "ZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIm0KDENhbnZhc1VwZGF0ZRIz",
-            "CgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVu",
-            "dGlmaWVyEhgKC3JlbmRlcl9tb2RlGAIgASgFSACIAQFCDgoMX3JlbmRlcl9t",
-            "b2RlQhiqAhVQTFVNRS5TYW1wbGUuVW5pdHkuVUliBnByb3RvMw=="));
+            "ZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIpIJCgxDYW52YXNVcGRhdGUS",
+            "MwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRl",
+            "bnRpZmllchI4CgtyZW5kZXJfbW9kZRgCIAEoDjIeLnBsdW1lLnNhbXBsZS51",
+            "bml0eS5SZW5kZXJNb2RlSACIAQESGQoMc2NhbGVfZmFjdG9yGAMgASgCSAGI",
+            "AQESJgoZcmVmZXJlbmNlX3BpeGVsc19wZXJfdW5pdBgEIAEoAkgCiAEBEiMK",
+            "Fm92ZXJyaWRlX3BpeGVsX3BlcmZlY3QYBSABKAhIA4gBARIsCh92ZXJ0ZXhf",
+            "Y29sb3JfYWx3YXlzX2dhbW1hX3NwYWNlGAYgASgISASIAQESGgoNcGl4ZWxf",
+            "cGVyZmVjdBgHIAEoCEgFiAEBEhsKDnBsYW5lX2Rpc3RhbmNlGAggASgCSAaI",
+            "AQESHQoQb3ZlcnJpZGVfc29ydGluZxgJIAEoCEgHiAEBEhoKDXNvcnRpbmdf",
+            "b3JkZXIYCiABKAVICIgBARIbCg50YXJnZXRfZGlzcGxheRgLIAEoBUgJiAEB",
+            "Eh0KEHNvcnRpbmdfbGF5ZXJfaWQYDCABKAVICogBARJbChphZGRpdGlvbmFs",
+            "X3NoYWRlcl9jaGFubmVscxgNIAEoDjIyLnBsdW1lLnNhbXBsZS51bml0eS5B",
+            "ZGRpdGlvbmFsQ2FudmFzU2hhZGVyQ2hhbm5lbHNIC4gBARIfChJzb3J0aW5n",
+            "X2xheWVyX25hbWUYDiABKAlIDIgBARJdCiR1cGRhdGVfcmVjdF90cmFuc2Zv",
+            "cm1fZm9yX3N0YW5kYWxvbmUYDyABKA4yKi5wbHVtZS5zYW1wbGUudW5pdHku",
+            "U3RhbmRhbG9uZVJlbmRlclJlc2l6ZUgNiAEBEkIKDHdvcmxkX2NhbWVyYRgQ",
+            "IAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVy",
+            "SA6IAQESKQocbm9ybWFsaXplZF9zb3J0aW5nX2dyaWRfc2l6ZRgRIAEoAkgP",
+            "iAEBQg4KDF9yZW5kZXJfbW9kZUIPCg1fc2NhbGVfZmFjdG9yQhwKGl9yZWZl",
+            "cmVuY2VfcGl4ZWxzX3Blcl91bml0QhkKF19vdmVycmlkZV9waXhlbF9wZXJm",
+            "ZWN0QiIKIF92ZXJ0ZXhfY29sb3JfYWx3YXlzX2dhbW1hX3NwYWNlQhAKDl9w",
+            "aXhlbF9wZXJmZWN0QhEKD19wbGFuZV9kaXN0YW5jZUITChFfb3ZlcnJpZGVf",
+            "c29ydGluZ0IQCg5fc29ydGluZ19vcmRlckIRCg9fdGFyZ2V0X2Rpc3BsYXlC",
+            "EwoRX3NvcnRpbmdfbGF5ZXJfaWRCHQobX2FkZGl0aW9uYWxfc2hhZGVyX2No",
+            "YW5uZWxzQhUKE19zb3J0aW5nX2xheWVyX25hbWVCJwolX3VwZGF0ZV9yZWN0",
+            "X3RyYW5zZm9ybV9mb3Jfc3RhbmRhbG9uZUIPCg1fd29ybGRfY2FtZXJhQh8K",
+            "HV9ub3JtYWxpemVkX3NvcnRpbmdfZ3JpZF9zaXplKnQKClJlbmRlck1vZGUS",
+            "JAogUkVOREVSX01PREVfU0NSRUVOX1NQQUNFX09WRVJMQVkQABIjCh9SRU5E",
+            "RVJfTU9ERV9TQ1JFRU5fU1BBQ0VfQ0FNRVJBEAESGwoXUkVOREVSX01PREVf",
+            "V09STERfU1BBQ0UQAiplChZTdGFuZGFsb25lUmVuZGVyUmVzaXplEiQKIFNU",
+            "QU5EQUxPTkVfUkVOREVSX1JFU0laRV9FTkFCTEVEEAASJQohU1RBTkRBTE9O",
+            "RV9SRU5ERVJfUkVTSVpFX0RJU0FCTEVEEAEqwgIKHkFkZGl0aW9uYWxDYW52",
+            "YXNTaGFkZXJDaGFubmVscxIqCiZBRERJVElPTkFMX0NBTlZBU19TSEFERVJf",
+            "Q0hBTk5FTFNfTk9ORRAAEjEKLUFERElUSU9OQUxfQ0FOVkFTX1NIQURFUl9D",
+            "SEFOTkVMU19URVhfQ09PUkRfMRABEjEKLUFERElUSU9OQUxfQ0FOVkFTX1NI",
+            "QURFUl9DSEFOTkVMU19URVhfQ09PUkRfMhACEjEKLUFERElUSU9OQUxfQ0FO",
+            "VkFTX1NIQURFUl9DSEFOTkVMU19URVhfQ09PUkRfMxADEiwKKEFERElUSU9O",
+            "QUxfQ0FOVkFTX1NIQURFUl9DSEFOTkVMU19OT1JNQUwQBBItCilBRERJVElP",
+            "TkFMX0NBTlZBU19TSEFERVJfQ0hBTk5FTFNfVEFOR0VOVBAFQhiqAhVQTFVN",
+            "RS5TYW1wbGUuVW5pdHkuVUliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.RenderMode), typeof(global::PLUME.Sample.Unity.UI.StandaloneRenderResize), typeof(global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasCreate), global::PLUME.Sample.Unity.UI.CanvasCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasDestroy), global::PLUME.Sample.Unity.UI.CanvasDestroy.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasUpdate), global::PLUME.Sample.Unity.UI.CanvasUpdate.Parser, new[]{ "Id", "RenderMode" }, new[]{ "RenderMode" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasUpdate), global::PLUME.Sample.Unity.UI.CanvasUpdate.Parser, new[]{ "Id", "RenderMode", "ScaleFactor", "ReferencePixelsPerUnit", "OverridePixelPerfect", "VertexColorAlwaysGammaSpace", "PixelPerfect", "PlaneDistance", "OverrideSorting", "SortingOrder", "TargetDisplay", "SortingLayerId", "AdditionalShaderChannels", "SortingLayerName", "UpdateRectTransformForStandalone", "WorldCamera", "NormalizedSortingGridSize" }, new[]{ "RenderMode", "ScaleFactor", "ReferencePixelsPerUnit", "OverridePixelPerfect", "VertexColorAlwaysGammaSpace", "PixelPerfect", "PlaneDistance", "OverrideSorting", "SortingOrder", "TargetDisplay", "SortingLayerId", "AdditionalShaderChannels", "SortingLayerName", "UpdateRectTransformForStandalone", "WorldCamera", "NormalizedSortingGridSize" }, null, null, null)
           }));
     }
     #endregion
 
   }
+  #region Enums
+  public enum RenderMode {
+    [pbr::OriginalName("RENDER_MODE_SCREEN_SPACE_OVERLAY")] ScreenSpaceOverlay = 0,
+    [pbr::OriginalName("RENDER_MODE_SCREEN_SPACE_CAMERA")] ScreenSpaceCamera = 1,
+    [pbr::OriginalName("RENDER_MODE_WORLD_SPACE")] WorldSpace = 2,
+  }
+
+  public enum StandaloneRenderResize {
+    [pbr::OriginalName("STANDALONE_RENDER_RESIZE_ENABLED")] Enabled = 0,
+    [pbr::OriginalName("STANDALONE_RENDER_RESIZE_DISABLED")] Disabled = 1,
+  }
+
+  public enum AdditionalCanvasShaderChannels {
+    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_NONE")] None = 0,
+    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_TEX_COORD_1")] TexCoord1 = 1,
+    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_TEX_COORD_2")] TexCoord2 = 2,
+    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_TEX_COORD_3")] TexCoord3 = 3,
+    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_NORMAL")] Normal = 4,
+    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_TANGENT")] Tangent = 5,
+  }
+
+  #endregion
+
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CanvasCreate : pb::IMessage<CanvasCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -242,6 +302,7 @@ namespace PLUME.Sample.Unity.UI {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CanvasDestroy : pb::IMessage<CanvasDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -440,6 +501,7 @@ namespace PLUME.Sample.Unity.UI {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CanvasUpdate : pb::IMessage<CanvasUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -478,6 +540,21 @@ namespace PLUME.Sample.Unity.UI {
       _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
       renderMode_ = other.renderMode_;
+      scaleFactor_ = other.scaleFactor_;
+      referencePixelsPerUnit_ = other.referencePixelsPerUnit_;
+      overridePixelPerfect_ = other.overridePixelPerfect_;
+      vertexColorAlwaysGammaSpace_ = other.vertexColorAlwaysGammaSpace_;
+      pixelPerfect_ = other.pixelPerfect_;
+      planeDistance_ = other.planeDistance_;
+      overrideSorting_ = other.overrideSorting_;
+      sortingOrder_ = other.sortingOrder_;
+      targetDisplay_ = other.targetDisplay_;
+      sortingLayerId_ = other.sortingLayerId_;
+      additionalShaderChannels_ = other.additionalShaderChannels_;
+      sortingLayerName_ = other.sortingLayerName_;
+      updateRectTransformForStandalone_ = other.updateRectTransformForStandalone_;
+      worldCamera_ = other.worldCamera_ != null ? other.worldCamera_.Clone() : null;
+      normalizedSortingGridSize_ = other.normalizedSortingGridSize_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -501,12 +578,12 @@ namespace PLUME.Sample.Unity.UI {
 
     /// <summary>Field number for the "render_mode" field.</summary>
     public const int RenderModeFieldNumber = 2;
-    private readonly static int RenderModeDefaultValue = 0;
+    private readonly static global::PLUME.Sample.Unity.UI.RenderMode RenderModeDefaultValue = global::PLUME.Sample.Unity.UI.RenderMode.ScreenSpaceOverlay;
 
-    private int renderMode_;
+    private global::PLUME.Sample.Unity.UI.RenderMode renderMode_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int RenderMode {
+    public global::PLUME.Sample.Unity.UI.RenderMode RenderMode {
       get { if ((_hasBits0 & 1) != 0) { return renderMode_; } else { return RenderModeDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -526,6 +603,395 @@ namespace PLUME.Sample.Unity.UI {
       _hasBits0 &= ~1;
     }
 
+    /// <summary>Field number for the "scale_factor" field.</summary>
+    public const int ScaleFactorFieldNumber = 3;
+    private readonly static float ScaleFactorDefaultValue = 0F;
+
+    private float scaleFactor_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float ScaleFactor {
+      get { if ((_hasBits0 & 2) != 0) { return scaleFactor_; } else { return ScaleFactorDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        scaleFactor_ = value;
+      }
+    }
+    /// <summary>Gets whether the "scale_factor" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasScaleFactor {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "scale_factor" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearScaleFactor() {
+      _hasBits0 &= ~2;
+    }
+
+    /// <summary>Field number for the "reference_pixels_per_unit" field.</summary>
+    public const int ReferencePixelsPerUnitFieldNumber = 4;
+    private readonly static float ReferencePixelsPerUnitDefaultValue = 0F;
+
+    private float referencePixelsPerUnit_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float ReferencePixelsPerUnit {
+      get { if ((_hasBits0 & 4) != 0) { return referencePixelsPerUnit_; } else { return ReferencePixelsPerUnitDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        referencePixelsPerUnit_ = value;
+      }
+    }
+    /// <summary>Gets whether the "reference_pixels_per_unit" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasReferencePixelsPerUnit {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "reference_pixels_per_unit" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearReferencePixelsPerUnit() {
+      _hasBits0 &= ~4;
+    }
+
+    /// <summary>Field number for the "override_pixel_perfect" field.</summary>
+    public const int OverridePixelPerfectFieldNumber = 5;
+    private readonly static bool OverridePixelPerfectDefaultValue = false;
+
+    private bool overridePixelPerfect_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool OverridePixelPerfect {
+      get { if ((_hasBits0 & 8) != 0) { return overridePixelPerfect_; } else { return OverridePixelPerfectDefaultValue; } }
+      set {
+        _hasBits0 |= 8;
+        overridePixelPerfect_ = value;
+      }
+    }
+    /// <summary>Gets whether the "override_pixel_perfect" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasOverridePixelPerfect {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "override_pixel_perfect" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearOverridePixelPerfect() {
+      _hasBits0 &= ~8;
+    }
+
+    /// <summary>Field number for the "vertex_color_always_gamma_space" field.</summary>
+    public const int VertexColorAlwaysGammaSpaceFieldNumber = 6;
+    private readonly static bool VertexColorAlwaysGammaSpaceDefaultValue = false;
+
+    private bool vertexColorAlwaysGammaSpace_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool VertexColorAlwaysGammaSpace {
+      get { if ((_hasBits0 & 16) != 0) { return vertexColorAlwaysGammaSpace_; } else { return VertexColorAlwaysGammaSpaceDefaultValue; } }
+      set {
+        _hasBits0 |= 16;
+        vertexColorAlwaysGammaSpace_ = value;
+      }
+    }
+    /// <summary>Gets whether the "vertex_color_always_gamma_space" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasVertexColorAlwaysGammaSpace {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "vertex_color_always_gamma_space" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearVertexColorAlwaysGammaSpace() {
+      _hasBits0 &= ~16;
+    }
+
+    /// <summary>Field number for the "pixel_perfect" field.</summary>
+    public const int PixelPerfectFieldNumber = 7;
+    private readonly static bool PixelPerfectDefaultValue = false;
+
+    private bool pixelPerfect_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool PixelPerfect {
+      get { if ((_hasBits0 & 32) != 0) { return pixelPerfect_; } else { return PixelPerfectDefaultValue; } }
+      set {
+        _hasBits0 |= 32;
+        pixelPerfect_ = value;
+      }
+    }
+    /// <summary>Gets whether the "pixel_perfect" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasPixelPerfect {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "pixel_perfect" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearPixelPerfect() {
+      _hasBits0 &= ~32;
+    }
+
+    /// <summary>Field number for the "plane_distance" field.</summary>
+    public const int PlaneDistanceFieldNumber = 8;
+    private readonly static float PlaneDistanceDefaultValue = 0F;
+
+    private float planeDistance_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float PlaneDistance {
+      get { if ((_hasBits0 & 64) != 0) { return planeDistance_; } else { return PlaneDistanceDefaultValue; } }
+      set {
+        _hasBits0 |= 64;
+        planeDistance_ = value;
+      }
+    }
+    /// <summary>Gets whether the "plane_distance" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasPlaneDistance {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "plane_distance" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearPlaneDistance() {
+      _hasBits0 &= ~64;
+    }
+
+    /// <summary>Field number for the "override_sorting" field.</summary>
+    public const int OverrideSortingFieldNumber = 9;
+    private readonly static bool OverrideSortingDefaultValue = false;
+
+    private bool overrideSorting_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool OverrideSorting {
+      get { if ((_hasBits0 & 128) != 0) { return overrideSorting_; } else { return OverrideSortingDefaultValue; } }
+      set {
+        _hasBits0 |= 128;
+        overrideSorting_ = value;
+      }
+    }
+    /// <summary>Gets whether the "override_sorting" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasOverrideSorting {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "override_sorting" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearOverrideSorting() {
+      _hasBits0 &= ~128;
+    }
+
+    /// <summary>Field number for the "sorting_order" field.</summary>
+    public const int SortingOrderFieldNumber = 10;
+    private readonly static int SortingOrderDefaultValue = 0;
+
+    private int sortingOrder_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int SortingOrder {
+      get { if ((_hasBits0 & 256) != 0) { return sortingOrder_; } else { return SortingOrderDefaultValue; } }
+      set {
+        _hasBits0 |= 256;
+        sortingOrder_ = value;
+      }
+    }
+    /// <summary>Gets whether the "sorting_order" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSortingOrder {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "sorting_order" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSortingOrder() {
+      _hasBits0 &= ~256;
+    }
+
+    /// <summary>Field number for the "target_display" field.</summary>
+    public const int TargetDisplayFieldNumber = 11;
+    private readonly static int TargetDisplayDefaultValue = 0;
+
+    private int targetDisplay_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int TargetDisplay {
+      get { if ((_hasBits0 & 512) != 0) { return targetDisplay_; } else { return TargetDisplayDefaultValue; } }
+      set {
+        _hasBits0 |= 512;
+        targetDisplay_ = value;
+      }
+    }
+    /// <summary>Gets whether the "target_display" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTargetDisplay {
+      get { return (_hasBits0 & 512) != 0; }
+    }
+    /// <summary>Clears the value of the "target_display" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTargetDisplay() {
+      _hasBits0 &= ~512;
+    }
+
+    /// <summary>Field number for the "sorting_layer_id" field.</summary>
+    public const int SortingLayerIdFieldNumber = 12;
+    private readonly static int SortingLayerIdDefaultValue = 0;
+
+    private int sortingLayerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int SortingLayerId {
+      get { if ((_hasBits0 & 1024) != 0) { return sortingLayerId_; } else { return SortingLayerIdDefaultValue; } }
+      set {
+        _hasBits0 |= 1024;
+        sortingLayerId_ = value;
+      }
+    }
+    /// <summary>Gets whether the "sorting_layer_id" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSortingLayerId {
+      get { return (_hasBits0 & 1024) != 0; }
+    }
+    /// <summary>Clears the value of the "sorting_layer_id" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSortingLayerId() {
+      _hasBits0 &= ~1024;
+    }
+
+    /// <summary>Field number for the "additional_shader_channels" field.</summary>
+    public const int AdditionalShaderChannelsFieldNumber = 13;
+    private readonly static global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels AdditionalShaderChannelsDefaultValue = global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels.None;
+
+    private global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels additionalShaderChannels_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels AdditionalShaderChannels {
+      get { if ((_hasBits0 & 2048) != 0) { return additionalShaderChannels_; } else { return AdditionalShaderChannelsDefaultValue; } }
+      set {
+        _hasBits0 |= 2048;
+        additionalShaderChannels_ = value;
+      }
+    }
+    /// <summary>Gets whether the "additional_shader_channels" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAdditionalShaderChannels {
+      get { return (_hasBits0 & 2048) != 0; }
+    }
+    /// <summary>Clears the value of the "additional_shader_channels" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAdditionalShaderChannels() {
+      _hasBits0 &= ~2048;
+    }
+
+    /// <summary>Field number for the "sorting_layer_name" field.</summary>
+    public const int SortingLayerNameFieldNumber = 14;
+    private readonly static string SortingLayerNameDefaultValue = "";
+
+    private string sortingLayerName_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string SortingLayerName {
+      get { return sortingLayerName_ ?? SortingLayerNameDefaultValue; }
+      set {
+        sortingLayerName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "sorting_layer_name" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSortingLayerName {
+      get { return sortingLayerName_ != null; }
+    }
+    /// <summary>Clears the value of the "sorting_layer_name" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSortingLayerName() {
+      sortingLayerName_ = null;
+    }
+
+    /// <summary>Field number for the "update_rect_transform_for_standalone" field.</summary>
+    public const int UpdateRectTransformForStandaloneFieldNumber = 15;
+    private readonly static global::PLUME.Sample.Unity.UI.StandaloneRenderResize UpdateRectTransformForStandaloneDefaultValue = global::PLUME.Sample.Unity.UI.StandaloneRenderResize.Enabled;
+
+    private global::PLUME.Sample.Unity.UI.StandaloneRenderResize updateRectTransformForStandalone_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.UI.StandaloneRenderResize UpdateRectTransformForStandalone {
+      get { if ((_hasBits0 & 4096) != 0) { return updateRectTransformForStandalone_; } else { return UpdateRectTransformForStandaloneDefaultValue; } }
+      set {
+        _hasBits0 |= 4096;
+        updateRectTransformForStandalone_ = value;
+      }
+    }
+    /// <summary>Gets whether the "update_rect_transform_for_standalone" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasUpdateRectTransformForStandalone {
+      get { return (_hasBits0 & 4096) != 0; }
+    }
+    /// <summary>Clears the value of the "update_rect_transform_for_standalone" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearUpdateRectTransformForStandalone() {
+      _hasBits0 &= ~4096;
+    }
+
+    /// <summary>Field number for the "world_camera" field.</summary>
+    public const int WorldCameraFieldNumber = 16;
+    private global::PLUME.Sample.Unity.ComponentIdentifier worldCamera_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier WorldCamera {
+      get { return worldCamera_; }
+      set {
+        worldCamera_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "normalized_sorting_grid_size" field.</summary>
+    public const int NormalizedSortingGridSizeFieldNumber = 17;
+    private readonly static float NormalizedSortingGridSizeDefaultValue = 0F;
+
+    private float normalizedSortingGridSize_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float NormalizedSortingGridSize {
+      get { if ((_hasBits0 & 8192) != 0) { return normalizedSortingGridSize_; } else { return NormalizedSortingGridSizeDefaultValue; } }
+      set {
+        _hasBits0 |= 8192;
+        normalizedSortingGridSize_ = value;
+      }
+    }
+    /// <summary>Gets whether the "normalized_sorting_grid_size" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasNormalizedSortingGridSize {
+      get { return (_hasBits0 & 8192) != 0; }
+    }
+    /// <summary>Clears the value of the "normalized_sorting_grid_size" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearNormalizedSortingGridSize() {
+      _hasBits0 &= ~8192;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -543,6 +1009,21 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (!object.Equals(Id, other.Id)) return false;
       if (RenderMode != other.RenderMode) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ScaleFactor, other.ScaleFactor)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ReferencePixelsPerUnit, other.ReferencePixelsPerUnit)) return false;
+      if (OverridePixelPerfect != other.OverridePixelPerfect) return false;
+      if (VertexColorAlwaysGammaSpace != other.VertexColorAlwaysGammaSpace) return false;
+      if (PixelPerfect != other.PixelPerfect) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PlaneDistance, other.PlaneDistance)) return false;
+      if (OverrideSorting != other.OverrideSorting) return false;
+      if (SortingOrder != other.SortingOrder) return false;
+      if (TargetDisplay != other.TargetDisplay) return false;
+      if (SortingLayerId != other.SortingLayerId) return false;
+      if (AdditionalShaderChannels != other.AdditionalShaderChannels) return false;
+      if (SortingLayerName != other.SortingLayerName) return false;
+      if (UpdateRectTransformForStandalone != other.UpdateRectTransformForStandalone) return false;
+      if (!object.Equals(WorldCamera, other.WorldCamera)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(NormalizedSortingGridSize, other.NormalizedSortingGridSize)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -552,6 +1033,21 @@ namespace PLUME.Sample.Unity.UI {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
       if (HasRenderMode) hash ^= RenderMode.GetHashCode();
+      if (HasScaleFactor) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ScaleFactor);
+      if (HasReferencePixelsPerUnit) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ReferencePixelsPerUnit);
+      if (HasOverridePixelPerfect) hash ^= OverridePixelPerfect.GetHashCode();
+      if (HasVertexColorAlwaysGammaSpace) hash ^= VertexColorAlwaysGammaSpace.GetHashCode();
+      if (HasPixelPerfect) hash ^= PixelPerfect.GetHashCode();
+      if (HasPlaneDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PlaneDistance);
+      if (HasOverrideSorting) hash ^= OverrideSorting.GetHashCode();
+      if (HasSortingOrder) hash ^= SortingOrder.GetHashCode();
+      if (HasTargetDisplay) hash ^= TargetDisplay.GetHashCode();
+      if (HasSortingLayerId) hash ^= SortingLayerId.GetHashCode();
+      if (HasAdditionalShaderChannels) hash ^= AdditionalShaderChannels.GetHashCode();
+      if (HasSortingLayerName) hash ^= SortingLayerName.GetHashCode();
+      if (HasUpdateRectTransformForStandalone) hash ^= UpdateRectTransformForStandalone.GetHashCode();
+      if (worldCamera_ != null) hash ^= WorldCamera.GetHashCode();
+      if (HasNormalizedSortingGridSize) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NormalizedSortingGridSize);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -576,7 +1072,67 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasRenderMode) {
         output.WriteRawTag(16);
-        output.WriteInt32(RenderMode);
+        output.WriteEnum((int) RenderMode);
+      }
+      if (HasScaleFactor) {
+        output.WriteRawTag(29);
+        output.WriteFloat(ScaleFactor);
+      }
+      if (HasReferencePixelsPerUnit) {
+        output.WriteRawTag(37);
+        output.WriteFloat(ReferencePixelsPerUnit);
+      }
+      if (HasOverridePixelPerfect) {
+        output.WriteRawTag(40);
+        output.WriteBool(OverridePixelPerfect);
+      }
+      if (HasVertexColorAlwaysGammaSpace) {
+        output.WriteRawTag(48);
+        output.WriteBool(VertexColorAlwaysGammaSpace);
+      }
+      if (HasPixelPerfect) {
+        output.WriteRawTag(56);
+        output.WriteBool(PixelPerfect);
+      }
+      if (HasPlaneDistance) {
+        output.WriteRawTag(69);
+        output.WriteFloat(PlaneDistance);
+      }
+      if (HasOverrideSorting) {
+        output.WriteRawTag(72);
+        output.WriteBool(OverrideSorting);
+      }
+      if (HasSortingOrder) {
+        output.WriteRawTag(80);
+        output.WriteInt32(SortingOrder);
+      }
+      if (HasTargetDisplay) {
+        output.WriteRawTag(88);
+        output.WriteInt32(TargetDisplay);
+      }
+      if (HasSortingLayerId) {
+        output.WriteRawTag(96);
+        output.WriteInt32(SortingLayerId);
+      }
+      if (HasAdditionalShaderChannels) {
+        output.WriteRawTag(104);
+        output.WriteEnum((int) AdditionalShaderChannels);
+      }
+      if (HasSortingLayerName) {
+        output.WriteRawTag(114);
+        output.WriteString(SortingLayerName);
+      }
+      if (HasUpdateRectTransformForStandalone) {
+        output.WriteRawTag(120);
+        output.WriteEnum((int) UpdateRectTransformForStandalone);
+      }
+      if (worldCamera_ != null) {
+        output.WriteRawTag(130, 1);
+        output.WriteMessage(WorldCamera);
+      }
+      if (HasNormalizedSortingGridSize) {
+        output.WriteRawTag(141, 1);
+        output.WriteFloat(NormalizedSortingGridSize);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -594,7 +1150,67 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasRenderMode) {
         output.WriteRawTag(16);
-        output.WriteInt32(RenderMode);
+        output.WriteEnum((int) RenderMode);
+      }
+      if (HasScaleFactor) {
+        output.WriteRawTag(29);
+        output.WriteFloat(ScaleFactor);
+      }
+      if (HasReferencePixelsPerUnit) {
+        output.WriteRawTag(37);
+        output.WriteFloat(ReferencePixelsPerUnit);
+      }
+      if (HasOverridePixelPerfect) {
+        output.WriteRawTag(40);
+        output.WriteBool(OverridePixelPerfect);
+      }
+      if (HasVertexColorAlwaysGammaSpace) {
+        output.WriteRawTag(48);
+        output.WriteBool(VertexColorAlwaysGammaSpace);
+      }
+      if (HasPixelPerfect) {
+        output.WriteRawTag(56);
+        output.WriteBool(PixelPerfect);
+      }
+      if (HasPlaneDistance) {
+        output.WriteRawTag(69);
+        output.WriteFloat(PlaneDistance);
+      }
+      if (HasOverrideSorting) {
+        output.WriteRawTag(72);
+        output.WriteBool(OverrideSorting);
+      }
+      if (HasSortingOrder) {
+        output.WriteRawTag(80);
+        output.WriteInt32(SortingOrder);
+      }
+      if (HasTargetDisplay) {
+        output.WriteRawTag(88);
+        output.WriteInt32(TargetDisplay);
+      }
+      if (HasSortingLayerId) {
+        output.WriteRawTag(96);
+        output.WriteInt32(SortingLayerId);
+      }
+      if (HasAdditionalShaderChannels) {
+        output.WriteRawTag(104);
+        output.WriteEnum((int) AdditionalShaderChannels);
+      }
+      if (HasSortingLayerName) {
+        output.WriteRawTag(114);
+        output.WriteString(SortingLayerName);
+      }
+      if (HasUpdateRectTransformForStandalone) {
+        output.WriteRawTag(120);
+        output.WriteEnum((int) UpdateRectTransformForStandalone);
+      }
+      if (worldCamera_ != null) {
+        output.WriteRawTag(130, 1);
+        output.WriteMessage(WorldCamera);
+      }
+      if (HasNormalizedSortingGridSize) {
+        output.WriteRawTag(141, 1);
+        output.WriteFloat(NormalizedSortingGridSize);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -610,7 +1226,52 @@ namespace PLUME.Sample.Unity.UI {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
       if (HasRenderMode) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RenderMode);
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RenderMode);
+      }
+      if (HasScaleFactor) {
+        size += 1 + 4;
+      }
+      if (HasReferencePixelsPerUnit) {
+        size += 1 + 4;
+      }
+      if (HasOverridePixelPerfect) {
+        size += 1 + 1;
+      }
+      if (HasVertexColorAlwaysGammaSpace) {
+        size += 1 + 1;
+      }
+      if (HasPixelPerfect) {
+        size += 1 + 1;
+      }
+      if (HasPlaneDistance) {
+        size += 1 + 4;
+      }
+      if (HasOverrideSorting) {
+        size += 1 + 1;
+      }
+      if (HasSortingOrder) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SortingOrder);
+      }
+      if (HasTargetDisplay) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TargetDisplay);
+      }
+      if (HasSortingLayerId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SortingLayerId);
+      }
+      if (HasAdditionalShaderChannels) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) AdditionalShaderChannels);
+      }
+      if (HasSortingLayerName) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(SortingLayerName);
+      }
+      if (HasUpdateRectTransformForStandalone) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) UpdateRectTransformForStandalone);
+      }
+      if (worldCamera_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(WorldCamera);
+      }
+      if (HasNormalizedSortingGridSize) {
+        size += 2 + 4;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -632,6 +1293,54 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (other.HasRenderMode) {
         RenderMode = other.RenderMode;
+      }
+      if (other.HasScaleFactor) {
+        ScaleFactor = other.ScaleFactor;
+      }
+      if (other.HasReferencePixelsPerUnit) {
+        ReferencePixelsPerUnit = other.ReferencePixelsPerUnit;
+      }
+      if (other.HasOverridePixelPerfect) {
+        OverridePixelPerfect = other.OverridePixelPerfect;
+      }
+      if (other.HasVertexColorAlwaysGammaSpace) {
+        VertexColorAlwaysGammaSpace = other.VertexColorAlwaysGammaSpace;
+      }
+      if (other.HasPixelPerfect) {
+        PixelPerfect = other.PixelPerfect;
+      }
+      if (other.HasPlaneDistance) {
+        PlaneDistance = other.PlaneDistance;
+      }
+      if (other.HasOverrideSorting) {
+        OverrideSorting = other.OverrideSorting;
+      }
+      if (other.HasSortingOrder) {
+        SortingOrder = other.SortingOrder;
+      }
+      if (other.HasTargetDisplay) {
+        TargetDisplay = other.TargetDisplay;
+      }
+      if (other.HasSortingLayerId) {
+        SortingLayerId = other.SortingLayerId;
+      }
+      if (other.HasAdditionalShaderChannels) {
+        AdditionalShaderChannels = other.AdditionalShaderChannels;
+      }
+      if (other.HasSortingLayerName) {
+        SortingLayerName = other.SortingLayerName;
+      }
+      if (other.HasUpdateRectTransformForStandalone) {
+        UpdateRectTransformForStandalone = other.UpdateRectTransformForStandalone;
+      }
+      if (other.worldCamera_ != null) {
+        if (worldCamera_ == null) {
+          WorldCamera = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        WorldCamera.MergeFrom(other.WorldCamera);
+      }
+      if (other.HasNormalizedSortingGridSize) {
+        NormalizedSortingGridSize = other.NormalizedSortingGridSize;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -656,7 +1365,70 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 16: {
-            RenderMode = input.ReadInt32();
+            RenderMode = (global::PLUME.Sample.Unity.UI.RenderMode) input.ReadEnum();
+            break;
+          }
+          case 29: {
+            ScaleFactor = input.ReadFloat();
+            break;
+          }
+          case 37: {
+            ReferencePixelsPerUnit = input.ReadFloat();
+            break;
+          }
+          case 40: {
+            OverridePixelPerfect = input.ReadBool();
+            break;
+          }
+          case 48: {
+            VertexColorAlwaysGammaSpace = input.ReadBool();
+            break;
+          }
+          case 56: {
+            PixelPerfect = input.ReadBool();
+            break;
+          }
+          case 69: {
+            PlaneDistance = input.ReadFloat();
+            break;
+          }
+          case 72: {
+            OverrideSorting = input.ReadBool();
+            break;
+          }
+          case 80: {
+            SortingOrder = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            TargetDisplay = input.ReadInt32();
+            break;
+          }
+          case 96: {
+            SortingLayerId = input.ReadInt32();
+            break;
+          }
+          case 104: {
+            AdditionalShaderChannels = (global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels) input.ReadEnum();
+            break;
+          }
+          case 114: {
+            SortingLayerName = input.ReadString();
+            break;
+          }
+          case 120: {
+            UpdateRectTransformForStandalone = (global::PLUME.Sample.Unity.UI.StandaloneRenderResize) input.ReadEnum();
+            break;
+          }
+          case 130: {
+            if (worldCamera_ == null) {
+              WorldCamera = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(WorldCamera);
+            break;
+          }
+          case 141: {
+            NormalizedSortingGridSize = input.ReadFloat();
             break;
           }
         }
@@ -682,7 +1454,70 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 16: {
-            RenderMode = input.ReadInt32();
+            RenderMode = (global::PLUME.Sample.Unity.UI.RenderMode) input.ReadEnum();
+            break;
+          }
+          case 29: {
+            ScaleFactor = input.ReadFloat();
+            break;
+          }
+          case 37: {
+            ReferencePixelsPerUnit = input.ReadFloat();
+            break;
+          }
+          case 40: {
+            OverridePixelPerfect = input.ReadBool();
+            break;
+          }
+          case 48: {
+            VertexColorAlwaysGammaSpace = input.ReadBool();
+            break;
+          }
+          case 56: {
+            PixelPerfect = input.ReadBool();
+            break;
+          }
+          case 69: {
+            PlaneDistance = input.ReadFloat();
+            break;
+          }
+          case 72: {
+            OverrideSorting = input.ReadBool();
+            break;
+          }
+          case 80: {
+            SortingOrder = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            TargetDisplay = input.ReadInt32();
+            break;
+          }
+          case 96: {
+            SortingLayerId = input.ReadInt32();
+            break;
+          }
+          case 104: {
+            AdditionalShaderChannels = (global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels) input.ReadEnum();
+            break;
+          }
+          case 114: {
+            SortingLayerName = input.ReadString();
+            break;
+          }
+          case 120: {
+            UpdateRectTransformForStandalone = (global::PLUME.Sample.Unity.UI.StandaloneRenderResize) input.ReadEnum();
+            break;
+          }
+          case 130: {
+            if (worldCamera_ == null) {
+              WorldCamera = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(WorldCamera);
+            break;
+          }
+          case 141: {
+            NormalizedSortingGridSize = input.ReadFloat();
             break;
           }
         }

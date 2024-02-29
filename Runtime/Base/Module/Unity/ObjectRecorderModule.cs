@@ -73,7 +73,7 @@ namespace PLUME.Base.Module.Unity
             _destroyedObjectsIdentifier.Remove(objSafeRef.GetIdentifier());
 
             if (markedCreated)
-                OnObjectMarkedCreated(objSafeRef);
+                OnObjectMarkedCreated(objSafeRef, ctx);
         }
 
         public void StopRecordingObject(TObjectSafeRef objSafeRef, bool markDestroyed, RecorderContext ctx)
@@ -92,7 +92,7 @@ namespace PLUME.Base.Module.Unity
                 _createdObjectsIdentifier.Remove(objSafeRef.GetIdentifier());
 
                 if (markedDestroyed)
-                    OnObjectMarkedDestroyed(objSafeRef);
+                    OnObjectMarkedDestroyed(objSafeRef, ctx);
             }
         }
 
@@ -227,11 +227,11 @@ namespace PLUME.Base.Module.Unity
         {
         }
 
-        protected virtual void OnObjectMarkedCreated(TObjectSafeRef objSafeRef)
+        protected virtual void OnObjectMarkedCreated(TObjectSafeRef objSafeRef, RecorderContext ctx)
         {
         }
 
-        protected virtual void OnObjectMarkedDestroyed(TObjectSafeRef objSafeRef)
+        protected virtual void OnObjectMarkedDestroyed(TObjectSafeRef objSafeRef, RecorderContext ctx)
         {
         }
 

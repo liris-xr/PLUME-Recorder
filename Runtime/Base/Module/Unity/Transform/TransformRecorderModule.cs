@@ -90,7 +90,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _alignedFlagsStates.Dispose();
         }
 
-        protected override void OnObjectMarkedCreated(TransformSafeRef tSafeRef)
+        protected override void OnObjectMarkedCreated(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
             var idx = _identifierToIndex[tSafeRef.ComponentIdentifier];
             var flagsState = _alignedFlagsStates[idx];
@@ -98,7 +98,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _alignedFlagsStates[idx] = flagsState;
         }
 
-        protected override void OnObjectMarkedDestroyed(TransformSafeRef tSafeRef)
+        protected override void OnObjectMarkedDestroyed(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
             var idx = _identifierToIndex[tSafeRef.ComponentIdentifier];
             var flagsState = _alignedFlagsStates[idx];

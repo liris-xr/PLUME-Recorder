@@ -28,25 +28,24 @@ namespace PLUME.Sample.Unity {
             "Ghd1bml0eS9pZGVudGlmaWVycy5wcm90byJHChBNZXNoRmlsdGVyQ3JlYXRl",
             "EjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElk",
             "ZW50aWZpZXIiSAoRTWVzaEZpbHRlckRlc3Ryb3kSMwoCaWQYASABKAsyJy5w",
-            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciLjAQoQTWVz",
+            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciKOAQoQTWVz",
             "aEZpbHRlclVwZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0",
             "eS5Db21wb25lbnRJZGVudGlmaWVyEjkKB21lc2hfaWQYAiABKAsyIy5wbHVt",
-            "ZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVudGlmaWVySACIAQESQAoOc2hhcmVk",
-            "X21lc2hfaWQYAyABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVu",
-            "dGlmaWVySAGIAQFCCgoIX21lc2hfaWRCEQoPX3NoYXJlZF9tZXNoX2lkQhWq",
-            "AhJQTFVNRS5TYW1wbGUuVW5pdHliBnByb3RvMw=="));
+            "ZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVudGlmaWVySACIAQFCCgoIX21lc2hf",
+            "aWRCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshFilterCreate), global::PLUME.Sample.Unity.MeshFilterCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshFilterDestroy), global::PLUME.Sample.Unity.MeshFilterDestroy.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshFilterUpdate), global::PLUME.Sample.Unity.MeshFilterUpdate.Parser, new[]{ "Id", "MeshId", "SharedMeshId" }, new[]{ "MeshId", "SharedMeshId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.MeshFilterUpdate), global::PLUME.Sample.Unity.MeshFilterUpdate.Parser, new[]{ "Id", "MeshId" }, new[]{ "MeshId" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class MeshFilterCreate : pb::IMessage<MeshFilterCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -245,6 +244,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class MeshFilterDestroy : pb::IMessage<MeshFilterDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -443,6 +443,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class MeshFilterUpdate : pb::IMessage<MeshFilterUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -479,7 +480,6 @@ namespace PLUME.Sample.Unity {
     public MeshFilterUpdate(MeshFilterUpdate other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
       meshId_ = other.meshId_ != null ? other.meshId_.Clone() : null;
-      sharedMeshId_ = other.sharedMeshId_ != null ? other.sharedMeshId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -513,18 +513,6 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "shared_mesh_id" field.</summary>
-    public const int SharedMeshIdFieldNumber = 3;
-    private global::PLUME.Sample.Unity.AssetIdentifier sharedMeshId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.AssetIdentifier SharedMeshId {
-      get { return sharedMeshId_; }
-      set {
-        sharedMeshId_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -542,7 +530,6 @@ namespace PLUME.Sample.Unity {
       }
       if (!object.Equals(Id, other.Id)) return false;
       if (!object.Equals(MeshId, other.MeshId)) return false;
-      if (!object.Equals(SharedMeshId, other.SharedMeshId)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -552,7 +539,6 @@ namespace PLUME.Sample.Unity {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
       if (meshId_ != null) hash ^= MeshId.GetHashCode();
-      if (sharedMeshId_ != null) hash ^= SharedMeshId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -579,10 +565,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteMessage(MeshId);
       }
-      if (sharedMeshId_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(SharedMeshId);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -601,10 +583,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteMessage(MeshId);
       }
-      if (sharedMeshId_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(SharedMeshId);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -620,9 +598,6 @@ namespace PLUME.Sample.Unity {
       }
       if (meshId_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(MeshId);
-      }
-      if (sharedMeshId_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SharedMeshId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -647,12 +622,6 @@ namespace PLUME.Sample.Unity {
           MeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
         }
         MeshId.MergeFrom(other.MeshId);
-      }
-      if (other.sharedMeshId_ != null) {
-        if (sharedMeshId_ == null) {
-          SharedMeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
-        }
-        SharedMeshId.MergeFrom(other.SharedMeshId);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -683,13 +652,6 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(MeshId);
             break;
           }
-          case 26: {
-            if (sharedMeshId_ == null) {
-              SharedMeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(SharedMeshId);
-            break;
-          }
         }
       }
     #endif
@@ -717,13 +679,6 @@ namespace PLUME.Sample.Unity {
               MeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(MeshId);
-            break;
-          }
-          case 26: {
-            if (sharedMeshId_ == null) {
-              SharedMeshId = new global::PLUME.Sample.Unity.AssetIdentifier();
-            }
-            input.ReadMessage(SharedMeshId);
             break;
           }
         }

@@ -27,24 +27,26 @@ namespace PLUME.Sample.Unity.URP {
             "ChZ1bml0eS91cnAvdm9sdW1lLnByb3RvEhZwbHVtZS5zYW1wbGUudW5pdHku",
             "dXJwGhd1bml0eS9pZGVudGlmaWVycy5wcm90byJDCgxWb2x1bWVDcmVhdGUS",
             "MwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRl",
-            "bnRpZmllciLRAwoMVm9sdW1lVXBkYXRlEjMKAmlkGAEgASgLMicucGx1bWUu",
-            "c2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISFgoJaXNfZ2xvYmFs",
-            "GAIgASgISACIAQESRgoJY29sbGlkZXJzGAMgASgLMi4ucGx1bWUuc2FtcGxl",
-            "LnVuaXR5LnVycC5Wb2x1bWVVcGRhdGUuQ29sbGlkZXJzSAGIAQESGwoOYmxl",
-            "bmRfZGlzdGFuY2UYBCABKAJIAogBARITCgZ3ZWlnaHQYBSABKAJIA4gBARIV",
-            "Cghwcmlvcml0eRgGIAEoAkgEiAEBEkMKEXNoYXJlZF9wcm9maWxlX2lkGAcg",
-            "ASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckgFiAEB",
-            "GkEKCUNvbGxpZGVycxI0CgNpZHMYASADKAsyJy5wbHVtZS5zYW1wbGUudW5p",
-            "dHkuQ29tcG9uZW50SWRlbnRpZmllckIMCgpfaXNfZ2xvYmFsQgwKCl9jb2xs",
-            "aWRlcnNCEQoPX2JsZW5kX2Rpc3RhbmNlQgkKB193ZWlnaHRCCwoJX3ByaW9y",
-            "aXR5QhQKEl9zaGFyZWRfcHJvZmlsZV9pZCJbChNWb2x1bWVVcGRhdGVFbmFi",
-            "bGVkEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVu",
-            "dElkZW50aWZpZXISDwoHZW5hYmxlZBgCIAEoCEIZqgIWUExVTUUuU2FtcGxl",
-            "LlVuaXR5LlVSUGIGcHJvdG8z"));
+            "bnRpZmllciJECg1Wb2x1bWVEZXN0cm95EjMKAmlkGAEgASgLMicucGx1bWUu",
+            "c2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIi0QMKDFZvbHVtZVVw",
+            "ZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25l",
+            "bnRJZGVudGlmaWVyEhYKCWlzX2dsb2JhbBgCIAEoCEgAiAEBEkYKCWNvbGxp",
+            "ZGVycxgDIAEoCzIuLnBsdW1lLnNhbXBsZS51bml0eS51cnAuVm9sdW1lVXBk",
+            "YXRlLkNvbGxpZGVyc0gBiAEBEhsKDmJsZW5kX2Rpc3RhbmNlGAQgASgCSAKI",
+            "AQESEwoGd2VpZ2h0GAUgASgCSAOIAQESFQoIcHJpb3JpdHkYBiABKAJIBIgB",
+            "ARJDChFzaGFyZWRfcHJvZmlsZV9pZBgHIAEoCzIjLnBsdW1lLnNhbXBsZS51",
+            "bml0eS5Bc3NldElkZW50aWZpZXJIBYgBARpBCglDb2xsaWRlcnMSNAoDaWRz",
+            "GAEgAygLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
+            "ZXJCDAoKX2lzX2dsb2JhbEIMCgpfY29sbGlkZXJzQhEKD19ibGVuZF9kaXN0",
+            "YW5jZUIJCgdfd2VpZ2h0QgsKCV9wcmlvcml0eUIUChJfc2hhcmVkX3Byb2Zp",
+            "bGVfaWQiWwoTVm9sdW1lVXBkYXRlRW5hYmxlZBIzCgJpZBgBIAEoCzInLnBs",
+            "dW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEg8KB2VuYWJs",
+            "ZWQYAiABKAhCGaoCFlBMVU1FLlNhbXBsZS5Vbml0eS5VUlBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.VolumeCreate), global::PLUME.Sample.Unity.URP.VolumeCreate.Parser, new[]{ "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.VolumeDestroy), global::PLUME.Sample.Unity.URP.VolumeDestroy.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.VolumeUpdate), global::PLUME.Sample.Unity.URP.VolumeUpdate.Parser, new[]{ "Id", "IsGlobal", "Colliders", "BlendDistance", "Weight", "Priority", "SharedProfileId" }, new[]{ "IsGlobal", "Colliders", "BlendDistance", "Weight", "Priority", "SharedProfileId" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.VolumeUpdate.Types.Colliders), global::PLUME.Sample.Unity.URP.VolumeUpdate.Types.Colliders.Parser, new[]{ "Ids" }, null, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.VolumeUpdateEnabled), global::PLUME.Sample.Unity.URP.VolumeUpdateEnabled.Parser, new[]{ "Id", "Enabled" }, null, null, null, null)
           }));
@@ -53,6 +55,7 @@ namespace PLUME.Sample.Unity.URP {
 
   }
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class VolumeCreate : pb::IMessage<VolumeCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -251,6 +254,206 @@ namespace PLUME.Sample.Unity.URP {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class VolumeDestroy : pb::IMessage<VolumeDestroy>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<VolumeDestroy> _parser = new pb::MessageParser<VolumeDestroy>(() => new VolumeDestroy());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<VolumeDestroy> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.URP.VolumeReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VolumeDestroy() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VolumeDestroy(VolumeDestroy other) : this() {
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VolumeDestroy Clone() {
+      return new VolumeDestroy(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as VolumeDestroy);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(VolumeDestroy other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Id, other.Id)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(VolumeDestroy other) {
+      if (other == null) {
+        return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (id_ == null) {
+              Id = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Id);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class VolumeUpdate : pb::IMessage<VolumeUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -266,7 +469,7 @@ namespace PLUME.Sample.Unity.URP {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.URP.VolumeReflection.Descriptor.MessageTypes[1]; }
+      get { return global::PLUME.Sample.Unity.URP.VolumeReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -754,6 +957,7 @@ namespace PLUME.Sample.Unity.URP {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static partial class Types {
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
       public sealed partial class Colliders : pb::IMessage<Colliders>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
@@ -937,6 +1141,7 @@ namespace PLUME.Sample.Unity.URP {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class VolumeUpdateEnabled : pb::IMessage<VolumeUpdateEnabled>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -951,7 +1156,7 @@ namespace PLUME.Sample.Unity.URP {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.URP.VolumeReflection.Descriptor.MessageTypes[2]; }
+      get { return global::PLUME.Sample.Unity.URP.VolumeReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

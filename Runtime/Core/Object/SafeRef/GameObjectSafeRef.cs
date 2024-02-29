@@ -4,29 +4,28 @@ namespace PLUME.Core.Object.SafeRef
 {
     public class GameObjectSafeRef : IObjectSafeRef<GameObject, GameObjectIdentifier>
     {
-        public static GameObjectSafeRef Null { get; } =
-            new(GameObjectIdentifier.Null, ComponentSafeRef<Transform>.Null);
+        public static readonly GameObjectSafeRef Null = new();
 
-        public GameObjectIdentifier Identifier { get; }
+        public readonly GameObjectIdentifier Identifier;
 
         public readonly GameObject GameObject;
 
-        public ComponentSafeRef<Transform> TransformSafeRef { get; internal set; }
+        public readonly ComponentSafeRef<Transform> TransformSafeRef;
 
-        internal GameObjectSafeRef(GameObjectIdentifier identifier, ComponentSafeRef<Transform> transformSafeRef)
+        private GameObjectSafeRef()
         {
-            Identifier = identifier;
-            TransformSafeRef = transformSafeRef;
+            Identifier = GameObjectIdentifier.Null;
+            TransformSafeRef = ComponentSafeRef<Transform>.Null;
             GameObject = null;
         }
 
-        internal GameObjectSafeRef(GameObject go, Guid guid, ComponentSafeRef<Transform> transformSafeRef)
+        internal GameObjectSafeRef(GameObject go, Guid goGuid, Guid transformGuid)
         {
-            var identifier = new Identifier(go.GetInstanceID(), guid);
-            var transformIdentifier = new Identifier(go.transform.GetInstanceID(), guid);
-            Identifier = new GameObjectIdentifier(identifier, transformIdentifier);
+            var goIdentifier = new Identifier(go.GetInstanceID(), goGuid);
+            var tIdentifier = new Identifier(go.transform.GetInstanceID(), transformGuid);
+            Identifier = new GameObjectIdentifier(goIdentifier, tIdentifier);
             GameObject = go;
-            TransformSafeRef = transformSafeRef;
+            TransformSafeRef = new ComponentSafeRef<Transform>(go.transform, transformGuid, this);
         }
 
         public bool Equals(GameObjectSafeRef other)

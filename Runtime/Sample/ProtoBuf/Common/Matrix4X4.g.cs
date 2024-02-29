@@ -41,6 +41,7 @@ namespace PLUME.Sample.Common {
 
   }
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class Matrix4x4 : pb::IMessage<Matrix4x4>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

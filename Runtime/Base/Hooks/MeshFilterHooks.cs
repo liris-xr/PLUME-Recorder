@@ -7,19 +7,27 @@ namespace PLUME.Base.Hooks
     public static class MeshFilterHooks
     {
         public static Action<MeshFilter, Mesh> OnSetMesh;
-        
+
         public static Action<MeshFilter, Mesh> OnSetSharedMesh;
-        
+
+        public static Action<MeshFilter, Mesh> OnGetMesh;
+
         [RegisterHookAfterPropertySetter(typeof(MeshFilter), nameof(MeshFilter.sharedMesh))]
         public static void SetSharedMeshHook(MeshFilter meshFilter, Mesh sharedMesh)
         {
             OnSetSharedMesh?.Invoke(meshFilter, sharedMesh);
         }
-        
+
         [RegisterHookAfterPropertySetter(typeof(MeshFilter), nameof(MeshFilter.mesh))]
         public static void SetMeshHook(MeshFilter meshFilter, Mesh mesh)
         {
             OnSetMesh?.Invoke(meshFilter, mesh);
+        }
+        
+        [RegisterHookAfterPropertyGetter(typeof(MeshFilter), nameof(MeshFilter.mesh))]
+        public static void GetMeshHook(MeshFilter meshFilter, Mesh mesh)
+        {
+            OnGetMesh?.Invoke(meshFilter, mesh);
         }
     }
 }

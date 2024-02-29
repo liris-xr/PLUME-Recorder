@@ -25,28 +25,73 @@ namespace PLUME.Sample.Unity.UI {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Chx1bml0eS91aS9jYW52YXNfc2NhbGVyLnByb3RvEhJwbHVtZS5zYW1wbGUu",
-            "dW5pdHkaF3VuaXR5L2lkZW50aWZpZXJzLnByb3RvIkkKEkNhbnZhc1NjYWxl",
-            "ckNyZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
-            "b25lbnRJZGVudGlmaWVyIkoKE0NhbnZhc1NjYWxlckRlc3Ryb3kSMwoCaWQY",
-            "ASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmll",
-            "ciLRAQoSQ2FudmFzU2NhbGVyVXBkYXRlEjMKAmlkGAEgASgLMicucGx1bWUu",
-            "c2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISJAoXZHluYW1pY19w",
-            "aXhlbHNfcGVyX3VuaXQYAiABKAJIAIgBARImChlyZWZlcmVuY2VfcGl4ZWxz",
-            "X3Blcl91bml0GAMgASgCSAGIAQFCGgoYX2R5bmFtaWNfcGl4ZWxzX3Blcl91",
-            "bml0QhwKGl9yZWZlcmVuY2VfcGl4ZWxzX3Blcl91bml0QhiqAhVQTFVNRS5T",
-            "YW1wbGUuVW5pdHkuVUliBnByb3RvMw=="));
+            "dW5pdHkaF3VuaXR5L2lkZW50aWZpZXJzLnByb3RvGhRjb21tb24vdmVjdG9y",
+            "Mi5wcm90byJJChJDYW52YXNTY2FsZXJDcmVhdGUSMwoCaWQYASABKAsyJy5w",
+            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciJKChNDYW52",
+            "YXNTY2FsZXJEZXN0cm95EjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVu",
+            "aXR5LkNvbXBvbmVudElkZW50aWZpZXIi9wUKEkNhbnZhc1NjYWxlclVwZGF0",
+            "ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJ",
+            "ZGVudGlmaWVyEjkKDXVpX3NjYWxlX21vZGUYAiABKA4yHS5wbHVtZS5zYW1w",
+            "bGUudW5pdHkuU2NhbGVNb2RlSACIAQESJgoZcmVmZXJlbmNlX3BpeGVsc19w",
+            "ZXJfdW5pdBgDIAEoAkgBiAEBEhkKDHNjYWxlX2ZhY3RvchgEIAEoAkgCiAEB",
+            "Ej8KFHJlZmVyZW5jZV9yZXNvbHV0aW9uGAUgASgLMhwucGx1bWUuc2FtcGxl",
+            "LmNvbW1vbi5WZWN0b3IySAOIAQESQwoRc2NyZWVuX21hdGNoX21vZGUYBiAB",
+            "KA4yIy5wbHVtZS5zYW1wbGUudW5pdHkuU2NyZWVuTWF0Y2hNb2RlSASIAQES",
+            "IgoVbWF0Y2hfd2lkdGhfb3JfaGVpZ2h0GAcgASgCSAWIAQESNAoNcGh5c2lj",
+            "YWxfdW5pdBgIIAEoDjIYLnBsdW1lLnNhbXBsZS51bml0eS5Vbml0SAaIAQES",
+            "IAoTZmFsbGJhY2tfc2NyZWVuX2RwaRgJIAEoAkgHiAEBEh8KEmRlZmF1bHRf",
+            "c3ByaXRlX2RwaRgKIAEoAkgIiAEBEiQKF2R5bmFtaWNfcGl4ZWxzX3Blcl91",
+            "bml0GAsgASgCSAmIAQFCEAoOX3VpX3NjYWxlX21vZGVCHAoaX3JlZmVyZW5j",
+            "ZV9waXhlbHNfcGVyX3VuaXRCDwoNX3NjYWxlX2ZhY3RvckIXChVfcmVmZXJl",
+            "bmNlX3Jlc29sdXRpb25CFAoSX3NjcmVlbl9tYXRjaF9tb2RlQhgKFl9tYXRj",
+            "aF93aWR0aF9vcl9oZWlnaHRCEAoOX3BoeXNpY2FsX3VuaXRCFgoUX2ZhbGxi",
+            "YWNrX3NjcmVlbl9kcGlCFQoTX2RlZmF1bHRfc3ByaXRlX2RwaUIaChhfZHlu",
+            "YW1pY19waXhlbHNfcGVyX3VuaXQqfQoJU2NhbGVNb2RlEiIKHlNDQUxFX01P",
+            "REVfQ09OU1RBTlRfUElYRUxfU0laRRAAEiUKIVNDQUxFX01PREVfU0NBTEVf",
+            "V0lUSF9TQ1JFRU5fU0laRRABEiUKIVNDQUxFX01PREVfQ09OU1RBTlRfUEhZ",
+            "U0lDQUxfU0laRRACKnoKD1NjcmVlbk1hdGNoTW9kZRIrCidTQ1JFRU5fTUFU",
+            "Q0hfTU9ERV9NQVRDSF9XSURUSF9PUl9IRUlHSFQQABIcChhTQ1JFRU5fTUFU",
+            "Q0hfTU9ERV9FWFBBTkQQARIcChhTQ1JFRU5fTUFUQ0hfTU9ERV9TSFJJTksQ",
+            "AipkCgRVbml0EhQKEFVOSVRfQ0VOVElNRVRFUlMQABIUChBVTklUX01JTExJ",
+            "TUVURVJTEAESDwoLVU5JVF9JTkNIRVMQAhIPCgtVTklUX1BPSU5UUxADEg4K",
+            "ClVOSVRfUElDQVMQBEIYqgIVUExVTUUuU2FtcGxlLlVuaXR5LlVJYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Vector2Reflection.Descriptor, },
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.ScaleMode), typeof(global::PLUME.Sample.Unity.UI.ScreenMatchMode), typeof(global::PLUME.Sample.Unity.UI.Unit), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasScalerCreate), global::PLUME.Sample.Unity.UI.CanvasScalerCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasScalerDestroy), global::PLUME.Sample.Unity.UI.CanvasScalerDestroy.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasScalerUpdate), global::PLUME.Sample.Unity.UI.CanvasScalerUpdate.Parser, new[]{ "Id", "DynamicPixelsPerUnit", "ReferencePixelsPerUnit" }, new[]{ "DynamicPixelsPerUnit", "ReferencePixelsPerUnit" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasScalerUpdate), global::PLUME.Sample.Unity.UI.CanvasScalerUpdate.Parser, new[]{ "Id", "UiScaleMode", "ReferencePixelsPerUnit", "ScaleFactor", "ReferenceResolution", "ScreenMatchMode", "MatchWidthOrHeight", "PhysicalUnit", "FallbackScreenDpi", "DefaultSpriteDpi", "DynamicPixelsPerUnit" }, new[]{ "UiScaleMode", "ReferencePixelsPerUnit", "ScaleFactor", "ReferenceResolution", "ScreenMatchMode", "MatchWidthOrHeight", "PhysicalUnit", "FallbackScreenDpi", "DefaultSpriteDpi", "DynamicPixelsPerUnit" }, null, null, null)
           }));
     }
     #endregion
 
   }
+  #region Enums
+  public enum ScaleMode {
+    [pbr::OriginalName("SCALE_MODE_CONSTANT_PIXEL_SIZE")] ConstantPixelSize = 0,
+    [pbr::OriginalName("SCALE_MODE_SCALE_WITH_SCREEN_SIZE")] ScaleWithScreenSize = 1,
+    [pbr::OriginalName("SCALE_MODE_CONSTANT_PHYSICAL_SIZE")] ConstantPhysicalSize = 2,
+  }
+
+  public enum ScreenMatchMode {
+    [pbr::OriginalName("SCREEN_MATCH_MODE_MATCH_WIDTH_OR_HEIGHT")] MatchWidthOrHeight = 0,
+    [pbr::OriginalName("SCREEN_MATCH_MODE_EXPAND")] Expand = 1,
+    [pbr::OriginalName("SCREEN_MATCH_MODE_SHRINK")] Shrink = 2,
+  }
+
+  public enum Unit {
+    [pbr::OriginalName("UNIT_CENTIMETERS")] Centimeters = 0,
+    [pbr::OriginalName("UNIT_MILLIMETERS")] Millimeters = 1,
+    [pbr::OriginalName("UNIT_INCHES")] Inches = 2,
+    [pbr::OriginalName("UNIT_POINTS")] Points = 3,
+    [pbr::OriginalName("UNIT_PICAS")] Picas = 4,
+  }
+
+  #endregion
+
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CanvasScalerCreate : pb::IMessage<CanvasScalerCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -245,6 +290,7 @@ namespace PLUME.Sample.Unity.UI {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CanvasScalerDestroy : pb::IMessage<CanvasScalerDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -443,6 +489,7 @@ namespace PLUME.Sample.Unity.UI {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CanvasScalerUpdate : pb::IMessage<CanvasScalerUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -480,8 +527,16 @@ namespace PLUME.Sample.Unity.UI {
     public CanvasScalerUpdate(CanvasScalerUpdate other) : this() {
       _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      dynamicPixelsPerUnit_ = other.dynamicPixelsPerUnit_;
+      uiScaleMode_ = other.uiScaleMode_;
       referencePixelsPerUnit_ = other.referencePixelsPerUnit_;
+      scaleFactor_ = other.scaleFactor_;
+      referenceResolution_ = other.referenceResolution_ != null ? other.referenceResolution_.Clone() : null;
+      screenMatchMode_ = other.screenMatchMode_;
+      matchWidthOrHeight_ = other.matchWidthOrHeight_;
+      physicalUnit_ = other.physicalUnit_;
+      fallbackScreenDpi_ = other.fallbackScreenDpi_;
+      defaultSpriteDpi_ = other.defaultSpriteDpi_;
+      dynamicPixelsPerUnit_ = other.dynamicPixelsPerUnit_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -503,30 +558,30 @@ namespace PLUME.Sample.Unity.UI {
       }
     }
 
-    /// <summary>Field number for the "dynamic_pixels_per_unit" field.</summary>
-    public const int DynamicPixelsPerUnitFieldNumber = 2;
-    private readonly static float DynamicPixelsPerUnitDefaultValue = 0F;
+    /// <summary>Field number for the "ui_scale_mode" field.</summary>
+    public const int UiScaleModeFieldNumber = 2;
+    private readonly static global::PLUME.Sample.Unity.UI.ScaleMode UiScaleModeDefaultValue = global::PLUME.Sample.Unity.UI.ScaleMode.ConstantPixelSize;
 
-    private float dynamicPixelsPerUnit_;
+    private global::PLUME.Sample.Unity.UI.ScaleMode uiScaleMode_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float DynamicPixelsPerUnit {
-      get { if ((_hasBits0 & 1) != 0) { return dynamicPixelsPerUnit_; } else { return DynamicPixelsPerUnitDefaultValue; } }
+    public global::PLUME.Sample.Unity.UI.ScaleMode UiScaleMode {
+      get { if ((_hasBits0 & 1) != 0) { return uiScaleMode_; } else { return UiScaleModeDefaultValue; } }
       set {
         _hasBits0 |= 1;
-        dynamicPixelsPerUnit_ = value;
+        uiScaleMode_ = value;
       }
     }
-    /// <summary>Gets whether the "dynamic_pixels_per_unit" field is set</summary>
+    /// <summary>Gets whether the "ui_scale_mode" field is set</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasDynamicPixelsPerUnit {
+    public bool HasUiScaleMode {
       get { return (_hasBits0 & 1) != 0; }
     }
-    /// <summary>Clears the value of the "dynamic_pixels_per_unit" field</summary>
+    /// <summary>Clears the value of the "ui_scale_mode" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearDynamicPixelsPerUnit() {
+    public void ClearUiScaleMode() {
       _hasBits0 &= ~1;
     }
 
@@ -557,6 +612,207 @@ namespace PLUME.Sample.Unity.UI {
       _hasBits0 &= ~2;
     }
 
+    /// <summary>Field number for the "scale_factor" field.</summary>
+    public const int ScaleFactorFieldNumber = 4;
+    private readonly static float ScaleFactorDefaultValue = 0F;
+
+    private float scaleFactor_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float ScaleFactor {
+      get { if ((_hasBits0 & 4) != 0) { return scaleFactor_; } else { return ScaleFactorDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        scaleFactor_ = value;
+      }
+    }
+    /// <summary>Gets whether the "scale_factor" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasScaleFactor {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "scale_factor" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearScaleFactor() {
+      _hasBits0 &= ~4;
+    }
+
+    /// <summary>Field number for the "reference_resolution" field.</summary>
+    public const int ReferenceResolutionFieldNumber = 5;
+    private global::PLUME.Sample.Common.Vector2 referenceResolution_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Vector2 ReferenceResolution {
+      get { return referenceResolution_; }
+      set {
+        referenceResolution_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "screen_match_mode" field.</summary>
+    public const int ScreenMatchModeFieldNumber = 6;
+    private readonly static global::PLUME.Sample.Unity.UI.ScreenMatchMode ScreenMatchModeDefaultValue = global::PLUME.Sample.Unity.UI.ScreenMatchMode.MatchWidthOrHeight;
+
+    private global::PLUME.Sample.Unity.UI.ScreenMatchMode screenMatchMode_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.UI.ScreenMatchMode ScreenMatchMode {
+      get { if ((_hasBits0 & 8) != 0) { return screenMatchMode_; } else { return ScreenMatchModeDefaultValue; } }
+      set {
+        _hasBits0 |= 8;
+        screenMatchMode_ = value;
+      }
+    }
+    /// <summary>Gets whether the "screen_match_mode" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasScreenMatchMode {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "screen_match_mode" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearScreenMatchMode() {
+      _hasBits0 &= ~8;
+    }
+
+    /// <summary>Field number for the "match_width_or_height" field.</summary>
+    public const int MatchWidthOrHeightFieldNumber = 7;
+    private readonly static float MatchWidthOrHeightDefaultValue = 0F;
+
+    private float matchWidthOrHeight_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float MatchWidthOrHeight {
+      get { if ((_hasBits0 & 16) != 0) { return matchWidthOrHeight_; } else { return MatchWidthOrHeightDefaultValue; } }
+      set {
+        _hasBits0 |= 16;
+        matchWidthOrHeight_ = value;
+      }
+    }
+    /// <summary>Gets whether the "match_width_or_height" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasMatchWidthOrHeight {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "match_width_or_height" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearMatchWidthOrHeight() {
+      _hasBits0 &= ~16;
+    }
+
+    /// <summary>Field number for the "physical_unit" field.</summary>
+    public const int PhysicalUnitFieldNumber = 8;
+    private readonly static global::PLUME.Sample.Unity.UI.Unit PhysicalUnitDefaultValue = global::PLUME.Sample.Unity.UI.Unit.Centimeters;
+
+    private global::PLUME.Sample.Unity.UI.Unit physicalUnit_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.UI.Unit PhysicalUnit {
+      get { if ((_hasBits0 & 32) != 0) { return physicalUnit_; } else { return PhysicalUnitDefaultValue; } }
+      set {
+        _hasBits0 |= 32;
+        physicalUnit_ = value;
+      }
+    }
+    /// <summary>Gets whether the "physical_unit" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasPhysicalUnit {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "physical_unit" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearPhysicalUnit() {
+      _hasBits0 &= ~32;
+    }
+
+    /// <summary>Field number for the "fallback_screen_dpi" field.</summary>
+    public const int FallbackScreenDpiFieldNumber = 9;
+    private readonly static float FallbackScreenDpiDefaultValue = 0F;
+
+    private float fallbackScreenDpi_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float FallbackScreenDpi {
+      get { if ((_hasBits0 & 64) != 0) { return fallbackScreenDpi_; } else { return FallbackScreenDpiDefaultValue; } }
+      set {
+        _hasBits0 |= 64;
+        fallbackScreenDpi_ = value;
+      }
+    }
+    /// <summary>Gets whether the "fallback_screen_dpi" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFallbackScreenDpi {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "fallback_screen_dpi" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFallbackScreenDpi() {
+      _hasBits0 &= ~64;
+    }
+
+    /// <summary>Field number for the "default_sprite_dpi" field.</summary>
+    public const int DefaultSpriteDpiFieldNumber = 10;
+    private readonly static float DefaultSpriteDpiDefaultValue = 0F;
+
+    private float defaultSpriteDpi_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float DefaultSpriteDpi {
+      get { if ((_hasBits0 & 128) != 0) { return defaultSpriteDpi_; } else { return DefaultSpriteDpiDefaultValue; } }
+      set {
+        _hasBits0 |= 128;
+        defaultSpriteDpi_ = value;
+      }
+    }
+    /// <summary>Gets whether the "default_sprite_dpi" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDefaultSpriteDpi {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "default_sprite_dpi" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDefaultSpriteDpi() {
+      _hasBits0 &= ~128;
+    }
+
+    /// <summary>Field number for the "dynamic_pixels_per_unit" field.</summary>
+    public const int DynamicPixelsPerUnitFieldNumber = 11;
+    private readonly static float DynamicPixelsPerUnitDefaultValue = 0F;
+
+    private float dynamicPixelsPerUnit_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float DynamicPixelsPerUnit {
+      get { if ((_hasBits0 & 256) != 0) { return dynamicPixelsPerUnit_; } else { return DynamicPixelsPerUnitDefaultValue; } }
+      set {
+        _hasBits0 |= 256;
+        dynamicPixelsPerUnit_ = value;
+      }
+    }
+    /// <summary>Gets whether the "dynamic_pixels_per_unit" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasDynamicPixelsPerUnit {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "dynamic_pixels_per_unit" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearDynamicPixelsPerUnit() {
+      _hasBits0 &= ~256;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -573,8 +829,16 @@ namespace PLUME.Sample.Unity.UI {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(DynamicPixelsPerUnit, other.DynamicPixelsPerUnit)) return false;
+      if (UiScaleMode != other.UiScaleMode) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ReferencePixelsPerUnit, other.ReferencePixelsPerUnit)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ScaleFactor, other.ScaleFactor)) return false;
+      if (!object.Equals(ReferenceResolution, other.ReferenceResolution)) return false;
+      if (ScreenMatchMode != other.ScreenMatchMode) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MatchWidthOrHeight, other.MatchWidthOrHeight)) return false;
+      if (PhysicalUnit != other.PhysicalUnit) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FallbackScreenDpi, other.FallbackScreenDpi)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(DefaultSpriteDpi, other.DefaultSpriteDpi)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(DynamicPixelsPerUnit, other.DynamicPixelsPerUnit)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -583,8 +847,16 @@ namespace PLUME.Sample.Unity.UI {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (HasDynamicPixelsPerUnit) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DynamicPixelsPerUnit);
+      if (HasUiScaleMode) hash ^= UiScaleMode.GetHashCode();
       if (HasReferencePixelsPerUnit) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ReferencePixelsPerUnit);
+      if (HasScaleFactor) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ScaleFactor);
+      if (referenceResolution_ != null) hash ^= ReferenceResolution.GetHashCode();
+      if (HasScreenMatchMode) hash ^= ScreenMatchMode.GetHashCode();
+      if (HasMatchWidthOrHeight) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MatchWidthOrHeight);
+      if (HasPhysicalUnit) hash ^= PhysicalUnit.GetHashCode();
+      if (HasFallbackScreenDpi) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FallbackScreenDpi);
+      if (HasDefaultSpriteDpi) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DefaultSpriteDpi);
+      if (HasDynamicPixelsPerUnit) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(DynamicPixelsPerUnit);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -607,13 +879,45 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (HasDynamicPixelsPerUnit) {
-        output.WriteRawTag(21);
-        output.WriteFloat(DynamicPixelsPerUnit);
+      if (HasUiScaleMode) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) UiScaleMode);
       }
       if (HasReferencePixelsPerUnit) {
         output.WriteRawTag(29);
         output.WriteFloat(ReferencePixelsPerUnit);
+      }
+      if (HasScaleFactor) {
+        output.WriteRawTag(37);
+        output.WriteFloat(ScaleFactor);
+      }
+      if (referenceResolution_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(ReferenceResolution);
+      }
+      if (HasScreenMatchMode) {
+        output.WriteRawTag(48);
+        output.WriteEnum((int) ScreenMatchMode);
+      }
+      if (HasMatchWidthOrHeight) {
+        output.WriteRawTag(61);
+        output.WriteFloat(MatchWidthOrHeight);
+      }
+      if (HasPhysicalUnit) {
+        output.WriteRawTag(64);
+        output.WriteEnum((int) PhysicalUnit);
+      }
+      if (HasFallbackScreenDpi) {
+        output.WriteRawTag(77);
+        output.WriteFloat(FallbackScreenDpi);
+      }
+      if (HasDefaultSpriteDpi) {
+        output.WriteRawTag(85);
+        output.WriteFloat(DefaultSpriteDpi);
+      }
+      if (HasDynamicPixelsPerUnit) {
+        output.WriteRawTag(93);
+        output.WriteFloat(DynamicPixelsPerUnit);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -629,13 +933,45 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (HasDynamicPixelsPerUnit) {
-        output.WriteRawTag(21);
-        output.WriteFloat(DynamicPixelsPerUnit);
+      if (HasUiScaleMode) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) UiScaleMode);
       }
       if (HasReferencePixelsPerUnit) {
         output.WriteRawTag(29);
         output.WriteFloat(ReferencePixelsPerUnit);
+      }
+      if (HasScaleFactor) {
+        output.WriteRawTag(37);
+        output.WriteFloat(ScaleFactor);
+      }
+      if (referenceResolution_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(ReferenceResolution);
+      }
+      if (HasScreenMatchMode) {
+        output.WriteRawTag(48);
+        output.WriteEnum((int) ScreenMatchMode);
+      }
+      if (HasMatchWidthOrHeight) {
+        output.WriteRawTag(61);
+        output.WriteFloat(MatchWidthOrHeight);
+      }
+      if (HasPhysicalUnit) {
+        output.WriteRawTag(64);
+        output.WriteEnum((int) PhysicalUnit);
+      }
+      if (HasFallbackScreenDpi) {
+        output.WriteRawTag(77);
+        output.WriteFloat(FallbackScreenDpi);
+      }
+      if (HasDefaultSpriteDpi) {
+        output.WriteRawTag(85);
+        output.WriteFloat(DefaultSpriteDpi);
+      }
+      if (HasDynamicPixelsPerUnit) {
+        output.WriteRawTag(93);
+        output.WriteFloat(DynamicPixelsPerUnit);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -650,10 +986,34 @@ namespace PLUME.Sample.Unity.UI {
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
       }
-      if (HasDynamicPixelsPerUnit) {
-        size += 1 + 4;
+      if (HasUiScaleMode) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) UiScaleMode);
       }
       if (HasReferencePixelsPerUnit) {
+        size += 1 + 4;
+      }
+      if (HasScaleFactor) {
+        size += 1 + 4;
+      }
+      if (referenceResolution_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ReferenceResolution);
+      }
+      if (HasScreenMatchMode) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ScreenMatchMode);
+      }
+      if (HasMatchWidthOrHeight) {
+        size += 1 + 4;
+      }
+      if (HasPhysicalUnit) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) PhysicalUnit);
+      }
+      if (HasFallbackScreenDpi) {
+        size += 1 + 4;
+      }
+      if (HasDefaultSpriteDpi) {
+        size += 1 + 4;
+      }
+      if (HasDynamicPixelsPerUnit) {
         size += 1 + 4;
       }
       if (_unknownFields != null) {
@@ -674,11 +1034,38 @@ namespace PLUME.Sample.Unity.UI {
         }
         Id.MergeFrom(other.Id);
       }
-      if (other.HasDynamicPixelsPerUnit) {
-        DynamicPixelsPerUnit = other.DynamicPixelsPerUnit;
+      if (other.HasUiScaleMode) {
+        UiScaleMode = other.UiScaleMode;
       }
       if (other.HasReferencePixelsPerUnit) {
         ReferencePixelsPerUnit = other.ReferencePixelsPerUnit;
+      }
+      if (other.HasScaleFactor) {
+        ScaleFactor = other.ScaleFactor;
+      }
+      if (other.referenceResolution_ != null) {
+        if (referenceResolution_ == null) {
+          ReferenceResolution = new global::PLUME.Sample.Common.Vector2();
+        }
+        ReferenceResolution.MergeFrom(other.ReferenceResolution);
+      }
+      if (other.HasScreenMatchMode) {
+        ScreenMatchMode = other.ScreenMatchMode;
+      }
+      if (other.HasMatchWidthOrHeight) {
+        MatchWidthOrHeight = other.MatchWidthOrHeight;
+      }
+      if (other.HasPhysicalUnit) {
+        PhysicalUnit = other.PhysicalUnit;
+      }
+      if (other.HasFallbackScreenDpi) {
+        FallbackScreenDpi = other.FallbackScreenDpi;
+      }
+      if (other.HasDefaultSpriteDpi) {
+        DefaultSpriteDpi = other.DefaultSpriteDpi;
+      }
+      if (other.HasDynamicPixelsPerUnit) {
+        DynamicPixelsPerUnit = other.DynamicPixelsPerUnit;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -702,12 +1089,47 @@ namespace PLUME.Sample.Unity.UI {
             input.ReadMessage(Id);
             break;
           }
-          case 21: {
-            DynamicPixelsPerUnit = input.ReadFloat();
+          case 16: {
+            UiScaleMode = (global::PLUME.Sample.Unity.UI.ScaleMode) input.ReadEnum();
             break;
           }
           case 29: {
             ReferencePixelsPerUnit = input.ReadFloat();
+            break;
+          }
+          case 37: {
+            ScaleFactor = input.ReadFloat();
+            break;
+          }
+          case 42: {
+            if (referenceResolution_ == null) {
+              ReferenceResolution = new global::PLUME.Sample.Common.Vector2();
+            }
+            input.ReadMessage(ReferenceResolution);
+            break;
+          }
+          case 48: {
+            ScreenMatchMode = (global::PLUME.Sample.Unity.UI.ScreenMatchMode) input.ReadEnum();
+            break;
+          }
+          case 61: {
+            MatchWidthOrHeight = input.ReadFloat();
+            break;
+          }
+          case 64: {
+            PhysicalUnit = (global::PLUME.Sample.Unity.UI.Unit) input.ReadEnum();
+            break;
+          }
+          case 77: {
+            FallbackScreenDpi = input.ReadFloat();
+            break;
+          }
+          case 85: {
+            DefaultSpriteDpi = input.ReadFloat();
+            break;
+          }
+          case 93: {
+            DynamicPixelsPerUnit = input.ReadFloat();
             break;
           }
         }
@@ -732,12 +1154,47 @@ namespace PLUME.Sample.Unity.UI {
             input.ReadMessage(Id);
             break;
           }
-          case 21: {
-            DynamicPixelsPerUnit = input.ReadFloat();
+          case 16: {
+            UiScaleMode = (global::PLUME.Sample.Unity.UI.ScaleMode) input.ReadEnum();
             break;
           }
           case 29: {
             ReferencePixelsPerUnit = input.ReadFloat();
+            break;
+          }
+          case 37: {
+            ScaleFactor = input.ReadFloat();
+            break;
+          }
+          case 42: {
+            if (referenceResolution_ == null) {
+              ReferenceResolution = new global::PLUME.Sample.Common.Vector2();
+            }
+            input.ReadMessage(ReferenceResolution);
+            break;
+          }
+          case 48: {
+            ScreenMatchMode = (global::PLUME.Sample.Unity.UI.ScreenMatchMode) input.ReadEnum();
+            break;
+          }
+          case 61: {
+            MatchWidthOrHeight = input.ReadFloat();
+            break;
+          }
+          case 64: {
+            PhysicalUnit = (global::PLUME.Sample.Unity.UI.Unit) input.ReadEnum();
+            break;
+          }
+          case 77: {
+            FallbackScreenDpi = input.ReadFloat();
+            break;
+          }
+          case 85: {
+            DefaultSpriteDpi = input.ReadFloat();
+            break;
+          }
+          case 93: {
+            DynamicPixelsPerUnit = input.ReadFloat();
             break;
           }
         }

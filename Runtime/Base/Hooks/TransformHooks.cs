@@ -7,7 +7,7 @@ namespace PLUME.Base.Hooks
 {
     public static class TransformHooks
     {
-        public static Action<Transform, Transform> OnSetParent;
+        public static Action<Transform, Transform, bool> OnSetParent;
 
         public static Action<Transform, int> OnSetSiblingIndex;
         
@@ -15,14 +15,21 @@ namespace PLUME.Base.Hooks
         [RegisterHookAfterMethod(typeof(Transform), nameof(Transform.SetParent), typeof(Transform))]
         public static void SetParentHook(Transform transform, Transform parent)
         {
-            OnSetParent?.Invoke(transform, parent);
+            OnSetParent?.Invoke(transform, parent, true);
+        }
+        
+        [Preserve]
+        [RegisterHookAfterMethod(typeof(Transform), nameof(Transform.SetParent), typeof(Transform), typeof(bool))]
+        public static void SetParentHook(Transform transform, Transform parent, bool worldPositionStays)
+        {
+            OnSetParent?.Invoke(transform, parent, worldPositionStays);
         }
         
         [Preserve]
         [RegisterHookAfterPropertySetter(typeof(Transform), nameof(Transform.parent))]
         public static void ParentPropertySetterHook(Transform transform, Transform parent)
         {
-            OnSetParent?.Invoke(transform, parent);
+            OnSetParent?.Invoke(transform, parent, true);
         }
         
         [Preserve]

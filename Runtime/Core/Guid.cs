@@ -12,27 +12,53 @@ namespace PLUME.Core
     [BurstCompile]
     public struct Guid : IEquatable<Guid>
     {
-        // 32 hex characters + 4 hyphens
-        public const int Size = 36 * sizeof(byte);
-        
-        public static Guid Null { get; } = new("00000000-0000-0000-0000-000000000000");
+        // 32 hex characters
+        public const int Size = 32 * sizeof(byte);
+
+        public static Guid Null { get; } = new("00000000000000000000000000000000");
 
         private FixedString64Bytes _guid;
 
         public Guid(FixedString64Bytes guid)
         {
-            if(guid.Length != 36)
-                throw new FormatException("Invalid GUID format");
-            
-            _guid = guid;
+            var formattedGuid = new FixedString64Bytes();
+
+            for (var i = 0; i < guid.Length; ++i)
+            {
+                var rune = guid.Peek(i);
+
+                if (rune == '-')
+                    continue;
+
+                if (!IsHexChar(ref rune))
+                {
+                    throw new FormatException(
+                        $"Invalid GUID format {guid}. Expected 32 hex characters but found non-hex char at position {i}.");
+                }
+
+                formattedGuid.Append(rune);
+            }
+
+            if (formattedGuid.Length != 32)
+            {
+                throw new FormatException($"Invalid GUID format {guid}. Expected 32 hex characters.");
+            }
+
+            _guid = formattedGuid;
         }
-        
+
+        [BurstCompile]
+        private static bool IsHexChar(ref Unicode.Rune rune)
+        {
+            return rune.value is >= '0' and <= '9' or >= 'a' and <= 'f' or >= 'A' and <= 'F';
+        }
+
         [BurstCompile]
         public void WriteTo(ref BufferWriter bufferWriter)
         {
             bufferWriter.WriteFixedString(ref _guid);
         }
-        
+
         [BurstDiscard]
         public override string ToString()
         {

@@ -42,7 +42,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _alignedFlagsStates = new NativeList<TransformFlagsState>(1000, Allocator.Persistent);
             
             GameObjectHooks.OnCreate += go => OnCreateGameObject(go, ctx);
-            TransformHooks.OnSetParent += (t, parent) => OnSetParent(t, parent, ctx);
+            TransformHooks.OnSetParent += (t, parent, _) => OnSetParent(t, parent, ctx);
             TransformHooks.OnSetSiblingIndex += (t, siblingIdx) => OnSetSiblingIndex(t, siblingIdx, ctx);
         }
 
@@ -139,7 +139,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
             var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(parent);
             var parentIdentifier = parentSafeRef.Identifier;
-
+            
             var idx = _identifierToIndex[tSafeRef.Identifier];
             var hierarchyState = _alignedHierarchyStates[idx];
             hierarchyState.ParentTransformIdDirty = !parentIdentifier.Equals(hierarchyState.ParentTransformId);

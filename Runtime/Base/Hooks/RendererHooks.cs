@@ -58,7 +58,9 @@ namespace PLUME.Base.Hooks
 
         public static Action<Renderer> OnResetLocalBounds;
 
-        public static Action<Renderer, MaterialPropertyBlock, int?> OnSetPropertyBlock;
+        public static Action<Renderer, MaterialPropertyBlock, int> OnSetPropertyBlockMaterialIndex;
+        
+        public static Action<Renderer, MaterialPropertyBlock> OnSetPropertyBlock;
         
         [Preserve]
         [RegisterHookAfterPropertySetter(typeof(Renderer), nameof(Renderer.material))]
@@ -229,10 +231,17 @@ namespace PLUME.Base.Hooks
         }
         
         [Preserve]
-        [RegisterHookAfterMethod(typeof(Renderer), nameof(Renderer.SetPropertyBlock))]
-        public static void SetPropertyBlockHook(Renderer renderer, MaterialPropertyBlock properties, int? materialIndex)
+        [RegisterHookAfterMethod(typeof(Renderer), nameof(Renderer.SetPropertyBlock), typeof(MaterialPropertyBlock))]
+        public static void SetPropertyBlockHook(Renderer renderer, MaterialPropertyBlock properties)
         {
-            OnSetPropertyBlock?.Invoke(renderer, properties, materialIndex);
+            OnSetPropertyBlock?.Invoke(renderer, properties);
+        }
+        
+        [Preserve]
+        [RegisterHookAfterMethod(typeof(Renderer), nameof(Renderer.SetPropertyBlock), typeof(MaterialPropertyBlock), typeof(int))]
+        public static void SetPropertyBlockHook(Renderer renderer, MaterialPropertyBlock properties, int materialIndex)
+        {
+            OnSetPropertyBlockMaterialIndex?.Invoke(renderer, properties, materialIndex);
         }
     }
 }

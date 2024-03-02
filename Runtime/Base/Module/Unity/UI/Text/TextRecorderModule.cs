@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using PLUME.Base.Events;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity.UI;
@@ -15,6 +16,12 @@ namespace PLUME.Base.Module.Unity.UI.Text
         private readonly Dictionary<TextSafeRef, TextDestroy> _destroySamples = new();
         private readonly Dictionary<TextSafeRef, TextUpdate> _updateSamples = new();
 
+        protected override void OnCreate(RecorderContext ctx)
+        {
+            base.OnCreate(ctx);
+            TextEvents.OnTextChanged += (text, value) => OnTextChanged(ctx, text, value);
+        }
+        
         protected override void OnObjectMarkedCreated(TextSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
@@ -42,6 +49,20 @@ namespace PLUME.Base.Module.Unity.UI.Text
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
             _destroySamples[objSafeRef] = new TextDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+        }
+        
+        private void OnTextChanged(RecorderContext ctx, UnityEngine.UI.Text text, string value)
+        {
+            if (!ctx.IsRecording)
+                return;
+
+            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(text);
+
+            if (!IsRecordingObject(objSafeRef))
+                return;
+
+            var updateSample = GetOrCreateUpdateSample(objSafeRef);
+            updateSample.Text = value;
         }
 
         private TextUpdate GetOrCreateUpdateSample(TextSafeRef objSafeRef)

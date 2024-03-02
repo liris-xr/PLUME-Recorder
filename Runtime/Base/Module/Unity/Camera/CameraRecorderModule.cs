@@ -15,63 +15,56 @@ namespace PLUME.Base.Module.Unity.Camera
         private readonly Dictionary<CameraSafeRef, CameraDestroy> _destroySamples = new();
         private readonly Dictionary<CameraSafeRef, CameraUpdate> _updateSamples = new();
 
-        protected override void OnCreate(RecorderContext ctx)
-        {
-            base.OnCreate(ctx);
-        }
-
         protected override void OnObjectMarkedCreated(CameraSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
-
-            var targetTextureSafeRef =
-                ctx.ObjectSafeRefProvider.GetOrCreateAssetSafeRef(objSafeRef.Component.targetTexture);
-
+            
+            var camera = objSafeRef.Component;
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            updateSample.NearClipPlane = objSafeRef.Component.nearClipPlane;
-            updateSample.FarClipPlane = objSafeRef.Component.farClipPlane;
-            updateSample.FieldOfView = objSafeRef.Component.fieldOfView;
-            updateSample.RenderingPath = objSafeRef.Component.renderingPath.ToPayload();
-            updateSample.AllowHdr = objSafeRef.Component.allowHDR;
-            updateSample.AllowMsaa = objSafeRef.Component.allowMSAA;
-            updateSample.AllowDynamicResolution = objSafeRef.Component.allowDynamicResolution;
-            updateSample.ForceIntoRenderTexture = objSafeRef.Component.forceIntoRenderTexture;
-            updateSample.Orthographic = objSafeRef.Component.orthographic;
-            updateSample.OrthographicSize = objSafeRef.Component.orthographicSize;
-            updateSample.OpaqueSortMode = objSafeRef.Component.opaqueSortMode.ToPayload();
-            updateSample.TransparencySortMode = objSafeRef.Component.transparencySortMode.ToPayload();
-            updateSample.TransparencySortAxis = objSafeRef.Component.transparencySortAxis.ToPayload();
-            updateSample.Depth = objSafeRef.Component.depth;
-            updateSample.Aspect = objSafeRef.Component.aspect;
-            updateSample.CullingMask = objSafeRef.Component.cullingMask;
-            updateSample.EventMask = objSafeRef.Component.eventMask;
-            updateSample.LayerCullSpherical = objSafeRef.Component.layerCullSpherical;
-            updateSample.CameraType = objSafeRef.Component.cameraType.ToPayload();
+            updateSample.NearClipPlane = camera.nearClipPlane;
+            updateSample.FarClipPlane = camera.farClipPlane;
+            updateSample.FieldOfView = camera.fieldOfView;
+            updateSample.RenderingPath = camera.renderingPath.ToPayload();
+            updateSample.AllowHdr = camera.allowHDR;
+            updateSample.AllowMsaa = camera.allowMSAA;
+            updateSample.AllowDynamicResolution = camera.allowDynamicResolution;
+            updateSample.ForceIntoRenderTexture = camera.forceIntoRenderTexture;
+            updateSample.Orthographic = camera.orthographic;
+            updateSample.OrthographicSize = camera.orthographicSize;
+            updateSample.OpaqueSortMode = camera.opaqueSortMode.ToPayload();
+            updateSample.TransparencySortMode = camera.transparencySortMode.ToPayload();
+            updateSample.TransparencySortAxis = camera.transparencySortAxis.ToPayload();
+            updateSample.Depth = camera.depth;
+            updateSample.Aspect = camera.aspect;
+            updateSample.CullingMask = camera.cullingMask;
+            updateSample.EventMask = camera.eventMask;
+            updateSample.LayerCullSpherical = camera.layerCullSpherical;
+            updateSample.CameraType = camera.cameraType.ToPayload();
             updateSample.LayerCullDistances = new CameraLayerCullDistances();
-            updateSample.LayerCullDistances.Distances.AddRange(objSafeRef.Component.layerCullDistances);
-            updateSample.UseOcclusionCulling = objSafeRef.Component.useOcclusionCulling;
-            updateSample.CullingMatrix = objSafeRef.Component.cullingMatrix.ToPayload();
-            updateSample.BackgroundColor = objSafeRef.Component.backgroundColor.ToPayload();
-            updateSample.ClearFlags = objSafeRef.Component.clearFlags.ToPayload();
-            updateSample.DepthTextureMode = objSafeRef.Component.depthTextureMode.ToPayload();
-            updateSample.ClearStencilAfterLightingPass = objSafeRef.Component.clearStencilAfterLightingPass;
-            updateSample.UsePhysicalProperties = objSafeRef.Component.usePhysicalProperties;
-            updateSample.SensorSize = objSafeRef.Component.sensorSize.ToPayload();
-            updateSample.LensShift = objSafeRef.Component.lensShift.ToPayload();
-            updateSample.FocalLength = objSafeRef.Component.focalLength;
-            updateSample.GateFit = objSafeRef.Component.gateFit.ToPayload();
-            updateSample.Rect = objSafeRef.Component.rect.ToPayload();
-            updateSample.PixelRect = objSafeRef.Component.pixelRect.ToPayload();
-            updateSample.TargetTextureId = targetTextureSafeRef.ToAssetIdentifierPayload();
-            updateSample.TargetDisplay = objSafeRef.Component.targetDisplay;
-            updateSample.WorldToCameraMatrix = objSafeRef.Component.worldToCameraMatrix.ToPayload();
-            updateSample.ProjectionMatrix = objSafeRef.Component.projectionMatrix.ToPayload();
-            updateSample.NonJitteredProjectionMatrix = objSafeRef.Component.nonJitteredProjectionMatrix.ToPayload();
+            updateSample.LayerCullDistances.Distances.AddRange(camera.layerCullDistances);
+            updateSample.UseOcclusionCulling = camera.useOcclusionCulling;
+            updateSample.CullingMatrix = camera.cullingMatrix.ToPayload();
+            updateSample.BackgroundColor = camera.backgroundColor.ToPayload();
+            updateSample.ClearFlags = camera.clearFlags.ToPayload();
+            updateSample.DepthTextureMode = camera.depthTextureMode.ToPayload();
+            updateSample.ClearStencilAfterLightingPass = camera.clearStencilAfterLightingPass;
+            updateSample.UsePhysicalProperties = camera.usePhysicalProperties;
+            updateSample.SensorSize = camera.sensorSize.ToPayload();
+            updateSample.LensShift = camera.lensShift.ToPayload();
+            updateSample.FocalLength = camera.focalLength;
+            updateSample.GateFit = camera.gateFit.ToPayload();
+            updateSample.Rect = camera.rect.ToPayload();
+            updateSample.PixelRect = camera.pixelRect.ToPayload();
+            updateSample.TargetTextureId = camera.targetTexture.ToAssetIdentifierPayload();
+            updateSample.TargetDisplay = camera.targetDisplay;
+            updateSample.WorldToCameraMatrix = camera.worldToCameraMatrix.ToPayload();
+            updateSample.ProjectionMatrix = camera.projectionMatrix.ToPayload();
+            updateSample.NonJitteredProjectionMatrix = camera.nonJitteredProjectionMatrix.ToPayload();
             updateSample.UseJitteredProjectionMatrixForTransparentRendering =
-                objSafeRef.Component.useJitteredProjectionMatrixForTransparentRendering;
-            updateSample.StereoSeparation = objSafeRef.Component.stereoSeparation;
-            updateSample.StereoConvergence = objSafeRef.Component.stereoConvergence;
-            updateSample.StereoTargetEye = objSafeRef.Component.stereoTargetEye.ToPayload();
+                camera.useJitteredProjectionMatrixForTransparentRendering;
+            updateSample.StereoSeparation = camera.stereoSeparation;
+            updateSample.StereoConvergence = camera.stereoConvergence;
+            updateSample.StereoTargetEye = camera.stereoTargetEye.ToPayload();
             _createSamples[objSafeRef] = new CameraCreate { Id = objSafeRef.ToIdentifierPayload() };
         }
 

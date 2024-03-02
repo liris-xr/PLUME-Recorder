@@ -12,6 +12,7 @@ namespace PLUME.Base.Events
         public delegate void OnBonesChangedDelegate(SkinnedMeshRenderer renderer, IEnumerable<Transform> bones);
 
         public delegate void OnRootBoneChangedDelegate(SkinnedMeshRenderer renderer, Transform rootBone);
+
         public delegate void OnBlendShapeWeightChangedDelegate(SkinnedMeshRenderer renderer, int index, float value);
 
         public static event OnBonesChangedDelegate OnBonesChanged = delegate { };
@@ -41,10 +42,12 @@ namespace PLUME.Base.Events
                 OnRootBoneChanged(skinnedMeshRenderer, skinnedMeshRenderer.rootBone);
             }
         }
-        
+
         [Preserve]
-        [RegisterPropertySetterDetour(typeof(SkinnedMeshRenderer), nameof(SkinnedMeshRenderer.SetBlendShapeWeight))]
-        public static void SetBlendShapeWeightAndNotify(SkinnedMeshRenderer skinnedMeshRenderer, int index, float weight)
+        [RegisterMethodDetour(typeof(SkinnedMeshRenderer), nameof(SkinnedMeshRenderer.SetBlendShapeWeight), typeof(int),
+            typeof(float))]
+        public static void SetBlendShapeWeightAndNotify(SkinnedMeshRenderer skinnedMeshRenderer, int index,
+            float weight)
         {
             var previousBlenderShapeWeight = skinnedMeshRenderer.GetBlendShapeWeight(index);
             skinnedMeshRenderer.SetBlendShapeWeight(index, weight);

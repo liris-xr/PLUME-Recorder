@@ -110,7 +110,6 @@ namespace PLUME.Core.Recorder
             await _dataDispatcher.StopAsync();
             
             ApplicationPauseDetector.Destroy();
-            _context.Status = RecorderStatus.Stopped;
 
             if (_context.CurrentRecord != null)
             {
@@ -118,6 +117,7 @@ namespace PLUME.Core.Recorder
                 _context.CurrentRecord = null;
             }
 
+            _context.Status = RecorderStatus.Stopped;
             Logger.Log("Recorder stopped.");
         }
 
@@ -127,9 +127,10 @@ namespace PLUME.Core.Recorder
                 throw new InvalidOperationException("Recorder is already stopped.");
 
             Logger.Log("Force stopping recorder...");
+            _context.Status = RecorderStatus.Stopping;
 
             var stopwatch = Stopwatch.StartNew();
-
+            
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _context.Modules.Count; i++)
             {
@@ -137,18 +138,16 @@ namespace PLUME.Core.Recorder
             }
 
             _dataDispatcher.Stop();
-            _context.Status = RecorderStatus.Stopped;
             
             if (_context.CurrentRecord != null)
             {
                 _context.CurrentRecord.Dispose();
                 _context.CurrentRecord = null;
             }
-
+            
             stopwatch.Stop();
+            _context.Status = RecorderStatus.Stopped;
             Logger.Log("Recorder force stopped after " + stopwatch.ElapsedMilliseconds + "ms.");
-
-            Logger.Log("Recorder force stopped.");
         }
 
         private void StartRecordingObjectInternal(IObjectSafeRef objectSafeRef, bool markCreated)

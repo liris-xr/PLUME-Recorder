@@ -16,8 +16,13 @@
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": true,
-    "overrideReferences": false,
-    "precompiledReferences": [],
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "NAudio.Core.dll",
+        "K4os.Compression.LZ4.dll",
+        "K4os.Compression.LZ4.Streams.dll",
+        "Google.Protobuf.dll"
+    ],
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [

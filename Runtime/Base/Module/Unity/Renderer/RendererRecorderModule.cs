@@ -7,6 +7,7 @@ using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Utils;
 using PLUME.Sample.Unity;
 using UnityEngine;
+using static PLUME.Core.Utils.SampleUtils;
 
 namespace PLUME.Base.Module.Unity.Renderer
 {
@@ -21,8 +22,6 @@ namespace PLUME.Base.Module.Unity.Renderer
             base.OnCreate(ctx);
 
             RendererEvents.OnEnabledChanged += (r, _) => OnEnabledUpdate(r, ctx);
-            RendererEvents.OnMaterialChanged += (r, _) => OnMaterialChanged(r, ctx);
-            RendererEvents.OnSharedMaterialChanged += (r, _) => OnMaterialChanged(r, ctx);
             RendererEvents.OnMaterialsChanged += (r, materials) => OnMaterialsChanged(r, materials, ctx);
             RendererEvents.OnSharedMaterialsChanged += (r, materials) => OnMaterialsChanged(r, materials, ctx);
         }
@@ -30,7 +29,7 @@ namespace PLUME.Base.Module.Unity.Renderer
         protected override void OnObjectMarkedCreated(IComponentSafeRef<TR> objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
-            
+
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Enabled = objSafeRef.Component.enabled;
             updateSample.Materials = new RendererUpdate.Types.Materials();
@@ -39,16 +38,16 @@ namespace PLUME.Base.Module.Unity.Renderer
             updateSample.LightmapScaleOffset = objSafeRef.Component.lightmapScaleOffset.ToPayload();
             updateSample.RealtimeLightmapIndex = objSafeRef.Component.realtimeLightmapIndex;
             updateSample.RealtimeLightmapScaleOffset = objSafeRef.Component.realtimeLightmapScaleOffset.ToPayload();
-            
+
             updateSample.Materials.Ids.AddRange(objSafeRef.Component.sharedMaterials.Select(m =>
-                ctx.ObjectSafeRefProvider.GetOrCreateAssetSafeRef(m).ToAssetIdentifierPayload()));
+                GetAssetIdentifierPayload(ctx.ObjectSafeRefProvider.GetOrCreateAssetSafeRef(m))));
         }
-        
+
         protected IEnumerable<RendererUpdate> GetRendererUpdateSamples()
         {
             return _updateSamples.Values;
         }
-        
+
         protected override void OnAfterCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
             base.OnAfterCollectFrameData(frameInfo, ctx);
@@ -59,7 +58,7 @@ namespace PLUME.Base.Module.Unity.Renderer
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            _updateSamples[objSafeRef] = new RendererUpdate { Id = objSafeRef.ToIdentifierPayload() };
+            _updateSamples[objSafeRef] = new RendererUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
             return _updateSamples[objSafeRef];
         }
 
@@ -86,7 +85,8 @@ namespace PLUME.Base.Module.Unity.Renderer
         /// or when the <see cref="SkinnedMeshRenderer.materials"/> property is queried, which might result in a mesh instantiation
         /// (cf. https://docs.unity3d.com/ScriptReference/MeshFilter-mesh.html).
         /// </summary>
-        private void OnMaterialsChanged(UnityEngine.Renderer renderer, IEnumerable<Material> materials, RecorderContext ctx)
+        private void OnMaterialsChanged(UnityEngine.Renderer renderer, IEnumerable<Material> materials,
+            RecorderContext ctx)
         {
             if (renderer is not TR typedRenderer)
                 return;
@@ -107,19 +107,7 @@ namespace PLUME.Base.Module.Unity.Renderer
 
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Materials = new RendererUpdate.Types.Materials();
-            updateSample.Materials.Ids.AddRange(materialsAssetSafeRefs.Select(m => m.ToAssetIdentifierPayload()));
-        }
-        
-        /// <summary>
-        /// This method is called when the <see cref="SkinnedMeshRenderer.material"/> or <see cref="SkinnedMeshRenderer.sharedMaterial"/> is set
-        /// or when the <see cref="SkinnedMeshRenderer.material"/> property is queried, which might result in a mesh instantiation
-        /// (cf. https://docs.unity3d.com/ScriptReference/MeshFilter-mesh.html).
-        /// </summary>
-        private void OnMaterialChanged(UnityEngine.Renderer renderer, RecorderContext ctx)
-        {
-            // When the material is instantiated (not shared with other renderers), the sharedMaterial property points to the
-            // same instance as the material property. So we handle both cases at once.
-            OnMaterialsChanged(renderer, renderer.sharedMaterials, ctx);
+            updateSample.Materials.Ids.AddRange(materialsAssetSafeRefs.Select(GetAssetIdentifierPayload));
         }
     }
 }

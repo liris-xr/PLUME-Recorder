@@ -31,7 +31,7 @@ namespace PLUME.Sample.Unity {
             "bW1vbi9yZWN0LnByb3RvIkMKDENhbWVyYUNyZWF0ZRIzCgJpZBgBIAEoCzIn",
             "LnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIkQKDUNh",
             "bWVyYURlc3Ryb3kSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
-            "Q29tcG9uZW50SWRlbnRpZmllciKtFwoMQ2FtZXJhVXBkYXRlEjMKAmlkGAEg",
+            "Q29tcG9uZW50SWRlbnRpZmllciLBFgoMQ2FtZXJhVXBkYXRlEjMKAmlkGAEg",
             "ASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIS",
             "HAoPbmVhcl9jbGlwX3BsYW5lGAIgASgCSACIAQESGwoOZmFyX2NsaXBfcGxh",
             "bmUYAyABKAJIAYgBARIaCg1maWVsZF9vZl92aWV3GAQgASgCSAKIAQESPgoO",
@@ -48,80 +48,67 @@ namespace PLUME.Sample.Unity {
             "Y3RvcjNIDIgBARISCgVkZXB0aBgPIAEoAkgNiAEBEhMKBmFzcGVjdBgQIAEo",
             "AkgOiAEBEhkKDGN1bGxpbmdfbWFzaxgRIAEoBUgPiAEBEhcKCmV2ZW50X21h",
             "c2sYEiABKAVIEIgBARIhChRsYXllcl9jdWxsX3NwaGVyaWNhbBgTIAEoCEgR",
-            "iAEBEjgKC2NhbWVyYV90eXBlGBQgASgOMh4ucGx1bWUuc2FtcGxlLnVuaXR5",
-            "LkNhbWVyYVR5cGVIEogBARJPChRsYXllcl9jdWxsX2Rpc3RhbmNlcxgVIAEo",
-            "CzIsLnBsdW1lLnNhbXBsZS51bml0eS5DYW1lcmFMYXllckN1bGxEaXN0YW5j",
-            "ZXNIE4gBARIiChV1c2Vfb2NjbHVzaW9uX2N1bGxpbmcYFiABKAhIFIgBARI7",
-            "Cg5jdWxsaW5nX21hdHJpeBgXIAEoCzIeLnBsdW1lLnNhbXBsZS5jb21tb24u",
-            "TWF0cml4NHg0SBWIAQESOQoQYmFja2dyb3VuZF9jb2xvchgYIAEoCzIaLnBs",
-            "dW1lLnNhbXBsZS5jb21tb24uQ29sb3JIFogBARI+CgtjbGVhcl9mbGFncxgZ",
-            "IAEoDjIkLnBsdW1lLnNhbXBsZS51bml0eS5DYW1lcmFDbGVhckZsYWdzSBeI",
-            "AQESRQoSZGVwdGhfdGV4dHVyZV9tb2RlGBogASgOMiQucGx1bWUuc2FtcGxl",
-            "LnVuaXR5LkRlcHRoVGV4dHVyZU1vZGVIGIgBARIuCiFjbGVhcl9zdGVuY2ls",
-            "X2FmdGVyX2xpZ2h0aW5nX3Bhc3MYGyABKAhIGYgBARIkChd1c2VfcGh5c2lj",
-            "YWxfcHJvcGVydGllcxgcIAEoCEgaiAEBEjYKC3NlbnNvcl9zaXplGB0gASgL",
-            "MhwucGx1bWUuc2FtcGxlLmNvbW1vbi5WZWN0b3IySBuIAQESNQoKbGVuc19z",
-            "aGlmdBgeIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21tb24uVmVjdG9yMkgciAEB",
-            "EhkKDGZvY2FsX2xlbmd0aBgfIAEoAkgdiAEBEjwKCGdhdGVfZml0GCAgASgO",
-            "MiUucGx1bWUuc2FtcGxlLnVuaXR5LkNhbWVyYUdhdGVGaXRNb2RlSB6IAQES",
-            "LAoEcmVjdBghIAEoCzIZLnBsdW1lLnNhbXBsZS5jb21tb24uUmVjdEgfiAEB",
-            "EjIKCnBpeGVsX3JlY3QYIiABKAsyGS5wbHVtZS5zYW1wbGUuY29tbW9uLlJl",
-            "Y3RIIIgBARJDChF0YXJnZXRfdGV4dHVyZV9pZBgjIAEoCzIjLnBsdW1lLnNh",
-            "bXBsZS51bml0eS5Bc3NldElkZW50aWZpZXJIIYgBARIbCg50YXJnZXRfZGlz",
-            "cGxheRgkIAEoBUgiiAEBEkMKFndvcmxkX3RvX2NhbWVyYV9tYXRyaXgYJSAB",
-            "KAsyHi5wbHVtZS5zYW1wbGUuY29tbW9uLk1hdHJpeDR4NEgjiAEBEj4KEXBy",
-            "b2plY3Rpb25fbWF0cml4GCYgASgLMh4ucGx1bWUuc2FtcGxlLmNvbW1vbi5N",
-            "YXRyaXg0eDRIJIgBARJLCh5ub25faml0dGVyZWRfcHJvamVjdGlvbl9tYXRy",
-            "aXgYJyABKAsyHi5wbHVtZS5zYW1wbGUuY29tbW9uLk1hdHJpeDR4NEgliAEB",
-            "EkUKOHVzZV9qaXR0ZXJlZF9wcm9qZWN0aW9uX21hdHJpeF9mb3JfdHJhbnNw",
-            "YXJlbnRfcmVuZGVyaW5nGCggASgISCaIAQESHgoRc3RlcmVvX3NlcGFyYXRp",
-            "b24YKSABKAJIJ4gBARIfChJzdGVyZW9fY29udmVyZ2VuY2UYKiABKAJIKIgB",
-            "ARJNChFzdGVyZW9fdGFyZ2V0X2V5ZRgrIAEoDjItLnBsdW1lLnNhbXBsZS51",
-            "bml0eS5DYW1lcmFTdGVyZW9UYXJnZXRFeWVNYXNrSCmIAQFCEgoQX25lYXJf",
-            "Y2xpcF9wbGFuZUIRCg9fZmFyX2NsaXBfcGxhbmVCEAoOX2ZpZWxkX29mX3Zp",
-            "ZXdCEQoPX3JlbmRlcmluZ19wYXRoQgwKCl9hbGxvd19oZHJCDQoLX2FsbG93",
-            "X21zYWFCGwoZX2FsbG93X2R5bmFtaWNfcmVzb2x1dGlvbkIcChpfZm9yY2Vf",
-            "aW50b19yZW5kZXJfdGV4dHVyZUIUChJfb3J0aG9ncmFwaGljX3NpemVCDwoN",
-            "X29ydGhvZ3JhcGhpY0ITChFfb3BhcXVlX3NvcnRfbW9kZUIZChdfdHJhbnNw",
-            "YXJlbmN5X3NvcnRfbW9kZUIZChdfdHJhbnNwYXJlbmN5X3NvcnRfYXhpc0II",
-            "CgZfZGVwdGhCCQoHX2FzcGVjdEIPCg1fY3VsbGluZ19tYXNrQg0KC19ldmVu",
-            "dF9tYXNrQhcKFV9sYXllcl9jdWxsX3NwaGVyaWNhbEIOCgxfY2FtZXJhX3R5",
-            "cGVCFwoVX2xheWVyX2N1bGxfZGlzdGFuY2VzQhgKFl91c2Vfb2NjbHVzaW9u",
-            "X2N1bGxpbmdCEQoPX2N1bGxpbmdfbWF0cml4QhMKEV9iYWNrZ3JvdW5kX2Nv",
-            "bG9yQg4KDF9jbGVhcl9mbGFnc0IVChNfZGVwdGhfdGV4dHVyZV9tb2RlQiQK",
-            "Il9jbGVhcl9zdGVuY2lsX2FmdGVyX2xpZ2h0aW5nX3Bhc3NCGgoYX3VzZV9w",
-            "aHlzaWNhbF9wcm9wZXJ0aWVzQg4KDF9zZW5zb3Jfc2l6ZUINCgtfbGVuc19z",
-            "aGlmdEIPCg1fZm9jYWxfbGVuZ3RoQgsKCV9nYXRlX2ZpdEIHCgVfcmVjdEIN",
-            "CgtfcGl4ZWxfcmVjdEIUChJfdGFyZ2V0X3RleHR1cmVfaWRCEQoPX3Rhcmdl",
-            "dF9kaXNwbGF5QhkKF193b3JsZF90b19jYW1lcmFfbWF0cml4QhQKEl9wcm9q",
-            "ZWN0aW9uX21hdHJpeEIhCh9fbm9uX2ppdHRlcmVkX3Byb2plY3Rpb25fbWF0",
-            "cml4QjsKOV91c2Vfaml0dGVyZWRfcHJvamVjdGlvbl9tYXRyaXhfZm9yX3Ry",
-            "YW5zcGFyZW50X3JlbmRlcmluZ0IUChJfc3RlcmVvX3NlcGFyYXRpb25CFQoT",
-            "X3N0ZXJlb19jb252ZXJnZW5jZUIUChJfc3RlcmVvX3RhcmdldF9leWUiLQoY",
-            "Q2FtZXJhTGF5ZXJDdWxsRGlzdGFuY2VzEhEKCWRpc3RhbmNlcxgBIAMoAiqH",
-            "AQoKQ2FtZXJhVHlwZRIUChBDQU1FUkFfVFlQRV9HQU1FEAASGgoWQ0FNRVJB",
-            "X1RZUEVfU0NFTkVfVklFVxABEhcKE0NBTUVSQV9UWVBFX1BSRVZJRVcQAhIS",
-            "Cg5DQU1FUkFfVFlQRV9WUhADEhoKFkNBTUVSQV9UWVBFX1JFRkxFQ1RJT04Q",
-            "BCqTAQoQQ2FtZXJhQ2xlYXJGbGFncxIdChlDQU1FUkFfQ0xFQVJfRkxBR1Nf",
-            "U0tZQk9YEAASIgoeQ0FNRVJBX0NMRUFSX0ZMQUdTX1NPTElEX0NPTE9SEAES",
-            "HAoYQ0FNRVJBX0NMRUFSX0ZMQUdTX0RFUFRIEAISHgoaQ0FNRVJBX0NMRUFS",
-            "X0ZMQUdTX05PVEhJTkcQAyq8AQoRQ2FtZXJhR2F0ZUZpdE1vZGUSHQoZQ0FN",
-            "RVJBX0dBVEVfRklUX01PREVfTk9ORRAAEiEKHUNBTUVSQV9HQVRFX0ZJVF9N",
-            "T0RFX1ZFUlRJQ0FMEAESIwofQ0FNRVJBX0dBVEVfRklUX01PREVfSE9SSVpP",
-            "TlRBTBACEh0KGUNBTUVSQV9HQVRFX0ZJVF9NT0RFX0ZJTEwQAxIhCh1DQU1F",
-            "UkFfR0FURV9GSVRfTU9ERV9PVkVSU0NBThAEKrwBChlDYW1lcmFTdGVyZW9U",
-            "YXJnZXRFeWVNYXNrEiYKIkNBTUVSQV9TVEVSRU9fVEFSR0VUX0VZRV9NQVNL",
-            "X05PTkUQABImCiJDQU1FUkFfU1RFUkVPX1RBUkdFVF9FWUVfTUFTS19MRUZU",
-            "EAESJwojQ0FNRVJBX1NURVJFT19UQVJHRVRfRVlFX01BU0tfUklHSFQQAhIm",
-            "CiJDQU1FUkFfU1RFUkVPX1RBUkdFVF9FWUVfTUFTS19CT1RIEAMqmgEKEERl",
-            "cHRoVGV4dHVyZU1vZGUSGwoXREVQVEhfVEVYVFVSRV9NT0RFX05PTkUQABIc",
-            "ChhERVBUSF9URVhUVVJFX01PREVfREVQVEgQARIkCiBERVBUSF9URVhUVVJF",
-            "X01PREVfREVQVEhfTk9STUFMUxACEiUKIURFUFRIX1RFWFRVUkVfTU9ERV9N",
-            "T1RJT05fVkVDVE9SUxADQhWqAhJQTFVNRS5TYW1wbGUuVW5pdHliBnByb3Rv",
-            "Mw=="));
+            "iAEBEhgKC2NhbWVyYV90eXBlGBQgASgNSBKIAQESTwoUbGF5ZXJfY3VsbF9k",
+            "aXN0YW5jZXMYFSABKAsyLC5wbHVtZS5zYW1wbGUudW5pdHkuQ2FtZXJhTGF5",
+            "ZXJDdWxsRGlzdGFuY2VzSBOIAQESIgoVdXNlX29jY2x1c2lvbl9jdWxsaW5n",
+            "GBYgASgISBSIAQESOwoOY3VsbGluZ19tYXRyaXgYFyABKAsyHi5wbHVtZS5z",
+            "YW1wbGUuY29tbW9uLk1hdHJpeDR4NEgViAEBEjkKEGJhY2tncm91bmRfY29s",
+            "b3IYGCABKAsyGi5wbHVtZS5zYW1wbGUuY29tbW9uLkNvbG9ySBaIAQESGAoL",
+            "Y2xlYXJfZmxhZ3MYGSABKA1IF4gBARIfChJkZXB0aF90ZXh0dXJlX21vZGUY",
+            "GiABKA1IGIgBARIuCiFjbGVhcl9zdGVuY2lsX2FmdGVyX2xpZ2h0aW5nX3Bh",
+            "c3MYGyABKAhIGYgBARIkChd1c2VfcGh5c2ljYWxfcHJvcGVydGllcxgcIAEo",
+            "CEgaiAEBEjYKC3NlbnNvcl9zaXplGB0gASgLMhwucGx1bWUuc2FtcGxlLmNv",
+            "bW1vbi5WZWN0b3IySBuIAQESNQoKbGVuc19zaGlmdBgeIAEoCzIcLnBsdW1l",
+            "LnNhbXBsZS5jb21tb24uVmVjdG9yMkgciAEBEhkKDGZvY2FsX2xlbmd0aBgf",
+            "IAEoAkgdiAEBEjwKCGdhdGVfZml0GCAgASgOMiUucGx1bWUuc2FtcGxlLnVu",
+            "aXR5LkNhbWVyYUdhdGVGaXRNb2RlSB6IAQESLAoEcmVjdBghIAEoCzIZLnBs",
+            "dW1lLnNhbXBsZS5jb21tb24uUmVjdEgfiAEBEjIKCnBpeGVsX3JlY3QYIiAB",
+            "KAsyGS5wbHVtZS5zYW1wbGUuY29tbW9uLlJlY3RIIIgBARJDChF0YXJnZXRf",
+            "dGV4dHVyZV9pZBgjIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElk",
+            "ZW50aWZpZXJIIYgBARIbCg50YXJnZXRfZGlzcGxheRgkIAEoBUgiiAEBEkMK",
+            "FndvcmxkX3RvX2NhbWVyYV9tYXRyaXgYJSABKAsyHi5wbHVtZS5zYW1wbGUu",
+            "Y29tbW9uLk1hdHJpeDR4NEgjiAEBEj4KEXByb2plY3Rpb25fbWF0cml4GCYg",
+            "ASgLMh4ucGx1bWUuc2FtcGxlLmNvbW1vbi5NYXRyaXg0eDRIJIgBARJLCh5u",
+            "b25faml0dGVyZWRfcHJvamVjdGlvbl9tYXRyaXgYJyABKAsyHi5wbHVtZS5z",
+            "YW1wbGUuY29tbW9uLk1hdHJpeDR4NEgliAEBEkUKOHVzZV9qaXR0ZXJlZF9w",
+            "cm9qZWN0aW9uX21hdHJpeF9mb3JfdHJhbnNwYXJlbnRfcmVuZGVyaW5nGCgg",
+            "ASgISCaIAQESHgoRc3RlcmVvX3NlcGFyYXRpb24YKSABKAJIJ4gBARIfChJz",
+            "dGVyZW9fY29udmVyZ2VuY2UYKiABKAJIKIgBARJNChFzdGVyZW9fdGFyZ2V0",
+            "X2V5ZRgrIAEoDjItLnBsdW1lLnNhbXBsZS51bml0eS5DYW1lcmFTdGVyZW9U",
+            "YXJnZXRFeWVNYXNrSCmIAQFCEgoQX25lYXJfY2xpcF9wbGFuZUIRCg9fZmFy",
+            "X2NsaXBfcGxhbmVCEAoOX2ZpZWxkX29mX3ZpZXdCEQoPX3JlbmRlcmluZ19w",
+            "YXRoQgwKCl9hbGxvd19oZHJCDQoLX2FsbG93X21zYWFCGwoZX2FsbG93X2R5",
+            "bmFtaWNfcmVzb2x1dGlvbkIcChpfZm9yY2VfaW50b19yZW5kZXJfdGV4dHVy",
+            "ZUIUChJfb3J0aG9ncmFwaGljX3NpemVCDwoNX29ydGhvZ3JhcGhpY0ITChFf",
+            "b3BhcXVlX3NvcnRfbW9kZUIZChdfdHJhbnNwYXJlbmN5X3NvcnRfbW9kZUIZ",
+            "ChdfdHJhbnNwYXJlbmN5X3NvcnRfYXhpc0IICgZfZGVwdGhCCQoHX2FzcGVj",
+            "dEIPCg1fY3VsbGluZ19tYXNrQg0KC19ldmVudF9tYXNrQhcKFV9sYXllcl9j",
+            "dWxsX3NwaGVyaWNhbEIOCgxfY2FtZXJhX3R5cGVCFwoVX2xheWVyX2N1bGxf",
+            "ZGlzdGFuY2VzQhgKFl91c2Vfb2NjbHVzaW9uX2N1bGxpbmdCEQoPX2N1bGxp",
+            "bmdfbWF0cml4QhMKEV9iYWNrZ3JvdW5kX2NvbG9yQg4KDF9jbGVhcl9mbGFn",
+            "c0IVChNfZGVwdGhfdGV4dHVyZV9tb2RlQiQKIl9jbGVhcl9zdGVuY2lsX2Fm",
+            "dGVyX2xpZ2h0aW5nX3Bhc3NCGgoYX3VzZV9waHlzaWNhbF9wcm9wZXJ0aWVz",
+            "Qg4KDF9zZW5zb3Jfc2l6ZUINCgtfbGVuc19zaGlmdEIPCg1fZm9jYWxfbGVu",
+            "Z3RoQgsKCV9nYXRlX2ZpdEIHCgVfcmVjdEINCgtfcGl4ZWxfcmVjdEIUChJf",
+            "dGFyZ2V0X3RleHR1cmVfaWRCEQoPX3RhcmdldF9kaXNwbGF5QhkKF193b3Js",
+            "ZF90b19jYW1lcmFfbWF0cml4QhQKEl9wcm9qZWN0aW9uX21hdHJpeEIhCh9f",
+            "bm9uX2ppdHRlcmVkX3Byb2plY3Rpb25fbWF0cml4QjsKOV91c2Vfaml0dGVy",
+            "ZWRfcHJvamVjdGlvbl9tYXRyaXhfZm9yX3RyYW5zcGFyZW50X3JlbmRlcmlu",
+            "Z0IUChJfc3RlcmVvX3NlcGFyYXRpb25CFQoTX3N0ZXJlb19jb252ZXJnZW5j",
+            "ZUIUChJfc3RlcmVvX3RhcmdldF9leWUiLQoYQ2FtZXJhTGF5ZXJDdWxsRGlz",
+            "dGFuY2VzEhEKCWRpc3RhbmNlcxgBIAMoAiq8AQoRQ2FtZXJhR2F0ZUZpdE1v",
+            "ZGUSHQoZQ0FNRVJBX0dBVEVfRklUX01PREVfTk9ORRAAEiEKHUNBTUVSQV9H",
+            "QVRFX0ZJVF9NT0RFX1ZFUlRJQ0FMEAESIwofQ0FNRVJBX0dBVEVfRklUX01P",
+            "REVfSE9SSVpPTlRBTBACEh0KGUNBTUVSQV9HQVRFX0ZJVF9NT0RFX0ZJTEwQ",
+            "AxIhCh1DQU1FUkFfR0FURV9GSVRfTU9ERV9PVkVSU0NBThAEKrwBChlDYW1l",
+            "cmFTdGVyZW9UYXJnZXRFeWVNYXNrEiYKIkNBTUVSQV9TVEVSRU9fVEFSR0VU",
+            "X0VZRV9NQVNLX05PTkUQABImCiJDQU1FUkFfU1RFUkVPX1RBUkdFVF9FWUVf",
+            "TUFTS19MRUZUEAESJwojQ0FNRVJBX1NURVJFT19UQVJHRVRfRVlFX01BU0tf",
+            "UklHSFQQAhImCiJDQU1FUkFfU1RFUkVPX1RBUkdFVF9FWUVfTUFTS19CT1RI",
+            "EANCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Unity.RenderingReflection.Descriptor, global::PLUME.Sample.Common.Vector2Reflection.Descriptor, global::PLUME.Sample.Common.Vector3Reflection.Descriptor, global::PLUME.Sample.Common.Matrix4X4Reflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, global::PLUME.Sample.Common.RectReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.CameraType), typeof(global::PLUME.Sample.Unity.CameraClearFlags), typeof(global::PLUME.Sample.Unity.CameraGateFitMode), typeof(global::PLUME.Sample.Unity.CameraStereoTargetEyeMask), typeof(global::PLUME.Sample.Unity.DepthTextureMode), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.CameraGateFitMode), typeof(global::PLUME.Sample.Unity.CameraStereoTargetEyeMask), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.CameraCreate), global::PLUME.Sample.Unity.CameraCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.CameraDestroy), global::PLUME.Sample.Unity.CameraDestroy.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.CameraUpdate), global::PLUME.Sample.Unity.CameraUpdate.Parser, new[]{ "Id", "NearClipPlane", "FarClipPlane", "FieldOfView", "RenderingPath", "AllowHdr", "AllowMsaa", "AllowDynamicResolution", "ForceIntoRenderTexture", "OrthographicSize", "Orthographic", "OpaqueSortMode", "TransparencySortMode", "TransparencySortAxis", "Depth", "Aspect", "CullingMask", "EventMask", "LayerCullSpherical", "CameraType", "LayerCullDistances", "UseOcclusionCulling", "CullingMatrix", "BackgroundColor", "ClearFlags", "DepthTextureMode", "ClearStencilAfterLightingPass", "UsePhysicalProperties", "SensorSize", "LensShift", "FocalLength", "GateFit", "Rect", "PixelRect", "TargetTextureId", "TargetDisplay", "WorldToCameraMatrix", "ProjectionMatrix", "NonJitteredProjectionMatrix", "UseJitteredProjectionMatrixForTransparentRendering", "StereoSeparation", "StereoConvergence", "StereoTargetEye" }, new[]{ "NearClipPlane", "FarClipPlane", "FieldOfView", "RenderingPath", "AllowHdr", "AllowMsaa", "AllowDynamicResolution", "ForceIntoRenderTexture", "OrthographicSize", "Orthographic", "OpaqueSortMode", "TransparencySortMode", "TransparencySortAxis", "Depth", "Aspect", "CullingMask", "EventMask", "LayerCullSpherical", "CameraType", "LayerCullDistances", "UseOcclusionCulling", "CullingMatrix", "BackgroundColor", "ClearFlags", "DepthTextureMode", "ClearStencilAfterLightingPass", "UsePhysicalProperties", "SensorSize", "LensShift", "FocalLength", "GateFit", "Rect", "PixelRect", "TargetTextureId", "TargetDisplay", "WorldToCameraMatrix", "ProjectionMatrix", "NonJitteredProjectionMatrix", "UseJitteredProjectionMatrixForTransparentRendering", "StereoSeparation", "StereoConvergence", "StereoTargetEye" }, null, null, null),
@@ -132,21 +119,6 @@ namespace PLUME.Sample.Unity {
 
   }
   #region Enums
-  public enum CameraType {
-    [pbr::OriginalName("CAMERA_TYPE_GAME")] Game = 0,
-    [pbr::OriginalName("CAMERA_TYPE_SCENE_VIEW")] SceneView = 1,
-    [pbr::OriginalName("CAMERA_TYPE_PREVIEW")] Preview = 2,
-    [pbr::OriginalName("CAMERA_TYPE_VR")] Vr = 3,
-    [pbr::OriginalName("CAMERA_TYPE_REFLECTION")] Reflection = 4,
-  }
-
-  public enum CameraClearFlags {
-    [pbr::OriginalName("CAMERA_CLEAR_FLAGS_SKYBOX")] Skybox = 0,
-    [pbr::OriginalName("CAMERA_CLEAR_FLAGS_SOLID_COLOR")] SolidColor = 1,
-    [pbr::OriginalName("CAMERA_CLEAR_FLAGS_DEPTH")] Depth = 2,
-    [pbr::OriginalName("CAMERA_CLEAR_FLAGS_NOTHING")] Nothing = 3,
-  }
-
   public enum CameraGateFitMode {
     [pbr::OriginalName("CAMERA_GATE_FIT_MODE_NONE")] None = 0,
     [pbr::OriginalName("CAMERA_GATE_FIT_MODE_VERTICAL")] Vertical = 1,
@@ -160,13 +132,6 @@ namespace PLUME.Sample.Unity {
     [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_LEFT")] Left = 1,
     [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_RIGHT")] Right = 2,
     [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_BOTH")] Both = 3,
-  }
-
-  public enum DepthTextureMode {
-    [pbr::OriginalName("DEPTH_TEXTURE_MODE_NONE")] None = 0,
-    [pbr::OriginalName("DEPTH_TEXTURE_MODE_DEPTH")] Depth = 1,
-    [pbr::OriginalName("DEPTH_TEXTURE_MODE_DEPTH_NORMALS")] DepthNormals = 2,
-    [pbr::OriginalName("DEPTH_TEXTURE_MODE_MOTION_VECTORS")] MotionVectors = 3,
   }
 
   #endregion
@@ -1144,12 +1109,12 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "camera_type" field.</summary>
     public const int CameraTypeFieldNumber = 20;
-    private readonly static global::PLUME.Sample.Unity.CameraType CameraTypeDefaultValue = global::PLUME.Sample.Unity.CameraType.Game;
+    private readonly static uint CameraTypeDefaultValue = 0;
 
-    private global::PLUME.Sample.Unity.CameraType cameraType_;
+    private uint cameraType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.CameraType CameraType {
+    public uint CameraType {
       get { if ((_hasBits0 & 131072) != 0) { return cameraType_; } else { return CameraTypeDefaultValue; } }
       set {
         _hasBits0 |= 131072;
@@ -1234,12 +1199,12 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "clear_flags" field.</summary>
     public const int ClearFlagsFieldNumber = 25;
-    private readonly static global::PLUME.Sample.Unity.CameraClearFlags ClearFlagsDefaultValue = global::PLUME.Sample.Unity.CameraClearFlags.Skybox;
+    private readonly static uint ClearFlagsDefaultValue = 0;
 
-    private global::PLUME.Sample.Unity.CameraClearFlags clearFlags_;
+    private uint clearFlags_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.CameraClearFlags ClearFlags {
+    public uint ClearFlags {
       get { if ((_hasBits0 & 524288) != 0) { return clearFlags_; } else { return ClearFlagsDefaultValue; } }
       set {
         _hasBits0 |= 524288;
@@ -1261,12 +1226,12 @@ namespace PLUME.Sample.Unity {
 
     /// <summary>Field number for the "depth_texture_mode" field.</summary>
     public const int DepthTextureModeFieldNumber = 26;
-    private readonly static global::PLUME.Sample.Unity.DepthTextureMode DepthTextureModeDefaultValue = global::PLUME.Sample.Unity.DepthTextureMode.None;
+    private readonly static uint DepthTextureModeDefaultValue = 0;
 
-    private global::PLUME.Sample.Unity.DepthTextureMode depthTextureMode_;
+    private uint depthTextureMode_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.DepthTextureMode DepthTextureMode {
+    public uint DepthTextureMode {
       get { if ((_hasBits0 & 1048576) != 0) { return depthTextureMode_; } else { return DepthTextureModeDefaultValue; } }
       set {
         _hasBits0 |= 1048576;
@@ -1829,7 +1794,7 @@ namespace PLUME.Sample.Unity {
       }
       if (HasCameraType) {
         output.WriteRawTag(160, 1);
-        output.WriteEnum((int) CameraType);
+        output.WriteUInt32(CameraType);
       }
       if (layerCullDistances_ != null) {
         output.WriteRawTag(170, 1);
@@ -1849,11 +1814,11 @@ namespace PLUME.Sample.Unity {
       }
       if (HasClearFlags) {
         output.WriteRawTag(200, 1);
-        output.WriteEnum((int) ClearFlags);
+        output.WriteUInt32(ClearFlags);
       }
       if (HasDepthTextureMode) {
         output.WriteRawTag(208, 1);
-        output.WriteEnum((int) DepthTextureMode);
+        output.WriteUInt32(DepthTextureMode);
       }
       if (HasClearStencilAfterLightingPass) {
         output.WriteRawTag(216, 1);
@@ -2011,7 +1976,7 @@ namespace PLUME.Sample.Unity {
       }
       if (HasCameraType) {
         output.WriteRawTag(160, 1);
-        output.WriteEnum((int) CameraType);
+        output.WriteUInt32(CameraType);
       }
       if (layerCullDistances_ != null) {
         output.WriteRawTag(170, 1);
@@ -2031,11 +1996,11 @@ namespace PLUME.Sample.Unity {
       }
       if (HasClearFlags) {
         output.WriteRawTag(200, 1);
-        output.WriteEnum((int) ClearFlags);
+        output.WriteUInt32(ClearFlags);
       }
       if (HasDepthTextureMode) {
         output.WriteRawTag(208, 1);
-        output.WriteEnum((int) DepthTextureMode);
+        output.WriteUInt32(DepthTextureMode);
       }
       if (HasClearStencilAfterLightingPass) {
         output.WriteRawTag(216, 1);
@@ -2173,7 +2138,7 @@ namespace PLUME.Sample.Unity {
         size += 2 + 1;
       }
       if (HasCameraType) {
-        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) CameraType);
+        size += 2 + pb::CodedOutputStream.ComputeUInt32Size(CameraType);
       }
       if (layerCullDistances_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(LayerCullDistances);
@@ -2188,10 +2153,10 @@ namespace PLUME.Sample.Unity {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(BackgroundColor);
       }
       if (HasClearFlags) {
-        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) ClearFlags);
+        size += 2 + pb::CodedOutputStream.ComputeUInt32Size(ClearFlags);
       }
       if (HasDepthTextureMode) {
-        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) DepthTextureMode);
+        size += 2 + pb::CodedOutputStream.ComputeUInt32Size(DepthTextureMode);
       }
       if (HasClearStencilAfterLightingPass) {
         size += 2 + 1;
@@ -2522,7 +2487,7 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 160: {
-            CameraType = (global::PLUME.Sample.Unity.CameraType) input.ReadEnum();
+            CameraType = input.ReadUInt32();
             break;
           }
           case 170: {
@@ -2551,11 +2516,11 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 200: {
-            ClearFlags = (global::PLUME.Sample.Unity.CameraClearFlags) input.ReadEnum();
+            ClearFlags = input.ReadUInt32();
             break;
           }
           case 208: {
-            DepthTextureMode = (global::PLUME.Sample.Unity.DepthTextureMode) input.ReadEnum();
+            DepthTextureMode = input.ReadUInt32();
             break;
           }
           case 216: {
@@ -2748,7 +2713,7 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 160: {
-            CameraType = (global::PLUME.Sample.Unity.CameraType) input.ReadEnum();
+            CameraType = input.ReadUInt32();
             break;
           }
           case 170: {
@@ -2777,11 +2742,11 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 200: {
-            ClearFlags = (global::PLUME.Sample.Unity.CameraClearFlags) input.ReadEnum();
+            ClearFlags = input.ReadUInt32();
             break;
           }
           case 208: {
-            DepthTextureMode = (global::PLUME.Sample.Unity.DepthTextureMode) input.ReadEnum();
+            DepthTextureMode = input.ReadUInt32();
             break;
           }
           case 216: {

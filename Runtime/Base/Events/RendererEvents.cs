@@ -6,7 +6,7 @@ using UnityEngine.Scripting;
 
 namespace PLUME.Base.Events
 {
-    public class RendererEvents
+    public static class RendererEvents
     {
         public delegate void OnEnabledChangedDelegate(Renderer renderer, bool enabled);
 
@@ -52,6 +52,7 @@ namespace PLUME.Base.Events
             if (previousMaterial != material)
             {
                 OnMaterialChanged(renderer, material);
+                OnMaterialsChanged(renderer, renderer.sharedMaterials);
             }
         }
 
@@ -63,6 +64,8 @@ namespace PLUME.Base.Events
             renderer.materials = materials;
             if (!previousMaterials.SequenceEqual(materials))
             {
+                if(materials.Length > 0)
+                    OnMaterialChanged(renderer, materials[0]);
                 OnMaterialsChanged(renderer, materials);
             }
         }
@@ -75,6 +78,8 @@ namespace PLUME.Base.Events
             renderer.SetMaterials(materials);
             if (!previousMaterials.SequenceEqual(materials))
             {
+                if(materials.Count > 0)
+                    OnMaterialChanged(renderer, materials[0]);
                 OnMaterialsChanged(renderer, materials);
             }
         }
@@ -88,6 +93,7 @@ namespace PLUME.Base.Events
             if (previousMaterial != sharedMaterial)
             {
                 OnSharedMaterialChanged(renderer, sharedMaterial);
+                OnSharedMaterialsChanged(renderer, renderer.sharedMaterials);
             }
         }
 
@@ -99,6 +105,8 @@ namespace PLUME.Base.Events
             renderer.sharedMaterials = sharedMaterials;
             if (!previousMaterials.SequenceEqual(sharedMaterials))
             {
+                if(sharedMaterials.Length > 0)
+                    OnSharedMaterialChanged(renderer, sharedMaterials[0]);
                 OnSharedMaterialsChanged(renderer, sharedMaterials);
             }
         }
@@ -111,6 +119,8 @@ namespace PLUME.Base.Events
             renderer.SetSharedMaterials(sharedMaterials);
             if (!previousMaterials.SequenceEqual(sharedMaterials))
             {
+                if(sharedMaterials.Count > 0)
+                    OnSharedMaterialChanged(renderer, sharedMaterials[0]);
                 OnSharedMaterialsChanged(renderer, sharedMaterials);
             }
         }

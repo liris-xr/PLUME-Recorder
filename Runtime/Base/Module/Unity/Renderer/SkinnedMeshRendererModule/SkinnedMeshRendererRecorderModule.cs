@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using PLUME.Base.Events;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
-using PLUME.Core.Utils;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityEngine.Scripting;
+using static PLUME.Core.Utils.SampleUtils;
 using SkinnedMeshRendererSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.SkinnedMeshRenderer>;
 
 namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
@@ -22,7 +21,7 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
         {
             base.OnCreate(ctx);
 
-            SkinnedMeshRendererEvents.OnSetBones += (mr, bones) => OnSetBones(mr, bones, ctx);
+            // SkinnedMeshRendererEvents.OnSetBones += (mr, bones) => OnSetBones(mr, bones, ctx);
         }
 
         protected override void OnObjectMarkedCreated(SkinnedMeshRendererSafeRef objSafeRef, RecorderContext ctx)
@@ -34,23 +33,25 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
 
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Bones = new SkinnedMeshRendererUpdate.Types.Bones();
-            updateSample.MeshId = meshSafeRef.ToAssetIdentifierPayload();
-            updateSample.Bones.RootBoneId = rootBoneRef.ToIdentifierPayload();
+            updateSample.MeshId = GetAssetIdentifierPayload(meshSafeRef);
+            updateSample.Bones.RootBoneId = GetComponentIdentifierPayload(rootBoneRef);
 
             foreach (var bone in objSafeRef.Component.bones)
             {
                 var boneRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(bone);
-                updateSample.Bones.BonesIds.Add(boneRef.ToIdentifierPayload());
+                updateSample.Bones.BonesIds.Add(GetComponentIdentifierPayload(boneRef));
             }
 
-            _createSamples[objSafeRef] = new SkinnedMeshRendererCreate { Id = objSafeRef.ToIdentifierPayload() };
+            _createSamples[objSafeRef] = new SkinnedMeshRendererCreate
+                { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(SkinnedMeshRendererSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
 
-            _destroySamples[objSafeRef] = new SkinnedMeshRendererDestroy { Id = objSafeRef.ToIdentifierPayload() };
+            _destroySamples[objSafeRef] = new SkinnedMeshRendererDestroy
+                { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private void OnSetBones(SkinnedMeshRenderer skinnedMeshRenderer, IEnumerable<UnityEngine.Transform> bones,
@@ -69,13 +70,13 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Bones = new SkinnedMeshRendererUpdate.Types.Bones
             {
-                RootBoneId = rootBoneSafeRef.ToIdentifierPayload()
+                RootBoneId = GetComponentIdentifierPayload(rootBoneSafeRef)
             };
 
             foreach (var bone in bones)
             {
                 var boneSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(bone);
-                updateSample.Bones.BonesIds.Add(boneSafeRef.ToIdentifierPayload());
+                updateSample.Bones.BonesIds.Add(GetComponentIdentifierPayload(boneSafeRef));
             }
         }
 
@@ -83,7 +84,7 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new SkinnedMeshRendererUpdate { Id = objSafeRef.ToIdentifierPayload() };
+            sample = new SkinnedMeshRendererUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

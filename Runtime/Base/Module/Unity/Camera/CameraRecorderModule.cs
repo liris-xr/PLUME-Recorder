@@ -5,6 +5,7 @@ using PLUME.Core.Utils;
 using PLUME.Sample.Unity;
 using UnityEngine.Scripting;
 using CameraSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.Camera>;
+using static PLUME.Core.Utils.SampleUtils;
 
 namespace PLUME.Base.Module.Unity.Camera
 {
@@ -39,14 +40,14 @@ namespace PLUME.Base.Module.Unity.Camera
             updateSample.CullingMask = camera.cullingMask;
             updateSample.EventMask = camera.eventMask;
             updateSample.LayerCullSpherical = camera.layerCullSpherical;
-            updateSample.CameraType = camera.cameraType.ToPayload();
+            updateSample.CameraType = (uint) camera.cameraType;
             updateSample.LayerCullDistances = new CameraLayerCullDistances();
             updateSample.LayerCullDistances.Distances.AddRange(camera.layerCullDistances);
             updateSample.UseOcclusionCulling = camera.useOcclusionCulling;
             updateSample.CullingMatrix = camera.cullingMatrix.ToPayload();
             updateSample.BackgroundColor = camera.backgroundColor.ToPayload();
-            updateSample.ClearFlags = camera.clearFlags.ToPayload();
-            updateSample.DepthTextureMode = camera.depthTextureMode.ToPayload();
+            updateSample.ClearFlags = (uint) camera.clearFlags;
+            updateSample.DepthTextureMode = (uint) camera.depthTextureMode;
             updateSample.ClearStencilAfterLightingPass = camera.clearStencilAfterLightingPass;
             updateSample.UsePhysicalProperties = camera.usePhysicalProperties;
             updateSample.SensorSize = camera.sensorSize.ToPayload();
@@ -55,7 +56,7 @@ namespace PLUME.Base.Module.Unity.Camera
             updateSample.GateFit = camera.gateFit.ToPayload();
             updateSample.Rect = camera.rect.ToPayload();
             updateSample.PixelRect = camera.pixelRect.ToPayload();
-            updateSample.TargetTextureId = camera.targetTexture.ToAssetIdentifierPayload();
+            updateSample.TargetTextureId = GetAssetIdentifierPayload(camera.targetTexture);
             updateSample.TargetDisplay = camera.targetDisplay;
             updateSample.WorldToCameraMatrix = camera.worldToCameraMatrix.ToPayload();
             updateSample.ProjectionMatrix = camera.projectionMatrix.ToPayload();
@@ -65,20 +66,20 @@ namespace PLUME.Base.Module.Unity.Camera
             updateSample.StereoSeparation = camera.stereoSeparation;
             updateSample.StereoConvergence = camera.stereoConvergence;
             updateSample.StereoTargetEye = camera.stereoTargetEye.ToPayload();
-            _createSamples[objSafeRef] = new CameraCreate { Id = objSafeRef.ToIdentifierPayload() };
+            _createSamples[objSafeRef] = new CameraCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(CameraSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new CameraDestroy { Id = objSafeRef.ToIdentifierPayload() };
+            _destroySamples[objSafeRef] = new CameraDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private CameraUpdate GetOrCreateUpdateSample(CameraSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new CameraUpdate { Id = objSafeRef.ToIdentifierPayload() };
+            sample = new CameraUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

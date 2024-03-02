@@ -28,29 +28,44 @@ namespace PLUME.Sample.Unity.UI {
             "aXR5L2lkZW50aWZpZXJzLnByb3RvGhJjb21tb24vY29sb3IucHJvdG8iQQoK",
             "VGV4dENyZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5D",
             "b21wb25lbnRJZGVudGlmaWVyIkIKC1RleHREZXN0cm95EjMKAmlkGAEgASgL",
-            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIilgYK",
+            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIiowcK",
             "ClRleHRVcGRhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
             "Q29tcG9uZW50SWRlbnRpZmllchIRCgR0ZXh0GAIgASgJSACIAQESOQoHZm9u",
             "dF9pZBgDIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZp",
-            "ZXJIAYgBARIXCgpmb250X3N0eWxlGAQgASgFSAKIAQESFgoJZm9udF9zaXpl",
-            "GAUgASgFSAOIAQESLgoFY29sb3IYBiABKAsyGi5wbHVtZS5zYW1wbGUuY29t",
-            "bW9uLkNvbG9ySASIAQESGQoMbGluZV9zcGFjaW5nGAcgASgCSAWIAQESHgoR",
-            "c3VwcG9ydF9yaWNoX3RleHQYCCABKAhIBogBARIWCglhbGlnbm1lbnQYCSAB",
-            "KAVIB4gBARIeChFhbGlnbl9ieV9nZW9tZXRyeRgKIAEoCEgIiAEBEiAKE2hv",
-            "cml6b250YWxfb3ZlcmZsb3cYCyABKAVICYgBARIeChF2ZXJ0aWNhbF9vdmVy",
-            "ZmxvdxgMIAEoBUgKiAEBEiUKGHJlc2l6ZV90ZXh0X2Zvcl9iZXN0X2ZpdBgN",
-            "IAEoCEgLiAEBEiEKFHJlc2l6ZV90ZXh0X21pbl9zaXplGA4gASgFSAyIAQES",
-            "IQoUcmVzaXplX3RleHRfbWF4X3NpemUYDyABKAVIDYgBAUIHCgVfdGV4dEIK",
-            "CghfZm9udF9pZEINCgtfZm9udF9zdHlsZUIMCgpfZm9udF9zaXplQggKBl9j",
-            "b2xvckIPCg1fbGluZV9zcGFjaW5nQhQKEl9zdXBwb3J0X3JpY2hfdGV4dEIM",
-            "CgpfYWxpZ25tZW50QhQKEl9hbGlnbl9ieV9nZW9tZXRyeUIWChRfaG9yaXpv",
-            "bnRhbF9vdmVyZmxvd0IUChJfdmVydGljYWxfb3ZlcmZsb3dCGwoZX3Jlc2l6",
-            "ZV90ZXh0X2Zvcl9iZXN0X2ZpdEIXChVfcmVzaXplX3RleHRfbWluX3NpemVC",
-            "FwoVX3Jlc2l6ZV90ZXh0X21heF9zaXplQhiqAhVQTFVNRS5TYW1wbGUuVW5p",
-            "dHkuVUliBnByb3RvMw=="));
+            "ZXJIAYgBARI2Cgpmb250X3N0eWxlGAQgASgOMh0ucGx1bWUuc2FtcGxlLnVu",
+            "aXR5LkZvbnRTdHlsZUgCiAEBEhYKCWZvbnRfc2l6ZRgFIAEoBUgDiAEBEi4K",
+            "BWNvbG9yGAYgASgLMhoucGx1bWUuc2FtcGxlLmNvbW1vbi5Db2xvckgEiAEB",
+            "EhkKDGxpbmVfc3BhY2luZxgHIAEoAkgFiAEBEh4KEXN1cHBvcnRfcmljaF90",
+            "ZXh0GAggASgISAaIAQESNgoJYWxpZ25tZW50GAkgASgOMh4ucGx1bWUuc2Ft",
+            "cGxlLnVuaXR5LlRleHRBbmNob3JIB4gBARIeChFhbGlnbl9ieV9nZW9tZXRy",
+            "eRgKIAEoCEgIiAEBEkgKE2hvcml6b250YWxfb3ZlcmZsb3cYCyABKA4yJi5w",
+            "bHVtZS5zYW1wbGUudW5pdHkuSG9yaXpvbnRhbFdyYXBNb2RlSAmIAQESRAoR",
+            "dmVydGljYWxfb3ZlcmZsb3cYDCABKA4yJC5wbHVtZS5zYW1wbGUudW5pdHku",
+            "VmVydGljYWxXcmFwTW9kZUgKiAEBEiUKGHJlc2l6ZV90ZXh0X2Zvcl9iZXN0",
+            "X2ZpdBgNIAEoCEgLiAEBEiEKFHJlc2l6ZV90ZXh0X21pbl9zaXplGA4gASgF",
+            "SAyIAQESIQoUcmVzaXplX3RleHRfbWF4X3NpemUYDyABKAVIDYgBAUIHCgVf",
+            "dGV4dEIKCghfZm9udF9pZEINCgtfZm9udF9zdHlsZUIMCgpfZm9udF9zaXpl",
+            "QggKBl9jb2xvckIPCg1fbGluZV9zcGFjaW5nQhQKEl9zdXBwb3J0X3JpY2hf",
+            "dGV4dEIMCgpfYWxpZ25tZW50QhQKEl9hbGlnbl9ieV9nZW9tZXRyeUIWChRf",
+            "aG9yaXpvbnRhbF9vdmVyZmxvd0IUChJfdmVydGljYWxfb3ZlcmZsb3dCGwoZ",
+            "X3Jlc2l6ZV90ZXh0X2Zvcl9iZXN0X2ZpdEIXChVfcmVzaXplX3RleHRfbWlu",
+            "X3NpemVCFwoVX3Jlc2l6ZV90ZXh0X21heF9zaXplKlYKEkhvcml6b250YWxX",
+            "cmFwTW9kZRIdChlIT1JJWk9OVEFMX1dSQVBfTU9ERV9XUkFQEAASIQodSE9S",
+            "SVpPTlRBTF9XUkFQX01PREVfT1ZFUkZMT1cQASpUChBWZXJ0aWNhbFdyYXBN",
+            "b2RlEh8KG1ZFUlRJQ0FMX1dSQVBfTU9ERV9UUlVOQ0FURRAAEh8KG1ZFUlRJ",
+            "Q0FMX1dSQVBfTU9ERV9PVkVSRkxPVxABKpQCCgpUZXh0QW5jaG9yEhoKFlRF",
+            "WFRfQU5DSE9SX1VQUEVSX0xFRlQQABIcChhURVhUX0FOQ0hPUl9VUFBFUl9D",
+            "RU5URVIQARIbChdURVhUX0FOQ0hPUl9VUFBFUl9SSUdIVBACEhsKF1RFWFRf",
+            "QU5DSE9SX01JRERMRV9MRUZUEAMSHQoZVEVYVF9BTkNIT1JfTUlERExFX0NF",
+            "TlRFUhAEEhwKGFRFWFRfQU5DSE9SX01JRERMRV9SSUdIVBAFEhoKFlRFWFRf",
+            "QU5DSE9SX0xPV0VSX0xFRlQQBhIcChhURVhUX0FOQ0hPUl9MT1dFUl9DRU5U",
+            "RVIQBxIbChdURVhUX0FOQ0hPUl9MT1dFUl9SSUdIVBAIKm4KCUZvbnRTdHls",
+            "ZRIVChFGT05UX1NUWUxFX05PUk1BTBAAEhMKD0ZPTlRfU1RZTEVfQk9MRBAB",
+            "EhUKEUZPTlRfU1RZTEVfSVRBTElDEAISHgoaRk9OVF9TVFlMRV9CT0xEX0FO",
+            "RF9JVEFMSUMQA0IYqgIVUExVTUUuU2FtcGxlLlVuaXR5LlVJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.HorizontalWrapMode), typeof(global::PLUME.Sample.Unity.UI.VerticalWrapMode), typeof(global::PLUME.Sample.Unity.UI.TextAnchor), typeof(global::PLUME.Sample.Unity.UI.FontStyle), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextCreate), global::PLUME.Sample.Unity.UI.TextCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextDestroy), global::PLUME.Sample.Unity.UI.TextDestroy.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.TextUpdate), global::PLUME.Sample.Unity.UI.TextUpdate.Parser, new[]{ "Id", "Text", "FontId", "FontStyle", "FontSize", "Color", "LineSpacing", "SupportRichText", "Alignment", "AlignByGeometry", "HorizontalOverflow", "VerticalOverflow", "ResizeTextForBestFit", "ResizeTextMinSize", "ResizeTextMaxSize" }, new[]{ "Text", "FontId", "FontStyle", "FontSize", "Color", "LineSpacing", "SupportRichText", "Alignment", "AlignByGeometry", "HorizontalOverflow", "VerticalOverflow", "ResizeTextForBestFit", "ResizeTextMinSize", "ResizeTextMaxSize" }, null, null, null)
@@ -59,6 +74,38 @@ namespace PLUME.Sample.Unity.UI {
     #endregion
 
   }
+  #region Enums
+  public enum HorizontalWrapMode {
+    [pbr::OriginalName("HORIZONTAL_WRAP_MODE_WRAP")] Wrap = 0,
+    [pbr::OriginalName("HORIZONTAL_WRAP_MODE_OVERFLOW")] Overflow = 1,
+  }
+
+  public enum VerticalWrapMode {
+    [pbr::OriginalName("VERTICAL_WRAP_MODE_TRUNCATE")] Truncate = 0,
+    [pbr::OriginalName("VERTICAL_WRAP_MODE_OVERFLOW")] Overflow = 1,
+  }
+
+  public enum TextAnchor {
+    [pbr::OriginalName("TEXT_ANCHOR_UPPER_LEFT")] UpperLeft = 0,
+    [pbr::OriginalName("TEXT_ANCHOR_UPPER_CENTER")] UpperCenter = 1,
+    [pbr::OriginalName("TEXT_ANCHOR_UPPER_RIGHT")] UpperRight = 2,
+    [pbr::OriginalName("TEXT_ANCHOR_MIDDLE_LEFT")] MiddleLeft = 3,
+    [pbr::OriginalName("TEXT_ANCHOR_MIDDLE_CENTER")] MiddleCenter = 4,
+    [pbr::OriginalName("TEXT_ANCHOR_MIDDLE_RIGHT")] MiddleRight = 5,
+    [pbr::OriginalName("TEXT_ANCHOR_LOWER_LEFT")] LowerLeft = 6,
+    [pbr::OriginalName("TEXT_ANCHOR_LOWER_CENTER")] LowerCenter = 7,
+    [pbr::OriginalName("TEXT_ANCHOR_LOWER_RIGHT")] LowerRight = 8,
+  }
+
+  public enum FontStyle {
+    [pbr::OriginalName("FONT_STYLE_NORMAL")] Normal = 0,
+    [pbr::OriginalName("FONT_STYLE_BOLD")] Bold = 1,
+    [pbr::OriginalName("FONT_STYLE_ITALIC")] Italic = 2,
+    [pbr::OriginalName("FONT_STYLE_BOLD_AND_ITALIC")] BoldAndItalic = 3,
+  }
+
+  #endregion
+
   #region Messages
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class TextCreate : pb::IMessage<TextCreate>
@@ -571,12 +618,12 @@ namespace PLUME.Sample.Unity.UI {
 
     /// <summary>Field number for the "font_style" field.</summary>
     public const int FontStyleFieldNumber = 4;
-    private readonly static int FontStyleDefaultValue = 0;
+    private readonly static global::PLUME.Sample.Unity.UI.FontStyle FontStyleDefaultValue = global::PLUME.Sample.Unity.UI.FontStyle.Normal;
 
-    private int fontStyle_;
+    private global::PLUME.Sample.Unity.UI.FontStyle fontStyle_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int FontStyle {
+    public global::PLUME.Sample.Unity.UI.FontStyle FontStyle {
       get { if ((_hasBits0 & 1) != 0) { return fontStyle_; } else { return FontStyleDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -691,12 +738,12 @@ namespace PLUME.Sample.Unity.UI {
 
     /// <summary>Field number for the "alignment" field.</summary>
     public const int AlignmentFieldNumber = 9;
-    private readonly static int AlignmentDefaultValue = 0;
+    private readonly static global::PLUME.Sample.Unity.UI.TextAnchor AlignmentDefaultValue = global::PLUME.Sample.Unity.UI.TextAnchor.UpperLeft;
 
-    private int alignment_;
+    private global::PLUME.Sample.Unity.UI.TextAnchor alignment_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Alignment {
+    public global::PLUME.Sample.Unity.UI.TextAnchor Alignment {
       get { if ((_hasBits0 & 16) != 0) { return alignment_; } else { return AlignmentDefaultValue; } }
       set {
         _hasBits0 |= 16;
@@ -745,12 +792,12 @@ namespace PLUME.Sample.Unity.UI {
 
     /// <summary>Field number for the "horizontal_overflow" field.</summary>
     public const int HorizontalOverflowFieldNumber = 11;
-    private readonly static int HorizontalOverflowDefaultValue = 0;
+    private readonly static global::PLUME.Sample.Unity.UI.HorizontalWrapMode HorizontalOverflowDefaultValue = global::PLUME.Sample.Unity.UI.HorizontalWrapMode.Wrap;
 
-    private int horizontalOverflow_;
+    private global::PLUME.Sample.Unity.UI.HorizontalWrapMode horizontalOverflow_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int HorizontalOverflow {
+    public global::PLUME.Sample.Unity.UI.HorizontalWrapMode HorizontalOverflow {
       get { if ((_hasBits0 & 64) != 0) { return horizontalOverflow_; } else { return HorizontalOverflowDefaultValue; } }
       set {
         _hasBits0 |= 64;
@@ -772,12 +819,12 @@ namespace PLUME.Sample.Unity.UI {
 
     /// <summary>Field number for the "vertical_overflow" field.</summary>
     public const int VerticalOverflowFieldNumber = 12;
-    private readonly static int VerticalOverflowDefaultValue = 0;
+    private readonly static global::PLUME.Sample.Unity.UI.VerticalWrapMode VerticalOverflowDefaultValue = global::PLUME.Sample.Unity.UI.VerticalWrapMode.Truncate;
 
-    private int verticalOverflow_;
+    private global::PLUME.Sample.Unity.UI.VerticalWrapMode verticalOverflow_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int VerticalOverflow {
+    public global::PLUME.Sample.Unity.UI.VerticalWrapMode VerticalOverflow {
       get { if ((_hasBits0 & 128) != 0) { return verticalOverflow_; } else { return VerticalOverflowDefaultValue; } }
       set {
         _hasBits0 |= 128;
@@ -962,7 +1009,7 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasFontStyle) {
         output.WriteRawTag(32);
-        output.WriteInt32(FontStyle);
+        output.WriteEnum((int) FontStyle);
       }
       if (HasFontSize) {
         output.WriteRawTag(40);
@@ -982,7 +1029,7 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasAlignment) {
         output.WriteRawTag(72);
-        output.WriteInt32(Alignment);
+        output.WriteEnum((int) Alignment);
       }
       if (HasAlignByGeometry) {
         output.WriteRawTag(80);
@@ -990,11 +1037,11 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasHorizontalOverflow) {
         output.WriteRawTag(88);
-        output.WriteInt32(HorizontalOverflow);
+        output.WriteEnum((int) HorizontalOverflow);
       }
       if (HasVerticalOverflow) {
         output.WriteRawTag(96);
-        output.WriteInt32(VerticalOverflow);
+        output.WriteEnum((int) VerticalOverflow);
       }
       if (HasResizeTextForBestFit) {
         output.WriteRawTag(104);
@@ -1032,7 +1079,7 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasFontStyle) {
         output.WriteRawTag(32);
-        output.WriteInt32(FontStyle);
+        output.WriteEnum((int) FontStyle);
       }
       if (HasFontSize) {
         output.WriteRawTag(40);
@@ -1052,7 +1099,7 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasAlignment) {
         output.WriteRawTag(72);
-        output.WriteInt32(Alignment);
+        output.WriteEnum((int) Alignment);
       }
       if (HasAlignByGeometry) {
         output.WriteRawTag(80);
@@ -1060,11 +1107,11 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasHorizontalOverflow) {
         output.WriteRawTag(88);
-        output.WriteInt32(HorizontalOverflow);
+        output.WriteEnum((int) HorizontalOverflow);
       }
       if (HasVerticalOverflow) {
         output.WriteRawTag(96);
-        output.WriteInt32(VerticalOverflow);
+        output.WriteEnum((int) VerticalOverflow);
       }
       if (HasResizeTextForBestFit) {
         output.WriteRawTag(104);
@@ -1098,7 +1145,7 @@ namespace PLUME.Sample.Unity.UI {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(FontId);
       }
       if (HasFontStyle) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FontStyle);
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) FontStyle);
       }
       if (HasFontSize) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(FontSize);
@@ -1113,16 +1160,16 @@ namespace PLUME.Sample.Unity.UI {
         size += 1 + 1;
       }
       if (HasAlignment) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Alignment);
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Alignment);
       }
       if (HasAlignByGeometry) {
         size += 1 + 1;
       }
       if (HasHorizontalOverflow) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(HorizontalOverflow);
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) HorizontalOverflow);
       }
       if (HasVerticalOverflow) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(VerticalOverflow);
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) VerticalOverflow);
       }
       if (HasResizeTextForBestFit) {
         size += 1 + 1;
@@ -1233,7 +1280,7 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 32: {
-            FontStyle = input.ReadInt32();
+            FontStyle = (global::PLUME.Sample.Unity.UI.FontStyle) input.ReadEnum();
             break;
           }
           case 40: {
@@ -1256,7 +1303,7 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 72: {
-            Alignment = input.ReadInt32();
+            Alignment = (global::PLUME.Sample.Unity.UI.TextAnchor) input.ReadEnum();
             break;
           }
           case 80: {
@@ -1264,11 +1311,11 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 88: {
-            HorizontalOverflow = input.ReadInt32();
+            HorizontalOverflow = (global::PLUME.Sample.Unity.UI.HorizontalWrapMode) input.ReadEnum();
             break;
           }
           case 96: {
-            VerticalOverflow = input.ReadInt32();
+            VerticalOverflow = (global::PLUME.Sample.Unity.UI.VerticalWrapMode) input.ReadEnum();
             break;
           }
           case 104: {
@@ -1317,7 +1364,7 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 32: {
-            FontStyle = input.ReadInt32();
+            FontStyle = (global::PLUME.Sample.Unity.UI.FontStyle) input.ReadEnum();
             break;
           }
           case 40: {
@@ -1340,7 +1387,7 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 72: {
-            Alignment = input.ReadInt32();
+            Alignment = (global::PLUME.Sample.Unity.UI.TextAnchor) input.ReadEnum();
             break;
           }
           case 80: {
@@ -1348,11 +1395,11 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 88: {
-            HorizontalOverflow = input.ReadInt32();
+            HorizontalOverflow = (global::PLUME.Sample.Unity.UI.HorizontalWrapMode) input.ReadEnum();
             break;
           }
           case 96: {
-            VerticalOverflow = input.ReadInt32();
+            VerticalOverflow = (global::PLUME.Sample.Unity.UI.VerticalWrapMode) input.ReadEnum();
             break;
           }
           case 104: {

@@ -3,7 +3,7 @@ using PLUME.Base.Events;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
-using PLUME.Core.Utils;
+using static PLUME.Core.Utils.SampleUtils;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -38,13 +38,13 @@ namespace PLUME.Base.Module.Unity.GameObject
             updateSample.Name = objSafeRef.GameObject.name;
             updateSample.Layer = objSafeRef.GameObject.layer;
             updateSample.Tag = objSafeRef.GameObject.tag;
-            _createSamples[objSafeRef] = new GameObjectCreate { Id = objSafeRef.ToIdentifierPayload() };
+            _createSamples[objSafeRef] = new GameObjectCreate { Id = GetGameObjectIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(GameObjectSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new GameObjectDestroy { Id = objSafeRef.ToIdentifierPayload() };
+            _destroySamples[objSafeRef] = new GameObjectDestroy { Id = GetGameObjectIdentifierPayload(objSafeRef) };
         }
         
         private void OnActiveChanged(UnityEngine.GameObject go, RecorderContext ctx)
@@ -125,7 +125,7 @@ namespace PLUME.Base.Module.Unity.GameObject
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new GameObjectUpdate { Id = objSafeRef.ToIdentifierPayload() };
+            sample = new GameObjectUpdate { Id = GetGameObjectIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

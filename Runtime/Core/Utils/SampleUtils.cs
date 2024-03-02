@@ -2,15 +2,15 @@
 using PLUME.Core.Object.SafeRef;
 using PLUME.Sample.Common;
 using PLUME.Sample.Unity;
+using PLUME.Sample.Unity.UI;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityRuntimeGuid;
-using AdditionalCanvasShaderChannels = PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels;
 using Bounds = PLUME.Sample.Common.Bounds;
-using CameraClearFlags = PLUME.Sample.Unity.CameraClearFlags;
-using CameraType = PLUME.Sample.Unity.CameraType;
 using Color = PLUME.Sample.Common.Color;
-using DepthTextureMode = PLUME.Sample.Unity.DepthTextureMode;
 using FogMode = PLUME.Sample.Unity.FogMode;
+using FontStyle = PLUME.Sample.Unity.UI.FontStyle;
+using HorizontalWrapMode = PLUME.Sample.Unity.UI.HorizontalWrapMode;
 using LightmapData = PLUME.Sample.Unity.LightmapData;
 using LightmapsMode = PLUME.Sample.Unity.LightmapsMode;
 using LightShadowCasterMode = PLUME.Sample.Unity.LightShadowCasterMode;
@@ -26,7 +26,10 @@ using Vector4 = PLUME.Sample.Common.Vector4;
 using RenderingPath = PLUME.Sample.Unity.RenderingPath;
 using TransparencySortMode = PLUME.Sample.Unity.TransparencySortMode;
 using RenderMode = PLUME.Sample.Unity.UI.RenderMode;
+using ScaleMode = PLUME.Sample.Unity.UI.ScaleMode;
 using StandaloneRenderResize = PLUME.Sample.Unity.UI.StandaloneRenderResize;
+using TextAnchor = PLUME.Sample.Unity.UI.TextAnchor;
+using VerticalWrapMode = PLUME.Sample.Unity.UI.VerticalWrapMode;
 #if URP_ENABLED
 using UnityEngine.Rendering.Universal;
 using AntialiasingMode = PLUME.Sample.Unity.AntialiasingMode;
@@ -37,8 +40,27 @@ namespace PLUME.Core.Utils
 {
     public static class SampleUtils
     {
-        public static AssetIdentifier ToAssetIdentifierPayload(this UnityEngine.Object obj)
+        public const string NullGuid = "00000000000000000000000000000000";
+
+        public static readonly AssetIdentifier NullAssetIdentifierPayload = new() { Id = NullGuid, Path = "" };
+
+        public static readonly ComponentIdentifier NullComponentIdentifierPayload = new()
         {
+            ComponentId = NullGuid,
+            ParentId = new GameObjectIdentifier { GameObjectId = NullGuid, TransformId = NullGuid }
+        };
+
+        public static readonly GameObjectIdentifier NullGameObjectIdentifierPayload = new()
+        {
+            GameObjectId = NullGuid,
+            TransformId = NullGuid
+        };
+
+        public static AssetIdentifier GetAssetIdentifierPayload(UnityEngine.Object obj)
+        {
+            if(obj == null)
+                return NullAssetIdentifierPayload;
+            
             var guidRegistry = AssetsGuidRegistry.GetOrCreate();
             var guidRegistryEntry = guidRegistry.GetOrCreateEntry(obj);
 
@@ -48,21 +70,59 @@ namespace PLUME.Core.Utils
                 Path = guidRegistryEntry.assetBundlePath
             };
         }
-
-        public static ComponentIdentifier ToIdentifierPayload(this Component component)
+        
+        public static AssetIdentifier GetAssetIdentifierPayload(IAssetSafeRef asset)
         {
+            if (asset.IsNull)
+            {
+                return NullAssetIdentifierPayload;
+            }
+            
+            return new AssetIdentifier
+            {
+                Id = asset.Identifier.AssetId.Guid.ToString(),
+                Path = asset.Identifier.AssetPath.ToString()
+            };
+        }
+        
+        public static ComponentIdentifier GetComponentIdentifierPayload(Component component)
+        {
+            if(component == null)
+                return NullComponentIdentifierPayload;
+            
             var guidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
             var componentGuidRegistryEntry = guidRegistry.GetOrCreateEntry(component);
 
             return new ComponentIdentifier
             {
                 ComponentId = componentGuidRegistryEntry.guid,
-                ParentId = component.gameObject.ToIdentifierPayload()
+                ParentId = GetGameObjectIdentifierPayload(component.gameObject)
             };
         }
-
-        public static GameObjectIdentifier ToIdentifierPayload(this GameObject go)
+        
+        public static ComponentIdentifier GetComponentIdentifierPayload(IComponentSafeRef component)
         {
+            if (component.IsNull)
+            {
+                return NullComponentIdentifierPayload;
+            }
+            
+            return new ComponentIdentifier
+            {
+                ComponentId = component.Identifier.ComponentId.Guid.ToString(),
+                ParentId = new GameObjectIdentifier
+                {
+                    GameObjectId = component.Identifier.GameObjectId.GameObjectId.Guid.ToString(),
+                    TransformId = component.GameObjectSafeRef.Identifier.TransformId.Guid.ToString()
+                }
+            };
+        }
+        
+        public static GameObjectIdentifier GetGameObjectIdentifierPayload(GameObject go)
+        {
+            if(go == null)
+                return NullGameObjectIdentifierPayload;
+            
             var guidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
             var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go);
             var transformGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go.transform);
@@ -74,36 +134,17 @@ namespace PLUME.Core.Utils
             };
         }
 
-        public static ComponentIdentifier ToIdentifierPayload<T>(this IComponentSafeRef<T> component)
-            where T : Component
+        public static GameObjectIdentifier GetGameObjectIdentifierPayload(GameObjectSafeRef go)
         {
-            return new ComponentIdentifier
+            if (go.IsNull)
             {
-                ComponentId = component.Identifier.ComponentId.Guid.ToString(),
-                ParentId = new GameObjectIdentifier
-                {
-                    GameObjectId = component.Identifier.GameObjectId.GameObjectId.Guid.ToString(),
-                    TransformId = component.GameObjectSafeRef.Identifier.TransformId.Guid.ToString()
-                }
-            };
-        }
-
-        public static AssetIdentifier ToAssetIdentifierPayload<T>(this IAssetSafeRef<T> asset)
-            where T : UnityEngine.Object
-        {
-            return new AssetIdentifier
-            {
-                Id = asset.Identifier.AssetId.Guid.ToString(),
-                Path = asset.Identifier.AssetPath.ToString()
-            };
-        }
-
-        public static GameObjectIdentifier ToIdentifierPayload(this GameObjectSafeRef goRef)
-        {
+                return NullGameObjectIdentifierPayload;
+            }
+            
             return new GameObjectIdentifier
             {
-                GameObjectId = goRef.Identifier.GameObjectId.Guid.ToString(),
-                TransformId = goRef.Identifier.TransformId.Guid.ToString()
+                GameObjectId = go.Identifier.GameObjectId.Guid.ToString(),
+                TransformId = go.Identifier.TransformId.Guid.ToString()
             };
         }
 
@@ -313,15 +354,9 @@ namespace PLUME.Core.Utils
         {
             return new LightmapData
             {
-                LightmapColorTextureId = lightmapData.lightmapColor == null
-                    ? null
-                    : lightmapData.lightmapColor.ToAssetIdentifierPayload(),
-                LightmapDirTextureId = lightmapData.lightmapDir == null
-                    ? null
-                    : lightmapData.lightmapDir.ToAssetIdentifierPayload(),
-                LightmapShadowMaskTextureId = lightmapData.shadowMask == null
-                    ? null
-                    : lightmapData.shadowMask.ToAssetIdentifierPayload()
+                LightmapColorTextureId = GetAssetIdentifierPayload(lightmapData.lightmapColor),
+                LightmapDirTextureId = GetAssetIdentifierPayload(lightmapData.lightmapDir),
+                LightmapShadowMaskTextureId = GetAssetIdentifierPayload(lightmapData.shadowMask)
             };
         }
 
@@ -477,20 +512,6 @@ namespace PLUME.Core.Utils
             };
         }
 
-        public static CameraType ToPayload(this UnityEngine.CameraType cameraType)
-        {
-            return cameraType switch
-            {
-                UnityEngine.CameraType.Reflection => CameraType.Reflection,
-                UnityEngine.CameraType.Game => CameraType.Game,
-                UnityEngine.CameraType.Preview => CameraType.Preview,
-                UnityEngine.CameraType.SceneView => CameraType.SceneView,
-                UnityEngine.CameraType.VR => CameraType.Vr,
-                _ => throw new ArgumentOutOfRangeException(nameof(cameraType), cameraType,
-                    null)
-            };
-        }
-
         public static CameraGateFitMode ToPayload(this Camera.GateFitMode gateFitMode)
         {
             return gateFitMode switch
@@ -501,32 +522,6 @@ namespace PLUME.Core.Utils
                 Camera.GateFitMode.Vertical => CameraGateFitMode.Vertical,
                 Camera.GateFitMode.Overscan => CameraGateFitMode.Overscan,
                 _ => throw new ArgumentOutOfRangeException(nameof(gateFitMode), gateFitMode,
-                    null)
-            };
-        }
-
-        public static CameraClearFlags ToPayload(this UnityEngine.CameraClearFlags cameraClearFlags)
-        {
-            return cameraClearFlags switch
-            {
-                UnityEngine.CameraClearFlags.Nothing => CameraClearFlags.Nothing,
-                UnityEngine.CameraClearFlags.Skybox => CameraClearFlags.Skybox,
-                UnityEngine.CameraClearFlags.SolidColor => CameraClearFlags.SolidColor,
-                UnityEngine.CameraClearFlags.Depth => CameraClearFlags.Depth,
-                _ => throw new ArgumentOutOfRangeException(nameof(cameraClearFlags), cameraClearFlags,
-                    null)
-            };
-        }
-
-        public static DepthTextureMode ToPayload(this UnityEngine.DepthTextureMode depthTextureMode)
-        {
-            return depthTextureMode switch
-            {
-                UnityEngine.DepthTextureMode.None => DepthTextureMode.None,
-                UnityEngine.DepthTextureMode.Depth => DepthTextureMode.Depth,
-                UnityEngine.DepthTextureMode.DepthNormals => DepthTextureMode.DepthNormals,
-                UnityEngine.DepthTextureMode.MotionVectors => DepthTextureMode.MotionVectors,
-                _ => throw new ArgumentOutOfRangeException(nameof(depthTextureMode), depthTextureMode,
                     null)
             };
         }
@@ -574,18 +569,88 @@ namespace PLUME.Core.Utils
                 _ => throw new ArgumentOutOfRangeException(nameof(renderResize), renderResize, null)
             };
         }
-        
-        public static AdditionalCanvasShaderChannels ToPayload(this UnityEngine.AdditionalCanvasShaderChannels additionalCanvasShaderChannels)
+
+        public static ScaleMode ToPayload(this CanvasScaler.ScaleMode scaleMode)
         {
-            return additionalCanvasShaderChannels switch
+            return scaleMode switch
             {
-                UnityEngine.AdditionalCanvasShaderChannels.None => AdditionalCanvasShaderChannels.None,
-                UnityEngine.AdditionalCanvasShaderChannels.TexCoord1 => AdditionalCanvasShaderChannels.TexCoord1,
-                UnityEngine.AdditionalCanvasShaderChannels.TexCoord2 => AdditionalCanvasShaderChannels.TexCoord2,
-                UnityEngine.AdditionalCanvasShaderChannels.TexCoord3 => AdditionalCanvasShaderChannels.TexCoord3,
-                UnityEngine.AdditionalCanvasShaderChannels.Normal => AdditionalCanvasShaderChannels.Normal,
-                UnityEngine.AdditionalCanvasShaderChannels.Tangent => AdditionalCanvasShaderChannels.Tangent,
-                _ => throw new ArgumentOutOfRangeException(nameof(additionalCanvasShaderChannels), additionalCanvasShaderChannels, null)
+                CanvasScaler.ScaleMode.ConstantPixelSize => ScaleMode.ConstantPixelSize,
+                CanvasScaler.ScaleMode.ConstantPhysicalSize => ScaleMode.ConstantPhysicalSize,
+                CanvasScaler.ScaleMode.ScaleWithScreenSize => ScaleMode.ScaleWithScreenSize,
+                _ => throw new ArgumentOutOfRangeException(nameof(scaleMode), scaleMode, null)
+            };
+        }
+
+        public static ScreenMatchMode ToPayload(this CanvasScaler.ScreenMatchMode screenMatchMode)
+        {
+            return screenMatchMode switch
+            {
+                CanvasScaler.ScreenMatchMode.MatchWidthOrHeight => ScreenMatchMode.MatchWidthOrHeight,
+                CanvasScaler.ScreenMatchMode.Expand => ScreenMatchMode.Expand,
+                CanvasScaler.ScreenMatchMode.Shrink => ScreenMatchMode.Shrink,
+                _ => throw new ArgumentOutOfRangeException(nameof(screenMatchMode), screenMatchMode, null)
+            };
+        }
+
+        public static Unit ToPayload(this CanvasScaler.Unit unit)
+        {
+            return unit switch
+            {
+                CanvasScaler.Unit.Centimeters => Unit.Centimeters,
+                CanvasScaler.Unit.Millimeters => Unit.Millimeters,
+                CanvasScaler.Unit.Inches => Unit.Inches,
+                CanvasScaler.Unit.Points => Unit.Points,
+                CanvasScaler.Unit.Picas => Unit.Picas,
+                _ => throw new ArgumentOutOfRangeException(nameof(unit), unit, null)
+            };
+        }
+
+        public static FontStyle ToPayload(this UnityEngine.FontStyle fontStyle)
+        {
+            return fontStyle switch
+            {
+                UnityEngine.FontStyle.Normal => FontStyle.Normal,
+                UnityEngine.FontStyle.Bold => FontStyle.Bold,
+                UnityEngine.FontStyle.Italic => FontStyle.Italic,
+                UnityEngine.FontStyle.BoldAndItalic => FontStyle.BoldAndItalic,
+                _ => throw new ArgumentOutOfRangeException(nameof(fontStyle), fontStyle, null)
+            };
+        }
+
+        public static TextAnchor ToPayload(this UnityEngine.TextAnchor textAnchor)
+        {
+            return textAnchor switch
+            {
+                UnityEngine.TextAnchor.UpperLeft => TextAnchor.UpperLeft,
+                UnityEngine.TextAnchor.UpperCenter => TextAnchor.UpperCenter,
+                UnityEngine.TextAnchor.UpperRight => TextAnchor.UpperRight,
+                UnityEngine.TextAnchor.MiddleLeft => TextAnchor.MiddleLeft,
+                UnityEngine.TextAnchor.MiddleCenter => TextAnchor.MiddleCenter,
+                UnityEngine.TextAnchor.MiddleRight => TextAnchor.MiddleRight,
+                UnityEngine.TextAnchor.LowerLeft => TextAnchor.LowerLeft,
+                UnityEngine.TextAnchor.LowerCenter => TextAnchor.LowerCenter,
+                UnityEngine.TextAnchor.LowerRight => TextAnchor.LowerRight,
+                _ => throw new ArgumentOutOfRangeException(nameof(textAnchor), textAnchor, null)
+            };
+        }
+
+        public static HorizontalWrapMode ToPayload(this UnityEngine.HorizontalWrapMode horizontalWrapMode)
+        {
+            return horizontalWrapMode switch
+            {
+                UnityEngine.HorizontalWrapMode.Wrap => HorizontalWrapMode.Wrap,
+                UnityEngine.HorizontalWrapMode.Overflow => HorizontalWrapMode.Overflow,
+                _ => throw new ArgumentOutOfRangeException(nameof(horizontalWrapMode), horizontalWrapMode, null)
+            };
+        }
+
+        public static VerticalWrapMode ToPayload(this UnityEngine.VerticalWrapMode verticalWrapMode)
+        {
+            return verticalWrapMode switch
+            {
+                UnityEngine.VerticalWrapMode.Truncate => VerticalWrapMode.Truncate,
+                UnityEngine.VerticalWrapMode.Overflow => VerticalWrapMode.Overflow,
+                _ => throw new ArgumentOutOfRangeException(nameof(verticalWrapMode), verticalWrapMode, null)
             };
         }
 

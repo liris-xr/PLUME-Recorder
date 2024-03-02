@@ -28,7 +28,7 @@ namespace PLUME.Sample.Unity.UI {
             "dW5pdHkvaWRlbnRpZmllcnMucHJvdG8iQwoMQ2FudmFzQ3JlYXRlEjMKAmlk",
             "GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
             "ZXIiRAoNQ2FudmFzRGVzdHJveRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBs",
-            "ZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIpIJCgxDYW52YXNVcGRhdGUS",
+            "ZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIt4ICgxDYW52YXNVcGRhdGUS",
             "MwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRl",
             "bnRpZmllchI4CgtyZW5kZXJfbW9kZRgCIAEoDjIeLnBsdW1lLnNhbXBsZS51",
             "bml0eS5SZW5kZXJNb2RlSACIAQESGQoMc2NhbGVfZmFjdG9yGAMgASgCSAGI",
@@ -38,39 +38,31 @@ namespace PLUME.Sample.Unity.UI {
             "cGVyZmVjdBgHIAEoCEgFiAEBEhsKDnBsYW5lX2Rpc3RhbmNlGAggASgCSAaI",
             "AQESHQoQb3ZlcnJpZGVfc29ydGluZxgJIAEoCEgHiAEBEhoKDXNvcnRpbmdf",
             "b3JkZXIYCiABKAVICIgBARIbCg50YXJnZXRfZGlzcGxheRgLIAEoBUgJiAEB",
-            "Eh0KEHNvcnRpbmdfbGF5ZXJfaWQYDCABKAVICogBARJbChphZGRpdGlvbmFs",
-            "X3NoYWRlcl9jaGFubmVscxgNIAEoDjIyLnBsdW1lLnNhbXBsZS51bml0eS5B",
-            "ZGRpdGlvbmFsQ2FudmFzU2hhZGVyQ2hhbm5lbHNIC4gBARIfChJzb3J0aW5n",
-            "X2xheWVyX25hbWUYDiABKAlIDIgBARJdCiR1cGRhdGVfcmVjdF90cmFuc2Zv",
-            "cm1fZm9yX3N0YW5kYWxvbmUYDyABKA4yKi5wbHVtZS5zYW1wbGUudW5pdHku",
-            "U3RhbmRhbG9uZVJlbmRlclJlc2l6ZUgNiAEBEkIKDHdvcmxkX2NhbWVyYRgQ",
-            "IAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVy",
-            "SA6IAQESKQocbm9ybWFsaXplZF9zb3J0aW5nX2dyaWRfc2l6ZRgRIAEoAkgP",
-            "iAEBQg4KDF9yZW5kZXJfbW9kZUIPCg1fc2NhbGVfZmFjdG9yQhwKGl9yZWZl",
-            "cmVuY2VfcGl4ZWxzX3Blcl91bml0QhkKF19vdmVycmlkZV9waXhlbF9wZXJm",
-            "ZWN0QiIKIF92ZXJ0ZXhfY29sb3JfYWx3YXlzX2dhbW1hX3NwYWNlQhAKDl9w",
-            "aXhlbF9wZXJmZWN0QhEKD19wbGFuZV9kaXN0YW5jZUITChFfb3ZlcnJpZGVf",
-            "c29ydGluZ0IQCg5fc29ydGluZ19vcmRlckIRCg9fdGFyZ2V0X2Rpc3BsYXlC",
-            "EwoRX3NvcnRpbmdfbGF5ZXJfaWRCHQobX2FkZGl0aW9uYWxfc2hhZGVyX2No",
-            "YW5uZWxzQhUKE19zb3J0aW5nX2xheWVyX25hbWVCJwolX3VwZGF0ZV9yZWN0",
-            "X3RyYW5zZm9ybV9mb3Jfc3RhbmRhbG9uZUIPCg1fd29ybGRfY2FtZXJhQh8K",
-            "HV9ub3JtYWxpemVkX3NvcnRpbmdfZ3JpZF9zaXplKnQKClJlbmRlck1vZGUS",
-            "JAogUkVOREVSX01PREVfU0NSRUVOX1NQQUNFX09WRVJMQVkQABIjCh9SRU5E",
-            "RVJfTU9ERV9TQ1JFRU5fU1BBQ0VfQ0FNRVJBEAESGwoXUkVOREVSX01PREVf",
-            "V09STERfU1BBQ0UQAiplChZTdGFuZGFsb25lUmVuZGVyUmVzaXplEiQKIFNU",
-            "QU5EQUxPTkVfUkVOREVSX1JFU0laRV9FTkFCTEVEEAASJQohU1RBTkRBTE9O",
-            "RV9SRU5ERVJfUkVTSVpFX0RJU0FCTEVEEAEqwgIKHkFkZGl0aW9uYWxDYW52",
-            "YXNTaGFkZXJDaGFubmVscxIqCiZBRERJVElPTkFMX0NBTlZBU19TSEFERVJf",
-            "Q0hBTk5FTFNfTk9ORRAAEjEKLUFERElUSU9OQUxfQ0FOVkFTX1NIQURFUl9D",
-            "SEFOTkVMU19URVhfQ09PUkRfMRABEjEKLUFERElUSU9OQUxfQ0FOVkFTX1NI",
-            "QURFUl9DSEFOTkVMU19URVhfQ09PUkRfMhACEjEKLUFERElUSU9OQUxfQ0FO",
-            "VkFTX1NIQURFUl9DSEFOTkVMU19URVhfQ09PUkRfMxADEiwKKEFERElUSU9O",
-            "QUxfQ0FOVkFTX1NIQURFUl9DSEFOTkVMU19OT1JNQUwQBBItCilBRERJVElP",
-            "TkFMX0NBTlZBU19TSEFERVJfQ0hBTk5FTFNfVEFOR0VOVBAFQhiqAhVQTFVN",
-            "RS5TYW1wbGUuVW5pdHkuVUliBnByb3RvMw=="));
+            "Eh0KEHNvcnRpbmdfbGF5ZXJfaWQYDCABKAVICogBARInChphZGRpdGlvbmFs",
+            "X3NoYWRlcl9jaGFubmVscxgNIAEoDUgLiAEBEh8KEnNvcnRpbmdfbGF5ZXJf",
+            "bmFtZRgOIAEoCUgMiAEBEl0KJHVwZGF0ZV9yZWN0X3RyYW5zZm9ybV9mb3Jf",
+            "c3RhbmRhbG9uZRgPIAEoDjIqLnBsdW1lLnNhbXBsZS51bml0eS5TdGFuZGFs",
+            "b25lUmVuZGVyUmVzaXplSA2IAQESQgoMd29ybGRfY2FtZXJhGBAgASgLMicu",
+            "cGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXJIDogBARIp",
+            "Chxub3JtYWxpemVkX3NvcnRpbmdfZ3JpZF9zaXplGBEgASgCSA+IAQFCDgoM",
+            "X3JlbmRlcl9tb2RlQg8KDV9zY2FsZV9mYWN0b3JCHAoaX3JlZmVyZW5jZV9w",
+            "aXhlbHNfcGVyX3VuaXRCGQoXX292ZXJyaWRlX3BpeGVsX3BlcmZlY3RCIgog",
+            "X3ZlcnRleF9jb2xvcl9hbHdheXNfZ2FtbWFfc3BhY2VCEAoOX3BpeGVsX3Bl",
+            "cmZlY3RCEQoPX3BsYW5lX2Rpc3RhbmNlQhMKEV9vdmVycmlkZV9zb3J0aW5n",
+            "QhAKDl9zb3J0aW5nX29yZGVyQhEKD190YXJnZXRfZGlzcGxheUITChFfc29y",
+            "dGluZ19sYXllcl9pZEIdChtfYWRkaXRpb25hbF9zaGFkZXJfY2hhbm5lbHNC",
+            "FQoTX3NvcnRpbmdfbGF5ZXJfbmFtZUInCiVfdXBkYXRlX3JlY3RfdHJhbnNm",
+            "b3JtX2Zvcl9zdGFuZGFsb25lQg8KDV93b3JsZF9jYW1lcmFCHwodX25vcm1h",
+            "bGl6ZWRfc29ydGluZ19ncmlkX3NpemUqdAoKUmVuZGVyTW9kZRIkCiBSRU5E",
+            "RVJfTU9ERV9TQ1JFRU5fU1BBQ0VfT1ZFUkxBWRAAEiMKH1JFTkRFUl9NT0RF",
+            "X1NDUkVFTl9TUEFDRV9DQU1FUkEQARIbChdSRU5ERVJfTU9ERV9XT1JMRF9T",
+            "UEFDRRACKmUKFlN0YW5kYWxvbmVSZW5kZXJSZXNpemUSJAogU1RBTkRBTE9O",
+            "RV9SRU5ERVJfUkVTSVpFX0VOQUJMRUQQABIlCiFTVEFOREFMT05FX1JFTkRF",
+            "Ul9SRVNJWkVfRElTQUJMRUQQAUIYqgIVUExVTUUuU2FtcGxlLlVuaXR5LlVJ",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.RenderMode), typeof(global::PLUME.Sample.Unity.UI.StandaloneRenderResize), typeof(global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.RenderMode), typeof(global::PLUME.Sample.Unity.UI.StandaloneRenderResize), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasCreate), global::PLUME.Sample.Unity.UI.CanvasCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasDestroy), global::PLUME.Sample.Unity.UI.CanvasDestroy.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasUpdate), global::PLUME.Sample.Unity.UI.CanvasUpdate.Parser, new[]{ "Id", "RenderMode", "ScaleFactor", "ReferencePixelsPerUnit", "OverridePixelPerfect", "VertexColorAlwaysGammaSpace", "PixelPerfect", "PlaneDistance", "OverrideSorting", "SortingOrder", "TargetDisplay", "SortingLayerId", "AdditionalShaderChannels", "SortingLayerName", "UpdateRectTransformForStandalone", "WorldCamera", "NormalizedSortingGridSize" }, new[]{ "RenderMode", "ScaleFactor", "ReferencePixelsPerUnit", "OverridePixelPerfect", "VertexColorAlwaysGammaSpace", "PixelPerfect", "PlaneDistance", "OverrideSorting", "SortingOrder", "TargetDisplay", "SortingLayerId", "AdditionalShaderChannels", "SortingLayerName", "UpdateRectTransformForStandalone", "WorldCamera", "NormalizedSortingGridSize" }, null, null, null)
@@ -89,15 +81,6 @@ namespace PLUME.Sample.Unity.UI {
   public enum StandaloneRenderResize {
     [pbr::OriginalName("STANDALONE_RENDER_RESIZE_ENABLED")] Enabled = 0,
     [pbr::OriginalName("STANDALONE_RENDER_RESIZE_DISABLED")] Disabled = 1,
-  }
-
-  public enum AdditionalCanvasShaderChannels {
-    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_NONE")] None = 0,
-    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_TEX_COORD_1")] TexCoord1 = 1,
-    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_TEX_COORD_2")] TexCoord2 = 2,
-    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_TEX_COORD_3")] TexCoord3 = 3,
-    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_NORMAL")] Normal = 4,
-    [pbr::OriginalName("ADDITIONAL_CANVAS_SHADER_CHANNELS_TANGENT")] Tangent = 5,
   }
 
   #endregion
@@ -875,12 +858,12 @@ namespace PLUME.Sample.Unity.UI {
 
     /// <summary>Field number for the "additional_shader_channels" field.</summary>
     public const int AdditionalShaderChannelsFieldNumber = 13;
-    private readonly static global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels AdditionalShaderChannelsDefaultValue = global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels.None;
+    private readonly static uint AdditionalShaderChannelsDefaultValue = 0;
 
-    private global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels additionalShaderChannels_;
+    private uint additionalShaderChannels_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels AdditionalShaderChannels {
+    public uint AdditionalShaderChannels {
       get { if ((_hasBits0 & 2048) != 0) { return additionalShaderChannels_; } else { return AdditionalShaderChannelsDefaultValue; } }
       set {
         _hasBits0 |= 2048;
@@ -1116,7 +1099,7 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasAdditionalShaderChannels) {
         output.WriteRawTag(104);
-        output.WriteEnum((int) AdditionalShaderChannels);
+        output.WriteUInt32(AdditionalShaderChannels);
       }
       if (HasSortingLayerName) {
         output.WriteRawTag(114);
@@ -1194,7 +1177,7 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasAdditionalShaderChannels) {
         output.WriteRawTag(104);
-        output.WriteEnum((int) AdditionalShaderChannels);
+        output.WriteUInt32(AdditionalShaderChannels);
       }
       if (HasSortingLayerName) {
         output.WriteRawTag(114);
@@ -1259,7 +1242,7 @@ namespace PLUME.Sample.Unity.UI {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(SortingLayerId);
       }
       if (HasAdditionalShaderChannels) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) AdditionalShaderChannels);
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(AdditionalShaderChannels);
       }
       if (HasSortingLayerName) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(SortingLayerName);
@@ -1409,7 +1392,7 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 104: {
-            AdditionalShaderChannels = (global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels) input.ReadEnum();
+            AdditionalShaderChannels = input.ReadUInt32();
             break;
           }
           case 114: {
@@ -1498,7 +1481,7 @@ namespace PLUME.Sample.Unity.UI {
             break;
           }
           case 104: {
-            AdditionalShaderChannels = (global::PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels) input.ReadEnum();
+            AdditionalShaderChannels = input.ReadUInt32();
             break;
           }
           case 114: {

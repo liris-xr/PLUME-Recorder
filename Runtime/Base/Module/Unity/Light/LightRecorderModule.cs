@@ -5,6 +5,7 @@ using PLUME.Core.Utils;
 using PLUME.Sample.Unity;
 using UnityEngine.Scripting;
 using LightSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.Light>;
+using static PLUME.Core.Utils.SampleUtils;
 
 namespace PLUME.Base.Module.Unity.Light
 {
@@ -49,23 +50,23 @@ namespace PLUME.Base.Module.Unity.Light
             updateSample.CullingMask = light.cullingMask;
             updateSample.BoundingSphereOverride = light.boundingSphereOverride.ToPayload();
             updateSample.UseBoundingSphereOverride = light.useBoundingSphereOverride;
-            updateSample.CookieId = light.cookie.ToAssetIdentifierPayload();
+            updateSample.CookieId = GetAssetIdentifierPayload(light.cookie);
             updateSample.CookieSize = light.cookieSize;
-            updateSample.FlareId = light.flare.ToAssetIdentifierPayload();
-            _createSamples[objSafeRef] = new LightCreate { Id = objSafeRef.ToIdentifierPayload() };
+            updateSample.FlareId = GetAssetIdentifierPayload(light.flare);
+            _createSamples[objSafeRef] = new LightCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(LightSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new LightDestroy { Id = objSafeRef.ToIdentifierPayload() };
+            _destroySamples[objSafeRef] = new LightDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private LightUpdate GetOrCreateUpdateSample(LightSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new LightUpdate { Id = objSafeRef.ToIdentifierPayload() };
+            sample = new LightUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

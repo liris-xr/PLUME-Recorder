@@ -76,7 +76,7 @@ namespace PLUME.Core.Object.SafeRef
             var assetsGuidRegistryEntry = assetsGuidRegistry.GetOrCreateEntry(asset);
             var assetBundlePath = new FixedString512Bytes(assetsGuidRegistryEntry.assetBundlePath);
             var assetGuid = new Guid(assetsGuidRegistryEntry.guid);
-            assetSafeRef = CreateAssetObjectSafeRef<TA>(asset, assetGuid, assetBundlePath);
+            assetSafeRef = CreateAssetObjectSafeRef(asset, assetGuid, assetBundlePath);
             _cachedRefs[instanceId] = assetSafeRef;
             return assetSafeRef;
         }

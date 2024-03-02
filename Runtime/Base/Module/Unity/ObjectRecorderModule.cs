@@ -165,11 +165,7 @@ namespace PLUME.Base.Module.Unity
             }
 
             frameData.Serialize(frameDataWriter);
-
-            if (frameData is IDisposable disposable)
-            {
-                disposable.Dispose();
-            }
+            frameData.Dispose();
         }
 
         public bool IsRecordingObject(IObjectSafeRef objSafeRef)

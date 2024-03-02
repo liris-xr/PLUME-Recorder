@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using PLUME.Base.Hooks;
+using PLUME.Base.Events;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Utils;
@@ -22,7 +22,7 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
         {
             base.OnCreate(ctx);
 
-            SkinnedMeshRendererHooks.OnSetBones += (mr, bones) => OnSetBones(mr, bones, ctx);
+            SkinnedMeshRendererEvents.OnSetBones += (mr, bones) => OnSetBones(mr, bones, ctx);
         }
 
         protected override void OnObjectMarkedCreated(SkinnedMeshRendererSafeRef objSafeRef, RecorderContext ctx)

@@ -58,7 +58,7 @@ namespace PLUME.Core.Recorder
             CheckInstantiated();
             var safeRefProvider = Instance._context.ObjectSafeRefProvider;
             
-            go.GetComponentsInChildren(_tmpComponents);
+            go.GetComponentsInChildren(true, _tmpComponents);
             
             foreach (var component in _tmpComponents)
             {

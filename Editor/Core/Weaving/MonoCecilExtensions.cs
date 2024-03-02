@@ -3,11 +3,33 @@ using System.Linq;
 using Mono.Cecil;
 using UnityEngine;
 
-namespace PLUME.Editor.Core.Hooks
+namespace PLUME.Editor.Core.Events
 {
-    // From https://stackoverflow.com/a/69450344
-    internal static class TypeDefinitionExtensions
+    internal static class MonoCecilExtensions
     {
+        public static IEnumerable<MethodDefinition> GetAllMethods(this AssemblyDefinition assemblyDefinition)
+        {
+            var types = assemblyDefinition.Modules.SelectMany(m => CollectTypesRecursively(m.Types));
+            return types.SelectMany(t => t.Methods).Distinct();
+        }
+
+        private static IEnumerable<TypeDefinition> CollectTypesRecursively(IEnumerable<TypeDefinition> types)
+        {
+            var collectedTypes = new List<TypeDefinition>();
+
+            foreach (var typeDefinition in types)
+            {
+                collectedTypes.Add(typeDefinition);
+
+                if (typeDefinition.HasNestedTypes)
+                {
+                    collectedTypes.AddRange(CollectTypesRecursively(typeDefinition.NestedTypes));
+                }
+            }
+
+            return collectedTypes;
+        }
+
         /// <summary>
         /// Is childTypeDef a subclass of parentTypeDef. Does not test interface inheritance
         /// </summary>
@@ -16,7 +38,7 @@ namespace PLUME.Editor.Core.Hooks
         /// <returns></returns>
         public static bool IsSubclassOf(this TypeDefinition childTypeDef, TypeDefinition parentTypeDef) =>
             childTypeDef.MetadataToken != parentTypeDef.MetadataToken
-            && childTypeDef.EnumerateBaseClasses().Any(b => Equals(b, parentTypeDef));
+            && EnumerateBaseClasses(childTypeDef).Any(b => Equals(b, parentTypeDef));
 
         /// <summary>
         /// Does childType inherit from parentInterface
@@ -30,9 +52,8 @@ namespace PLUME.Editor.Core.Hooks
             Debug.Assert(parentInterfaceDef.IsInterface);
 
             return
-                childType
-                    .EnumerateBaseClasses()
-                    .Any(typeDefinition => typeDefinition.DoesSpecificTypeImplementInterface(parentInterfaceDef));
+                EnumerateBaseClasses(childType)
+                    .Any(typeDefinition => DoesSpecificTypeImplementInterface(typeDefinition, parentInterfaceDef));
         }
 
         /// <summary>
@@ -62,7 +83,7 @@ namespace PLUME.Editor.Core.Hooks
         {
             Debug.Assert(iface1.IsInterface);
             Debug.Assert(iface0.IsInterface);
-            return Equals(iface0, iface1) || iface0.DoesAnySubTypeImplementInterface(iface1);
+            return Equals(iface0, iface1) || DoesAnySubTypeImplementInterface(iface0, iface1);
         }
 
         /// <summary>
@@ -74,8 +95,8 @@ namespace PLUME.Editor.Core.Hooks
         public static bool IsAssignableFrom(this TypeDefinition target, TypeDefinition source)
             => target == source
                || Equals(target, source)
-               || source.IsSubclassOf(target)
-               || target.IsInterface && source.DoesAnySubTypeImplementInterface(target);
+               || IsSubclassOf(source, target)
+               || target.IsInterface && DoesAnySubTypeImplementInterface(source, target);
 
         /// <summary>
         /// Enumerate the current type, it's parent and all the way to the top type

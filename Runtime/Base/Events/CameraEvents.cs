@@ -6,9 +6,9 @@ using CameraType = UnityEngine.CameraType;
 using DepthTextureMode = UnityEngine.DepthTextureMode;
 using RenderingPath = UnityEngine.RenderingPath;
 
-namespace PLUME.Base.Hooks
+namespace PLUME.Base.Events
 {
-    public class CameraHooks
+    public class CameraEvents
     {
         public static Action<Camera, float> OnSetNearClipPlane;
         public static Action<Camera, float> OnSetFarClipPlane;

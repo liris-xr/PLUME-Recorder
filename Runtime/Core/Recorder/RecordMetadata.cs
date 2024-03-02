@@ -24,9 +24,9 @@ namespace PLUME.Core.Recorder
             StartTime = dateTime;
         }
 
-        public PLUME.Sample.RecordMetadata ToPayload()
+        public Sample.RecordMetadata ToPayload()
         {
-            return new PLUME.Sample.RecordMetadata
+            return new Sample.RecordMetadata
             {
                 Name = Name,
                 ExtraMetadata = ExtraMetadata,

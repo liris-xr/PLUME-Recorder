@@ -8,5 +8,10 @@ namespace PLUME.Base.Module.Unity.GameObject
         {
             
         }
+        
+        public void Dispose()
+        {
+            
+        }
     }
 }

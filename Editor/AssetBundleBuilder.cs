@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using CompressionLevel = System.IO.Compression.CompressionLevel;
+using Logger = PLUME.Core.Logger;
 
 namespace PLUME.Editor
 {
@@ -59,11 +60,22 @@ namespace PLUME.Editor
             const BuildAssetBundleOptions options = BuildAssetBundleOptions.ChunkBasedCompression;
             const BuildTarget target = BuildTarget.StandaloneWindows64;
 
-            Directory.CreateDirectory(outputPath);
-            CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, options, target);
+            var previousBuildTarget = EditorUserBuildSettings.activeBuildTarget;
+            
+            if (previousBuildTarget != target)
+            {
+                Logger.Log($"Please switch your platform to {target} to build the asset bundle.");
+            }
+            else
+            {
 
-            File.Delete(zipOutputPath);
-            ZipFile.CreateFromDirectory(outputPath, zipOutputPath, CompressionLevel.Optimal, false);
+                Directory.CreateDirectory(outputPath);
+                CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, options, target);
+
+                File.Delete(zipOutputPath);
+                ZipFile.CreateFromDirectory(outputPath, zipOutputPath, CompressionLevel.Optimal, false);
+                Logger.Log($"Asset bundle built at {zipOutputPath}");
+            }
         }
 
         private static bool CanAddAsset(ICollection<string> assetPaths, string assetPath)

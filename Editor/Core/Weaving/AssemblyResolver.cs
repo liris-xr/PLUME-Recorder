@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEditor.Compilation;
 using UnityEditorInternal;
 
-namespace PLUME.Editor.Core.Hooks
+namespace PLUME.Editor.Core.Events
 {
     public class AssemblyResolver : DefaultAssemblyResolver
     {

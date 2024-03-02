@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using PLUME.Base.Hooks;
-using PLUME.Core.Object.SafeRef;
+using PLUME.Base.Events;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Utils;
@@ -18,34 +17,11 @@ namespace PLUME.Base.Module.Unity.MeshFilter
         private readonly Dictionary<MeshFilterSafeRef, MeshFilterDestroy> _destroySamples = new();
         private readonly Dictionary<MeshFilterSafeRef, MeshFilterUpdate> _updateSamples = new();
 
-        // Keep track of the last mesh id to detect changes and create update only when necessary
-        private readonly Dictionary<MeshFilterSafeRef, IAssetSafeRef<Mesh>> _lastMesh = new();
-
         protected override void OnCreate(RecorderContext ctx)
         {
             base.OnCreate(ctx);
-            MeshFilterHooks.OnSetMesh += (mf, _) => OnMeshTouched(mf, ctx);
-            MeshFilterHooks.OnSetSharedMesh += (mf, _) => OnMeshTouched(mf, ctx);
-            MeshFilterHooks.OnGetMesh += (mf, _) => OnMeshTouched(mf, ctx);
-        }
-
-        protected override void OnStartRecordingObject(MeshFilterSafeRef objSafeRef, RecorderContext ctx)
-        {
-            base.OnStartRecordingObject(objSafeRef, ctx);
-            var meshAssetSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateAssetSafeRef(objSafeRef.Component.sharedMesh);
-            _lastMesh[objSafeRef] = meshAssetSafeRef;
-        }
-
-        protected override void OnStopRecordingObject(MeshFilterSafeRef objSafeRef, RecorderContext ctx)
-        {
-            base.OnStopRecordingObject(objSafeRef, ctx);
-            _lastMesh.Remove(objSafeRef);
-        }
-
-        protected override void OnStopRecording(RecorderContext ctx)
-        {
-            base.OnStopRecording(ctx);
-            _lastMesh.Clear();
+            MeshFilterEvents.OnMeshChanged += (mf, mesh) => OnMeshChanged(mf, mesh, ctx);
+            MeshFilterEvents.OnSharedMeshChanged += (mf, mesh) => OnMeshChanged(mf, mesh, ctx);
         }
 
         protected override void OnObjectMarkedCreated(MeshFilterSafeRef objSafeRef, RecorderContext ctx)
@@ -69,7 +45,7 @@ namespace PLUME.Base.Module.Unity.MeshFilter
         /// or when the <see cref="MeshFilter.mesh"/> property is queried, which might result in a mesh instantiation
         /// (cf. https://docs.unity3d.com/ScriptReference/MeshFilter-mesh.html).
         /// </summary>
-        private void OnMeshTouched(UnityEngine.MeshFilter meshFilter, RecorderContext ctx)
+        private void OnMeshChanged(UnityEngine.MeshFilter meshFilter, Mesh mesh, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
                 return;
@@ -78,19 +54,10 @@ namespace PLUME.Base.Module.Unity.MeshFilter
 
             if (!IsRecordingObject(objSafeRef))
                 return;
-
-            // When the mesh is instantiated (not shared with other mesh filters), the sharedMesh property points to the
-            // same instance as the mesh property. So we handle both cases at once.
-            var meshAssetSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateAssetSafeRef(objSafeRef.Component.sharedMesh);
-
-            // The mesh instance has not changed, no need to create an update sample.
-            if (_lastMesh[objSafeRef].Equals(meshAssetSafeRef))
-                return;
-
+            
+            var meshAssetSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateAssetSafeRef(mesh);
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.MeshId = meshAssetSafeRef.ToAssetIdentifierPayload();
-
-            _lastMesh[objSafeRef] = meshAssetSafeRef;
         }
 
         private MeshFilterUpdate GetOrCreateUpdateSample(MeshFilterSafeRef objSafeRef)

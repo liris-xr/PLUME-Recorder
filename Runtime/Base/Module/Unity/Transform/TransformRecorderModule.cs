@@ -1,4 +1,4 @@
-using PLUME.Base.Hooks;
+using PLUME.Base.Events;
 using PLUME.Base.Module.Unity.Transform.Job;
 using PLUME.Base.Module.Unity.Transform.Sample;
 using PLUME.Base.Module.Unity.Transform.State;
@@ -8,6 +8,7 @@ using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using Unity.Collections;
 using Unity.Jobs;
+using UnityEngine;
 using UnityEngine.Scripting;
 using TransformSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.Transform>;
 
@@ -41,17 +42,20 @@ namespace PLUME.Base.Module.Unity.Transform
             _alignedHierarchyStates = new NativeList<TransformHierarchyState>(1000, Allocator.Persistent);
             _alignedFlagsStates = new NativeList<TransformFlagsState>(1000, Allocator.Persistent);
             
-            GameObjectHooks.OnCreate += go => OnCreateGameObject(go, ctx);
-            TransformHooks.OnSetParent += (t, parent, _) => OnSetParent(t, parent, ctx);
-            TransformHooks.OnSetSiblingIndex += (t, siblingIdx) => OnSetSiblingIndex(t, siblingIdx, ctx);
+            GameObjectEvents.OnComponentAdded += (go, comp) => OnComponentAdded(go, comp, ctx);
+            TransformEvents.OnParentChanged += (t, parent) => OnParentChanged(t, parent, ctx);
+            TransformEvents.OnSiblingIndexChanged += (t, siblingIdx) => OnSiblingIndexChanged(t, siblingIdx, ctx);
         }
 
-        private void OnCreateGameObject(UnityEngine.GameObject go, RecorderContext ctx)
+        private void OnComponentAdded(UnityEngine.GameObject go, Component component, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
                 return;
+            
+            if(component is not UnityEngine.Transform t)
+                return;
 
-            var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
+            var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t);
 
             if (!IsRecordingObject(tSafeRef))
                 return;
@@ -127,7 +131,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _alignedFlagsStates.RemoveAtSwapBack(idx);
         }
 
-        private void OnSetParent(UnityEngine.Transform t, UnityEngine.Transform parent, RecorderContext ctx)
+        private void OnParentChanged(UnityEngine.Transform t, UnityEngine.Transform parent, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
                 return;
@@ -147,7 +151,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _alignedHierarchyStates[idx] = hierarchyState;
         }
 
-        private void OnSetSiblingIndex(UnityEngine.Transform t, int siblingIndex, RecorderContext ctx)
+        private void OnSiblingIndexChanged(UnityEngine.Transform t, int siblingIndex, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
                 return;

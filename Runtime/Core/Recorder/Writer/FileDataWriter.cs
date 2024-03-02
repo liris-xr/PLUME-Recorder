@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Linq;
 using Google.Protobuf;
-using Google.Protobuf.WellKnownTypes;
 using K4os.Compression.LZ4;
 using K4os.Compression.LZ4.Internal;
 using K4os.Compression.LZ4.Streams;
@@ -18,6 +17,7 @@ namespace PLUME.Core.Recorder.Writer
     {
         private readonly Stream _stream;
         private readonly Stream _metaStream;
+        private readonly CodedOutputStream _metaCodedOutputStream;
         
         private readonly Sample.RecordMetadata _metadata;
         private readonly RecordMetrics _metrics;
@@ -44,6 +44,7 @@ namespace PLUME.Core.Recorder.Writer
 
             _stream = LZ4Stream.Encode(File.Create(filePath), LZ4Level.L00_FAST);
             _metaStream = File.Create(metaFilePath);
+            _metaCodedOutputStream = new CodedOutputStream(_metaStream);
             
             _metadata = record.Metadata.ToPayload();
             _metrics = new RecordMetrics
@@ -100,14 +101,19 @@ namespace PLUME.Core.Recorder.Writer
         {
             _metaStream.SetLength(0);
             _metaStream.Position = 0;
-            _metadata.WriteDelimitedTo(_metaStream);
-            _metrics.WriteDelimitedTo(_metaStream);
+            _metaCodedOutputStream.WriteLength(_metadata.CalculateSize());
+            _metadata.WriteTo(_metaCodedOutputStream);
+            _metaCodedOutputStream.WriteLength(_metrics.CalculateSize());
+            _metrics.WriteTo(_metaCodedOutputStream);
+            _metaCodedOutputStream.Flush();
+            _metaStream.Flush();
         }
 
         public void Flush()
         {
             _stream.Flush();
             _metaStream.Flush();
+            _metaCodedOutputStream.Flush();
         }
 
         public void Close()
@@ -120,6 +126,7 @@ namespace PLUME.Core.Recorder.Writer
         {
             _stream.Dispose();
             _metaStream.Dispose();
+            _metaCodedOutputStream.Dispose();
         }
     }
 }

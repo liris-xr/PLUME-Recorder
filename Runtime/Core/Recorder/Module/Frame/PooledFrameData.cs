@@ -1,8 +1,6 @@
-using System;
-
 namespace PLUME.Core.Recorder.Module.Frame
 {
-    public abstract class PooledFrameData<T> : IFrameData, IDisposable where T : PooledFrameData<T>, new()
+    public abstract class PooledFrameData<T> : IFrameData where T : PooledFrameData<T>, new()
     {
         internal FrameDataPool<T> PoolInternal;
 

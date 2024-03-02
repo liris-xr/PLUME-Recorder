@@ -8,7 +8,6 @@ namespace PLUME.Base.Module.Unity.Camera
     {
         public static readonly FrameDataPool<CameraFrameData> Pool = new();
         
-        //Copy MeshFilterFrameData to CameraFrameData
         private readonly List<CameraCreate> _createSamples = new();
         private readonly List<CameraDestroy> _destroySamples = new();
         private readonly List<CameraUpdate> _updateSamples = new();

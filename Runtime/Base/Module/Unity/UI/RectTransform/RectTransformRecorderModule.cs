@@ -33,6 +33,7 @@ namespace PLUME.Base.Module.Unity.UI.RectTransform
             updateSample.AnchorMax = rectTransform.anchorMax.ToPayload();
             updateSample.Pivot = rectTransform.pivot.ToPayload();
             updateSample.SizeDelta = rectTransform.sizeDelta.ToPayload();
+            updateSample.AnchoredPosition = rectTransform.anchoredPosition.ToPayload();
             _createSamples[objSafeRef] = new RectTransformCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 

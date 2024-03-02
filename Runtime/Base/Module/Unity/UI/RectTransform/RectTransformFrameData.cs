@@ -47,6 +47,7 @@ namespace PLUME.Base.Module.Unity.UI.RectTransform
             _createSamples.Clear();
             _destroySamples.Clear();
             _updateSamples.Clear();
+            _transformUpdateSamples.Clear();
         }
     }
 }

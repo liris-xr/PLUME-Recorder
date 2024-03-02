@@ -25,22 +25,23 @@ namespace PLUME.Sample.Unity.UI {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChR1bml0eS91aS9pbWFnZS5wcm90bxIScGx1bWUuc2FtcGxlLnVuaXR5Ghd1",
-            "bml0eS9pZGVudGlmaWVycy5wcm90bxoUY29tbW9uL3ZlY3RvcjQucHJvdG8i",
-            "QgoLSW1hZ2VDcmVhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5p",
-            "dHkuQ29tcG9uZW50SWRlbnRpZmllciJDCgxJbWFnZURlc3Ryb3kSMwoCaWQY",
-            "ASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmll",
-            "ciLJAQoLSW1hZ2VVcGRhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUu",
-            "dW5pdHkuQ29tcG9uZW50SWRlbnRpZmllchIwCgVjb2xvchgCIAEoCzIcLnBs",
-            "dW1lLnNhbXBsZS5jb21tb24uVmVjdG9yNEgAiAEBEjsKCXNwcml0ZV9pZBgD",
-            "IAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZpZXJIAYgB",
-            "AUIICgZfY29sb3JCDAoKX3Nwcml0ZV9pZEIYqgIVUExVTUUuU2FtcGxlLlVu",
-            "aXR5LlVJYgZwcm90bzM="));
+            "bml0eS9pZGVudGlmaWVycy5wcm90bxoSY29tbW9uL2NvbG9yLnByb3RvIkIK",
+            "C0ltYWdlQ3JlYXRlEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5",
+            "LkNvbXBvbmVudElkZW50aWZpZXIiQwoMSW1hZ2VEZXN0cm95EjMKAmlkGAEg",
+            "ASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXIi",
+            "lgIKC0ltYWdlVXBkYXRlEjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVu",
+            "aXR5LkNvbXBvbmVudElkZW50aWZpZXISLgoFY29sb3IYAiABKAsyGi5wbHVt",
+            "ZS5zYW1wbGUuY29tbW9uLkNvbG9ySACIAQESOwoJc3ByaXRlX2lkGAMgASgL",
+            "MiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRpZmllckgBiAEBEj0K",
+            "C21hdGVyaWFsX2lkGAQgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0",
+            "SWRlbnRpZmllckgCiAEBQggKBl9jb2xvckIMCgpfc3ByaXRlX2lkQg4KDF9t",
+            "YXRlcmlhbF9pZEIYqgIVUExVTUUuU2FtcGxlLlVuaXR5LlVJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageCreate), global::PLUME.Sample.Unity.UI.ImageCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageDestroy), global::PLUME.Sample.Unity.UI.ImageDestroy.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageUpdate), global::PLUME.Sample.Unity.UI.ImageUpdate.Parser, new[]{ "Id", "Color", "SpriteId" }, new[]{ "Color", "SpriteId" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageUpdate), global::PLUME.Sample.Unity.UI.ImageUpdate.Parser, new[]{ "Id", "Color", "SpriteId", "MaterialId" }, new[]{ "Color", "SpriteId", "MaterialId" }, null, null, null)
           }));
     }
     #endregion
@@ -483,6 +484,7 @@ namespace PLUME.Sample.Unity.UI {
       id_ = other.id_ != null ? other.id_.Clone() : null;
       color_ = other.color_ != null ? other.color_.Clone() : null;
       spriteId_ = other.spriteId_ != null ? other.spriteId_.Clone() : null;
+      materialId_ = other.materialId_ != null ? other.materialId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -506,10 +508,10 @@ namespace PLUME.Sample.Unity.UI {
 
     /// <summary>Field number for the "color" field.</summary>
     public const int ColorFieldNumber = 2;
-    private global::PLUME.Sample.Common.Vector4 color_;
+    private global::PLUME.Sample.Common.Color color_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Vector4 Color {
+    public global::PLUME.Sample.Common.Color Color {
       get { return color_; }
       set {
         color_ = value;
@@ -525,6 +527,18 @@ namespace PLUME.Sample.Unity.UI {
       get { return spriteId_; }
       set {
         spriteId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "material_id" field.</summary>
+    public const int MaterialIdFieldNumber = 4;
+    private global::PLUME.Sample.Unity.AssetIdentifier materialId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.AssetIdentifier MaterialId {
+      get { return materialId_; }
+      set {
+        materialId_ = value;
       }
     }
 
@@ -546,6 +560,7 @@ namespace PLUME.Sample.Unity.UI {
       if (!object.Equals(Id, other.Id)) return false;
       if (!object.Equals(Color, other.Color)) return false;
       if (!object.Equals(SpriteId, other.SpriteId)) return false;
+      if (!object.Equals(MaterialId, other.MaterialId)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -556,6 +571,7 @@ namespace PLUME.Sample.Unity.UI {
       if (id_ != null) hash ^= Id.GetHashCode();
       if (color_ != null) hash ^= Color.GetHashCode();
       if (spriteId_ != null) hash ^= SpriteId.GetHashCode();
+      if (materialId_ != null) hash ^= MaterialId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -586,6 +602,10 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(26);
         output.WriteMessage(SpriteId);
       }
+      if (materialId_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(MaterialId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -608,6 +628,10 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(26);
         output.WriteMessage(SpriteId);
       }
+      if (materialId_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(MaterialId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -626,6 +650,9 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (spriteId_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(SpriteId);
+      }
+      if (materialId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MaterialId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -647,7 +674,7 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (other.color_ != null) {
         if (color_ == null) {
-          Color = new global::PLUME.Sample.Common.Vector4();
+          Color = new global::PLUME.Sample.Common.Color();
         }
         Color.MergeFrom(other.Color);
       }
@@ -656,6 +683,12 @@ namespace PLUME.Sample.Unity.UI {
           SpriteId = new global::PLUME.Sample.Unity.AssetIdentifier();
         }
         SpriteId.MergeFrom(other.SpriteId);
+      }
+      if (other.materialId_ != null) {
+        if (materialId_ == null) {
+          MaterialId = new global::PLUME.Sample.Unity.AssetIdentifier();
+        }
+        MaterialId.MergeFrom(other.MaterialId);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -681,7 +714,7 @@ namespace PLUME.Sample.Unity.UI {
           }
           case 18: {
             if (color_ == null) {
-              Color = new global::PLUME.Sample.Common.Vector4();
+              Color = new global::PLUME.Sample.Common.Color();
             }
             input.ReadMessage(Color);
             break;
@@ -691,6 +724,13 @@ namespace PLUME.Sample.Unity.UI {
               SpriteId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(SpriteId);
+            break;
+          }
+          case 34: {
+            if (materialId_ == null) {
+              MaterialId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(MaterialId);
             break;
           }
         }
@@ -717,7 +757,7 @@ namespace PLUME.Sample.Unity.UI {
           }
           case 18: {
             if (color_ == null) {
-              Color = new global::PLUME.Sample.Common.Vector4();
+              Color = new global::PLUME.Sample.Common.Color();
             }
             input.ReadMessage(Color);
             break;
@@ -727,6 +767,13 @@ namespace PLUME.Sample.Unity.UI {
               SpriteId = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(SpriteId);
+            break;
+          }
+          case 34: {
+            if (materialId_ == null) {
+              MaterialId = new global::PLUME.Sample.Unity.AssetIdentifier();
+            }
+            input.ReadMessage(MaterialId);
             break;
           }
         }

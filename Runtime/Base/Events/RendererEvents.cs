@@ -25,7 +25,6 @@ namespace PLUME.Base.Events
         public static event OnMaterialsChangedDelegate OnMaterialsChanged = delegate { };
         public static event OnMaterialsChangedDelegate OnSharedMaterialsChanged = delegate { };
         public static event OnPropertyBlockChangedDelegate OnPropertyBlockChanged = delegate { };
-
         public static event OnPropertyBlockMaterialIndexChangedDelegate OnPropertyBlockMaterialIndexChanged =
             delegate { };
 

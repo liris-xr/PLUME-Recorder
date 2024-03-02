@@ -1,91 +1,64 @@
 using System.Collections.Generic;
+using PLUME.Base.Module.Unity.UI.Canvas;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Utils;
-using PLUME.Sample.Unity;
+using PLUME.Sample.Unity.UI;
 using UnityEngine.Scripting;
-using CameraSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.Camera>;
+using CanvasSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.Canvas>;
 
-namespace PLUME.Base.Module.Unity.Camera
+namespace PLUME.Base.Module.Unity.Canvas
 {
     [Preserve]
-    public class CameraRecorderModule : ComponentRecorderModule<UnityEngine.Camera, CameraFrameData>
+    public class CanvasRecorderModule : ComponentRecorderModule<UnityEngine.Canvas, CanvasFrameData>
     {
-        private readonly Dictionary<CameraSafeRef, CameraCreate> _createSamples = new();
-        private readonly Dictionary<CameraSafeRef, CameraDestroy> _destroySamples = new();
-        private readonly Dictionary<CameraSafeRef, CameraUpdate> _updateSamples = new();
+        private readonly Dictionary<CanvasSafeRef, CanvasCreate> _createSamples = new();
+        private readonly Dictionary<CanvasSafeRef, CanvasDestroy> _destroySamples = new();
+        private readonly Dictionary<CanvasSafeRef, CanvasUpdate> _updateSamples = new();
 
-        protected override void OnObjectMarkedCreated(CameraSafeRef objSafeRef, RecorderContext ctx)
+        protected override void OnObjectMarkedCreated(CanvasSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
             
-            var camera = objSafeRef.Component;
+            var canvas = objSafeRef.Component;
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            updateSample.NearClipPlane = camera.nearClipPlane;
-            updateSample.FarClipPlane = camera.farClipPlane;
-            updateSample.FieldOfView = camera.fieldOfView;
-            updateSample.RenderingPath = camera.renderingPath.ToPayload();
-            updateSample.AllowHdr = camera.allowHDR;
-            updateSample.AllowMsaa = camera.allowMSAA;
-            updateSample.AllowDynamicResolution = camera.allowDynamicResolution;
-            updateSample.ForceIntoRenderTexture = camera.forceIntoRenderTexture;
-            updateSample.Orthographic = camera.orthographic;
-            updateSample.OrthographicSize = camera.orthographicSize;
-            updateSample.OpaqueSortMode = camera.opaqueSortMode.ToPayload();
-            updateSample.TransparencySortMode = camera.transparencySortMode.ToPayload();
-            updateSample.TransparencySortAxis = camera.transparencySortAxis.ToPayload();
-            updateSample.Depth = camera.depth;
-            updateSample.Aspect = camera.aspect;
-            updateSample.CullingMask = camera.cullingMask;
-            updateSample.EventMask = camera.eventMask;
-            updateSample.LayerCullSpherical = camera.layerCullSpherical;
-            updateSample.CameraType = camera.cameraType.ToPayload();
-            updateSample.LayerCullDistances = new CameraLayerCullDistances();
-            updateSample.LayerCullDistances.Distances.AddRange(camera.layerCullDistances);
-            updateSample.UseOcclusionCulling = camera.useOcclusionCulling;
-            updateSample.CullingMatrix = camera.cullingMatrix.ToPayload();
-            updateSample.BackgroundColor = camera.backgroundColor.ToPayload();
-            updateSample.ClearFlags = camera.clearFlags.ToPayload();
-            updateSample.DepthTextureMode = camera.depthTextureMode.ToPayload();
-            updateSample.ClearStencilAfterLightingPass = camera.clearStencilAfterLightingPass;
-            updateSample.UsePhysicalProperties = camera.usePhysicalProperties;
-            updateSample.SensorSize = camera.sensorSize.ToPayload();
-            updateSample.LensShift = camera.lensShift.ToPayload();
-            updateSample.FocalLength = camera.focalLength;
-            updateSample.GateFit = camera.gateFit.ToPayload();
-            updateSample.Rect = camera.rect.ToPayload();
-            updateSample.PixelRect = camera.pixelRect.ToPayload();
-            updateSample.TargetTextureId = camera.targetTexture.ToAssetIdentifierPayload();
-            updateSample.TargetDisplay = camera.targetDisplay;
-            updateSample.WorldToCameraMatrix = camera.worldToCameraMatrix.ToPayload();
-            updateSample.ProjectionMatrix = camera.projectionMatrix.ToPayload();
-            updateSample.NonJitteredProjectionMatrix = camera.nonJitteredProjectionMatrix.ToPayload();
-            updateSample.UseJitteredProjectionMatrixForTransparentRendering =
-                camera.useJitteredProjectionMatrixForTransparentRendering;
-            updateSample.StereoSeparation = camera.stereoSeparation;
-            updateSample.StereoConvergence = camera.stereoConvergence;
-            updateSample.StereoTargetEye = camera.stereoTargetEye.ToPayload();
-            _createSamples[objSafeRef] = new CameraCreate { Id = objSafeRef.ToIdentifierPayload() };
+            updateSample.RenderMode = canvas.renderMode.ToPayload();
+            updateSample.ScaleFactor = canvas.scaleFactor;
+            updateSample.ReferencePixelsPerUnit = canvas.referencePixelsPerUnit;
+            updateSample.OverridePixelPerfect = canvas.overridePixelPerfect;
+            updateSample.VertexColorAlwaysGammaSpace = canvas.vertexColorAlwaysGammaSpace;
+            updateSample.PixelPerfect = canvas.pixelPerfect;
+            updateSample.PlaneDistance = canvas.planeDistance;
+            updateSample.OverrideSorting = canvas.overrideSorting;
+            updateSample.SortingOrder = canvas.sortingOrder;
+            updateSample.TargetDisplay = canvas.targetDisplay;
+            updateSample.SortingLayerId = canvas.sortingLayerID;
+            updateSample.AdditionalShaderChannels = canvas.additionalShaderChannels.ToPayload();
+            updateSample.SortingLayerName = canvas.sortingLayerName;
+            updateSample.UpdateRectTransformForStandalone = canvas.updateRectTransformForStandalone.ToPayload();
+            updateSample.WorldCamera = canvas.worldCamera.ToIdentifierPayload();
+            updateSample.NormalizedSortingGridSize = canvas.normalizedSortingGridSize;
+            _createSamples[objSafeRef] = new CanvasCreate { Id = objSafeRef.ToIdentifierPayload() };
         }
 
-        protected override void OnObjectMarkedDestroyed(CameraSafeRef objSafeRef, RecorderContext ctx)
+        protected override void OnObjectMarkedDestroyed(CanvasSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new CameraDestroy { Id = objSafeRef.ToIdentifierPayload() };
+            _destroySamples[objSafeRef] = new CanvasDestroy { Id = objSafeRef.ToIdentifierPayload() };
         }
 
-        private CameraUpdate GetOrCreateUpdateSample(CameraSafeRef objSafeRef)
+        private CanvasUpdate GetOrCreateUpdateSample(CanvasSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new CameraUpdate { Id = objSafeRef.ToIdentifierPayload() };
+            sample = new CanvasUpdate { Id = objSafeRef.ToIdentifierPayload() };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }
 
-        protected override CameraFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        protected override CanvasFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
-            var frameData = CameraFrameData.Pool.Get();
+            var frameData = CanvasFrameData.Pool.Get();
             frameData.AddCreateSamples(_createSamples.Values);
             frameData.AddDestroySamples(_destroySamples.Values);
             frameData.AddUpdateSamples(_updateSamples.Values);

@@ -4,6 +4,7 @@ using PLUME.Sample.Common;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityRuntimeGuid;
+using AdditionalCanvasShaderChannels = PLUME.Sample.Unity.UI.AdditionalCanvasShaderChannels;
 using Bounds = PLUME.Sample.Common.Bounds;
 using CameraClearFlags = PLUME.Sample.Unity.CameraClearFlags;
 using CameraType = PLUME.Sample.Unity.CameraType;
@@ -24,6 +25,8 @@ using Vector3 = PLUME.Sample.Common.Vector3;
 using Vector4 = PLUME.Sample.Common.Vector4;
 using RenderingPath = PLUME.Sample.Unity.RenderingPath;
 using TransparencySortMode = PLUME.Sample.Unity.TransparencySortMode;
+using RenderMode = PLUME.Sample.Unity.UI.RenderMode;
+using StandaloneRenderResize = PLUME.Sample.Unity.UI.StandaloneRenderResize;
 #if URP_ENABLED
 using UnityEngine.Rendering.Universal;
 using AntialiasingMode = PLUME.Sample.Unity.AntialiasingMode;
@@ -71,7 +74,8 @@ namespace PLUME.Core.Utils
             };
         }
 
-        public static ComponentIdentifier ToIdentifierPayload<T>(this IComponentSafeRef<T> component) where T : Component
+        public static ComponentIdentifier ToIdentifierPayload<T>(this IComponentSafeRef<T> component)
+            where T : Component
         {
             return new ComponentIdentifier
             {
@@ -547,6 +551,41 @@ namespace PLUME.Core.Utils
                 UnityEngine.SceneManagement.LoadSceneMode.Additive => LoadSceneMode.Additive,
                 UnityEngine.SceneManagement.LoadSceneMode.Single => LoadSceneMode.Single,
                 _ => throw new ArgumentOutOfRangeException(nameof(loadSceneMode), loadSceneMode, null)
+            };
+        }
+
+        public static RenderMode ToPayload(this UnityEngine.RenderMode renderMode)
+        {
+            return renderMode switch
+            {
+                UnityEngine.RenderMode.ScreenSpaceOverlay => RenderMode.ScreenSpaceOverlay,
+                UnityEngine.RenderMode.ScreenSpaceCamera => RenderMode.ScreenSpaceCamera,
+                UnityEngine.RenderMode.WorldSpace => RenderMode.WorldSpace,
+                _ => throw new ArgumentOutOfRangeException(nameof(renderMode), renderMode, null)
+            };
+        }
+
+        public static StandaloneRenderResize ToPayload(this UnityEngine.StandaloneRenderResize renderResize)
+        {
+            return renderResize switch
+            {
+                UnityEngine.StandaloneRenderResize.Enabled => StandaloneRenderResize.Enabled,
+                UnityEngine.StandaloneRenderResize.Disabled => StandaloneRenderResize.Disabled,
+                _ => throw new ArgumentOutOfRangeException(nameof(renderResize), renderResize, null)
+            };
+        }
+        
+        public static AdditionalCanvasShaderChannels ToPayload(this UnityEngine.AdditionalCanvasShaderChannels additionalCanvasShaderChannels)
+        {
+            return additionalCanvasShaderChannels switch
+            {
+                UnityEngine.AdditionalCanvasShaderChannels.None => AdditionalCanvasShaderChannels.None,
+                UnityEngine.AdditionalCanvasShaderChannels.TexCoord1 => AdditionalCanvasShaderChannels.TexCoord1,
+                UnityEngine.AdditionalCanvasShaderChannels.TexCoord2 => AdditionalCanvasShaderChannels.TexCoord2,
+                UnityEngine.AdditionalCanvasShaderChannels.TexCoord3 => AdditionalCanvasShaderChannels.TexCoord3,
+                UnityEngine.AdditionalCanvasShaderChannels.Normal => AdditionalCanvasShaderChannels.Normal,
+                UnityEngine.AdditionalCanvasShaderChannels.Tangent => AdditionalCanvasShaderChannels.Tangent,
+                _ => throw new ArgumentOutOfRangeException(nameof(additionalCanvasShaderChannels), additionalCanvasShaderChannels, null)
             };
         }
 

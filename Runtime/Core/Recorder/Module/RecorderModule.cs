@@ -1,7 +1,4 @@
-using PLUME.Core.Recorder;
-using PLUME.Core.Recorder.Module;
-
-namespace PLUME.Base.Module
+namespace PLUME.Core.Recorder.Module
 {
     public abstract class RecorderModule : IRecorderModule
     {

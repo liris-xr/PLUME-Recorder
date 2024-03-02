@@ -1,9 +1,8 @@
-using PLUME.Core.Recorder.Module.Frame;
 using ProtoBurst;
 using Unity.Collections;
 using Unity.Jobs;
 
-namespace PLUME.Base.Module.Unity
+namespace PLUME.Core.Recorder.Module.Frame
 {
     public struct FrameDataBatchSerializer<TU> : IFrameDataBatchSerializer<TU> where TU : unmanaged, IProtoBurstMessage
     {

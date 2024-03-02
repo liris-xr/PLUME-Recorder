@@ -2,12 +2,10 @@ using System.Collections.Generic;
 using PLUME.Base.Events;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
-using PLUME.Core.Recorder;
-using PLUME.Core.Recorder.Module.Frame;
 using UnityEngine;
 using IdentifierHashSet = Unity.Collections.NativeHashSet<PLUME.Core.Object.ComponentIdentifier>;
 
-namespace PLUME.Base.Module.Unity
+namespace PLUME.Core.Recorder.Module.Frame
 {
     public abstract class
         ComponentRecorderModule<TC, TD> : ObjectRecorderModule<TC, ComponentIdentifier, IComponentSafeRef<TC>, TD>
@@ -44,7 +42,7 @@ namespace PLUME.Base.Module.Unity
             StartRecordingObject(objSafeRef, true, ctx);
         }
 
-        private void OnBeforeDestroyed(Object obj, RecorderContext ctx)
+        private void OnBeforeDestroyed(UnityEngine.Object obj, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
                 return;

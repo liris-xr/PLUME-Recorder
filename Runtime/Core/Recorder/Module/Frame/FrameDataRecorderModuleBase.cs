@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
-using PLUME.Core.Recorder;
-using PLUME.Core.Recorder.Module;
-using PLUME.Core.Recorder.Module.Frame;
 
-namespace PLUME.Base.Module.Unity
+namespace PLUME.Core.Recorder.Module.Frame
 {
     public abstract class FrameDataRecorderModuleBase<TFrameData> : IFrameDataRecorderModule
         where TFrameData : IFrameData

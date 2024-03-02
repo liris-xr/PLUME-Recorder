@@ -1,4 +1,3 @@
-using PLUME.Sample.ProtoBurst.Unity;
 using ProtoBurst;
 using ProtoBurst.Message;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
@@ -6,7 +5,7 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 
-namespace PLUME.Base.Module.Unity
+namespace PLUME.Core.Recorder.Module.Frame
 {
     [BurstCompile]
     public struct FrameDataBatchSerializeJob<T> : IJobParallelForBatch where T : unmanaged, IProtoBurstMessage
@@ -35,7 +34,7 @@ namespace PLUME.Base.Module.Unity
                 
                 batchBytes.Capacity = batchBytes.Length + serializedSampleSize;
                 
-                bufferWriter.WriteTag(Frame.DataFieldTag);
+                bufferWriter.WriteTag(Sample.ProtoBurst.Unity.Frame.DataFieldTag);
                 bufferWriter.WriteLength(Any.ComputeSize(SampleTypeUrlBytes.Length, sampleSize));
                 Any.WriteTo(ref SampleTypeUrlBytes, ref sample, ref bufferWriter);
             }

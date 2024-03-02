@@ -2,17 +2,13 @@ using System;
 using System.Collections.Generic;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
-using PLUME.Core.Recorder;
-using PLUME.Core.Recorder.Module;
-using PLUME.Core.Recorder.Module.Frame;
 using Unity.Collections;
-using Object = UnityEngine.Object;
 
-namespace PLUME.Base.Module.Unity
+namespace PLUME.Core.Recorder.Module.Frame
 {
     public abstract class ObjectRecorderModule<TObject, TObjectIdentifier, TObjectSafeRef, TFrameData> :
         IObjectRecorderModule, IFrameDataRecorderModule
-        where TObject : Object
+        where TObject : UnityEngine.Object
         where TObjectIdentifier : unmanaged, IObjectIdentifier, IEquatable<TObjectIdentifier>
         where TObjectSafeRef : IObjectSafeRef<TObjectIdentifier>
         where TFrameData : IFrameData

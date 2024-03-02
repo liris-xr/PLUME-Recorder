@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using PLUME.Base.Events;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity;
@@ -21,7 +22,10 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
         {
             base.OnCreate(ctx);
 
-            // SkinnedMeshRendererEvents.OnSetBones += (mr, bones) => OnSetBones(mr, bones, ctx);
+            SkinnedMeshRendererEvents.OnRootBoneChanged += (mr, rootBone) => OnRootBoneChanged(mr, rootBone, ctx);
+            SkinnedMeshRendererEvents.OnBonesChanged += (mr, bones) => OnBonesChanged(mr, bones, ctx);
+            SkinnedMeshRendererEvents.OnBlendShapeWeightChanged +=
+                (mr, index, value) => OnBlendShapeWeightChanged(mr, ctx);
         }
 
         protected override void OnObjectMarkedCreated(SkinnedMeshRendererSafeRef objSafeRef, RecorderContext ctx)
@@ -32,14 +36,27 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
             var rootBoneRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(objSafeRef.Component.rootBone);
 
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            updateSample.Bones = new SkinnedMeshRendererUpdate.Types.Bones();
             updateSample.MeshId = GetAssetIdentifierPayload(meshSafeRef);
-            updateSample.Bones.RootBoneId = GetComponentIdentifierPayload(rootBoneRef);
+
+            updateSample.RootBoneId = GetComponentIdentifierPayload(rootBoneRef);
+            updateSample.Bones = new SkinnedMeshRendererUpdate.Types.Bones();
 
             foreach (var bone in objSafeRef.Component.bones)
             {
                 var boneRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(bone);
-                updateSample.Bones.BonesIds.Add(GetComponentIdentifierPayload(boneRef));
+                updateSample.Bones.Ids.Add(GetComponentIdentifierPayload(boneRef));
+            }
+
+            updateSample.BlendShapeWeights = new SkinnedMeshRendererUpdate.Types.BlendShapeWeights();
+
+            for (var i = 0; i < objSafeRef.Component.sharedMesh.blendShapeCount; i++)
+            {
+                updateSample.BlendShapeWeights.Weights.Add(
+                    new SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight
+                    {
+                        Index = i,
+                        Weight = objSafeRef.Component.GetBlendShapeWeight(i)
+                    });
             }
 
             _createSamples[objSafeRef] = new SkinnedMeshRendererCreate
@@ -54,7 +71,31 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
                 { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 
-        private void OnSetBones(SkinnedMeshRenderer skinnedMeshRenderer, IEnumerable<UnityEngine.Transform> bones,
+        private void OnBlendShapeWeightChanged(SkinnedMeshRenderer skinnedMeshRenderer, RecorderContext ctx)
+        {
+            if (!ctx.IsRecording)
+                return;
+
+            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(skinnedMeshRenderer);
+
+            if (!IsRecordingObject(objSafeRef))
+                return;
+
+            var updateSample = GetOrCreateUpdateSample(objSafeRef);
+            updateSample.BlendShapeWeights = new SkinnedMeshRendererUpdate.Types.BlendShapeWeights();
+
+            for (var i = 0; i < objSafeRef.Component.sharedMesh.blendShapeCount; i++)
+            {
+                updateSample.BlendShapeWeights.Weights.Add(
+                    new SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight
+                    {
+                        Index = i,
+                        Weight = objSafeRef.Component.GetBlendShapeWeight(i)
+                    });
+            }
+        }
+
+        private void OnRootBoneChanged(SkinnedMeshRenderer skinnedMeshRenderer, UnityEngine.Transform rootBone,
             RecorderContext ctx)
         {
             if (!ctx.IsRecording)
@@ -65,18 +106,31 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
             if (!IsRecordingObject(objSafeRef))
                 return;
 
-            var rootBoneSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(objSafeRef.Component.rootBone);
+            var rootBoneSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(rootBone);
 
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            updateSample.Bones = new SkinnedMeshRendererUpdate.Types.Bones
-            {
-                RootBoneId = GetComponentIdentifierPayload(rootBoneSafeRef)
-            };
+            updateSample.RootBoneId = GetComponentIdentifierPayload(rootBoneSafeRef);
+        }
+
+        private void OnBonesChanged(SkinnedMeshRenderer skinnedMeshRenderer,
+            IEnumerable<UnityEngine.Transform> bones,
+            RecorderContext ctx)
+        {
+            if (!ctx.IsRecording)
+                return;
+
+            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(skinnedMeshRenderer);
+
+            if (!IsRecordingObject(objSafeRef))
+                return;
+
+            var updateSample = GetOrCreateUpdateSample(objSafeRef);
+            updateSample.Bones = new SkinnedMeshRendererUpdate.Types.Bones();
 
             foreach (var bone in bones)
             {
                 var boneSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(bone);
-                updateSample.Bones.BonesIds.Add(GetComponentIdentifierPayload(boneSafeRef));
+                updateSample.Bones.Ids.Add(GetComponentIdentifierPayload(boneSafeRef));
             }
         }
 

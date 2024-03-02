@@ -29,22 +29,30 @@ namespace PLUME.Sample.Unity {
             "ZE1lc2hSZW5kZXJlckNyZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBs",
             "ZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyIlEKGlNraW5uZWRNZXNoUmVu",
             "ZGVyZXJEZXN0cm95EjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5",
-            "LkNvbXBvbmVudElkZW50aWZpZXIi7wIKGVNraW5uZWRNZXNoUmVuZGVyZXJV",
+            "LkNvbXBvbmVudElkZW50aWZpZXIipQUKGVNraW5uZWRNZXNoUmVuZGVyZXJV",
             "cGRhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9u",
             "ZW50SWRlbnRpZmllchI5CgdtZXNoX2lkGAIgASgLMiMucGx1bWUuc2FtcGxl",
-            "LnVuaXR5LkFzc2V0SWRlbnRpZmllckgAiAEBEkcKBWJvbmVzGAMgASgLMjMu",
-            "cGx1bWUuc2FtcGxlLnVuaXR5LlNraW5uZWRNZXNoUmVuZGVyZXJVcGRhdGUu",
-            "Qm9uZXNIAYgBARqCAQoFQm9uZXMSOgoJYm9uZXNfaWRzGAEgAygLMicucGx1",
-            "bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXISPQoMcm9vdF9i",
-            "b25lX2lkGAIgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElk",
-            "ZW50aWZpZXJCCgoIX21lc2hfaWRCCAoGX2JvbmVzQhWqAhJQTFVNRS5TYW1w",
-            "bGUuVW5pdHliBnByb3RvMw=="));
+            "LnVuaXR5LkFzc2V0SWRlbnRpZmllckgAiAEBEkIKDHJvb3RfYm9uZV9pZBgD",
+            "IAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVy",
+            "SAGIAQESRwoFYm9uZXMYBCABKAsyMy5wbHVtZS5zYW1wbGUudW5pdHkuU2tp",
+            "bm5lZE1lc2hSZW5kZXJlclVwZGF0ZS5Cb25lc0gCiAEBEmEKE2JsZW5kX3No",
+            "YXBlX3dlaWdodHMYBSABKAsyPy5wbHVtZS5zYW1wbGUudW5pdHkuU2tpbm5l",
+            "ZE1lc2hSZW5kZXJlclVwZGF0ZS5CbGVuZFNoYXBlV2VpZ2h0c0gDiAEBGj0K",
+            "BUJvbmVzEjQKA2lkcxgBIAMoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
+            "b25lbnRJZGVudGlmaWVyGqkBChFCbGVuZFNoYXBlV2VpZ2h0cxJhCgd3ZWln",
+            "aHRzGAEgAygLMlAucGx1bWUuc2FtcGxlLnVuaXR5LlNraW5uZWRNZXNoUmVu",
+            "ZGVyZXJVcGRhdGUuQmxlbmRTaGFwZVdlaWdodHMuQmxlbmRTaGFwZVdlaWdo",
+            "dBoxChBCbGVuZFNoYXBlV2VpZ2h0Eg0KBWluZGV4GAEgASgFEg4KBndlaWdo",
+            "dBgCIAEoAkIKCghfbWVzaF9pZEIPCg1fcm9vdF9ib25lX2lkQggKBl9ib25l",
+            "c0IWChRfYmxlbmRfc2hhcGVfd2VpZ2h0c0IVqgISUExVTUUuU2FtcGxlLlVu",
+            "aXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererCreate), global::PLUME.Sample.Unity.SkinnedMeshRendererCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererDestroy), global::PLUME.Sample.Unity.SkinnedMeshRendererDestroy.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Parser, new[]{ "Id", "MeshId", "Bones" }, new[]{ "MeshId", "Bones" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones.Parser, new[]{ "BonesIds", "RootBoneId" }, null, null, null, null)})
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Parser, new[]{ "Id", "MeshId", "RootBoneId", "Bones", "BlendShapeWeights" }, new[]{ "MeshId", "RootBoneId", "Bones", "BlendShapeWeights" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones.Parser, new[]{ "Ids" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Parser, new[]{ "Weights" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight.Parser, new[]{ "Index", "Weight" }, null, null, null, null)})})
           }));
     }
     #endregion
@@ -486,7 +494,9 @@ namespace PLUME.Sample.Unity {
     public SkinnedMeshRendererUpdate(SkinnedMeshRendererUpdate other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
       meshId_ = other.meshId_ != null ? other.meshId_.Clone() : null;
+      rootBoneId_ = other.rootBoneId_ != null ? other.rootBoneId_.Clone() : null;
       bones_ = other.bones_ != null ? other.bones_.Clone() : null;
+      blendShapeWeights_ = other.blendShapeWeights_ != null ? other.blendShapeWeights_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -520,8 +530,20 @@ namespace PLUME.Sample.Unity {
       }
     }
 
+    /// <summary>Field number for the "root_bone_id" field.</summary>
+    public const int RootBoneIdFieldNumber = 3;
+    private global::PLUME.Sample.Unity.ComponentIdentifier rootBoneId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier RootBoneId {
+      get { return rootBoneId_; }
+      set {
+        rootBoneId_ = value;
+      }
+    }
+
     /// <summary>Field number for the "bones" field.</summary>
-    public const int BonesFieldNumber = 3;
+    public const int BonesFieldNumber = 4;
     private global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones bones_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -529,6 +551,18 @@ namespace PLUME.Sample.Unity {
       get { return bones_; }
       set {
         bones_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "blend_shape_weights" field.</summary>
+    public const int BlendShapeWeightsFieldNumber = 5;
+    private global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights blendShapeWeights_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights BlendShapeWeights {
+      get { return blendShapeWeights_; }
+      set {
+        blendShapeWeights_ = value;
       }
     }
 
@@ -549,7 +583,9 @@ namespace PLUME.Sample.Unity {
       }
       if (!object.Equals(Id, other.Id)) return false;
       if (!object.Equals(MeshId, other.MeshId)) return false;
+      if (!object.Equals(RootBoneId, other.RootBoneId)) return false;
       if (!object.Equals(Bones, other.Bones)) return false;
+      if (!object.Equals(BlendShapeWeights, other.BlendShapeWeights)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -559,7 +595,9 @@ namespace PLUME.Sample.Unity {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
       if (meshId_ != null) hash ^= MeshId.GetHashCode();
+      if (rootBoneId_ != null) hash ^= RootBoneId.GetHashCode();
       if (bones_ != null) hash ^= Bones.GetHashCode();
+      if (blendShapeWeights_ != null) hash ^= BlendShapeWeights.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -586,9 +624,17 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteMessage(MeshId);
       }
-      if (bones_ != null) {
+      if (rootBoneId_ != null) {
         output.WriteRawTag(26);
+        output.WriteMessage(RootBoneId);
+      }
+      if (bones_ != null) {
+        output.WriteRawTag(34);
         output.WriteMessage(Bones);
+      }
+      if (blendShapeWeights_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(BlendShapeWeights);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -608,9 +654,17 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteMessage(MeshId);
       }
-      if (bones_ != null) {
+      if (rootBoneId_ != null) {
         output.WriteRawTag(26);
+        output.WriteMessage(RootBoneId);
+      }
+      if (bones_ != null) {
+        output.WriteRawTag(34);
         output.WriteMessage(Bones);
+      }
+      if (blendShapeWeights_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(BlendShapeWeights);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -628,8 +682,14 @@ namespace PLUME.Sample.Unity {
       if (meshId_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(MeshId);
       }
+      if (rootBoneId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(RootBoneId);
+      }
       if (bones_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Bones);
+      }
+      if (blendShapeWeights_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(BlendShapeWeights);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -655,11 +715,23 @@ namespace PLUME.Sample.Unity {
         }
         MeshId.MergeFrom(other.MeshId);
       }
+      if (other.rootBoneId_ != null) {
+        if (rootBoneId_ == null) {
+          RootBoneId = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        RootBoneId.MergeFrom(other.RootBoneId);
+      }
       if (other.bones_ != null) {
         if (bones_ == null) {
           Bones = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones();
         }
         Bones.MergeFrom(other.Bones);
+      }
+      if (other.blendShapeWeights_ != null) {
+        if (blendShapeWeights_ == null) {
+          BlendShapeWeights = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights();
+        }
+        BlendShapeWeights.MergeFrom(other.BlendShapeWeights);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -691,10 +763,24 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 26: {
+            if (rootBoneId_ == null) {
+              RootBoneId = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(RootBoneId);
+            break;
+          }
+          case 34: {
             if (bones_ == null) {
               Bones = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones();
             }
             input.ReadMessage(Bones);
+            break;
+          }
+          case 42: {
+            if (blendShapeWeights_ == null) {
+              BlendShapeWeights = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights();
+            }
+            input.ReadMessage(BlendShapeWeights);
             break;
           }
         }
@@ -727,10 +813,24 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 26: {
+            if (rootBoneId_ == null) {
+              RootBoneId = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(RootBoneId);
+            break;
+          }
+          case 34: {
             if (bones_ == null) {
               Bones = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones();
             }
             input.ReadMessage(Bones);
+            break;
+          }
+          case 42: {
+            if (blendShapeWeights_ == null) {
+              BlendShapeWeights = new global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights();
+            }
+            input.ReadMessage(BlendShapeWeights);
             break;
           }
         }
@@ -778,8 +878,7 @@ namespace PLUME.Sample.Unity {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public Bones(Bones other) : this() {
-          bonesIds_ = other.bonesIds_.Clone();
-          rootBoneId_ = other.rootBoneId_ != null ? other.rootBoneId_.Clone() : null;
+          ids_ = other.ids_.Clone();
           _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -789,27 +888,15 @@ namespace PLUME.Sample.Unity {
           return new Bones(this);
         }
 
-        /// <summary>Field number for the "bones_ids" field.</summary>
-        public const int BonesIdsFieldNumber = 1;
-        private static readonly pb::FieldCodec<global::PLUME.Sample.Unity.ComponentIdentifier> _repeated_bonesIds_codec
+        /// <summary>Field number for the "ids" field.</summary>
+        public const int IdsFieldNumber = 1;
+        private static readonly pb::FieldCodec<global::PLUME.Sample.Unity.ComponentIdentifier> _repeated_ids_codec
             = pb::FieldCodec.ForMessage(10, global::PLUME.Sample.Unity.ComponentIdentifier.Parser);
-        private readonly pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier> bonesIds_ = new pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier>();
+        private readonly pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier> ids_ = new pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier>();
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier> BonesIds {
-          get { return bonesIds_; }
-        }
-
-        /// <summary>Field number for the "root_bone_id" field.</summary>
-        public const int RootBoneIdFieldNumber = 2;
-        private global::PLUME.Sample.Unity.ComponentIdentifier rootBoneId_;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public global::PLUME.Sample.Unity.ComponentIdentifier RootBoneId {
-          get { return rootBoneId_; }
-          set {
-            rootBoneId_ = value;
-          }
+        public pbc::RepeatedField<global::PLUME.Sample.Unity.ComponentIdentifier> Ids {
+          get { return ids_; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -827,8 +914,7 @@ namespace PLUME.Sample.Unity {
           if (ReferenceEquals(other, this)) {
             return true;
           }
-          if(!bonesIds_.Equals(other.bonesIds_)) return false;
-          if (!object.Equals(RootBoneId, other.RootBoneId)) return false;
+          if(!ids_.Equals(other.ids_)) return false;
           return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -836,8 +922,7 @@ namespace PLUME.Sample.Unity {
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public override int GetHashCode() {
           int hash = 1;
-          hash ^= bonesIds_.GetHashCode();
-          if (rootBoneId_ != null) hash ^= RootBoneId.GetHashCode();
+          hash ^= ids_.GetHashCode();
           if (_unknownFields != null) {
             hash ^= _unknownFields.GetHashCode();
           }
@@ -856,11 +941,7 @@ namespace PLUME.Sample.Unity {
         #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           output.WriteRawMessage(this);
         #else
-          bonesIds_.WriteTo(output, _repeated_bonesIds_codec);
-          if (rootBoneId_ != null) {
-            output.WriteRawTag(18);
-            output.WriteMessage(RootBoneId);
-          }
+          ids_.WriteTo(output, _repeated_ids_codec);
           if (_unknownFields != null) {
             _unknownFields.WriteTo(output);
           }
@@ -871,11 +952,7 @@ namespace PLUME.Sample.Unity {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-          bonesIds_.WriteTo(ref output, _repeated_bonesIds_codec);
-          if (rootBoneId_ != null) {
-            output.WriteRawTag(18);
-            output.WriteMessage(RootBoneId);
-          }
+          ids_.WriteTo(ref output, _repeated_ids_codec);
           if (_unknownFields != null) {
             _unknownFields.WriteTo(ref output);
           }
@@ -886,10 +963,7 @@ namespace PLUME.Sample.Unity {
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public int CalculateSize() {
           int size = 0;
-          size += bonesIds_.CalculateSize(_repeated_bonesIds_codec);
-          if (rootBoneId_ != null) {
-            size += 1 + pb::CodedOutputStream.ComputeMessageSize(RootBoneId);
-          }
+          size += ids_.CalculateSize(_repeated_ids_codec);
           if (_unknownFields != null) {
             size += _unknownFields.CalculateSize();
           }
@@ -902,13 +976,7 @@ namespace PLUME.Sample.Unity {
           if (other == null) {
             return;
           }
-          bonesIds_.Add(other.bonesIds_);
-          if (other.rootBoneId_ != null) {
-            if (rootBoneId_ == null) {
-              RootBoneId = new global::PLUME.Sample.Unity.ComponentIdentifier();
-            }
-            RootBoneId.MergeFrom(other.RootBoneId);
-          }
+          ids_.Add(other.ids_);
           _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
 
@@ -925,14 +993,7 @@ namespace PLUME.Sample.Unity {
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
               case 10: {
-                bonesIds_.AddEntriesFrom(input, _repeated_bonesIds_codec);
-                break;
-              }
-              case 18: {
-                if (rootBoneId_ == null) {
-                  RootBoneId = new global::PLUME.Sample.Unity.ComponentIdentifier();
-                }
-                input.ReadMessage(RootBoneId);
+                ids_.AddEntriesFrom(input, _repeated_ids_codec);
                 break;
               }
             }
@@ -951,20 +1012,427 @@ namespace PLUME.Sample.Unity {
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
               case 10: {
-                bonesIds_.AddEntriesFrom(ref input, _repeated_bonesIds_codec);
-                break;
-              }
-              case 18: {
-                if (rootBoneId_ == null) {
-                  RootBoneId = new global::PLUME.Sample.Unity.ComponentIdentifier();
-                }
-                input.ReadMessage(RootBoneId);
+                ids_.AddEntriesFrom(ref input, _repeated_ids_codec);
                 break;
               }
             }
           }
         }
         #endif
+
+      }
+
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+      public sealed partial class BlendShapeWeights : pb::IMessage<BlendShapeWeights>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<BlendShapeWeights> _parser = new pb::MessageParser<BlendShapeWeights>(() => new BlendShapeWeights());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<BlendShapeWeights> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Descriptor.NestedTypes[1]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public BlendShapeWeights() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public BlendShapeWeights(BlendShapeWeights other) : this() {
+          weights_ = other.weights_.Clone();
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public BlendShapeWeights Clone() {
+          return new BlendShapeWeights(this);
+        }
+
+        /// <summary>Field number for the "weights" field.</summary>
+        public const int WeightsFieldNumber = 1;
+        private static readonly pb::FieldCodec<global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight> _repeated_weights_codec
+            = pb::FieldCodec.ForMessage(10, global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight.Parser);
+        private readonly pbc::RepeatedField<global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight> weights_ = new pbc::RepeatedField<global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public pbc::RepeatedField<global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight> Weights {
+          get { return weights_; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as BlendShapeWeights);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(BlendShapeWeights other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if(!weights_.Equals(other.weights_)) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          hash ^= weights_.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          weights_.WriteTo(output, _repeated_weights_codec);
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          weights_.WriteTo(ref output, _repeated_weights_codec);
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          size += weights_.CalculateSize(_repeated_weights_codec);
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(BlendShapeWeights other) {
+          if (other == null) {
+            return;
+          }
+          weights_.Add(other.weights_);
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 10: {
+                weights_.AddEntriesFrom(input, _repeated_weights_codec);
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 10: {
+                weights_.AddEntriesFrom(ref input, _repeated_weights_codec);
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+        #region Nested types
+        /// <summary>Container for nested types declared in the BlendShapeWeights message type.</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static partial class Types {
+          [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+          public sealed partial class BlendShapeWeight : pb::IMessage<BlendShapeWeight>
+          #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              , pb::IBufferMessage
+          #endif
+          {
+            private static readonly pb::MessageParser<BlendShapeWeight> _parser = new pb::MessageParser<BlendShapeWeight>(() => new BlendShapeWeight());
+            private pb::UnknownFieldSet _unknownFields;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public static pb::MessageParser<BlendShapeWeight> Parser { get { return _parser; } }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public static pbr::MessageDescriptor Descriptor {
+              get { return global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Descriptor.NestedTypes[0]; }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            pbr::MessageDescriptor pb::IMessage.Descriptor {
+              get { return Descriptor; }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public BlendShapeWeight() {
+              OnConstruction();
+            }
+
+            partial void OnConstruction();
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public BlendShapeWeight(BlendShapeWeight other) : this() {
+              index_ = other.index_;
+              weight_ = other.weight_;
+              _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public BlendShapeWeight Clone() {
+              return new BlendShapeWeight(this);
+            }
+
+            /// <summary>Field number for the "index" field.</summary>
+            public const int IndexFieldNumber = 1;
+            private int index_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public int Index {
+              get { return index_; }
+              set {
+                index_ = value;
+              }
+            }
+
+            /// <summary>Field number for the "weight" field.</summary>
+            public const int WeightFieldNumber = 2;
+            private float weight_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public float Weight {
+              get { return weight_; }
+              set {
+                weight_ = value;
+              }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override bool Equals(object other) {
+              return Equals(other as BlendShapeWeight);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public bool Equals(BlendShapeWeight other) {
+              if (ReferenceEquals(other, null)) {
+                return false;
+              }
+              if (ReferenceEquals(other, this)) {
+                return true;
+              }
+              if (Index != other.Index) return false;
+              if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Weight, other.Weight)) return false;
+              return Equals(_unknownFields, other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override int GetHashCode() {
+              int hash = 1;
+              if (Index != 0) hash ^= Index.GetHashCode();
+              if (Weight != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Weight);
+              if (_unknownFields != null) {
+                hash ^= _unknownFields.GetHashCode();
+              }
+              return hash;
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override string ToString() {
+              return pb::JsonFormatter.ToDiagnosticString(this);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void WriteTo(pb::CodedOutputStream output) {
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              output.WriteRawMessage(this);
+            #else
+              if (Index != 0) {
+                output.WriteRawTag(8);
+                output.WriteInt32(Index);
+              }
+              if (Weight != 0F) {
+                output.WriteRawTag(21);
+                output.WriteFloat(Weight);
+              }
+              if (_unknownFields != null) {
+                _unknownFields.WriteTo(output);
+              }
+            #endif
+            }
+
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+              if (Index != 0) {
+                output.WriteRawTag(8);
+                output.WriteInt32(Index);
+              }
+              if (Weight != 0F) {
+                output.WriteRawTag(21);
+                output.WriteFloat(Weight);
+              }
+              if (_unknownFields != null) {
+                _unknownFields.WriteTo(ref output);
+              }
+            }
+            #endif
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public int CalculateSize() {
+              int size = 0;
+              if (Index != 0) {
+                size += 1 + pb::CodedOutputStream.ComputeInt32Size(Index);
+              }
+              if (Weight != 0F) {
+                size += 1 + 4;
+              }
+              if (_unknownFields != null) {
+                size += _unknownFields.CalculateSize();
+              }
+              return size;
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void MergeFrom(BlendShapeWeight other) {
+              if (other == null) {
+                return;
+              }
+              if (other.Index != 0) {
+                Index = other.Index;
+              }
+              if (other.Weight != 0F) {
+                Weight = other.Weight;
+              }
+              _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void MergeFrom(pb::CodedInputStream input) {
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              input.ReadRawMessage(this);
+            #else
+              uint tag;
+              while ((tag = input.ReadTag()) != 0) {
+                switch(tag) {
+                  default:
+                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                    break;
+                  case 8: {
+                    Index = input.ReadInt32();
+                    break;
+                  }
+                  case 21: {
+                    Weight = input.ReadFloat();
+                    break;
+                  }
+                }
+              }
+            #endif
+            }
+
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+              uint tag;
+              while ((tag = input.ReadTag()) != 0) {
+                switch(tag) {
+                  default:
+                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                    break;
+                  case 8: {
+                    Index = input.ReadInt32();
+                    break;
+                  }
+                  case 21: {
+                    Weight = input.ReadFloat();
+                    break;
+                  }
+                }
+              }
+            }
+            #endif
+
+          }
+
+        }
+        #endregion
 
       }
 

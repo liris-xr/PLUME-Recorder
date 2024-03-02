@@ -26,7 +26,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             GameObjectEvents.OnComponentAdded += (go, component) => OnComponentAdded(go, component, ctx);
         }
 
-        private void OnComponentAdded(UnityEngine.GameObject go, Component component, RecorderContext ctx)
+        private void OnComponentAdded(GameObject go, Component component, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
                 return;

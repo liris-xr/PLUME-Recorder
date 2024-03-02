@@ -2,27 +2,27 @@ using System.Collections.Generic;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity.UI;
 
-namespace PLUME.Base.Module.Unity.UI.Image
+namespace PLUME.Base.Module.Unity.UI.CanvasRenderer
 {
-    public class ImageFrameData : PooledFrameData<ImageFrameData>
+    public class CanvasRendererFrameData : PooledFrameData<CanvasRendererFrameData>
     {
-        public static readonly FrameDataPool<ImageFrameData> Pool = new();
+        public static readonly FrameDataPool<CanvasRendererFrameData> Pool = new();
 
-        private readonly List<ImageCreate> _createSamples = new();
-        private readonly List<ImageDestroy> _destroySamples = new();
-        private readonly List<ImageUpdate> _updateSamples = new();
+        private readonly List<CanvasRendererCreate> _createSamples = new();
+        private readonly List<CanvasRendererDestroy> _destroySamples = new();
+        private readonly List<CanvasRendererUpdate> _updateSamples = new();
 
-        public void AddCreateSamples(IEnumerable<ImageCreate> samples)
+        public void AddCreateSamples(IEnumerable<CanvasRendererCreate> samples)
         {
             _createSamples.AddRange(samples);
         }
 
-        public void AddDestroySamples(IEnumerable<ImageDestroy> samples)
+        public void AddDestroySamples(IEnumerable<CanvasRendererDestroy> samples)
         {
             _destroySamples.AddRange(samples);
         }
 
-        public void AddUpdateSamples(IEnumerable<ImageUpdate> samples)
+        public void AddUpdateSamples(IEnumerable<CanvasRendererUpdate> samples)
         {
             _updateSamples.AddRange(samples);
         }

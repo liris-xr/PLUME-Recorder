@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using PLUME.Base.Events;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity.UI;
@@ -7,10 +6,10 @@ using UnityEngine.Scripting;
 using ImageSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.UI.Image>;
 using static PLUME.Core.Utils.SampleUtils;
 
-namespace PLUME.Base.Module.Unity.UI.Image
+namespace PLUME.Base.Module.Unity.UI.Graphics.Image
 {
     [Preserve]
-    public class ImageRecorderModule : ComponentRecorderModule<UnityEngine.UI.Image, ImageFrameData>
+    public class ImageRecorderModule : GraphicRecorderModule<UnityEngine.UI.Image, ImageFrameData>
     {
         private readonly Dictionary<ImageSafeRef, ImageCreate> _createSamples = new();
         private readonly Dictionary<ImageSafeRef, ImageDestroy> _destroySamples = new();
@@ -23,8 +22,7 @@ namespace PLUME.Base.Module.Unity.UI.Image
             var image = objSafeRef.Component;
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.SpriteId = GetAssetIdentifierPayload(image.sprite);
-            updateSample.MaterialId = GetAssetIdentifierPayload(image.material);
-            updateSample.Color = image.color.ToPayload();
+            updateSample.Type = image.type.ToPayload();
             _createSamples[objSafeRef] = new ImageCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 
@@ -49,6 +47,7 @@ namespace PLUME.Base.Module.Unity.UI.Image
             frameData.AddCreateSamples(_createSamples.Values);
             frameData.AddDestroySamples(_destroySamples.Values);
             frameData.AddUpdateSamples(_updateSamples.Values);
+            frameData.AddGraphicUpdateSamples(GetGraphicUpdateSamples());
             return frameData;
         }
 

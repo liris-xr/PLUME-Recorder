@@ -58,9 +58,9 @@ namespace PLUME.Core.Utils
 
         public static AssetIdentifier GetAssetIdentifierPayload(UnityEngine.Object obj)
         {
-            if(obj == null)
+            if (obj == null)
                 return NullAssetIdentifierPayload;
-            
+
             var guidRegistry = AssetsGuidRegistry.GetOrCreate();
             var guidRegistryEntry = guidRegistry.GetOrCreateEntry(obj);
 
@@ -70,26 +70,26 @@ namespace PLUME.Core.Utils
                 Path = guidRegistryEntry.assetBundlePath
             };
         }
-        
+
         public static AssetIdentifier GetAssetIdentifierPayload(IAssetSafeRef asset)
         {
             if (asset.IsNull)
             {
                 return NullAssetIdentifierPayload;
             }
-            
+
             return new AssetIdentifier
             {
                 Id = asset.Identifier.AssetId.Guid.ToString(),
                 Path = asset.Identifier.AssetPath.ToString()
             };
         }
-        
+
         public static ComponentIdentifier GetComponentIdentifierPayload(Component component)
         {
-            if(component == null)
+            if (component == null)
                 return NullComponentIdentifierPayload;
-            
+
             var guidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
             var componentGuidRegistryEntry = guidRegistry.GetOrCreateEntry(component);
 
@@ -99,14 +99,14 @@ namespace PLUME.Core.Utils
                 ParentId = GetGameObjectIdentifierPayload(component.gameObject)
             };
         }
-        
+
         public static ComponentIdentifier GetComponentIdentifierPayload(IComponentSafeRef component)
         {
             if (component.IsNull)
             {
                 return NullComponentIdentifierPayload;
             }
-            
+
             return new ComponentIdentifier
             {
                 ComponentId = component.Identifier.ComponentId.Guid.ToString(),
@@ -117,12 +117,12 @@ namespace PLUME.Core.Utils
                 }
             };
         }
-        
+
         public static GameObjectIdentifier GetGameObjectIdentifierPayload(GameObject go)
         {
-            if(go == null)
+            if (go == null)
                 return NullGameObjectIdentifierPayload;
-            
+
             var guidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
             var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go);
             var transformGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go.transform);
@@ -140,7 +140,7 @@ namespace PLUME.Core.Utils
             {
                 return NullGameObjectIdentifierPayload;
             }
-            
+
             return new GameObjectIdentifier
             {
                 GameObjectId = go.Identifier.GameObjectId.Guid.ToString(),
@@ -651,6 +651,29 @@ namespace PLUME.Core.Utils
                 UnityEngine.VerticalWrapMode.Truncate => VerticalWrapMode.Truncate,
                 UnityEngine.VerticalWrapMode.Overflow => VerticalWrapMode.Overflow,
                 _ => throw new ArgumentOutOfRangeException(nameof(verticalWrapMode), verticalWrapMode, null)
+            };
+        }
+
+        public static ImageType ToPayload(this Image.Type imageType)
+        {
+            return imageType switch
+            {
+                Image.Type.Simple => ImageType.Simple,
+                Image.Type.Sliced => ImageType.Sliced,
+                Image.Type.Tiled => ImageType.Tiled,
+                Image.Type.Filled => ImageType.Filled,
+                _ => throw new ArgumentOutOfRangeException(nameof(imageType), imageType, null)
+            };
+        }
+
+        public static FitMode ToPayload(this ContentSizeFitter.FitMode fitMode)
+        {
+            return fitMode switch
+            {
+                ContentSizeFitter.FitMode.Unconstrained => FitMode.Unconstrained,
+                ContentSizeFitter.FitMode.MinSize => FitMode.MinSize,
+                ContentSizeFitter.FitMode.PreferredSize => FitMode.PrefSize,
+                _ => throw new ArgumentOutOfRangeException(nameof(fitMode), fitMode, null)
             };
         }
 

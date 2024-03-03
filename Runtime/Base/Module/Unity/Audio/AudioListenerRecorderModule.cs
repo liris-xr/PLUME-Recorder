@@ -14,7 +14,7 @@ using Object = UnityEngine.Object;
 namespace PLUME.Base.Module.Unity.Audio
 {
     [Preserve]
-    public class AudioRecorderModule : IRecorderModule
+    public class AudioRecorderModule : RecorderModule
     {
         private WaveFileWriter _audioFileWriter;
         private AudioListener _audioListener;
@@ -27,8 +27,10 @@ namespace PLUME.Base.Module.Unity.Audio
 
         private readonly BlockingCollection<AudioSamples> _audioSamplesQueue = new(new ConcurrentQueue<AudioSamples>());
 
-        void IRecorderModule.StartRecording(RecorderContext ctx)
+        protected override void OnStartRecording(RecorderContext ctx)
         {
+            base.OnStartRecording(ctx);
+            
             var audioListeners =
                 Object.FindObjectsByType<AudioListener>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
 
@@ -48,8 +50,10 @@ namespace PLUME.Base.Module.Unity.Audio
             StartRecordingAudio(ctx);
         }
 
-        void IRecorderModule.StopRecording(RecorderContext ctx)
+        protected override void OnStopRecording(RecorderContext ctx)
         {
+            base.OnStopRecording(ctx);
+            
             if (_audioListener == null)
                 return;
 
@@ -181,18 +185,6 @@ namespace PLUME.Base.Module.Unity.Audio
                 AudioSpeakerMode.Prologic => 2,
                 _ => throw new ArgumentOutOfRangeException()
             };
-        }
-
-        void IRecorderModule.Create(RecorderContext ctx)
-        {
-        }
-
-        void IRecorderModule.Destroy(RecorderContext ctx)
-        {
-        }
-
-        void IRecorderModule.Awake(RecorderContext ctx)
-        {
         }
     }
 }

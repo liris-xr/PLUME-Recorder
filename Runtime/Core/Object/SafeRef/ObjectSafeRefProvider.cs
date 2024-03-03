@@ -32,7 +32,8 @@ namespace PLUME.Core.Object.SafeRef
             var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
             var goRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go);
             var transformRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go.transform);
-            var goGuid = new Guid(goRegistryEntry.guid);
+            var guidStr = goRegistryEntry.guid.Replace("-", "");
+            var goGuid = new Guid(guidStr);
             var transformGuid = new Guid(transformRegistryEntry.guid);
             goRef = new GameObjectSafeRef(go, goGuid, transformGuid);
             _cachedRefs[instanceId] = goRef;
@@ -56,7 +57,8 @@ namespace PLUME.Core.Object.SafeRef
             var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
             var guidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(component);
             var gameObjectRef = GetOrCreateGameObjectSafeRef(component.gameObject);
-            var goGuid = new Guid(guidRegistryEntry.guid);
+            var guidStr = guidRegistryEntry.guid.Replace("-", "");
+            var goGuid = new Guid(guidStr);
             componentSafeRef = CreateComponentSafeRef(component, gameObjectRef, goGuid);
             _cachedRefs[instanceId] = componentSafeRef;
             return componentSafeRef;
@@ -75,7 +77,8 @@ namespace PLUME.Core.Object.SafeRef
             var assetsGuidRegistry = AssetsGuidRegistry.GetOrCreate();
             var assetsGuidRegistryEntry = assetsGuidRegistry.GetOrCreateEntry(asset);
             var assetBundlePath = new FixedString512Bytes(assetsGuidRegistryEntry.assetBundlePath);
-            var assetGuid = new Guid(assetsGuidRegistryEntry.guid);
+            var guidStr = assetsGuidRegistryEntry.guid.Replace("-", "");
+            var assetGuid = new Guid(guidStr);
             assetSafeRef = CreateAssetObjectSafeRef(asset, assetGuid, assetBundlePath);
             _cachedRefs[instanceId] = assetSafeRef;
             return assetSafeRef;

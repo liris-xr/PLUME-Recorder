@@ -33,7 +33,7 @@ namespace PLUME.Base.Module.LSL
         private ObjectPool<RepeatedString> _repeatedStringPool;
 
         private SampleTypeUrl _streamSampleType;
-        
+
         private readonly List<BufferedInlet> _resolvedStreams = new();
         private Thread _streamResolverThread;
         private Thread _streamRecorderThread;
@@ -59,7 +59,7 @@ namespace PLUME.Base.Module.LSL
             _repeatedFloatPool = new ObjectPool<RepeatedFloat>(() => new RepeatedFloat(), s => s.Value.Clear());
             _repeatedDoublePool = new ObjectPool<RepeatedDouble>(() => new RepeatedDouble(), s => s.Value.Clear());
             _repeatedStringPool = new ObjectPool<RepeatedString>(() => new RepeatedString(), s => s.Value.Clear());
-            
+
             _streamSampleType = SampleTypeUrl.Alloc(StreamSample.Descriptor, Allocator.Persistent);
             _tmpMemoryStream = new MemoryStream(SerializationBufferSize);
             _tmpCodedOutputStream = new CodedOutputStream(_tmpMemoryStream);
@@ -70,7 +70,7 @@ namespace PLUME.Base.Module.LSL
             base.OnDestroy(ctx);
             _streamSampleType.Dispose();
         }
-        
+
         protected override void OnStartRecording(RecorderContext ctx)
         {
             base.OnStartRecording(ctx);
@@ -278,64 +278,79 @@ namespace PLUME.Base.Module.LSL
             ctx.CurrentRecord.RecordTimestampedManagedSample(streamClose, plumeTimestamp);
             _streamInfoPool.Release(streamInfo);
         }
-        
-        private void RecordStreamSampleChunk(BufferedInlet inlet, int nSamples, Array channelValues, double[] sampleTimestamps,
+
+        private void RecordStreamSampleChunk(BufferedInlet inlet, int nSamples, Array channelValues,
+            double[] sampleTimestamps,
             RecorderContext ctx)
         {
             for (var i = 0; i < nSamples; i++)
             {
                 var streamSample = _streamSamplePool.Get();
-                
+
                 switch (inlet.ChannelFormat)
                 {
                     case channel_format_t.cf_float32:
                         streamSample.FloatValue = _repeatedFloatPool.Get();
-                        for(var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
+                        for (var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
                         {
-                            streamSample.FloatValue.Value.Add(((float[])channelValues)[i * inlet.ChannelCount + channelIdx]);
+                            streamSample.FloatValue.Value.Add(
+                                ((float[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
+
                         break;
                     case channel_format_t.cf_double64:
                         streamSample.DoubleValue = _repeatedDoublePool.Get();
-                        for(var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
+                        for (var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
                         {
-                            streamSample.DoubleValue.Value.Add(((double[])channelValues)[i * inlet.ChannelCount + channelIdx]);
+                            streamSample.DoubleValue.Value.Add(
+                                ((double[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
+
                         break;
                     case channel_format_t.cf_string:
                         streamSample.StringValue = _repeatedStringPool.Get();
-                        for(var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
+                        for (var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
                         {
-                            streamSample.StringValue.Value.Add(((string[])channelValues)[i * inlet.ChannelCount + channelIdx]);
+                            streamSample.StringValue.Value.Add(
+                                ((string[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
+
                         break;
                     case channel_format_t.cf_int8:
                         streamSample.Int8Value = _repeatedInt8Pool.Get();
-                        for(var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
+                        for (var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
                         {
-                            streamSample.Int8Value.Value.Add(((sbyte[])channelValues)[i * inlet.ChannelCount + channelIdx]);
+                            streamSample.Int8Value.Value.Add(
+                                ((sbyte[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
+
                         break;
                     case channel_format_t.cf_int16:
                         streamSample.Int16Value = _repeatedInt16Pool.Get();
-                        for(var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
+                        for (var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
                         {
-                            streamSample.Int16Value.Value.Add(((short[])channelValues)[i * inlet.ChannelCount + channelIdx]);
+                            streamSample.Int16Value.Value.Add(
+                                ((short[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
+
                         break;
                     case channel_format_t.cf_int32:
                         streamSample.Int32Value = _repeatedInt32Pool.Get();
-                        for(var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
+                        for (var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
                         {
-                            streamSample.Int32Value.Value.Add(((int[])channelValues)[i * inlet.ChannelCount + channelIdx]);
+                            streamSample.Int32Value.Value.Add(
+                                ((int[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
+
                         break;
                     case channel_format_t.cf_int64:
                         streamSample.Int64Value = _repeatedInt64Pool.Get();
-                        for(var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
+                        for (var channelIdx = 0; channelIdx < inlet.ChannelCount; channelIdx++)
                         {
-                            streamSample.Int64Value.Value.Add(((long[])channelValues)[i * inlet.ChannelCount + channelIdx]);
+                            streamSample.Int64Value.Value.Add(
+                                ((long[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
+
                         break;
                     case channel_format_t.cf_undefined:
                         break;
@@ -349,9 +364,6 @@ namespace PLUME.Base.Module.LSL
                 var correctedLslTimestamp = lslTimestamp + lslClockOffset;
                 var correctedPlumeTimestamp = (long)(correctedLslTimestamp * 1_000_000_000 + _lslPlumeOffset);
 
-                if (correctedPlumeTimestamp < 0)
-                    return;
-
                 streamSample.StreamInfo = _streamInfoPool.Get();
                 streamSample.StreamInfo.PlumeRawTimestamp = plumeRawTimestamp;
                 streamSample.StreamInfo.LslPlumeOffset = _lslPlumeOffset;
@@ -359,18 +371,23 @@ namespace PLUME.Base.Module.LSL
                 streamSample.StreamInfo.LslTimestamp = lslTimestamp;
                 streamSample.StreamInfo.LslClockOffset = lslClockOffset;
 
-                if (streamSample.CalculateSize() < SerializationBufferSize)
+                if (correctedPlumeTimestamp >= 0)
                 {
-                    _tmpMemoryStream.Position = 0;
-                    _tmpMemoryStream.SetLength(0);
-                    streamSample.WriteTo(_tmpCodedOutputStream);
-                    var bytes = _tmpMemoryStream.GetBuffer().AsSpan(0, (int)_tmpMemoryStream.Length);
-                    ctx.CurrentRecord.RecordTimestampedSample(bytes, _streamSampleType, (ulong)correctedPlumeTimestamp);
-                }
-                else
-                {
-                    var bytes = streamSample.ToByteArray();
-                    ctx.CurrentRecord.RecordTimestampedSample(bytes, _streamSampleType, (ulong)correctedPlumeTimestamp);
+                    if (streamSample.CalculateSize() < SerializationBufferSize)
+                    {
+                        _tmpMemoryStream.Position = 0;
+                        _tmpMemoryStream.SetLength(0);
+                        streamSample.WriteTo(_tmpCodedOutputStream);
+                        var bytes = _tmpMemoryStream.GetBuffer().AsSpan(0, (int)_tmpMemoryStream.Length);
+                        ctx.CurrentRecord.RecordTimestampedSample(bytes, _streamSampleType,
+                            (ulong)correctedPlumeTimestamp);
+                    }
+                    else
+                    {
+                        var bytes = streamSample.ToByteArray();
+                        ctx.CurrentRecord.RecordTimestampedSample(bytes, _streamSampleType,
+                            (ulong)correctedPlumeTimestamp);
+                    }
                 }
 
                 _streamInfoPool.Release(streamSample.StreamInfo);

@@ -43,7 +43,7 @@ namespace PLUME.Base.Settings
 
         internal override string GetSettingsWindowPath()
         {
-            return Path.Join(base.GetSettingsWindowPath(), "Transform");
+            return Path.Join(base.GetSettingsWindowPath(), "Lsl");
         }
     }
 }

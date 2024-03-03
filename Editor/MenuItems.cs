@@ -1,4 +1,5 @@
 using System.IO;
+using PLUME.Core.Settings;
 using UnityEditor;
 using UnityEditor.Compilation;
 using UnityEngine;
@@ -27,6 +28,12 @@ namespace PLUME.Editor
             }
             
             CompilationPipeline.RequestScriptCompilation(RequestScriptCompilationOptions.CleanBuildCache);
+        }
+        
+        [MenuItem("PLUME/Settings", priority = 10)]
+        private static void OpenSettings()
+        {
+            SettingsService.OpenProjectSettings(RecorderSettings.SettingsWindowPath);
         }
         
         [MenuItem("PLUME/GitHub Repository", priority = 20)]

@@ -25,22 +25,23 @@ namespace PLUME.Sample.LSL {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Chdsc2wvc3RyZWFtX3NhbXBsZS5wcm90bxIQcGx1bWUuc2FtcGxlLmxzbBoV",
-            "bHNsL3N0cmVhbV9pbmZvLnByb3RvItYDCgxTdHJlYW1TYW1wbGUSMQoLc3Ry",
+            "bHNsL3N0cmVhbV9pbmZvLnByb3RvItUDCgxTdHJlYW1TYW1wbGUSMQoLc3Ry",
             "ZWFtX2luZm8YASABKAsyHC5wbHVtZS5zYW1wbGUubHNsLlN0cmVhbUluZm8S",
-            "NgoLZmxvYXRfdmFsdWUYBSABKAsyHy5wbHVtZS5zYW1wbGUubHNsLlJlcGVh",
-            "dGVkRmxvYXRIABI4Cgxkb3VibGVfdmFsdWUYBiABKAsyIC5wbHVtZS5zYW1w",
-            "bGUubHNsLlJlcGVhdGVkRG91YmxlSAASOAoMc3RyaW5nX3ZhbHVlGAcgASgL",
-            "MiAucGx1bWUuc2FtcGxlLmxzbC5SZXBlYXRlZFN0cmluZ0gAEjUKCmludDhf",
-            "dmFsdWUYCCABKAsyHy5wbHVtZS5zYW1wbGUubHNsLlJlcGVhdGVkSW50MzJI",
-            "ABI2CgtpbnQxNl92YWx1ZRgJIAEoCzIfLnBsdW1lLnNhbXBsZS5sc2wuUmVw",
-            "ZWF0ZWRJbnQzMkgAEjYKC2ludDMyX3ZhbHVlGAogASgLMh8ucGx1bWUuc2Ft",
-            "cGxlLmxzbC5SZXBlYXRlZEludDMySAASNgoLaW50NjRfdmFsdWUYCyABKAsy",
-            "Hy5wbHVtZS5zYW1wbGUubHNsLlJlcGVhdGVkSW50NjRIAEIICgZ2YWx1ZXMi",
-            "HgoNUmVwZWF0ZWRGbG9hdBINCgV2YWx1ZRgBIAMoAiIfCg5SZXBlYXRlZERv",
-            "dWJsZRINCgV2YWx1ZRgBIAMoASIfCg5SZXBlYXRlZFN0cmluZxINCgV2YWx1",
-            "ZRgBIAMoCSIeCg1SZXBlYXRlZEludDMyEg0KBXZhbHVlGAEgAygFIh4KDVJl",
-            "cGVhdGVkSW50NjQSDQoFdmFsdWUYASADKANCE6oCEFBMVU1FLlNhbXBsZS5M",
-            "U0xiBnByb3RvMw=="));
+            "NgoLZmxvYXRfdmFsdWUYAiABKAsyHy5wbHVtZS5zYW1wbGUubHNsLlJlcGVh",
+            "dGVkRmxvYXRIABI4Cgxkb3VibGVfdmFsdWUYAyABKAsyIC5wbHVtZS5zYW1w",
+            "bGUubHNsLlJlcGVhdGVkRG91YmxlSAASOAoMc3RyaW5nX3ZhbHVlGAQgASgL",
+            "MiAucGx1bWUuc2FtcGxlLmxzbC5SZXBlYXRlZFN0cmluZ0gAEjQKCmludDhf",
+            "dmFsdWUYBSABKAsyHi5wbHVtZS5zYW1wbGUubHNsLlJlcGVhdGVkSW50OEgA",
+            "EjYKC2ludDE2X3ZhbHVlGAYgASgLMh8ucGx1bWUuc2FtcGxlLmxzbC5SZXBl",
+            "YXRlZEludDE2SAASNgoLaW50MzJfdmFsdWUYByABKAsyHy5wbHVtZS5zYW1w",
+            "bGUubHNsLlJlcGVhdGVkSW50MzJIABI2CgtpbnQ2NF92YWx1ZRgIIAEoCzIf",
+            "LnBsdW1lLnNhbXBsZS5sc2wuUmVwZWF0ZWRJbnQ2NEgAQggKBnZhbHVlcyIe",
+            "Cg1SZXBlYXRlZEZsb2F0Eg0KBXZhbHVlGAEgAygCIh8KDlJlcGVhdGVkRG91",
+            "YmxlEg0KBXZhbHVlGAEgAygBIh8KDlJlcGVhdGVkU3RyaW5nEg0KBXZhbHVl",
+            "GAEgAygJIh0KDFJlcGVhdGVkSW50OBINCgV2YWx1ZRgBIAMoBSIeCg1SZXBl",
+            "YXRlZEludDE2Eg0KBXZhbHVlGAEgAygFIh4KDVJlcGVhdGVkSW50MzISDQoF",
+            "dmFsdWUYASADKAUiHgoNUmVwZWF0ZWRJbnQ2NBINCgV2YWx1ZRgBIAMoA0IT",
+            "qgIQUExVTUUuU2FtcGxlLkxTTGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.LSL.StreamInfoReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -48,6 +49,8 @@ namespace PLUME.Sample.LSL {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.LSL.RepeatedFloat), global::PLUME.Sample.LSL.RepeatedFloat.Parser, new[]{ "Value" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.LSL.RepeatedDouble), global::PLUME.Sample.LSL.RepeatedDouble.Parser, new[]{ "Value" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.LSL.RepeatedString), global::PLUME.Sample.LSL.RepeatedString.Parser, new[]{ "Value" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.LSL.RepeatedInt8), global::PLUME.Sample.LSL.RepeatedInt8.Parser, new[]{ "Value" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.LSL.RepeatedInt16), global::PLUME.Sample.LSL.RepeatedInt16.Parser, new[]{ "Value" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.LSL.RepeatedInt32), global::PLUME.Sample.LSL.RepeatedInt32.Parser, new[]{ "Value" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.LSL.RepeatedInt64), global::PLUME.Sample.LSL.RepeatedInt64.Parser, new[]{ "Value" }, null, null, null, null)
           }));
@@ -138,7 +141,7 @@ namespace PLUME.Sample.LSL {
     }
 
     /// <summary>Field number for the "float_value" field.</summary>
-    public const int FloatValueFieldNumber = 5;
+    public const int FloatValueFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.LSL.RepeatedFloat FloatValue {
@@ -150,7 +153,7 @@ namespace PLUME.Sample.LSL {
     }
 
     /// <summary>Field number for the "double_value" field.</summary>
-    public const int DoubleValueFieldNumber = 6;
+    public const int DoubleValueFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.LSL.RepeatedDouble DoubleValue {
@@ -162,7 +165,7 @@ namespace PLUME.Sample.LSL {
     }
 
     /// <summary>Field number for the "string_value" field.</summary>
-    public const int StringValueFieldNumber = 7;
+    public const int StringValueFieldNumber = 4;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.LSL.RepeatedString StringValue {
@@ -174,11 +177,11 @@ namespace PLUME.Sample.LSL {
     }
 
     /// <summary>Field number for the "int8_value" field.</summary>
-    public const int Int8ValueFieldNumber = 8;
+    public const int Int8ValueFieldNumber = 5;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.LSL.RepeatedInt32 Int8Value {
-      get { return valuesCase_ == ValuesOneofCase.Int8Value ? (global::PLUME.Sample.LSL.RepeatedInt32) values_ : null; }
+    public global::PLUME.Sample.LSL.RepeatedInt8 Int8Value {
+      get { return valuesCase_ == ValuesOneofCase.Int8Value ? (global::PLUME.Sample.LSL.RepeatedInt8) values_ : null; }
       set {
         values_ = value;
         valuesCase_ = value == null ? ValuesOneofCase.None : ValuesOneofCase.Int8Value;
@@ -186,11 +189,11 @@ namespace PLUME.Sample.LSL {
     }
 
     /// <summary>Field number for the "int16_value" field.</summary>
-    public const int Int16ValueFieldNumber = 9;
+    public const int Int16ValueFieldNumber = 6;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.LSL.RepeatedInt32 Int16Value {
-      get { return valuesCase_ == ValuesOneofCase.Int16Value ? (global::PLUME.Sample.LSL.RepeatedInt32) values_ : null; }
+    public global::PLUME.Sample.LSL.RepeatedInt16 Int16Value {
+      get { return valuesCase_ == ValuesOneofCase.Int16Value ? (global::PLUME.Sample.LSL.RepeatedInt16) values_ : null; }
       set {
         values_ = value;
         valuesCase_ = value == null ? ValuesOneofCase.None : ValuesOneofCase.Int16Value;
@@ -198,7 +201,7 @@ namespace PLUME.Sample.LSL {
     }
 
     /// <summary>Field number for the "int32_value" field.</summary>
-    public const int Int32ValueFieldNumber = 10;
+    public const int Int32ValueFieldNumber = 7;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.LSL.RepeatedInt32 Int32Value {
@@ -210,7 +213,7 @@ namespace PLUME.Sample.LSL {
     }
 
     /// <summary>Field number for the "int64_value" field.</summary>
-    public const int Int64ValueFieldNumber = 11;
+    public const int Int64ValueFieldNumber = 8;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.LSL.RepeatedInt64 Int64Value {
@@ -225,13 +228,13 @@ namespace PLUME.Sample.LSL {
     /// <summary>Enum of possible cases for the "values" oneof.</summary>
     public enum ValuesOneofCase {
       None = 0,
-      FloatValue = 5,
-      DoubleValue = 6,
-      StringValue = 7,
-      Int8Value = 8,
-      Int16Value = 9,
-      Int32Value = 10,
-      Int64Value = 11,
+      FloatValue = 2,
+      DoubleValue = 3,
+      StringValue = 4,
+      Int8Value = 5,
+      Int16Value = 6,
+      Int32Value = 7,
+      Int64Value = 8,
     }
     private ValuesOneofCase valuesCase_ = ValuesOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -310,31 +313,31 @@ namespace PLUME.Sample.LSL {
         output.WriteMessage(StreamInfo);
       }
       if (valuesCase_ == ValuesOneofCase.FloatValue) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(18);
         output.WriteMessage(FloatValue);
       }
       if (valuesCase_ == ValuesOneofCase.DoubleValue) {
-        output.WriteRawTag(50);
+        output.WriteRawTag(26);
         output.WriteMessage(DoubleValue);
       }
       if (valuesCase_ == ValuesOneofCase.StringValue) {
-        output.WriteRawTag(58);
+        output.WriteRawTag(34);
         output.WriteMessage(StringValue);
       }
       if (valuesCase_ == ValuesOneofCase.Int8Value) {
-        output.WriteRawTag(66);
+        output.WriteRawTag(42);
         output.WriteMessage(Int8Value);
       }
       if (valuesCase_ == ValuesOneofCase.Int16Value) {
-        output.WriteRawTag(74);
+        output.WriteRawTag(50);
         output.WriteMessage(Int16Value);
       }
       if (valuesCase_ == ValuesOneofCase.Int32Value) {
-        output.WriteRawTag(82);
+        output.WriteRawTag(58);
         output.WriteMessage(Int32Value);
       }
       if (valuesCase_ == ValuesOneofCase.Int64Value) {
-        output.WriteRawTag(90);
+        output.WriteRawTag(66);
         output.WriteMessage(Int64Value);
       }
       if (_unknownFields != null) {
@@ -352,31 +355,31 @@ namespace PLUME.Sample.LSL {
         output.WriteMessage(StreamInfo);
       }
       if (valuesCase_ == ValuesOneofCase.FloatValue) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(18);
         output.WriteMessage(FloatValue);
       }
       if (valuesCase_ == ValuesOneofCase.DoubleValue) {
-        output.WriteRawTag(50);
+        output.WriteRawTag(26);
         output.WriteMessage(DoubleValue);
       }
       if (valuesCase_ == ValuesOneofCase.StringValue) {
-        output.WriteRawTag(58);
+        output.WriteRawTag(34);
         output.WriteMessage(StringValue);
       }
       if (valuesCase_ == ValuesOneofCase.Int8Value) {
-        output.WriteRawTag(66);
+        output.WriteRawTag(42);
         output.WriteMessage(Int8Value);
       }
       if (valuesCase_ == ValuesOneofCase.Int16Value) {
-        output.WriteRawTag(74);
+        output.WriteRawTag(50);
         output.WriteMessage(Int16Value);
       }
       if (valuesCase_ == ValuesOneofCase.Int32Value) {
-        output.WriteRawTag(82);
+        output.WriteRawTag(58);
         output.WriteMessage(Int32Value);
       }
       if (valuesCase_ == ValuesOneofCase.Int64Value) {
-        output.WriteRawTag(90);
+        output.WriteRawTag(66);
         output.WriteMessage(Int64Value);
       }
       if (_unknownFields != null) {
@@ -452,13 +455,13 @@ namespace PLUME.Sample.LSL {
           break;
         case ValuesOneofCase.Int8Value:
           if (Int8Value == null) {
-            Int8Value = new global::PLUME.Sample.LSL.RepeatedInt32();
+            Int8Value = new global::PLUME.Sample.LSL.RepeatedInt8();
           }
           Int8Value.MergeFrom(other.Int8Value);
           break;
         case ValuesOneofCase.Int16Value:
           if (Int16Value == null) {
-            Int16Value = new global::PLUME.Sample.LSL.RepeatedInt32();
+            Int16Value = new global::PLUME.Sample.LSL.RepeatedInt16();
           }
           Int16Value.MergeFrom(other.Int16Value);
           break;
@@ -498,7 +501,7 @@ namespace PLUME.Sample.LSL {
             input.ReadMessage(StreamInfo);
             break;
           }
-          case 42: {
+          case 18: {
             global::PLUME.Sample.LSL.RepeatedFloat subBuilder = new global::PLUME.Sample.LSL.RepeatedFloat();
             if (valuesCase_ == ValuesOneofCase.FloatValue) {
               subBuilder.MergeFrom(FloatValue);
@@ -507,7 +510,7 @@ namespace PLUME.Sample.LSL {
             FloatValue = subBuilder;
             break;
           }
-          case 50: {
+          case 26: {
             global::PLUME.Sample.LSL.RepeatedDouble subBuilder = new global::PLUME.Sample.LSL.RepeatedDouble();
             if (valuesCase_ == ValuesOneofCase.DoubleValue) {
               subBuilder.MergeFrom(DoubleValue);
@@ -516,7 +519,7 @@ namespace PLUME.Sample.LSL {
             DoubleValue = subBuilder;
             break;
           }
-          case 58: {
+          case 34: {
             global::PLUME.Sample.LSL.RepeatedString subBuilder = new global::PLUME.Sample.LSL.RepeatedString();
             if (valuesCase_ == ValuesOneofCase.StringValue) {
               subBuilder.MergeFrom(StringValue);
@@ -525,8 +528,8 @@ namespace PLUME.Sample.LSL {
             StringValue = subBuilder;
             break;
           }
-          case 66: {
-            global::PLUME.Sample.LSL.RepeatedInt32 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt32();
+          case 42: {
+            global::PLUME.Sample.LSL.RepeatedInt8 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt8();
             if (valuesCase_ == ValuesOneofCase.Int8Value) {
               subBuilder.MergeFrom(Int8Value);
             }
@@ -534,8 +537,8 @@ namespace PLUME.Sample.LSL {
             Int8Value = subBuilder;
             break;
           }
-          case 74: {
-            global::PLUME.Sample.LSL.RepeatedInt32 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt32();
+          case 50: {
+            global::PLUME.Sample.LSL.RepeatedInt16 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt16();
             if (valuesCase_ == ValuesOneofCase.Int16Value) {
               subBuilder.MergeFrom(Int16Value);
             }
@@ -543,7 +546,7 @@ namespace PLUME.Sample.LSL {
             Int16Value = subBuilder;
             break;
           }
-          case 82: {
+          case 58: {
             global::PLUME.Sample.LSL.RepeatedInt32 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt32();
             if (valuesCase_ == ValuesOneofCase.Int32Value) {
               subBuilder.MergeFrom(Int32Value);
@@ -552,7 +555,7 @@ namespace PLUME.Sample.LSL {
             Int32Value = subBuilder;
             break;
           }
-          case 90: {
+          case 66: {
             global::PLUME.Sample.LSL.RepeatedInt64 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt64();
             if (valuesCase_ == ValuesOneofCase.Int64Value) {
               subBuilder.MergeFrom(Int64Value);
@@ -583,7 +586,7 @@ namespace PLUME.Sample.LSL {
             input.ReadMessage(StreamInfo);
             break;
           }
-          case 42: {
+          case 18: {
             global::PLUME.Sample.LSL.RepeatedFloat subBuilder = new global::PLUME.Sample.LSL.RepeatedFloat();
             if (valuesCase_ == ValuesOneofCase.FloatValue) {
               subBuilder.MergeFrom(FloatValue);
@@ -592,7 +595,7 @@ namespace PLUME.Sample.LSL {
             FloatValue = subBuilder;
             break;
           }
-          case 50: {
+          case 26: {
             global::PLUME.Sample.LSL.RepeatedDouble subBuilder = new global::PLUME.Sample.LSL.RepeatedDouble();
             if (valuesCase_ == ValuesOneofCase.DoubleValue) {
               subBuilder.MergeFrom(DoubleValue);
@@ -601,7 +604,7 @@ namespace PLUME.Sample.LSL {
             DoubleValue = subBuilder;
             break;
           }
-          case 58: {
+          case 34: {
             global::PLUME.Sample.LSL.RepeatedString subBuilder = new global::PLUME.Sample.LSL.RepeatedString();
             if (valuesCase_ == ValuesOneofCase.StringValue) {
               subBuilder.MergeFrom(StringValue);
@@ -610,8 +613,8 @@ namespace PLUME.Sample.LSL {
             StringValue = subBuilder;
             break;
           }
-          case 66: {
-            global::PLUME.Sample.LSL.RepeatedInt32 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt32();
+          case 42: {
+            global::PLUME.Sample.LSL.RepeatedInt8 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt8();
             if (valuesCase_ == ValuesOneofCase.Int8Value) {
               subBuilder.MergeFrom(Int8Value);
             }
@@ -619,8 +622,8 @@ namespace PLUME.Sample.LSL {
             Int8Value = subBuilder;
             break;
           }
-          case 74: {
-            global::PLUME.Sample.LSL.RepeatedInt32 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt32();
+          case 50: {
+            global::PLUME.Sample.LSL.RepeatedInt16 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt16();
             if (valuesCase_ == ValuesOneofCase.Int16Value) {
               subBuilder.MergeFrom(Int16Value);
             }
@@ -628,7 +631,7 @@ namespace PLUME.Sample.LSL {
             Int16Value = subBuilder;
             break;
           }
-          case 82: {
+          case 58: {
             global::PLUME.Sample.LSL.RepeatedInt32 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt32();
             if (valuesCase_ == ValuesOneofCase.Int32Value) {
               subBuilder.MergeFrom(Int32Value);
@@ -637,7 +640,7 @@ namespace PLUME.Sample.LSL {
             Int32Value = subBuilder;
             break;
           }
-          case 90: {
+          case 66: {
             global::PLUME.Sample.LSL.RepeatedInt64 subBuilder = new global::PLUME.Sample.LSL.RepeatedInt64();
             if (valuesCase_ == ValuesOneofCase.Int64Value) {
               subBuilder.MergeFrom(Int64Value);
@@ -1195,6 +1198,368 @@ namespace PLUME.Sample.LSL {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class RepeatedInt8 : pb::IMessage<RepeatedInt8>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<RepeatedInt8> _parser = new pb::MessageParser<RepeatedInt8>(() => new RepeatedInt8());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<RepeatedInt8> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.LSL.StreamSampleReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RepeatedInt8() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RepeatedInt8(RepeatedInt8 other) : this() {
+      value_ = other.value_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RepeatedInt8 Clone() {
+      return new RepeatedInt8(this);
+    }
+
+    /// <summary>Field number for the "value" field.</summary>
+    public const int ValueFieldNumber = 1;
+    private static readonly pb::FieldCodec<int> _repeated_value_codec
+        = pb::FieldCodec.ForInt32(10);
+    private readonly pbc::RepeatedField<int> value_ = new pbc::RepeatedField<int>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<int> Value {
+      get { return value_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as RepeatedInt8);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(RepeatedInt8 other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!value_.Equals(other.value_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= value_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      value_.WriteTo(output, _repeated_value_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      value_.WriteTo(ref output, _repeated_value_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += value_.CalculateSize(_repeated_value_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(RepeatedInt8 other) {
+      if (other == null) {
+        return;
+      }
+      value_.Add(other.value_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10:
+          case 8: {
+            value_.AddEntriesFrom(input, _repeated_value_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10:
+          case 8: {
+            value_.AddEntriesFrom(ref input, _repeated_value_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class RepeatedInt16 : pb::IMessage<RepeatedInt16>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<RepeatedInt16> _parser = new pb::MessageParser<RepeatedInt16>(() => new RepeatedInt16());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<RepeatedInt16> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.LSL.StreamSampleReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RepeatedInt16() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RepeatedInt16(RepeatedInt16 other) : this() {
+      value_ = other.value_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RepeatedInt16 Clone() {
+      return new RepeatedInt16(this);
+    }
+
+    /// <summary>Field number for the "value" field.</summary>
+    public const int ValueFieldNumber = 1;
+    private static readonly pb::FieldCodec<int> _repeated_value_codec
+        = pb::FieldCodec.ForInt32(10);
+    private readonly pbc::RepeatedField<int> value_ = new pbc::RepeatedField<int>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<int> Value {
+      get { return value_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as RepeatedInt16);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(RepeatedInt16 other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!value_.Equals(other.value_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= value_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      value_.WriteTo(output, _repeated_value_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      value_.WriteTo(ref output, _repeated_value_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += value_.CalculateSize(_repeated_value_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(RepeatedInt16 other) {
+      if (other == null) {
+        return;
+      }
+      value_.Add(other.value_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10:
+          case 8: {
+            value_.AddEntriesFrom(input, _repeated_value_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10:
+          case 8: {
+            value_.AddEntriesFrom(ref input, _repeated_value_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class RepeatedInt32 : pb::IMessage<RepeatedInt32>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1209,7 +1574,7 @@ namespace PLUME.Sample.LSL {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.LSL.StreamSampleReflection.Descriptor.MessageTypes[4]; }
+      get { return global::PLUME.Sample.LSL.StreamSampleReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1390,7 +1755,7 @@ namespace PLUME.Sample.LSL {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.LSL.StreamSampleReflection.Descriptor.MessageTypes[5]; }
+      get { return global::PLUME.Sample.LSL.StreamSampleReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

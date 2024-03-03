@@ -872,7 +872,7 @@ namespace PLUME.Base.Module.LSL
         * @return samples_written Number of samples written to the data and timestamp buffers.
         * @throws LostException (if the stream source has been lost).
         */
-        public int pull_chunk<T>(T[] dataBuffer, double[] timestampBuffer, double timeout = 0.0)
+        public int pull_chunk<T>(T[] dataBuffer, double[] timestampBuffer, int channelCount, double timeout = 0.0)
         {
             var errorCode = 0;
             uint res;
@@ -938,7 +938,7 @@ namespace PLUME.Base.Module.LSL
             }
             
             Lsl.check_error(errorCode);
-            return (int) res / info().channel_count();
+            return (int) res / channelCount;
         }
 
         /**

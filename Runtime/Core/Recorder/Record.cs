@@ -70,20 +70,51 @@ namespace PLUME.Core.Recorder
         public void RecordTimestampedManagedSample<T>(T msg, ulong timestamp) where T : IMessage
         {
             var typeUrl = SampleTypeUrl.Alloc(msg.Descriptor, Allocator.Persistent);
-            var sampleSize = msg.CalculateSize();
-            var sampleBytes = new NativeList<byte>(sampleSize, Allocator.Persistent);
             var bytes = msg.ToByteArray();
+            var sampleBytes = new NativeList<byte>(bytes.Length, Allocator.Persistent);
 
             unsafe
             {
                 fixed (byte* bytesPtr = bytes)
                 {
-                    sampleBytes.AddRange(bytesPtr, sampleSize);
+                    sampleBytes.AddRange(bytesPtr, bytes.Length);
                 }
             }
 
             RecordTimestampedSample(sampleBytes, typeUrl, timestamp);
             typeUrl.Dispose();
+            sampleBytes.Dispose();
+        }
+        
+        public void RecordTimestampedSample(byte[] bytes, SampleTypeUrl typeUrl, ulong timestamp)
+        {
+            var sampleBytes = new NativeList<byte>(bytes.Length, Allocator.Persistent);
+
+            unsafe
+            {
+                fixed (byte* bytesPtr = bytes)
+                {
+                    sampleBytes.AddRange(bytesPtr, bytes.Length);
+                }
+            }
+
+            RecordTimestampedSample(sampleBytes, typeUrl, timestamp);
+            sampleBytes.Dispose();
+        }
+        
+        public void RecordTimestampedSample(Span<byte> bytes, SampleTypeUrl typeUrl, ulong timestamp)
+        {
+            var sampleBytes = new NativeList<byte>(bytes.Length, Allocator.Persistent);
+
+            unsafe
+            {
+                fixed (byte* bytesPtr = bytes)
+                {
+                    sampleBytes.AddRange(bytesPtr, bytes.Length);
+                }
+            }
+
+            RecordTimestampedSample(sampleBytes, typeUrl, timestamp);
             sampleBytes.Dispose();
         }
 

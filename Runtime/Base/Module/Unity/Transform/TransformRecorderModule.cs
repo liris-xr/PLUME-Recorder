@@ -28,6 +28,8 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnCreate(RecorderContext ctx)
         {
+            base.OnCreate(ctx);
+            
             var settings = ctx.SettingsProvider.GetOrCreate<TransformRecorderModuleSettings>();
             var angularThreshold = settings.AngularThreshold;
             var positionThresholdSq = settings.PositionThreshold * settings.PositionThreshold;
@@ -65,6 +67,8 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnDestroy(RecorderContext ctx)
         {
+            base.OnDestroy(ctx);
+            
             _transformAccessArray.Dispose();
             _identifierToIndex.Dispose();
             _alignedPositionStates.Dispose();
@@ -74,6 +78,8 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnObjectMarkedCreated(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
+            base.OnObjectMarkedCreated(tSafeRef, ctx);
+            
             var idx = _identifierToIndex[tSafeRef.Identifier];
             var flagsState = _alignedFlagsStates[idx];
             flagsState.MarkCreatedInFrame();
@@ -82,6 +88,8 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnObjectMarkedDestroyed(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
+            base.OnObjectMarkedDestroyed(tSafeRef, ctx);
+            
             var idx = _identifierToIndex[tSafeRef.Identifier];
             var flagsState = _alignedFlagsStates[idx];
             flagsState.MarkDestroyedInFrame();
@@ -90,6 +98,8 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnStartRecordingObject(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
+            base.OnStartRecordingObject(tSafeRef, ctx);
+            
             var t = tSafeRef.Component;
 
             var siblingIndex = t.GetSiblingIndex();
@@ -124,6 +134,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnStopRecordingObject(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
+            base.OnStopRecordingObject(tSafeRef, ctx);
             var idx = _transformAccessArray.RemoveSwapBack(tSafeRef);
             _identifierToIndex.Remove(tSafeRef.Identifier);
             _alignedHierarchyStates.RemoveAtSwapBack(idx);
@@ -170,6 +181,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override void OnStopRecording(RecorderContext ctx)
         {
+            base.OnStopRecording(ctx);
             _transformAccessArray.Clear();
             _identifierToIndex.Clear();
             _alignedHierarchyStates.Clear();

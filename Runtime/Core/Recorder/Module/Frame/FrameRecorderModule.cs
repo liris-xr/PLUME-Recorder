@@ -227,6 +227,11 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             foreach (var module in _frameDataRecorderModules)
             {
+                module.BeforeEnqueueFrameData(frame, ctx);
+            }
+            
+            foreach (var module in _frameDataRecorderModules)
+            {
                 module.EnqueueFrameData(frame, ctx);
             }
             
@@ -234,7 +239,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             
             foreach (var module in _frameDataRecorderModules)
             {
-                module.PostEnqueueFrameData(ctx);
+                module.AfterEnqueueFrameData(frame, ctx);
             }
         }
 

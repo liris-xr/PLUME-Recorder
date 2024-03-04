@@ -80,9 +80,9 @@ namespace PLUME.Base.Module.Unity.Light
             return frameData;
         }
 
-        protected override void OnAfterCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        protected override void AfterCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
-            base.OnAfterCollectFrameData(frameInfo, ctx);
+            base.AfterCollectFrameData(frameInfo, ctx);
             _createSamples.Clear();
             _destroySamples.Clear();
             _updateSamples.Clear();

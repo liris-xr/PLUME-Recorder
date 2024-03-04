@@ -58,24 +58,13 @@ namespace PLUME.Editor
             var zipOutputPath = Path.Join(Application.streamingAssetsPath, "plume_bundle.zip");
             var builds = new[] { assetsBuild, scenesBuild };
             const BuildAssetBundleOptions options = BuildAssetBundleOptions.ChunkBasedCompression;
-            const BuildTarget target = BuildTarget.StandaloneWindows64;
-
-            var previousBuildTarget = EditorUserBuildSettings.activeBuildTarget;
             
-            if (previousBuildTarget != target)
-            {
-                Logger.Log($"Please switch your platform to {target} to build the asset bundle.");
-            }
-            else
-            {
+            Directory.CreateDirectory(outputPath);
+            CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, options, BuildTarget.StandaloneWindows64);
 
-                Directory.CreateDirectory(outputPath);
-                CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, options, target);
-
-                File.Delete(zipOutputPath);
-                ZipFile.CreateFromDirectory(outputPath, zipOutputPath, CompressionLevel.Optimal, false);
-                Logger.Log($"Asset bundle built at {zipOutputPath}");
-            }
+            File.Delete(zipOutputPath);
+            ZipFile.CreateFromDirectory(outputPath, zipOutputPath, CompressionLevel.Optimal, false);
+            Logger.Log($"Asset bundle built at {zipOutputPath}");
         }
 
         private static bool CanAddAsset(ICollection<string> assetPaths, string assetPath)
@@ -89,7 +78,17 @@ namespace PLUME.Editor
             if (assetType == null)
                 return false;
 
-            return assetType.Namespace == null || !assetType.Namespace.StartsWith("UnityEditor");
+            // TODO: temporary fix to filter Editor assets, should use ContentBuildInterface.CalculatePlayerDependenciesForScene instead
+            if (assetType.Namespace != null && assetType.Namespace.StartsWith("UnityEditor"))
+                return false;
+            
+            if (assetType.Namespace != null && assetPath.Contains("/Editor Resources/"))
+                return false;
+            
+            if (assetType.Namespace != null && assetPath.Contains("/InputSystem/Editor/"))
+                return false;
+
+            return true;
         }
 
         private static void AddAssetWithDependencies(ICollection<string> assetPaths, string assetPath)

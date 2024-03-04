@@ -54,7 +54,9 @@ namespace PLUME.Base.Module.LSL
 
     public class BufferedInlet<T> : BufferedInlet, IDisposable
     {
+        // Flattened buffer for all channels values interleaved by sample.
         private readonly T[] _dataBuffer;
+        // Timestamps buffer for each pulled sample.
         private readonly double[] _timestampBuffer;
 
         /**
@@ -69,6 +71,12 @@ namespace PLUME.Base.Module.LSL
             _timestampBuffer = new double[bufSamples];
         }
 
+        /// <summary>
+        /// Pull a chunk of data from the inlet into the buffer.
+        /// </summary>
+        /// <returns>
+        /// The number of samples actually pulled. This can be less than the buffer size (in number of samples) if there was not enough data in the inlet to satisfy the chunk request.
+        /// </returns>
         public override int PullChunk()
         {
             try

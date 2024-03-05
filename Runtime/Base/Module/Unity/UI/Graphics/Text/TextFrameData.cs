@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity.UI;
 
-namespace PLUME.Base.Module.Unity.UI.Text
+namespace PLUME.Base.Module.Unity.UI.Graphics.Text
 {
     public class TextFrameData : PooledFrameData<TextFrameData>
     {
@@ -11,6 +11,7 @@ namespace PLUME.Base.Module.Unity.UI.Text
         private readonly List<TextCreate> _createSamples = new();
         private readonly List<TextDestroy> _destroySamples = new();
         private readonly List<TextUpdate> _updateSamples = new();
+        private readonly List<GraphicUpdate> _graphicUpdateSamples = new();
 
         public void AddCreateSamples(IEnumerable<TextCreate> samples)
         {
@@ -26,12 +27,18 @@ namespace PLUME.Base.Module.Unity.UI.Text
         {
             _updateSamples.AddRange(samples);
         }
+        
+        public void AddGraphicUpdateSamples(IEnumerable<GraphicUpdate> samples)
+        {
+            _graphicUpdateSamples.AddRange(samples);
+        }
 
         public override void Serialize(FrameDataWriter frameDataWriter)
         {
             frameDataWriter.WriteManagedBatch(_createSamples);
             frameDataWriter.WriteManagedBatch(_destroySamples);
             frameDataWriter.WriteManagedBatch(_updateSamples);
+            frameDataWriter.WriteManagedBatch(_graphicUpdateSamples);
         }
 
         public override void Clear()
@@ -39,6 +46,7 @@ namespace PLUME.Base.Module.Unity.UI.Text
             _createSamples.Clear();
             _destroySamples.Clear();
             _updateSamples.Clear();
+            _graphicUpdateSamples.Clear();
         }
     }
 }

@@ -14,6 +14,9 @@ namespace PLUME.Core.Recorder.Module.Frame
         void IFrameDataRecorderModule.EnqueueFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
             var frameData = CollectFrameData(frameInfo, ctx);
+            
+            if(frameData == null)
+                return;
 
             lock (_framesData)
             {

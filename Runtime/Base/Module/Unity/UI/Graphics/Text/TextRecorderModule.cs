@@ -7,10 +7,10 @@ using UnityEngine.Scripting;
 using TextSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.UI.Text>;
 using static PLUME.Core.Utils.SampleUtils;
 
-namespace PLUME.Base.Module.Unity.UI.Text
+namespace PLUME.Base.Module.Unity.UI.Graphics.Text
 {
     [Preserve]
-    public class TextRecorderModule : ComponentRecorderModule<UnityEngine.UI.Text, TextFrameData>
+    public class TextRecorderModule : GraphicRecorderModule<UnityEngine.UI.Text, TextFrameData>
     {
         private readonly Dictionary<TextSafeRef, TextCreate> _createSamples = new();
         private readonly Dictionary<TextSafeRef, TextDestroy> _destroySamples = new();
@@ -80,6 +80,7 @@ namespace PLUME.Base.Module.Unity.UI.Text
             frameData.AddCreateSamples(_createSamples.Values);
             frameData.AddDestroySamples(_destroySamples.Values);
             frameData.AddUpdateSamples(_updateSamples.Values);
+            frameData.AddGraphicUpdateSamples(GetGraphicUpdateSamples());
             return frameData;
         }
 

@@ -35,6 +35,16 @@
             "name": "com.unity.xr.interaction.toolkit",
             "expression": "0",
             "define": "XRITK_ENABLED"
+        },
+        {
+            "name": "com.unity.textmeshpro",
+            "expression": "0",
+            "define": "TMP_ENABLED"
+        },
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "0",
+            "define": "INPUT_SYSTEM_ENABLED"
         }
     ],
     "noEngineReferences": false

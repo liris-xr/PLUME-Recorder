@@ -31,6 +31,7 @@ namespace PLUME.Editor.Core.Weaving
         {
             _detours = MethodDetourManager.GetRegisteredMethodDetours();
 
+#if PLUME_LOG_REGISTERED_DETOURS
             var sb = new StringBuilder();
             sb.AppendLine("Detours registered:");
 
@@ -41,17 +42,16 @@ namespace PLUME.Editor.Core.Weaving
             }
 
             Logger.Log(sb.ToString());
+#endif
 
             CompilationPipeline.assemblyCompilationFinished += OnAssemblyCompilationFinished;
         }
 
         private void OnAssemblyCompilationFinished(string assemblyPath, CompilerMessage[] messages)
         {
-            // var assemblies = new[] { "Runtime.dll" };
-            // var assemblies = new[] { "Assembly-CSharp.dll", "Runtime.dll" };
-            var assemblies = new[] { "Assembly-CSharp.dll", "Runtime.dll", "Unity.XR.Interaction.Toolkit.dll" };
+            var assemblies = new[] { "Assembly-CSharp.dll", "Unity.XR.Interaction.Toolkit.dll", "Unity.VisualScripting.Core.dll" };
 
-            var shouldInjectInAssembly = assemblies.Any(assemblyPath.EndsWith);
+            var shouldInjectInAssembly = assemblies.Any(Path.GetFileName(assemblyPath).Equals);
 
             if (!shouldInjectInAssembly)
                 return;

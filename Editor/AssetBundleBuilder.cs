@@ -80,7 +80,7 @@ namespace PLUME.Editor
             };
 
             var outputPath = Path.Join(Application.dataPath, "AssetBundles/plume_bundle/");
-            var zipOutputPath = Path.Join(Application.streamingAssetsPath, "plume_bundle.zip");
+            var zipOutputPath = Path.Join(outputPath, "plume_bundle.zip");
             var builds = new[] { assetsBuild, scenesBuild };
             const BuildAssetBundleOptions options = BuildAssetBundleOptions.ChunkBasedCompression;
 

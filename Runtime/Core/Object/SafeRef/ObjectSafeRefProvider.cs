@@ -32,7 +32,7 @@ namespace PLUME.Core.Object.SafeRef
             var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
             var goRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go);
             var transformRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go.transform);
-            var guidStr = goRegistryEntry.guid.Replace("-", "");
+            var guidStr = System.Guid.Parse(goRegistryEntry.guid).ToString("N");
             var goGuid = new Guid(guidStr);
             var transformGuid = new Guid(transformRegistryEntry.guid);
             goRef = new GameObjectSafeRef(go, goGuid, transformGuid);

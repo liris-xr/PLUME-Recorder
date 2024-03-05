@@ -21,30 +21,12 @@ namespace PLUME.Core
 
         public Guid(FixedString64Bytes guid)
         {
-            var formattedGuid = new FixedString64Bytes();
-
-            for (var i = 0; i < guid.Length; ++i)
-            {
-                var rune = guid.Peek(i);
-
-                if (rune == '-')
-                    continue;
-
-                if (!IsHexChar(ref rune))
-                {
-                    throw new FormatException(
-                        $"Invalid GUID format {guid}. Expected 32 hex characters but found non-hex char at position {i}.");
-                }
-
-                formattedGuid.Append(rune);
-            }
-
-            if (formattedGuid.Length != 32)
+            if (guid.Length != 32)
             {
                 throw new FormatException($"Invalid GUID format {guid}. Expected 32 hex characters.");
             }
 
-            _guid = formattedGuid;
+            _guid = guid;
         }
 
         [BurstCompile]
@@ -79,6 +61,16 @@ namespace PLUME.Core
         public override int GetHashCode()
         {
             return _guid.GetHashCode();
+        }
+        
+        public static bool operator ==(Guid left, Guid right)
+        {
+            return left.Equals(right);
+        }
+        
+        public static bool operator !=(Guid left, Guid right)
+        {
+            return !left.Equals(right);
         }
     }
 }

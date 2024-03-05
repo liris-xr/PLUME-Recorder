@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Build.Content;
 using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -21,17 +23,39 @@ namespace PLUME.Editor
                 .Select(s => s.path)
                 .DefaultIfEmpty(SceneManager.GetActiveScene().path).ToArray();
 
-            var assetsPaths = new List<string>();
+            var buildSettings = new BuildSettings
+            {
+                target = BuildTarget.StandaloneWindows64,
+                buildFlags = ContentBuildFlags.None,
+                group = BuildTargetGroup.Standalone,
+                subtarget = (int)StandaloneBuildSubtarget.Player
+            };
+            var buildUsageTagSet = new BuildUsageTagSet();
+            var usageCache = new BuildUsageCache();
+
+            var assetsPaths = new HashSet<string>();
 
             foreach (var scenePath in scenePaths)
             {
-                AddAssetWithDependencies(assetsPaths, scenePath);
+                var sceneDependencyInfo = ContentBuildInterface.CalculatePlayerDependenciesForScene(scenePath,
+                    buildSettings, buildUsageTagSet, usageCache, DependencyType.DefaultDependencies);
+
+                foreach (var obj in sceneDependencyInfo.referencedObjects)
+                {
+                    if (obj.fileType is FileType.NonAssetType)
+                        continue;
+                    var assetPath = AssetDatabase.GUIDToAssetPath(obj.guid);
+                    if (!string.IsNullOrEmpty(assetPath))
+                        assetsPaths.Add(assetPath);
+                }
             }
 
             if (GraphicsSettings.defaultRenderPipeline != null)
             {
                 var defaultRenderPipelineAssetPath = AssetDatabase.GetAssetPath(GraphicsSettings.defaultRenderPipeline);
-                AddAssetWithDependencies(assetsPaths, defaultRenderPipelineAssetPath);
+
+                if (!string.IsNullOrEmpty(defaultRenderPipelineAssetPath))
+                    assetsPaths.Add(defaultRenderPipelineAssetPath);
             }
 
             for (var qualityLevel = 0; qualityLevel < QualitySettings.names.Length; qualityLevel++)
@@ -39,7 +63,8 @@ namespace PLUME.Editor
                 var qualityLevelRenderPipeline = QualitySettings.GetRenderPipelineAssetAt(qualityLevel);
                 if (qualityLevelRenderPipeline == null) continue;
                 var qualityLevelRenderPipelineAssetPath = AssetDatabase.GetAssetPath(qualityLevelRenderPipeline);
-                AddAssetWithDependencies(assetsPaths, qualityLevelRenderPipelineAssetPath);
+                if (!string.IsNullOrEmpty(qualityLevelRenderPipelineAssetPath))
+                    assetsPaths.Add(qualityLevelRenderPipelineAssetPath);
             }
 
             var assetsBuild = new AssetBundleBuild
@@ -58,54 +83,25 @@ namespace PLUME.Editor
             var zipOutputPath = Path.Join(Application.streamingAssetsPath, "plume_bundle.zip");
             var builds = new[] { assetsBuild, scenesBuild };
             const BuildAssetBundleOptions options = BuildAssetBundleOptions.ChunkBasedCompression;
-            
+
             Directory.CreateDirectory(outputPath);
-            CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, options, BuildTarget.StandaloneWindows64);
 
-            File.Delete(zipOutputPath);
-            ZipFile.CreateFromDirectory(outputPath, zipOutputPath, CompressionLevel.Optimal, false);
-            Logger.Log($"Asset bundle built at {zipOutputPath}");
-        }
-
-        private static bool CanAddAsset(ICollection<string> assetPaths, string assetPath)
-        {
-            // If already added, return false
-            if (assetPaths.Contains(assetPath))
-                return false;
-
-            var assetType = AssetDatabase.GetMainAssetTypeAtPath(assetPath);
-
-            if (assetType == null)
-                return false;
-
-            // TODO: temporary fix to filter Editor assets, should use ContentBuildInterface.CalculatePlayerDependenciesForScene instead
-            if (assetType.Namespace != null && assetType.Namespace.StartsWith("UnityEditor"))
-                return false;
-            
-            if (assetType.Namespace != null && assetPath.Contains("/Editor Resources/"))
-                return false;
-            
-            if (assetType.Namespace != null && assetPath.Contains("/InputSystem/Editor/"))
-                return false;
-
-            return true;
-        }
-
-        private static void AddAssetWithDependencies(ICollection<string> assetPaths, string assetPath)
-        {
-            if (CanAddAsset(assetPaths, assetPath))
+            // Switch platform to build
+            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone,
+                BuildTarget.StandaloneWindows64);
+            try
             {
-                assetPaths.Add(assetPath);
+                CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, options,
+                    BuildTarget.StandaloneWindows64);
+
+                File.Delete(zipOutputPath);
+                ZipFile.CreateFromDirectory(outputPath, zipOutputPath, CompressionLevel.Optimal, false);
+                Logger.Log(
+                    $"Asset bundle built at {zipOutputPath}.\n\nIncluded assets:\n{string.Join("\n", assetsPaths)}\n\nIncluded scenes:\n{string.Join("\n ", scenePaths)}");
             }
-
-            var dependenciesPaths = AssetDatabase.GetDependencies(assetPath, true);
-
-            foreach (var dependencyPath in dependenciesPaths)
+            catch (Exception e)
             {
-                if (CanAddAsset(assetPaths, dependencyPath))
-                {
-                    assetPaths.Add(dependencyPath);
-                }
+                Logger.LogError("Failed to build asset bundle.", e);
             }
         }
     }

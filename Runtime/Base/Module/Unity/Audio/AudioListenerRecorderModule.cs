@@ -149,7 +149,9 @@ namespace PLUME.Base.Module.Unity.Audio
 
         private static string GenerateAudioFilePath(string outputDir, RecorderContext ctx)
         {
-            var invalidChars = Path.GetInvalidFileNameChars();
+            var invalidChars = Path.GetInvalidFileNameChars().ToList();
+            invalidChars.Add(' ');
+            
             var name = ctx.CurrentRecord.Metadata.Name;
             var safeName = new string(name.Select(c => invalidChars.Contains(c) ? '_' : c).ToArray());
 

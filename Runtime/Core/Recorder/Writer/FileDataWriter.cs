@@ -58,7 +58,9 @@ namespace PLUME.Core.Recorder.Writer
         private static void GenerateFilePath(string outputDir, RecordMetadata recordMetadata,
             out string filePath, out string metadataPath)
         {
-            var invalidChars = Path.GetInvalidFileNameChars();
+            var invalidChars = Path.GetInvalidFileNameChars().ToList();
+            invalidChars.Add(' ');
+            
             var name = recordMetadata.Name;
             var safeName = new string(name.Select(c => invalidChars.Contains(c) ? '_' : c).ToArray());
 

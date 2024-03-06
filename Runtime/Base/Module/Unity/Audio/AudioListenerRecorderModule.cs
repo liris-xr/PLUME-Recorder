@@ -131,13 +131,14 @@ namespace PLUME.Base.Module.Unity.Audio
                 {
                     Logger.LogWarning(
                         $"Channel count mismatch. Expected {_channelCount} channels, but received {channelCount} channels. Resampling audio samples to match expected channel count.");
-                    var stride = channelCount * _outputSampleRate;
-                    var expectedStride = _channelCount * _outputSampleRate;
-
-                    for (var i = 0; i < samples.Length; i += stride)
-                    {
-                        _audioFileWriter.WriteSamples(samples, 0, expectedStride);
-                    }
+                    // TODO: copy channels to match expected channel count
+                    // var stride = channelCount * _outputSampleRate;
+                    // var expectedStride = _channelCount * _outputSampleRate;
+                    //
+                    // for (var i = 0; i < samples.Length; i += stride)
+                    // {
+                    //     _audioFileWriter.WriteSamples(samples, 0, expectedStride);
+                    // }
                 }
             }
         }

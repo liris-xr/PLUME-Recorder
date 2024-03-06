@@ -5,15 +5,16 @@ using System.Linq;
 using System.Threading;
 using Google.Protobuf;
 using PLUME.Base.Settings;
-using PLUME.Core;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module;
 using PLUME.Sample.LSL;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Collections;
+using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Profiling;
 using UnityEngine.Scripting;
+using Logger = PLUME.Core.Logger;
 
 namespace PLUME.Base.Module.LSL
 {
@@ -140,7 +141,7 @@ namespace PLUME.Base.Module.LSL
                         {
                             nPulledSamples = stream.PullChunk();
 
-                            if (nPulledSamples != 0)
+                            if (nPulledSamples > 0)
                             {
                                 RecordStreamSampleChunk(stream, nPulledSamples, stream.GetDataBuffer(),
                                     stream.GetTimestampBuffer(), ctx);
@@ -289,8 +290,23 @@ namespace PLUME.Base.Module.LSL
         {
             for (var i = 0; i < nSamples; i++)
             {
-                var streamSample = _streamSamplePool.Get();
+                var timeCorrection = inlet.TimeCorrection();
+                var sampleTimestamp = sampleTimestamps[i];
 
+                // LSL timestamp corrected using the NTP protocol. Precision of these estimates should be below 1 ms.
+                // Change the time referential so t=0 corresponds to the start of the recording.
+                var lslCorrectedTimestamp = sampleTimestamp + timeCorrection;
+
+                // If the sample was emitted before starting the record, we discard it.
+                if (lslCorrectedTimestamp - _lslRecordingStartTime < 0)
+                    continue;
+
+                // Convert the timestamp to nanoseconds
+                var correctedTimestamp = (ulong)((lslCorrectedTimestamp - _lslRecordingStartTime) * 1_000_000_000);
+
+                var streamSample = _streamSamplePool.Get();
+                streamSample.StreamId = inlet.StreamId;
+                
                 switch (inlet.ChannelFormat)
                 {
                     case channel_format_t.cf_float32:
@@ -300,7 +316,6 @@ namespace PLUME.Base.Module.LSL
                             streamSample.FloatValues.Value.Add(
                                 ((float[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
-
                         break;
                     case channel_format_t.cf_double64:
                         streamSample.DoubleValues = _repeatedDoublePool.Get();
@@ -309,7 +324,6 @@ namespace PLUME.Base.Module.LSL
                             streamSample.DoubleValues.Value.Add(
                                 ((double[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
-
                         break;
                     case channel_format_t.cf_string:
                         streamSample.StringValues = _repeatedStringPool.Get();
@@ -318,7 +332,6 @@ namespace PLUME.Base.Module.LSL
                             streamSample.StringValues.Value.Add(
                                 ((string[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
-
                         break;
                     case channel_format_t.cf_int8:
                         streamSample.Int8Values = _repeatedInt8Pool.Get();
@@ -327,7 +340,6 @@ namespace PLUME.Base.Module.LSL
                             streamSample.Int8Values.Value.Add(
                                 ((sbyte[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
-
                         break;
                     case channel_format_t.cf_int16:
                         streamSample.Int16Values = _repeatedInt16Pool.Get();
@@ -336,7 +348,6 @@ namespace PLUME.Base.Module.LSL
                             streamSample.Int16Values.Value.Add(
                                 ((short[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
-
                         break;
                     case channel_format_t.cf_int32:
                         streamSample.Int32Values = _repeatedInt32Pool.Get();
@@ -345,7 +356,6 @@ namespace PLUME.Base.Module.LSL
                             streamSample.Int32Values.Value.Add(
                                 ((int[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
-
                         break;
                     case channel_format_t.cf_int64:
                         streamSample.Int64Values = _repeatedInt64Pool.Get();
@@ -354,37 +364,26 @@ namespace PLUME.Base.Module.LSL
                             streamSample.Int64Values.Value.Add(
                                 ((long[])channelValues)[i * inlet.ChannelCount + channelIdx]);
                         }
-
                         break;
                     case channel_format_t.cf_undefined:
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-
-                // LSL timestamp corrected using the NTP protocol. Precision of these estimates should be below 1 ms.
-                // Change the time referential so t=0 corresponds to the start of the recording.
-                var lslCorrectedTimestamp = sampleTimestamps[i] + inlet.TimeCorrection() - _lslRecordingStartTime;
-
-                // If the sample was emitted before starting the record, we discard it.
-                if (lslCorrectedTimestamp >= 0)
+                
+                if (streamSample.CalculateSize() < SerializationBufferSize)
                 {
-                    // Convert the timestamp to nanoseconds
-                    var correctedTimestamp = (ulong)(lslCorrectedTimestamp * 1_000_000_000);
-
-                    if (streamSample.CalculateSize() < SerializationBufferSize)
-                    {
-                        _tmpMemoryStream.Position = 0;
-                        _tmpMemoryStream.SetLength(0);
-                        streamSample.WriteTo(_tmpCodedOutputStream);
-                        var bytes = _tmpMemoryStream.GetBuffer().AsSpan(0, (int)_tmpMemoryStream.Length);
-                        ctx.CurrentRecord.RecordTimestampedSample(bytes, _streamSampleType, correctedTimestamp);
-                    }
-                    else
-                    {
-                        var bytes = streamSample.ToByteArray();
-                        ctx.CurrentRecord.RecordTimestampedSample(bytes, _streamSampleType, correctedTimestamp);
-                    }
+                    _tmpMemoryStream.Position = 0;
+                    _tmpMemoryStream.SetLength(0);
+                    streamSample.WriteTo(_tmpCodedOutputStream);
+                    _tmpCodedOutputStream.Flush();
+                    var bytes = _tmpMemoryStream.GetBuffer().AsSpan(0, (int)_tmpMemoryStream.Length);
+                    ctx.CurrentRecord.RecordTimestampedSample(bytes, _streamSampleType, correctedTimestamp);
+                }
+                else
+                {
+                    var bytes = streamSample.ToByteArray();
+                    ctx.CurrentRecord.RecordTimestampedSample(bytes, _streamSampleType, correctedTimestamp);
                 }
 
                 switch (inlet.ChannelFormat)

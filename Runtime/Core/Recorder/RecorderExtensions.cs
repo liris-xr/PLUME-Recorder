@@ -29,11 +29,19 @@ namespace PLUME.Core.Recorder
             if (Instance == null)
                 throw new InvalidOperationException("PLUME recorder instance is not created yet.");
         }
-
-        public static void StartRecording(string name, string extraMetadata = "")
+        
+        public static void StartRecording(string name, bool recordAll = true, string extraMetadata = "")
         {
             CheckInstantiated();
             Instance.StartRecordingInternal(name, extraMetadata);
+
+            if (!recordAll)
+                return;
+            
+            foreach (var go in UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                StartRecordingGameObject(go);
+            }
         }
 
         public static async UniTask StopRecording()

@@ -2,13 +2,14 @@
 using PLUME.Core.Object.SafeRef;
 using PLUME.Sample.Common;
 using PLUME.Sample.Unity;
+using PLUME.Sample.Unity.Settings;
 using PLUME.Sample.Unity.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityRuntimeGuid;
 using Bounds = PLUME.Sample.Common.Bounds;
 using Color = PLUME.Sample.Common.Color;
-using FogMode = PLUME.Sample.Unity.FogMode;
+using ColorSpace = PLUME.Sample.Common.ColorSpace;
 using FontStyle = PLUME.Sample.Unity.UI.FontStyle;
 using HorizontalWrapMode = PLUME.Sample.Unity.UI.HorizontalWrapMode;
 using LightmapData = PLUME.Sample.Unity.LightmapData;
@@ -20,15 +21,15 @@ using LightType = PLUME.Sample.Unity.LightType;
 using Matrix4x4 = PLUME.Sample.Common.Matrix4x4;
 using Quaternion = PLUME.Sample.Common.Quaternion;
 using Rect = PLUME.Sample.Common.Rect;
-using Vector2 = PLUME.Sample.Common.Vector2;
-using Vector3 = PLUME.Sample.Common.Vector3;
-using Vector4 = PLUME.Sample.Common.Vector4;
 using RenderingPath = PLUME.Sample.Unity.RenderingPath;
-using TransparencySortMode = PLUME.Sample.Unity.TransparencySortMode;
 using RenderMode = PLUME.Sample.Unity.UI.RenderMode;
 using ScaleMode = PLUME.Sample.Unity.UI.ScaleMode;
 using StandaloneRenderResize = PLUME.Sample.Unity.UI.StandaloneRenderResize;
 using TextAnchor = PLUME.Sample.Unity.UI.TextAnchor;
+using TransparencySortMode = PLUME.Sample.Unity.TransparencySortMode;
+using Vector2 = PLUME.Sample.Common.Vector2;
+using Vector3 = PLUME.Sample.Common.Vector3;
+using Vector4 = PLUME.Sample.Common.Vector4;
 using VerticalWrapMode = PLUME.Sample.Unity.UI.VerticalWrapMode;
 #if URP_ENABLED
 using UnityEngine.Rendering.Universal;
@@ -307,37 +308,14 @@ namespace PLUME.Core.Utils
             };
         }
 
-        public static FogMode ToPayload(this UnityEngine.FogMode fogMode)
+        public static FogMode ToPayload(this FogMode fogMode)
         {
             return fogMode switch
             {
-                UnityEngine.FogMode.Linear => FogMode.Linear,
-                UnityEngine.FogMode.Exponential => FogMode.Exponential,
-                UnityEngine.FogMode.ExponentialSquared => FogMode.ExponentialSquared,
+                FogMode.Linear => FogMode.Linear,
+                FogMode.Exponential => FogMode.Exponential,
+                FogMode.ExponentialSquared => FogMode.ExponentialSquared,
                 _ => throw new ArgumentOutOfRangeException(nameof(fogMode), fogMode, null)
-            };
-        }
-
-        public static DefaultReflectionMode ToPayload(
-            this UnityEngine.Rendering.DefaultReflectionMode defaultReflectionMode)
-        {
-            return defaultReflectionMode switch
-            {
-                UnityEngine.Rendering.DefaultReflectionMode.Skybox => DefaultReflectionMode.Skybox,
-                UnityEngine.Rendering.DefaultReflectionMode.Custom => DefaultReflectionMode.Custom,
-                _ => throw new ArgumentOutOfRangeException(nameof(defaultReflectionMode), defaultReflectionMode, null)
-            };
-        }
-
-        public static AmbientMode ToPayload(this UnityEngine.Rendering.AmbientMode ambientMode)
-        {
-            return ambientMode switch
-            {
-                UnityEngine.Rendering.AmbientMode.Skybox => AmbientMode.Skybox,
-                UnityEngine.Rendering.AmbientMode.Trilight => AmbientMode.Trilight,
-                UnityEngine.Rendering.AmbientMode.Flat => AmbientMode.Flat,
-                UnityEngine.Rendering.AmbientMode.Custom => AmbientMode.Custom,
-                _ => throw new ArgumentOutOfRangeException(nameof(ambientMode), ambientMode, null)
             };
         }
 
@@ -674,6 +652,106 @@ namespace PLUME.Core.Utils
                 ContentSizeFitter.FitMode.MinSize => FitMode.MinSize,
                 ContentSizeFitter.FitMode.PreferredSize => FitMode.PrefSize,
                 _ => throw new ArgumentOutOfRangeException(nameof(fitMode), fitMode, null)
+            };
+        }
+        
+        public static SpeakerMode ToPayload(this AudioSpeakerMode audioSpeakerMode)
+        {
+            return audioSpeakerMode switch
+            {
+                AudioSpeakerMode.Mono => SpeakerMode.Mono,
+                AudioSpeakerMode.Stereo => SpeakerMode.Stereo,
+                AudioSpeakerMode.Quad => SpeakerMode.Quad,
+                AudioSpeakerMode.Surround => SpeakerMode.Surround,
+                AudioSpeakerMode.Mode5point1 => SpeakerMode.Surround5Point1,
+                AudioSpeakerMode.Mode7point1 => SpeakerMode.Surround7Point1,
+                AudioSpeakerMode.Prologic => SpeakerMode.Prologic,
+                _ => throw new ArgumentOutOfRangeException(nameof(audioSpeakerMode), audioSpeakerMode, null)
+            };
+        }
+        
+        public static ColorSpace ToPayload(this UnityEngine.ColorSpace colorSpace)
+        {
+            return colorSpace switch
+            {
+                UnityEngine.ColorSpace.Uninitialized => ColorSpace.Uninitialized,
+                UnityEngine.ColorSpace.Gamma => ColorSpace.Gamma,
+                UnityEngine.ColorSpace.Linear => ColorSpace.Linear,
+                _ => throw new ArgumentOutOfRangeException(nameof(colorSpace), colorSpace, null)
+            };
+        }
+        
+        public static ColorGradient.Types.GradientMode ToPayload(this GradientMode gradientMode)
+        {
+            return gradientMode switch
+            {
+                GradientMode.Blend => ColorGradient.Types.GradientMode.Blend,
+                GradientMode.Fixed => ColorGradient.Types.GradientMode.Fixed,
+                GradientMode.PerceptualBlend => ColorGradient.Types.GradientMode.PerceptualBlend,
+                _ => throw new ArgumentOutOfRangeException(nameof(gradientMode), gradientMode, null)
+            };
+        }
+        
+        public static ColorGradient ToPayload(this Gradient gradient)
+        {
+            var colorGradient = new ColorGradient
+            {
+                ColorSpace = gradient.colorSpace.ToPayload(),
+                Mode = gradient.mode.ToPayload()
+            };
+
+            foreach (var colorKey in gradient.colorKeys)
+            {
+                colorGradient.ColorKeys.Add(new ColorGradient.Types.ColorKey
+                {
+                    Color = colorKey.color.ToPayload(),
+                    Time = colorKey.time
+                });
+            }
+            
+            foreach (var alphaKey in gradient.alphaKeys)
+            {
+                colorGradient.AlphaKeys.Add(new ColorGradient.Types.AlphaKey
+                {
+                    Alpha = alphaKey.alpha,
+                    Time = alphaKey.time
+                });
+            }
+            
+            return colorGradient;
+        }
+
+        public static Alignment ToPayload(this LineAlignment alignment)
+        {
+            return alignment switch
+            {
+                LineAlignment.View => Alignment.View,
+                LineAlignment.TransformZ => Alignment.TransformZ,
+                _ => throw new ArgumentOutOfRangeException(nameof(alignment), alignment, null)
+            };
+        }
+
+        public static TextureMode ToPayload(this LineTextureMode lineTextureMode)
+        {
+            return lineTextureMode switch
+            {
+                LineTextureMode.Stretch => TextureMode.Stretch,
+                LineTextureMode.Tile => TextureMode.Tile,
+                LineTextureMode.DistributePerSegment => TextureMode.DistributePerSegment,
+                LineTextureMode.RepeatPerSegment => TextureMode.RepeatPerSegment,
+                LineTextureMode.Static => TextureMode.Static,
+                _ => throw new ArgumentOutOfRangeException(nameof(lineTextureMode), lineTextureMode, null)
+            };
+        }
+        
+        public static MaskInteraction ToPayload(this SpriteMaskInteraction spriteMaskInteraction)
+        {
+            return spriteMaskInteraction switch
+            {
+                SpriteMaskInteraction.None => MaskInteraction.None,
+                SpriteMaskInteraction.VisibleInsideMask => MaskInteraction.VisibleInside,
+                SpriteMaskInteraction.VisibleOutsideMask => MaskInteraction.VisibleOutside,
+                _ => throw new ArgumentOutOfRangeException(nameof(spriteMaskInteraction), spriteMaskInteraction, null)
             };
         }
 

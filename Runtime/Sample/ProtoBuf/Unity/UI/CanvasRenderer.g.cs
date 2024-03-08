@@ -46,7 +46,6 @@ namespace PLUME.Sample.Unity.UI {
 
   }
   #region Messages
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CanvasRendererCreate : pb::IMessage<CanvasRendererCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -245,7 +244,6 @@ namespace PLUME.Sample.Unity.UI {
 
   }
 
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CanvasRendererDestroy : pb::IMessage<CanvasRendererDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -444,7 +442,6 @@ namespace PLUME.Sample.Unity.UI {
 
   }
 
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class CanvasRendererUpdate : pb::IMessage<CanvasRendererUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

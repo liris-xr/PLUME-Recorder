@@ -45,7 +45,6 @@ namespace PLUME.Sample.Common {
 
   }
   #region Messages
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SphericalHarmonicsL2 : pb::IMessage<SphericalHarmonicsL2>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

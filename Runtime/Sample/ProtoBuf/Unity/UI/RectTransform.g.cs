@@ -52,7 +52,6 @@ namespace PLUME.Sample.Unity.UI {
 
   }
   #region Messages
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class RectTransformCreate : pb::IMessage<RectTransformCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -251,7 +250,6 @@ namespace PLUME.Sample.Unity.UI {
 
   }
 
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class RectTransformDestroy : pb::IMessage<RectTransformDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -450,7 +448,6 @@ namespace PLUME.Sample.Unity.UI {
 
   }
 
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class RectTransformUpdate : pb::IMessage<RectTransformUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

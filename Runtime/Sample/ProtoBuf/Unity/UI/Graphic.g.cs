@@ -45,7 +45,6 @@ namespace PLUME.Sample.Unity.UI {
 
   }
   #region Messages
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class GraphicUpdate : pb::IMessage<GraphicUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

@@ -63,7 +63,6 @@ namespace PLUME.Sample.LSL {
 
   }
   #region Messages
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class StreamOpen : pb::IMessage<StreamOpen>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -113,7 +112,8 @@ namespace PLUME.Sample.LSL {
     public const int StreamIdFieldNumber = 1;
     private string streamId_ = "";
     /// <summary>
-    /// Unique identifier of the stream
+    /// Unique identifier of the stream used by the recorder
+    /// To get the session id, uid and source id, use the xml_header
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -297,7 +297,6 @@ namespace PLUME.Sample.LSL {
 
   }
 
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class StreamClose : pb::IMessage<StreamClose>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -346,7 +345,9 @@ namespace PLUME.Sample.LSL {
     public const int StreamIdFieldNumber = 1;
     private string streamId_ = "";
     /// <summary>
-    /// Unique identifier of the stream
+    /// Unique identifier of the stream used by the recorder
+    /// To get the session id, uid and source id, use the xml_header
+    /// provided in the StreamOpen sample
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -490,7 +491,6 @@ namespace PLUME.Sample.LSL {
 
   }
 
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class StreamSample : pb::IMessage<StreamSample>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -563,7 +563,9 @@ namespace PLUME.Sample.LSL {
     public const int StreamIdFieldNumber = 1;
     private string streamId_ = "";
     /// <summary>
-    /// Unique identifier of the stream
+    /// Unique identifier of the stream used by the recorder
+    /// To get the session id, uid and source id, use the xml_header
+    /// provided in the StreamOpen sample
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1084,7 +1086,6 @@ namespace PLUME.Sample.LSL {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static partial class Types {
-      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
       public sealed partial class RepeatedFloat : pb::IMessage<RepeatedFloat>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
@@ -1265,7 +1266,6 @@ namespace PLUME.Sample.LSL {
 
       }
 
-      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
       public sealed partial class RepeatedDouble : pb::IMessage<RepeatedDouble>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
@@ -1446,7 +1446,6 @@ namespace PLUME.Sample.LSL {
 
       }
 
-      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
       public sealed partial class RepeatedString : pb::IMessage<RepeatedString>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
@@ -1625,7 +1624,6 @@ namespace PLUME.Sample.LSL {
 
       }
 
-      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
       public sealed partial class RepeatedInt8 : pb::IMessage<RepeatedInt8>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
@@ -1806,7 +1804,6 @@ namespace PLUME.Sample.LSL {
 
       }
 
-      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
       public sealed partial class RepeatedInt16 : pb::IMessage<RepeatedInt16>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
@@ -1987,7 +1984,6 @@ namespace PLUME.Sample.LSL {
 
       }
 
-      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
       public sealed partial class RepeatedInt32 : pb::IMessage<RepeatedInt32>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
@@ -2168,7 +2164,6 @@ namespace PLUME.Sample.LSL {
 
       }
 
-      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
       public sealed partial class RepeatedInt64 : pb::IMessage<RepeatedInt64>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage

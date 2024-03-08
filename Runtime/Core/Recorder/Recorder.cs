@@ -8,8 +8,10 @@ using PLUME.Core.Recorder.Writer;
 using PLUME.Core.Scripts;
 using PLUME.Sample;
 using PLUME.Sample.Common;
+using PLUME.Sample.Unity.Settings;
 using Unity.Collections;
 using UnityEngine;
+using static PLUME.Core.Utils.SampleUtils;
 
 namespace PLUME.Core.Recorder
 {
@@ -27,7 +29,7 @@ namespace PLUME.Core.Recorder
             Minor = "0",
             Patch = "0",
         };
-        
+
         private readonly RecorderContext _context;
         private readonly DataDispatcher _dataDispatcher;
         private bool _wantsToQuit;
@@ -58,11 +60,14 @@ namespace PLUME.Core.Recorder
             var recordClock = new Clock();
             var record = new Record(recordClock, recordMetadata, Allocator.Persistent);
 
-            // Record the metadata first
-            record.RecordTimelessManagedSample(recordMetadata.ToPayload());
-
             _context.CurrentRecord = record;
             _context.Status = RecorderStatus.Recording;
+
+            // Record the metadata first
+            record.RecordTimelessManagedSample(recordMetadata.ToPayload());
+            // Record the application settings (ie. graphics settings, quality settings, etc.)
+            RecordApplicationGlobalSettings(record);
+            RecordApplicationCurrentSettings(record);
 
             _dataDispatcher.Start(_context.CurrentRecord);
 
@@ -75,6 +80,38 @@ namespace PLUME.Core.Recorder
             recordClock.Start();
 
             Logger.Log("Recorder started.");
+        }
+
+        private static void RecordApplicationGlobalSettings(Record record)
+        {
+            var graphicsSettingsSample = new GraphicsSettings
+            {
+                DefaultRenderPipelineAssetId =
+                    GetAssetIdentifierPayload(UnityEngine.Rendering.GraphicsSettings.defaultRenderPipeline),
+                ColorSpace = QualitySettings.activeColorSpace.ToPayload()
+            };
+
+            record.RecordTimelessManagedSample(graphicsSettingsSample);
+        }
+
+        private static void RecordApplicationCurrentSettings(Record record)
+        {
+            var qualityLevel = QualitySettings.GetQualityLevel();
+            
+            var qualitySettingsUpdateSample = new QualitySettingsUpdate
+            {
+                Name = QualitySettings.names[qualityLevel],
+                RenderPipelineAssetId = GetAssetIdentifierPayload(QualitySettings.renderPipeline)
+            };
+            
+            var audioSettingsUpdateSample = new AudioSettingsUpdate
+            {
+                SpeakerMode = AudioSettings.speakerMode.ToPayload(),
+                SpatializerPluginName = AudioSettings.GetSpatializerPluginName()
+            };
+
+            record.RecordTimestampedManagedSample(qualitySettingsUpdateSample);
+            record.RecordTimestampedManagedSample(audioSettingsUpdateSample);
         }
 
         /// <summary>
@@ -108,7 +145,7 @@ namespace PLUME.Core.Recorder
             }
 
             await _dataDispatcher.StopAsync();
-            
+
             ApplicationPauseDetector.Destroy();
 
             if (_context.CurrentRecord != null)
@@ -130,7 +167,7 @@ namespace PLUME.Core.Recorder
             _context.Status = RecorderStatus.Stopping;
 
             var stopwatch = Stopwatch.StartNew();
-            
+
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _context.Modules.Count; i++)
             {
@@ -138,13 +175,13 @@ namespace PLUME.Core.Recorder
             }
 
             _dataDispatcher.Stop();
-            
+
             if (_context.CurrentRecord != null)
             {
                 _context.CurrentRecord.Dispose();
                 _context.CurrentRecord = null;
             }
-            
+
             stopwatch.Stop();
             _context.Status = RecorderStatus.Stopped;
             Logger.Log("Recorder force stopped after " + stopwatch.ElapsedMilliseconds + "ms.");

@@ -205,7 +205,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Distributed under the <a href="https://github.com/liris-xr/PLUME-Recorder/blob/master/LICENSE.md">GPLv3 License</a>.
+Distributed under the <a href="https://github.com/liris-xr/PLUME-Recorder/blob/master/LICENSE">GPLv3 License</a>.
 
 ## Contact
 

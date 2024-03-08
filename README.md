@@ -129,7 +129,7 @@ Records are located in the Application Path defined by Unity, e.g., on Windows, 
 ## Customization
 ### Event Marker
 To record a custom event marker, write anywhere in your code:
-```
+```csharp
 PlumeRecorder.RecordMarker("Marker");
 ```
 
@@ -137,7 +137,7 @@ PlumeRecorder.RecordMarker("Marker");
 To record custom data, you need to create your own protos by following the instructions in the <a href="https://github.com/liris-xr/PLUME-Protos">PLUME Proto repository</a>
 
 Your custom proto will look something like this:
-```
+```proto
 syntax = "proto3";
 
 package plume.sample.custom; // <- you can change this to use your own namespace
@@ -151,7 +151,7 @@ message MyCustomSample {
 Once your C# protos are generated as instructed <a href="https://github.com/liris-xr/PLUME-Protos/?tab=readme-ov-file#how-to-build">here</a>, import your protos in your Unity project.
 
 To record your sample, create a Recorder Module. In this example, the module creates a MyCustomSample when the record starts.
-```C#
+```csharp
 using System;
 using PLUME.Sample.Unity;
 using UnityEngine;

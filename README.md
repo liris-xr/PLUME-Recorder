@@ -101,6 +101,63 @@ To build your project Asset Bundle, click on `PLUME > Build Asset Bundle`. The b
 ### Records Location
 Records are located in the Application Path defined by Unity, e.g., on Windows, the Application Path is: `%AppData%/LocalLow/Company Name/Project Name`.
 
+## Customisation
+### Event Markers
+To record a custom event marker, write anywhere in your code:
+```
+PlumeRecorder.RecordMarker("Marker");
+```
+
+### Custom Sample
+To record custom data, you need to create your own protos by following the instructions in the <a href="https://github.com/liris-xr/PLUME-Protos">PLUME Proto repository</a>
+
+Your custom proto will look something like this:
+```
+syntax = "proto3";
+
+package plume.sample.custom;
+option csharp_namespace = "PLUME.Sample.Custom";
+
+message MyCustomSample {
+    float myData = 1;
+}
+```
+
+Once your C# protos are generated as instructed <a href="https://github.com/liris-xr/PLUME-Protos/?tab=readme-ov-file#how-to-build">here</a>, import your protos in your Unity project.
+
+To record your sample, create a Recorder Module. In this example, the module creates a MyCustomSample when the record starts.
+```C#
+using System;
+using PLUME.Sample.Unity;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+namespace MyNamespace
+{
+    public class MyCustomRecorder : RecorderModule, IStartRecordingEventReceiver
+    {
+        public new void OnStartRecording()
+        {
+            base.OnStartRecording();
+
+            var variable = 42f;
+
+            var myCustomSample = new MyCustomSample
+            {
+                MyData = variable;
+            };
+
+            recorder.RecordSampleStamped(myCustomSample);
+        }
+
+        protected override void ResetCache()
+        {
+        }
+    }
+}
+```
+You can get inspiration from existing Recorder Modules to create more complex modules.
+
 ## Roadmap
 
 See the [open issues](https://github.com/Plateforme-VR-ENISE/PLUME/issues) for a full list of proposed features (and

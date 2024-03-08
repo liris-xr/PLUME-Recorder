@@ -1,0 +1,52 @@
+{
+    "name": "PLUME.Recorder",
+    "rootNamespace": "PLUME",
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:2665a8d13d1b3f18800f46e256720795",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:b46779583a009f04ba9f5f31d0e7e6ac",
+        "GUID:dc46c3c587db9084390e35314472cfdb",
+        "GUID:7337036dbbf0a8c4a99ad3544b02ffdd",
+        "GUID:f2733d9e92b965c49bcb82736e671a91",
+        "GUID:fe685ec1767f73d42b749ea8045bfe43",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:15fc0a57446b3144c949da3e2b9737a9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "NAudio.Core.dll",
+        "K4os.Compression.LZ4.dll",
+        "K4os.Compression.LZ4.Streams.dll",
+        "Google.Protobuf.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.render-pipelines.universal",
+            "expression": "0",
+            "define": "URP_ENABLED"
+        },
+        {
+            "name": "com.unity.xr.interaction.toolkit",
+            "expression": "0",
+            "define": "XRITK_ENABLED"
+        },
+        {
+            "name": "com.unity.textmeshpro",
+            "expression": "0",
+            "define": "TMP_ENABLED"
+        },
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "0",
+            "define": "INPUT_SYSTEM_ENABLED"
+        }
+    ],
+    "noEngineReferences": false
+}

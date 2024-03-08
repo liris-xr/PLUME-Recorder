@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 908653338d48aed4c8f20b92eba331f1
+guid: 97288a3d47011224b9c07cc6a335a61a
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -27,6 +27,7 @@ PluginImporter:
     second:
       enabled: 0
       settings:
+        AndroidSharedLibraryType: Executable
         CPU: ARM64
   - first:
       Any: 
@@ -38,7 +39,7 @@ PluginImporter:
     second:
       enabled: 1
       settings:
-        CPU: x86_64
+        CPU: AnyCPU
         DefaultValueInitialized: true
         OS: Linux
   - first:

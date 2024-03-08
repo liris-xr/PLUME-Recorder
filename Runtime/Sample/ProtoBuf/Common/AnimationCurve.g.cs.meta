@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Runtime/Sample/Common/AnimationCurve.g.cs.meta
+guid: 2a726b16374f59a499f3891f47c9965e
+=======
+guid: ca98e8c806a0a5b4f9a5dcd0da1daac1
+>>>>>>> develop:Runtime/Sample/ProtoBuf/Common/AnimationCurve.g.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

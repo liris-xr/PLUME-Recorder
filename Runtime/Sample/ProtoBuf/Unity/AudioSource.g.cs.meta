@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Runtime/Sample/Unity/AudioSource.g.cs.meta
+guid: 940077c7c130d5741866f078ce04d741
+=======
+guid: 2ea2b1671e71bb745965f2d80d404f85
+>>>>>>> develop:Runtime/Sample/ProtoBuf/Unity/AudioSource.g.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -14,13 +14,24 @@ namespace PLUME.Base.Events
         public delegate void OnColorChangedDelegate(LineRenderer lineRenderer, Gradient color);
 
         public delegate void OnWidthCurveChangedDelegate(LineRenderer lineRenderer, AnimationCurve widthCurve);
+        
+        public delegate void OnWidthMultiplierChangedDelegate(LineRenderer lineRenderer, float widthMultiplier);
 
         public static event OnPositionsChangedDelegate OnPositionsChanged = delegate { };
 
         public static event OnColorChangedDelegate OnColorChanged = delegate { };
 
         public static event OnWidthCurveChangedDelegate OnWidthCurveChanged = delegate { };
+        
+        public static event OnWidthMultiplierChangedDelegate OnWidthMultiplierChanged = delegate { };
 
+        [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.widthMultiplier))]
+        public static void SetWidthMultiplierAndNotify(LineRenderer lineRenderer, float widthMultiplier)
+        {
+            lineRenderer.widthMultiplier = widthMultiplier;
+            OnWidthMultiplierChanged(lineRenderer, widthMultiplier);
+        }
+        
         [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.startWidth))]
         public static void SetStartWidthAndNotify(LineRenderer lineRenderer, float startWidth)
         {

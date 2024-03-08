@@ -31,42 +31,44 @@ namespace PLUME.Sample.Unity {
             "ZXJDcmVhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29t",
             "cG9uZW50SWRlbnRpZmllciJKChNMaW5lUmVuZGVyZXJEZXN0cm95EjMKAmlk",
             "GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
-            "ZXIixQcKEkxpbmVSZW5kZXJlclVwZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1l",
+            "ZXIi+QcKEkxpbmVSZW5kZXJlclVwZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1l",
             "LnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEhEKBGxvb3AYAiAB",
             "KAhIAIgBARI9Cgt3aWR0aF9jdXJ2ZRgDIAEoCzIjLnBsdW1lLnNhbXBsZS5j",
-            "b21tb24uQW5pbWF0aW9uQ3VydmVIAYgBARJICglwb3NpdGlvbnMYBCABKAsy",
-            "MC5wbHVtZS5zYW1wbGUudW5pdHkuTGluZVJlbmRlcmVyVXBkYXRlLlBvc2l0",
-            "aW9uc0gCiAEBEjYKBWNvbG9yGAUgASgLMiIucGx1bWUuc2FtcGxlLmNvbW1v",
-            "bi5Db2xvckdyYWRpZW50SAOIAQESHAoPY29ybmVyX3ZlcnRpY2VzGAYgASgF",
-            "SASIAQESHQoQZW5kX2NhcF92ZXJ0aWNlcxgHIAEoBUgFiAEBEjUKCWFsaWdu",
-            "bWVudBgIIAEoDjIdLnBsdW1lLnNhbXBsZS51bml0eS5BbGlnbm1lbnRIBogB",
-            "ARI6Cgx0ZXh0dXJlX21vZGUYCSABKA4yHy5wbHVtZS5zYW1wbGUudW5pdHku",
-            "VGV4dHVyZU1vZGVIB4gBARI4Cg10ZXh0dXJlX3NjYWxlGAogASgLMhwucGx1",
-            "bWUuc2FtcGxlLmNvbW1vbi5WZWN0b3IySAiIAQESGAoLc2hhZG93X2JpYXMY",
-            "CyABKAJICYgBARIjChZnZW5lcmF0ZV9saWdodGluZ19kYXRhGAwgASgISAqI",
-            "AQESHAoPdXNlX3dvcmxkX3NwYWNlGA0gASgISAuIAQESQgoQbWFza19pbnRl",
-            "cmFjdGlvbhgOIAEoDjIjLnBsdW1lLnNhbXBsZS51bml0eS5NYXNrSW50ZXJh",
-            "Y3Rpb25IDIgBARo8CglQb3NpdGlvbnMSLwoJcG9zaXRpb25zGAEgAygLMhwu",
-            "cGx1bWUuc2FtcGxlLmNvbW1vbi5WZWN0b3IzQgcKBV9sb29wQg4KDF93aWR0",
-            "aF9jdXJ2ZUIMCgpfcG9zaXRpb25zQggKBl9jb2xvckISChBfY29ybmVyX3Zl",
-            "cnRpY2VzQhMKEV9lbmRfY2FwX3ZlcnRpY2VzQgwKCl9hbGlnbm1lbnRCDwoN",
-            "X3RleHR1cmVfbW9kZUIQCg5fdGV4dHVyZV9zY2FsZUIOCgxfc2hhZG93X2Jp",
-            "YXNCGQoXX2dlbmVyYXRlX2xpZ2h0aW5nX2RhdGFCEgoQX3VzZV93b3JsZF9z",
-            "cGFjZUITChFfbWFza19pbnRlcmFjdGlvbio6CglBbGlnbm1lbnQSEgoOQUxJ",
-            "R05NRU5UX1ZJRVcQABIZChVBTElHTk1FTlRfVFJBTlNGT1JNX1oQASqlAQoL",
-            "VGV4dHVyZU1vZGUSGAoUVEVYVFVSRV9NT0RFX1NUUkVUQ0gQABIVChFURVhU",
-            "VVJFX01PREVfVElMRRABEicKI1RFWFRVUkVfTU9ERV9ESVNUUklCVVRFX1BF",
-            "Ul9TRUdNRU5UEAISIwofVEVYVFVSRV9NT0RFX1JFUEVBVF9QRVJfU0VHTUVO",
-            "VBADEhcKE1RFWFRVUkVfTU9ERV9TVEFUSUMQBCp3Cg9NYXNrSW50ZXJhY3Rp",
-            "b24SGQoVTUFTS19JTlRFUkFDVElPTl9OT05FEAASIwofTUFTS19JTlRFUkFD",
-            "VElPTl9WSVNJQkxFX0lOU0lERRABEiQKIE1BU0tfSU5URVJBQ1RJT05fVklT",
-            "SUJMRV9PVVRTSURFEAJCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
+            "b21tb24uQW5pbWF0aW9uQ3VydmVIAYgBARIdChB3aWR0aF9tdWx0aXBsaWVy",
+            "GAQgASgCSAKIAQESSAoJcG9zaXRpb25zGAUgASgLMjAucGx1bWUuc2FtcGxl",
+            "LnVuaXR5LkxpbmVSZW5kZXJlclVwZGF0ZS5Qb3NpdGlvbnNIA4gBARI2CgVj",
+            "b2xvchgGIAEoCzIiLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3JHcmFkaWVu",
+            "dEgEiAEBEhwKD2Nvcm5lcl92ZXJ0aWNlcxgHIAEoBUgFiAEBEh0KEGVuZF9j",
+            "YXBfdmVydGljZXMYCCABKAVIBogBARI1CglhbGlnbm1lbnQYCSABKA4yHS5w",
+            "bHVtZS5zYW1wbGUudW5pdHkuQWxpZ25tZW50SAeIAQESOgoMdGV4dHVyZV9t",
+            "b2RlGAogASgOMh8ucGx1bWUuc2FtcGxlLnVuaXR5LlRleHR1cmVNb2RlSAiI",
+            "AQESOAoNdGV4dHVyZV9zY2FsZRgLIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21t",
+            "b24uVmVjdG9yMkgJiAEBEhgKC3NoYWRvd19iaWFzGAwgASgCSAqIAQESIwoW",
+            "Z2VuZXJhdGVfbGlnaHRpbmdfZGF0YRgNIAEoCEgLiAEBEhwKD3VzZV93b3Js",
+            "ZF9zcGFjZRgOIAEoCEgMiAEBEkIKEG1hc2tfaW50ZXJhY3Rpb24YDyABKA4y",
+            "Iy5wbHVtZS5zYW1wbGUudW5pdHkuTWFza0ludGVyYWN0aW9uSA2IAQEaPAoJ",
+            "UG9zaXRpb25zEi8KCXBvc2l0aW9ucxgBIAMoCzIcLnBsdW1lLnNhbXBsZS5j",
+            "b21tb24uVmVjdG9yM0IHCgVfbG9vcEIOCgxfd2lkdGhfY3VydmVCEwoRX3dp",
+            "ZHRoX211bHRpcGxpZXJCDAoKX3Bvc2l0aW9uc0IICgZfY29sb3JCEgoQX2Nv",
+            "cm5lcl92ZXJ0aWNlc0ITChFfZW5kX2NhcF92ZXJ0aWNlc0IMCgpfYWxpZ25t",
+            "ZW50Qg8KDV90ZXh0dXJlX21vZGVCEAoOX3RleHR1cmVfc2NhbGVCDgoMX3No",
+            "YWRvd19iaWFzQhkKF19nZW5lcmF0ZV9saWdodGluZ19kYXRhQhIKEF91c2Vf",
+            "d29ybGRfc3BhY2VCEwoRX21hc2tfaW50ZXJhY3Rpb24qOgoJQWxpZ25tZW50",
+            "EhIKDkFMSUdOTUVOVF9WSUVXEAASGQoVQUxJR05NRU5UX1RSQU5TRk9STV9a",
+            "EAEqpQEKC1RleHR1cmVNb2RlEhgKFFRFWFRVUkVfTU9ERV9TVFJFVENIEAAS",
+            "FQoRVEVYVFVSRV9NT0RFX1RJTEUQARInCiNURVhUVVJFX01PREVfRElTVFJJ",
+            "QlVURV9QRVJfU0VHTUVOVBACEiMKH1RFWFRVUkVfTU9ERV9SRVBFQVRfUEVS",
+            "X1NFR01FTlQQAxIXChNURVhUVVJFX01PREVfU1RBVElDEAQqdwoPTWFza0lu",
+            "dGVyYWN0aW9uEhkKFU1BU0tfSU5URVJBQ1RJT05fTk9ORRAAEiMKH01BU0tf",
+            "SU5URVJBQ1RJT05fVklTSUJMRV9JTlNJREUQARIkCiBNQVNLX0lOVEVSQUNU",
+            "SU9OX1ZJU0lCTEVfT1VUU0lERRACQhWqAhJQTFVNRS5TYW1wbGUuVW5pdHli",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, global::PLUME.Sample.Common.Vector2Reflection.Descriptor, global::PLUME.Sample.Common.Vector3Reflection.Descriptor, global::PLUME.Sample.Common.AnimationCurveReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.Alignment), typeof(global::PLUME.Sample.Unity.TextureMode), typeof(global::PLUME.Sample.Unity.MaskInteraction), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererCreate), global::PLUME.Sample.Unity.LineRendererCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererDestroy), global::PLUME.Sample.Unity.LineRendererDestroy.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererUpdate), global::PLUME.Sample.Unity.LineRendererUpdate.Parser, new[]{ "Id", "Loop", "WidthCurve", "Positions", "Color", "CornerVertices", "EndCapVertices", "Alignment", "TextureMode", "TextureScale", "ShadowBias", "GenerateLightingData", "UseWorldSpace", "MaskInteraction" }, new[]{ "Loop", "WidthCurve", "Positions", "Color", "CornerVertices", "EndCapVertices", "Alignment", "TextureMode", "TextureScale", "ShadowBias", "GenerateLightingData", "UseWorldSpace", "MaskInteraction" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions), global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions.Parser, new[]{ "Positions_" }, null, null, null, null)})
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererUpdate), global::PLUME.Sample.Unity.LineRendererUpdate.Parser, new[]{ "Id", "Loop", "WidthCurve", "WidthMultiplier", "Positions", "Color", "CornerVertices", "EndCapVertices", "Alignment", "TextureMode", "TextureScale", "ShadowBias", "GenerateLightingData", "UseWorldSpace", "MaskInteraction" }, new[]{ "Loop", "WidthCurve", "WidthMultiplier", "Positions", "Color", "CornerVertices", "EndCapVertices", "Alignment", "TextureMode", "TextureScale", "ShadowBias", "GenerateLightingData", "UseWorldSpace", "MaskInteraction" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions), global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions.Parser, new[]{ "Positions_" }, null, null, null, null)})
           }));
     }
     #endregion
@@ -530,6 +532,7 @@ namespace PLUME.Sample.Unity {
       id_ = other.id_ != null ? other.id_.Clone() : null;
       loop_ = other.loop_;
       widthCurve_ = other.widthCurve_ != null ? other.widthCurve_.Clone() : null;
+      widthMultiplier_ = other.widthMultiplier_;
       positions_ = other.positions_ != null ? other.positions_.Clone() : null;
       color_ = other.color_ != null ? other.color_.Clone() : null;
       cornerVertices_ = other.cornerVertices_;
@@ -601,8 +604,35 @@ namespace PLUME.Sample.Unity {
       }
     }
 
+    /// <summary>Field number for the "width_multiplier" field.</summary>
+    public const int WidthMultiplierFieldNumber = 4;
+    private readonly static float WidthMultiplierDefaultValue = 0F;
+
+    private float widthMultiplier_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float WidthMultiplier {
+      get { if ((_hasBits0 & 2) != 0) { return widthMultiplier_; } else { return WidthMultiplierDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        widthMultiplier_ = value;
+      }
+    }
+    /// <summary>Gets whether the "width_multiplier" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasWidthMultiplier {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "width_multiplier" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearWidthMultiplier() {
+      _hasBits0 &= ~2;
+    }
+
     /// <summary>Field number for the "positions" field.</summary>
-    public const int PositionsFieldNumber = 4;
+    public const int PositionsFieldNumber = 5;
     private global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions positions_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -614,7 +644,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "color" field.</summary>
-    public const int ColorFieldNumber = 5;
+    public const int ColorFieldNumber = 6;
     private global::PLUME.Sample.Common.ColorGradient color_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -626,16 +656,16 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "corner_vertices" field.</summary>
-    public const int CornerVerticesFieldNumber = 6;
+    public const int CornerVerticesFieldNumber = 7;
     private readonly static int CornerVerticesDefaultValue = 0;
 
     private int cornerVertices_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CornerVertices {
-      get { if ((_hasBits0 & 2) != 0) { return cornerVertices_; } else { return CornerVerticesDefaultValue; } }
+      get { if ((_hasBits0 & 4) != 0) { return cornerVertices_; } else { return CornerVerticesDefaultValue; } }
       set {
-        _hasBits0 |= 2;
+        _hasBits0 |= 4;
         cornerVertices_ = value;
       }
     }
@@ -643,26 +673,26 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasCornerVertices {
-      get { return (_hasBits0 & 2) != 0; }
+      get { return (_hasBits0 & 4) != 0; }
     }
     /// <summary>Clears the value of the "corner_vertices" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearCornerVertices() {
-      _hasBits0 &= ~2;
+      _hasBits0 &= ~4;
     }
 
     /// <summary>Field number for the "end_cap_vertices" field.</summary>
-    public const int EndCapVerticesFieldNumber = 7;
+    public const int EndCapVerticesFieldNumber = 8;
     private readonly static int EndCapVerticesDefaultValue = 0;
 
     private int endCapVertices_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int EndCapVertices {
-      get { if ((_hasBits0 & 4) != 0) { return endCapVertices_; } else { return EndCapVerticesDefaultValue; } }
+      get { if ((_hasBits0 & 8) != 0) { return endCapVertices_; } else { return EndCapVerticesDefaultValue; } }
       set {
-        _hasBits0 |= 4;
+        _hasBits0 |= 8;
         endCapVertices_ = value;
       }
     }
@@ -670,26 +700,26 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasEndCapVertices {
-      get { return (_hasBits0 & 4) != 0; }
+      get { return (_hasBits0 & 8) != 0; }
     }
     /// <summary>Clears the value of the "end_cap_vertices" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearEndCapVertices() {
-      _hasBits0 &= ~4;
+      _hasBits0 &= ~8;
     }
 
     /// <summary>Field number for the "alignment" field.</summary>
-    public const int AlignmentFieldNumber = 8;
+    public const int AlignmentFieldNumber = 9;
     private readonly static global::PLUME.Sample.Unity.Alignment AlignmentDefaultValue = global::PLUME.Sample.Unity.Alignment.View;
 
     private global::PLUME.Sample.Unity.Alignment alignment_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.Alignment Alignment {
-      get { if ((_hasBits0 & 8) != 0) { return alignment_; } else { return AlignmentDefaultValue; } }
+      get { if ((_hasBits0 & 16) != 0) { return alignment_; } else { return AlignmentDefaultValue; } }
       set {
-        _hasBits0 |= 8;
+        _hasBits0 |= 16;
         alignment_ = value;
       }
     }
@@ -697,26 +727,26 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasAlignment {
-      get { return (_hasBits0 & 8) != 0; }
+      get { return (_hasBits0 & 16) != 0; }
     }
     /// <summary>Clears the value of the "alignment" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearAlignment() {
-      _hasBits0 &= ~8;
+      _hasBits0 &= ~16;
     }
 
     /// <summary>Field number for the "texture_mode" field.</summary>
-    public const int TextureModeFieldNumber = 9;
+    public const int TextureModeFieldNumber = 10;
     private readonly static global::PLUME.Sample.Unity.TextureMode TextureModeDefaultValue = global::PLUME.Sample.Unity.TextureMode.Stretch;
 
     private global::PLUME.Sample.Unity.TextureMode textureMode_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.TextureMode TextureMode {
-      get { if ((_hasBits0 & 16) != 0) { return textureMode_; } else { return TextureModeDefaultValue; } }
+      get { if ((_hasBits0 & 32) != 0) { return textureMode_; } else { return TextureModeDefaultValue; } }
       set {
-        _hasBits0 |= 16;
+        _hasBits0 |= 32;
         textureMode_ = value;
       }
     }
@@ -724,17 +754,17 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasTextureMode {
-      get { return (_hasBits0 & 16) != 0; }
+      get { return (_hasBits0 & 32) != 0; }
     }
     /// <summary>Clears the value of the "texture_mode" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearTextureMode() {
-      _hasBits0 &= ~16;
+      _hasBits0 &= ~32;
     }
 
     /// <summary>Field number for the "texture_scale" field.</summary>
-    public const int TextureScaleFieldNumber = 10;
+    public const int TextureScaleFieldNumber = 11;
     private global::PLUME.Sample.Common.Vector2 textureScale_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -746,16 +776,16 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "shadow_bias" field.</summary>
-    public const int ShadowBiasFieldNumber = 11;
+    public const int ShadowBiasFieldNumber = 12;
     private readonly static float ShadowBiasDefaultValue = 0F;
 
     private float shadowBias_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float ShadowBias {
-      get { if ((_hasBits0 & 32) != 0) { return shadowBias_; } else { return ShadowBiasDefaultValue; } }
+      get { if ((_hasBits0 & 64) != 0) { return shadowBias_; } else { return ShadowBiasDefaultValue; } }
       set {
-        _hasBits0 |= 32;
+        _hasBits0 |= 64;
         shadowBias_ = value;
       }
     }
@@ -763,26 +793,26 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasShadowBias {
-      get { return (_hasBits0 & 32) != 0; }
+      get { return (_hasBits0 & 64) != 0; }
     }
     /// <summary>Clears the value of the "shadow_bias" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearShadowBias() {
-      _hasBits0 &= ~32;
+      _hasBits0 &= ~64;
     }
 
     /// <summary>Field number for the "generate_lighting_data" field.</summary>
-    public const int GenerateLightingDataFieldNumber = 12;
+    public const int GenerateLightingDataFieldNumber = 13;
     private readonly static bool GenerateLightingDataDefaultValue = false;
 
     private bool generateLightingData_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool GenerateLightingData {
-      get { if ((_hasBits0 & 64) != 0) { return generateLightingData_; } else { return GenerateLightingDataDefaultValue; } }
+      get { if ((_hasBits0 & 128) != 0) { return generateLightingData_; } else { return GenerateLightingDataDefaultValue; } }
       set {
-        _hasBits0 |= 64;
+        _hasBits0 |= 128;
         generateLightingData_ = value;
       }
     }
@@ -790,26 +820,26 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasGenerateLightingData {
-      get { return (_hasBits0 & 64) != 0; }
+      get { return (_hasBits0 & 128) != 0; }
     }
     /// <summary>Clears the value of the "generate_lighting_data" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearGenerateLightingData() {
-      _hasBits0 &= ~64;
+      _hasBits0 &= ~128;
     }
 
     /// <summary>Field number for the "use_world_space" field.</summary>
-    public const int UseWorldSpaceFieldNumber = 13;
+    public const int UseWorldSpaceFieldNumber = 14;
     private readonly static bool UseWorldSpaceDefaultValue = false;
 
     private bool useWorldSpace_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool UseWorldSpace {
-      get { if ((_hasBits0 & 128) != 0) { return useWorldSpace_; } else { return UseWorldSpaceDefaultValue; } }
+      get { if ((_hasBits0 & 256) != 0) { return useWorldSpace_; } else { return UseWorldSpaceDefaultValue; } }
       set {
-        _hasBits0 |= 128;
+        _hasBits0 |= 256;
         useWorldSpace_ = value;
       }
     }
@@ -817,26 +847,26 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasUseWorldSpace {
-      get { return (_hasBits0 & 128) != 0; }
+      get { return (_hasBits0 & 256) != 0; }
     }
     /// <summary>Clears the value of the "use_world_space" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearUseWorldSpace() {
-      _hasBits0 &= ~128;
+      _hasBits0 &= ~256;
     }
 
     /// <summary>Field number for the "mask_interaction" field.</summary>
-    public const int MaskInteractionFieldNumber = 14;
+    public const int MaskInteractionFieldNumber = 15;
     private readonly static global::PLUME.Sample.Unity.MaskInteraction MaskInteractionDefaultValue = global::PLUME.Sample.Unity.MaskInteraction.None;
 
     private global::PLUME.Sample.Unity.MaskInteraction maskInteraction_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::PLUME.Sample.Unity.MaskInteraction MaskInteraction {
-      get { if ((_hasBits0 & 256) != 0) { return maskInteraction_; } else { return MaskInteractionDefaultValue; } }
+      get { if ((_hasBits0 & 512) != 0) { return maskInteraction_; } else { return MaskInteractionDefaultValue; } }
       set {
-        _hasBits0 |= 256;
+        _hasBits0 |= 512;
         maskInteraction_ = value;
       }
     }
@@ -844,13 +874,13 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasMaskInteraction {
-      get { return (_hasBits0 & 256) != 0; }
+      get { return (_hasBits0 & 512) != 0; }
     }
     /// <summary>Clears the value of the "mask_interaction" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearMaskInteraction() {
-      _hasBits0 &= ~256;
+      _hasBits0 &= ~512;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -871,6 +901,7 @@ namespace PLUME.Sample.Unity {
       if (!object.Equals(Id, other.Id)) return false;
       if (Loop != other.Loop) return false;
       if (!object.Equals(WidthCurve, other.WidthCurve)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(WidthMultiplier, other.WidthMultiplier)) return false;
       if (!object.Equals(Positions, other.Positions)) return false;
       if (!object.Equals(Color, other.Color)) return false;
       if (CornerVertices != other.CornerVertices) return false;
@@ -892,6 +923,7 @@ namespace PLUME.Sample.Unity {
       if (id_ != null) hash ^= Id.GetHashCode();
       if (HasLoop) hash ^= Loop.GetHashCode();
       if (widthCurve_ != null) hash ^= WidthCurve.GetHashCode();
+      if (HasWidthMultiplier) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(WidthMultiplier);
       if (positions_ != null) hash ^= Positions.GetHashCode();
       if (color_ != null) hash ^= Color.GetHashCode();
       if (HasCornerVertices) hash ^= CornerVertices.GetHashCode();
@@ -933,48 +965,52 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(26);
         output.WriteMessage(WidthCurve);
       }
+      if (HasWidthMultiplier) {
+        output.WriteRawTag(37);
+        output.WriteFloat(WidthMultiplier);
+      }
       if (positions_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(42);
         output.WriteMessage(Positions);
       }
       if (color_ != null) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(50);
         output.WriteMessage(Color);
       }
       if (HasCornerVertices) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(56);
         output.WriteInt32(CornerVertices);
       }
       if (HasEndCapVertices) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteInt32(EndCapVertices);
       }
       if (HasAlignment) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteEnum((int) Alignment);
       }
       if (HasTextureMode) {
-        output.WriteRawTag(72);
+        output.WriteRawTag(80);
         output.WriteEnum((int) TextureMode);
       }
       if (textureScale_ != null) {
-        output.WriteRawTag(82);
+        output.WriteRawTag(90);
         output.WriteMessage(TextureScale);
       }
       if (HasShadowBias) {
-        output.WriteRawTag(93);
+        output.WriteRawTag(101);
         output.WriteFloat(ShadowBias);
       }
       if (HasGenerateLightingData) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(104);
         output.WriteBool(GenerateLightingData);
       }
       if (HasUseWorldSpace) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(112);
         output.WriteBool(UseWorldSpace);
       }
       if (HasMaskInteraction) {
-        output.WriteRawTag(112);
+        output.WriteRawTag(120);
         output.WriteEnum((int) MaskInteraction);
       }
       if (_unknownFields != null) {
@@ -999,48 +1035,52 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(26);
         output.WriteMessage(WidthCurve);
       }
+      if (HasWidthMultiplier) {
+        output.WriteRawTag(37);
+        output.WriteFloat(WidthMultiplier);
+      }
       if (positions_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(42);
         output.WriteMessage(Positions);
       }
       if (color_ != null) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(50);
         output.WriteMessage(Color);
       }
       if (HasCornerVertices) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(56);
         output.WriteInt32(CornerVertices);
       }
       if (HasEndCapVertices) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteInt32(EndCapVertices);
       }
       if (HasAlignment) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteEnum((int) Alignment);
       }
       if (HasTextureMode) {
-        output.WriteRawTag(72);
+        output.WriteRawTag(80);
         output.WriteEnum((int) TextureMode);
       }
       if (textureScale_ != null) {
-        output.WriteRawTag(82);
+        output.WriteRawTag(90);
         output.WriteMessage(TextureScale);
       }
       if (HasShadowBias) {
-        output.WriteRawTag(93);
+        output.WriteRawTag(101);
         output.WriteFloat(ShadowBias);
       }
       if (HasGenerateLightingData) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(104);
         output.WriteBool(GenerateLightingData);
       }
       if (HasUseWorldSpace) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(112);
         output.WriteBool(UseWorldSpace);
       }
       if (HasMaskInteraction) {
-        output.WriteRawTag(112);
+        output.WriteRawTag(120);
         output.WriteEnum((int) MaskInteraction);
       }
       if (_unknownFields != null) {
@@ -1061,6 +1101,9 @@ namespace PLUME.Sample.Unity {
       }
       if (widthCurve_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(WidthCurve);
+      }
+      if (HasWidthMultiplier) {
+        size += 1 + 4;
       }
       if (positions_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Positions);
@@ -1121,6 +1164,9 @@ namespace PLUME.Sample.Unity {
           WidthCurve = new global::PLUME.Sample.Common.AnimationCurve();
         }
         WidthCurve.MergeFrom(other.WidthCurve);
+      }
+      if (other.HasWidthMultiplier) {
+        WidthMultiplier = other.WidthMultiplier;
       }
       if (other.positions_ != null) {
         if (positions_ == null) {
@@ -1197,56 +1243,60 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(WidthCurve);
             break;
           }
-          case 34: {
+          case 37: {
+            WidthMultiplier = input.ReadFloat();
+            break;
+          }
+          case 42: {
             if (positions_ == null) {
               Positions = new global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions();
             }
             input.ReadMessage(Positions);
             break;
           }
-          case 42: {
+          case 50: {
             if (color_ == null) {
               Color = new global::PLUME.Sample.Common.ColorGradient();
             }
             input.ReadMessage(Color);
             break;
           }
-          case 48: {
+          case 56: {
             CornerVertices = input.ReadInt32();
             break;
           }
-          case 56: {
+          case 64: {
             EndCapVertices = input.ReadInt32();
             break;
           }
-          case 64: {
+          case 72: {
             Alignment = (global::PLUME.Sample.Unity.Alignment) input.ReadEnum();
             break;
           }
-          case 72: {
+          case 80: {
             TextureMode = (global::PLUME.Sample.Unity.TextureMode) input.ReadEnum();
             break;
           }
-          case 82: {
+          case 90: {
             if (textureScale_ == null) {
               TextureScale = new global::PLUME.Sample.Common.Vector2();
             }
             input.ReadMessage(TextureScale);
             break;
           }
-          case 93: {
+          case 101: {
             ShadowBias = input.ReadFloat();
             break;
           }
-          case 96: {
+          case 104: {
             GenerateLightingData = input.ReadBool();
             break;
           }
-          case 104: {
+          case 112: {
             UseWorldSpace = input.ReadBool();
             break;
           }
-          case 112: {
+          case 120: {
             MaskInteraction = (global::PLUME.Sample.Unity.MaskInteraction) input.ReadEnum();
             break;
           }
@@ -1283,56 +1333,60 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(WidthCurve);
             break;
           }
-          case 34: {
+          case 37: {
+            WidthMultiplier = input.ReadFloat();
+            break;
+          }
+          case 42: {
             if (positions_ == null) {
               Positions = new global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions();
             }
             input.ReadMessage(Positions);
             break;
           }
-          case 42: {
+          case 50: {
             if (color_ == null) {
               Color = new global::PLUME.Sample.Common.ColorGradient();
             }
             input.ReadMessage(Color);
             break;
           }
-          case 48: {
+          case 56: {
             CornerVertices = input.ReadInt32();
             break;
           }
-          case 56: {
+          case 64: {
             EndCapVertices = input.ReadInt32();
             break;
           }
-          case 64: {
+          case 72: {
             Alignment = (global::PLUME.Sample.Unity.Alignment) input.ReadEnum();
             break;
           }
-          case 72: {
+          case 80: {
             TextureMode = (global::PLUME.Sample.Unity.TextureMode) input.ReadEnum();
             break;
           }
-          case 82: {
+          case 90: {
             if (textureScale_ == null) {
               TextureScale = new global::PLUME.Sample.Common.Vector2();
             }
             input.ReadMessage(TextureScale);
             break;
           }
-          case 93: {
+          case 101: {
             ShadowBias = input.ReadFloat();
             break;
           }
-          case 96: {
+          case 104: {
             GenerateLightingData = input.ReadBool();
             break;
           }
-          case 104: {
+          case 112: {
             UseWorldSpace = input.ReadBool();
             break;
           }
-          case 112: {
+          case 120: {
             MaskInteraction = (global::PLUME.Sample.Unity.MaskInteraction) input.ReadEnum();
             break;
           }

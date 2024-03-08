@@ -28,6 +28,7 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             LineRendererEvents.OnPositionsChanged += (r, positions) => OnPositionChanged(r, positions, ctx);
             LineRendererEvents.OnColorChanged += (r, color) => OnColorChanged(r, color, ctx);
             LineRendererEvents.OnWidthCurveChanged += (r, widthCurve) => OnWidthCurveChanged(r, widthCurve, ctx);
+            LineRendererEvents.OnWidthMultiplierChanged += (r, widthMultiplier) => OnWidthMultiplierChanged(r, widthMultiplier, ctx);
         }
 
         protected override void OnDestroy(RecorderContext ctx)
@@ -48,6 +49,20 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.WidthCurve = widthCurve.ToPayload();
+        }
+        
+        private void OnWidthMultiplierChanged(UnityEngine.LineRenderer lineRenderer, float widthMultiplier, RecorderContext ctx)
+        {
+            if (!ctx.IsRecording)
+                return;
+
+            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
+
+            if (!IsRecordingObject(objSafeRef))
+                return;
+            
+            var updateSample = GetOrCreateUpdateSample(objSafeRef);
+            updateSample.WidthMultiplier = widthMultiplier;
         }
         
         private void OnColorChanged(UnityEngine.LineRenderer lineRenderer, Gradient color, RecorderContext ctx)

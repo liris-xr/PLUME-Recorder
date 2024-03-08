@@ -18,7 +18,7 @@ namespace PLUME.Base.Module.Unity.GameObject
         private readonly Dictionary<GameObjectSafeRef, GameObjectCreate> _createSamples = new();
         private readonly Dictionary<GameObjectSafeRef, GameObjectDestroy> _destroySamples = new();
         private readonly Dictionary<GameObjectSafeRef, GameObjectUpdate> _updateSamples = new();
-        
+
         protected override void OnCreate(RecorderContext ctx)
         {
             base.OnCreate(ctx);
@@ -28,11 +28,11 @@ namespace PLUME.Base.Module.Unity.GameObject
             ObjectEvents.OnNameChanged += (obj, name) => OnNameChanged(obj, name, ctx);
             ObjectEvents.OnBeforeDestroyed += (obj, _) => OnBeforeDestroyed(obj, ctx);
         }
-        
+
         protected override void OnObjectMarkedCreated(GameObjectSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
-            
+
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Active = objSafeRef.GameObject.activeSelf;
             updateSample.Name = objSafeRef.GameObject.name;
@@ -46,7 +46,7 @@ namespace PLUME.Base.Module.Unity.GameObject
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
             _destroySamples[objSafeRef] = new GameObjectDestroy { Id = GetGameObjectIdentifierPayload(objSafeRef) };
         }
-        
+
         private void OnActiveChanged(UnityEngine.GameObject go, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
@@ -60,7 +60,7 @@ namespace PLUME.Base.Module.Unity.GameObject
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Active = go.activeSelf;
         }
-        
+
         private void OnCreated(UnityEngine.GameObject go, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
@@ -73,7 +73,7 @@ namespace PLUME.Base.Module.Unity.GameObject
 
             StartRecordingObject(objSafeRef, true, ctx);
         }
-        
+
         private void OnTagChanged(UnityEngine.GameObject go, string tag, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
@@ -87,7 +87,7 @@ namespace PLUME.Base.Module.Unity.GameObject
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Tag = tag;
         }
-        
+
         private void OnNameChanged(Object obj, string name, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
@@ -104,7 +104,7 @@ namespace PLUME.Base.Module.Unity.GameObject
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Name = name;
         }
-        
+
         private void OnBeforeDestroyed(Object obj, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
@@ -120,7 +120,7 @@ namespace PLUME.Base.Module.Unity.GameObject
 
             StopRecordingObject(objSafeRef, true, ctx);
         }
-        
+
         private GameObjectUpdate GetOrCreateUpdateSample(GameObjectSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
@@ -129,7 +129,7 @@ namespace PLUME.Base.Module.Unity.GameObject
             _updateSamples[objSafeRef] = sample;
             return sample;
         }
-        
+
         protected override GameObjectFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
             var frameData = GameObjectFrameData.Pool.Get();

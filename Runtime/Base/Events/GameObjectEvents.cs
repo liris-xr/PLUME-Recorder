@@ -25,12 +25,22 @@ namespace PLUME.Base.Events
         // Temporary list to avoid allocations when calling GetComponentsInChildren
         private static readonly List<Component> TempComponents = new();
 
+        internal static void NotifyCreated(GameObject go)
+        {
+            OnCreated(go);
+        }
+        
+        internal static void NotifyComponentAdded(GameObject go, Component component)
+        {
+            OnComponentAdded(go, component);
+        }
+        
         [Preserve]
         [RegisterConstructorDetour(typeof(GameObject))]
         public static GameObject CreateAndNotify()
         {
             var go = new GameObject();
-            OnCreated(go);
+            NotifyCreated(go);
             return go;
         }
 
@@ -39,7 +49,7 @@ namespace PLUME.Base.Events
         public static GameObject CreateAndNotify(string name)
         {
             var go = new GameObject(name);
-            OnCreated(go);
+            NotifyCreated(go);
             return go;
         }
 
@@ -48,13 +58,13 @@ namespace PLUME.Base.Events
         public static GameObject CreateAndNotify(string name, Type[] components)
         {
             var go = new GameObject(name, components);
-            OnCreated(go);
+            NotifyCreated(go);
 
             go.GetComponents(TempComponents);
 
             foreach (var component in TempComponents)
             {
-                OnComponentAdded(go, component);
+                NotifyComponentAdded(go, component);
             }
 
             return go;
@@ -65,13 +75,13 @@ namespace PLUME.Base.Events
         public static GameObject CreatePrimitiveAndNotify(PrimitiveType type)
         {
             var go = GameObject.CreatePrimitive(type);
-            OnCreated(go);
+            NotifyCreated(go);
 
             go.GetComponents(TempComponents);
 
             foreach (var component in TempComponents)
             {
-                OnComponentAdded(go, component);
+                NotifyComponentAdded(go, component);
             }
 
             return go;
@@ -107,7 +117,7 @@ namespace PLUME.Base.Events
 
             if (component != null)
             {
-                OnComponentAdded(go, component);
+                NotifyComponentAdded(go, component);
                 AddMissingRequiredComponents(go, missingRequiredTypes);
             }
 
@@ -124,7 +134,7 @@ namespace PLUME.Base.Events
 
             if (component != null)
             {
-                OnComponentAdded(go, component);
+                NotifyComponentAdded(go, component);
                 AddMissingRequiredComponents(go, missingRequiredTypes);
             }
 
@@ -139,7 +149,7 @@ namespace PLUME.Base.Events
 
                 if (implicitlyCreatedComponent != null)
                 {
-                    OnComponentAdded(go, implicitlyCreatedComponent);
+                    NotifyComponentAdded(go, implicitlyCreatedComponent);
                 }
             }
         }

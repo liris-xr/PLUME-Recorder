@@ -68,8 +68,8 @@ namespace PLUME.Base.Events
         {
             lineRenderer.SetPosition(index, position);
             var positions = new Vector3[lineRenderer.positionCount];
-            lineRenderer.GetPositions(positions);
-            OnPositionsChanged(lineRenderer, positions);
+            var nPositions = lineRenderer.GetPositions(positions);
+            OnPositionsChanged(lineRenderer, positions[..nPositions]);
         }
 
         [RegisterMethodDetour(typeof(LineRenderer), nameof(LineRenderer.SetPositions), typeof(Vector3[]))]

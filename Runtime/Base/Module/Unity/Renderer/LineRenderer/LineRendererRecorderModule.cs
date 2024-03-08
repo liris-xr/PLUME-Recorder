@@ -105,10 +105,10 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
 
             _tmpPositions.ResizeUninitialized(lineRenderer.positionCount);
             
-            lineRenderer.GetPositions(_tmpPositions.AsArray());
-            foreach (var position in _tmpPositions)
+            var nPositions = lineRenderer.GetPositions(_tmpPositions.AsArray());
+            for(var i = 0; i < nPositions; ++i)
             {
-                updateSample.Positions.Positions_.Add(position.ToPayload());
+                updateSample.Positions.Positions_.Add(_tmpPositions[i].ToPayload());
             }
             
             _createSamples[objSafeRef] = new LineRendererCreate { Id = GetComponentIdentifierPayload(objSafeRef) };

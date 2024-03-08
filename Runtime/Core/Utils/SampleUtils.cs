@@ -7,6 +7,7 @@ using PLUME.Sample.Unity.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityRuntimeGuid;
+using AnimationCurve = PLUME.Sample.Common.AnimationCurve;
 using Bounds = PLUME.Sample.Common.Bounds;
 using Color = PLUME.Sample.Common.Color;
 using ColorSpace = PLUME.Sample.Common.ColorSpace;
@@ -31,6 +32,7 @@ using Vector2 = PLUME.Sample.Common.Vector2;
 using Vector3 = PLUME.Sample.Common.Vector3;
 using Vector4 = PLUME.Sample.Common.Vector4;
 using VerticalWrapMode = PLUME.Sample.Unity.UI.VerticalWrapMode;
+using WeightedMode = PLUME.Sample.Common.WeightedMode;
 #if URP_ENABLED
 using UnityEngine.Rendering.Universal;
 using AntialiasingMode = PLUME.Sample.Unity.AntialiasingMode;
@@ -753,6 +755,39 @@ namespace PLUME.Core.Utils
                 SpriteMaskInteraction.VisibleOutsideMask => MaskInteraction.VisibleOutside,
                 _ => throw new ArgumentOutOfRangeException(nameof(spriteMaskInteraction), spriteMaskInteraction, null)
             };
+        }
+        
+        public static WeightedMode ToPayload(this UnityEngine.WeightedMode weightedMode)
+        {
+            return weightedMode switch
+            {
+                UnityEngine.WeightedMode.None => WeightedMode.None,
+                UnityEngine.WeightedMode.In => WeightedMode.In,
+                UnityEngine.WeightedMode.Out => WeightedMode.Out,
+                UnityEngine.WeightedMode.Both => WeightedMode.Both,
+                _ => throw new ArgumentOutOfRangeException(nameof(weightedMode), weightedMode, null)
+            };
+        }
+        
+        public static AnimationCurve ToPayload(this UnityEngine.AnimationCurve animationCurve)
+        {
+            var animationCurveSample = new AnimationCurve();
+
+            foreach (var key in animationCurve.keys)
+            {
+                animationCurveSample.Keyframes.Add(new AnimationCurveKeyFrame
+                {
+                    Time = key.time,
+                    Value = key.value,
+                    InTangent = key.inTangent,
+                    OutTangent = key.outTangent,
+                    InWeight = key.inWeight,
+                    OutWeight = key.outWeight,
+                    WeightedMode = key.weightedMode.ToPayload()
+                });
+            }
+
+            return animationCurveSample;
         }
 
 #if URP_ENABLED

@@ -27,44 +27,46 @@ namespace PLUME.Sample.Unity {
             "Chl1bml0eS9saW5lX3JlbmRlcmVyLnByb3RvEhJwbHVtZS5zYW1wbGUudW5p",
             "dHkaF3VuaXR5L2lkZW50aWZpZXJzLnByb3RvGhJjb21tb24vY29sb3IucHJv",
             "dG8aFGNvbW1vbi92ZWN0b3IyLnByb3RvGhRjb21tb24vdmVjdG9yMy5wcm90",
-            "byJJChJMaW5lUmVuZGVyZXJDcmVhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5z",
-            "YW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllciJKChNMaW5lUmVuZGVy",
-            "ZXJEZXN0cm95EjMKAmlkGAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNv",
-            "bXBvbmVudElkZW50aWZpZXIi9gYKEkxpbmVSZW5kZXJlclVwZGF0ZRIzCgJp",
-            "ZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlm",
-            "aWVyEhEKBGxvb3AYAiABKAhIAIgBARJICglwb3NpdGlvbnMYAyABKAsyMC5w",
-            "bHVtZS5zYW1wbGUudW5pdHkuTGluZVJlbmRlcmVyVXBkYXRlLlBvc2l0aW9u",
-            "c0gBiAEBEjYKBWNvbG9yGAQgASgLMiIucGx1bWUuc2FtcGxlLmNvbW1vbi5D",
-            "b2xvckdyYWRpZW50SAKIAQESHAoPY29ybmVyX3ZlcnRpY2VzGAUgASgFSAOI",
-            "AQESHQoQZW5kX2NhcF92ZXJ0aWNlcxgGIAEoBUgEiAEBEjUKCWFsaWdubWVu",
-            "dBgHIAEoDjIdLnBsdW1lLnNhbXBsZS51bml0eS5BbGlnbm1lbnRIBYgBARI6",
-            "Cgx0ZXh0dXJlX21vZGUYCCABKA4yHy5wbHVtZS5zYW1wbGUudW5pdHkuVGV4",
-            "dHVyZU1vZGVIBogBARI4Cg10ZXh0dXJlX3NjYWxlGAkgASgLMhwucGx1bWUu",
-            "c2FtcGxlLmNvbW1vbi5WZWN0b3IySAeIAQESGAoLc2hhZG93X2JpYXMYCiAB",
-            "KAJICIgBARIjChZnZW5lcmF0ZV9saWdodGluZ19kYXRhGAsgASgISAmIAQES",
-            "HAoPdXNlX3dvcmxkX3NwYWNlGAwgASgISAqIAQESQgoQbWFza19pbnRlcmFj",
-            "dGlvbhgNIAEoDjIjLnBsdW1lLnNhbXBsZS51bml0eS5NYXNrSW50ZXJhY3Rp",
-            "b25IC4gBARo8CglQb3NpdGlvbnMSLwoJcG9zaXRpb25zGAEgAygLMhwucGx1",
-            "bWUuc2FtcGxlLmNvbW1vbi5WZWN0b3IzQgcKBV9sb29wQgwKCl9wb3NpdGlv",
-            "bnNCCAoGX2NvbG9yQhIKEF9jb3JuZXJfdmVydGljZXNCEwoRX2VuZF9jYXBf",
-            "dmVydGljZXNCDAoKX2FsaWdubWVudEIPCg1fdGV4dHVyZV9tb2RlQhAKDl90",
-            "ZXh0dXJlX3NjYWxlQg4KDF9zaGFkb3dfYmlhc0IZChdfZ2VuZXJhdGVfbGln",
-            "aHRpbmdfZGF0YUISChBfdXNlX3dvcmxkX3NwYWNlQhMKEV9tYXNrX2ludGVy",
-            "YWN0aW9uKjoKCUFsaWdubWVudBISCg5BTElHTk1FTlRfVklFVxAAEhkKFUFM",
-            "SUdOTUVOVF9UUkFOU0ZPUk1fWhABKqUBCgtUZXh0dXJlTW9kZRIYChRURVhU",
-            "VVJFX01PREVfU1RSRVRDSBAAEhUKEVRFWFRVUkVfTU9ERV9USUxFEAESJwoj",
-            "VEVYVFVSRV9NT0RFX0RJU1RSSUJVVEVfUEVSX1NFR01FTlQQAhIjCh9URVhU",
-            "VVJFX01PREVfUkVQRUFUX1BFUl9TRUdNRU5UEAMSFwoTVEVYVFVSRV9NT0RF",
-            "X1NUQVRJQxAEKncKD01hc2tJbnRlcmFjdGlvbhIZChVNQVNLX0lOVEVSQUNU",
-            "SU9OX05PTkUQABIjCh9NQVNLX0lOVEVSQUNUSU9OX1ZJU0lCTEVfSU5TSURF",
-            "EAESJAogTUFTS19JTlRFUkFDVElPTl9WSVNJQkxFX09VVFNJREUQAkIVqgIS",
-            "UExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
+            "bxocY29tbW9uL2FuaW1hdGlvbl9jdXJ2ZS5wcm90byJJChJMaW5lUmVuZGVy",
+            "ZXJDcmVhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29t",
+            "cG9uZW50SWRlbnRpZmllciJKChNMaW5lUmVuZGVyZXJEZXN0cm95EjMKAmlk",
+            "GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
+            "ZXIixQcKEkxpbmVSZW5kZXJlclVwZGF0ZRIzCgJpZBgBIAEoCzInLnBsdW1l",
+            "LnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyEhEKBGxvb3AYAiAB",
+            "KAhIAIgBARI9Cgt3aWR0aF9jdXJ2ZRgDIAEoCzIjLnBsdW1lLnNhbXBsZS5j",
+            "b21tb24uQW5pbWF0aW9uQ3VydmVIAYgBARJICglwb3NpdGlvbnMYBCABKAsy",
+            "MC5wbHVtZS5zYW1wbGUudW5pdHkuTGluZVJlbmRlcmVyVXBkYXRlLlBvc2l0",
+            "aW9uc0gCiAEBEjYKBWNvbG9yGAUgASgLMiIucGx1bWUuc2FtcGxlLmNvbW1v",
+            "bi5Db2xvckdyYWRpZW50SAOIAQESHAoPY29ybmVyX3ZlcnRpY2VzGAYgASgF",
+            "SASIAQESHQoQZW5kX2NhcF92ZXJ0aWNlcxgHIAEoBUgFiAEBEjUKCWFsaWdu",
+            "bWVudBgIIAEoDjIdLnBsdW1lLnNhbXBsZS51bml0eS5BbGlnbm1lbnRIBogB",
+            "ARI6Cgx0ZXh0dXJlX21vZGUYCSABKA4yHy5wbHVtZS5zYW1wbGUudW5pdHku",
+            "VGV4dHVyZU1vZGVIB4gBARI4Cg10ZXh0dXJlX3NjYWxlGAogASgLMhwucGx1",
+            "bWUuc2FtcGxlLmNvbW1vbi5WZWN0b3IySAiIAQESGAoLc2hhZG93X2JpYXMY",
+            "CyABKAJICYgBARIjChZnZW5lcmF0ZV9saWdodGluZ19kYXRhGAwgASgISAqI",
+            "AQESHAoPdXNlX3dvcmxkX3NwYWNlGA0gASgISAuIAQESQgoQbWFza19pbnRl",
+            "cmFjdGlvbhgOIAEoDjIjLnBsdW1lLnNhbXBsZS51bml0eS5NYXNrSW50ZXJh",
+            "Y3Rpb25IDIgBARo8CglQb3NpdGlvbnMSLwoJcG9zaXRpb25zGAEgAygLMhwu",
+            "cGx1bWUuc2FtcGxlLmNvbW1vbi5WZWN0b3IzQgcKBV9sb29wQg4KDF93aWR0",
+            "aF9jdXJ2ZUIMCgpfcG9zaXRpb25zQggKBl9jb2xvckISChBfY29ybmVyX3Zl",
+            "cnRpY2VzQhMKEV9lbmRfY2FwX3ZlcnRpY2VzQgwKCl9hbGlnbm1lbnRCDwoN",
+            "X3RleHR1cmVfbW9kZUIQCg5fdGV4dHVyZV9zY2FsZUIOCgxfc2hhZG93X2Jp",
+            "YXNCGQoXX2dlbmVyYXRlX2xpZ2h0aW5nX2RhdGFCEgoQX3VzZV93b3JsZF9z",
+            "cGFjZUITChFfbWFza19pbnRlcmFjdGlvbio6CglBbGlnbm1lbnQSEgoOQUxJ",
+            "R05NRU5UX1ZJRVcQABIZChVBTElHTk1FTlRfVFJBTlNGT1JNX1oQASqlAQoL",
+            "VGV4dHVyZU1vZGUSGAoUVEVYVFVSRV9NT0RFX1NUUkVUQ0gQABIVChFURVhU",
+            "VVJFX01PREVfVElMRRABEicKI1RFWFRVUkVfTU9ERV9ESVNUUklCVVRFX1BF",
+            "Ul9TRUdNRU5UEAISIwofVEVYVFVSRV9NT0RFX1JFUEVBVF9QRVJfU0VHTUVO",
+            "VBADEhcKE1RFWFRVUkVfTU9ERV9TVEFUSUMQBCp3Cg9NYXNrSW50ZXJhY3Rp",
+            "b24SGQoVTUFTS19JTlRFUkFDVElPTl9OT05FEAASIwofTUFTS19JTlRFUkFD",
+            "VElPTl9WSVNJQkxFX0lOU0lERRABEiQKIE1BU0tfSU5URVJBQ1RJT05fVklT",
+            "SUJMRV9PVVRTSURFEAJCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, global::PLUME.Sample.Common.Vector2Reflection.Descriptor, global::PLUME.Sample.Common.Vector3Reflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, global::PLUME.Sample.Common.Vector2Reflection.Descriptor, global::PLUME.Sample.Common.Vector3Reflection.Descriptor, global::PLUME.Sample.Common.AnimationCurveReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.Alignment), typeof(global::PLUME.Sample.Unity.TextureMode), typeof(global::PLUME.Sample.Unity.MaskInteraction), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererCreate), global::PLUME.Sample.Unity.LineRendererCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererDestroy), global::PLUME.Sample.Unity.LineRendererDestroy.Parser, new[]{ "Id" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererUpdate), global::PLUME.Sample.Unity.LineRendererUpdate.Parser, new[]{ "Id", "Loop", "Positions", "Color", "CornerVertices", "EndCapVertices", "Alignment", "TextureMode", "TextureScale", "ShadowBias", "GenerateLightingData", "UseWorldSpace", "MaskInteraction" }, new[]{ "Loop", "Positions", "Color", "CornerVertices", "EndCapVertices", "Alignment", "TextureMode", "TextureScale", "ShadowBias", "GenerateLightingData", "UseWorldSpace", "MaskInteraction" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions), global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions.Parser, new[]{ "Positions_" }, null, null, null, null)})
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererUpdate), global::PLUME.Sample.Unity.LineRendererUpdate.Parser, new[]{ "Id", "Loop", "WidthCurve", "Positions", "Color", "CornerVertices", "EndCapVertices", "Alignment", "TextureMode", "TextureScale", "ShadowBias", "GenerateLightingData", "UseWorldSpace", "MaskInteraction" }, new[]{ "Loop", "WidthCurve", "Positions", "Color", "CornerVertices", "EndCapVertices", "Alignment", "TextureMode", "TextureScale", "ShadowBias", "GenerateLightingData", "UseWorldSpace", "MaskInteraction" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions), global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions.Parser, new[]{ "Positions_" }, null, null, null, null)})
           }));
     }
     #endregion
@@ -527,6 +529,7 @@ namespace PLUME.Sample.Unity {
       _hasBits0 = other._hasBits0;
       id_ = other.id_ != null ? other.id_.Clone() : null;
       loop_ = other.loop_;
+      widthCurve_ = other.widthCurve_ != null ? other.widthCurve_.Clone() : null;
       positions_ = other.positions_ != null ? other.positions_.Clone() : null;
       color_ = other.color_ != null ? other.color_.Clone() : null;
       cornerVertices_ = other.cornerVertices_;
@@ -586,8 +589,20 @@ namespace PLUME.Sample.Unity {
       _hasBits0 &= ~1;
     }
 
+    /// <summary>Field number for the "width_curve" field.</summary>
+    public const int WidthCurveFieldNumber = 3;
+    private global::PLUME.Sample.Common.AnimationCurve widthCurve_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.AnimationCurve WidthCurve {
+      get { return widthCurve_; }
+      set {
+        widthCurve_ = value;
+      }
+    }
+
     /// <summary>Field number for the "positions" field.</summary>
-    public const int PositionsFieldNumber = 3;
+    public const int PositionsFieldNumber = 4;
     private global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions positions_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -599,7 +614,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "color" field.</summary>
-    public const int ColorFieldNumber = 4;
+    public const int ColorFieldNumber = 5;
     private global::PLUME.Sample.Common.ColorGradient color_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -611,7 +626,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "corner_vertices" field.</summary>
-    public const int CornerVerticesFieldNumber = 5;
+    public const int CornerVerticesFieldNumber = 6;
     private readonly static int CornerVerticesDefaultValue = 0;
 
     private int cornerVertices_;
@@ -638,7 +653,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "end_cap_vertices" field.</summary>
-    public const int EndCapVerticesFieldNumber = 6;
+    public const int EndCapVerticesFieldNumber = 7;
     private readonly static int EndCapVerticesDefaultValue = 0;
 
     private int endCapVertices_;
@@ -665,7 +680,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "alignment" field.</summary>
-    public const int AlignmentFieldNumber = 7;
+    public const int AlignmentFieldNumber = 8;
     private readonly static global::PLUME.Sample.Unity.Alignment AlignmentDefaultValue = global::PLUME.Sample.Unity.Alignment.View;
 
     private global::PLUME.Sample.Unity.Alignment alignment_;
@@ -692,7 +707,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "texture_mode" field.</summary>
-    public const int TextureModeFieldNumber = 8;
+    public const int TextureModeFieldNumber = 9;
     private readonly static global::PLUME.Sample.Unity.TextureMode TextureModeDefaultValue = global::PLUME.Sample.Unity.TextureMode.Stretch;
 
     private global::PLUME.Sample.Unity.TextureMode textureMode_;
@@ -719,7 +734,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "texture_scale" field.</summary>
-    public const int TextureScaleFieldNumber = 9;
+    public const int TextureScaleFieldNumber = 10;
     private global::PLUME.Sample.Common.Vector2 textureScale_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -731,7 +746,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "shadow_bias" field.</summary>
-    public const int ShadowBiasFieldNumber = 10;
+    public const int ShadowBiasFieldNumber = 11;
     private readonly static float ShadowBiasDefaultValue = 0F;
 
     private float shadowBias_;
@@ -758,7 +773,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "generate_lighting_data" field.</summary>
-    public const int GenerateLightingDataFieldNumber = 11;
+    public const int GenerateLightingDataFieldNumber = 12;
     private readonly static bool GenerateLightingDataDefaultValue = false;
 
     private bool generateLightingData_;
@@ -785,7 +800,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "use_world_space" field.</summary>
-    public const int UseWorldSpaceFieldNumber = 12;
+    public const int UseWorldSpaceFieldNumber = 13;
     private readonly static bool UseWorldSpaceDefaultValue = false;
 
     private bool useWorldSpace_;
@@ -812,7 +827,7 @@ namespace PLUME.Sample.Unity {
     }
 
     /// <summary>Field number for the "mask_interaction" field.</summary>
-    public const int MaskInteractionFieldNumber = 13;
+    public const int MaskInteractionFieldNumber = 14;
     private readonly static global::PLUME.Sample.Unity.MaskInteraction MaskInteractionDefaultValue = global::PLUME.Sample.Unity.MaskInteraction.None;
 
     private global::PLUME.Sample.Unity.MaskInteraction maskInteraction_;
@@ -855,6 +870,7 @@ namespace PLUME.Sample.Unity {
       }
       if (!object.Equals(Id, other.Id)) return false;
       if (Loop != other.Loop) return false;
+      if (!object.Equals(WidthCurve, other.WidthCurve)) return false;
       if (!object.Equals(Positions, other.Positions)) return false;
       if (!object.Equals(Color, other.Color)) return false;
       if (CornerVertices != other.CornerVertices) return false;
@@ -875,6 +891,7 @@ namespace PLUME.Sample.Unity {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
       if (HasLoop) hash ^= Loop.GetHashCode();
+      if (widthCurve_ != null) hash ^= WidthCurve.GetHashCode();
       if (positions_ != null) hash ^= Positions.GetHashCode();
       if (color_ != null) hash ^= Color.GetHashCode();
       if (HasCornerVertices) hash ^= CornerVertices.GetHashCode();
@@ -912,48 +929,52 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(16);
         output.WriteBool(Loop);
       }
-      if (positions_ != null) {
+      if (widthCurve_ != null) {
         output.WriteRawTag(26);
+        output.WriteMessage(WidthCurve);
+      }
+      if (positions_ != null) {
+        output.WriteRawTag(34);
         output.WriteMessage(Positions);
       }
       if (color_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(42);
         output.WriteMessage(Color);
       }
       if (HasCornerVertices) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(48);
         output.WriteInt32(CornerVertices);
       }
       if (HasEndCapVertices) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(56);
         output.WriteInt32(EndCapVertices);
       }
       if (HasAlignment) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteEnum((int) Alignment);
       }
       if (HasTextureMode) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteEnum((int) TextureMode);
       }
       if (textureScale_ != null) {
-        output.WriteRawTag(74);
+        output.WriteRawTag(82);
         output.WriteMessage(TextureScale);
       }
       if (HasShadowBias) {
-        output.WriteRawTag(85);
+        output.WriteRawTag(93);
         output.WriteFloat(ShadowBias);
       }
       if (HasGenerateLightingData) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(96);
         output.WriteBool(GenerateLightingData);
       }
       if (HasUseWorldSpace) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(104);
         output.WriteBool(UseWorldSpace);
       }
       if (HasMaskInteraction) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(112);
         output.WriteEnum((int) MaskInteraction);
       }
       if (_unknownFields != null) {
@@ -974,48 +995,52 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(16);
         output.WriteBool(Loop);
       }
-      if (positions_ != null) {
+      if (widthCurve_ != null) {
         output.WriteRawTag(26);
+        output.WriteMessage(WidthCurve);
+      }
+      if (positions_ != null) {
+        output.WriteRawTag(34);
         output.WriteMessage(Positions);
       }
       if (color_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(42);
         output.WriteMessage(Color);
       }
       if (HasCornerVertices) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(48);
         output.WriteInt32(CornerVertices);
       }
       if (HasEndCapVertices) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(56);
         output.WriteInt32(EndCapVertices);
       }
       if (HasAlignment) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteEnum((int) Alignment);
       }
       if (HasTextureMode) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteEnum((int) TextureMode);
       }
       if (textureScale_ != null) {
-        output.WriteRawTag(74);
+        output.WriteRawTag(82);
         output.WriteMessage(TextureScale);
       }
       if (HasShadowBias) {
-        output.WriteRawTag(85);
+        output.WriteRawTag(93);
         output.WriteFloat(ShadowBias);
       }
       if (HasGenerateLightingData) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(96);
         output.WriteBool(GenerateLightingData);
       }
       if (HasUseWorldSpace) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(104);
         output.WriteBool(UseWorldSpace);
       }
       if (HasMaskInteraction) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(112);
         output.WriteEnum((int) MaskInteraction);
       }
       if (_unknownFields != null) {
@@ -1033,6 +1058,9 @@ namespace PLUME.Sample.Unity {
       }
       if (HasLoop) {
         size += 1 + 1;
+      }
+      if (widthCurve_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(WidthCurve);
       }
       if (positions_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Positions);
@@ -1087,6 +1115,12 @@ namespace PLUME.Sample.Unity {
       }
       if (other.HasLoop) {
         Loop = other.Loop;
+      }
+      if (other.widthCurve_ != null) {
+        if (widthCurve_ == null) {
+          WidthCurve = new global::PLUME.Sample.Common.AnimationCurve();
+        }
+        WidthCurve.MergeFrom(other.WidthCurve);
       }
       if (other.positions_ != null) {
         if (positions_ == null) {
@@ -1157,55 +1191,62 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 26: {
+            if (widthCurve_ == null) {
+              WidthCurve = new global::PLUME.Sample.Common.AnimationCurve();
+            }
+            input.ReadMessage(WidthCurve);
+            break;
+          }
+          case 34: {
             if (positions_ == null) {
               Positions = new global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions();
             }
             input.ReadMessage(Positions);
             break;
           }
-          case 34: {
+          case 42: {
             if (color_ == null) {
               Color = new global::PLUME.Sample.Common.ColorGradient();
             }
             input.ReadMessage(Color);
             break;
           }
-          case 40: {
+          case 48: {
             CornerVertices = input.ReadInt32();
             break;
           }
-          case 48: {
+          case 56: {
             EndCapVertices = input.ReadInt32();
             break;
           }
-          case 56: {
+          case 64: {
             Alignment = (global::PLUME.Sample.Unity.Alignment) input.ReadEnum();
             break;
           }
-          case 64: {
+          case 72: {
             TextureMode = (global::PLUME.Sample.Unity.TextureMode) input.ReadEnum();
             break;
           }
-          case 74: {
+          case 82: {
             if (textureScale_ == null) {
               TextureScale = new global::PLUME.Sample.Common.Vector2();
             }
             input.ReadMessage(TextureScale);
             break;
           }
-          case 85: {
+          case 93: {
             ShadowBias = input.ReadFloat();
             break;
           }
-          case 88: {
+          case 96: {
             GenerateLightingData = input.ReadBool();
             break;
           }
-          case 96: {
+          case 104: {
             UseWorldSpace = input.ReadBool();
             break;
           }
-          case 104: {
+          case 112: {
             MaskInteraction = (global::PLUME.Sample.Unity.MaskInteraction) input.ReadEnum();
             break;
           }
@@ -1236,55 +1277,62 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 26: {
+            if (widthCurve_ == null) {
+              WidthCurve = new global::PLUME.Sample.Common.AnimationCurve();
+            }
+            input.ReadMessage(WidthCurve);
+            break;
+          }
+          case 34: {
             if (positions_ == null) {
               Positions = new global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions();
             }
             input.ReadMessage(Positions);
             break;
           }
-          case 34: {
+          case 42: {
             if (color_ == null) {
               Color = new global::PLUME.Sample.Common.ColorGradient();
             }
             input.ReadMessage(Color);
             break;
           }
-          case 40: {
+          case 48: {
             CornerVertices = input.ReadInt32();
             break;
           }
-          case 48: {
+          case 56: {
             EndCapVertices = input.ReadInt32();
             break;
           }
-          case 56: {
+          case 64: {
             Alignment = (global::PLUME.Sample.Unity.Alignment) input.ReadEnum();
             break;
           }
-          case 64: {
+          case 72: {
             TextureMode = (global::PLUME.Sample.Unity.TextureMode) input.ReadEnum();
             break;
           }
-          case 74: {
+          case 82: {
             if (textureScale_ == null) {
               TextureScale = new global::PLUME.Sample.Common.Vector2();
             }
             input.ReadMessage(TextureScale);
             break;
           }
-          case 85: {
+          case 93: {
             ShadowBias = input.ReadFloat();
             break;
           }
-          case 88: {
+          case 96: {
             GenerateLightingData = input.ReadBool();
             break;
           }
-          case 96: {
+          case 104: {
             UseWorldSpace = input.ReadBool();
             break;
           }
-          case 104: {
+          case 112: {
             MaskInteraction = (global::PLUME.Sample.Unity.MaskInteraction) input.ReadEnum();
             break;
           }

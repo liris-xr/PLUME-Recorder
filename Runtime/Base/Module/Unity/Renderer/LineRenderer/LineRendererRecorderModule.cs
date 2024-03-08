@@ -26,12 +26,42 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             _tmpPositions = new NativeList<Vector3>(Allocator.Persistent);
 
             LineRendererEvents.OnPositionsChanged += (r, positions) => OnPositionChanged(r, positions, ctx);
+            LineRendererEvents.OnColorChanged += (r, color) => OnColorChanged(r, color, ctx);
+            LineRendererEvents.OnWidthCurveChanged += (r, widthCurve) => OnWidthCurveChanged(r, widthCurve, ctx);
         }
 
         protected override void OnDestroy(RecorderContext ctx)
         {
             base.OnDestroy(ctx);
             _tmpPositions.Dispose();
+        }
+        
+        private void OnWidthCurveChanged(UnityEngine.LineRenderer lineRenderer, AnimationCurve widthCurve, RecorderContext ctx)
+        {
+            if (!ctx.IsRecording)
+                return;
+
+            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
+
+            if (!IsRecordingObject(objSafeRef))
+                return;
+            
+            var updateSample = GetOrCreateUpdateSample(objSafeRef);
+            updateSample.WidthCurve = widthCurve.ToPayload();
+        }
+        
+        private void OnColorChanged(UnityEngine.LineRenderer lineRenderer, Gradient color, RecorderContext ctx)
+        {
+            if (!ctx.IsRecording)
+                return;
+
+            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
+
+            if (!IsRecordingObject(objSafeRef))
+                return;
+            
+            var updateSample = GetOrCreateUpdateSample(objSafeRef);
+            updateSample.Color = color.ToPayload();
         }
 
         private void OnPositionChanged(UnityEngine.LineRenderer lineRenderer, IEnumerable<Vector3> positions, RecorderContext ctx)
@@ -60,6 +90,7 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             var lineRenderer = objSafeRef.Component;
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Loop = lineRenderer.loop;
+            updateSample.WidthCurve = lineRenderer.widthCurve.ToPayload();
             updateSample.Positions = new LineRendererUpdate.Types.Positions();
             updateSample.Color = lineRenderer.colorGradient.ToPayload();
             updateSample.CornerVertices = lineRenderer.numCornerVertices;

@@ -11,7 +11,57 @@ namespace PLUME.Base.Events
     {
         public delegate void OnPositionsChangedDelegate(LineRenderer lineRenderer, IEnumerable<Vector3> positions);
 
+        public delegate void OnColorChangedDelegate(LineRenderer lineRenderer, Gradient color);
+
+        public delegate void OnWidthCurveChangedDelegate(LineRenderer lineRenderer, AnimationCurve widthCurve);
+
         public static event OnPositionsChangedDelegate OnPositionsChanged = delegate { };
+
+        public static event OnColorChangedDelegate OnColorChanged = delegate { };
+
+        public static event OnWidthCurveChangedDelegate OnWidthCurveChanged = delegate { };
+
+        [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.startWidth))]
+        public static void SetStartWidthAndNotify(LineRenderer lineRenderer, float startWidth)
+        {
+            lineRenderer.startWidth = startWidth;
+            OnWidthCurveChanged(lineRenderer, lineRenderer.widthCurve);
+        }
+
+        [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.startWidth))]
+        public static void SetEndWidthAndNotify(LineRenderer lineRenderer, float endWidth)
+        {
+            lineRenderer.endWidth = endWidth;
+            OnWidthCurveChanged(lineRenderer, lineRenderer.widthCurve);
+        }
+
+        [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.widthCurve))]
+        public static void SetWidthCurveAndNotify(LineRenderer lineRenderer, AnimationCurve widthCurve)
+        {
+            lineRenderer.widthCurve = widthCurve;
+            OnWidthCurveChanged(lineRenderer, widthCurve);
+        }
+        
+        [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.startColor))]
+        public static void SetStartColorAndNotify(LineRenderer lineRenderer, Color startColor)
+        {
+            lineRenderer.startColor = startColor;
+            OnColorChanged(lineRenderer, lineRenderer.colorGradient);
+        }
+        
+        [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.endColor))]
+        public static void SetEndColorAndNotify(LineRenderer lineRenderer, Color endColor)
+        {
+            lineRenderer.endColor = endColor;
+            OnColorChanged(lineRenderer, lineRenderer.colorGradient);
+        }
+        
+        [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.colorGradient))]
+        public static void SetColorAndNotify(LineRenderer lineRenderer, Gradient color)
+        {
+            lineRenderer.colorGradient = color;
+            OnColorChanged(lineRenderer, color);
+        }
 
         [RegisterMethodDetour(typeof(LineRenderer), nameof(LineRenderer.SetPosition), typeof(int), typeof(Vector3))]
         public static void SetPositionAndNotify(LineRenderer lineRenderer, int index, Vector3 position)

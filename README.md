@@ -140,8 +140,8 @@ Your custom proto will look something like this:
 ```
 syntax = "proto3";
 
-package plume.sample.custom;
-option csharp_namespace = "PLUME.Sample.Custom";
+package plume.sample.custom; // <- you can change this to use your own namespace
+option csharp_namespace = "PLUME.Sample.Custom"; // <- you can change this to use your own namespace
 
 message MyCustomSample {
     float myData = 1;

@@ -26,43 +26,43 @@ namespace PLUME.Sample.Unity.URP {
           string.Concat(
             "CiZ1bml0eS91cnAvYWRkaXRpb25hbF9jYW1lcmFfZGF0YS5wcm90bxIWcGx1",
             "bWUuc2FtcGxlLnVuaXR5LnVycBoXdW5pdHkvaWRlbnRpZmllcnMucHJvdG8a",
-            "FXVuaXR5L3JlbmRlcmluZy5wcm90byJRChpBZGRpdGlvbmFsQ2FtZXJhRGF0",
-            "YUNyZWF0ZRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
-            "b25lbnRJZGVudGlmaWVyIlIKG0FkZGl0aW9uYWxDYW1lcmFEYXRhRGVzdHJv",
-            "eRIzCgJpZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJ",
-            "ZGVudGlmaWVyIt0IChpBZGRpdGlvbmFsQ2FtZXJhRGF0YVVwZGF0ZRIzCgJp",
-            "ZBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlm",
-            "aWVyEhQKB3ZlcnNpb24YAiABKAJIAIgBARIbCg5yZW5kZXJfc2hhZG93cxgD",
-            "IAEoCEgBiAEBElAKFXJlcXVpcmVzX2RlcHRoX29wdGlvbhgEIAEoDjIsLnBs",
-            "dW1lLnNhbXBsZS51bml0eS51cnAuQ2FtZXJhT3ZlcnJpZGVPcHRpb25IAogB",
-            "ARJQChVyZXF1aXJlc19jb2xvcl9vcHRpb24YBSABKA4yLC5wbHVtZS5zYW1w",
-            "bGUudW5pdHkudXJwLkNhbWVyYU92ZXJyaWRlT3B0aW9uSAOIAQESQgoLcmVu",
-            "ZGVyX3R5cGUYBiABKA4yKC5wbHVtZS5zYW1wbGUudW5pdHkudXJwLkNhbWVy",
-            "YVJlbmRlclR5cGVIBIgBARIjChZyZXF1aXJlc19kZXB0aF90ZXh0dXJlGAcg",
-            "ASgISAWIAQESIwoWcmVxdWlyZXNfY29sb3JfdGV4dHVyZRgIIAEoCEgGiAEB",
-            "Eh4KEXZvbHVtZV9sYXllcl9tYXNrGAkgASgFSAeIAQESRwoRdm9sdW1lX3Ry",
-            "aWdnZXJfaWQYCiABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50",
-            "SWRlbnRpZmllckgIiAEBEiMKFnJlbmRlcl9wb3N0X3Byb2Nlc3NpbmcYCyAB",
-            "KAhICYgBARI/CgxhbnRpYWxpYXNpbmcYDCABKA4yJC5wbHVtZS5zYW1wbGUu",
-            "dW5pdHkuQW50aWFsaWFzaW5nTW9kZUgKiAEBEkoKFGFudGlhbGlhc2luZ19x",
-            "dWFsaXR5GA0gASgOMicucGx1bWUuc2FtcGxlLnVuaXR5LkFudGlhbGlhc2lu",
-            "Z1F1YWxpdHlIC4gBARIVCghzdG9wX25hbhgOIAEoCEgMiAEBEhYKCWRpdGhl",
-            "cmluZxgPIAEoCEgNiAEBEh8KEmFsbG93X3hyX3JlbmRlcmluZxgQIAEoCEgO",
-            "iAEBQgoKCF92ZXJzaW9uQhEKD19yZW5kZXJfc2hhZG93c0IYChZfcmVxdWly",
-            "ZXNfZGVwdGhfb3B0aW9uQhgKFl9yZXF1aXJlc19jb2xvcl9vcHRpb25CDgoM",
-            "X3JlbmRlcl90eXBlQhkKF19yZXF1aXJlc19kZXB0aF90ZXh0dXJlQhkKF19y",
-            "ZXF1aXJlc19jb2xvcl90ZXh0dXJlQhQKEl92b2x1bWVfbGF5ZXJfbWFza0IU",
-            "ChJfdm9sdW1lX3RyaWdnZXJfaWRCGQoXX3JlbmRlcl9wb3N0X3Byb2Nlc3Np",
-            "bmdCDwoNX2FudGlhbGlhc2luZ0IXChVfYW50aWFsaWFzaW5nX3F1YWxpdHlC",
-            "CwoJX3N0b3BfbmFuQgwKCl9kaXRoZXJpbmdCFQoTX2FsbG93X3hyX3JlbmRl",
-            "cmluZyqHAQoUQ2FtZXJhT3ZlcnJpZGVPcHRpb24SHgoaQ0FNRVJBX09WRVJS",
-            "SURFX09QVElPTl9PRkYQABIdChlDQU1FUkFfT1ZFUlJJREVfT1BUSU9OX09O",
-            "EAESMAosQ0FNRVJBX09WRVJSSURFX09QVElPTl9VU0VfUElQRUxJTkVfU0VU",
-            "VElOR1MQAipPChBDYW1lcmFSZW5kZXJUeXBlEhsKF0NBTUVSQV9SRU5ERVJf",
-            "VFlQRV9CQVNFEAASHgoaQ0FNRVJBX1JFTkRFUl9UWVBFX09WRVJMQVkQAUIZ",
-            "qgIWUExVTUUuU2FtcGxlLlVuaXR5LlVSUGIGcHJvdG8z"));
+            "GXVuaXR5L3VycC9yZW5kZXJpbmcucHJvdG8iUQoaQWRkaXRpb25hbENhbWVy",
+            "YURhdGFDcmVhdGUSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
+            "Q29tcG9uZW50SWRlbnRpZmllciJSChtBZGRpdGlvbmFsQ2FtZXJhRGF0YURl",
+            "c3Ryb3kSMwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9u",
+            "ZW50SWRlbnRpZmllciLlCAoaQWRkaXRpb25hbENhbWVyYURhdGFVcGRhdGUS",
+            "MwoCaWQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRl",
+            "bnRpZmllchIUCgd2ZXJzaW9uGAIgASgCSACIAQESGwoOcmVuZGVyX3NoYWRv",
+            "d3MYAyABKAhIAYgBARJQChVyZXF1aXJlc19kZXB0aF9vcHRpb24YBCABKA4y",
+            "LC5wbHVtZS5zYW1wbGUudW5pdHkudXJwLkNhbWVyYU92ZXJyaWRlT3B0aW9u",
+            "SAKIAQESUAoVcmVxdWlyZXNfY29sb3Jfb3B0aW9uGAUgASgOMiwucGx1bWUu",
+            "c2FtcGxlLnVuaXR5LnVycC5DYW1lcmFPdmVycmlkZU9wdGlvbkgDiAEBEkIK",
+            "C3JlbmRlcl90eXBlGAYgASgOMigucGx1bWUuc2FtcGxlLnVuaXR5LnVycC5D",
+            "YW1lcmFSZW5kZXJUeXBlSASIAQESIwoWcmVxdWlyZXNfZGVwdGhfdGV4dHVy",
+            "ZRgHIAEoCEgFiAEBEiMKFnJlcXVpcmVzX2NvbG9yX3RleHR1cmUYCCABKAhI",
+            "BogBARIeChF2b2x1bWVfbGF5ZXJfbWFzaxgJIAEoBUgHiAEBEkcKEXZvbHVt",
+            "ZV90cmlnZ2VyX2lkGAogASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBv",
+            "bmVudElkZW50aWZpZXJICIgBARIjChZyZW5kZXJfcG9zdF9wcm9jZXNzaW5n",
+            "GAsgASgISAmIAQESQwoMYW50aWFsaWFzaW5nGAwgASgOMigucGx1bWUuc2Ft",
+            "cGxlLnVuaXR5LnVycC5BbnRpYWxpYXNpbmdNb2RlSAqIAQESTgoUYW50aWFs",
+            "aWFzaW5nX3F1YWxpdHkYDSABKA4yKy5wbHVtZS5zYW1wbGUudW5pdHkudXJw",
+            "LkFudGlhbGlhc2luZ1F1YWxpdHlIC4gBARIVCghzdG9wX25hbhgOIAEoCEgM",
+            "iAEBEhYKCWRpdGhlcmluZxgPIAEoCEgNiAEBEh8KEmFsbG93X3hyX3JlbmRl",
+            "cmluZxgQIAEoCEgOiAEBQgoKCF92ZXJzaW9uQhEKD19yZW5kZXJfc2hhZG93",
+            "c0IYChZfcmVxdWlyZXNfZGVwdGhfb3B0aW9uQhgKFl9yZXF1aXJlc19jb2xv",
+            "cl9vcHRpb25CDgoMX3JlbmRlcl90eXBlQhkKF19yZXF1aXJlc19kZXB0aF90",
+            "ZXh0dXJlQhkKF19yZXF1aXJlc19jb2xvcl90ZXh0dXJlQhQKEl92b2x1bWVf",
+            "bGF5ZXJfbWFza0IUChJfdm9sdW1lX3RyaWdnZXJfaWRCGQoXX3JlbmRlcl9w",
+            "b3N0X3Byb2Nlc3NpbmdCDwoNX2FudGlhbGlhc2luZ0IXChVfYW50aWFsaWFz",
+            "aW5nX3F1YWxpdHlCCwoJX3N0b3BfbmFuQgwKCl9kaXRoZXJpbmdCFQoTX2Fs",
+            "bG93X3hyX3JlbmRlcmluZyqHAQoUQ2FtZXJhT3ZlcnJpZGVPcHRpb24SHgoa",
+            "Q0FNRVJBX09WRVJSSURFX09QVElPTl9PRkYQABIdChlDQU1FUkFfT1ZFUlJJ",
+            "REVfT1BUSU9OX09OEAESMAosQ0FNRVJBX09WRVJSSURFX09QVElPTl9VU0Vf",
+            "UElQRUxJTkVfU0VUVElOR1MQAipPChBDYW1lcmFSZW5kZXJUeXBlEhsKF0NB",
+            "TUVSQV9SRU5ERVJfVFlQRV9CQVNFEAASHgoaQ0FNRVJBX1JFTkRFUl9UWVBF",
+            "X09WRVJMQVkQAUIZqgIWUExVTUUuU2FtcGxlLlVuaXR5LlVSUGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Unity.RenderingReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Unity.URP.RenderingReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.URP.CameraOverrideOption), typeof(global::PLUME.Sample.Unity.URP.CameraRenderType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.AdditionalCameraDataCreate), global::PLUME.Sample.Unity.URP.AdditionalCameraDataCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.URP.AdditionalCameraDataDestroy), global::PLUME.Sample.Unity.URP.AdditionalCameraDataDestroy.Parser, new[]{ "Id" }, null, null, null, null),
@@ -813,12 +813,12 @@ namespace PLUME.Sample.Unity.URP {
 
     /// <summary>Field number for the "antialiasing" field.</summary>
     public const int AntialiasingFieldNumber = 12;
-    private readonly static global::PLUME.Sample.Unity.AntialiasingMode AntialiasingDefaultValue = global::PLUME.Sample.Unity.AntialiasingMode.None;
+    private readonly static global::PLUME.Sample.Unity.URP.AntialiasingMode AntialiasingDefaultValue = global::PLUME.Sample.Unity.URP.AntialiasingMode.None;
 
-    private global::PLUME.Sample.Unity.AntialiasingMode antialiasing_;
+    private global::PLUME.Sample.Unity.URP.AntialiasingMode antialiasing_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.AntialiasingMode Antialiasing {
+    public global::PLUME.Sample.Unity.URP.AntialiasingMode Antialiasing {
       get { if ((_hasBits0 & 512) != 0) { return antialiasing_; } else { return AntialiasingDefaultValue; } }
       set {
         _hasBits0 |= 512;
@@ -840,12 +840,12 @@ namespace PLUME.Sample.Unity.URP {
 
     /// <summary>Field number for the "antialiasing_quality" field.</summary>
     public const int AntialiasingQualityFieldNumber = 13;
-    private readonly static global::PLUME.Sample.Unity.AntialiasingQuality AntialiasingQualityDefaultValue = global::PLUME.Sample.Unity.AntialiasingQuality.Low;
+    private readonly static global::PLUME.Sample.Unity.URP.AntialiasingQuality AntialiasingQualityDefaultValue = global::PLUME.Sample.Unity.URP.AntialiasingQuality.Low;
 
-    private global::PLUME.Sample.Unity.AntialiasingQuality antialiasingQuality_;
+    private global::PLUME.Sample.Unity.URP.AntialiasingQuality antialiasingQuality_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.AntialiasingQuality AntialiasingQuality {
+    public global::PLUME.Sample.Unity.URP.AntialiasingQuality AntialiasingQuality {
       get { if ((_hasBits0 & 1024) != 0) { return antialiasingQuality_; } else { return AntialiasingQualityDefaultValue; } }
       set {
         _hasBits0 |= 1024;
@@ -1346,11 +1346,11 @@ namespace PLUME.Sample.Unity.URP {
             break;
           }
           case 96: {
-            Antialiasing = (global::PLUME.Sample.Unity.AntialiasingMode) input.ReadEnum();
+            Antialiasing = (global::PLUME.Sample.Unity.URP.AntialiasingMode) input.ReadEnum();
             break;
           }
           case 104: {
-            AntialiasingQuality = (global::PLUME.Sample.Unity.AntialiasingQuality) input.ReadEnum();
+            AntialiasingQuality = (global::PLUME.Sample.Unity.URP.AntialiasingQuality) input.ReadEnum();
             break;
           }
           case 112: {
@@ -1431,11 +1431,11 @@ namespace PLUME.Sample.Unity.URP {
             break;
           }
           case 96: {
-            Antialiasing = (global::PLUME.Sample.Unity.AntialiasingMode) input.ReadEnum();
+            Antialiasing = (global::PLUME.Sample.Unity.URP.AntialiasingMode) input.ReadEnum();
             break;
           }
           case 104: {
-            AntialiasingQuality = (global::PLUME.Sample.Unity.AntialiasingQuality) input.ReadEnum();
+            AntialiasingQuality = (global::PLUME.Sample.Unity.URP.AntialiasingQuality) input.ReadEnum();
             break;
           }
           case 112: {

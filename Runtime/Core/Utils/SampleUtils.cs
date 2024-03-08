@@ -33,11 +33,10 @@ using Vector3 = PLUME.Sample.Common.Vector3;
 using Vector4 = PLUME.Sample.Common.Vector4;
 using VerticalWrapMode = PLUME.Sample.Unity.UI.VerticalWrapMode;
 using WeightedMode = PLUME.Sample.Common.WeightedMode;
-#if URP_ENABLED
-using UnityEngine.Rendering.Universal;
-using AntialiasingMode = PLUME.Sample.Unity.AntialiasingMode;
-using AntialiasingQuality = PLUME.Sample.Unity.AntialiasingQuality;
-#endif
+using AntialiasingMode = PLUME.Sample.Unity.URP.AntialiasingMode;
+using AntialiasingQuality = PLUME.Sample.Unity.URP.AntialiasingQuality;
+using CameraOverrideOption = PLUME.Sample.Unity.URP.CameraOverrideOption;
+using CameraRenderType = PLUME.Sample.Unity.URP.CameraRenderType;
 
 namespace PLUME.Core.Utils
 {
@@ -656,7 +655,7 @@ namespace PLUME.Core.Utils
                 _ => throw new ArgumentOutOfRangeException(nameof(fitMode), fitMode, null)
             };
         }
-        
+
         public static SpeakerMode ToPayload(this AudioSpeakerMode audioSpeakerMode)
         {
             return audioSpeakerMode switch
@@ -671,7 +670,7 @@ namespace PLUME.Core.Utils
                 _ => throw new ArgumentOutOfRangeException(nameof(audioSpeakerMode), audioSpeakerMode, null)
             };
         }
-        
+
         public static ColorSpace ToPayload(this UnityEngine.ColorSpace colorSpace)
         {
             return colorSpace switch
@@ -682,7 +681,7 @@ namespace PLUME.Core.Utils
                 _ => throw new ArgumentOutOfRangeException(nameof(colorSpace), colorSpace, null)
             };
         }
-        
+
         public static ColorGradient.Types.GradientMode ToPayload(this GradientMode gradientMode)
         {
             return gradientMode switch
@@ -693,7 +692,7 @@ namespace PLUME.Core.Utils
                 _ => throw new ArgumentOutOfRangeException(nameof(gradientMode), gradientMode, null)
             };
         }
-        
+
         public static ColorGradient ToPayload(this Gradient gradient)
         {
             var colorGradient = new ColorGradient
@@ -710,7 +709,7 @@ namespace PLUME.Core.Utils
                     Time = colorKey.time
                 });
             }
-            
+
             foreach (var alphaKey in gradient.alphaKeys)
             {
                 colorGradient.AlphaKeys.Add(new ColorGradient.Types.AlphaKey
@@ -719,7 +718,7 @@ namespace PLUME.Core.Utils
                     Time = alphaKey.time
                 });
             }
-            
+
             return colorGradient;
         }
 
@@ -745,7 +744,7 @@ namespace PLUME.Core.Utils
                 _ => throw new ArgumentOutOfRangeException(nameof(lineTextureMode), lineTextureMode, null)
             };
         }
-        
+
         public static MaskInteraction ToPayload(this SpriteMaskInteraction spriteMaskInteraction)
         {
             return spriteMaskInteraction switch
@@ -756,7 +755,7 @@ namespace PLUME.Core.Utils
                 _ => throw new ArgumentOutOfRangeException(nameof(spriteMaskInteraction), spriteMaskInteraction, null)
             };
         }
-        
+
         public static WeightedMode ToPayload(this UnityEngine.WeightedMode weightedMode)
         {
             return weightedMode switch
@@ -768,7 +767,7 @@ namespace PLUME.Core.Utils
                 _ => throw new ArgumentOutOfRangeException(nameof(weightedMode), weightedMode, null)
             };
         }
-        
+
         public static AnimationCurve ToPayload(this UnityEngine.AnimationCurve animationCurve)
         {
             var animationCurveSample = new AnimationCurve();
@@ -791,42 +790,47 @@ namespace PLUME.Core.Utils
         }
 
 #if URP_ENABLED
-        public static CameraOverrideOption ToPayload(this CameraOverrideOption cameraOverrideOption)
+        public static CameraOverrideOption ToPayload(
+            this UnityEngine.Rendering.Universal.CameraOverrideOption cameraOverrideOption)
         {
             return cameraOverrideOption switch
             {
-                CameraOverrideOption.Off => CameraOverrideOption.Off,
-                CameraOverrideOption.On => CameraOverrideOption.On ,
-                CameraOverrideOption.UsePipelineSettings => CameraOverrideOption.UsePipelineSettings,
+                UnityEngine.Rendering.Universal.CameraOverrideOption.Off => CameraOverrideOption.Off,
+                UnityEngine.Rendering.Universal.CameraOverrideOption.On => CameraOverrideOption.On,
+                UnityEngine.Rendering.Universal.CameraOverrideOption.UsePipelineSettings => CameraOverrideOption
+                    .UsePipelineSettings,
                 _ => throw new ArgumentOutOfRangeException(nameof(cameraOverrideOption), cameraOverrideOption,
                     null)
             };
         }
-        
-        public static CameraRenderType ToPayload(this CameraRenderType cameraRenderType)
+
+        public static CameraRenderType ToPayload(this UnityEngine.Rendering.Universal.CameraRenderType cameraRenderType)
         {
             return cameraRenderType switch
             {
-                CameraRenderType.Base => CameraRenderType.Base,
-                CameraRenderType.Overlay => CameraRenderType.Overlay,
+                UnityEngine.Rendering.Universal.CameraRenderType.Base => CameraRenderType.Base,
+                UnityEngine.Rendering.Universal.CameraRenderType.Overlay => CameraRenderType.Overlay,
                 _ => throw new ArgumentOutOfRangeException(nameof(cameraRenderType), cameraRenderType,
                     null)
             };
         }
-        
+
         public static AntialiasingMode ToPayload(this UnityEngine.Rendering.Universal.AntialiasingMode antialiasingMode)
         {
             return antialiasingMode switch
             {
                 UnityEngine.Rendering.Universal.AntialiasingMode.None => AntialiasingMode.None,
-                UnityEngine.Rendering.Universal.AntialiasingMode.FastApproximateAntialiasing => AntialiasingMode.FastApproximateAntialiasing,
-                UnityEngine.Rendering.Universal.AntialiasingMode.SubpixelMorphologicalAntiAliasing => AntialiasingMode.SubpixelMorphologicalAntiAliasing,
+                UnityEngine.Rendering.Universal.AntialiasingMode.FastApproximateAntialiasing => AntialiasingMode
+                    .FastApproximateAntialiasing,
+                UnityEngine.Rendering.Universal.AntialiasingMode.SubpixelMorphologicalAntiAliasing => AntialiasingMode
+                    .SubpixelMorphologicalAntiAliasing,
                 _ => throw new ArgumentOutOfRangeException(nameof(antialiasingMode), antialiasingMode,
                     null)
             };
         }
-        
-        public static AntialiasingQuality ToPayload(this UnityEngine.Rendering.Universal.AntialiasingQuality antialiasingQuality)
+
+        public static AntialiasingQuality ToPayload(
+            this UnityEngine.Rendering.Universal.AntialiasingQuality antialiasingQuality)
         {
             return antialiasingQuality switch
             {

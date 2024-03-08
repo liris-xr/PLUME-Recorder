@@ -25,6 +25,7 @@ namespace PLUME.Base.Events
         
         public static event OnWidthMultiplierChangedDelegate OnWidthMultiplierChanged = delegate { };
 
+        [Preserve]
         [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.widthMultiplier))]
         public static void SetWidthMultiplierAndNotify(LineRenderer lineRenderer, float widthMultiplier)
         {
@@ -32,6 +33,7 @@ namespace PLUME.Base.Events
             OnWidthMultiplierChanged(lineRenderer, widthMultiplier);
         }
         
+        [Preserve]
         [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.startWidth))]
         public static void SetStartWidthAndNotify(LineRenderer lineRenderer, float startWidth)
         {
@@ -39,6 +41,7 @@ namespace PLUME.Base.Events
             OnWidthCurveChanged(lineRenderer, lineRenderer.widthCurve);
         }
 
+        [Preserve]
         [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.startWidth))]
         public static void SetEndWidthAndNotify(LineRenderer lineRenderer, float endWidth)
         {
@@ -46,6 +49,7 @@ namespace PLUME.Base.Events
             OnWidthCurveChanged(lineRenderer, lineRenderer.widthCurve);
         }
 
+        [Preserve]
         [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.widthCurve))]
         public static void SetWidthCurveAndNotify(LineRenderer lineRenderer, AnimationCurve widthCurve)
         {
@@ -53,6 +57,7 @@ namespace PLUME.Base.Events
             OnWidthCurveChanged(lineRenderer, widthCurve);
         }
         
+        [Preserve]
         [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.startColor))]
         public static void SetStartColorAndNotify(LineRenderer lineRenderer, Color startColor)
         {
@@ -60,6 +65,7 @@ namespace PLUME.Base.Events
             OnColorChanged(lineRenderer, lineRenderer.colorGradient);
         }
         
+        [Preserve]
         [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.endColor))]
         public static void SetEndColorAndNotify(LineRenderer lineRenderer, Color endColor)
         {
@@ -67,6 +73,7 @@ namespace PLUME.Base.Events
             OnColorChanged(lineRenderer, lineRenderer.colorGradient);
         }
         
+        [Preserve]
         [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.colorGradient))]
         public static void SetColorAndNotify(LineRenderer lineRenderer, Gradient color)
         {
@@ -74,6 +81,17 @@ namespace PLUME.Base.Events
             OnColorChanged(lineRenderer, color);
         }
 
+        [Preserve]
+        [RegisterPropertySetterDetour(typeof(LineRenderer), nameof(LineRenderer.positionCount))]
+        public static void SetPositionCountPropertyAndNotify(LineRenderer lineRenderer, int positionCount)
+        {
+            lineRenderer.positionCount = positionCount;
+            var positions = new Vector3[positionCount];
+            var nPositions = lineRenderer.GetPositions(positions);
+            OnPositionsChanged(lineRenderer, positions[..nPositions]);
+        }
+        
+        [Preserve]
         [RegisterMethodDetour(typeof(LineRenderer), nameof(LineRenderer.SetPosition), typeof(int), typeof(Vector3))]
         public static void SetPositionAndNotify(LineRenderer lineRenderer, int index, Vector3 position)
         {
@@ -83,25 +101,28 @@ namespace PLUME.Base.Events
             OnPositionsChanged(lineRenderer, positions[..nPositions]);
         }
 
+        [Preserve]
         [RegisterMethodDetour(typeof(LineRenderer), nameof(LineRenderer.SetPositions), typeof(Vector3[]))]
         public static void SetPositionsAndNotify(LineRenderer lineRenderer, Vector3[] positions)
         {
             lineRenderer.SetPositions(positions);
-            OnPositionsChanged(lineRenderer, positions);
+            OnPositionsChanged(lineRenderer, positions[..lineRenderer.positionCount]);
         }
 
+        [Preserve]
         [RegisterMethodDetour(typeof(LineRenderer), nameof(LineRenderer.SetPositions), typeof(NativeArray<Vector3>))]
         public static void SetPositionsAndNotify(LineRenderer lineRenderer, NativeArray<Vector3> positions)
         {
             lineRenderer.SetPositions(positions);
-            OnPositionsChanged(lineRenderer, positions);
+            OnPositionsChanged(lineRenderer, positions.Slice(0, lineRenderer.positionCount));
         }
 
+        [Preserve]
         [RegisterMethodDetour(typeof(LineRenderer), nameof(LineRenderer.SetPositions), typeof(NativeSlice<Vector3>))]
         public static void SetPositionsAndNotify(LineRenderer lineRenderer, NativeSlice<Vector3> positions)
         {
             lineRenderer.SetPositions(positions);
-            OnPositionsChanged(lineRenderer, positions);
+            OnPositionsChanged(lineRenderer, positions.Slice(0, lineRenderer.positionCount));
         }
     }
 }

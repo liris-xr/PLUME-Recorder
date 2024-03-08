@@ -91,7 +91,7 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Positions = new LineRendererUpdate.Types.Positions();
-            
+
             foreach (var position in positions)
             {
                 updateSample.Positions.Positions_.Add(position.ToPayload());

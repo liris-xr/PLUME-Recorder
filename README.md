@@ -27,7 +27,11 @@
     </p>
 </div>
 
-<img alt="PLUME Recorder in Package Manager" src="/Documentation~/Images/package_manager.png">
+<picture>
+    <source media="(prefers-color-scheme: dark)" srcset="/Documentation~/Images/plume_recorder_header_dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="/Documentation~/Images/plume_recorder_header_light.png">
+    <img alt="PLUME-Recorder header." src="/Documentation~/Images/plume_recorder_header_light.png">
+</picture>
 
 <details>
     <summary>Table of Contents</summary>

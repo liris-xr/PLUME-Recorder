@@ -47,6 +47,8 @@ namespace PLUME.Editor
                     var assetPath = AssetDatabase.GUIDToAssetPath(obj.guid);
                     if (!string.IsNullOrEmpty(assetPath))
                         assetsPaths.Add(assetPath);
+
+                    // TODO: if referencing a file nested in a prefab, add the full prefab
                 }
             }
 
@@ -58,14 +60,25 @@ namespace PLUME.Editor
                     assetsPaths.Add(defaultRenderPipelineAssetPath);
             }
 
-            for (var qualityLevel = 0; qualityLevel < QualitySettings.names.Length; qualityLevel++)
+            for (var qualityLevel = 0; qualityLevel < QualitySettings.count; qualityLevel++)
             {
                 var qualityLevelRenderPipeline = QualitySettings.GetRenderPipelineAssetAt(qualityLevel);
-                if (qualityLevelRenderPipeline == null) continue;
+                if (qualityLevelRenderPipeline == null)
+                    continue;
                 var qualityLevelRenderPipelineAssetPath = AssetDatabase.GetAssetPath(qualityLevelRenderPipeline);
                 if (!string.IsNullOrEmpty(qualityLevelRenderPipelineAssetPath))
                     assetsPaths.Add(qualityLevelRenderPipelineAssetPath);
             }
+
+#if URP_ENABLED
+            var urpGlobalSettings = GraphicsSettings.GetSettingsForRenderPipeline<UnityEngine.Rendering.Universal.UniversalRenderPipeline>();
+            if (urpGlobalSettings != null)
+            {
+                var urpGlobalSettingsPath = AssetDatabase.GetAssetPath(urpGlobalSettings);
+                if (!string.IsNullOrEmpty(urpGlobalSettingsPath))
+                    assetsPaths.Add(urpGlobalSettingsPath);
+            }
+#endif
 
             var assetsBuild = new AssetBundleBuild
             {

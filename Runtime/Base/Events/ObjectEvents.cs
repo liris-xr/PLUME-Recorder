@@ -104,6 +104,7 @@ namespace PLUME.Base.Events
         {
             if (obj is GameObject go)
             {
+                Debug.Log("Instantiated " + go.name);
                 GameObjectEvents.NotifyCreated(go);
 
                 go.GetComponents(TempComponents);
@@ -177,5 +178,16 @@ namespace PLUME.Base.Events
             NotifyInstantiated(instance);
             return instance;
         }
+        
+        // TODO: support detour with generic parameters
+        // [Preserve]
+        // [RegisterMethodDetour(typeof(Object), nameof(Object.Instantiate), typeof(Object), typeof(Transform))]
+        // public static T InstantiateAndNotify<T>(T original, Transform parent) where T : Object
+        // {
+        //     Debug.Log("Instantiating " + original.name + " in " + parent.name);
+        //     var instance = Object.Instantiate(original, parent);
+        //     NotifyInstantiated(instance);
+        //     return instance;
+        // }
     }
 }

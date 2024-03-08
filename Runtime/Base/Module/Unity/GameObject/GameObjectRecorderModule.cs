@@ -3,10 +3,10 @@ using PLUME.Base.Events;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
-using static PLUME.Core.Utils.SampleUtils;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityEngine.Scripting;
+using static PLUME.Core.Utils.SampleUtils;
 using GameObjectIdentifier = PLUME.Core.Object.GameObjectIdentifier;
 
 namespace PLUME.Base.Module.Unity.GameObject

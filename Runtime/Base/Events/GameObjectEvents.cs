@@ -29,12 +29,12 @@ namespace PLUME.Base.Events
         {
             OnCreated(go);
         }
-        
+
         internal static void NotifyComponentAdded(GameObject go, Component component)
         {
             OnComponentAdded(go, component);
         }
-        
+
         [Preserve]
         [RegisterConstructorDetour(typeof(GameObject))]
         public static GameObject CreateAndNotify()
@@ -91,10 +91,13 @@ namespace PLUME.Base.Events
         [RegisterMethodDetour(typeof(GameObject), nameof(GameObject.SetActive), typeof(bool))]
         public static void SetActiveAndNotify(GameObject go, bool active)
         {
+            var previousActive = go.activeSelf;
             go.SetActive(active);
+            if (previousActive == active)
+                return;
             OnActiveChanged(go, active);
         }
-        
+
         [Preserve]
         [RegisterPropertySetterDetour(typeof(GameObject), nameof(GameObject.tag))]
         public static void SetTagPropertyAndNotify(GameObject go, string tag)

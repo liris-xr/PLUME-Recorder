@@ -211,11 +211,15 @@ namespace PLUME.Editor.Core.Weaving
                 }
                 else
                 {
-                    var parameterTypeDef = parameter.ParameterType.Resolve();
-                    var expectedParamTypeDef = module.ImportReference(expectedParameter.ParameterType).Resolve();
-
-                    if (!expectedParamTypeDef.IsAssignableFrom(parameterTypeDef))
-                        return false;
+                    // TODO: if generic, check that constraints are compatible
+                    if (parameter.ParameterType is not GenericParameter)
+                    {
+                        var parameterTypeDef = parameter.ParameterType.Resolve();
+                        var expectedParamTypeDef = module.ImportReference(expectedParameter.ParameterType).Resolve();
+                    
+                        if (!expectedParamTypeDef.IsAssignableFrom(parameterTypeDef))
+                            return false;
+                    }
                 }
             }
 

@@ -49,6 +49,11 @@
                 <li><a href="#build-asset-bundle">Build Asset Bundle</a></li>
                 <li><a href="#records-location">Records Location</a></li>
             </ul>
+        <li><a href="#customization">Customization</a></li>
+            <ul>
+                <li><a href="#event-marker">Event Marker</a></li>
+                <li><a href="#custom-sample">Custom Sample</a></li>
+            </ul>
         <li><a href="#roadmap">Roadmap</a></li>
         <li><a href="#contributing">Contributing</a></li>
         <li><a href="#license">License</a></li>
@@ -101,8 +106,8 @@ To build your project Asset Bundle, click on `PLUME > Build Asset Bundle`. The b
 ### Records Location
 Records are located in the Application Path defined by Unity, e.g., on Windows, the Application Path is: `%AppData%/LocalLow/Company Name/Project Name`.
 
-## Customisation
-### Event Markers
+## Customization
+### Event Marker
 To record a custom event marker, write anywhere in your code:
 ```
 PlumeRecorder.RecordMarker("Marker");

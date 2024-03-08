@@ -27,6 +27,8 @@
     </p>
 </div>
 
+<img alt="PLUME Recorder in Package Manager" src="/Documentation~/Images/package_manager.png">
+
 <details>
     <summary>Table of Contents</summary>
     <ol>

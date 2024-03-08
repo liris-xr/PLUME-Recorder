@@ -72,10 +72,12 @@
 
 PLUME Recorder is the cornerstone of the <a href="https://github.com/liris-xr/PLUME">PLUME</a> toolbox. It's a plugin for <a href="https://unity.com/">Unity</a> that continuously records the state of the virtual environment with minimal impact on performances. By default, the recorder will record as much data as possible, namely object position, appearance, sound, interactions, and physiological signals (through a LabStreamingLayer integration). The recorder is modular and allows custom data recording, such as event markers or custom-defined data structures in Google Protocol Buffer files. We use ProtoBuf for its fast and frugal serialization as well as being platform-neutral and can be de-serialized with any programming language. The PLUME Recorder is compatible with Windows, Android, and iOS and de facto with standalone devices. To record specific XR data, we rely on OpenXR as much as possible, making our plugin compatible with most HMDs. As the record files all follow the same serialization process and data format, they can be used interoperably across devices. For example, one could record an experiment on a standalone Android device and open the record file on a Windows machine.
 
+[![PLUME demo video](/Documentation~/Images/video_thumbnail.png)](https://www.youtube.com/watch?v=_6krSw7fNqg)
+
 ## Installation
 
 ### Prerequisites
-Before using installing this package, ensure you have the following:
+Before using this package, ensure you have the following:
 * Unity 2022 or later installed
 
 ### Installation via Unity Package Manager
@@ -104,7 +106,7 @@ Open the PLUME Recorder settings window from `PLUME > Settings`.
 From here, you can configure the recorder, e.g, set the recording folder, enable or disable recorder modules.
 
 ### Recompile with Hooks
-After installation, force recompilation from `PLUME > Force Recompile With Hooks`.
+After installation, force recompilation with hooks from `PLUME > Force Recompile With Hooks`.
 
 ### Build Asset Bundle
 To build your project Asset Bundle, click on `PLUME > Build Asset Bundle`. The built Asset Bundle can be found in the Assets folder of your Unity Project: `Assets/StreamingAssets/plume_asset_bundle_windows`.

@@ -49,7 +49,13 @@ namespace PLUME.Editor.Core.Weaving
 
         private void OnAssemblyCompilationFinished(string assemblyPath, CompilerMessage[] messages)
         {
-            var assemblies = new[] { "Assembly-CSharp.dll", "Unity.XR.Interaction.Toolkit.dll", "Unity.VisualScripting.Core.dll" };
+            var assemblies = new[]
+            {
+                "Assembly-CSharp.dll",
+                "Unity.XR.Interaction.Toolkit.dll",
+                "Unity.XR.Interaction.Toolkit.Samples.StarterAssets.dll",
+                "Unity.VisualScripting.Core.dll"
+            };
 
             var shouldInjectInAssembly = assemblies.Any(Path.GetFileName(assemblyPath).Equals);
 
@@ -216,7 +222,7 @@ namespace PLUME.Editor.Core.Weaving
                     {
                         var parameterTypeDef = parameter.ParameterType.Resolve();
                         var expectedParamTypeDef = module.ImportReference(expectedParameter.ParameterType).Resolve();
-                    
+
                         if (!expectedParamTypeDef.IsAssignableFrom(parameterTypeDef))
                             return false;
                     }

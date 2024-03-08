@@ -309,17 +309,6 @@ namespace PLUME.Core.Utils
             };
         }
 
-        public static FogMode ToPayload(this FogMode fogMode)
-        {
-            return fogMode switch
-            {
-                FogMode.Linear => FogMode.Linear,
-                FogMode.Exponential => FogMode.Exponential,
-                FogMode.ExponentialSquared => FogMode.ExponentialSquared,
-                _ => throw new ArgumentOutOfRangeException(nameof(fogMode), fogMode, null)
-            };
-        }
-
         public static Bounds ToPayload(this UnityEngine.Bounds bounds)
         {
             return new Bounds
@@ -526,27 +515,6 @@ namespace PLUME.Core.Utils
                 UnityEngine.SceneManagement.LoadSceneMode.Single => LoadSceneMode.Single,
                 _ => throw new ArgumentOutOfRangeException(nameof(loadSceneMode), loadSceneMode, null)
             };
-        }
-        
-        public static AnimationCurve ToPayload(this UnityEngine.AnimationCurve animationCurve)
-        {
-            var animationCurvePayload = new AnimationCurve();
-
-            foreach (var keyframe in animationCurve.keys)
-            {
-                animationCurvePayload.Keyframes.Add(new AnimationCurveKeyFrame
-                {
-                    Time = keyframe.time,
-                    Value = keyframe.value,
-                    InTangent = keyframe.inTangent,
-                    OutTangent = keyframe.outTangent,
-                    WeightedMode = keyframe.weightedMode.ToPayload(),
-                    InWeight = keyframe.inWeight,
-                    OutWeight = keyframe.outWeight
-                });
-            }
-            
-            return animationCurvePayload;
         }
         
         public static WeightedMode ToPayload(this UnityEngine.WeightedMode weightedMode)
@@ -787,18 +755,6 @@ namespace PLUME.Core.Utils
                 SpriteMaskInteraction.VisibleInsideMask => MaskInteraction.VisibleInside,
                 SpriteMaskInteraction.VisibleOutsideMask => MaskInteraction.VisibleOutside,
                 _ => throw new ArgumentOutOfRangeException(nameof(spriteMaskInteraction), spriteMaskInteraction, null)
-            };
-        }
-
-        public static WeightedMode ToPayload(this UnityEngine.WeightedMode weightedMode)
-        {
-            return weightedMode switch
-            {
-                UnityEngine.WeightedMode.None => WeightedMode.None,
-                UnityEngine.WeightedMode.In => WeightedMode.In,
-                UnityEngine.WeightedMode.Out => WeightedMode.Out,
-                UnityEngine.WeightedMode.Both => WeightedMode.Both,
-                _ => throw new ArgumentOutOfRangeException(nameof(weightedMode), weightedMode, null)
             };
         }
 

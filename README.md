@@ -37,6 +37,7 @@
     <summary>Table of Contents</summary>
     <ol>
         <li><a href="#about-plume-recorder">About</a></li>
+        <li><a href="#tldr">TL;DR</a></li>
         <li>
             <a href="#installation">Installation</a>
             <ul>
@@ -67,6 +68,17 @@
         <li><a href="#citation">Citation</a></li>
     </ol>
 </details>
+
+## TL;DR
+1. Open your Unity project.
+2. Open the Package Manager window from `Window > Package Manager`.
+3. Click on the `+` button at the top left of the Package Manager window.
+4. Select "Add package from git URL...".
+5. Paste the following URL into the text field: `https://github.com/liris-xr/PLUME-Recorder.`
+6. Click on the `Add` button.
+7. Unity will now download and import the package into your project.
+8. Force recompilation with hooks from `PLUME > Force Recompile With Hooks`
+9. You are ready to record!
 
 ## About PLUME Recorder
 

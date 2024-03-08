@@ -97,7 +97,7 @@ Before using this package, ensure you have the following:
 2. Open the Package Manager window from `Window > Package Manager`.
 3. Click on the `+` button at the top left of the Package Manager window.
 4. Select "Add package from git URL...".
-5. Paste the following URL into the text field: `https://github.com/liris-xr/PLUME-Recorder.`
+5. Paste the following URL into the text field: `https://github.com/liris-xr/PLUME-Recorder.git`
 6. Click on the `Add` button.
 7. Unity will now download and import the package into your project.
 

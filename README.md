@@ -18,12 +18,12 @@
         <br />
         <a href="https://www.youtube.com/watch?v=_6krSw7fNqg"><strong>Video »</strong><a>
         <a href="https://hal.science/hal-04488824"><strong>Paper »</strong></a>
-        <a href="https://github.com/liris-xr/PLUME/wiki/"><strong>Explore the docs »</strong></a>
+        <a href="https://github.com/liris-xr/PLUME-Recorder/wiki/"><strong>Explore the docs »</strong></a>
         <br />
         <br />
-        <a href="https://github.com/liris-xr/PLUME/issues">Report Bug</a>
+        <a href="https://github.com/liris-xr/PLUME-Recorder/issues">Report Bug</a>
         ·
-        <a href="https://github.com/liris-xr/PLUME/issues">Request Feature</a>
+        <a href="https://github.com/liris-xr/PLUME-Recorder/issues">Request Feature</a>
     </p>
 </div>
 
@@ -167,7 +167,7 @@ You can get inspiration from existing Recorder Modules to create more complex mo
 
 ## Roadmap
 
-See the [open issues](https://github.com/Plateforme-VR-ENISE/PLUME/issues) for a full list of proposed features (and
+See the [open issues](https://github.com/Plateforme-VR-ENISE/PLUME-Recorder/issues) for a full list of proposed features (and
 known issues).
 
 ## Contributing

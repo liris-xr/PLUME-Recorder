@@ -91,10 +91,8 @@ namespace PLUME.Base.Events
         [RegisterMethodDetour(typeof(GameObject), nameof(GameObject.SetActive), typeof(bool))]
         public static void SetActiveAndNotify(GameObject go, bool active)
         {
-            var previousActive = go.activeSelf;
             go.SetActive(active);
-            if (active != previousActive)
-                OnActiveChanged(go, active);
+            OnActiveChanged(go, active);
         }
         
         [Preserve]
@@ -102,7 +100,6 @@ namespace PLUME.Base.Events
         public static void SetTagPropertyAndNotify(GameObject go, string tag)
         {
             if (go.CompareTag(tag)) return;
-            var previousTag = go.tag;
             go.tag = tag;
             OnTagChanged(go, tag);
         }

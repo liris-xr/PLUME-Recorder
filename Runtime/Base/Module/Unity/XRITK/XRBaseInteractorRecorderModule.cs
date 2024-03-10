@@ -30,11 +30,11 @@ namespace PLUME.Base.Module.Unity.XRITK
             RecorderContext ctx)
         {
             base.OnStartRecordingObject(objSafeRef, ctx);
-            var interactable = objSafeRef.Component;
-            interactable.hoverEntered.AddListener(args => OnHoverEntered(objSafeRef, args));
-            interactable.hoverExited.AddListener(args => OnHoverExited(objSafeRef, args));
-            interactable.selectEntered.AddListener(args => OnSelectEntered(objSafeRef, args));
-            interactable.selectExited.AddListener(args => OnSelectExited(objSafeRef, args));
+            var interactor = objSafeRef.Component;
+            interactor.hoverEntered.AddListener(args => OnHoverEntered(objSafeRef, args));
+            interactor.hoverExited.AddListener(args => OnHoverExited(objSafeRef, args));
+            interactor.selectEntered.AddListener(args => OnSelectEntered(objSafeRef, args));
+            interactor.selectExited.AddListener(args => OnSelectExited(objSafeRef, args));
         }
 
         protected override void OnStopRecordingObject(XRBaseInteractorSafeRef objSafeRef,
@@ -42,19 +42,19 @@ namespace PLUME.Base.Module.Unity.XRITK
         {
             base.OnStopRecordingObject(objSafeRef, ctx);
             
-            var interactable = objSafeRef.Component;
-            interactable.hoverEntered.RemoveListener(args => OnHoverEntered(objSafeRef, args));
-            interactable.hoverExited.RemoveListener(args => OnHoverExited(objSafeRef, args));
-            interactable.selectEntered.RemoveListener(args => OnSelectEntered(objSafeRef, args));
-            interactable.selectExited.RemoveListener(args => OnSelectExited(objSafeRef, args));
+            var interactor = objSafeRef.Component;
+            interactor.hoverEntered.RemoveListener(args => OnHoverEntered(objSafeRef, args));
+            interactor.hoverExited.RemoveListener(args => OnHoverExited(objSafeRef, args));
+            interactor.selectEntered.RemoveListener(args => OnSelectEntered(objSafeRef, args));
+            interactor.selectExited.RemoveListener(args => OnSelectExited(objSafeRef, args));
         }
         
         protected override void OnObjectMarkedCreated(XRBaseInteractorSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
-            var interactable = objSafeRef.Component;
-            var interactableUpdate = GetOrCreateUpdateSample(objSafeRef);
-            interactableUpdate.Enabled = interactable.enabled;
+            var interactor = objSafeRef.Component;
+            var interactorUpdate = GetOrCreateUpdateSample(objSafeRef);
+            interactorUpdate.Enabled = interactor.enabled;
             _createSamples[objSafeRef] = new XRBaseInteractorCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
         
@@ -69,13 +69,13 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
-            var interactableHoverEnter = new XRBaseInteractorHoverEnter
+            var interactorHoverEnter = new XRBaseInteractorHoverEnter
             {
                 Id = GetComponentIdentifierPayload(objSafeRef),
                 InteractableCurrent = GetComponentIdentifierPayload(args.interactorObject.transform),
             };
 
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableHoverEnter);
+            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorHoverEnter);
         }
 
         private void OnHoverExited(XRBaseInteractorSafeRef objSafeRef, HoverExitEventArgs args)
@@ -83,13 +83,13 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
-            var interactableHoverExit = new XRBaseInteractorHoverExit
+            var interactorHoverExit = new XRBaseInteractorHoverExit
             {
                 Id = GetComponentIdentifierPayload(objSafeRef),
                 InteractableCurrent = GetComponentIdentifierPayload(args.interactorObject.transform),
             };
 
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableHoverExit);
+            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorHoverExit);
         }
 
         private void OnSelectEntered(XRBaseInteractorSafeRef objSafeRef, SelectEnterEventArgs args)
@@ -97,13 +97,13 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
-            var interactableSelectEnter = new XRBaseInteractorSelectEnter
+            var interactorSelectEnter = new XRBaseInteractorSelectEnter
             {
                 Id = GetComponentIdentifierPayload(objSafeRef),
                 InteractableCurrent = GetComponentIdentifierPayload(args.interactorObject.transform),
             };
 
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableSelectEnter);
+            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorSelectEnter);
         }
 
         private void OnSelectExited(XRBaseInteractorSafeRef objSafeRef, SelectExitEventArgs args)
@@ -111,13 +111,13 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
-            var interactableSelectExit = new XRBaseInteractorSelectExit
+            var interactorSelectExit = new XRBaseInteractorSelectExit
             {
                 Id = GetComponentIdentifierPayload(objSafeRef),
                 InteractableCurrent = GetComponentIdentifierPayload(args.interactorObject.transform),
             };
 
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableSelectExit);
+            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorSelectExit);
         }
 
         protected override XRBaseInteractorFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)

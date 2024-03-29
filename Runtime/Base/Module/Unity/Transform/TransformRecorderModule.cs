@@ -59,9 +59,9 @@ namespace PLUME.Base.Module.Unity.Transform
 
             var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t);
 
-            if (!IsRecordingObject(tSafeRef))
+            if (IsRecordingObject(tSafeRef))
                 return;
-
+            
             StartRecordingObject(tSafeRef, true, ctx);
         }
 

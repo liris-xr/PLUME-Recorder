@@ -14,12 +14,6 @@ namespace PLUME.Core.Recorder.Module.Frame
     {
         protected IReadOnlyList<IComponentSafeRef<TC>> RecordedComponents => RecordedObjects;
 
-        protected IdentifierHashSet.ReadOnly RecordedComponentsIdentifier => RecordedObjectsIdentifier;
-
-        protected IdentifierHashSet.ReadOnly CreatedComponentsIdentifier => CreatedObjectsIdentifier;
-
-        protected IdentifierHashSet.ReadOnly DestroyedComponentsIdentifier => DestroyedObjectsIdentifier;
-
         protected override void OnCreate(RecorderContext ctx)
         {
             base.OnCreate(ctx);

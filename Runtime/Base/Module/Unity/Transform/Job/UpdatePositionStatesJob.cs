@@ -1,4 +1,3 @@
-using PLUME.Base.Module.Unity.Transform.State;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Mathematics;
@@ -15,15 +14,15 @@ namespace PLUME.Base.Module.Unity.Transform.Job
         public float AngularThreshold; // in radians
         public float PositionThresholdSq;
         public float ScaleThresholdSq;
-        
-        public NativeArray<TransformPositionState> AlignedPositionStates;
-        
+
+        public NativeArray<TransformState> AlignedStates;
+
         public void Execute(int index, TransformAccess transform)
         {
-            if(!transform.isValid)
+            if (!transform.isValid)
                 return;
-            
-            var state = AlignedPositionStates[index];
+
+            var state = AlignedStates[index];
 
             var localPosition = (float3)transform.localPosition;
             var localRotation = (quaternion)transform.localRotation;
@@ -34,18 +33,14 @@ namespace PLUME.Base.Module.Unity.Transform.Job
             var localPositionChanged = math.distancesq(state.LocalPosition, localPosition) >= PositionThresholdSq;
             var localScaleChanged = math.distancesq(state.LocalScale, localScale) >= ScaleThresholdSq;
             var localRotationChanged = angle >= AngularThreshold;
-            
-            var newPositionState = new TransformPositionState
-            {
-                LocalPosition = localPosition,
-                LocalRotation = localRotation,
-                LocalScale = localScale,
-                LocalPositionDirty = localPositionChanged,
-                LocalRotationDirty = localRotationChanged,
-                LocalScaleDirty = localScaleChanged
-            };
-            
-            AlignedPositionStates[index] = newPositionState;
+
+            state.LocalPosition = localPosition;
+            state.LocalRotation = localRotation;
+            state.LocalScale = localScale;
+            state.LocalPositionDirty = localPositionChanged;
+            state.LocalRotationDirty = localRotationChanged;
+            state.LocalScaleDirty = localScaleChanged;
+            AlignedStates[index] = state;
         }
     }
 }

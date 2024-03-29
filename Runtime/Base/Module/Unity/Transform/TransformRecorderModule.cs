@@ -1,7 +1,6 @@
 using PLUME.Base.Events;
 using PLUME.Base.Module.Unity.Transform.Job;
 using PLUME.Base.Module.Unity.Transform.Sample;
-using PLUME.Base.Module.Unity.Transform.State;
 using PLUME.Base.Settings;
 using PLUME.Core.Object;
 using PLUME.Core.Recorder;
@@ -18,18 +17,19 @@ namespace PLUME.Base.Module.Unity.Transform
     internal class TransformRecorderModule : ComponentRecorderModule<UnityEngine.Transform, TransformFrameData>
     {
         private DynamicTransformAccessArray _transformAccessArray;
-
+        
         private NativeHashMap<ComponentIdentifier, int> _identifierToIndex;
-        private NativeList<TransformPositionState> _alignedPositionStates;
-        private NativeList<TransformHierarchyState> _alignedHierarchyStates;
-        private NativeList<TransformFlagsState> _alignedFlagsStates;
+        private NativeList<TransformState> _alignedStates;
 
         private TransformPositionStateUpdater _transformPositionStateUpdater;
+        
+        private int _nCreatedInFrame;
+        private int _nDestroyedInFrame;
 
         protected override void OnCreate(RecorderContext ctx)
         {
             base.OnCreate(ctx);
-            
+
             var settings = ctx.SettingsProvider.GetOrCreate<TransformRecorderModuleSettings>();
             var angularThreshold = settings.AngularThreshold;
             var positionThresholdSq = settings.PositionThreshold * settings.PositionThreshold;
@@ -40,10 +40,8 @@ namespace PLUME.Base.Module.Unity.Transform
             _transformAccessArray = new DynamicTransformAccessArray();
 
             _identifierToIndex = new NativeHashMap<ComponentIdentifier, int>(1000, Allocator.Persistent);
-            _alignedPositionStates = new NativeList<TransformPositionState>(1000, Allocator.Persistent);
-            _alignedHierarchyStates = new NativeList<TransformHierarchyState>(1000, Allocator.Persistent);
-            _alignedFlagsStates = new NativeList<TransformFlagsState>(1000, Allocator.Persistent);
-            
+            _alignedStates = new NativeList<TransformState>(1000, Allocator.Persistent);
+
             GameObjectEvents.OnComponentAdded += (go, comp) => OnComponentAdded(go, comp, ctx);
             TransformEvents.OnParentChanged += (t, parent) => OnParentChanged(t, parent, ctx);
             TransformEvents.OnSiblingIndexChanged += (t, siblingIdx) => OnSiblingIndexChanged(t, siblingIdx, ctx);
@@ -53,53 +51,57 @@ namespace PLUME.Base.Module.Unity.Transform
         {
             if (!ctx.IsRecording)
                 return;
-            
-            if(component is not UnityEngine.Transform t)
+
+            if (component is not UnityEngine.Transform t)
                 return;
 
             var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t);
 
             if (IsRecordingObject(tSafeRef))
                 return;
-            
+
             StartRecordingObject(tSafeRef, true, ctx);
         }
 
         protected override void OnDestroy(RecorderContext ctx)
         {
             base.OnDestroy(ctx);
-            
+
             _transformAccessArray.Dispose();
             _identifierToIndex.Dispose();
-            _alignedPositionStates.Dispose();
-            _alignedHierarchyStates.Dispose();
-            _alignedFlagsStates.Dispose();
+            _alignedStates.Dispose();
         }
 
         protected override void OnObjectMarkedCreated(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(tSafeRef, ctx);
-            
+
             var idx = _identifierToIndex[tSafeRef.Identifier];
-            var flagsState = _alignedFlagsStates[idx];
-            flagsState.MarkCreatedInFrame();
-            _alignedFlagsStates[idx] = flagsState;
+            
+            var state = _alignedStates[idx];
+            state.Status = TransformState.LifeStatus.AliveCreatedInFrame;
+            _alignedStates[idx] = state;
+            
+            _nCreatedInFrame++;
         }
 
         protected override void OnObjectMarkedDestroyed(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(tSafeRef, ctx);
-            
+
             var idx = _identifierToIndex[tSafeRef.Identifier];
-            var flagsState = _alignedFlagsStates[idx];
-            flagsState.MarkDestroyedInFrame();
-            _alignedFlagsStates[idx] = flagsState;
+            
+            var state = _alignedStates[idx];
+            state.Status = TransformState.LifeStatus.DestroyedInFrame;
+            _alignedStates[idx] = state;
+            
+            _nDestroyedInFrame++;
         }
 
         protected override void OnStartRecordingObject(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
             base.OnStartRecordingObject(tSafeRef, ctx);
-            
+
             var t = tSafeRef.Component;
 
             var siblingIndex = t.GetSiblingIndex();
@@ -108,38 +110,35 @@ namespace PLUME.Base.Module.Unity.Transform
 
             var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t.parent);
             var parentIdentifier = parentSafeRef.Identifier;
-            
-            var initialPositionState = new TransformPositionState
+
+            var initialState = new TransformState
             {
                 LocalPosition = localPosition,
                 LocalRotation = localRotation,
-                LocalScale = localScale
-            };
+                LocalScale = localScale,
 
-            var initialHierarchyState = new TransformHierarchyState
-            {
                 ParentTransformId = parentIdentifier,
-                SiblingIndex = siblingIndex
-            };
+                SiblingIndex = siblingIndex,
 
-            var initialFlagsState = new TransformFlagsState();
+                Status = TransformState.LifeStatus.Alive
+            };
 
             var idx = _transformAccessArray.Length;
             _transformAccessArray.Add(tSafeRef);
             _identifierToIndex.Add(tSafeRef.Identifier, idx);
-            _alignedPositionStates.Add(initialPositionState);
-            _alignedHierarchyStates.Add(initialHierarchyState);
-            _alignedFlagsStates.Add(initialFlagsState);
+            _alignedStates.Add(initialState);
         }
 
         protected override void OnStopRecordingObject(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
             base.OnStopRecordingObject(tSafeRef, ctx);
+            var lastIdentifier = _transformAccessArray.GetAlignedIdentifiers()[^1];
+            
             var idx = _transformAccessArray.RemoveSwapBack(tSafeRef);
-            _identifierToIndex.Remove(tSafeRef.Identifier);
-            _alignedHierarchyStates.RemoveAtSwapBack(idx);
-            _alignedPositionStates.RemoveAtSwapBack(idx);
-            _alignedFlagsStates.RemoveAtSwapBack(idx);
+            _alignedStates.RemoveAtSwapBack(idx);
+            
+            // Update the index of the swapped element
+            _identifierToIndex[lastIdentifier] = idx;
         }
 
         private void OnParentChanged(UnityEngine.Transform t, UnityEngine.Transform parent, RecorderContext ctx)
@@ -154,12 +153,12 @@ namespace PLUME.Base.Module.Unity.Transform
 
             var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(parent);
             var parentIdentifier = parentSafeRef.Identifier;
-            
+
             var idx = _identifierToIndex[tSafeRef.Identifier];
-            var hierarchyState = _alignedHierarchyStates[idx];
-            hierarchyState.ParentTransformIdDirty = !parentIdentifier.Equals(hierarchyState.ParentTransformId);
-            hierarchyState.ParentTransformId = parentIdentifier;
-            _alignedHierarchyStates[idx] = hierarchyState;
+            var state = _alignedStates[idx];
+            state.ParentTransformIdDirty = !parentIdentifier.Equals(state.ParentTransformId);
+            state.ParentTransformId = parentIdentifier;
+            _alignedStates[idx] = state;
         }
 
         private void OnSiblingIndexChanged(UnityEngine.Transform t, int siblingIndex, RecorderContext ctx)
@@ -173,10 +172,10 @@ namespace PLUME.Base.Module.Unity.Transform
                 return;
 
             var idx = _identifierToIndex[tSafeRef.Identifier];
-            var hierarchyState = _alignedHierarchyStates[idx];
-            hierarchyState.SiblingIndexDirty = siblingIndex != hierarchyState.SiblingIndex;
-            hierarchyState.SiblingIndex = siblingIndex;
-            _alignedHierarchyStates[idx] = hierarchyState;
+            var state = _alignedStates[idx];
+            state.SiblingIndexDirty = siblingIndex != state.SiblingIndex;
+            state.SiblingIndex = siblingIndex;
+            _alignedStates[idx] = state;
         }
 
         protected override void OnStopRecording(RecorderContext ctx)
@@ -184,34 +183,37 @@ namespace PLUME.Base.Module.Unity.Transform
             base.OnStopRecording(ctx);
             _transformAccessArray.Clear();
             _identifierToIndex.Clear();
-            _alignedHierarchyStates.Clear();
-            _alignedPositionStates.Clear();
-            _alignedFlagsStates.Clear();
+            _alignedStates.Clear();
+            _nCreatedInFrame = 0;
+            _nDestroyedInFrame = 0;
         }
 
         protected override TransformFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
-            _transformPositionStateUpdater.UpdatePositionStates(_alignedPositionStates, _transformAccessArray);
+            _transformPositionStateUpdater.UpdatePositionStates(_alignedStates, _transformAccessArray);
 
             var nRecorded = RecordedComponents.Count;
-            var nCreated = CreatedComponentsIdentifier.Count;
-            var nDestroyed = DestroyedComponentsIdentifier.Count;
             var updateSamples = new NativeList<TransformUpdate>(nRecorded, Allocator.Persistent);
-            var createSamples = new NativeList<TransformCreate>(nCreated, Allocator.Persistent);
-            var destroySamples = new NativeList<TransformDestroy>(nDestroyed, Allocator.Persistent);
+            var createSamples = new NativeList<TransformCreate>(_nCreatedInFrame, Allocator.Persistent);
+            var destroySamples = new NativeList<TransformDestroy>(_nDestroyedInFrame, Allocator.Persistent);
 
             new SampleProducerJob
             {
                 Identifiers = _transformAccessArray.GetAlignedIdentifiers().AsArray(),
-                AlignedPositionStates = _alignedPositionStates.AsArray(),
-                AlignedHierarchyStates = _alignedHierarchyStates.AsArray(),
-                AlignedFlagsStates = _alignedFlagsStates.AsArray(),
+                AlignedStates = _alignedStates.AsArray(),
                 UpdateSamples = updateSamples.AsParallelWriter(),
                 CreateSamples = createSamples.AsParallelWriter(),
                 DestroySamples = destroySamples.AsParallelWriter()
             }.RunBatch(RecordedComponents.Count);
 
             return new TransformFrameData(updateSamples, createSamples, destroySamples);
+        }
+        
+        protected override void AfterCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        {
+            base.AfterCollectFrameData(frameInfo, ctx);
+            _nCreatedInFrame = 0;
+            _nDestroyedInFrame = 0;
         }
     }
 }

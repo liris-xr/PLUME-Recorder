@@ -1,5 +1,4 @@
 using PLUME.Base.Module.Unity.Transform.Sample;
-using PLUME.Base.Module.Unity.Transform.State;
 using PLUME.Core.Object;
 using Unity.Burst;
 using Unity.Collections;
@@ -12,9 +11,7 @@ namespace PLUME.Base.Module.Unity.Transform.Job
     {
         [ReadOnly] public NativeArray<ComponentIdentifier> Identifiers;
 
-        public NativeArray<TransformPositionState> AlignedPositionStates;
-        public NativeArray<TransformHierarchyState> AlignedHierarchyStates;
-        public NativeArray<TransformFlagsState> AlignedFlagsStates;
+        public NativeArray<TransformState> AlignedStates;
 
         [WriteOnly] public NativeList<TransformUpdate>.ParallelWriter UpdateSamples;
         [WriteOnly] public NativeList<TransformCreate>.ParallelWriter CreateSamples;
@@ -25,62 +22,58 @@ namespace PLUME.Base.Module.Unity.Transform.Job
             for (var idx = startIndex; idx < startIndex + count; ++idx)
             {
                 var identifier = Identifiers[idx];
-                var positionState = AlignedPositionStates[idx];
-                var hierarchyState = AlignedHierarchyStates[idx];
-                var flagsState = AlignedFlagsStates[idx];
+                var state = AlignedStates[idx];
 
-                var createdInFrame = flagsState.IsCreatedInFrame;
-                var destroyedInFrame = flagsState.IsDestroyedInFrame;
+                var createdInFrame = state.Status == TransformState.LifeStatus.AliveCreatedInFrame;
+                var destroyedInFrame = state.Status == TransformState.LifeStatus.DestroyedInFrame;
 
                 if (destroyedInFrame)
                 {
                     DestroySamples.AddNoResize(new TransformDestroy(identifier));
                     continue;
                 }
-
+                
                 if (createdInFrame)
                 {
                     CreateSamples.AddNoResize(new TransformCreate(identifier));
                 }
 
-                if (!createdInFrame && !positionState.IsDirty && !hierarchyState.IsDirty)
+                if (!createdInFrame && !state.IsLocalTransformDirty && !state.IsHierarchyDirty)
                     continue;
 
                 var updateSample = new TransformUpdate(identifier);
 
-                if (hierarchyState.ParentTransformIdDirty || createdInFrame)
+                if (state.ParentTransformIdDirty || createdInFrame)
                 {
-                    updateSample.SetParent(hierarchyState.ParentTransformId);
+                    updateSample.SetParent(state.ParentTransformId);
                 }
 
-                if (hierarchyState.SiblingIndexDirty || createdInFrame)
+                if (state.SiblingIndexDirty || createdInFrame)
                 {
-                    updateSample.SetSiblingIndex(hierarchyState.SiblingIndex);
+                    updateSample.SetSiblingIndex(state.SiblingIndex);
                 }
 
-                if (positionState.LocalPositionDirty || createdInFrame)
+                if (state.LocalPositionDirty || createdInFrame)
                 {
-                    updateSample.SetLocalPosition(positionState.LocalPosition);
+                    updateSample.SetLocalPosition(state.LocalPosition);
                 }
 
-                if (positionState.LocalRotationDirty || createdInFrame)
+                if (state.LocalRotationDirty || createdInFrame)
                 {
-                    updateSample.SetLocalRotation(positionState.LocalRotation);
+                    updateSample.SetLocalRotation(state.LocalRotation);
                 }
 
-                if (positionState.LocalScaleDirty || createdInFrame)
+                if (state.LocalScaleDirty || createdInFrame)
                 {
-                    updateSample.SetLocalScale(positionState.LocalScale);
+                    updateSample.SetLocalScale(state.LocalScale);
                 }
 
                 UpdateSamples.AddNoResize(updateSample);
 
-                positionState.MarkClean();
-                hierarchyState.MarkClean();
-                flagsState.MarkClean();
-                AlignedPositionStates[idx] = positionState;
-                AlignedHierarchyStates[idx] = hierarchyState;
-                AlignedFlagsStates[idx] = flagsState;
+                state.MarkClean();
+                state.Status = TransformState.LifeStatus.Alive;
+                
+                AlignedStates[idx] = state;
             }
         }
     }

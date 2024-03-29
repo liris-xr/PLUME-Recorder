@@ -1,5 +1,4 @@
 using PLUME.Base.Module.Unity.Transform.Job;
-using PLUME.Base.Module.Unity.Transform.State;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine.Jobs;
@@ -22,13 +21,12 @@ namespace PLUME.Base.Module.Unity.Transform
             _scaleThresholdSq = scaleThresholdSq;
         }
 
-        public void UpdatePositionStates(
-            NativeList<TransformPositionState> alignedPositionStates,
+        public void UpdatePositionStates(NativeList<TransformState> alignedStates,
             DynamicTransformAccessArray transformAccessArray)
         {
             var pollTransformStatesJob = new UpdatePositionStatesJob
             {
-                AlignedPositionStates = alignedPositionStates.AsArray(),
+                AlignedStates = alignedStates.AsArray(),
                 AngularThreshold = _angularThreshold,
                 PositionThresholdSq = _positionThresholdSq,
                 ScaleThresholdSq = _scaleThresholdSq,

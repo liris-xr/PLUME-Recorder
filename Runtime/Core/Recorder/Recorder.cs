@@ -24,10 +24,10 @@ namespace PLUME.Core.Recorder
     {
         public static readonly RecorderVersion Version = new()
         {
-            Name = "PLUME Recorder",
+            Name = "PLUME Recorder (Beta)",
             Major = "1",
             Minor = "0",
-            Patch = "0",
+            Patch = "1",
         };
 
         private readonly RecorderContext _context;

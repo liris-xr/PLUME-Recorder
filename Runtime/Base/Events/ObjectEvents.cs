@@ -131,15 +131,6 @@ namespace PLUME.Base.Events
         }
 
         [Preserve]
-        [RegisterMethodDetour(typeof(Object), nameof(Object.Instantiate), typeof(Object), typeof(Scene))]
-        public static Object InstantiateAndNotify(Object original, Scene scene)
-        {
-            var instance = Object.Instantiate(original, scene);
-            NotifyInstantiated(instance);
-            return instance;
-        }
-
-        [Preserve]
         [RegisterMethodDetour(typeof(Object), nameof(Object.Instantiate), typeof(Object), typeof(Transform))]
         public static Object InstantiateAndNotify(Object original, Transform parent)
         {

@@ -27,6 +27,8 @@ namespace PLUME.Core.Recorder.Writer
             var outputDir = Application.persistentDataPath;
 
             GenerateFilePath(outputDir, record.Metadata, out var filePath, out var metaFilePath);
+            
+            Logger.Log($"Record will be saved to '{filePath}'.");
 
             PinnedMemory.MaxPooledSize = 0;
 

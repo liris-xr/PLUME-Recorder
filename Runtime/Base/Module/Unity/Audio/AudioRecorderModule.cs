@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using NAudio.Wave;
+using PLUME.Base.Settings;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module;
 using UnityEngine;
@@ -25,14 +26,28 @@ namespace PLUME.Base.Module.Unity.Audio
 
         private Thread _audioRecordingThread;
 
+        private AudioRecorderModuleSettings _settings;
+
         private readonly BlockingCollection<AudioSamples> _audioSamplesQueue = new(new ConcurrentQueue<AudioSamples>());
+
+        protected override void OnCreate(RecorderContext ctx)
+        {
+            base.OnCreate(ctx);
+            _settings = ctx.SettingsProvider.GetOrCreate<AudioRecorderModuleSettings>();
+        }
 
         protected override void OnStartRecording(RecorderContext ctx)
         {
             base.OnStartRecording(ctx);
-            
+
             var audioListeners =
                 Object.FindObjectsByType<AudioListener>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+
+            if (!_settings.Enabled)
+            {
+                Logger.Log("Audio recording is disabled in the settings. No audio recording will be performed.");
+                return;
+            }
 
             if (audioListeners.Length == 0)
             {
@@ -53,7 +68,7 @@ namespace PLUME.Base.Module.Unity.Audio
         protected override void OnStopRecording(RecorderContext ctx)
         {
             base.OnStopRecording(ctx);
-            
+
             if (_audioListener == null)
                 return;
 
@@ -119,8 +134,12 @@ namespace PLUME.Base.Module.Unity.Audio
                     var silenceSamplesCount = (int)(silenceDurationSeconds * _outputSampleRate * _channelCount);
                     var silenceSamples = new float[silenceSamplesCount];
                     _audioFileWriter.WriteSamples(silenceSamples, 0, silenceSamples.Length);
-                    Logger.Log(
-                        $"Inserted {silenceDurationSeconds * 1000}ms of silence to audio recording to sync with recorder time.");
+
+                    if (_settings.LogSilenceInsertion)
+                    {
+                        Logger.Log(
+                            $"Inserted {silenceDurationSeconds * 1000}ms of silence to audio recording to sync with recorder time.");
+                    }
                 }
 
                 if (channelCount == _channelCount)
@@ -152,7 +171,7 @@ namespace PLUME.Base.Module.Unity.Audio
         {
             var invalidChars = Path.GetInvalidFileNameChars().ToList();
             invalidChars.Add(' ');
-            
+
             var name = ctx.CurrentRecord.Metadata.Name;
             var safeName = new string(name.Select(c => invalidChars.Contains(c) ? '_' : c).ToArray());
 

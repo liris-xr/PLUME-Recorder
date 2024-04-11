@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Reflection;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Profiling;
 using UnityRuntimeGuid;
 using UnityObject = UnityEngine.Object;
 
@@ -32,9 +33,8 @@ namespace PLUME.Core.Object.SafeRef
             var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
             var goRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go);
             var transformRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go.transform);
-            var guidStr = System.Guid.Parse(goRegistryEntry.guid).ToString("N");
-            var goGuid = new Guid(guidStr);
-            var transformGuid = new Guid(transformRegistryEntry.guid);
+            var goGuid = Guid.FromString(goRegistryEntry.guid);
+            var transformGuid = Guid.FromString(transformRegistryEntry.guid);
             goRef = new GameObjectSafeRef(go, goGuid, transformGuid);
             _cachedRefs[instanceId] = goRef;
             return goRef;
@@ -57,8 +57,7 @@ namespace PLUME.Core.Object.SafeRef
             var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
             var guidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(component);
             var gameObjectRef = GetOrCreateGameObjectSafeRef(component.gameObject);
-            var guidStr = guidRegistryEntry.guid.Replace("-", "");
-            var goGuid = new Guid(guidStr);
+            var goGuid = Guid.FromString(guidRegistryEntry.guid);
             componentSafeRef = CreateComponentSafeRef(component, gameObjectRef, goGuid);
             _cachedRefs[instanceId] = componentSafeRef;
             return componentSafeRef;
@@ -77,13 +76,13 @@ namespace PLUME.Core.Object.SafeRef
             var assetsGuidRegistry = AssetsGuidRegistry.GetOrCreate();
             var assetsGuidRegistryEntry = assetsGuidRegistry.GetOrCreateEntry(asset);
             var assetBundlePath = new FixedString512Bytes(assetsGuidRegistryEntry.assetBundlePath);
-            var guidStr = assetsGuidRegistryEntry.guid.Replace("-", "");
-            var assetGuid = new Guid(guidStr);
+            var assetGuid = Guid.FromString(assetsGuidRegistryEntry.guid);
             assetSafeRef = CreateAssetObjectSafeRef(asset, assetGuid, assetBundlePath);
             _cachedRefs[instanceId] = assetSafeRef;
             return assetSafeRef;
         }
 
+        // TODO: Get rid of this
         private static IComponentSafeRef<TC> CreateComponentSafeRef<TC>(TC component,
             GameObjectSafeRef gameObjectRef,
             Guid guid) where TC : Component
@@ -95,6 +94,7 @@ namespace PLUME.Core.Object.SafeRef
                 CultureInfo.InvariantCulture);
         }
 
+        // TODO: Get rid of this
         private static IAssetSafeRef<TA> CreateAssetObjectSafeRef<TA>(TA obj, Guid guid,
             FixedString512Bytes assetPath) where TA : UnityObject
         {

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace PLUME.Core.Object.SafeRef
 {
+    // TODO: make this alloc free
     public class GameObjectSafeRef : IObjectSafeRef<GameObjectIdentifier>, IEquatable<GameObjectSafeRef>
     {
         public static readonly GameObjectSafeRef Null = new();

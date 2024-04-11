@@ -3,13 +3,11 @@ using PLUME.Base.Events;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
 using UnityEngine;
-using IdentifierHashSet = Unity.Collections.NativeHashSet<PLUME.Core.Object.ComponentIdentifier>;
 
 namespace PLUME.Core.Recorder.Module.Frame
 {
-    // TODO: needs to decouple object tracking capabilities (keeping track of recorded objects) from the recording itself
     public abstract class
-        ComponentRecorderModule<TC, TD> : ObjectRecorderModule<TC, ComponentIdentifier, IComponentSafeRef<TC>, TD>
+        ComponentRecorderModule<TC, TD> : ObjectRecorderModule<ComponentIdentifier, IComponentSafeRef<TC>, TD>
         where TC : Component where TD : IFrameData
     {
         protected IReadOnlyList<IComponentSafeRef<TC>> RecordedComponents => RecordedObjects;

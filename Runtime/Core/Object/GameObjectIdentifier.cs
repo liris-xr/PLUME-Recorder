@@ -55,13 +55,12 @@ namespace PLUME.Core.Object
 
         public bool Equals(GameObjectIdentifier other)
         {
-            return GameObjectId.Equals(other.GameObjectId) &&
-                   TransformId.Equals(other.TransformId);
+            return GameObjectId.Equals(other.GameObjectId);
         }
         
-        public bool Equals(IObjectIdentifier other)
+        public override int GetHashCode()
         {
-            return other is GameObjectIdentifier gameObjectIdentifier && Equals(gameObjectIdentifier);
+            return GameObjectId.GetHashCode();
         }
     }
 }

@@ -6,16 +6,15 @@ using Unity.Collections;
 
 namespace PLUME.Core.Recorder.Module.Frame
 {
-    public abstract class ObjectRecorderModule<TObject, TObjectIdentifier, TObjectSafeRef, TFrameData> :
+    public abstract class ObjectRecorderModule<TObjectIdentifier, TObjectSafeRef, TFrameData> :
         FrameDataRecorderModule<TFrameData>, IObjectRecorderModule
-        where TObject : UnityEngine.Object
         where TObjectIdentifier : unmanaged, IObjectIdentifier, IEquatable<TObjectIdentifier>
         where TObjectSafeRef : IObjectSafeRef<TObjectIdentifier>
         where TFrameData : IFrameData
     {
         private readonly List<TObjectSafeRef> _recordedObjects = new();
 
-        private NativeHashSet<TObjectIdentifier> _recordedObjectsIdentifier;
+        private readonly HashSet<TObjectIdentifier> _recordedObjectsIdentifier = new(1000);
 
         protected IReadOnlyList<TObjectSafeRef> RecordedObjects => _recordedObjects;
 
@@ -24,54 +23,39 @@ namespace PLUME.Core.Recorder.Module.Frame
         /// </summary>
         private readonly List<TObjectSafeRef> _objectsToStopRecording = new();
 
-        protected override void OnCreate(RecorderContext ctx)
-        {
-            base.OnCreate(ctx);
-            _recordedObjectsIdentifier = new NativeHashSet<TObjectIdentifier>(1000, Allocator.Persistent);
-        }
-
-        protected override void OnDestroy(RecorderContext ctx)
-        {
-            base.OnDestroy(ctx);
-            _recordedObjectsIdentifier.Dispose();
-        }
-
         protected override void OnStopRecording(RecorderContext ctx)
         {
             base.OnStopRecording(ctx);
             _recordedObjects.Clear();
         }
 
-        public void StartRecordingObject(IObjectSafeRef objSafeRef, bool markCreated, RecorderContext ctx)
+        public bool StartRecordingObject(IObjectSafeRef objSafeRef, bool markCreated, RecorderContext ctx)
         {
             CheckIsRecording(ctx);
 
             if (objSafeRef is not TObjectSafeRef tObjSafeRef)
-            {
-                throw new InvalidOperationException($"Object is not of type {typeof(TObject).Name}");
-            }
+                return false;
 
-            StartRecordingObject(tObjSafeRef, markCreated, ctx);
+            return StartRecordingObject(tObjSafeRef, markCreated, ctx);
         }
 
-        public void StopRecordingObject(IObjectSafeRef objSafeRef, bool markDestroyed, RecorderContext ctx)
+        public bool StopRecordingObject(IObjectSafeRef objSafeRef, bool markDestroyed, RecorderContext ctx)
         {
             CheckIsRecording(ctx);
 
             if (objSafeRef is not TObjectSafeRef tObjSafeRef)
-            {
-                throw new InvalidOperationException($"Object is not of type {typeof(TObject).Name}");
-            }
+                return false;
 
-            StopRecordingObject(tObjSafeRef, markDestroyed, ctx);
+            return StopRecordingObject(tObjSafeRef, markDestroyed, ctx);
         }
 
-        public void StartRecordingObject(TObjectSafeRef objSafeRef, bool markCreated, RecorderContext ctx)
+        public bool StartRecordingObject(TObjectSafeRef objSafeRef, bool markCreated, RecorderContext ctx)
         {
             CheckIsRecording(ctx);
 
+            // If we fail to add the object, this means that it is already being recorded.
             if (!_recordedObjectsIdentifier.Add(objSafeRef.Identifier))
-                throw new InvalidOperationException("Object is already being recorded.");
+                return false;
 
             _recordedObjects.Add(objSafeRef);
             OnStartRecordingObject(objSafeRef, ctx);
@@ -80,14 +64,17 @@ namespace PLUME.Core.Recorder.Module.Frame
             {
                 OnObjectMarkedCreated(objSafeRef, ctx);
             }
+
+            return true;
         }
 
-        public void StopRecordingObject(TObjectSafeRef objSafeRef, bool markDestroyed, RecorderContext ctx)
+        public bool StopRecordingObject(TObjectSafeRef objSafeRef, bool markDestroyed, RecorderContext ctx)
         {
             CheckIsRecording(ctx);
 
+            // If we fail to remove the object, this means that it was not being recorded.
             if (!_recordedObjectsIdentifier.Contains(objSafeRef.Identifier))
-                throw new InvalidOperationException("Object is not being recorded.");
+                return false;
 
             // Deferred removal (after frame data collection)
             _objectsToStopRecording.Add(objSafeRef);
@@ -96,6 +83,8 @@ namespace PLUME.Core.Recorder.Module.Frame
             {
                 OnObjectMarkedDestroyed(objSafeRef, ctx);
             }
+
+            return true;
         }
 
         protected override void AfterCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
@@ -112,14 +101,9 @@ namespace PLUME.Core.Recorder.Module.Frame
             _objectsToStopRecording.Clear();
         }
 
-        public bool IsObjectSupported(IObjectSafeRef objSafeRef)
+        public bool IsRecordingObject(TObjectSafeRef objSafeRef)
         {
-            return objSafeRef is TObjectSafeRef;
-        }
-
-        public bool IsRecordingObject(IObjectSafeRef objSafeRef)
-        {
-            return objSafeRef is TObjectSafeRef tObjSafeRef && _recordedObjects.Contains(tObjSafeRef);
+            return _recordedObjectsIdentifier.Contains(objSafeRef.Identifier);
         }
 
         protected void CheckIsRecording(RecorderContext ctx)

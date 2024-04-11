@@ -13,7 +13,9 @@ using PLUME.Sample.Common;
 using PLUME.Sample.Unity.Settings;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Profiling;
 using static PLUME.Core.Utils.SampleUtils;
+using Debug = UnityEngine.Debug;
 
 namespace PLUME.Core.Recorder
 {
@@ -35,7 +37,7 @@ namespace PLUME.Core.Recorder
         private readonly RecorderContext _context;
         private readonly DataDispatcher _dataDispatcher;
         private bool _wantsToQuit;
-        
+
         private static readonly List<Component> TempComponents = new();
 
         private PlumeRecorder(DataDispatcher dataDispatcher, RecorderContext ctx)
@@ -48,7 +50,8 @@ namespace PLUME.Core.Recorder
         /// Starts the recording process. If the recorder is already recording, throw a <see cref="InvalidOperationException"/> exception.
         /// </summary>
         /// <exception cref="InvalidOperationException"></exception>
-        private void StartRecordingInternal(string name, bool recordAll = true, string extraMetadata = "")
+        private void StartRecordingInternal(string name, string extraMetadata = "", bool recordAll = true,
+            bool markAllCreated = true)
         {
             if (_context.Status is RecorderStatus.Stopping)
                 throw new InvalidOperationException(
@@ -85,10 +88,12 @@ namespace PLUME.Core.Recorder
 
             if (recordAll)
             {
-                foreach (var go in UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include,
-                             FindObjectsSortMode.None))
+                var gameObjects = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include,
+                    FindObjectsSortMode.None);
+
+                foreach (var go in gameObjects)
                 {
-                    StartRecordingGameObject(go);
+                    StartRecordingGameObject(go, markAllCreated);
                 }
             }
 
@@ -199,15 +204,15 @@ namespace PLUME.Core.Recorder
             _context.Status = RecorderStatus.Stopped;
             Logger.Log("Recorder force stopped after " + stopwatch.ElapsedMilliseconds + "ms.");
         }
-        
+
         private void StartRecordingGameObjectInternal(GameObject go, bool markCreated = true)
         {
             EnsureIsRecording();
-            
+
             var safeRefProvider = _context.ObjectSafeRefProvider;
-            
+
             go.GetComponentsInChildren(true, TempComponents);
-            
+
             foreach (var component in TempComponents)
             {
                 var componentSafeRef = safeRefProvider.GetOrCreateComponentSafeRef(component);
@@ -217,24 +222,24 @@ namespace PLUME.Core.Recorder
                 {
                     StartRecordingObjectInternal(componentSafeRef.GameObjectSafeRef, markCreated);
                 }
-                
+
                 StartRecordingObjectInternal(componentSafeRef, markCreated);
             }
         }
-        
+
         private void StopRecordingGameObjectInternal(GameObject go, bool markDestroyed = true)
         {
             EnsureIsRecording();
-            
+
             var safeRefProvider = _context.ObjectSafeRefProvider;
-            
+
             go.GetComponentsInChildren(TempComponents);
-            
+
             foreach (var component in TempComponents)
             {
                 var componentSafeRef = safeRefProvider.GetOrCreateComponentSafeRef(component);
                 StopRecordingObjectInternal(componentSafeRef, markDestroyed);
-                
+
                 // Stop recording nested GameObjects. This also applies to the given GameObject itself.
                 if (component is Transform)
                 {
@@ -247,17 +252,12 @@ namespace PLUME.Core.Recorder
         {
             EnsureIsRecording();
 
+            // TODO: cache the module by object type Dictionary<Type, List<Module>>
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _context.Modules.Count; i++)
             {
                 var module = _context.Modules[i];
                 if (module is not IObjectRecorderModule objectRecorderModule)
-                    continue;
-
-                if (!objectRecorderModule.IsObjectSupported(objectSafeRef))
-                    continue;
-
-                if (objectRecorderModule.IsRecordingObject(objectSafeRef))
                     continue;
 
                 objectRecorderModule.StartRecordingObject(objectSafeRef, markCreated, _context);
@@ -274,12 +274,6 @@ namespace PLUME.Core.Recorder
                 var module = _context.Modules[i];
 
                 if (module is not IObjectRecorderModule objectRecorderModule)
-                    continue;
-
-                if (!objectRecorderModule.IsObjectSupported(objectSafeRef))
-                    continue;
-
-                if (!objectRecorderModule.IsRecordingObject(objectSafeRef))
                     continue;
 
                 objectRecorderModule.StopRecordingObject(objectSafeRef, markDestroyed, _context);
@@ -342,8 +336,7 @@ namespace PLUME.Core.Recorder
 
             if (recorderSettings.StartOnPlay)
             {
-                StartRecordingInternal(recorderSettings.DefaultRecordPrefix, true,
-                    recorderSettings.DefaultRecordExtraMetadata);
+                StartRecordingInternal(recorderSettings.DefaultRecordPrefix, recorderSettings.DefaultRecordExtraMetadata);
             }
         }
 

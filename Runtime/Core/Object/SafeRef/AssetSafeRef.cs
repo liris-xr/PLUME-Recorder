@@ -13,6 +13,7 @@ namespace PLUME.Core.Object.SafeRef
         public new TA Asset { get; }
     }
 
+    // TODO: make this alloc free
     public class AssetSafeRef<TA> : IAssetSafeRef<TA> where TA : UnityObject
     {
         public static readonly AssetSafeRef<TA> Null = new();
@@ -67,16 +68,6 @@ namespace PLUME.Core.Object.SafeRef
         public override int GetHashCode()
         {
             return Identifier.GetHashCode();
-        }
-
-        public static bool operator ==(AssetSafeRef<TA> left, AssetSafeRef<TA> right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(AssetSafeRef<TA> left, AssetSafeRef<TA> right)
-        {
-            return !(left == right);
         }
     }
 }

@@ -21,12 +21,6 @@ namespace PLUME.Core.Object
         {
             return InstanceId == other.InstanceId && Guid.Equals(other.Guid);
         }
-        
-        [BurstDiscard]
-        public override bool Equals(object obj)
-        {
-            return obj is Identifier other && Equals(other);
-        }
 
         public override int GetHashCode()
         {

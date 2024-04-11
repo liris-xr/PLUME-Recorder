@@ -3,6 +3,7 @@ using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
+using UnityEngine.Profiling;
 
 namespace PLUME.Core.Object
 {
@@ -55,19 +56,7 @@ namespace PLUME.Core.Object
 
         public bool Equals(ComponentIdentifier other)
         {
-            return ComponentId.Equals(other.ComponentId) &&
-                   GameObjectId.Equals(other.GameObjectId);
-        }
-        
-        public bool Equals(IObjectIdentifier other)
-        {
-            return other is ComponentIdentifier componentIdentifier && Equals(componentIdentifier);
-        }
-        
-        [BurstDiscard]
-        public override bool Equals(object obj)
-        {
-            return obj is ComponentIdentifier other && Equals(other);
+            return ComponentId.Equals(other.ComponentId);
         }
         
         public override int GetHashCode()

@@ -14,6 +14,7 @@ namespace PLUME.Core.Object.SafeRef
         public new TC Component { get; }
     }
 
+    // TODO: make this alloc free
     public class ComponentSafeRef<TC> : IComponentSafeRef<TC> where TC : Component
     {
         public static readonly ComponentSafeRef<TC> Null = new();
@@ -71,16 +72,6 @@ namespace PLUME.Core.Object.SafeRef
         public override int GetHashCode()
         {
             return Identifier.GetHashCode();
-        }
-
-        public static bool operator ==(ComponentSafeRef<TC> left, ComponentSafeRef<TC> right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(ComponentSafeRef<TC> left, ComponentSafeRef<TC> right)
-        {
-            return !(left == right);
         }
     }
 }

@@ -12,7 +12,7 @@ using GameObjectIdentifier = PLUME.Core.Object.GameObjectIdentifier;
 namespace PLUME.Base.Module.Unity.GameObject
 {
     [Preserve]
-    public class GameObjectRecorderModule : ObjectRecorderModule<UnityEngine.GameObject, GameObjectIdentifier,
+    public class GameObjectRecorderModule : ObjectRecorderModule<GameObjectIdentifier,
         GameObjectSafeRef, GameObjectFrameData>
     {
         private readonly Dictionary<GameObjectSafeRef, GameObjectCreate> _createSamples = new();

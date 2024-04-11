@@ -25,7 +25,7 @@ namespace PLUME.Base.Settings
 
         internal override string GetSettingsWindowPath()
         {
-            return Path.Join(base.GetSettingsWindowPath(), "Audio");
+            return Path.Join(base.GetSettingsWindowPath(), "Audio Recorder");
         }
     }
 }

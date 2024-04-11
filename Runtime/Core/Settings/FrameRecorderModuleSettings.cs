@@ -29,7 +29,7 @@ namespace PLUME.Core.Settings
 
         internal override string GetSettingsWindowPath()
         {
-            return Path.Join(base.GetSettingsWindowPath(), "Unity Frame Recorder");
+            return Path.Join(base.GetSettingsWindowPath(), "Frame Recorder");
         }
     }
 }

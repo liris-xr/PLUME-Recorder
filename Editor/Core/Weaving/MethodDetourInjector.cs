@@ -6,6 +6,7 @@ using System.Text;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using Mono.Cecil.Pdb;
+using PLUME.Core.Settings;
 using PLUME.Editor.Core.Events;
 using UnityEditor;
 using UnityEditor.Compilation;
@@ -17,7 +18,8 @@ namespace PLUME.Editor.Core.Weaving
     {
         private static MethodDetourInjector _instance;
         private List<MethodDetour> _detours;
-
+        private HooksSettings _hooksSettings;
+        
         [InitializeOnLoadMethod]
         public static void InitializeOnLoad()
         {
@@ -29,6 +31,9 @@ namespace PLUME.Editor.Core.Weaving
 
         private void Initialize()
         {
+            var settingsProvider = new FileSettingsProvider();
+            _hooksSettings = settingsProvider.GetOrCreate<HooksSettings>();
+            
             _detours = MethodDetourManager.GetRegisteredMethodDetours();
 
 #if PLUME_LOG_REGISTERED_DETOURS
@@ -49,15 +54,7 @@ namespace PLUME.Editor.Core.Weaving
 
         private void OnAssemblyCompilationFinished(string assemblyPath, CompilerMessage[] messages)
         {
-            var assemblies = new[]
-            {
-                "Assembly-CSharp.dll",
-                "Unity.XR.Interaction.Toolkit.dll",
-                "Unity.XR.Interaction.Toolkit.Samples.StarterAssets.dll",
-                "Unity.VisualScripting.Core.dll"
-            };
-
-            var shouldInjectInAssembly = assemblies.Any(Path.GetFileName(assemblyPath).Equals);
+            var shouldInjectInAssembly = _hooksSettings.InjectedAssemblies.Any(Path.GetFileName(assemblyPath).Equals);
 
             if (!shouldInjectInAssembly)
                 return;

@@ -1,17 +1,22 @@
-using PLUME.Core;
+using PLUME.Core.Hooks;
 using UnityEngine.Scripting;
 using UnityEngine.UI;
 
-namespace PLUME.Base.Events
+namespace PLUME.Base.Hooks
 {
-    public static class TextEvents
+    [Preserve]
+    public class TextHooks : IRegisterHooksCallback
     {
         public delegate void OnTextChangedDelegate(Text text, string value);
-        
+
         public static event OnTextChangedDelegate OnTextChanged = delegate { };
-        
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(Text), nameof(Text.text))]
+
+        public void RegisterHooks(HooksRegistry hooksRegistry)
+        {
+            hooksRegistry.RegisterHook(typeof(TextHooks).GetMethod(nameof(SetTextAndNotify)),
+                typeof(Text).GetProperty(nameof(Text.text))!.GetSetMethod());
+        }
+
         public static void SetTextAndNotify(Text text, string value)
         {
             var previousText = text.text;

@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PLUME.Core;
+using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Scripting;
 
-namespace PLUME.Base.Events
+namespace PLUME.Base.Hooks
 {
-    public static class SkinnedMeshRendererEvents
+    [Preserve]
+    public class SkinnedMeshRendererHooks : IRegisterHooksCallback
     {
         public delegate void OnBonesChangedDelegate(SkinnedMeshRenderer renderer, IEnumerable<Transform> bones);
 
@@ -18,9 +19,19 @@ namespace PLUME.Base.Events
         public static event OnBonesChangedDelegate OnBonesChanged = delegate { };
         public static event OnRootBoneChangedDelegate OnRootBoneChanged = delegate { };
         public static event OnBlendShapeWeightChangedDelegate OnBlendShapeWeightChanged = delegate { };
-
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(SkinnedMeshRenderer), nameof(SkinnedMeshRenderer.bones))]
+        
+        public void RegisterHooks(HooksRegistry hooksRegistry)
+        {
+            hooksRegistry.RegisterHook(typeof(SkinnedMeshRendererHooks).GetMethod(nameof(SetBonesAndNotify)),
+                typeof(SkinnedMeshRenderer).GetProperty(nameof(SkinnedMeshRenderer.bones))!.GetSetMethod());
+            
+            hooksRegistry.RegisterHook(typeof(SkinnedMeshRendererHooks).GetMethod(nameof(SetRootBoneAndNotify)),
+                typeof(SkinnedMeshRenderer).GetProperty(nameof(SkinnedMeshRenderer.rootBone))!.GetSetMethod());
+            
+            hooksRegistry.RegisterHook(typeof(SkinnedMeshRendererHooks).GetMethod(nameof(SetBlendShapeWeightAndNotify)),
+                typeof(SkinnedMeshRenderer).GetMethod(nameof(SkinnedMeshRenderer.SetBlendShapeWeight), new[] {typeof(int), typeof(float)}));
+        }
+        
         public static void SetBonesAndNotify(SkinnedMeshRenderer skinnedMeshRenderer, Transform[] bones)
         {
             var previousBones = skinnedMeshRenderer.bones;
@@ -31,8 +42,6 @@ namespace PLUME.Base.Events
             }
         }
 
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(SkinnedMeshRenderer), nameof(SkinnedMeshRenderer.rootBone))]
         public static void SetRootBoneAndNotify(SkinnedMeshRenderer skinnedMeshRenderer, Transform rootBone)
         {
             var previousRootBone = skinnedMeshRenderer.rootBone;
@@ -43,9 +52,6 @@ namespace PLUME.Base.Events
             }
         }
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(SkinnedMeshRenderer), nameof(SkinnedMeshRenderer.SetBlendShapeWeight), typeof(int),
-            typeof(float))]
         public static void SetBlendShapeWeightAndNotify(SkinnedMeshRenderer skinnedMeshRenderer, int index,
             float weight)
         {

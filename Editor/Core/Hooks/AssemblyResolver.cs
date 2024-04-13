@@ -6,13 +6,13 @@ using UnityEditor;
 using UnityEditor.Compilation;
 using UnityEditorInternal;
 
-namespace PLUME.Editor.Core.Events
+namespace PLUME.Editor.Core.Hooks
 {
     public class AssemblyResolver : DefaultAssemblyResolver
     {
-        public AssemblyResolver(string assemblyRelativePath)
+        public AssemblyResolver(string assemblyName)
         {
-            var asm = CompilationPipeline.GetAssemblies().First(x => x.outputPath == assemblyRelativePath);
+            var asm = CompilationPipeline.GetAssemblies().First(x => x.name == assemblyName);
 
             foreach (var str in GetAssemblyDependencies(asm))
             {

@@ -3,7 +3,7 @@ using System.Linq;
 using Mono.Cecil;
 using UnityEngine;
 
-namespace PLUME.Editor.Core.Events
+namespace PLUME.Editor.Core.Hooks
 {
     internal static class MonoCecilExtensions
     {

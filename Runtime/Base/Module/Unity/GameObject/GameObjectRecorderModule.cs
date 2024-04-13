@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using PLUME.Base.Events;
+using PLUME.Base.Hooks;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
@@ -22,11 +22,11 @@ namespace PLUME.Base.Module.Unity.GameObject
         protected override void OnCreate(RecorderContext ctx)
         {
             base.OnCreate(ctx);
-            GameObjectEvents.OnCreated += go => OnCreated(go, ctx);
-            GameObjectEvents.OnActiveChanged += (go, _) => OnActiveChanged(go, ctx);
-            GameObjectEvents.OnTagChanged += (go, tag) => OnTagChanged(go, tag, ctx);
-            ObjectEvents.OnNameChanged += (obj, name) => OnNameChanged(obj, name, ctx);
-            ObjectEvents.OnBeforeDestroyed += (obj, _) => OnBeforeDestroyed(obj, ctx);
+            GameObjectHooks.OnCreated += go => OnCreated(go, ctx);
+            GameObjectHooks.OnActiveChanged += (go, _) => OnActiveChanged(go, ctx);
+            GameObjectHooks.OnTagChanged += (go, tag) => OnTagChanged(go, tag, ctx);
+            ObjectHooks.OnNameChanged += (obj, name) => OnNameChanged(obj, name, ctx);
+            ObjectHooks.OnBeforeDestroyed += (obj, _) => OnBeforeDestroyed(obj, ctx);
         }
 
         protected override void OnObjectMarkedCreated(GameObjectSafeRef objSafeRef, RecorderContext ctx)

@@ -1,4 +1,4 @@
-using PLUME.Base.Events;
+using PLUME.Base.Hooks;
 using PLUME.Base.Module.Unity.Transform.Job;
 using PLUME.Base.Module.Unity.Transform.Sample;
 using PLUME.Base.Settings;
@@ -42,9 +42,9 @@ namespace PLUME.Base.Module.Unity.Transform
             _identifierToIndex = new NativeHashMap<ComponentIdentifier, int>(1000, Allocator.Persistent);
             _alignedStates = new NativeList<TransformState>(1000, Allocator.Persistent);
 
-            GameObjectEvents.OnComponentAdded += (go, comp) => OnComponentAdded(go, comp, ctx);
-            TransformEvents.OnParentChanged += (t, parent) => OnParentChanged(t, parent, ctx);
-            TransformEvents.OnSiblingIndexChanged += (t, siblingIdx) => OnSiblingIndexChanged(t, siblingIdx, ctx);
+            GameObjectHooks.OnComponentAdded += (go, comp) => OnComponentAdded(go, comp, ctx);
+            TransformHooks.OnParentChanged += (t, parent) => OnParentChanged(t, parent, ctx);
+            TransformHooks.OnSiblingIndexChanged += (t, siblingIdx) => OnSiblingIndexChanged(t, siblingIdx, ctx);
         }
 
         private void OnComponentAdded(UnityEngine.GameObject go, Component component, RecorderContext ctx)

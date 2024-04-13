@@ -1,18 +1,29 @@
-using PLUME.Core;
+using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Scripting;
 
-namespace PLUME.Base.Events
+namespace PLUME.Base.Hooks
 {
-    public static class MeshFilterEvents
+    [Preserve]
+    public class MeshFilterHooks : IRegisterHooksCallback
     {
         public delegate void OnMeshChangedDelegate(MeshFilter meshFilter, Mesh mesh);
 
         public static event OnMeshChangedDelegate OnMeshChanged = delegate { };
         public static event OnMeshChangedDelegate OnSharedMeshChanged = delegate { };
 
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(MeshFilter), nameof(MeshFilter.sharedMesh))]
+        public void RegisterHooks(HooksRegistry hooksRegistry)
+        {
+            hooksRegistry.RegisterHook(typeof(MeshFilterHooks).GetMethod(nameof(SetSharedMeshPropertyAndNotify)),
+                typeof(MeshFilter).GetProperty(nameof(MeshFilter.sharedMesh))!.GetSetMethod());
+
+            hooksRegistry.RegisterHook(typeof(MeshFilterHooks).GetMethod(nameof(SetMeshPropertyAndNotify)),
+                typeof(MeshFilter).GetProperty(nameof(MeshFilter.mesh))!.GetSetMethod());
+
+            hooksRegistry.RegisterHook(typeof(MeshFilterHooks).GetMethod(nameof(GetMeshPropertyAndNotify)),
+                typeof(MeshFilter).GetProperty(nameof(MeshFilter.mesh))!.GetGetMethod());
+        }
+
         public static void SetSharedMeshPropertyAndNotify(MeshFilter meshFilter, Mesh sharedMesh)
         {
             var previousMesh = meshFilter.sharedMesh;
@@ -23,8 +34,6 @@ namespace PLUME.Base.Events
             }
         }
 
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(MeshFilter), nameof(MeshFilter.mesh))]
         public static void SetMeshPropertyAndNotify(MeshFilter meshFilter, Mesh mesh)
         {
             // sharedMesh points to mesh if instantiated. As such, using sharedMesh allows for detecting
@@ -36,9 +45,7 @@ namespace PLUME.Base.Events
                 OnMeshChanged(meshFilter, mesh);
             }
         }
-        
-        [Preserve]
-        [RegisterPropertyGetterDetour(typeof(MeshFilter), nameof(MeshFilter.mesh))]
+
         public static Mesh GetMeshPropertyAndNotify(MeshFilter meshFilter)
         {
             // The mesh property is subject to change when queried for the first time.
@@ -48,6 +55,7 @@ namespace PLUME.Base.Events
             {
                 OnMeshChanged(meshFilter, mesh);
             }
+
             return mesh;
         }
     }

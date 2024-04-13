@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using PLUME.Base.Events;
+using PLUME.Base.Hooks;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity.UI;
@@ -19,7 +19,7 @@ namespace PLUME.Base.Module.Unity.UI.Graphics.Text
         protected override void OnCreate(RecorderContext ctx)
         {
             base.OnCreate(ctx);
-            TextEvents.OnTextChanged += (text, value) => OnTextChanged(ctx, text, value);
+            TextHooks.OnTextChanged += (text, value) => OnTextChanged(ctx, text, value);
         }
         
         protected override void OnObjectMarkedCreated(TextSafeRef objSafeRef, RecorderContext ctx)

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using PLUME.Base.Events;
+using PLUME.Base.Hooks;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
@@ -21,9 +21,9 @@ namespace PLUME.Base.Module.Unity.Renderer
         {
             base.OnCreate(ctx);
 
-            RendererEvents.OnEnabledChanged += (r, _) => OnEnabledUpdate(r, ctx);
-            RendererEvents.OnMaterialsChanged += (r, materials) => OnMaterialsChanged(r, materials, ctx);
-            RendererEvents.OnSharedMaterialsChanged += (r, materials) => OnMaterialsChanged(r, materials, ctx);
+            RendererHooks.OnEnabledChanged += (r, _) => OnEnabledUpdate(r, ctx);
+            RendererHooks.OnMaterialsChanged += (r, materials) => OnMaterialsChanged(r, materials, ctx);
+            RendererHooks.OnSharedMaterialsChanged += (r, materials) => OnMaterialsChanged(r, materials, ctx);
         }
 
         protected override void OnObjectMarkedCreated(IComponentSafeRef<TR> objSafeRef, RecorderContext ctx)

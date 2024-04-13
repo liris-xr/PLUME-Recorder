@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using PLUME.Base.Events;
+using PLUME.Base.Hooks;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity;
@@ -22,9 +22,9 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
         {
             base.OnCreate(ctx);
 
-            SkinnedMeshRendererEvents.OnRootBoneChanged += (mr, rootBone) => OnRootBoneChanged(mr, rootBone, ctx);
-            SkinnedMeshRendererEvents.OnBonesChanged += (mr, bones) => OnBonesChanged(mr, bones, ctx);
-            SkinnedMeshRendererEvents.OnBlendShapeWeightChanged +=
+            SkinnedMeshRendererHooks.OnRootBoneChanged += (mr, rootBone) => OnRootBoneChanged(mr, rootBone, ctx);
+            SkinnedMeshRendererHooks.OnBonesChanged += (mr, bones) => OnBonesChanged(mr, bones, ctx);
+            SkinnedMeshRendererHooks.OnBlendShapeWeightChanged +=
                 (mr, index, value) => OnBlendShapeWeightChanged(mr, ctx);
         }
 

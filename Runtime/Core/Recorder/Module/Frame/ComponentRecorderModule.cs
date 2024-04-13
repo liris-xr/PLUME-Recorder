@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using PLUME.Base.Events;
+using PLUME.Base.Hooks;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
 using UnityEngine;
@@ -15,8 +15,8 @@ namespace PLUME.Core.Recorder.Module.Frame
         protected override void OnCreate(RecorderContext ctx)
         {
             base.OnCreate(ctx);
-            ObjectEvents.OnBeforeDestroyed += (obj, _) => OnBeforeDestroyed(obj, ctx);
-            GameObjectEvents.OnComponentAdded += (go, component) => OnComponentAdded(go, component, ctx);
+            ObjectHooks.OnBeforeDestroyed += (obj, _) => OnBeforeDestroyed(obj, ctx);
+            GameObjectHooks.OnComponentAdded += (go, component) => OnComponentAdded(go, component, ctx);
         }
 
         private void OnComponentAdded(GameObject go, Component component, RecorderContext ctx)

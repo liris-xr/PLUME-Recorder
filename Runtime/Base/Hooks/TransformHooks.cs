@@ -1,10 +1,11 @@
-using PLUME.Core;
+using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Scripting;
 
-namespace PLUME.Base.Events
+namespace PLUME.Base.Hooks
 {
-    public static class TransformEvents
+    [Preserve]
+    public class TransformHooks : IRegisterHooksCallback
     {
         public delegate void OnParentChangedDelegate(Transform t, Transform parent);
 
@@ -14,8 +15,22 @@ namespace PLUME.Base.Events
 
         public static event OnSiblingIndexChangedDelegate OnSiblingIndexChanged = delegate { };
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(Transform), nameof(Transform.SetParent), typeof(Transform))]
+        public void RegisterHooks(HooksRegistry hooksRegistry)
+        {
+            hooksRegistry.RegisterHook(typeof(TransformHooks).GetMethod(nameof(SetParentAndNotify), new[] {typeof(Transform), typeof(Transform)}),
+                typeof(Transform).GetMethod(nameof(Transform.SetParent), new[] {typeof(Transform)}));
+            hooksRegistry.RegisterHook(typeof(TransformHooks).GetMethod(nameof(SetParentAndNotify), new[] {typeof(Transform), typeof(Transform), typeof(bool)}),
+                typeof(Transform).GetMethod(nameof(Transform.SetParent), new[] {typeof(Transform), typeof(bool)}));
+            hooksRegistry.RegisterHook(typeof(TransformHooks).GetMethod(nameof(SetParentPropertyAndNotify)),
+                typeof(Transform).GetProperty(nameof(Transform.parent))!.GetSetMethod());
+            hooksRegistry.RegisterHook(typeof(TransformHooks).GetMethod(nameof(SetSiblingIndexAndNotify)),
+                typeof(Transform).GetMethod(nameof(Transform.SetSiblingIndex), new[] {typeof(int)}));
+            hooksRegistry.RegisterHook(typeof(TransformHooks).GetMethod(nameof(SetAsLastSiblingAndNotify)),
+                typeof(Transform).GetMethod(nameof(Transform.SetAsLastSibling)));
+            hooksRegistry.RegisterHook(typeof(TransformHooks).GetMethod(nameof(SetAsFirstSiblingAndNotify)),
+                typeof(Transform).GetMethod(nameof(Transform.SetAsFirstSibling)));
+        }
+        
         public static void SetParentAndNotify(Transform t, Transform parent)
         {
             var previousParent = t.parent;
@@ -24,8 +39,6 @@ namespace PLUME.Base.Events
                 OnParentChanged(t, parent);
         }
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(Transform), nameof(Transform.SetParent), typeof(Transform), typeof(bool))]
         public static void SetParentAndNotify(Transform t, Transform parent, bool worldPositionStays)
         {
             var previousParent = t.parent;
@@ -34,8 +47,6 @@ namespace PLUME.Base.Events
                 OnParentChanged(t, parent);
         }
 
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(Transform), nameof(Transform.parent))]
         public static void SetParentPropertyAndNotify(Transform t, Transform parent)
         {
             var previousParent = t.parent;
@@ -44,8 +55,6 @@ namespace PLUME.Base.Events
                 OnParentChanged(t, parent);
         }
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(Transform), nameof(Transform.SetSiblingIndex), typeof(int))]
         public static void SetSiblingIndexAndNotify(Transform t, int siblingIdx)
         {
             var previousSiblingIndex = t.GetSiblingIndex();
@@ -54,8 +63,6 @@ namespace PLUME.Base.Events
                 OnSiblingIndexChanged(t, siblingIdx);
         }
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(Transform), nameof(Transform.SetAsLastSibling))]
         public static void SetAsLastSiblingAndNotify(Transform t)
         {
             var previousSiblingIndex = t.GetSiblingIndex();
@@ -65,8 +72,6 @@ namespace PLUME.Base.Events
                 OnSiblingIndexChanged(t, siblingIdx);
         }
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(Transform), nameof(Transform.SetAsFirstSibling))]
         public static void SetAsFirstSiblingAndNotify(Transform t)
         {
             var previousSiblingIndex = t.GetSiblingIndex();

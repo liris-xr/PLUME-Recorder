@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using PLUME.Base.Events;
+using PLUME.Base.Hooks;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity;
@@ -20,8 +20,8 @@ namespace PLUME.Base.Module.Unity.MeshFilter
         protected override void OnCreate(RecorderContext ctx)
         {
             base.OnCreate(ctx);
-            MeshFilterEvents.OnMeshChanged += (mf, mesh) => OnMeshChanged(mf, mesh, ctx);
-            MeshFilterEvents.OnSharedMeshChanged += (mf, mesh) => OnMeshChanged(mf, mesh, ctx);
+            MeshFilterHooks.OnMeshChanged += (mf, mesh) => OnMeshChanged(mf, mesh, ctx);
+            MeshFilterHooks.OnSharedMeshChanged += (mf, mesh) => OnMeshChanged(mf, mesh, ctx);
         }
 
         protected override void OnObjectMarkedCreated(MeshFilterSafeRef objSafeRef, RecorderContext ctx)

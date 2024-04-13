@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using PLUME.Base.Events;
+using PLUME.Base.Hooks;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity;
@@ -25,10 +25,10 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             base.OnCreate(ctx);
             _tmpPositions = new NativeList<Vector3>(Allocator.Persistent);
 
-            LineRendererEvents.OnPositionsChanged += (r, positions) => OnPositionChanged(r, positions, ctx);
-            LineRendererEvents.OnColorChanged += (r, color) => OnColorChanged(r, color, ctx);
-            LineRendererEvents.OnWidthCurveChanged += (r, widthCurve) => OnWidthCurveChanged(r, widthCurve, ctx);
-            LineRendererEvents.OnWidthMultiplierChanged += (r, widthMultiplier) => OnWidthMultiplierChanged(r, widthMultiplier, ctx);
+            LineRendererHooks.OnPositionsChanged += (r, positions) => OnPositionChanged(r, positions, ctx);
+            LineRendererHooks.OnColorChanged += (r, color) => OnColorChanged(r, color, ctx);
+            LineRendererHooks.OnWidthCurveChanged += (r, widthCurve) => OnWidthCurveChanged(r, widthCurve, ctx);
+            LineRendererHooks.OnWidthMultiplierChanged += (r, widthMultiplier) => OnWidthMultiplierChanged(r, widthMultiplier, ctx);
         }
 
         protected override void OnDestroy(RecorderContext ctx)

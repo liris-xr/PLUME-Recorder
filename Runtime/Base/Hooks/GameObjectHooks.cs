@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using PLUME.Core;
+using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Scripting;
 
-namespace PLUME.Base.Events
+namespace PLUME.Base.Hooks
 {
-    public static class GameObjectEvents
+    [Preserve]
+    public class GameObjectHooks : IRegisterHooksCallback
     {
         public delegate void OnCreatedDelegate(GameObject go);
 
@@ -35,8 +36,49 @@ namespace PLUME.Base.Events
             OnComponentAdded(go, component);
         }
 
-        [Preserve]
-        [RegisterConstructorDetour(typeof(GameObject))]
+        public void RegisterHooks(HooksRegistry hooksRegistry)
+        {
+            hooksRegistry.RegisterHook(
+                typeof(GameObjectHooks).GetMethod(nameof(CreateAndNotify), Type.EmptyTypes),
+                typeof(GameObject).GetConstructor(Type.EmptyTypes)
+            );
+
+            hooksRegistry.RegisterHook(
+                typeof(GameObjectHooks).GetMethod(nameof(CreateAndNotify), new[] { typeof(string) }),
+                typeof(GameObject).GetConstructor(new[] { typeof(string) })
+            );
+
+            hooksRegistry.RegisterHook(
+                typeof(GameObjectHooks).GetMethod(nameof(CreateAndNotify), new[] { typeof(string), typeof(Type[]) }),
+                typeof(GameObject).GetConstructor(new[] { typeof(string), typeof(Type[]) })
+            );
+            
+            hooksRegistry.RegisterHook(
+                typeof(GameObjectHooks).GetMethod(nameof(CreatePrimitiveAndNotify), new[] { typeof(PrimitiveType) }),
+                typeof(GameObject).GetMethod(nameof(GameObject.CreatePrimitive), new[] { typeof(PrimitiveType) })
+            );
+            
+            hooksRegistry.RegisterHook(
+                typeof(GameObjectHooks).GetMethod(nameof(SetTagPropertyAndNotify), new[] { typeof(GameObject), typeof(string) }),
+                typeof(GameObject).GetProperty(nameof(GameObject.tag))!.GetSetMethod()
+            );
+            
+            hooksRegistry.RegisterHook(
+                typeof(GameObjectHooks).GetMethod(nameof(SetActiveAndNotify), new[] { typeof(GameObject), typeof(bool) }),
+                typeof(GameObject).GetMethod(nameof(GameObject.SetActive), new[] { typeof(bool) })
+            );
+            
+            hooksRegistry.RegisterHook(
+                typeof(GameObjectHooks).GetMethod(nameof(AddComponentAndNotify), new[] { typeof(GameObject), typeof(Type) }),
+                typeof(GameObject).GetMethod(nameof(GameObject.AddComponent), new[] { typeof(Type) })
+            );
+            
+            hooksRegistry.RegisterHook(
+                typeof(GameObjectHooks).GetMethod(nameof(AddComponentAndNotify), new[] { typeof(GameObject) }),
+                typeof(GameObject).GetMethod(nameof(GameObject.AddComponent), Type.EmptyTypes)
+            );
+        }
+
         public static GameObject CreateAndNotify()
         {
             var go = new GameObject();
@@ -44,8 +86,6 @@ namespace PLUME.Base.Events
             return go;
         }
 
-        [Preserve]
-        [RegisterConstructorDetour(typeof(GameObject), typeof(string))]
         public static GameObject CreateAndNotify(string name)
         {
             var go = new GameObject(name);
@@ -53,8 +93,6 @@ namespace PLUME.Base.Events
             return go;
         }
 
-        [Preserve]
-        [RegisterConstructorDetour(typeof(GameObject), typeof(string), typeof(Type[]))]
         public static GameObject CreateAndNotify(string name, Type[] components)
         {
             var go = new GameObject(name, components);
@@ -69,9 +107,7 @@ namespace PLUME.Base.Events
 
             return go;
         }
-
-        [Preserve]
-        [RegisterMethodDetour(typeof(GameObject), nameof(GameObject.CreatePrimitive), typeof(PrimitiveType))]
+        
         public static GameObject CreatePrimitiveAndNotify(PrimitiveType type)
         {
             var go = GameObject.CreatePrimitive(type);
@@ -87,8 +123,6 @@ namespace PLUME.Base.Events
             return go;
         }
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(GameObject), nameof(GameObject.SetActive), typeof(bool))]
         public static void SetActiveAndNotify(GameObject go, bool active)
         {
             var previousActive = go.activeSelf;
@@ -98,8 +132,6 @@ namespace PLUME.Base.Events
             OnActiveChanged(go, active);
         }
 
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(GameObject), nameof(GameObject.tag))]
         public static void SetTagPropertyAndNotify(GameObject go, string tag)
         {
             if (go.CompareTag(tag)) return;
@@ -107,8 +139,6 @@ namespace PLUME.Base.Events
             OnTagChanged(go, tag);
         }
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(GameObject), nameof(GameObject.AddComponent), typeof(Type))]
         public static Component AddComponentAndNotify(GameObject go, Type componentType)
         {
             var missingRequiredTypes = GetMissingRequiredComponents(go, componentType);
@@ -124,8 +154,6 @@ namespace PLUME.Base.Events
             return component;
         }
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(GameObject), nameof(GameObject.AddComponent))]
         public static T AddComponentAndNotify<T>(GameObject go) where T : Component
         {
             var missingRequiredTypes = GetMissingRequiredComponents(go, typeof(T));

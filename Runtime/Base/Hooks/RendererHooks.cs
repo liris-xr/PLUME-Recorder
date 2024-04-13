@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-using PLUME.Core;
+using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Scripting;
 
-namespace PLUME.Base.Events
+namespace PLUME.Base.Hooks
 {
-    public static class RendererEvents
+    [Preserve]
+    public class RendererHooks : IRegisterHooksCallback
     {
         public delegate void OnEnabledChangedDelegate(Renderer renderer, bool enabled);
 
@@ -27,9 +28,39 @@ namespace PLUME.Base.Events
         public static event OnPropertyBlockChangedDelegate OnPropertyBlockChanged = delegate { };
         public static event OnPropertyBlockMaterialIndexChangedDelegate OnPropertyBlockMaterialIndexChanged =
             delegate { };
+        
+        public void RegisterHooks(HooksRegistry hooksRegistry)
+        {
+            hooksRegistry.RegisterHook(typeof(RendererHooks).GetMethod(nameof(SetEnabledAndNotify)),
+                typeof(Renderer).GetProperty(nameof(Renderer.enabled))!.GetSetMethod());
 
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(Renderer), nameof(Renderer.enabled))]
+            hooksRegistry.RegisterHook(typeof(RendererHooks).GetMethod(nameof(SetMaterialPropertyAndNotify)),
+                typeof(Renderer).GetProperty(nameof(Renderer.material))!.GetSetMethod());
+
+            hooksRegistry.RegisterHook(typeof(RendererHooks).GetMethod(nameof(SetMaterialsPropertyAndNotify)),
+                typeof(Renderer).GetProperty(nameof(Renderer.materials))!.GetSetMethod());
+
+            hooksRegistry.RegisterHook(typeof(RendererHooks).GetMethod(nameof(SetSharedMaterialAndNotify)),
+                typeof(Renderer).GetProperty(nameof(Renderer.sharedMaterial))!.GetSetMethod());
+
+            hooksRegistry.RegisterHook(typeof(RendererHooks).GetMethod(nameof(SetSharedMaterialsPropertyAndNotify)),
+                typeof(Renderer).GetProperty(nameof(Renderer.sharedMaterials))!.GetSetMethod());
+
+            hooksRegistry.RegisterHook(typeof(RendererHooks).GetMethod(nameof(SetPropertyBlockAndNotify),
+                new[] {typeof(Renderer), typeof(MaterialPropertyBlock)}),
+                typeof(Renderer).GetMethod(nameof(Renderer.SetPropertyBlock), new[] {typeof(MaterialPropertyBlock)}));
+
+            hooksRegistry.RegisterHook(typeof(RendererHooks).GetMethod(nameof(SetPropertyBlockAndNotify),
+                new[] {typeof(Renderer), typeof(MaterialPropertyBlock), typeof(int)}),
+                typeof(Renderer).GetMethod(nameof(Renderer.SetPropertyBlock), new[] {typeof(MaterialPropertyBlock), typeof(int)}));
+
+            hooksRegistry.RegisterHook(typeof(RendererHooks).GetMethod(nameof(SetMaterialsAndNotify)),
+                typeof(Renderer).GetMethod(nameof(Renderer.SetMaterials), new[] {typeof(List<Material>)}));
+
+            hooksRegistry.RegisterHook(typeof(RendererHooks).GetMethod(nameof(SetSharedMaterialsAndNotify)),
+                typeof(Renderer).GetMethod(nameof(Renderer.SetSharedMaterials), new[] {typeof(List<Material>)}));
+        }
+        
         public static void SetEnabledAndNotify(Renderer renderer, bool enabled)
         {
             var previousEnabled = renderer.enabled;
@@ -40,8 +71,6 @@ namespace PLUME.Base.Events
             }
         }
 
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(Renderer), nameof(Renderer.material))]
         public static void SetMaterialPropertyAndNotify(Renderer renderer, Material material)
         {
             // sharedMaterial points to material if instantiated. As such, using sharedMaterial allows for detecting
@@ -55,8 +84,6 @@ namespace PLUME.Base.Events
             }
         }
 
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(Renderer), nameof(Renderer.materials))]
         public static void SetMaterialsPropertyAndNotify(Renderer renderer, Material[] materials)
         {
             var previousMaterials = renderer.sharedMaterials;
@@ -69,8 +96,6 @@ namespace PLUME.Base.Events
             }
         }
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(Renderer), nameof(Renderer.SetMaterials), typeof(List<Material>))]
         public static void SetMaterialsAndNotify(Renderer renderer, List<Material> materials)
         {
             var previousMaterials = renderer.sharedMaterials;
@@ -83,8 +108,6 @@ namespace PLUME.Base.Events
             }
         }
 
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(Renderer), nameof(Renderer.sharedMaterial))]
         public static void SetSharedMaterialAndNotify(Renderer renderer, Material sharedMaterial)
         {
             var previousMaterial = renderer.sharedMaterial;
@@ -96,8 +119,6 @@ namespace PLUME.Base.Events
             }
         }
 
-        [Preserve]
-        [RegisterPropertySetterDetour(typeof(Renderer), nameof(Renderer.sharedMaterials))]
         public static void SetSharedMaterialsPropertyAndNotify(Renderer renderer, Material[] sharedMaterials)
         {
             var previousMaterials = renderer.sharedMaterials;
@@ -110,8 +131,6 @@ namespace PLUME.Base.Events
             }
         }
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(Renderer), nameof(Renderer.SetSharedMaterials), typeof(List<Material>))]
         public static void SetSharedMaterialsAndNotify(Renderer renderer, List<Material> sharedMaterials)
         {
             var previousMaterials = renderer.sharedMaterials;
@@ -124,16 +143,12 @@ namespace PLUME.Base.Events
             }
         }
 
-        [Preserve]
-        [RegisterMethodDetour(typeof(Renderer), nameof(Renderer.SetPropertyBlock), typeof(MaterialPropertyBlock))]
         public static void SetPropertyBlockAndNotify(Renderer renderer, MaterialPropertyBlock properties)
         {
             renderer.SetPropertyBlock(properties);
             OnPropertyBlockChanged(renderer, properties);
         }
         
-        [Preserve]
-        [RegisterMethodDetour(typeof(Renderer), nameof(Renderer.SetPropertyBlock), typeof(MaterialPropertyBlock), typeof(int))]
         public static void SetPropertyBlockAndNotify(Renderer renderer, MaterialPropertyBlock properties, int materialIndex)
         {
             renderer.SetPropertyBlock(properties, materialIndex);

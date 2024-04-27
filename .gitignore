@@ -74,3 +74,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 Records
+
+CHANGELOG.md.meta
+LICENSE.meta
+README.md.meta

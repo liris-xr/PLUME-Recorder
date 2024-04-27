@@ -6,8 +6,7 @@ using PLUME.Sample.Unity.XRITK;
 using UnityEngine.Scripting;
 using UnityEngine.XR.Interaction.Toolkit;
 using static PLUME.Core.Utils.SampleUtils;
-using XRBaseInteractableSafeRef =
-    PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.XR.Interaction.Toolkit.XRBaseInteractable>;
+using XRBaseInteractableSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.XR.Interaction.Toolkit.XRBaseInteractable>;
 
 namespace PLUME.Base.Module.Unity.XRITK
 {

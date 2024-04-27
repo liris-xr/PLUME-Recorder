@@ -10,7 +10,6 @@ using PLUME.Core.Recorder.Module;
 using PLUME.Sample.LSL;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Collections;
-using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Profiling;
 using UnityEngine.Scripting;

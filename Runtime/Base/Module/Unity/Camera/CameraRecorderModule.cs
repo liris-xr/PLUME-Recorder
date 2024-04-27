@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
-using PLUME.Core.Utils;
 using PLUME.Sample.Unity;
 using UnityEngine.Scripting;
 using CameraSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.Camera>;

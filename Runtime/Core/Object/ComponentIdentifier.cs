@@ -3,7 +3,6 @@ using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
-using UnityEngine.Profiling;
 
 namespace PLUME.Core.Object
 {

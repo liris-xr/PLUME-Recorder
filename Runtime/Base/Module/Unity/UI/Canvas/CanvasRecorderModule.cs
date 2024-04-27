@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using PLUME.Base.Module.Unity.UI.CanvasScaler;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
-using PLUME.Core.Utils;
 using PLUME.Sample.Unity.UI;
 using UnityEngine.Scripting;
 using CanvasScalerSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.UI.CanvasScaler>;

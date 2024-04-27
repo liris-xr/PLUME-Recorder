@@ -4,7 +4,6 @@ using PLUME.Base.Hooks;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
-using PLUME.Core.Utils;
 using PLUME.Sample.Unity;
 using UnityEngine;
 using static PLUME.Core.Utils.SampleUtils;

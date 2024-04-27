@@ -55,7 +55,7 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
-            var inputActionSample = new PLUME.Sample.Unity.XRITK.InputAction();
+            var inputActionSample = new Sample.Unity.XRITK.InputAction();
             inputActionSample.Name = context.action.actionMap.name + '/' + context.action.name;
             inputActionSample.BindingPaths.AddRange(context.action.bindings.Select(b => b.path));
 

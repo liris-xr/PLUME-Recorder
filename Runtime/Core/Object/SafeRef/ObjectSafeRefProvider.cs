@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Reflection;
 using Unity.Collections;
 using UnityEngine;
-using UnityEngine.Profiling;
 using UnityRuntimeGuid;
 using UnityObject = UnityEngine.Object;
 

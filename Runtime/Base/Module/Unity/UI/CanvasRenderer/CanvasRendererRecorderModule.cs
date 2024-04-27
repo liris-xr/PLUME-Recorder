@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using PLUME.Base.Module.Unity.UI.Graphics;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity.UI;

@@ -15,9 +15,7 @@ using PLUME.Sample.Unity.Settings;
 using ProtoBurst;
 using Unity.Collections;
 using UnityEngine;
-using UnityEngine.Profiling;
 using static PLUME.Core.Utils.SampleUtils;
-using Debug = UnityEngine.Debug;
 
 namespace PLUME.Core.Recorder
 {

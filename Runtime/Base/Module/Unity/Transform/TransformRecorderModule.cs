@@ -52,7 +52,7 @@ namespace PLUME.Base.Module.Unity.Transform
             if (!ctx.IsRecording)
                 return;
 
-            if (component is not UnityEngine.Transform t)
+            if (component is not UnityEngine.Transform t || component is RectTransform)
                 return;
 
             var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t);

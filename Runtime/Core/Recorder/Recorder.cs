@@ -253,6 +253,7 @@ namespace PLUME.Core.Recorder
             EnsureIsRecording();
 
             // TODO: cache the module by object type Dictionary<Type, List<Module>>
+            // TODO: module should be picked from most specific to most general, with only one module per type
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _context.Modules.Count; i++)
             {

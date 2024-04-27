@@ -36,42 +36,33 @@ namespace PLUME.Editor
 
             BuildPlayerWindow.RegisterBuildPlayerHandler(buildPlayerOptions =>
             {
-                Plume.IsBuilding = true;
-
-                try
+                foreach (var settings in Resources.LoadAll<Settings>(FileSettingsProvider.BasePath))
                 {
-                    foreach (var settings in Resources.LoadAll<Settings>(FileSettingsProvider.BasePath))
-                    {
-                        settings.OnValidate();
-                    }
-
-                    // Update the registries when building the application
-                    GuidRegistryUpdater.UpdateAssetsGuidRegistry(GuidRegistryUpdater.GetAllScenePaths(false));
-                    GuidRegistryUpdater.UpdateScenesGuidRegistry(GuidRegistryUpdater.GetAllScenePaths(false));
-
-                    GetBatchingForPlatform(buildPlayerOptions.target, out var staticBatching,
-                        out var dynamicBatching);
-
-                    if (staticBatching != 0 || dynamicBatching != 0)
-                        SetBatchingForPlatform(buildPlayerOptions.target, 0, 0);
-
-                    if (buildPlayerOptions.target == BuildTarget.Android)
-                    {
-                        // Set the minimum SDK version to 24 (Android 7.0) for LSL support
-                        if (PlayerSettings.Android.minSdkVersion < AndroidSdkVersions.AndroidApiLevel24)
-                        {
-                            PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
-                            Logger.LogWarning("Minimum SDK version set to 24 (Android 7.0) for LSL support.");
-                        }
-                    }
-
-                    AssetBundleBuilder.BuildAssetBundle();
-                    BuildPlayerWindow.DefaultBuildMethods.BuildPlayer(buildPlayerOptions);
+                    settings.OnValidate();
                 }
-                finally
+
+                // Update the registries when building the application
+                GuidRegistryUpdater.UpdateAssetsGuidRegistry(GuidRegistryUpdater.GetAllScenePaths(false));
+                GuidRegistryUpdater.UpdateScenesGuidRegistry(GuidRegistryUpdater.GetAllScenePaths(false));
+
+                GetBatchingForPlatform(buildPlayerOptions.target, out var staticBatching,
+                    out var dynamicBatching);
+
+                if (staticBatching != 0 || dynamicBatching != 0)
+                    SetBatchingForPlatform(buildPlayerOptions.target, 0, 0);
+
+                if (buildPlayerOptions.target == BuildTarget.Android)
                 {
-                    Plume.IsBuilding = false;
+                    // Set the minimum SDK version to 24 (Android 7.0) for LSL support
+                    if (PlayerSettings.Android.minSdkVersion < AndroidSdkVersions.AndroidApiLevel24)
+                    {
+                        PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel24;
+                        Logger.LogWarning("Minimum SDK version set to 24 (Android 7.0) for LSL support.");
+                    }
                 }
+
+                AssetBundleBuilder.BuildAssetBundle();
+                BuildPlayerWindow.DefaultBuildMethods.BuildPlayer(buildPlayerOptions);
             });
         }
 

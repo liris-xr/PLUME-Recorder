@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace PLUME.Core.Recorder.Module
 {
@@ -52,8 +54,8 @@ namespace PLUME.Core.Recorder.Module
             var currentAssembly = Assembly.GetExecutingAssembly();
             var currentAssemblyName = currentAssembly.GetName();
             var referencingAssemblies = AppDomain.CurrentDomain.GetAssemblies()
-                .Where(asm => asm.GetReferencedAssemblies().Any(asmRef => asmRef.Equals(currentAssemblyName)));
-
+                .Where(asm => asm.GetReferencedAssemblies().Any(asmRef => asmRef.FullName.Equals(currentAssemblyName.FullName)));
+            
             var moduleTypes = new List<Type>();
 
             moduleTypes.AddRange(GetRecorderModulesTypesFromAssembly(currentAssembly));

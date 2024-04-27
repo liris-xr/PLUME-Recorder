@@ -38,7 +38,7 @@ namespace PLUME.Core.Recorder
 
         // ReSharper restore Unity.ExpensiveCode
 
-        public void RecordTimelessManagedSample<T>(T msg) where T : IMessage
+        public void RecordTimelessManagedSample(IMessage msg)
         {
             var typeUrl = SampleTypeUrl.Alloc(msg.Descriptor, Allocator.Persistent);
             var sampleSize = msg.CalculateSize();
@@ -60,14 +60,14 @@ namespace PLUME.Core.Recorder
 
         // ReSharper restore Unity.ExpensiveCode
 
-        public void RecordTimestampedManagedSample<T>(T msg) where T : IMessage
+        public void RecordTimestampedManagedSample(IMessage msg)
         {
             RecordTimestampedManagedSample(msg, Time);
         }
 
         // ReSharper restore Unity.ExpensiveCode
 
-        public void RecordTimestampedManagedSample<T>(T msg, ulong timestamp) where T : IMessage
+        public void RecordTimestampedManagedSample(IMessage msg, ulong timestamp)
         {
             var typeUrl = SampleTypeUrl.Alloc(msg.Descriptor, Allocator.Persistent);
             var bytes = msg.ToByteArray();

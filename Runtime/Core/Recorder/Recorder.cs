@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Cysharp.Threading.Tasks;
+using Google.Protobuf;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Module.Frame;
@@ -11,6 +12,7 @@ using PLUME.Core.Settings;
 using PLUME.Sample;
 using PLUME.Sample.Common;
 using PLUME.Sample.Unity.Settings;
+using ProtoBurst;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Profiling;
@@ -278,6 +280,30 @@ namespace PLUME.Core.Recorder
 
                 objectRecorderModule.StopRecordingObject(objectSafeRef, markDestroyed, _context);
             }
+        }
+        
+        private void RecordTimestampedManagedSampleInternal(IMessage sample)
+        {
+            EnsureIsRecording();
+            _context.CurrentRecord.RecordTimestampedManagedSample(sample);
+        }
+
+        private void RecordTimestampedSampleInternal<T>(T msg) where T : unmanaged, IProtoBurstMessage
+        {
+            EnsureIsRecording();
+            _context.CurrentRecord.RecordTimestampedSample(msg);
+        }
+        
+        private void RecordTimelessManagedSampleInternal(IMessage msg)
+        {
+            EnsureIsRecording();
+            _context.CurrentRecord.RecordTimelessManagedSample(msg);
+        }
+
+        private void RecordTimelessSampleInternal<T>(T msg) where T : unmanaged, IProtoBurstMessage
+        {
+            EnsureIsRecording();
+            _context.CurrentRecord.RecordTimelessSample(msg);
         }
 
         private void RecordMarkerInternal(string label)

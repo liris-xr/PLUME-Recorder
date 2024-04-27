@@ -1,10 +1,12 @@
 using System;
 using Cysharp.Threading.Tasks;
+using Google.Protobuf;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Writer;
 using PLUME.Core.Scripts;
 using PLUME.Core.Settings;
+using ProtoBurst;
 using UnityEngine;
 
 namespace PLUME.Core.Recorder
@@ -51,6 +53,30 @@ namespace PLUME.Core.Recorder
             Instance.RecordMarkerInternal(label);
         }
 
+        public static void RecordTimestampedManagedSample(IMessage sample)
+        {
+            CheckInstantiated();
+            Instance.RecordTimestampedManagedSampleInternal(sample);
+        }
+        
+        public static void RecordTimestampedSample<T>(T sample) where T : unmanaged, IProtoBurstMessage
+        {
+            CheckInstantiated();
+            Instance.RecordTimestampedSampleInternal(sample);
+        }
+        
+        public static void RecordTimelessManagedSample(IMessage sample)
+        {
+            CheckInstantiated();
+            Instance.RecordTimelessManagedSampleInternal(sample);
+        }
+        
+        public static void RecordTimelessSample<T>(T sample) where T : unmanaged, IProtoBurstMessage
+        {
+            CheckInstantiated();
+            Instance.RecordTimelessSampleInternal(sample);
+        }
+        
         public static void StartRecordingGameObject(GameObject go, bool markCreated = true)
         {
             CheckInstantiated();

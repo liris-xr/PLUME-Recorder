@@ -2,9 +2,9 @@
 <div align="center">
     <a href="https://github.com/liris-xr/PLUME">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="/Documentation~/Images/plume_banner_dark.png">
-            <source media="(prefers-color-scheme: light)" srcset="/Documentation~/Images/plume_banner_light.png">
-            <img alt="PLUME banner." src="/Documentation~/Images/plume_banner_light.png">
+            <source media="(prefers-color-scheme: dark)" srcset="/Resources~/Images/plume_banner_dark.png">
+            <source media="(prefers-color-scheme: light)" srcset="/Resources~/Images/plume_banner_light.png">
+            <img alt="PLUME banner." src="/Resources~/Images/plume_banner_light.png">
         </picture>
     </a>
     <br />
@@ -28,9 +28,9 @@
 </div>
 
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="/Documentation~/Images/plume_recorder_header_dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="/Documentation~/Images/plume_recorder_header_light.png">
-    <img alt="PLUME-Recorder header." src="/Documentation~/Images/plume_recorder_header_light.png">
+    <source media="(prefers-color-scheme: dark)" srcset="/Resources~/Images/plume_recorder_header_dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="/Resources~/Images/plume_recorder_header_light.png">
+    <img alt="PLUME-Recorder header." src="/Resources~/Images/plume_recorder_header_light.png">
 </picture>
 
 <details>
@@ -84,7 +84,7 @@
 
 PLUME Recorder is the cornerstone of the <a href="https://github.com/liris-xr/PLUME">PLUME</a> toolbox. It's a plugin for <a href="https://unity.com/">Unity</a> that continuously records the state of the virtual environment with minimal impact on performances. By default, the recorder will record as much data as possible, namely object position, appearance, sound, interactions, and physiological signals (through a LabStreamingLayer integration). The recorder is modular and allows custom data recording, such as event markers or custom-defined data structures in Google Protocol Buffer files. We use ProtoBuf for its fast and frugal serialization as well as being platform-neutral and can be de-serialized with any programming language. The PLUME Recorder is compatible with Windows, Android, and iOS and de facto with standalone devices. To record specific XR data, we rely on OpenXR as much as possible, making our plugin compatible with most HMDs. As the record files all follow the same serialization process and data format, they can be used interoperably across devices. For example, one could record an experiment on a standalone Android device and open the record file on a Windows machine.
 
-[![PLUME demo video](/Documentation~/Images/video_thumbnail.png)](https://www.youtube.com/watch?v=_6krSw7fNqg)
+[![PLUME demo video](/Resources~/Images/video_thumbnail.png)](https://www.youtube.com/watch?v=_6krSw7fNqg)
 
 ## Installation
 

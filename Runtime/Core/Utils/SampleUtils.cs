@@ -34,6 +34,13 @@ using Vector4 = PLUME.Sample.Common.Vector4;
 using VerticalWrapMode = PLUME.Sample.Unity.UI.VerticalWrapMode;
 using WeightedMode = PLUME.Sample.Common.WeightedMode;
 
+#if URP_ENABLED
+using CameraOverrideOption = PLUME.Sample.Unity.URP.CameraOverrideOption;
+using CameraRenderType = PLUME.Sample.Unity.URP.CameraRenderType;
+using AntialiasingMode = PLUME.Sample.Unity.URP.AntialiasingMode;
+using AntialiasingQuality = PLUME.Sample.Unity.URP.AntialiasingQuality;
+#endif
+
 namespace PLUME.Core.Utils
 {
     public static class SampleUtils

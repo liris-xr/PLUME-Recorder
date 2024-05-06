@@ -5,7 +5,7 @@
             <source media="(prefers-color-scheme: light)" srcset="Resources~/Images/plume_recorder_light.png">
             <img alt="PLUME banner." src="Resources~/Images/plume_recorder_light.png" width="350">
         </picture>
-    </a>
+    </a><br/><br/>
     <p>
         <a href="https://opensource.org/license/gpl-3-0"><img alt="License badge" src="https://img.shields.io/badge/license-GPLv3-blue.svg"/></a>
         <a href="https://discord.gg/c3evqEWMge"><img alt="Discord badge" src="https://img.shields.io/discord/1151165491767935107?logo=discord&logoColor=white&label=discord"/></a>

@@ -24,6 +24,14 @@
 
 PLUME Recorder is the cornerstone of the <a href="https://github.com/liris-xr/PLUME">PLUME</a> toolbox. It's a plugin for <a href="https://unity.com/">Unity</a> that continuously records the state of the virtual environment with minimal impact on performances. By default, the recorder will record as much data as possible, namely object position, appearance, sound, interactions, and physiological signals (through a [LabStreamingLayer](https://labstreaminglayer.org/#/) integration). It is compatible with Unity applications running on Windows, Android, and iOS and relies on OpenXR as much as possible to make it compatible with most HMDs.
 
+<p align="center">
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="Resources~/Images/plume_recorder_header_dark.png">
+        <source media="(prefers-color-scheme: light)" srcset="Resources~/Images/plume_recorder_header_light.png">
+        <img alt="PLUME banner." src="Resources~/Images/plume_recorder_header_light.png" width="600">
+    </picture>
+</p>
+
 ## Getting Started
 
 The installation of PLUME is straightforward and can be done in a few minutes at any development stage of your project. Please refer to the [getting started guide](https://liris-xr.github.io/PLUME/get-started/) to start using PLUME in your project.

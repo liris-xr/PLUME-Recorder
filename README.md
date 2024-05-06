@@ -1,217 +1,52 @@
-<a name="readme-top"></a>
 <div align="center">
     <a href="https://github.com/liris-xr/PLUME">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="/Resources~/Images/plume_banner_dark.png">
-            <source media="(prefers-color-scheme: light)" srcset="/Resources~/Images/plume_banner_light.png">
-            <img alt="PLUME banner." src="/Resources~/Images/plume_banner_light.png">
+            <source media="(prefers-color-scheme: dark)" srcset="Resources~/Images/plume_logo_dark.png">
+            <source media="(prefers-color-scheme: light)" srcset="Resources~/Images/plume_logo_light.png">
+            <img alt="PLUME banner." src="Resources~/Images/plume_logo_light.png" width="350">
         </picture>
     </a>
-    <br />
-    <br />
-    <p align="center">
-        <strong>PLUME: Record, Replay, Analyze and Share User Behavior in 6DoF XR Experiences</strong>
-        <br />
-        Charles Javerliat, Sophie Villenave, Pierre Raimbaud, Guillaume Lavoué
-        <br />
-        <em>(Journal Track) IEEE Conference on Virtual Reality and 3D User Interfaces</em>
-        <br />
-        <a href="https://www.youtube.com/watch?v=_6krSw7fNqg"><strong>Video »</strong><a>
-        <a href="https://hal.science/hal-04488824"><strong>Paper »</strong></a>
-        <a href="https://github.com/liris-xr/PLUME-Recorder/wiki/"><strong>Explore the docs »</strong></a>
-        <br />
-        <br />
-        <a href="https://github.com/liris-xr/PLUME-Recorder/issues">Report Bug</a>
-        ·
-        <a href="https://github.com/liris-xr/PLUME-Recorder/issues">Request Feature</a>
+    <p>
+        <a href="https://opensource.org/license/gpl-3-0"><img alt="License badge" src="https://img.shields.io/badge/license-GPLv3-blue.svg"/></a>
+        <a href="https://discord.gg/c3evqEWMge"><img alt="Discord badge" src="https://img.shields.io/discord/1151165491767935107?logo=discord&logoColor=white&label=discord"/></a>
     </p>
 </div>
+<p align="center">
+    Charles Javerliat, Sophie Villenave, Pierre Raimbaud, Guillaume Lavoué
+    <br />
+    <em>IEEE Conference on Virtual Reality and 3D User Interfaces (Journal Track)</em>
+    <br />
+    <a href="https://www.youtube.com/watch?v=_6krSw7fNqg"><strong>Video »</strong></a>&emsp;
+    <a href="https://hal.science/hal-04488824"><strong>Paper »</strong></a>&emsp;
+    <a href="https://liris-xr.github.io/PLUME/"><strong>Explore the docs »</strong></a>
+    <br />
+</p>
 
-<picture>
-    <source media="(prefers-color-scheme: dark)" srcset="/Resources~/Images/plume_recorder_header_dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="/Resources~/Images/plume_recorder_header_light.png">
-    <img alt="PLUME-Recorder header." src="/Resources~/Images/plume_recorder_header_light.png">
-</picture>
-
-<details>
-    <summary>Table of Contents</summary>
-    <ol>
-        <li><a href="#about-plume-recorder">About</a></li>
-        <li><a href="#tldr">TL;DR</a></li>
-        <li>
-            <a href="#installation">Installation</a>
-            <ul>
-                <li><a href="#prerequisites">Prerequisites</a></li>
-                <li><a href="#installation-via-unity-package-manager">Installation via Unity Package Manager</a></li>
-                <li><a href="#manual-installation">Manual Installation</a></li>
-                <li><a href="#installation-for-development">Installation for development</a></li>
-            </ul>
-        </li>
-        <li><a href="#getting-started">Getting Started</a>
-            <ul>
-                <li><a href="#settings">Settings</a></li>
-                <li><a href="#recompile-with-hooks">Recompile with Hooks</a></li>
-                <li><a href="#build-asset-bundle">Build Asset Bundle</a></li>
-                <li><a href="#records-location">Records Location</a></li>
-            </ul>
-        </li>
-        <li><a href="#customization">Customization</a>
-            <ul>
-                <li><a href="#event-marker">Event Marker</a></li>
-                <li><a href="#custom-sample">Custom Sample</a></li>
-            </ul>
-        </li>
-        <li><a href="#roadmap">Roadmap</a></li>
-        <li><a href="#contributing">Contributing</a></li>
-        <li><a href="#license">License</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#citation">Citation</a></li>
-    </ol>
-</details>
-
-## TL;DR
-1. Open your Unity project.
-2. Open the Package Manager window from `Window > Package Manager`.
-3. Click on the `+` button at the top left of the Package Manager window.
-4. Select "Add package from git URL...".
-5. Paste the following URL into the text field: `https://github.com/liris-xr/PLUME-Recorder.git`.
-6. Click on the `Add` button.
-7. Unity will now download and import the package into your project.
-8. Force recompilation with hooks from `PLUME > Force Recompile With Hooks`
-9. You are ready to record!
-
-## About PLUME Recorder
-
-PLUME Recorder is the cornerstone of the <a href="https://github.com/liris-xr/PLUME">PLUME</a> toolbox. It's a plugin for <a href="https://unity.com/">Unity</a> that continuously records the state of the virtual environment with minimal impact on performances. By default, the recorder will record as much data as possible, namely object position, appearance, sound, interactions, and physiological signals (through a LabStreamingLayer integration). The recorder is modular and allows custom data recording, such as event markers or custom-defined data structures in Google Protocol Buffer files. We use ProtoBuf for its fast and frugal serialization as well as being platform-neutral and can be de-serialized with any programming language. The PLUME Recorder is compatible with Windows, Android, and iOS and de facto with standalone devices. To record specific XR data, we rely on OpenXR as much as possible, making our plugin compatible with most HMDs. As the record files all follow the same serialization process and data format, they can be used interoperably across devices. For example, one could record an experiment on a standalone Android device and open the record file on a Windows machine.
-
-[![PLUME demo video](/Resources~/Images/video_thumbnail.png)](https://www.youtube.com/watch?v=_6krSw7fNqg)
-
-## Installation
-
-### Prerequisites
-Before using this package, ensure you have the following:
-* Unity 2022 or later installed
-
-### Installation via Unity Package Manager
-1. Open your Unity project.
-2. Open the Package Manager window from `Window > Package Manager`.
-3. Click on the `+` button at the top left of the Package Manager window.
-4. Select "Add package from git URL...".
-5. Paste the following URL into the text field: `https://github.com/liris-xr/PLUME-Recorder.git`
-6. Click on the `Add` button.
-7. Unity will now download and import the package into your project.
-
-### Manual Installation
-1. Download latest release (`.unitypackage` extension)
-2. Open your Unity project.
-3. Locate the downloaded package file.
-4. Double-click the package file to import it into your Unity project.
-
-### Installation for Development
-1. Clone or download the repository inside the `Packages` folder of your Unity project.
-2. Unity will import the package into your project.
-3. You can now edit the source code to adapt it to your needs. Feel free to <a href="#contributing">contribute</a> to this repository !
+PLUME Recorder is the cornerstone of the <a href="https://github.com/liris-xr/PLUME">PLUME</a> toolbox. It's a plugin for <a href="https://unity.com/">Unity</a> that continuously records the state of the virtual environment with minimal impact on performances. By default, the recorder will record as much data as possible, namely object position, appearance, sound, interactions, and physiological signals (through a [LabStreamingLayer](https://labstreaminglayer.org/#/) integration). It is compatible with Unity applications running on Windows, Android, and iOS and relies on OpenXR as much as possible to make it compatible with most HMDs.
 
 ## Getting Started
-### Settings
-Open the PLUME Recorder settings window from `PLUME > Settings`.
-From here, you can configure the recorder, e.g, set the recording folder, enable or disable recorder modules.
 
-### Recompile with Hooks
-After installation, force recompilation with hooks from `PLUME > Force Recompile With Hooks`.
+The installation of PLUME is straightforward and can be done in a few minutes at any development stage of your project. Please refer to the [getting started guide](https://liris-xr.github.io/PLUME/get-started/) to start using PLUME in your project.
 
-### Build Asset Bundle
-To build your project Asset Bundle, click on `PLUME > Build Asset Bundle`. The built Asset Bundle can be found in the Assets folder of your Unity Project: `Assets/StreamingAssets/plume_asset_bundle_windows`.
+## Documentation
 
-### Records Location
-Records are located in the Application Path defined by Unity, e.g., on Windows, the Application Path is: `%AppData%/LocalLow/Company Name/Project Name`.
+The full documentation is available at [liris-xr.github.io/PLUME/](https://liris-xr.github.io/PLUME/). It includes a detailed description of the installation process, the file format specifications, the usage of the different tools, etc.
 
-## Customization
-### Event Marker
-To record a custom event marker, write anywhere in your code:
-```csharp
-PlumeRecorder.RecordMarker("Marker");
-```
-
-### Custom Sample
-To record custom data, you need to create your own protos by following the instructions in the <a href="https://github.com/liris-xr/PLUME-Protos">PLUME Proto repository</a>
-
-Your custom proto will look something like this:
-```proto
-syntax = "proto3";
-
-package plume.sample.custom; // <- you can change this to use your own namespace
-option csharp_namespace = "PLUME.Sample.Custom"; // <- you can change this to use your own namespace
-
-message MyCustomSample {
-    float myData = 1;
-}
-```
-
-Once your C# protos are generated as instructed <a href="https://github.com/liris-xr/PLUME-Protos/?tab=readme-ov-file#how-to-build">here</a>, import your protos in your Unity project.
-
-To record your sample, create a Recorder Module. In this example, the module creates a MyCustomSample when the record starts.
-```csharp
-using System;
-using PLUME.Sample.Unity;
-using UnityEngine;
-using UnityEngine.Rendering;
-
-namespace MyNamespace
-{
-    public class MyCustomRecorder : RecorderModule, IStartRecordingEventReceiver
-    {
-        public new void OnStartRecording()
-        {
-            base.OnStartRecording();
-
-            var variable = 42f;
-
-            var myCustomSample = new MyCustomSample
-            {
-                MyData = variable;
-            };
-
-            recorder.RecordSampleStamped(myCustomSample);
-        }
-
-        protected override void ResetCache()
-        {
-        }
-    }
-}
-```
-You can get inspiration from existing Recorder Modules to create more complex modules.
-
-## Roadmap
-
-See the [open issues](https://github.com/Plateforme-VR-ENISE/PLUME-Recorder/issues) for a full list of proposed features (and
-known issues).
+[![Button Docs]][Explore the docs]
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any
-contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also
-simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-Distributed under the <a href="https://github.com/liris-xr/PLUME-Recorder/blob/master/LICENSE">GPLv3 License</a>.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. You can [open an issue](https://github.com/liris-xr/PLUME-Recorder/issues) to report a bug, request a feature, or submit a pull request.
 
 ## Contact
 
+Discord server **(Recommended)** <a href="https://discord.gg/c3evqEWMge">
+            <img alt="Discord badge" src="https://img.shields.io/discord/1151165491767935107?logo=discord&logoColor=white&label=discord"/>
+        </a>
+
 Charles JAVERLIAT - charles.javerliat@gmail.com
 
-Sophie VILLENAVE - sophie.villenave@enise.fr
+Sophie VILLENAVE - sophie.villenave@ec-lyon.fr
 
 ## Citation
 ```
@@ -226,3 +61,6 @@ Sophie VILLENAVE - sophie.villenave@enise.fr
 	pages = {1--11}
 }
 ```
+
+[Button Docs]: https://img.shields.io/badge/Explore%20the%20docs-%E2%86%92-brightgreen
+[Explore the docs]: https://liris-xr.github.io/PLUME/

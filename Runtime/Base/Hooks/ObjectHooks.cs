@@ -53,20 +53,7 @@ namespace PLUME.Base.Hooks
                 typeof(ObjectHooks).GetMethod(nameof(InstantiateAndNotify), new[] { typeof(Object) }),
                 typeof(Object).GetMethod(nameof(Object.Instantiate), new[] { typeof(Object) })
             );
-
-            var instantiateWithSceneParamMethod =
-                typeof(Object).GetMethod(nameof(Object.Instantiate), new[] { typeof(Object), typeof(Scene) });
-
-            // This method was introduced in one of the patch of Unity 2022. We need to check if it exists before adding a hook for it.
-            if (instantiateWithSceneParamMethod != null)
-            {
-                hooksRegistry.RegisterHook(
-                    typeof(ObjectHooks).GetMethod(nameof(InstantiateAndNotify),
-                        new[] { typeof(Object), typeof(Scene) }),
-                    instantiateWithSceneParamMethod
-                );
-            }
-
+            
             hooksRegistry.RegisterHook(
                 typeof(ObjectHooks).GetMethod(nameof(InstantiateAndNotify),
                     new[] { typeof(Object), typeof(Transform) }),
@@ -273,13 +260,6 @@ namespace PLUME.Base.Hooks
         public static Object InstantiateAndNotify(Object original, Transform parent)
         {
             var instance = Object.Instantiate(original, parent);
-            NotifyInstantiated(instance);
-            return instance;
-        }
-
-        public static Object InstantiateAndNotify(Object original, Scene scene)
-        {
-            var instance = Object.Instantiate(original, scene);
             NotifyInstantiated(instance);
             return instance;
         }

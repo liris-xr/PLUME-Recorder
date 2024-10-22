@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.3-beta]
+
+### Fixed
+
+- Fix issue when SkinnedMeshRenderer sharedMesh is null, causing the recorder to fail with a NPE.
+
+### Added
+
+- Ensure XRITK compatibility for v2 and v3 by adding a macro to automatically switch between version 2.x and 3.x in the XRBaseInteractableRecorderModule and XRBaseInteractorRecorderModule.
+
 ## [1.2.2-beta]
 
 ### Fixed

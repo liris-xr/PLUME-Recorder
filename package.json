@@ -1,6 +1,6 @@
 {
   "name": "fr.liris.plume.recorder",
-  "version": "1.2.2-beta",
+  "version": "1.2.3-beta",
   "displayName": "PLUME-Recorder",
   "description": "PLUME: PLugin for Unity to Monitor Experiments",
   "unity": "2022.3",

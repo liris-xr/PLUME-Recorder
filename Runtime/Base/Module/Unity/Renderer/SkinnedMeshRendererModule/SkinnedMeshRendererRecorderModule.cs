@@ -41,22 +41,28 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
             updateSample.RootBoneId = GetComponentIdentifierPayload(rootBoneRef);
             updateSample.Bones = new SkinnedMeshRendererUpdate.Types.Bones();
 
-            foreach (var bone in objSafeRef.Component.bones)
+            if (objSafeRef.Component.bones != null)
             {
-                var boneRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(bone);
-                updateSample.Bones.Ids.Add(GetComponentIdentifierPayload(boneRef));
+                foreach (var bone in objSafeRef.Component.bones)
+                {
+                    var boneRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(bone);
+                    updateSample.Bones.Ids.Add(GetComponentIdentifierPayload(boneRef));
+                }
             }
 
             updateSample.BlendShapeWeights = new SkinnedMeshRendererUpdate.Types.BlendShapeWeights();
 
-            for (var i = 0; i < objSafeRef.Component.sharedMesh.blendShapeCount; i++)
+            if (objSafeRef.Component.sharedMesh != null)
             {
-                updateSample.BlendShapeWeights.Weights.Add(
-                    new SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight
-                    {
-                        Index = i,
-                        Weight = objSafeRef.Component.GetBlendShapeWeight(i)
-                    });
+                for (var i = 0; i < objSafeRef.Component.sharedMesh.blendShapeCount; i++)
+                {
+                    updateSample.BlendShapeWeights.Weights.Add(
+                        new SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight
+                        {
+                            Index = i,
+                            Weight = objSafeRef.Component.GetBlendShapeWeight(i)
+                        });
+                }
             }
 
             _createSamples[objSafeRef] = new SkinnedMeshRendererCreate

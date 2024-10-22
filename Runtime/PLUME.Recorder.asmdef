@@ -34,8 +34,13 @@
         },
         {
             "name": "com.unity.xr.interaction.toolkit",
-            "expression": "0",
-            "define": "XRITK_ENABLED"
+            "expression": "[2.0,3.0)",
+            "define": "USE_XRITK_2"
+        },
+        {
+            "name": "com.unity.xr.interaction.toolkit",
+            "expression": "[3.0,4.0)",
+            "define": "USE_XRITK_3"
         },
         {
             "name": "com.unity.textmeshpro",

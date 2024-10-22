@@ -1,4 +1,4 @@
-#if XRITK_ENABLED
+#if USE_XRITK_2 || USE_XRITK_3
 using System.Collections.Generic;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
@@ -6,17 +6,29 @@ using PLUME.Sample.Unity.XRITK;
 using UnityEngine.Scripting;
 using UnityEngine.XR.Interaction.Toolkit;
 using static PLUME.Core.Utils.SampleUtils;
-using XRBaseInteractableSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.XR.Interaction.Toolkit.XRBaseInteractable>;
+
+#if USE_XRITK_2
+using XRBaseInteractableSafeRef =
+    PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.XR.Interaction.Toolkit.XRBaseInteractable>;
+#elif USE_XRITK_3
+using XRBaseInteractableSafeRef =
+    PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>;
+#endif
 
 namespace PLUME.Base.Module.Unity.XRITK
 {
     [Preserve]
-    public class XRBaseInteractableRecorderModule : ComponentRecorderModule<XRBaseInteractable, XRBaseInteractableFrameData>
+#if USE_XRITK_2
+    public class XRBaseInteractableRecorderModule : ComponentRecorderModule<UnityEngine.XR.Interaction.Toolkit.XRBaseInteractable, XRBaseInteractableFrameData>
+#elif USE_XRITK_3
+    public class XRBaseInteractableRecorderModule : ComponentRecorderModule<
+        UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable, XRBaseInteractableFrameData>
+#endif
     {
         private readonly Dictionary<XRBaseInteractableSafeRef, XRBaseInteractableCreate> _createSamples = new();
         private readonly Dictionary<XRBaseInteractableSafeRef, XRBaseInteractableDestroy> _destroySamples = new();
         private readonly Dictionary<XRBaseInteractableSafeRef, XRBaseInteractableUpdate> _updateSamples = new();
-        
+
         private RecorderContext _ctx;
 
         protected override void OnStartRecording(RecorderContext ctx)
@@ -37,7 +49,7 @@ namespace PLUME.Base.Module.Unity.XRITK
             interactable.activated.AddListener(args => OnActivated(objSafeRef, args));
             interactable.deactivated.AddListener(args => OnDeactivated(objSafeRef, args));
         }
-        
+
         protected override void OnStopRecordingObject(XRBaseInteractableSafeRef objSafeRef,
             RecorderContext ctx)
         {
@@ -54,24 +66,26 @@ namespace PLUME.Base.Module.Unity.XRITK
         protected override void OnObjectMarkedCreated(XRBaseInteractableSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
-            
+
             var interactable = objSafeRef.Component;
             var interactableUpdate = GetOrCreateUpdateSample(objSafeRef);
             interactableUpdate.Enabled = interactable.enabled;
-            _createSamples[objSafeRef] = new XRBaseInteractableCreate {Id = GetComponentIdentifierPayload(objSafeRef)};
+            _createSamples[objSafeRef] = new XRBaseInteractableCreate
+                { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(XRBaseInteractableSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new XRBaseInteractableDestroy {Id = GetComponentIdentifierPayload(objSafeRef)};
+            _destroySamples[objSafeRef] = new XRBaseInteractableDestroy
+                { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private void OnHoverEntered(XRBaseInteractableSafeRef objSafeRef, HoverEnterEventArgs args)
         {
             if (!_ctx.IsRecording)
                 return;
-            
+
             var interactableHoverEnter = new XRBaseInteractableHoverEnter
             {
                 Id = GetComponentIdentifierPayload(objSafeRef),
@@ -85,7 +99,7 @@ namespace PLUME.Base.Module.Unity.XRITK
         {
             if (!_ctx.IsRecording)
                 return;
-            
+
             var interactableHoverExit = new XRBaseInteractableHoverExit
             {
                 Id = GetComponentIdentifierPayload(objSafeRef),
@@ -99,7 +113,7 @@ namespace PLUME.Base.Module.Unity.XRITK
         {
             if (!_ctx.IsRecording)
                 return;
-            
+
             var interactableSelectEnter = new XRBaseInteractableSelectEnter
             {
                 Id = GetComponentIdentifierPayload(objSafeRef),
@@ -113,7 +127,7 @@ namespace PLUME.Base.Module.Unity.XRITK
         {
             if (!_ctx.IsRecording)
                 return;
-            
+
             var interactableSelectExit = new XRBaseInteractableSelectExit
             {
                 Id = GetComponentIdentifierPayload(objSafeRef),
@@ -127,7 +141,7 @@ namespace PLUME.Base.Module.Unity.XRITK
         {
             if (!_ctx.IsRecording)
                 return;
-            
+
             var interactableActivated = new XRBaseInteractableActivateEnter
             {
                 Id = GetComponentIdentifierPayload(objSafeRef),
@@ -136,12 +150,12 @@ namespace PLUME.Base.Module.Unity.XRITK
 
             _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableActivated);
         }
-        
+
         private void OnDeactivated(XRBaseInteractableSafeRef objSafeRef, DeactivateEventArgs args)
         {
             if (!_ctx.IsRecording)
                 return;
-            
+
             var interactableDeactivated = new XRBaseInteractableActivateExit
             {
                 Id = GetComponentIdentifierPayload(objSafeRef),
@@ -150,12 +164,12 @@ namespace PLUME.Base.Module.Unity.XRITK
 
             _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableDeactivated);
         }
-        
+
         private XRBaseInteractableUpdate GetOrCreateUpdateSample(XRBaseInteractableSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new XRBaseInteractableUpdate {Id = GetComponentIdentifierPayload(objSafeRef)};
+            sample = new XRBaseInteractableUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }
@@ -168,7 +182,7 @@ namespace PLUME.Base.Module.Unity.XRITK
             frameData.AddUpdateSamples(_updateSamples.Values);
             return frameData;
         }
-        
+
         protected override void AfterCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
             base.AfterCollectFrameData(frameInfo, ctx);

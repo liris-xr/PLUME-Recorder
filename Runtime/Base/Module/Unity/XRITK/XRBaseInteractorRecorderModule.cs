@@ -1,4 +1,4 @@
-#if XRITK_ENABLED
+#if USE_XRITK_2 || USE_XRITK_3
 using System.Collections.Generic;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
@@ -6,17 +6,29 @@ using PLUME.Sample.Unity.XRITK;
 using UnityEngine.Scripting;
 using UnityEngine.XR.Interaction.Toolkit;
 using static PLUME.Core.Utils.SampleUtils;
-using XRBaseInteractorSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.XR.Interaction.Toolkit.XRBaseInteractor>;
+
+#if USE_XRITK_2
+using XRBaseInteractorSafeRef =
+    PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.XR.Interaction.Toolkit.XRBaseInteractor>;
+#elif USE_XRITK_3
+using XRBaseInteractorSafeRef =
+    PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor>;
+#endif
 
 namespace PLUME.Base.Module.Unity.XRITK
 {
     [Preserve]
-    public class XRBaseInteractorRecorderModule : ComponentRecorderModule<XRBaseInteractor, XRBaseInteractorFrameData>
+#if USE_XRITK_2
+    public class XRBaseInteractorRecorderModule : ComponentRecorderModule<UnityEngine.XR.Interaction.Toolkit.XRBaseInteractor, XRBaseInteractorFrameData>
+#elif USE_XRITK_3
+    public class XRBaseInteractorRecorderModule : ComponentRecorderModule<
+        UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor, XRBaseInteractorFrameData>
+#endif
     {
         private readonly Dictionary<XRBaseInteractorSafeRef, XRBaseInteractorCreate> _createSamples = new();
         private readonly Dictionary<XRBaseInteractorSafeRef, XRBaseInteractorDestroy> _destroySamples = new();
         private readonly Dictionary<XRBaseInteractorSafeRef, XRBaseInteractorUpdate> _updateSamples = new();
-        
+
         private RecorderContext _ctx;
 
         protected override void OnStartRecording(RecorderContext ctx)
@@ -40,14 +52,14 @@ namespace PLUME.Base.Module.Unity.XRITK
             RecorderContext ctx)
         {
             base.OnStopRecordingObject(objSafeRef, ctx);
-            
+
             var interactor = objSafeRef.Component;
             interactor.hoverEntered.RemoveListener(args => OnHoverEntered(objSafeRef, args));
             interactor.hoverExited.RemoveListener(args => OnHoverExited(objSafeRef, args));
             interactor.selectEntered.RemoveListener(args => OnSelectEntered(objSafeRef, args));
             interactor.selectExited.RemoveListener(args => OnSelectExited(objSafeRef, args));
         }
-        
+
         protected override void OnObjectMarkedCreated(XRBaseInteractorSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
@@ -56,11 +68,12 @@ namespace PLUME.Base.Module.Unity.XRITK
             interactorUpdate.Enabled = interactor.enabled;
             _createSamples[objSafeRef] = new XRBaseInteractorCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
-        
+
         protected override void OnObjectMarkedDestroyed(XRBaseInteractorSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new XRBaseInteractorDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new XRBaseInteractorDestroy
+                { Id = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private void OnHoverEntered(XRBaseInteractorSafeRef objSafeRef, HoverEnterEventArgs args)
@@ -127,16 +140,16 @@ namespace PLUME.Base.Module.Unity.XRITK
             frameData.AddUpdateSamples(_updateSamples.Values);
             return frameData;
         }
-        
+
         private XRBaseInteractorUpdate GetOrCreateUpdateSample(XRBaseInteractorSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new XRBaseInteractorUpdate {Id = GetComponentIdentifierPayload(objSafeRef)};
+            sample = new XRBaseInteractorUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }
-        
+
         protected override void AfterCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
             base.AfterCollectFrameData(frameInfo, ctx);

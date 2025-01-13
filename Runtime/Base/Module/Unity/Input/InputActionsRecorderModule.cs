@@ -1,74 +1,71 @@
-#if XRITK_ENABLED
+#if INPUT_SYSTEM_ENABLED
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Utils;
-using PLUME.Sample.Unity.XRITK;
+using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.Scripting;
-using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using InputAction = UnityEngine.InputSystem.InputAction;
 using InputActionType = UnityEngine.InputSystem.InputActionType;
-using Object = UnityEngine.Object;
 
-// TODO: this can be decoupled from XRITK by removing the dependency to InputActionManager
-namespace PLUME.Base.Module.Unity.XRITK
+namespace PLUME.Base.Module.Unity.Input
 {
     [Preserve]
-    public class InputSystemRecorderModule : RecorderModule
+    public class InputActionsRecorderModule : RecorderModule
     {
         private RecorderContext _ctx;
-        private InputActionMap[] _recordedInputActionMaps;
-        
+        private List<InputAction> _enabledActions;
+
         protected override void OnStartRecording(RecorderContext ctx)
         {
             base.OnStartRecording(ctx);
             _ctx = ctx;
 
-            var inputActionManagers =
-                Object.FindObjectsByType<InputActionManager>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-            _recordedInputActionMaps = inputActionManagers
-                .SelectMany(iam => iam.actionAssets.SelectMany(asset => asset.actionMaps))
-                .ToArray();
+            _enabledActions = InputSystem.ListEnabledActions();
 
-            foreach (var inputActionMap in _recordedInputActionMaps)
+            foreach (var action in _enabledActions)
             {
-                inputActionMap.actionTriggered += OnActionTriggered;
+                action.performed += OnActionPerformed;
             }
         }
-        
+
         protected override void OnStopRecording(RecorderContext ctx)
         {
             base.OnStopRecording(ctx);
             
-            foreach (var inputActionMap in _recordedInputActionMaps)
+            foreach (var action in _enabledActions)
             {
-                inputActionMap.actionTriggered -= OnActionTriggered;
+                action.performed -= OnActionPerformed;
             }
         }
         
-        private void OnActionTriggered(InputAction.CallbackContext context)
+        
+        private void OnActionPerformed(InputAction.CallbackContext context)
         {
             if (!_ctx.IsRecording)
                 return;
 
-            var inputActionSample = new Sample.Unity.XRITK.InputAction();
-            inputActionSample.Name = context.action.actionMap.name + '/' + context.action.name;
+            var inputActionSample = new Sample.Unity.InputAction
+            {
+                Name = context.action.actionMap.name + '/' + context.action.name
+            };
             inputActionSample.BindingPaths.AddRange(context.action.bindings.Select(b => b.path));
 
             switch (context.action.type)
             {
                 case InputActionType.Value:
-                    inputActionSample.Type = Sample.Unity.XRITK.InputActionType.Value;
+                    inputActionSample.Type = Sample.Unity.InputActionType.Value;
                     break;
                 case InputActionType.Button:
-                    inputActionSample.Type = Sample.Unity.XRITK.InputActionType.Button;
+                    inputActionSample.Type = Sample.Unity.InputActionType.Button;
                     break;
                 case InputActionType.PassThrough:
-                    inputActionSample.Type = Sample.Unity.XRITK.InputActionType.Passthrough;
+                    inputActionSample.Type = Sample.Unity.InputActionType.Passthrough;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -79,9 +76,11 @@ namespace PLUME.Base.Module.Unity.XRITK
                 var b = context.ReadValueAsButton();
                 var f = context.ReadValue<float>();
                 
-                var buttonValue = new ButtonValue();
-                buttonValue.Boolean = b;
-                buttonValue.Float = f;
+                var buttonValue = new ButtonValue
+                {
+                    Boolean = b,
+                    Float = f
+                };
 
                 if (context.control is ButtonControl btnControl)
                     buttonValue.Threshold = btnControl.pressPointOrDefault;

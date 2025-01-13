@@ -29,9 +29,9 @@ namespace PLUME.Core.Recorder
         public static readonly RecorderVersion Version = new()
         {
             Name = "PLUME Recorder (Beta)",
-            Major = "1",
-            Minor = "2",
-            Patch = "3",
+            Major = "2",
+            Minor = "0",
+            Patch = "0",
         };
 
         private readonly RecorderContext _context;

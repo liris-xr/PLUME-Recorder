@@ -1,6 +1,6 @@
 [submodule "Packages/Unity-Runtime-GUID"]
 	path = Packages/Unity-Runtime-GUID
-	url = https://github.com/cjaverliat/Unity-Runtime-GUID.git
+	url = https://github.com/liris-xr/Unity-Runtime-GUID.git
 [submodule "Packages/ProtoBurst"]
 	path = Packages/ProtoBurst
-	url = https://github.com/cjaverliat/ProtoBurst.git
+	url = https://github.com/liris-xr/ProtoBurst.git

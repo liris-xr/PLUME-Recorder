@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,8 @@ using PLUME.Core.Hooks;
 using PLUME.Core.Settings;
 using UnityEditor;
 using UnityEditor.Compilation;
+using UnityEngine;
+using FileMode = System.IO.FileMode;
 using Logger = PLUME.Core.Logger;
 
 namespace PLUME.Editor.Core.Hooks
@@ -40,31 +43,49 @@ namespace PLUME.Editor.Core.Hooks
 
         private void OnAssemblyCompilationFinished(string assemblyPath, CompilerMessage[] messages)
         {
-            var shouldInjectInAssembly = _hooksSettings.InjectedAssemblies.Any(Path.GetFileName(assemblyPath).Equals);
+            var blacklist = _hooksSettings.BlacklistedAssemblyNames;
+            
+            var asm = CompilationPipeline.GetAssemblies().FirstOrDefault(asm => asm.outputPath == assemblyPath);
 
-            if (!shouldInjectInAssembly)
+            if (asm == null)
+            {
+                Debug.LogWarning($"Assembly {assemblyPath} not found in compilation pipeline assemblies. Skipping.");
+                return;
+            }
+
+            var isEditorOnly = (asm.flags & AssemblyFlags.EditorAssembly) != 0;
+
+            if (isEditorOnly)
                 return;
 
-            var results = InjectHooksInAssembly(_hooksRegistry.Hooks, assemblyPath);
-
-            if (results.Count > 0)
+            if (blacklist.Contains(asm.name))
             {
-                var sb = new StringBuilder();
-                sb.AppendLine($"Injected {results.Count} hooks in {assemblyPath}:");
-
-                var maxHookLength = results.Max(result => result.Hook.HookMethod.Name.Length);
-
-                foreach (var result in results)
-                {
-                    sb.AppendLine(
-                        $"{result.Hook.HookMethod.Name.PadRight(maxHookLength)} \t -> {result.InstructionMethod.FullName}::{result.Instruction}");
-                }
-
-                Logger.Log(sb.ToString());
+                Logger.Log($"Skipping blacklisted assembly {asm.name}");
+                return;
             }
-            else
+
+            try
             {
-                Logger.Log($"No detours injected in {assemblyPath}");
+                var results = InjectHooksInAssembly(_hooksRegistry.Hooks, assemblyPath);
+                
+                if (results.Count > 0)
+                {
+                    var sb = new StringBuilder();
+                    sb.AppendLine($"Injected {results.Count} hooks in {assemblyPath}:");
+
+                    var maxHookLength = results.Max(result => result.Hook.HookMethod.Name.Length);
+
+                    foreach (var result in results)
+                    {
+                        sb.AppendLine(
+                            $"{result.Hook.HookMethod.Name.PadRight(maxHookLength)} \t -> {result.InstructionMethod.FullName}::{result.Instruction}");
+                    }
+
+                    Logger.Log(sb.ToString());
+                }
+            } catch (Exception e)
+            {
+                Logger.LogWarning($"Failed to inject hooks in {assemblyPath}: {e.Message}");
             }
         }
 
@@ -165,7 +186,8 @@ namespace PLUME.Editor.Core.Hooks
                     }
                     else
                     {
-                        processor.Replace(instruction, processor.Create(OpCodes.Call, resolvedHook.HookMethodReference));
+                        processor.Replace(instruction,
+                            processor.Create(OpCodes.Call, resolvedHook.HookMethodReference));
                     }
 
                     results.Add(new HookInjectionResult(resolvedHook.Hook, methodDefinition, instruction));

@@ -11,18 +11,7 @@ namespace PLUME.Core.Settings
 
         [Tooltip("Assembly names (as defined in the asmdef, without .dll) that should not be injected with hooks.")]
         [SerializeField]
-        private string[] blacklistedAssemblyNames =
-        {
-            "PLUME.Recorder",
-            "ProtoBurst",
-            "UniTask",
-            "UniTask.Addressables",
-            "UniTask.DOTween",
-            "UniTask.Linq",
-            "UniTask.TextMeshPro",
-            "UnityEngine",
-            "UnityEngine.UI"
-        };
+        private string[] blacklistedAssemblyNames = Array.Empty<string>();
 
         internal override string GetSettingsFileName()
         {

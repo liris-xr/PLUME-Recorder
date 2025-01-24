@@ -18,6 +18,23 @@ namespace PLUME.Editor.Core.Hooks
 {
     public class HooksInjector
     {
+        private static readonly string[] BaseBlacklistedAssemblyNames =
+        {
+            "PLUME.Recorder",
+            "UnityRuntimeGuid",
+            "UnityRuntimeGuid.Editor",
+            "fr.liris.unity-runtime-guid",
+            "fr.liris.unity-runtime-guid.editor",
+            "ProtoBurst",
+            "UniTask",
+            "UniTask.Addressables",
+            "UniTask.DOTween",
+            "UniTask.Linq",
+            "UniTask.TextMeshPro",
+            "UnityEngine",
+            "UnityEngine.UI"
+        };
+        
         private static HooksInjector _instance;
 
         private HooksRegistry _hooksRegistry;
@@ -58,7 +75,7 @@ namespace PLUME.Editor.Core.Hooks
             if (isEditorOnly)
                 return;
 
-            if (blacklist.Contains(asm.name))
+            if (BaseBlacklistedAssemblyNames.Contains(asm.name) || blacklist.Contains(asm.name))
             {
                 Logger.Log($"Skipping blacklisted assembly {asm.name}");
                 return;

@@ -49,23 +49,26 @@ namespace PLUME.Base.Module.Unity.Light
             updateSample.CullingMask = light.cullingMask;
             updateSample.BoundingSphereOverride = light.boundingSphereOverride.ToPayload();
             updateSample.UseBoundingSphereOverride = light.useBoundingSphereOverride;
-            updateSample.CookieId = GetAssetIdentifierPayload(light.cookie);
+            updateSample.Cookie = GetAssetIdentifierPayload(light.cookie);
             updateSample.CookieSize = light.cookieSize;
-            updateSample.FlareId = GetAssetIdentifierPayload(light.flare);
-            _createSamples[objSafeRef] = new LightCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            updateSample.Flare = GetAssetIdentifierPayload(light.flare);
+            _createSamples[objSafeRef] = new LightCreate
+            {
+                Component = GetComponentIdentifierPayload(objSafeRef)
+            };
         }
 
         protected override void OnObjectMarkedDestroyed(LightSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new LightDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new LightDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private LightUpdate GetOrCreateUpdateSample(LightSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new LightUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new LightUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

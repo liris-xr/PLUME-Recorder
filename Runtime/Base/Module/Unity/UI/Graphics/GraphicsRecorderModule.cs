@@ -21,7 +21,7 @@ namespace PLUME.Base.Module.Unity.UI.Graphics
 
             var graphic = objSafeRef.Component;
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            updateSample.MaterialId = GetAssetIdentifierPayload(graphic.material);
+            updateSample.Material = GetAssetIdentifierPayload(graphic.material);
             updateSample.Color = graphic.color.ToPayload();
         }
 
@@ -40,7 +40,7 @@ namespace PLUME.Base.Module.Unity.UI.Graphics
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            _updateSamples[objSafeRef] = new GraphicUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _updateSamples[objSafeRef] = new GraphicUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             return _updateSamples[objSafeRef];
         }
     }

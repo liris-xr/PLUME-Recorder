@@ -5,9 +5,10 @@ using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Scripting;
 using static PLUME.Core.Utils.SampleUtils;
-using GameObjectIdentifier = PLUME.Core.Object.GameObjectIdentifier;
+using GameObjectIdentifier = PLUME.Sample.ProtoBurst.Unity.GameObjectIdentifier;
 
 namespace PLUME.Base.Module.Unity.GameObject
 {
@@ -27,18 +28,25 @@ namespace PLUME.Base.Module.Unity.GameObject
             GameObjectHooks.OnTagChanged += (go, tag) => OnTagChanged(go, tag, ctx);
             ObjectHooks.OnNameChanged += (obj, name) => OnNameChanged(obj, name, ctx);
             ObjectHooks.OnBeforeDestroyed += (obj, _) => OnBeforeDestroyed(obj, ctx);
+            SceneManagerHooks.OnMoveGameObjectToScene += (go, scene) => OnMoveGameObjectToScene(go, scene, ctx);
         }
 
         protected override void OnObjectMarkedCreated(GameObjectSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
 
+            _createSamples[objSafeRef] = new GameObjectCreate
+            {
+                Id = GetGameObjectIdentifierPayload(objSafeRef),
+                Scene = GetSceneIdentifierPayload(objSafeRef.SceneSafeRef)
+            };
+
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Active = objSafeRef.GameObject.activeSelf;
             updateSample.Name = objSafeRef.GameObject.name;
             updateSample.Layer = objSafeRef.GameObject.layer;
             updateSample.Tag = objSafeRef.GameObject.tag;
-            _createSamples[objSafeRef] = new GameObjectCreate { Id = GetGameObjectIdentifierPayload(objSafeRef) };
+            updateSample.Scene = GetSceneIdentifierPayload(objSafeRef.SceneSafeRef);
         }
 
         protected override void OnObjectMarkedDestroyed(GameObjectSafeRef objSafeRef, RecorderContext ctx)
@@ -47,12 +55,26 @@ namespace PLUME.Base.Module.Unity.GameObject
             _destroySamples[objSafeRef] = new GameObjectDestroy { Id = GetGameObjectIdentifierPayload(objSafeRef) };
         }
 
+        private void OnMoveGameObjectToScene(UnityEngine.GameObject go, UnityEngine.SceneManagement.Scene scene,
+            RecorderContext ctx)
+        {
+            // We need to modify the scene safe ref of the game object
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go);
+            objSafeRef.SceneSafeRef = ctx.SafeRefProvider.GetOrCreateSceneSafeRef(scene);
+            
+            if (!IsRecordingObject(objSafeRef))
+                return;
+
+            var updateSample = GetOrCreateUpdateSample(objSafeRef);
+            updateSample.Scene = GetSceneIdentifierPayload(objSafeRef.SceneSafeRef);
+        }
+
         private void OnActiveChanged(UnityEngine.GameObject go, RecorderContext ctx)
         {
             if (!ctx.IsRecording)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateGameObjectSafeRef(go);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go);
 
             if (!IsRecordingObject(objSafeRef))
                 return;
@@ -66,7 +88,7 @@ namespace PLUME.Base.Module.Unity.GameObject
             if (!ctx.IsRecording)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateGameObjectSafeRef(go);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go);
 
             if (IsRecordingObject(objSafeRef))
                 return;
@@ -79,7 +101,7 @@ namespace PLUME.Base.Module.Unity.GameObject
             if (!ctx.IsRecording)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateGameObjectSafeRef(go);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go);
 
             if (!IsRecordingObject(objSafeRef))
                 return;
@@ -96,7 +118,7 @@ namespace PLUME.Base.Module.Unity.GameObject
             if (obj is not UnityEngine.GameObject go)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateGameObjectSafeRef(go);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go);
 
             if (!IsRecordingObject(objSafeRef))
                 return;
@@ -113,7 +135,7 @@ namespace PLUME.Base.Module.Unity.GameObject
             if (obj is not UnityEngine.GameObject go)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateGameObjectSafeRef(go);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go);
 
             if (!IsRecordingObject(objSafeRef))
                 return;

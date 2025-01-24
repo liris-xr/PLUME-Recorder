@@ -1,4 +1,5 @@
 using System;
+using PLUME.Sample.ProtoBurst.Unity;
 using UnityEngine;
 
 namespace PLUME.Core.Object.SafeRef
@@ -7,9 +8,10 @@ namespace PLUME.Core.Object.SafeRef
     public class GameObjectSafeRef : IObjectSafeRef<GameObjectIdentifier>, IEquatable<GameObjectSafeRef>
     {
         public static readonly GameObjectSafeRef Null = new();
-        
+
         public readonly GameObject GameObject;
         public readonly GameObjectIdentifier Identifier;
+        public SceneSafeRef SceneSafeRef { get; internal set; }
 
         public GameObject Object => GameObject;
         UnityEngine.Object IObjectSafeRef.Object => GameObject;
@@ -24,12 +26,13 @@ namespace PLUME.Core.Object.SafeRef
             GameObject = null;
         }
 
-        internal GameObjectSafeRef(GameObject go, Guid goGuid, Guid transformGuid)
+        internal GameObjectSafeRef(GameObject go, Guid guid, Guid transformGuid, SceneSafeRef sceneSafeRef)
         {
-            var goIdentifier = new Identifier(go.GetInstanceID(), goGuid);
-            var tIdentifier = new Identifier(go.transform.GetInstanceID(), transformGuid);
-            Identifier = new GameObjectIdentifier(goIdentifier, tIdentifier);
+            var runtimeId = go.GetInstanceID();
+            var transformRuntimeId = go.transform.GetInstanceID();
+            Identifier = new GameObjectIdentifier(runtimeId, guid, transformRuntimeId, transformGuid);
             GameObject = go;
+            SceneSafeRef = sceneSafeRef;
         }
 
         public bool Equals(GameObjectSafeRef other)

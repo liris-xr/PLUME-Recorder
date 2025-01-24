@@ -33,20 +33,20 @@ namespace PLUME.Base.Module.Unity.UI.Canvas
             updateSample.FallbackScreenDpi = canvasScaler.fallbackScreenDPI;
             updateSample.DefaultSpriteDpi = canvasScaler.defaultSpriteDPI;
             updateSample.DynamicPixelsPerUnit = canvasScaler.dynamicPixelsPerUnit;
-            _createSamples[objSafeRef] = new CanvasScalerCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new CanvasScalerCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(CanvasScalerSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new CanvasScalerDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new CanvasScalerDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private CanvasScalerUpdate GetOrCreateUpdateSample(CanvasScalerSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new CanvasScalerUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new CanvasScalerUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

@@ -9,17 +9,17 @@ namespace PLUME.Core.Recorder
     public class RecorderContext
     {
         public readonly ReadOnlyCollection<IRecorderModule> Modules;
-        public readonly ObjectSafeRefProvider ObjectSafeRefProvider;
+        public readonly SafeRefProvider SafeRefProvider;
         public readonly ISettingsProvider SettingsProvider;
         
         public RecorderStatus Status { get; internal set; } = RecorderStatus.Stopped;
         public bool IsRecording => Status == RecorderStatus.Recording;
         public Record CurrentRecord { get; internal set; }
 
-        public RecorderContext(ReadOnlyCollection<IRecorderModule> modules, ObjectSafeRefProvider objectSafeRefProvider, ISettingsProvider settingsProvider)
+        public RecorderContext(ReadOnlyCollection<IRecorderModule> modules, SafeRefProvider safeRefProvider, ISettingsProvider settingsProvider)
         {
             Modules = modules;
-            ObjectSafeRefProvider = objectSafeRefProvider;
+            SafeRefProvider = safeRefProvider;
             SettingsProvider = settingsProvider;
         }
 

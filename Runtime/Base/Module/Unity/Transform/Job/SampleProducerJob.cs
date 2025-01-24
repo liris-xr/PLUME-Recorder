@@ -1,5 +1,6 @@
 using PLUME.Base.Module.Unity.Transform.Sample;
 using PLUME.Core.Object;
+using PLUME.Sample.ProtoBurst.Unity;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;

@@ -1,3 +1,4 @@
+using PLUME.Sample.ProtoBurst.Unity;
 using UnityEngine;
 
 namespace PLUME.Core.Object.SafeRef
@@ -5,7 +6,7 @@ namespace PLUME.Core.Object.SafeRef
     public interface IComponentSafeRef : IObjectSafeRef<ComponentIdentifier>
     {
         public Component Component { get; }
-        
+
         public GameObjectSafeRef GameObjectSafeRef { get; }
     }
 
@@ -18,7 +19,7 @@ namespace PLUME.Core.Object.SafeRef
     public class ComponentSafeRef<TC> : IComponentSafeRef<TC> where TC : Component
     {
         public static readonly ComponentSafeRef<TC> Null = new();
-        
+
         public TC Component { get; }
         public ComponentIdentifier Identifier { get; }
         public GameObjectSafeRef GameObjectSafeRef { get; }
@@ -39,8 +40,7 @@ namespace PLUME.Core.Object.SafeRef
         internal ComponentSafeRef(TC component, Guid guid, GameObjectSafeRef gameObjectSafeRef)
         {
             Component = component;
-            var identifier = new Identifier(component.GetInstanceID(), guid);
-            Identifier = new ComponentIdentifier(identifier, gameObjectSafeRef.Identifier);
+            Identifier = new ComponentIdentifier(component.GetInstanceID(), guid, gameObjectSafeRef.Identifier);
             GameObjectSafeRef = gameObjectSafeRef;
         }
 

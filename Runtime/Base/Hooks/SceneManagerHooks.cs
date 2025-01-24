@@ -1,17 +1,19 @@
-﻿using PLUME.Core.Hooks;
+﻿using System.Linq;
+using PLUME.Core.Hooks;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
 using UnityEngine.Scripting;
+using UnityRuntimeGuid;
 
 namespace PLUME.Base.Hooks
 {
     [Preserve]
     public class SceneManagerHooks : IRegisterHooksCallback
     {
-        public delegate void OnMoveGameObjectToSceneDelegate(GameObject go, Scene scene);
-
-        public static event OnMoveGameObjectToSceneDelegate OnMoveGameObjectToScene = delegate { };
+        public delegate void OnGameObjectMovedToSceneDelegate(GameObject go, Scene oldScene, Scene scene);
+        public static event OnGameObjectMovedToSceneDelegate OnGameObjectMovedToScene = delegate { };
 
         public void RegisterHooks(HooksRegistry hooksRegistry)
         {
@@ -27,23 +29,33 @@ namespace PLUME.Base.Hooks
                     new[] { typeof(NativeArray<int>), typeof(Scene) }));
         }
 
+        internal static void NotifyGameObjectMovedToScene(GameObject go, Scene oldScene, Scene scene)
+        {
+            OnGameObjectMovedToScene(go, oldScene, scene);
+        }
+        
         public static void MoveGameObjectToSceneAndNotify(GameObject go, Scene scene)
         {
+            var oldScene = go.scene;
             SceneManager.MoveGameObjectToScene(go, scene);
-            OnMoveGameObjectToScene(go, scene);
+            NotifyGameObjectMovedToScene(go, oldScene, scene);
         }
 
         public static void MoveGameObjectsToSceneAndNotify(NativeArray<int> instanceIDs, Scene scene)
         {
-            SceneManager.MoveGameObjectsToScene(instanceIDs, scene);
-            foreach (var instanceId in instanceIDs)
+            var oldScenes = instanceIDs.Select(UnityObjectUtils.FindObjectFromInstanceID<GameObject>)
+                .Select(go => go.scene).ToArray();
+            
+            for(var i = 0; i < instanceIDs.Length; i++)
             {
-                var go = UnityObjectUtils.FindObjectFromInstanceID<GameObject>(instanceId);
-
-                if (go != null)
-                {
-                    OnMoveGameObjectToScene(go, scene);
-                }
+                var go = UnityObjectUtils.FindObjectFromInstanceID<GameObject>(instanceIDs[i]);
+                
+                if (go == null)
+                    continue;
+                
+                var oldScene = oldScenes[i];
+                SceneManager.MoveGameObjectToScene(go, scene);
+                NotifyGameObjectMovedToScene(go, oldScene, scene);
             }
         }
     }

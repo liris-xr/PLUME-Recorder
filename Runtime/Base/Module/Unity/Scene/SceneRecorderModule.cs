@@ -115,8 +115,6 @@ namespace PLUME.Base.Module.Unity.Scene
         private void RecordLoadScene(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
         {
             var sceneIdentifier = SampleUtils.GetSceneIdentifierPayload(scene);
-            
-            Debug.Log("Scene path: " + scene.path);
 
             _cachedSceneIdentifiers[scene] = sceneIdentifier;
 

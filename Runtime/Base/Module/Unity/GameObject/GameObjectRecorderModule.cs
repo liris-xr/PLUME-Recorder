@@ -28,7 +28,7 @@ namespace PLUME.Base.Module.Unity.GameObject
             GameObjectHooks.OnTagChanged += (go, tag) => OnTagChanged(go, tag, ctx);
             ObjectHooks.OnNameChanged += (obj, name) => OnNameChanged(obj, name, ctx);
             ObjectHooks.OnBeforeDestroyed += (obj, _) => OnBeforeDestroyed(obj, ctx);
-            SceneManagerHooks.OnMoveGameObjectToScene += (go, scene) => OnMoveGameObjectToScene(go, scene, ctx);
+            SceneManagerHooks.OnGameObjectMovedToScene += (go, _, scene) => OnMoveGameObjectToScene(go, scene, ctx);
         }
 
         protected override void OnObjectMarkedCreated(GameObjectSafeRef objSafeRef, RecorderContext ctx)

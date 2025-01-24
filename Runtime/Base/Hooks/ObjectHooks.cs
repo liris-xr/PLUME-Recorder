@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using System.Linq;
 using PLUME.Core.Hooks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Pool;
 using UnityEngine.Scripting;
 using Object = UnityEngine.Object;
 
@@ -15,11 +14,11 @@ namespace PLUME.Base.Hooks
 
         public delegate void OnBeforeDestroyDelegate(Object obj, bool immediate);
 
+        public delegate void OnDontDestroyOnLoadDelegate(Object obj);
+
         public static event OnNameChangedDelegate OnNameChanged = delegate { };
         public static event OnBeforeDestroyDelegate OnBeforeDestroyed = delegate { };
-
-        // Temporary list to avoid allocations when calling GetComponentsInChildren
-        private static readonly List<Component> TempComponents = new();
+        public static event OnDontDestroyOnLoadDelegate OnDontDestroyOnLoad = delegate { };
 
         public void RegisterHooks(HooksRegistry hooksRegistry)
         {
@@ -50,10 +49,15 @@ namespace PLUME.Base.Hooks
             );
 
             hooksRegistry.RegisterHook(
+                typeof(ObjectHooks).GetMethod(nameof(DontDestroyOnLoadAndNotify), new[] { typeof(Object) }),
+                typeof(Object).GetMethod(nameof(Object.DontDestroyOnLoad), new[] { typeof(Object) })
+            );
+
+            hooksRegistry.RegisterHook(
                 typeof(ObjectHooks).GetMethod(nameof(InstantiateAndNotify), new[] { typeof(Object) }),
                 typeof(Object).GetMethod(nameof(Object.Instantiate), new[] { typeof(Object) })
             );
-            
+
             hooksRegistry.RegisterHook(
                 typeof(ObjectHooks).GetMethod(nameof(InstantiateAndNotify),
                     new[] { typeof(Object), typeof(Transform) }),
@@ -80,7 +84,7 @@ namespace PLUME.Base.Hooks
                 typeof(Object).GetMethod(nameof(Object.Instantiate),
                     new[] { typeof(Object), typeof(Vector3), typeof(Quaternion), typeof(Transform) })
             );
-            
+
             hooksRegistry.RegisterHook(
                 typeof(ObjectHooks).GetMethods().First(m =>
                     m.IsGenericMethod && m.Name == nameof(InstantiateAndNotify)
@@ -91,7 +95,7 @@ namespace PLUME.Base.Hooks
                                       && m.GetParameters().Length == 1
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType))
             );
-            
+
             hooksRegistry.RegisterHook(
                 typeof(ObjectHooks).GetMethods().First(m =>
                     m.IsGenericMethod && m.Name == nameof(InstantiateAndNotify)
@@ -104,7 +108,7 @@ namespace PLUME.Base.Hooks
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType)
                                       && m.GetParameters()[1].ParameterType == typeof(Transform))
             );
-            
+
             hooksRegistry.RegisterHook(
                 typeof(ObjectHooks).GetMethods().First(m =>
                     m.IsGenericMethod && m.Name == nameof(InstantiateAndNotify)
@@ -119,7 +123,7 @@ namespace PLUME.Base.Hooks
                                       && m.GetParameters()[1].ParameterType == typeof(Transform)
                                       && m.GetParameters()[2].ParameterType == typeof(bool))
             );
-            
+
             hooksRegistry.RegisterHook(
                 typeof(ObjectHooks).GetMethods().First(m =>
                     m.IsGenericMethod && m.Name == nameof(InstantiateAndNotify)
@@ -134,7 +138,7 @@ namespace PLUME.Base.Hooks
                                       && m.GetParameters()[1].ParameterType == typeof(Vector3)
                                       && m.GetParameters()[2].ParameterType == typeof(Quaternion))
             );
-            
+
             hooksRegistry.RegisterHook(
                 typeof(ObjectHooks).GetMethods().First(m =>
                     m.IsGenericMethod && m.Name == nameof(InstantiateAndNotify)
@@ -153,6 +157,23 @@ namespace PLUME.Base.Hooks
             );
         }
 
+        public static void DontDestroyOnLoadAndNotify(Object obj)
+        {
+            if (obj is GameObject go)
+            {
+                var oldScene = go.scene;
+                Object.DontDestroyOnLoad(obj);
+                var scene = go.scene;
+                SceneManagerHooks.NotifyGameObjectMovedToScene(go, oldScene, scene);
+            }
+            else
+            {
+                Object.DontDestroyOnLoad(obj);
+            }
+
+            OnDontDestroyOnLoad(obj);
+        }
+
         public static void SetNamePropertyAndNotify(Object obj, string name)
         {
             var previousName = obj.name;
@@ -165,12 +186,15 @@ namespace PLUME.Base.Hooks
         {
             if (obj is GameObject go)
             {
-                go.GetComponentsInChildren(TempComponents);
+                var tmpComponents = ListPool<Component>.Get();
+                go.GetComponentsInChildren(tmpComponents);
 
-                foreach (var component in TempComponents)
+                foreach (var component in tmpComponents)
                 {
                     OnBeforeDestroyed(component, false);
                 }
+
+                ListPool<Component>.Release(tmpComponents);
             }
 
             OnBeforeDestroyed(obj, false);
@@ -181,12 +205,15 @@ namespace PLUME.Base.Hooks
         {
             if (obj is GameObject go)
             {
-                go.GetComponentsInChildren(TempComponents);
+                var tmpComponents = ListPool<Component>.Get();
+                go.GetComponentsInChildren(tmpComponents);
 
-                foreach (var component in TempComponents)
+                foreach (var component in tmpComponents)
                 {
                     OnBeforeDestroyed(component, false);
                 }
+
+                ListPool<Component>.Release(tmpComponents);
             }
 
             OnBeforeDestroyed(obj, false);
@@ -197,12 +224,15 @@ namespace PLUME.Base.Hooks
         {
             if (obj is GameObject go)
             {
-                go.GetComponentsInChildren(TempComponents);
+                var tmpComponents = ListPool<Component>.Get();
+                go.GetComponentsInChildren(tmpComponents);
 
-                foreach (var component in TempComponents)
+                foreach (var component in tmpComponents)
                 {
                     OnBeforeDestroyed(component, true);
                 }
+
+                ListPool<Component>.Release(tmpComponents);
             }
 
             OnBeforeDestroyed(obj, true);
@@ -213,12 +243,15 @@ namespace PLUME.Base.Hooks
         {
             if (obj is GameObject go)
             {
-                go.GetComponentsInChildren(TempComponents);
+                var tmpComponents = ListPool<Component>.Get();
+                go.GetComponentsInChildren(tmpComponents);
 
-                foreach (var component in TempComponents)
+                foreach (var component in tmpComponents)
                 {
                     OnBeforeDestroyed(component, true);
                 }
+
+                ListPool<Component>.Release(tmpComponents);
             }
 
             OnBeforeDestroyed(obj, true);
@@ -231,17 +264,20 @@ namespace PLUME.Base.Hooks
             {
                 GameObjectHooks.NotifyCreated(go);
 
-                go.GetComponentsInChildren(true, TempComponents);
-                
-                foreach (var component in TempComponents)
+                var tmpComponents = ListPool<Component>.Get();
+                go.GetComponentsInChildren(true, tmpComponents);
+
+                foreach (var component in tmpComponents)
                 {
                     if (component is Transform t)
                     {
                         GameObjectHooks.NotifyCreated(t.gameObject);
                     }
-                    
+
                     GameObjectHooks.NotifyComponentAdded(component.gameObject, component);
                 }
+
+                ListPool<Component>.Release(tmpComponents);
             }
             else if (obj is Component component)
             {

@@ -104,7 +104,7 @@ namespace PLUME.Core.Recorder
         {
             var graphicsSettingsSample = new GraphicsSettings
             {
-                DefaultRenderPipelineAssetId =
+                DefaultRenderPipelineAsset =
                     GetAssetIdentifierPayload(UnityEngine.Rendering.GraphicsSettings.defaultRenderPipeline),
                 ColorSpace = QualitySettings.activeColorSpace.ToPayload()
             };
@@ -119,7 +119,7 @@ namespace PLUME.Core.Recorder
             var qualitySettingsUpdateSample = new QualitySettingsUpdate
             {
                 Name = QualitySettings.names[qualityLevel],
-                RenderPipelineAssetId = GetAssetIdentifierPayload(QualitySettings.renderPipeline)
+                RenderPipelineAsset = GetAssetIdentifierPayload(QualitySettings.renderPipeline)
             };
 
             var audioSettingsUpdateSample = new AudioSettingsUpdate
@@ -209,7 +209,7 @@ namespace PLUME.Core.Recorder
         {
             EnsureIsRecording();
 
-            var safeRefProvider = _context.ObjectSafeRefProvider;
+            var safeRefProvider = _context.SafeRefProvider;
 
             go.GetComponentsInChildren(true, TempComponents);
 
@@ -231,7 +231,7 @@ namespace PLUME.Core.Recorder
         {
             EnsureIsRecording();
 
-            var safeRefProvider = _context.ObjectSafeRefProvider;
+            var safeRefProvider = _context.SafeRefProvider;
 
             go.GetComponentsInChildren(TempComponents);
 

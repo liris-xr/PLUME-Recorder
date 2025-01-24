@@ -22,7 +22,7 @@ namespace PLUME.Base.Module.Unity.Terrain
             var terrain = objSafeRef.Component;
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Enabled = objSafeRef.Component.enabled;
-            updateSample.TerrainDataId = GetAssetIdentifierPayload(terrain.terrainData);
+            updateSample.TerrainData = GetAssetIdentifierPayload(terrain.terrainData);
             updateSample.TreeDistance = terrain.treeDistance;
             updateSample.TreeBillboardDistance = terrain.treeBillboardDistance;
             updateSample.TreeCrossFadeLength = terrain.treeCrossFadeLength;
@@ -39,24 +39,24 @@ namespace PLUME.Base.Module.Unity.Terrain
             updateSample.KeepUnusedRenderingResources = terrain.keepUnusedRenderingResources;
             updateSample.ShadowCastingMode = terrain.shadowCastingMode.ToPayload();
             updateSample.ReflectionProbeUsage = terrain.reflectionProbeUsage.ToPayload();
-            updateSample.MaterialTemplateId = GetAssetIdentifierPayload(terrain.materialTemplate);
+            updateSample.MaterialTemplate = GetAssetIdentifierPayload(terrain.materialTemplate);
             updateSample.DrawHeightmap = terrain.drawHeightmap;
             updateSample.AllowAutoConnect = terrain.allowAutoConnect;
             updateSample.GroupingId = terrain.groupingID;
             updateSample.DrawInstanced = terrain.drawInstanced;
-            updateSample.NormalmapTextureId = GetAssetIdentifierPayload(terrain.normalmapTexture);
+            updateSample.NormalmapTexture = GetAssetIdentifierPayload(terrain.normalmapTexture);
             updateSample.DrawTreesAndFoliage = terrain.drawTreesAndFoliage;
             updateSample.PatchBoundsMultiplier = terrain.patchBoundsMultiplier.ToPayload();
             updateSample.TreeLodBiasMultiplier = terrain.treeLODBiasMultiplier;
             updateSample.CollectDetailPatches = terrain.collectDetailPatches;
 
-            _createSamples[objSafeRef] = new TerrainCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new TerrainCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(TerrainSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new TerrainDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new TerrainDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override TerrainFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
@@ -72,7 +72,7 @@ namespace PLUME.Base.Module.Unity.Terrain
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            _updateSamples[objSafeRef] = new TerrainUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _updateSamples[objSafeRef] = new TerrainUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             return _updateSamples[objSafeRef];
         }
 

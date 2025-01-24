@@ -39,7 +39,7 @@ namespace PLUME.Base.Module.Unity.Renderer
             updateSample.RealtimeLightmapScaleOffset = objSafeRef.Component.realtimeLightmapScaleOffset.ToPayload();
 
             updateSample.Materials.Ids.AddRange(objSafeRef.Component.sharedMaterials.Select(m =>
-                GetAssetIdentifierPayload(ctx.ObjectSafeRefProvider.GetOrCreateAssetSafeRef(m))));
+                GetAssetIdentifierPayload(ctx.SafeRefProvider.GetOrCreateAssetSafeRef(m))));
         }
 
         protected IEnumerable<RendererUpdate> GetRendererUpdateSamples()
@@ -57,7 +57,7 @@ namespace PLUME.Base.Module.Unity.Renderer
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            _updateSamples[objSafeRef] = new RendererUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _updateSamples[objSafeRef] = new RendererUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             return _updateSamples[objSafeRef];
         }
 
@@ -69,7 +69,7 @@ namespace PLUME.Base.Module.Unity.Renderer
             if (!ctx.IsRecording)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(typedRenderer);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(typedRenderer);
 
             if (!IsRecordingObject(objSafeRef))
                 return;
@@ -93,7 +93,7 @@ namespace PLUME.Base.Module.Unity.Renderer
             if (!ctx.IsRecording)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(typedRenderer);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(typedRenderer);
 
             if (!IsRecordingObject(objSafeRef))
                 return;
@@ -101,7 +101,7 @@ namespace PLUME.Base.Module.Unity.Renderer
             // When the material is instantiated (not shared with other renderers), the sharedMaterial property points to the
             // same instance as the material property. So we handle both cases at once.
             var materialsAssetSafeRefs = materials
-                .Select(m => ctx.ObjectSafeRefProvider.GetOrCreateAssetSafeRef(m))
+                .Select(m => ctx.SafeRefProvider.GetOrCreateAssetSafeRef(m))
                 .ToList();
 
             var updateSample = GetOrCreateUpdateSample(objSafeRef);

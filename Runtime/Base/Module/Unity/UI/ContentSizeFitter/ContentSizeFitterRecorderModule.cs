@@ -23,20 +23,20 @@ namespace PLUME.Base.Module.Unity.UI.ContentSizeFitter
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.HorizontalFit = contentSizeFitter.horizontalFit.ToPayload();
             updateSample.VerticalFit = contentSizeFitter.verticalFit.ToPayload();
-            _createSamples[objSafeRef] = new ContentSizeFitterCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new ContentSizeFitterCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(ContentSizeFitterSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new ContentSizeFitterDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new ContentSizeFitterDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private ContentSizeFitterUpdate GetOrCreateUpdateSample(ContentSizeFitterSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new ContentSizeFitterUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new ContentSizeFitterUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

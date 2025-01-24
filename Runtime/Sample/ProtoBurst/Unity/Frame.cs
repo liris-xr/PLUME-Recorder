@@ -10,10 +10,13 @@ namespace PLUME.Sample.ProtoBurst.Unity
     public struct Frame : IProtoBurstMessage, IDisposable
     {
         public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.Frame";
-        
-        public static readonly uint FrameNumberFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.VarInt);
-        public static readonly uint DataFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
-        
+
+        public static readonly uint FrameNumberFieldTag =
+            WireFormat.MakeTag(Sample.Unity.Frame.FrameNumberFieldNumber, WireFormat.WireType.VarInt);
+
+        public static readonly uint DataFieldTag =
+            WireFormat.MakeTag(Sample.Unity.Frame.DataFieldNumber, WireFormat.WireType.LengthDelimited);
+
         private readonly int _frameNumber;
         private NativeList<byte> _frameDataRawBytes;
 
@@ -29,7 +32,7 @@ namespace PLUME.Sample.ProtoBurst.Unity
             frameDataRawBytesCopy.AddRange(frameDataRawBytes.AsArray());
             return new Frame(frameNumber, frameDataRawBytesCopy);
         }
-        
+
         public void WriteTo(ref BufferWriter bufferWriter)
         {
             bufferWriter.WriteTag(FrameNumberFieldTag);
@@ -45,8 +48,9 @@ namespace PLUME.Sample.ProtoBurst.Unity
 
             return size;
         }
-        
-        public static void WriteTo(int frameNumber, ref NativeArray<byte> frameDataRawBytes, ref BufferWriter bufferWriter)
+
+        public static void WriteTo(int frameNumber, ref NativeArray<byte> frameDataRawBytes,
+            ref BufferWriter bufferWriter)
         {
             bufferWriter.WriteTag(FrameNumberFieldTag);
             bufferWriter.WriteInt32(frameNumber);

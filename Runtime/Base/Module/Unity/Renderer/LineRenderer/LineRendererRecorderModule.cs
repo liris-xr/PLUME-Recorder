@@ -42,7 +42,7 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             if (!ctx.IsRecording)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
 
             if (!IsRecordingObject(objSafeRef))
                 return;
@@ -56,7 +56,7 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             if (!ctx.IsRecording)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
 
             if (!IsRecordingObject(objSafeRef))
                 return;
@@ -70,7 +70,7 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             if (!ctx.IsRecording)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
 
             if (!IsRecordingObject(objSafeRef))
                 return;
@@ -84,7 +84,7 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             if (!ctx.IsRecording)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
 
             if (!IsRecordingObject(objSafeRef))
                 return;
@@ -126,13 +126,13 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
                 updateSample.Positions.Positions_.Add(_tmpPositions[i].ToPayload());
             }
             
-            _createSamples[objSafeRef] = new LineRendererCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new LineRendererCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(LineRendererSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new LineRendererDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new LineRendererDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override LineRendererFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
@@ -149,7 +149,7 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new LineRendererUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new LineRendererUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

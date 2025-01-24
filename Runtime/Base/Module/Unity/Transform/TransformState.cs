@@ -1,4 +1,5 @@
 using PLUME.Core.Object;
+using PLUME.Sample.ProtoBurst.Unity;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Mathematics;

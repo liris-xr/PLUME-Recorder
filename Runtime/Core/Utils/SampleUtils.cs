@@ -1,10 +1,12 @@
 ﻿using System;
+using Google.Protobuf.Reflection;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Sample.Common;
 using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.Settings;
 using PLUME.Sample.Unity.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityRuntimeGuid;
 using AnimationCurve = PLUME.Sample.Common.AnimationCurve;
@@ -19,6 +21,7 @@ using LightShadowCasterMode = PLUME.Sample.Unity.LightShadowCasterMode;
 using LightShadows = PLUME.Sample.Unity.LightShadows;
 using LightShape = PLUME.Sample.Unity.LightShape;
 using LightType = PLUME.Sample.Unity.LightType;
+using LoadSceneMode = PLUME.Sample.Unity.LoadSceneMode;
 using Matrix4x4 = PLUME.Sample.Common.Matrix4x4;
 using Quaternion = PLUME.Sample.Common.Quaternion;
 using Rect = PLUME.Sample.Common.Rect;
@@ -45,20 +48,26 @@ namespace PLUME.Core.Utils
 {
     public static class SampleUtils
     {
-        public const string NullGuid = "00000000000000000000000000000000";
+        public static readonly string NullGuid = Guid.Null.ToString();
 
-        public static readonly AssetIdentifier NullAssetIdentifierPayload = new() { Id = NullGuid, Path = "" };
+        public static readonly AssetIdentifier NullAssetIdentifierPayload = new() { Guid = NullGuid, Path = "" };
 
-        public static readonly ComponentIdentifier NullComponentIdentifierPayload = new()
+        public static readonly SceneIdentifier NullSceneIdentifierPayload = new()
         {
-            ComponentId = NullGuid,
-            ParentId = new GameObjectIdentifier { GameObjectId = NullGuid, TransformId = NullGuid }
+            Guid = NullGuid,
+            Name = ""
         };
 
         public static readonly GameObjectIdentifier NullGameObjectIdentifierPayload = new()
         {
-            GameObjectId = NullGuid,
-            TransformId = NullGuid
+            Guid = NullGuid,
+            TransformGuid = NullGuid
+        };
+
+        public static readonly ComponentIdentifier NullComponentIdentifierPayload = new()
+        {
+            Guid = NullGuid,
+            Gameobject = NullGameObjectIdentifierPayload
         };
 
         public static AssetIdentifier GetAssetIdentifierPayload(UnityEngine.Object obj)
@@ -71,7 +80,7 @@ namespace PLUME.Core.Utils
 
             return new AssetIdentifier
             {
-                Id = guidRegistryEntry.guid,
+                Guid = guidRegistryEntry.guid,
                 Path = guidRegistryEntry.assetBundlePath
             };
         }
@@ -85,7 +94,7 @@ namespace PLUME.Core.Utils
 
             return new AssetIdentifier
             {
-                Id = asset.Identifier.AssetId.Guid.ToString(),
+                Guid = asset.Identifier.Guid.ToString(),
                 Path = asset.Identifier.AssetPath.ToString()
             };
         }
@@ -100,8 +109,8 @@ namespace PLUME.Core.Utils
 
             return new ComponentIdentifier
             {
-                ComponentId = componentGuidRegistryEntry.guid,
-                ParentId = GetGameObjectIdentifierPayload(component.gameObject)
+                Guid = componentGuidRegistryEntry.guid,
+                Gameobject = GetGameObjectIdentifierPayload(component.gameObject)
             };
         }
 
@@ -114,11 +123,11 @@ namespace PLUME.Core.Utils
 
             return new ComponentIdentifier
             {
-                ComponentId = component.Identifier.ComponentId.Guid.ToString(),
-                ParentId = new GameObjectIdentifier
+                Guid = component.Identifier.Guid.ToString(),
+                Gameobject = new GameObjectIdentifier
                 {
-                    GameObjectId = component.Identifier.GameObjectId.GameObjectId.Guid.ToString(),
-                    TransformId = component.GameObjectSafeRef.Identifier.TransformId.Guid.ToString()
+                    Guid = component.Identifier.GameObject.Guid.ToString(),
+                    TransformGuid = component.GameObjectSafeRef.Identifier.TransformGuid.ToString()
                 }
             };
         }
@@ -134,8 +143,8 @@ namespace PLUME.Core.Utils
 
             return new GameObjectIdentifier
             {
-                GameObjectId = gameObjectGuidRegistryEntry.guid,
-                TransformId = transformGuidRegistryEntry.guid
+                Guid = gameObjectGuidRegistryEntry.guid,
+                TransformGuid = transformGuidRegistryEntry.guid
             };
         }
 
@@ -148,10 +157,40 @@ namespace PLUME.Core.Utils
 
             return new GameObjectIdentifier
             {
-                GameObjectId = go.Identifier.GameObjectId.Guid.ToString(),
-                TransformId = go.Identifier.TransformId.Guid.ToString()
+                Guid = go.Identifier.Guid.ToString(),
+                TransformGuid = go.Identifier.TransformGuid.ToString()
             };
         }
+
+        public static SceneIdentifier GetSceneIdentifierPayload(Scene scene)
+        {
+            var guidRegistry = SceneGuidRegistry.GetOrCreate(scene);
+
+            var sceneIdentifier = new SceneIdentifier
+            {
+                Guid = guidRegistry.SceneGuid,
+                Path = scene.path,
+                Name = scene.name
+            };
+
+            return sceneIdentifier;
+        }
+
+        public static SceneIdentifier GetSceneIdentifierPayload(SceneSafeRef sceneSafeRef)
+        {
+            var sceneIdentifier = new SceneIdentifier
+            {
+                Guid = sceneSafeRef.Identifier.Guid.ToString(),
+                Path = sceneSafeRef.Identifier.Path.ToString(),
+                Name = sceneSafeRef.Identifier.Name.ToString()
+            };
+
+            return sceneIdentifier;
+        }
+
+        public static string GetTypeUrl(IDescriptor descriptor, string prefix) => !prefix.EndsWith("/")
+            ? prefix + "/" + descriptor.FullName
+            : prefix + descriptor.FullName;
 
         public static Vector2 ToPayload(this UnityEngine.Vector2 vec)
         {
@@ -325,9 +364,9 @@ namespace PLUME.Core.Utils
         {
             return new LightmapData
             {
-                LightmapColorTextureId = GetAssetIdentifierPayload(lightmapData.lightmapColor),
-                LightmapDirTextureId = GetAssetIdentifierPayload(lightmapData.lightmapDir),
-                LightmapShadowMaskTextureId = GetAssetIdentifierPayload(lightmapData.shadowMask)
+                LightmapColorTexture = GetAssetIdentifierPayload(lightmapData.lightmapColor),
+                LightmapDirTexture = GetAssetIdentifierPayload(lightmapData.lightmapDir),
+                LightmapShadowMaskTexture = GetAssetIdentifierPayload(lightmapData.shadowMask)
             };
         }
 
@@ -519,7 +558,7 @@ namespace PLUME.Core.Utils
                 _ => throw new ArgumentOutOfRangeException(nameof(loadSceneMode), loadSceneMode, null)
             };
         }
-        
+
         public static WeightedMode ToPayload(this UnityEngine.WeightedMode weightedMode)
         {
             return weightedMode switch

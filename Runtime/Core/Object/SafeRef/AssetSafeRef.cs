@@ -1,3 +1,4 @@
+using PLUME.Sample.ProtoBurst.Unity;
 using Unity.Collections;
 using UnityObject = UnityEngine.Object;
 
@@ -35,9 +36,9 @@ namespace PLUME.Core.Object.SafeRef
 
         internal AssetSafeRef(TA asset, Guid guid, FixedString512Bytes assetPath)
         {
+            var runtimeId = asset.GetInstanceID();
             Asset = asset;
-            var identifier = new Identifier(asset.GetInstanceID(), guid);
-            Identifier = new AssetIdentifier(identifier, assetPath);
+            Identifier = new AssetIdentifier(runtimeId, guid, assetPath);
         }
 
         public bool Equals(AssetSafeRef<TA> other)

@@ -17,13 +17,13 @@ namespace PLUME.Base.Module.Unity.Renderer.MeshRenderer
         protected override void OnObjectMarkedCreated(MeshRendererSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
-            _createSamples[objSafeRef] = new MeshRendererCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new MeshRendererCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(MeshRendererSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new MeshRendererDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new MeshRendererDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override MeshRendererFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)

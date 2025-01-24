@@ -22,20 +22,20 @@ namespace PLUME.Base.Module.Unity.UI.CanvasRenderer
             var canvasRenderer = objSafeRef.Component;
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.CullTransparentMesh = canvasRenderer.cullTransparentMesh;
-            _createSamples[objSafeRef] = new CanvasRendererCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new CanvasRendererCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(CanvasRendererSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new CanvasRendererDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new CanvasRendererDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private CanvasRendererUpdate GetOrCreateUpdateSample(CanvasRendererSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new CanvasRendererUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new CanvasRendererUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

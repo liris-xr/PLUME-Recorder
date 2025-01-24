@@ -22,6 +22,9 @@ namespace PLUME.Editor.Core.Hooks
         {
             "PLUME.Recorder",
             "UnityRuntimeGuid",
+            "UnityRuntimeGuid.Editor",
+            "fr.liris.unity-runtime-guid",
+            "fr.liris.unity-runtime-guid.editor",
             "ProtoBurst",
             "UniTask",
             "UniTask.Addressables",

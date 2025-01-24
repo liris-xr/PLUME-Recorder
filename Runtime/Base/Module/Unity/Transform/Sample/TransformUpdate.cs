@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using PLUME.Core.Object;
 using PLUME.Sample.ProtoBurst.Common;
+using PLUME.Sample.ProtoBurst.Unity;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;

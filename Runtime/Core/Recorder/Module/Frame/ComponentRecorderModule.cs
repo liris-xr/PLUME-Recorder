@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using PLUME.Base.Hooks;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
+using PLUME.Sample.ProtoBurst.Unity;
 using UnityEngine;
 
 namespace PLUME.Core.Recorder.Module.Frame
@@ -27,7 +28,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             if (component is not TC c)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(c);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(c);
 
             if (IsRecordingObject(objSafeRef))
                 return;
@@ -43,7 +44,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             if (obj is not TC c)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(c);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(c);
 
             if (!IsRecordingObject(objSafeRef))
                 return;

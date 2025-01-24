@@ -1,35 +1,42 @@
 using System;
+using PLUME.Core.Object;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
+using Guid = PLUME.Core.Guid;
 
-namespace PLUME.Core.Object
+namespace PLUME.Sample.ProtoBurst.Unity
 {
     [BurstCompile]
     public readonly struct AssetIdentifier : IObjectIdentifier, IProtoBurstMessage, IEquatable<AssetIdentifier>
     {
         public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.AssetIdentifier";
 
-        public static AssetIdentifier Null { get; } = new(Identifier.Null, "");
+        public static AssetIdentifier Null { get; } = new(0, Guid.Null, "");
 
-        private static readonly uint AssetIdFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.LengthDelimited);
-        private static readonly uint AssetPathFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
+        private static readonly uint GuidFieldTag = WireFormat.MakeTag(Sample.Unity.AssetIdentifier.GuidFieldNumber,
+            WireFormat.WireType.LengthDelimited);
 
-        public readonly Identifier AssetId;
+        private static readonly uint AssetPathFieldTag =
+            WireFormat.MakeTag(Sample.Unity.AssetIdentifier.PathFieldNumber, WireFormat.WireType.LengthDelimited);
+
+        public readonly int RuntimeId;
+        public readonly Guid Guid;
         public readonly FixedString512Bytes AssetPath;
 
-        public AssetIdentifier(Identifier assetId, FixedString512Bytes assetPath)
+        public AssetIdentifier(int runtimeId, Guid guid, FixedString512Bytes assetPath)
         {
-            AssetId = assetId;
+            RuntimeId = runtimeId;
+            Guid = guid;
             AssetPath = assetPath;
         }
 
         public int ComputeSize()
         {
             var path = AssetPath;
-            
-            return BufferWriterExtensions.ComputeTagSize(AssetIdFieldTag) +
+
+            return BufferWriterExtensions.ComputeTagSize(GuidFieldTag) +
                    BufferWriterExtensions.ComputeLengthPrefixSize(Guid.Size) +
                    Guid.Size +
                    BufferWriterExtensions.ComputeTagSize(AssetPathFieldTag) +
@@ -38,8 +45,8 @@ namespace PLUME.Core.Object
 
         public void WriteTo(ref BufferWriter bufferWriter)
         {
-            var assetGuid = AssetId.Guid;
-            bufferWriter.WriteTag(AssetIdFieldTag);
+            var assetGuid = Guid;
+            bufferWriter.WriteTag(GuidFieldTag);
             bufferWriter.WriteLength(Guid.Size);
             assetGuid.WriteTo(ref bufferWriter);
 
@@ -55,12 +62,12 @@ namespace PLUME.Core.Object
 
         public bool Equals(AssetIdentifier other)
         {
-            return AssetId.Equals(other.AssetId);
+            return RuntimeId.Equals(other.RuntimeId);
         }
-        
+
         public override int GetHashCode()
         {
-            return AssetId.GetHashCode();
+            return RuntimeId.GetHashCode();
         }
     }
 }

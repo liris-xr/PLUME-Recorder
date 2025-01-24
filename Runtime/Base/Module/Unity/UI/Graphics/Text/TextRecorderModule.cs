@@ -29,7 +29,7 @@ namespace PLUME.Base.Module.Unity.UI.Graphics.Text
             var text = objSafeRef.Component;
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Text = text.text;
-            updateSample.FontId = GetAssetIdentifierPayload(text.font);
+            updateSample.Font = GetAssetIdentifierPayload(text.font);
             updateSample.FontStyle = text.fontStyle.ToPayload();
             updateSample.FontSize = text.fontSize;
             updateSample.Color = text.color.ToPayload();
@@ -42,13 +42,13 @@ namespace PLUME.Base.Module.Unity.UI.Graphics.Text
             updateSample.ResizeTextForBestFit = text.resizeTextForBestFit;
             updateSample.ResizeTextMinSize = text.resizeTextMinSize;
             updateSample.ResizeTextMaxSize = text.resizeTextMaxSize;
-            _createSamples[objSafeRef] = new TextCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new TextCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(TextSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new TextDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new TextDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
         
         private void OnTextChanged(RecorderContext ctx, UnityEngine.UI.Text text, string value)
@@ -56,7 +56,7 @@ namespace PLUME.Base.Module.Unity.UI.Graphics.Text
             if (!ctx.IsRecording)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(text);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(text);
 
             if (!IsRecordingObject(objSafeRef))
                 return;
@@ -69,7 +69,7 @@ namespace PLUME.Base.Module.Unity.UI.Graphics.Text
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new TextUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new TextUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

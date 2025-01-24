@@ -27,17 +27,17 @@ namespace PLUME.Base.Module.Unity.MeshFilter
         protected override void OnObjectMarkedCreated(MeshFilterSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
-            var meshAssetSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateAssetSafeRef(objSafeRef.Component.sharedMesh);
+            var meshAssetSafeRef = ctx.SafeRefProvider.GetOrCreateAssetSafeRef(objSafeRef.Component.sharedMesh);
 
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            updateSample.MeshId = GetAssetIdentifierPayload(meshAssetSafeRef);
-            _createSamples[objSafeRef] = new MeshFilterCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            updateSample.Mesh = GetAssetIdentifierPayload(meshAssetSafeRef);
+            _createSamples[objSafeRef] = new MeshFilterCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(MeshFilterSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new MeshFilterDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new MeshFilterDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         /// <summary>
@@ -50,21 +50,21 @@ namespace PLUME.Base.Module.Unity.MeshFilter
             if (!ctx.IsRecording)
                 return;
 
-            var objSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(meshFilter);
+            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(meshFilter);
 
             if (!IsRecordingObject(objSafeRef))
                 return;
             
-            var meshAssetSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateAssetSafeRef(mesh);
+            var meshAssetSafeRef = ctx.SafeRefProvider.GetOrCreateAssetSafeRef(mesh);
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            updateSample.MeshId = GetAssetIdentifierPayload(meshAssetSafeRef);
+            updateSample.Mesh = GetAssetIdentifierPayload(meshAssetSafeRef);
         }
 
         private MeshFilterUpdate GetOrCreateUpdateSample(MeshFilterSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new MeshFilterUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new MeshFilterUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

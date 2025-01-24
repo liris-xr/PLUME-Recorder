@@ -5,6 +5,7 @@ using PLUME.Base.Settings;
 using PLUME.Core.Object;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
+using PLUME.Sample.ProtoBurst.Unity;
 using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
@@ -55,7 +56,7 @@ namespace PLUME.Base.Module.Unity.Transform
             if (component is not UnityEngine.Transform t || component is RectTransform)
                 return;
 
-            var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t);
+            var tSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(t);
 
             if (IsRecordingObject(tSafeRef))
                 return;
@@ -108,7 +109,7 @@ namespace PLUME.Base.Module.Unity.Transform
             var localScale = t.localScale;
             t.GetLocalPositionAndRotation(out var localPosition, out var localRotation);
 
-            var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t.parent);
+            var parentSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(t.parent);
             var parentIdentifier = parentSafeRef.Identifier;
 
             var initialState = new TransformState
@@ -146,12 +147,12 @@ namespace PLUME.Base.Module.Unity.Transform
             if (!ctx.IsRecording)
                 return;
 
-            var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t);
+            var tSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(t);
 
             if (!IsRecordingObject(tSafeRef))
                 return;
 
-            var parentSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(parent);
+            var parentSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(parent);
             var parentIdentifier = parentSafeRef.Identifier;
 
             var idx = _identifierToIndex[tSafeRef.Identifier];
@@ -166,7 +167,7 @@ namespace PLUME.Base.Module.Unity.Transform
             if (!ctx.IsRecording)
                 return;
 
-            var tSafeRef = ctx.ObjectSafeRefProvider.GetOrCreateComponentSafeRef(t);
+            var tSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(t);
 
             if (!IsRecordingObject(tSafeRef))
                 return;

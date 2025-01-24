@@ -55,7 +55,7 @@ namespace PLUME.Base.Module.Unity.Camera
             updateSample.GateFit = camera.gateFit.ToPayload();
             updateSample.Rect = camera.rect.ToPayload();
             updateSample.PixelRect = camera.pixelRect.ToPayload();
-            updateSample.TargetTextureId = GetAssetIdentifierPayload(camera.targetTexture);
+            updateSample.TargetTexture = GetAssetIdentifierPayload(camera.targetTexture);
             updateSample.TargetDisplay = camera.targetDisplay;
             updateSample.WorldToCameraMatrix = camera.worldToCameraMatrix.ToPayload();
             updateSample.ProjectionMatrix = camera.projectionMatrix.ToPayload();
@@ -65,20 +65,23 @@ namespace PLUME.Base.Module.Unity.Camera
             updateSample.StereoSeparation = camera.stereoSeparation;
             updateSample.StereoConvergence = camera.stereoConvergence;
             updateSample.StereoTargetEye = camera.stereoTargetEye.ToPayload();
-            _createSamples[objSafeRef] = new CameraCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new CameraCreate
+            {
+                Component = GetComponentIdentifierPayload(objSafeRef)
+            };
         }
 
         protected override void OnObjectMarkedDestroyed(CameraSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new CameraDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new CameraDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private CameraUpdate GetOrCreateUpdateSample(CameraSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new CameraUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new CameraUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

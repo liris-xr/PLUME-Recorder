@@ -97,7 +97,7 @@ namespace PLUME.Core.Recorder
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         internal static void Instantiate()
         {
-            var objSafeRefProvider = new ObjectSafeRefProvider();
+            var objSafeRefProvider = new SafeRefProvider();
             var recorderModules = RecorderModuleManager.InstantiateRecorderModulesFromAllAssemblies();
             var dataDispatcher = new DataDispatcher();
             var settingsProvider = new FileSettingsProvider();

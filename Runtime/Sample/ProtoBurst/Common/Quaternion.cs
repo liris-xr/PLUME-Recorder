@@ -11,12 +11,19 @@ namespace PLUME.Sample.ProtoBurst.Common
     [StructLayout(LayoutKind.Sequential)]
     public struct Quaternion : IProtoBurstMessage
     {
-        public static readonly FixedString64Bytes TypeUrl = "fr.liris.plume/plume.sample.common.Quaternion";
+        public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.common.Quaternion";
 
-        private static readonly uint XFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.Fixed32);
-        private static readonly uint YFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.Fixed32);
-        private static readonly uint ZFieldTag = WireFormat.MakeTag(3, WireFormat.WireType.Fixed32);
-        private static readonly uint WFieldTag = WireFormat.MakeTag(4, WireFormat.WireType.Fixed32);
+        private static readonly uint XFieldTag =
+            WireFormat.MakeTag(Sample.Common.Quaternion.XFieldNumber, WireFormat.WireType.Fixed32);
+
+        private static readonly uint YFieldTag =
+            WireFormat.MakeTag(Sample.Common.Quaternion.YFieldNumber, WireFormat.WireType.Fixed32);
+
+        private static readonly uint ZFieldTag =
+            WireFormat.MakeTag(Sample.Common.Quaternion.ZFieldNumber, WireFormat.WireType.Fixed32);
+
+        private static readonly uint WFieldTag =
+            WireFormat.MakeTag(Sample.Common.Quaternion.WFieldNumber, WireFormat.WireType.Fixed32);
 
         private float X;
         private float Y;
@@ -30,7 +37,7 @@ namespace PLUME.Sample.ProtoBurst.Common
             Z = vec.value.z;
             W = vec.value.w;
         }
-        
+
         public Quaternion(float x, float y, float z, float w)
         {
             X = x;
@@ -38,7 +45,7 @@ namespace PLUME.Sample.ProtoBurst.Common
             Z = z;
             W = w;
         }
-        
+
         public void WriteTo(ref BufferWriter bufferWriter)
         {
             if (X != 0)
@@ -46,19 +53,19 @@ namespace PLUME.Sample.ProtoBurst.Common
                 bufferWriter.WriteTag(XFieldTag);
                 bufferWriter.WriteFloat(X);
             }
-            
+
             if (Y != 0)
             {
                 bufferWriter.WriteTag(YFieldTag);
                 bufferWriter.WriteFloat(Y);
             }
-            
+
             if (Z != 0)
             {
                 bufferWriter.WriteTag(ZFieldTag);
                 bufferWriter.WriteFloat(Z);
             }
-            
+
             if (W != 0)
             {
                 bufferWriter.WriteTag(WFieldTag);
@@ -69,27 +76,27 @@ namespace PLUME.Sample.ProtoBurst.Common
         public int ComputeSize()
         {
             var size = 0;
-            
+
             if (X != 0)
             {
                 size += BufferWriterExtensions.ComputeTagSize(XFieldTag) + BufferWriterExtensions.Fixed32Size;
             }
-            
+
             if (Y != 0)
             {
                 size += BufferWriterExtensions.ComputeTagSize(YFieldTag) + BufferWriterExtensions.Fixed32Size;
             }
-            
+
             if (Z != 0)
             {
                 size += BufferWriterExtensions.ComputeTagSize(ZFieldTag) + BufferWriterExtensions.Fixed32Size;
             }
-            
+
             if (W != 0)
             {
                 size += BufferWriterExtensions.ComputeTagSize(WFieldTag) + BufferWriterExtensions.Fixed32Size;
             }
-            
+
             return size;
         }
 

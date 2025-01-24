@@ -66,14 +66,14 @@ namespace PLUME.Base.Module.Unity.XRITK
             var interactor = objSafeRef.Component;
             var interactorUpdate = GetOrCreateUpdateSample(objSafeRef);
             interactorUpdate.Enabled = interactor.enabled;
-            _createSamples[objSafeRef] = new XRBaseInteractorCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new XRBaseInteractorCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(XRBaseInteractorSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
             _destroySamples[objSafeRef] = new XRBaseInteractorDestroy
-                { Id = GetComponentIdentifierPayload(objSafeRef) };
+                { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private void OnHoverEntered(XRBaseInteractorSafeRef objSafeRef, HoverEnterEventArgs args)
@@ -83,8 +83,8 @@ namespace PLUME.Base.Module.Unity.XRITK
 
             var interactorHoverEnter = new XRBaseInteractorHoverEnter
             {
-                Id = GetComponentIdentifierPayload(objSafeRef),
-                InteractableCurrent = GetComponentIdentifierPayload(args.interactorObject.transform),
+                Component = GetComponentIdentifierPayload(objSafeRef),
+                Interactable = GetComponentIdentifierPayload(args.interactorObject.transform),
             };
 
             _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorHoverEnter);
@@ -97,8 +97,8 @@ namespace PLUME.Base.Module.Unity.XRITK
 
             var interactorHoverExit = new XRBaseInteractorHoverExit
             {
-                Id = GetComponentIdentifierPayload(objSafeRef),
-                InteractableCurrent = GetComponentIdentifierPayload(args.interactorObject.transform),
+                Component = GetComponentIdentifierPayload(objSafeRef),
+                Interactable = GetComponentIdentifierPayload(args.interactorObject.transform),
             };
 
             _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorHoverExit);
@@ -111,8 +111,8 @@ namespace PLUME.Base.Module.Unity.XRITK
 
             var interactorSelectEnter = new XRBaseInteractorSelectEnter
             {
-                Id = GetComponentIdentifierPayload(objSafeRef),
-                InteractableCurrent = GetComponentIdentifierPayload(args.interactorObject.transform),
+                Component = GetComponentIdentifierPayload(objSafeRef),
+                Interactable = GetComponentIdentifierPayload(args.interactorObject.transform),
             };
 
             _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorSelectEnter);
@@ -125,8 +125,8 @@ namespace PLUME.Base.Module.Unity.XRITK
 
             var interactorSelectExit = new XRBaseInteractorSelectExit
             {
-                Id = GetComponentIdentifierPayload(objSafeRef),
-                InteractableCurrent = GetComponentIdentifierPayload(args.interactorObject.transform),
+                Component = GetComponentIdentifierPayload(objSafeRef),
+                Interactable = GetComponentIdentifierPayload(args.interactorObject.transform),
             };
 
             _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorSelectExit);
@@ -145,7 +145,7 @@ namespace PLUME.Base.Module.Unity.XRITK
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new XRBaseInteractorUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new XRBaseInteractorUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

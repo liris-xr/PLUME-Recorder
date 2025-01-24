@@ -21,22 +21,22 @@ namespace PLUME.Base.Module.Unity.UI.Graphics.Image
             
             var image = objSafeRef.Component;
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            updateSample.SpriteId = GetAssetIdentifierPayload(image.sprite);
+            updateSample.Sprite = GetAssetIdentifierPayload(image.sprite);
             updateSample.Type = image.type.ToPayload();
-            _createSamples[objSafeRef] = new ImageCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new ImageCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(ImageSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new ImageDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new ImageDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private ImageUpdate GetOrCreateUpdateSample(ImageSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new ImageUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new ImageUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

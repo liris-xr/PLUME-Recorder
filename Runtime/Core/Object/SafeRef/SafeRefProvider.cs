@@ -4,17 +4,36 @@ using System.Globalization;
 using System.Reflection;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityRuntimeGuid;
 using UnityObject = UnityEngine.Object;
 
 namespace PLUME.Core.Object.SafeRef
 {
     /// <summary>
-    /// Provides a way to create and cache <see cref="IObjectSafeRef"/> instances for Unity objects.
+    /// Provides a way to create and cache safe reference to unity objects preventing NPE when accessing destroyed objects,
+    /// while still being able to access the object identifier (GUID, id).
     /// </summary>
-    public class ObjectSafeRefProvider
+    public class SafeRefProvider
     {
-        private readonly Dictionary<int, IObjectSafeRef> _cachedRefs = new();
+        private readonly Dictionary<int, IObjectSafeRef> _cachedObjectRefs = new();
+        private readonly Dictionary<string, SceneSafeRef> _cachedSceneRefs = new();
+
+        public SceneSafeRef GetOrCreateSceneSafeRef(Scene scene)
+        {
+            if (!scene.IsValid())
+                return SceneSafeRef.Null;
+
+            var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(scene);
+            var sceneGuid = Guid.FromString(sceneGuidRegistry.SceneGuid);
+
+            if (_cachedSceneRefs.TryGetValue(sceneGuidRegistry.SceneGuid, out var cachedRef))
+                return cachedRef;
+            
+            var sceneSafeRef = new SceneSafeRef(scene, sceneGuid, scene.path);
+            _cachedSceneRefs[sceneGuidRegistry.SceneGuid] = sceneSafeRef;
+            return sceneSafeRef;
+        }
 
         public GameObjectSafeRef GetOrCreateGameObjectSafeRef(GameObject go)
         {
@@ -23,7 +42,7 @@ namespace PLUME.Core.Object.SafeRef
 
             var instanceId = go.GetInstanceID();
 
-            if (_cachedRefs.TryGetValue(instanceId, out var cachedRef) && cachedRef is GameObjectSafeRef goRef)
+            if (_cachedObjectRefs.TryGetValue(instanceId, out var cachedRef) && cachedRef is GameObjectSafeRef goRef)
                 return goRef;
 
             if (!go.scene.IsValid())
@@ -34,8 +53,9 @@ namespace PLUME.Core.Object.SafeRef
             var transformRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go.transform);
             var goGuid = Guid.FromString(goRegistryEntry.guid);
             var transformGuid = Guid.FromString(transformRegistryEntry.guid);
-            goRef = new GameObjectSafeRef(go, goGuid, transformGuid);
-            _cachedRefs[instanceId] = goRef;
+            var sceneSafeRef = GetOrCreateSceneSafeRef(go.scene);
+            goRef = new GameObjectSafeRef(go, goGuid, transformGuid, sceneSafeRef);
+            _cachedObjectRefs[instanceId] = goRef;
             return goRef;
         }
 
@@ -46,7 +66,7 @@ namespace PLUME.Core.Object.SafeRef
 
             var instanceId = component.GetInstanceID();
 
-            if (_cachedRefs.TryGetValue(instanceId, out var cachedRef) &&
+            if (_cachedObjectRefs.TryGetValue(instanceId, out var cachedRef) &&
                 cachedRef is IComponentSafeRef<TC> componentSafeRef)
                 return componentSafeRef;
 
@@ -58,7 +78,7 @@ namespace PLUME.Core.Object.SafeRef
             var gameObjectRef = GetOrCreateGameObjectSafeRef(component.gameObject);
             var goGuid = Guid.FromString(guidRegistryEntry.guid);
             componentSafeRef = CreateComponentSafeRef(component, gameObjectRef, goGuid);
-            _cachedRefs[instanceId] = componentSafeRef;
+            _cachedObjectRefs[instanceId] = componentSafeRef;
             return componentSafeRef;
         }
 
@@ -69,7 +89,8 @@ namespace PLUME.Core.Object.SafeRef
 
             var instanceId = asset.GetInstanceID();
 
-            if (_cachedRefs.TryGetValue(instanceId, out var cachedRef) && cachedRef is IAssetSafeRef<TA> assetSafeRef)
+            if (_cachedObjectRefs.TryGetValue(instanceId, out var cachedRef) &&
+                cachedRef is IAssetSafeRef<TA> assetSafeRef)
                 return assetSafeRef;
 
             var assetsGuidRegistry = AssetsGuidRegistry.GetOrCreate();
@@ -77,7 +98,7 @@ namespace PLUME.Core.Object.SafeRef
             var assetBundlePath = new FixedString512Bytes(assetsGuidRegistryEntry.assetBundlePath);
             var assetGuid = Guid.FromString(assetsGuidRegistryEntry.guid);
             assetSafeRef = CreateAssetObjectSafeRef(asset, assetGuid, assetBundlePath);
-            _cachedRefs[instanceId] = assetSafeRef;
+            _cachedObjectRefs[instanceId] = assetSafeRef;
             return assetSafeRef;
         }
 

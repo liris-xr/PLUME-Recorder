@@ -12,8 +12,11 @@ namespace PLUME.Sample.ProtoBurst
     {
         public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.PackedSample";
 
-        public static readonly uint TimestampFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.VarInt);
-        public static readonly uint PayloadFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
+        public static readonly uint TimestampFieldTag =
+            WireFormat.MakeTag(Sample.PackedSample.TimestampFieldNumber, WireFormat.WireType.VarInt);
+
+        public static readonly uint PayloadFieldTag =
+            WireFormat.MakeTag(Sample.PackedSample.PayloadFieldNumber, WireFormat.WireType.LengthDelimited);
 
         private readonly bool _hasTimestamp;
         private readonly ulong _timestamp;

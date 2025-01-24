@@ -22,41 +22,31 @@ namespace PLUME.Base.Module.Unity.UI.RectTransform
             base.OnObjectMarkedCreated(objSafeRef, ctx);
             
             var rectTransform = objSafeRef.Component;
-            var transformUpdateSample = GetOrCreateTransformUpdateSample(objSafeRef);
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            transformUpdateSample.LocalPosition = rectTransform.localPosition.ToPayload();
-            transformUpdateSample.LocalRotation = rectTransform.localRotation.ToPayload();
-            transformUpdateSample.LocalScale = rectTransform.localScale.ToPayload();
-            transformUpdateSample.ParentTransformId = GetComponentIdentifierPayload(rectTransform.parent);
-            transformUpdateSample.SiblingIdx = rectTransform.GetSiblingIndex();
+            updateSample.LocalPosition = rectTransform.localPosition.ToPayload();
+            updateSample.LocalRotation = rectTransform.localRotation.ToPayload();
+            updateSample.LocalScale = rectTransform.localScale.ToPayload();
+            updateSample.ParentTransform = GetComponentIdentifierPayload(rectTransform.parent);
+            updateSample.SiblingIdx = rectTransform.GetSiblingIndex();
             updateSample.AnchorMin = rectTransform.anchorMin.ToPayload();
             updateSample.AnchorMax = rectTransform.anchorMax.ToPayload();
             updateSample.Pivot = rectTransform.pivot.ToPayload();
             updateSample.SizeDelta = rectTransform.sizeDelta.ToPayload();
             updateSample.AnchoredPosition = rectTransform.anchoredPosition.ToPayload();
-            _createSamples[objSafeRef] = new RectTransformCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new RectTransformCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(RectTransformSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new RectTransformDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
-        }
-
-        private TransformUpdate GetOrCreateTransformUpdateSample(RectTransformSafeRef objSafeRef)
-        {
-            if (_transformUpdateSamples.TryGetValue(objSafeRef, out var sample))
-                return sample;
-            sample = new TransformUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
-            _transformUpdateSamples[objSafeRef] = sample;
-            return sample;
+            _destroySamples[objSafeRef] = new RectTransformDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
         
         private RectTransformUpdate GetOrCreateUpdateSample(RectTransformSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new RectTransformUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new RectTransformUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }
@@ -67,7 +57,6 @@ namespace PLUME.Base.Module.Unity.UI.RectTransform
             frameData.AddCreateSamples(_createSamples.Values);
             frameData.AddDestroySamples(_destroySamples.Values);
             frameData.AddUpdateSamples(_updateSamples.Values);
-            frameData.AddTransformUpdateSamples(_transformUpdateSamples.Values);
             return frameData;
         }
 
@@ -77,7 +66,6 @@ namespace PLUME.Base.Module.Unity.UI.RectTransform
             _createSamples.Clear();
             _destroySamples.Clear();
             _updateSamples.Clear();
-            _transformUpdateSamples.Clear();
         }
     }
 }

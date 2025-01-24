@@ -38,20 +38,20 @@ namespace PLUME.Base.Module.Unity.UI.CanvasScaler
             updateSample.UpdateRectTransformForStandalone = canvas.updateRectTransformForStandalone.ToPayload();
             updateSample.WorldCamera = GetComponentIdentifierPayload(canvas.worldCamera);
             updateSample.NormalizedSortingGridSize = canvas.normalizedSortingGridSize;
-            _createSamples[objSafeRef] = new CanvasCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new CanvasCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(CanvasSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new CanvasDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new CanvasDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private CanvasUpdate GetOrCreateUpdateSample(CanvasSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new CanvasUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new CanvasUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

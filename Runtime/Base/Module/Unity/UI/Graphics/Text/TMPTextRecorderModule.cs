@@ -25,7 +25,7 @@ namespace PLUME.Base.Module.Unity.UI.Graphics.Text
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Text = text.text;
             updateSample.Color = text.color.ToPayload(); 
-            updateSample.FontId = GetAssetIdentifierPayload(text.font);
+            updateSample.Font = GetAssetIdentifierPayload(text.font);
             updateSample.FontStyle = (int) text.fontStyle;
             updateSample.FontSize = text.fontSize;
             updateSample.AutoSize = text.enableAutoSizing;
@@ -41,20 +41,20 @@ namespace PLUME.Base.Module.Unity.UI.Graphics.Text
             updateSample.HorizontalMapping = (int) text.horizontalMapping;
             updateSample.VerticalMapping = (int) text.verticalMapping;
             updateSample.Margin = text.margin.ToPayload();
-            _createSamples[objSafeRef] = new TMPTextCreate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _createSamples[objSafeRef] = new TMPTextCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         protected override void OnObjectMarkedDestroyed(TMPTextSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
-            _destroySamples[objSafeRef] = new TMPTextDestroy { Id = GetComponentIdentifierPayload(objSafeRef) };
+            _destroySamples[objSafeRef] = new TMPTextDestroy { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 
         private TMPTextUpdate GetOrCreateUpdateSample(TMPTextSafeRef objSafeRef)
         {
             if (_updateSamples.TryGetValue(objSafeRef, out var sample))
                 return sample;
-            sample = new TMPTextUpdate { Id = GetComponentIdentifierPayload(objSafeRef) };
+            sample = new TMPTextUpdate { Component = GetComponentIdentifierPayload(objSafeRef) };
             _updateSamples[objSafeRef] = sample;
             return sample;
         }

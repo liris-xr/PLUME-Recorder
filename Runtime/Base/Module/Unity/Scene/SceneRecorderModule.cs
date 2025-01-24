@@ -3,6 +3,7 @@ using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Utils;
 using PLUME.Sample.Unity;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Scripting;
 using UnityRuntimeGuid;
@@ -17,7 +18,7 @@ namespace PLUME.Base.Module.Unity.Scene
         private UnityEngine.SceneManagement.Scene? _lastActiveScene;
         private readonly List<UnityEngine.SceneManagement.Scene> _loadedScenes = new();
         private readonly Dictionary<UnityEngine.SceneManagement.Scene, SceneIdentifier> _cachedSceneIdentifiers = new();
-        
+
         private readonly List<LoadScene> _loadSceneSamples = new();
         private readonly List<UnloadScene> _unloadSceneSamples = new();
         private ChangeActiveScene _changeActiveSceneSample;
@@ -53,7 +54,7 @@ namespace PLUME.Base.Module.Unity.Scene
             _lastActiveScene = null;
             _cachedSceneIdentifiers.Clear();
         }
-        
+
         protected override SceneFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
             var sceneFrameData = SceneFrameData.Pool.Get();
@@ -62,7 +63,7 @@ namespace PLUME.Base.Module.Unity.Scene
             sceneFrameData.SetChangeActiveSceneSample(_changeActiveSceneSample);
             return sceneFrameData;
         }
-        
+
         protected override void AfterCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
             base.AfterCollectFrameData(frameInfo, ctx);
@@ -97,7 +98,8 @@ namespace PLUME.Base.Module.Unity.Scene
             _lastActiveScene = scene;
         }
 
-        private void OnChangeActiveScene(UnityEngine.SceneManagement.Scene oldActive, UnityEngine.SceneManagement.Scene newActive)
+        private void OnChangeActiveScene(UnityEngine.SceneManagement.Scene oldActive,
+            UnityEngine.SceneManagement.Scene newActive)
         {
             // As OnChangeActiveScene is fired before OnLoadScene, we make sure that the scene is already loaded to record
             // this change. Otherwise it means that this is called by a scene being loaded in single mode, thus the event
@@ -110,38 +112,18 @@ namespace PLUME.Base.Module.Unity.Scene
             _lastActiveScene = newActive;
         }
 
-        private static int GetSceneRuntimeIndex(UnityEngine.SceneManagement.Scene scene)
-        {
-            for (var sceneIdx = 0; sceneIdx < SceneManager.sceneCount; ++sceneIdx)
-            {
-                if (SceneManager.GetSceneAt(sceneIdx) == scene)
-                    return sceneIdx;
-            }
-
-            return -1;
-        }
-
         private void RecordLoadScene(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
         {
-            var guidRegistry = SceneGuidRegistry.GetOrCreate(scene);
-
-            var sceneRuntimeIndex = GetSceneRuntimeIndex(scene);
-
-            var sceneIdentifier = new SceneIdentifier
-            {
-                Id = guidRegistry.SceneGuid,
-                BuildIndex = scene.buildIndex,
-                RuntimeIndex = sceneRuntimeIndex.ToString(),
-                Path = scene.path,
-                Mode = mode.ToPayload(),
-                Name = scene.name
-            };
+            var sceneIdentifier = SampleUtils.GetSceneIdentifierPayload(scene);
+            
+            Debug.Log("Scene path: " + scene.path);
 
             _cachedSceneIdentifiers[scene] = sceneIdentifier;
 
             var loadSceneSample = new LoadScene
             {
-                Id = sceneIdentifier
+                Scene = sceneIdentifier,
+                Mode = mode.ToPayload()
             };
 
             _loadSceneSamples.Add(loadSceneSample);
@@ -153,7 +135,7 @@ namespace PLUME.Base.Module.Unity.Scene
 
             var unloadSceneSample = new UnloadScene
             {
-                Id = sceneIdentifier,
+                Scene = sceneIdentifier
             };
 
             _unloadSceneSamples.Add(unloadSceneSample);
@@ -165,7 +147,7 @@ namespace PLUME.Base.Module.Unity.Scene
 
             var changeActiveScene = new ChangeActiveScene
             {
-                Id = sceneIdentifier
+                Scene = sceneIdentifier
             };
 
             _changeActiveSceneSample = changeActiveScene;

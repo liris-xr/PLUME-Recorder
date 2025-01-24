@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
+using PLUME.Sample.ProtoBurst.Unity;
 using Unity.Collections;
 using UnityEngine.Jobs;
 
@@ -49,7 +50,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
             _transformAccessArray.Add(objRef.Component);
             _alignedIdentifiers.Add(objRef.Identifier);
-            _instanceIdToIndex.Add(objRef.Identifier.ComponentId.InstanceId, _transformAccessArray.length - 1);
+            _instanceIdToIndex.Add(objRef.Identifier.RuntimeId, _transformAccessArray.length - 1);
         }
 
         private void EnsureCapacity(int capacity)
@@ -77,12 +78,12 @@ namespace PLUME.Base.Module.Unity.Transform
         /// <returns>The index of the transform in the list, or -1 if it is not in the list.</returns>
         public int IndexOf(IComponentSafeRef<UnityEngine.Transform> objRef)
         {
-            return _instanceIdToIndex.GetValueOrDefault(objRef.Identifier.ComponentId.InstanceId, -1);
+            return _instanceIdToIndex.GetValueOrDefault(objRef.Identifier.RuntimeId, -1);
         }
 
         public bool Contains(IComponentSafeRef<UnityEngine.Transform> objRef)
         {
-            return _instanceIdToIndex.ContainsKey(objRef.Identifier.ComponentId.InstanceId);
+            return _instanceIdToIndex.ContainsKey(objRef.Identifier.RuntimeId);
         }
 
         /// <summary>
@@ -138,13 +139,13 @@ namespace PLUME.Base.Module.Unity.Transform
 
             _transformAccessArray.RemoveAtSwapBack(index);
             _alignedIdentifiers.RemoveAtSwapBack(index);
-            _instanceIdToIndex.Remove(identifier.ComponentId.InstanceId);
+            _instanceIdToIndex.Remove(identifier.RuntimeId);
 
             // Update the index of swapped element, in the case where the removed element was the last one
             // then instanceId == lastInstanceId and we do not need to update the index.
-            if (identifier.ComponentId.InstanceId != lastIdentifier.ComponentId.InstanceId)
+            if (identifier.RuntimeId != lastIdentifier.RuntimeId)
             {
-                _instanceIdToIndex[lastIdentifier.ComponentId.InstanceId] = index;
+                _instanceIdToIndex[lastIdentifier.RuntimeId] = index;
             }
         }
 

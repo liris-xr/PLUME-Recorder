@@ -25,22 +25,24 @@ namespace PLUME.Sample.Unity {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CiRwbHVtZS9zYW1wbGUvdW5pdHkvaWRlbnRpZmllcnMucHJvdG8SEnBsdW1l",
-            "LnNhbXBsZS51bml0eSJRChRHYW1lT2JqZWN0SWRlbnRpZmllchISCgRndWlk",
-            "GAEgASgJUgRndWlkEiUKDnRyYW5zZm9ybV9ndWlkGAIgASgJUg10cmFuc2Zv",
-            "cm1HdWlkInMKE0NvbXBvbmVudElkZW50aWZpZXISEgoEZ3VpZBgBIAEoCVIE",
-            "Z3VpZBJICgpnYW1lb2JqZWN0GAIgASgLMigucGx1bWUuc2FtcGxlLnVuaXR5",
-            "LkdhbWVPYmplY3RJZGVudGlmaWVyUgpnYW1lb2JqZWN0IjkKD0Fzc2V0SWRl",
-            "bnRpZmllchISCgRndWlkGAEgASgJUgRndWlkEhIKBHBhdGgYAiABKAlSBHBh",
-            "dGgiTQoPU2NlbmVJZGVudGlmaWVyEhIKBGd1aWQYASABKAlSBGd1aWQSEgoE",
-            "bmFtZRgCIAEoCVIEbmFtZRISCgRwYXRoGAMgASgJUgRwYXRoQhWqAhJQTFVN",
-            "RS5TYW1wbGUuVW5pdHliBnByb3RvMw=="));
+            "LnNhbXBsZS51bml0eSKMAQoUR2FtZU9iamVjdElkZW50aWZpZXISEgoEZ3Vp",
+            "ZBgBIAEoCVIEZ3VpZBIlCg50cmFuc2Zvcm1fZ3VpZBgCIAEoCVINdHJhbnNm",
+            "b3JtR3VpZBI5CgVzY2VuZRgDIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5T",
+            "Y2VuZUlkZW50aWZpZXJSBXNjZW5lInQKE0NvbXBvbmVudElkZW50aWZpZXIS",
+            "EgoEZ3VpZBgBIAEoCVIEZ3VpZBJJCgtnYW1lX29iamVjdBgCIAEoCzIoLnBs",
+            "dW1lLnNhbXBsZS51bml0eS5HYW1lT2JqZWN0SWRlbnRpZmllclIKZ2FtZU9i",
+            "amVjdCJRCg9Bc3NldElkZW50aWZpZXISEgoEZ3VpZBgBIAEoCVIEZ3VpZBIq",
+            "ChFhc3NldF9idW5kbGVfcGF0aBgCIAEoCVIPYXNzZXRCdW5kbGVQYXRoImUK",
+            "D1NjZW5lSWRlbnRpZmllchISCgRndWlkGAEgASgJUgRndWlkEhIKBG5hbWUY",
+            "AiABKAlSBG5hbWUSKgoRYXNzZXRfYnVuZGxlX3BhdGgYAyABKAlSD2Fzc2V0",
+            "QnVuZGxlUGF0aEIVqgISUExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectIdentifier), global::PLUME.Sample.Unity.GameObjectIdentifier.Parser, new[]{ "Guid", "TransformGuid" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ComponentIdentifier), global::PLUME.Sample.Unity.ComponentIdentifier.Parser, new[]{ "Guid", "Gameobject" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AssetIdentifier), global::PLUME.Sample.Unity.AssetIdentifier.Parser, new[]{ "Guid", "Path" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SceneIdentifier), global::PLUME.Sample.Unity.SceneIdentifier.Parser, new[]{ "Guid", "Name", "Path" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectIdentifier), global::PLUME.Sample.Unity.GameObjectIdentifier.Parser, new[]{ "Guid", "TransformGuid", "Scene" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.ComponentIdentifier), global::PLUME.Sample.Unity.ComponentIdentifier.Parser, new[]{ "Guid", "GameObject" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.AssetIdentifier), global::PLUME.Sample.Unity.AssetIdentifier.Parser, new[]{ "Guid", "AssetBundlePath" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SceneIdentifier), global::PLUME.Sample.Unity.SceneIdentifier.Parser, new[]{ "Guid", "Name", "AssetBundlePath" }, null, null, null, null)
           }));
     }
     #endregion
@@ -84,6 +86,7 @@ namespace PLUME.Sample.Unity {
     public GameObjectIdentifier(GameObjectIdentifier other) : this() {
       guid_ = other.guid_;
       transformGuid_ = other.transformGuid_;
+      scene_ = other.scene_ != null ? other.scene_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -117,6 +120,18 @@ namespace PLUME.Sample.Unity {
       }
     }
 
+    /// <summary>Field number for the "scene" field.</summary>
+    public const int SceneFieldNumber = 3;
+    private global::PLUME.Sample.Unity.SceneIdentifier scene_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.SceneIdentifier Scene {
+      get { return scene_; }
+      set {
+        scene_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -134,6 +149,7 @@ namespace PLUME.Sample.Unity {
       }
       if (Guid != other.Guid) return false;
       if (TransformGuid != other.TransformGuid) return false;
+      if (!object.Equals(Scene, other.Scene)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -143,6 +159,7 @@ namespace PLUME.Sample.Unity {
       int hash = 1;
       if (Guid.Length != 0) hash ^= Guid.GetHashCode();
       if (TransformGuid.Length != 0) hash ^= TransformGuid.GetHashCode();
+      if (scene_ != null) hash ^= Scene.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -169,6 +186,10 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteString(TransformGuid);
       }
+      if (scene_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Scene);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -187,6 +208,10 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteString(TransformGuid);
       }
+      if (scene_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Scene);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -202,6 +227,9 @@ namespace PLUME.Sample.Unity {
       }
       if (TransformGuid.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(TransformGuid);
+      }
+      if (scene_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Scene);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -220,6 +248,12 @@ namespace PLUME.Sample.Unity {
       }
       if (other.TransformGuid.Length != 0) {
         TransformGuid = other.TransformGuid;
+      }
+      if (other.scene_ != null) {
+        if (scene_ == null) {
+          Scene = new global::PLUME.Sample.Unity.SceneIdentifier();
+        }
+        Scene.MergeFrom(other.Scene);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -248,6 +282,13 @@ namespace PLUME.Sample.Unity {
             TransformGuid = input.ReadString();
             break;
           }
+          case 26: {
+            if (scene_ == null) {
+              Scene = new global::PLUME.Sample.Unity.SceneIdentifier();
+            }
+            input.ReadMessage(Scene);
+            break;
+          }
         }
       }
     #endif
@@ -273,6 +314,13 @@ namespace PLUME.Sample.Unity {
           }
           case 18: {
             TransformGuid = input.ReadString();
+            break;
+          }
+          case 26: {
+            if (scene_ == null) {
+              Scene = new global::PLUME.Sample.Unity.SceneIdentifier();
+            }
+            input.ReadMessage(Scene);
             break;
           }
         }
@@ -318,7 +366,7 @@ namespace PLUME.Sample.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ComponentIdentifier(ComponentIdentifier other) : this() {
       guid_ = other.guid_;
-      gameobject_ = other.gameobject_ != null ? other.gameobject_.Clone() : null;
+      gameObject_ = other.gameObject_ != null ? other.gameObject_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -340,15 +388,15 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "gameobject" field.</summary>
-    public const int GameobjectFieldNumber = 2;
-    private global::PLUME.Sample.Unity.GameObjectIdentifier gameobject_;
+    /// <summary>Field number for the "game_object" field.</summary>
+    public const int GameObjectFieldNumber = 2;
+    private global::PLUME.Sample.Unity.GameObjectIdentifier gameObject_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.GameObjectIdentifier Gameobject {
-      get { return gameobject_; }
+    public global::PLUME.Sample.Unity.GameObjectIdentifier GameObject {
+      get { return gameObject_; }
       set {
-        gameobject_ = value;
+        gameObject_ = value;
       }
     }
 
@@ -368,7 +416,7 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (Guid != other.Guid) return false;
-      if (!object.Equals(Gameobject, other.Gameobject)) return false;
+      if (!object.Equals(GameObject, other.GameObject)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -377,7 +425,7 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (Guid.Length != 0) hash ^= Guid.GetHashCode();
-      if (gameobject_ != null) hash ^= Gameobject.GetHashCode();
+      if (gameObject_ != null) hash ^= GameObject.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -400,9 +448,9 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteString(Guid);
       }
-      if (gameobject_ != null) {
+      if (gameObject_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(Gameobject);
+        output.WriteMessage(GameObject);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -418,9 +466,9 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteString(Guid);
       }
-      if (gameobject_ != null) {
+      if (gameObject_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(Gameobject);
+        output.WriteMessage(GameObject);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -435,8 +483,8 @@ namespace PLUME.Sample.Unity {
       if (Guid.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Guid);
       }
-      if (gameobject_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Gameobject);
+      if (gameObject_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(GameObject);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -453,11 +501,11 @@ namespace PLUME.Sample.Unity {
       if (other.Guid.Length != 0) {
         Guid = other.Guid;
       }
-      if (other.gameobject_ != null) {
-        if (gameobject_ == null) {
-          Gameobject = new global::PLUME.Sample.Unity.GameObjectIdentifier();
+      if (other.gameObject_ != null) {
+        if (gameObject_ == null) {
+          GameObject = new global::PLUME.Sample.Unity.GameObjectIdentifier();
         }
-        Gameobject.MergeFrom(other.Gameobject);
+        GameObject.MergeFrom(other.GameObject);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -483,10 +531,10 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 18: {
-            if (gameobject_ == null) {
-              Gameobject = new global::PLUME.Sample.Unity.GameObjectIdentifier();
+            if (gameObject_ == null) {
+              GameObject = new global::PLUME.Sample.Unity.GameObjectIdentifier();
             }
-            input.ReadMessage(Gameobject);
+            input.ReadMessage(GameObject);
             break;
           }
         }
@@ -513,10 +561,10 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 18: {
-            if (gameobject_ == null) {
-              Gameobject = new global::PLUME.Sample.Unity.GameObjectIdentifier();
+            if (gameObject_ == null) {
+              GameObject = new global::PLUME.Sample.Unity.GameObjectIdentifier();
             }
-            input.ReadMessage(Gameobject);
+            input.ReadMessage(GameObject);
             break;
           }
         }
@@ -562,7 +610,7 @@ namespace PLUME.Sample.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AssetIdentifier(AssetIdentifier other) : this() {
       guid_ = other.guid_;
-      path_ = other.path_;
+      assetBundlePath_ = other.assetBundlePath_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -584,15 +632,15 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "path" field.</summary>
-    public const int PathFieldNumber = 2;
-    private string path_ = "";
+    /// <summary>Field number for the "asset_bundle_path" field.</summary>
+    public const int AssetBundlePathFieldNumber = 2;
+    private string assetBundlePath_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Path {
-      get { return path_; }
+    public string AssetBundlePath {
+      get { return assetBundlePath_; }
       set {
-        path_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        assetBundlePath_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -612,7 +660,7 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (Guid != other.Guid) return false;
-      if (Path != other.Path) return false;
+      if (AssetBundlePath != other.AssetBundlePath) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -621,7 +669,7 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (Guid.Length != 0) hash ^= Guid.GetHashCode();
-      if (Path.Length != 0) hash ^= Path.GetHashCode();
+      if (AssetBundlePath.Length != 0) hash ^= AssetBundlePath.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -644,9 +692,9 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteString(Guid);
       }
-      if (Path.Length != 0) {
+      if (AssetBundlePath.Length != 0) {
         output.WriteRawTag(18);
-        output.WriteString(Path);
+        output.WriteString(AssetBundlePath);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -662,9 +710,9 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteString(Guid);
       }
-      if (Path.Length != 0) {
+      if (AssetBundlePath.Length != 0) {
         output.WriteRawTag(18);
-        output.WriteString(Path);
+        output.WriteString(AssetBundlePath);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -679,8 +727,8 @@ namespace PLUME.Sample.Unity {
       if (Guid.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Guid);
       }
-      if (Path.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Path);
+      if (AssetBundlePath.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AssetBundlePath);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -697,8 +745,8 @@ namespace PLUME.Sample.Unity {
       if (other.Guid.Length != 0) {
         Guid = other.Guid;
       }
-      if (other.Path.Length != 0) {
-        Path = other.Path;
+      if (other.AssetBundlePath.Length != 0) {
+        AssetBundlePath = other.AssetBundlePath;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -724,7 +772,7 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 18: {
-            Path = input.ReadString();
+            AssetBundlePath = input.ReadString();
             break;
           }
         }
@@ -751,7 +799,7 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 18: {
-            Path = input.ReadString();
+            AssetBundlePath = input.ReadString();
             break;
           }
         }
@@ -798,7 +846,7 @@ namespace PLUME.Sample.Unity {
     public SceneIdentifier(SceneIdentifier other) : this() {
       guid_ = other.guid_;
       name_ = other.name_;
-      path_ = other.path_;
+      assetBundlePath_ = other.assetBundlePath_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -832,15 +880,15 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "path" field.</summary>
-    public const int PathFieldNumber = 3;
-    private string path_ = "";
+    /// <summary>Field number for the "asset_bundle_path" field.</summary>
+    public const int AssetBundlePathFieldNumber = 3;
+    private string assetBundlePath_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Path {
-      get { return path_; }
+    public string AssetBundlePath {
+      get { return assetBundlePath_; }
       set {
-        path_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        assetBundlePath_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -861,7 +909,7 @@ namespace PLUME.Sample.Unity {
       }
       if (Guid != other.Guid) return false;
       if (Name != other.Name) return false;
-      if (Path != other.Path) return false;
+      if (AssetBundlePath != other.AssetBundlePath) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -871,7 +919,7 @@ namespace PLUME.Sample.Unity {
       int hash = 1;
       if (Guid.Length != 0) hash ^= Guid.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
-      if (Path.Length != 0) hash ^= Path.GetHashCode();
+      if (AssetBundlePath.Length != 0) hash ^= AssetBundlePath.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -898,9 +946,9 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteString(Name);
       }
-      if (Path.Length != 0) {
+      if (AssetBundlePath.Length != 0) {
         output.WriteRawTag(26);
-        output.WriteString(Path);
+        output.WriteString(AssetBundlePath);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -920,9 +968,9 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(18);
         output.WriteString(Name);
       }
-      if (Path.Length != 0) {
+      if (AssetBundlePath.Length != 0) {
         output.WriteRawTag(26);
-        output.WriteString(Path);
+        output.WriteString(AssetBundlePath);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -940,8 +988,8 @@ namespace PLUME.Sample.Unity {
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
-      if (Path.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Path);
+      if (AssetBundlePath.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AssetBundlePath);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -961,8 +1009,8 @@ namespace PLUME.Sample.Unity {
       if (other.Name.Length != 0) {
         Name = other.Name;
       }
-      if (other.Path.Length != 0) {
-        Path = other.Path;
+      if (other.AssetBundlePath.Length != 0) {
+        AssetBundlePath = other.AssetBundlePath;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -992,7 +1040,7 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 26: {
-            Path = input.ReadString();
+            AssetBundlePath = input.ReadString();
             break;
           }
         }
@@ -1023,7 +1071,7 @@ namespace PLUME.Sample.Unity {
             break;
           }
           case 26: {
-            Path = input.ReadString();
+            AssetBundlePath = input.ReadString();
             break;
           }
         }

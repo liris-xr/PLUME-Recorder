@@ -37,8 +37,7 @@ namespace PLUME.Base.Module.Unity.GameObject
 
             _createSamples[objSafeRef] = new GameObjectCreate
             {
-                Id = GetGameObjectIdentifierPayload(objSafeRef),
-                Scene = GetSceneIdentifierPayload(objSafeRef.SceneSafeRef)
+                Id = GetGameObjectIdentifierPayload(objSafeRef)
             };
 
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
@@ -61,7 +60,7 @@ namespace PLUME.Base.Module.Unity.GameObject
             // We need to modify the scene safe ref of the game object
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go);
             objSafeRef.SceneSafeRef = ctx.SafeRefProvider.GetOrCreateSceneSafeRef(scene);
-            
+
             if (!IsRecordingObject(objSafeRef))
                 return;
 

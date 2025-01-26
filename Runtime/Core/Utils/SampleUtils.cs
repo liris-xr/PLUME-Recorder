@@ -50,7 +50,8 @@ namespace PLUME.Core.Utils
     {
         public static readonly string NullGuid = Guid.Null.ToString();
 
-        public static readonly AssetIdentifier NullAssetIdentifierPayload = new() { Guid = NullGuid, Path = "" };
+        public static readonly AssetIdentifier NullAssetIdentifierPayload =
+            new() { Guid = NullGuid, AssetBundlePath = "" };
 
         public static readonly SceneIdentifier NullSceneIdentifierPayload = new()
         {
@@ -61,13 +62,14 @@ namespace PLUME.Core.Utils
         public static readonly GameObjectIdentifier NullGameObjectIdentifierPayload = new()
         {
             Guid = NullGuid,
-            TransformGuid = NullGuid
+            TransformGuid = NullGuid,
+            Scene = NullSceneIdentifierPayload
         };
 
         public static readonly ComponentIdentifier NullComponentIdentifierPayload = new()
         {
             Guid = NullGuid,
-            Gameobject = NullGameObjectIdentifierPayload
+            GameObject = NullGameObjectIdentifierPayload
         };
 
         public static AssetIdentifier GetAssetIdentifierPayload(UnityEngine.Object obj)
@@ -81,7 +83,7 @@ namespace PLUME.Core.Utils
             return new AssetIdentifier
             {
                 Guid = guidRegistryEntry.guid,
-                Path = guidRegistryEntry.assetBundlePath
+                AssetBundlePath = guidRegistryEntry.assetBundlePath
             };
         }
 
@@ -95,7 +97,7 @@ namespace PLUME.Core.Utils
             return new AssetIdentifier
             {
                 Guid = asset.Identifier.Guid.ToString(),
-                Path = asset.Identifier.AssetPath.ToString()
+                AssetBundlePath = asset.Identifier.AssetPath.ToString()
             };
         }
 
@@ -110,7 +112,7 @@ namespace PLUME.Core.Utils
             return new ComponentIdentifier
             {
                 Guid = componentGuidRegistryEntry.guid,
-                Gameobject = GetGameObjectIdentifierPayload(component.gameObject)
+                GameObject = GetGameObjectIdentifierPayload(component.gameObject)
             };
         }
 
@@ -124,10 +126,11 @@ namespace PLUME.Core.Utils
             return new ComponentIdentifier
             {
                 Guid = component.Identifier.Guid.ToString(),
-                Gameobject = new GameObjectIdentifier
+                GameObject = new GameObjectIdentifier
                 {
                     Guid = component.Identifier.GameObject.Guid.ToString(),
-                    TransformGuid = component.GameObjectSafeRef.Identifier.TransformGuid.ToString()
+                    TransformGuid = component.GameObjectSafeRef.Identifier.TransformGuid.ToString(),
+                    Scene = GetSceneIdentifierPayload(component.GameObjectSafeRef.SceneSafeRef)
                 }
             };
         }
@@ -144,7 +147,8 @@ namespace PLUME.Core.Utils
             return new GameObjectIdentifier
             {
                 Guid = gameObjectGuidRegistryEntry.guid,
-                TransformGuid = transformGuidRegistryEntry.guid
+                TransformGuid = transformGuidRegistryEntry.guid,
+                Scene = GetSceneIdentifierPayload(go.scene)
             };
         }
 
@@ -169,7 +173,7 @@ namespace PLUME.Core.Utils
             var sceneIdentifier = new SceneIdentifier
             {
                 Guid = guidRegistry.SceneGuid,
-                Path = scene.path,
+                AssetBundlePath = scene.path,
                 Name = scene.name
             };
 
@@ -181,7 +185,7 @@ namespace PLUME.Core.Utils
             var sceneIdentifier = new SceneIdentifier
             {
                 Guid = sceneSafeRef.Identifier.Guid.ToString(),
-                Path = sceneSafeRef.Identifier.Path.ToString(),
+                AssetBundlePath = sceneSafeRef.Identifier.Path.ToString(),
                 Name = sceneSafeRef.Identifier.Name.ToString()
             };
 

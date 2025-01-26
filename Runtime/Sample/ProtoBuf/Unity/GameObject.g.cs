@@ -26,23 +26,21 @@ namespace PLUME.Sample.Unity {
           string.Concat(
             "CiRwbHVtZS9zYW1wbGUvdW5pdHkvZ2FtZV9vYmplY3QucHJvdG8SEnBsdW1l",
             "LnNhbXBsZS51bml0eRokcGx1bWUvc2FtcGxlL3VuaXR5L2lkZW50aWZpZXJz",
-            "LnByb3RvIocBChBHYW1lT2JqZWN0Q3JlYXRlEjgKAmlkGAEgASgLMigucGx1",
-            "bWUuc2FtcGxlLnVuaXR5LkdhbWVPYmplY3RJZGVudGlmaWVyUgJpZBI5CgVz",
-            "Y2VuZRgCIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5TY2VuZUlkZW50aWZp",
-            "ZXJSBXNjZW5lIk0KEUdhbWVPYmplY3REZXN0cm95EjgKAmlkGAEgASgLMigu",
-            "cGx1bWUuc2FtcGxlLnVuaXR5LkdhbWVPYmplY3RJZGVudGlmaWVyUgJpZCKk",
-            "AgoQR2FtZU9iamVjdFVwZGF0ZRI4CgJpZBgBIAEoCzIoLnBsdW1lLnNhbXBs",
-            "ZS51bml0eS5HYW1lT2JqZWN0SWRlbnRpZmllclICaWQSFwoEbmFtZRgCIAEo",
-            "CUgAUgRuYW1liAEBEhsKBmFjdGl2ZRgDIAEoCEgBUgZhY3RpdmWIAQESFQoD",
-            "dGFnGAQgASgJSAJSA3RhZ4gBARIZCgVsYXllchgFIAEoBUgDUgVsYXllcogB",
-            "ARI+CgVzY2VuZRgGIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5TY2VuZUlk",
-            "ZW50aWZpZXJIBFIFc2NlbmWIAQFCBwoFX25hbWVCCQoHX2FjdGl2ZUIGCgRf",
-            "dGFnQggKBl9sYXllckIICgZfc2NlbmVCFaoCElBMVU1FLlNhbXBsZS5Vbml0",
-            "eWIGcHJvdG8z"));
+            "LnByb3RvIkwKEEdhbWVPYmplY3RDcmVhdGUSOAoCaWQYASABKAsyKC5wbHVt",
+            "ZS5zYW1wbGUudW5pdHkuR2FtZU9iamVjdElkZW50aWZpZXJSAmlkIk0KEUdh",
+            "bWVPYmplY3REZXN0cm95EjgKAmlkGAEgASgLMigucGx1bWUuc2FtcGxlLnVu",
+            "aXR5LkdhbWVPYmplY3RJZGVudGlmaWVyUgJpZCKkAgoQR2FtZU9iamVjdFVw",
+            "ZGF0ZRI4CgJpZBgBIAEoCzIoLnBsdW1lLnNhbXBsZS51bml0eS5HYW1lT2Jq",
+            "ZWN0SWRlbnRpZmllclICaWQSFwoEbmFtZRgCIAEoCUgAUgRuYW1liAEBEhsK",
+            "BmFjdGl2ZRgDIAEoCEgBUgZhY3RpdmWIAQESFQoDdGFnGAQgASgJSAJSA3Rh",
+            "Z4gBARIZCgVsYXllchgFIAEoBUgDUgVsYXllcogBARI+CgVzY2VuZRgGIAEo",
+            "CzIjLnBsdW1lLnNhbXBsZS51bml0eS5TY2VuZUlkZW50aWZpZXJIBFIFc2Nl",
+            "bmWIAQFCBwoFX25hbWVCCQoHX2FjdGl2ZUIGCgRfdGFnQggKBl9sYXllckII",
+            "CgZfc2NlbmVCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectCreate), global::PLUME.Sample.Unity.GameObjectCreate.Parser, new[]{ "Id", "Scene" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectCreate), global::PLUME.Sample.Unity.GameObjectCreate.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectDestroy), global::PLUME.Sample.Unity.GameObjectDestroy.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.GameObjectUpdate), global::PLUME.Sample.Unity.GameObjectUpdate.Parser, new[]{ "Id", "Name", "Active", "Tag", "Layer", "Scene" }, new[]{ "Name", "Active", "Tag", "Layer", "Scene" }, null, null, null)
           }));
@@ -87,7 +85,6 @@ namespace PLUME.Sample.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public GameObjectCreate(GameObjectCreate other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
-      scene_ = other.scene_ != null ? other.scene_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -109,18 +106,6 @@ namespace PLUME.Sample.Unity {
       }
     }
 
-    /// <summary>Field number for the "scene" field.</summary>
-    public const int SceneFieldNumber = 2;
-    private global::PLUME.Sample.Unity.SceneIdentifier scene_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Unity.SceneIdentifier Scene {
-      get { return scene_; }
-      set {
-        scene_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -137,7 +122,6 @@ namespace PLUME.Sample.Unity {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
-      if (!object.Equals(Scene, other.Scene)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -146,7 +130,6 @@ namespace PLUME.Sample.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
-      if (scene_ != null) hash ^= Scene.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -169,10 +152,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (scene_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Scene);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -187,10 +166,6 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
       }
-      if (scene_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Scene);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -203,9 +178,6 @@ namespace PLUME.Sample.Unity {
       int size = 0;
       if (id_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
-      }
-      if (scene_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Scene);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -224,12 +196,6 @@ namespace PLUME.Sample.Unity {
           Id = new global::PLUME.Sample.Unity.GameObjectIdentifier();
         }
         Id.MergeFrom(other.Id);
-      }
-      if (other.scene_ != null) {
-        if (scene_ == null) {
-          Scene = new global::PLUME.Sample.Unity.SceneIdentifier();
-        }
-        Scene.MergeFrom(other.Scene);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -257,13 +223,6 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Id);
             break;
           }
-          case 18: {
-            if (scene_ == null) {
-              Scene = new global::PLUME.Sample.Unity.SceneIdentifier();
-            }
-            input.ReadMessage(Scene);
-            break;
-          }
         }
       }
     #endif
@@ -288,13 +247,6 @@ namespace PLUME.Sample.Unity {
               Id = new global::PLUME.Sample.Unity.GameObjectIdentifier();
             }
             input.ReadMessage(Id);
-            break;
-          }
-          case 18: {
-            if (scene_ == null) {
-              Scene = new global::PLUME.Sample.Unity.SceneIdentifier();
-            }
-            input.ReadMessage(Scene);
             break;
           }
         }

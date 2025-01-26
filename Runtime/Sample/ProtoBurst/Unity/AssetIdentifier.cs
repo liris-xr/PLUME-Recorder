@@ -19,7 +19,7 @@ namespace PLUME.Sample.ProtoBurst.Unity
             WireFormat.WireType.LengthDelimited);
 
         private static readonly uint AssetPathFieldTag =
-            WireFormat.MakeTag(Sample.Unity.AssetIdentifier.PathFieldNumber, WireFormat.WireType.LengthDelimited);
+            WireFormat.MakeTag(Sample.Unity.AssetIdentifier.AssetBundlePathFieldNumber, WireFormat.WireType.LengthDelimited);
 
         public readonly int RuntimeId;
         public readonly Guid Guid;

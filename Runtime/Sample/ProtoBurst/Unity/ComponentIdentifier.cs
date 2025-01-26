@@ -19,7 +19,7 @@ namespace PLUME.Sample.ProtoBurst.Unity
             WireFormat.MakeTag(Sample.Unity.ComponentIdentifier.GuidFieldNumber, WireFormat.WireType.LengthDelimited);
 
         private static readonly uint GameObjectFieldTag =
-            WireFormat.MakeTag(Sample.Unity.ComponentIdentifier.GameobjectFieldNumber,
+            WireFormat.MakeTag(Sample.Unity.ComponentIdentifier.GameObjectFieldNumber,
                 WireFormat.WireType.LengthDelimited);
 
         public readonly int RuntimeId;

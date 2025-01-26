@@ -22,7 +22,7 @@ namespace PLUME.Sample.ProtoBurst.Unity
             WireFormat.MakeTag(Sample.Unity.SceneIdentifier.GuidFieldNumber, WireFormat.WireType.LengthDelimited);
 
         private static readonly uint PathFieldTag =
-            WireFormat.MakeTag(Sample.Unity.SceneIdentifier.PathFieldNumber,
+            WireFormat.MakeTag(Sample.Unity.SceneIdentifier.AssetBundlePathFieldNumber,
                 WireFormat.WireType.LengthDelimited);
 
         public readonly Guid Guid;

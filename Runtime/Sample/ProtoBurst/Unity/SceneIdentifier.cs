@@ -19,7 +19,7 @@ namespace PLUME.Sample.ProtoBurst.Unity
             WireFormat.MakeTag(Sample.Unity.SceneIdentifier.GuidFieldNumber, WireFormat.WireType.LengthDelimited);
 
         private static readonly uint NameFieldTag =
-            WireFormat.MakeTag(Sample.Unity.SceneIdentifier.GuidFieldNumber, WireFormat.WireType.LengthDelimited);
+            WireFormat.MakeTag(Sample.Unity.SceneIdentifier.NameFieldNumber, WireFormat.WireType.LengthDelimited);
 
         private static readonly uint PathFieldTag =
             WireFormat.MakeTag(Sample.Unity.SceneIdentifier.AssetBundlePathFieldNumber,

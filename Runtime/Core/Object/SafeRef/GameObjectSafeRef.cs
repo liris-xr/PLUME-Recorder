@@ -30,7 +30,7 @@ namespace PLUME.Core.Object.SafeRef
         {
             var runtimeId = go.GetInstanceID();
             var transformRuntimeId = go.transform.GetInstanceID();
-            Identifier = new GameObjectIdentifier(runtimeId, guid, transformRuntimeId, transformGuid);
+            Identifier = new GameObjectIdentifier(runtimeId, guid, transformRuntimeId, transformGuid, sceneSafeRef.Identifier);
             GameObject = go;
             SceneSafeRef = sceneSafeRef;
         }

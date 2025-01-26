@@ -162,7 +162,8 @@ namespace PLUME.Core.Utils
             return new GameObjectIdentifier
             {
                 Guid = go.Identifier.Guid.ToString(),
-                TransformGuid = go.Identifier.TransformGuid.ToString()
+                TransformGuid = go.Identifier.TransformGuid.ToString(),
+                Scene = GetSceneIdentifierPayload(go.SceneSafeRef)
             };
         }
 

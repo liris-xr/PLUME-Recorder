@@ -45,7 +45,6 @@ namespace PLUME.Base.Module.Unity.GameObject
             updateSample.Name = objSafeRef.GameObject.name;
             updateSample.Layer = objSafeRef.GameObject.layer;
             updateSample.Tag = objSafeRef.GameObject.tag;
-            updateSample.Scene = GetSceneIdentifierPayload(objSafeRef.SceneSafeRef);
         }
 
         protected override void OnObjectMarkedDestroyed(GameObjectSafeRef objSafeRef, RecorderContext ctx)

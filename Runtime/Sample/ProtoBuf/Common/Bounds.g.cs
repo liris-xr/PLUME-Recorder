@@ -26,14 +26,14 @@ namespace PLUME.Sample.Common {
           string.Concat(
             "CiBwbHVtZS9zYW1wbGUvY29tbW9uL2JvdW5kcy5wcm90bxITcGx1bWUuc2Ft",
             "cGxlLmNvbW1vbhohcGx1bWUvc2FtcGxlL2NvbW1vbi92ZWN0b3IzLnByb3Rv",
-            "InYKBkJvdW5kcxI0CgZjZW50ZXIYASABKAsyHC5wbHVtZS5zYW1wbGUuY29t",
-            "bW9uLlZlY3RvcjNSBmNlbnRlchI2CgdleHRlbnRzGAIgASgLMhwucGx1bWUu",
-            "c2FtcGxlLmNvbW1vbi5WZWN0b3IzUgdleHRlbnRzQhaqAhNQTFVNRS5TYW1w",
-            "bGUuQ29tbW9uYgZwcm90bzM="));
+            "InAKBkJvdW5kcxI0CgZjZW50ZXIYASABKAsyHC5wbHVtZS5zYW1wbGUuY29t",
+            "bW9uLlZlY3RvcjNSBmNlbnRlchIwCgRzaXplGAIgASgLMhwucGx1bWUuc2Ft",
+            "cGxlLmNvbW1vbi5WZWN0b3IzUgRzaXplQhaqAhNQTFVNRS5TYW1wbGUuQ29t",
+            "bW9uYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Common.Vector3Reflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Common.Bounds), global::PLUME.Sample.Common.Bounds.Parser, new[]{ "Center", "Extents" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Common.Bounds), global::PLUME.Sample.Common.Bounds.Parser, new[]{ "Center", "Size" }, null, null, null, null)
           }));
     }
     #endregion
@@ -76,7 +76,7 @@ namespace PLUME.Sample.Common {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Bounds(Bounds other) : this() {
       center_ = other.center_ != null ? other.center_.Clone() : null;
-      extents_ = other.extents_ != null ? other.extents_.Clone() : null;
+      size_ = other.size_ != null ? other.size_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -98,15 +98,15 @@ namespace PLUME.Sample.Common {
       }
     }
 
-    /// <summary>Field number for the "extents" field.</summary>
-    public const int ExtentsFieldNumber = 2;
-    private global::PLUME.Sample.Common.Vector3 extents_;
+    /// <summary>Field number for the "size" field.</summary>
+    public const int SizeFieldNumber = 2;
+    private global::PLUME.Sample.Common.Vector3 size_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Vector3 Extents {
-      get { return extents_; }
+    public global::PLUME.Sample.Common.Vector3 Size {
+      get { return size_; }
       set {
-        extents_ = value;
+        size_ = value;
       }
     }
 
@@ -126,7 +126,7 @@ namespace PLUME.Sample.Common {
         return true;
       }
       if (!object.Equals(Center, other.Center)) return false;
-      if (!object.Equals(Extents, other.Extents)) return false;
+      if (!object.Equals(Size, other.Size)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -135,7 +135,7 @@ namespace PLUME.Sample.Common {
     public override int GetHashCode() {
       int hash = 1;
       if (center_ != null) hash ^= Center.GetHashCode();
-      if (extents_ != null) hash ^= Extents.GetHashCode();
+      if (size_ != null) hash ^= Size.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -158,9 +158,9 @@ namespace PLUME.Sample.Common {
         output.WriteRawTag(10);
         output.WriteMessage(Center);
       }
-      if (extents_ != null) {
+      if (size_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(Extents);
+        output.WriteMessage(Size);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -176,9 +176,9 @@ namespace PLUME.Sample.Common {
         output.WriteRawTag(10);
         output.WriteMessage(Center);
       }
-      if (extents_ != null) {
+      if (size_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(Extents);
+        output.WriteMessage(Size);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -193,8 +193,8 @@ namespace PLUME.Sample.Common {
       if (center_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Center);
       }
-      if (extents_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Extents);
+      if (size_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Size);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -214,11 +214,11 @@ namespace PLUME.Sample.Common {
         }
         Center.MergeFrom(other.Center);
       }
-      if (other.extents_ != null) {
-        if (extents_ == null) {
-          Extents = new global::PLUME.Sample.Common.Vector3();
+      if (other.size_ != null) {
+        if (size_ == null) {
+          Size = new global::PLUME.Sample.Common.Vector3();
         }
-        Extents.MergeFrom(other.Extents);
+        Size.MergeFrom(other.Size);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -247,10 +247,10 @@ namespace PLUME.Sample.Common {
             break;
           }
           case 18: {
-            if (extents_ == null) {
-              Extents = new global::PLUME.Sample.Common.Vector3();
+            if (size_ == null) {
+              Size = new global::PLUME.Sample.Common.Vector3();
             }
-            input.ReadMessage(Extents);
+            input.ReadMessage(Size);
             break;
           }
         }
@@ -280,10 +280,10 @@ namespace PLUME.Sample.Common {
             break;
           }
           case 18: {
-            if (extents_ == null) {
-              Extents = new global::PLUME.Sample.Common.Vector3();
+            if (size_ == null) {
+              Size = new global::PLUME.Sample.Common.Vector3();
             }
-            input.ReadMessage(Extents);
+            input.ReadMessage(Size);
             break;
           }
         }

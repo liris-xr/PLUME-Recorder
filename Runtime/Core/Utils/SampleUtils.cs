@@ -396,7 +396,7 @@ namespace PLUME.Core.Utils
             return new Bounds
             {
                 Center = bounds.center.ToPayload(),
-                Extents = bounds.extents.ToPayload()
+                Size = bounds.size.ToPayload()
             };
         }
 

@@ -3,6 +3,8 @@ using System.Linq;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Settings;
+using UnityEngine;
+using UnityEngine.Pool;
 
 namespace PLUME.Core.Recorder
 {
@@ -35,6 +37,76 @@ namespace PLUME.Core.Recorder
             var recorderModule = Modules.OfType<T>();
             module = recorderModule.FirstOrDefault();
             return module != null;
+        }
+        
+        internal void StartRecordingGameObjectInternal(GameObject go, bool markCreated = true)
+        {
+            var tmpComponents = ListPool<Component>.Get();
+            go.GetComponentsInChildren(true, tmpComponents);
+
+            foreach (var component in tmpComponents)
+            {
+                var componentSafeRef = SafeRefProvider.GetOrCreateComponentSafeRef(component);
+
+                // Start recording nested GameObjects. This also applies to the given GameObject itself.
+                if (component is Transform)
+                {
+                    StartRecordingObjectInternal(componentSafeRef.GameObjectSafeRef, markCreated);
+                }
+
+                StartRecordingObjectInternal(componentSafeRef, markCreated);
+            }
+            
+            ListPool<Component>.Release(tmpComponents);
+        }
+
+        internal void StopRecordingGameObjectInternal(GameObject go, bool markDestroyed = true)
+        {
+            var tmpComponents = ListPool<Component>.Get();
+            go.GetComponentsInChildren(tmpComponents);
+
+            foreach (var component in tmpComponents)
+            {
+                var componentSafeRef = SafeRefProvider.GetOrCreateComponentSafeRef(component);
+                StopRecordingObjectInternal(componentSafeRef, markDestroyed);
+
+                // Stop recording nested GameObjects. This also applies to the given GameObject itself.
+                if (component is Transform)
+                {
+                    StopRecordingObjectInternal(componentSafeRef.GameObjectSafeRef, markDestroyed);
+                }
+            }
+            
+            ListPool<Component>.Release(tmpComponents);
+        }
+
+        internal void StartRecordingObjectInternal(IObjectSafeRef objectSafeRef, bool markCreated)
+        {
+            // TODO: cache the module by object type Dictionary<Type, List<Module>>
+            // TODO: module should be picked from most specific to most general, with only one module per type
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Modules.Count; i++)
+            {
+                var module = Modules[i];
+                if (module is not IObjectRecorderModule objectRecorderModule)
+                    continue;
+
+                objectRecorderModule.StartRecordingObject(objectSafeRef, markCreated, this);
+            }
+        }
+
+        internal void StopRecordingObjectInternal(IObjectSafeRef objectSafeRef, bool markDestroyed)
+        {
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Modules.Count; i++)
+            {
+                var module = Modules[i];
+
+                if (module is not IObjectRecorderModule objectRecorderModule)
+                    continue;
+
+                objectRecorderModule.StopRecordingObject(objectSafeRef, markDestroyed, this);
+            }
         }
     }
 }

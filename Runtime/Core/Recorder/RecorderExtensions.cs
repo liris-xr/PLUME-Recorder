@@ -14,7 +14,7 @@ namespace PLUME.Core.Recorder
     public sealed partial class PlumeRecorder
     {
         public static PlumeRecorder Instance { get; private set; }
-        
+
         public static RecorderStatus Status => Instance._context.Status;
 
         public static bool IsRecording => Instance._context.Status is RecorderStatus.Recording;
@@ -28,11 +28,11 @@ namespace PLUME.Core.Recorder
             if (Instance == null)
                 throw new InvalidOperationException("PLUME recorder instance is not created yet.");
         }
-        
-        public static void StartRecording(string name, string extraMetadata = "", bool recordAll = true, bool markAllCreated = true)
+
+        public static void StartRecording(string name, string extraMetadata = "")
         {
             CheckInstantiated();
-            Instance.StartRecordingInternal(name, extraMetadata, recordAll, markAllCreated);
+            Instance.StartRecordingInternal(name, extraMetadata);
         }
 
         public static async UniTask StopRecording()
@@ -58,35 +58,35 @@ namespace PLUME.Core.Recorder
             CheckInstantiated();
             Instance.RecordTimestampedManagedSampleInternal(sample);
         }
-        
+
         public static void RecordTimestampedSample<T>(T sample) where T : unmanaged, IProtoBurstMessage
         {
             CheckInstantiated();
             Instance.RecordTimestampedSampleInternal(sample);
         }
-        
+
         public static void RecordTimelessManagedSample(IMessage sample)
         {
             CheckInstantiated();
             Instance.RecordTimelessManagedSampleInternal(sample);
         }
-        
+
         public static void RecordTimelessSample<T>(T sample) where T : unmanaged, IProtoBurstMessage
         {
             CheckInstantiated();
             Instance.RecordTimelessSampleInternal(sample);
         }
-        
+
         public static void StartRecordingGameObject(GameObject go, bool markCreated = true)
         {
             CheckInstantiated();
-            Instance.StartRecordingGameObjectInternal(go, markCreated);
+            Instance._context.StartRecordingGameObjectInternal(go, markCreated);
         }
 
         public static void StopRecordingGameObject(GameObject go, bool markDestroyed = true)
         {
             CheckInstantiated();
-            Instance.StopRecordingGameObjectInternal(go, markDestroyed);
+            Instance._context.StopRecordingGameObjectInternal(go, markDestroyed);
         }
 
         /// <summary>
@@ -101,8 +101,9 @@ namespace PLUME.Core.Recorder
             var recorderModules = RecorderModuleManager.InstantiateRecorderModulesFromAllAssemblies();
             var dataDispatcher = new DataDispatcher();
             var settingsProvider = new FileSettingsProvider();
-            var recorderContext = new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider, settingsProvider);
-            
+            var recorderContext =
+                new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider, settingsProvider);
+
             Instance = new PlumeRecorder(dataDispatcher, recorderContext);
 
             foreach (var recorderModule in recorderModules)

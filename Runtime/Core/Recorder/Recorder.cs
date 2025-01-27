@@ -15,6 +15,7 @@ using PLUME.Sample.Unity.Settings;
 using ProtoBurst;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 using static PLUME.Core.Utils.SampleUtils;
 
 namespace PLUME.Core.Recorder
@@ -38,8 +39,6 @@ namespace PLUME.Core.Recorder
         private readonly DataDispatcher _dataDispatcher;
         private bool _wantsToQuit;
 
-        private static readonly List<Component> TempComponents = new();
-
         private PlumeRecorder(DataDispatcher dataDispatcher, RecorderContext ctx)
         {
             _context = ctx;
@@ -50,8 +49,7 @@ namespace PLUME.Core.Recorder
         /// Starts the recording process. If the recorder is already recording, throw a <see cref="InvalidOperationException"/> exception.
         /// </summary>
         /// <exception cref="InvalidOperationException"></exception>
-        private void StartRecordingInternal(string name, string extraMetadata = "", bool recordAll = true,
-            bool markAllCreated = true)
+        private void StartRecordingInternal(string name, string extraMetadata = "")
         {
             if (_context.Status is RecorderStatus.Stopping)
                 throw new InvalidOperationException(
@@ -85,17 +83,6 @@ namespace PLUME.Core.Recorder
             }
 
             recordClock.Start();
-
-            if (recordAll)
-            {
-                var gameObjects = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsInactive.Include,
-                    FindObjectsSortMode.None);
-
-                foreach (var go in gameObjects)
-                {
-                    StartRecordingGameObject(go, markAllCreated);
-                }
-            }
 
             Logger.Log("Recorder started.");
         }
@@ -203,82 +190,6 @@ namespace PLUME.Core.Recorder
             stopwatch.Stop();
             _context.Status = RecorderStatus.Stopped;
             Logger.Log("Recorder force stopped after " + stopwatch.ElapsedMilliseconds + "ms.");
-        }
-
-        private void StartRecordingGameObjectInternal(GameObject go, bool markCreated = true)
-        {
-            EnsureIsRecording();
-
-            var safeRefProvider = _context.SafeRefProvider;
-
-            go.GetComponentsInChildren(true, TempComponents);
-
-            foreach (var component in TempComponents)
-            {
-                var componentSafeRef = safeRefProvider.GetOrCreateComponentSafeRef(component);
-
-                // Start recording nested GameObjects. This also applies to the given GameObject itself.
-                if (component is Transform)
-                {
-                    StartRecordingObjectInternal(componentSafeRef.GameObjectSafeRef, markCreated);
-                }
-
-                StartRecordingObjectInternal(componentSafeRef, markCreated);
-            }
-        }
-
-        private void StopRecordingGameObjectInternal(GameObject go, bool markDestroyed = true)
-        {
-            EnsureIsRecording();
-
-            var safeRefProvider = _context.SafeRefProvider;
-
-            go.GetComponentsInChildren(TempComponents);
-
-            foreach (var component in TempComponents)
-            {
-                var componentSafeRef = safeRefProvider.GetOrCreateComponentSafeRef(component);
-                StopRecordingObjectInternal(componentSafeRef, markDestroyed);
-
-                // Stop recording nested GameObjects. This also applies to the given GameObject itself.
-                if (component is Transform)
-                {
-                    StopRecordingObjectInternal(componentSafeRef.GameObjectSafeRef, markDestroyed);
-                }
-            }
-        }
-
-        private void StartRecordingObjectInternal(IObjectSafeRef objectSafeRef, bool markCreated)
-        {
-            EnsureIsRecording();
-
-            // TODO: cache the module by object type Dictionary<Type, List<Module>>
-            // TODO: module should be picked from most specific to most general, with only one module per type
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
-            {
-                var module = _context.Modules[i];
-                if (module is not IObjectRecorderModule objectRecorderModule)
-                    continue;
-
-                objectRecorderModule.StartRecordingObject(objectSafeRef, markCreated, _context);
-            }
-        }
-
-        private void StopRecordingObjectInternal(IObjectSafeRef objectSafeRef, bool markDestroyed)
-        {
-            EnsureIsRecording();
-
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
-            {
-                var module = _context.Modules[i];
-
-                if (module is not IObjectRecorderModule objectRecorderModule)
-                    continue;
-
-                objectRecorderModule.StopRecordingObject(objectSafeRef, markDestroyed, _context);
-            }
         }
         
         private void RecordTimestampedManagedSampleInternal(IMessage sample)

@@ -37,7 +37,6 @@ namespace PLUME.Core.Object
             {
                 var componentRegistryEntry = oldSceneGuidRegistry.GetOrCreateEntry(component);
                 oldSceneGuidRegistry.Remove(component);
-                Debug.Log(component + " " + componentRegistryEntry.guid);
                 newSceneGuidRegistry.TryAdd(componentRegistryEntry);
             }
         }

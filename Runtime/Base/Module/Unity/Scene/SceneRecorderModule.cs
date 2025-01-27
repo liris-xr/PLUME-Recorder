@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Utils;
@@ -6,7 +7,6 @@ using PLUME.Sample.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Scripting;
-using UnityRuntimeGuid;
 using LoadSceneMode = UnityEngine.SceneManagement.LoadSceneMode;
 
 namespace PLUME.Base.Module.Unity.Scene
@@ -23,32 +23,38 @@ namespace PLUME.Base.Module.Unity.Scene
         private readonly List<UnloadScene> _unloadSceneSamples = new();
         private ChangeActiveScene _changeActiveSceneSample;
 
+        private UnityEngine.GameObject _dontDestroyOnLoadHandle;
+        
         protected override void OnStartRecording(RecorderContext ctx)
         {
             base.OnStartRecording(ctx);
 
-            SceneManager.sceneLoaded += OnLoadScene;
-            SceneManager.sceneUnloaded += OnUnloadScene;
-            SceneManager.activeSceneChanged += OnChangeActiveScene;
-
+            SceneManager.sceneLoaded += (scene, loadMode) => OnLoadScene(scene, loadMode, ctx);
+            SceneManager.sceneUnloaded += scene => OnUnloadScene(scene, ctx);
+            SceneManager.activeSceneChanged += (scene, loadMode) => OnChangeActiveScene(scene, loadMode, ctx);
+            
+            _dontDestroyOnLoadHandle = new UnityEngine.GameObject("DontDestroyOnLoadHandle");
+            Object.DontDestroyOnLoad(_dontDestroyOnLoadHandle);
+            OnLoadScene(_dontDestroyOnLoadHandle.scene, LoadSceneMode.Additive, ctx);
+            
             // TODO: create a function StartRecordingScene which takes a bool param to record the loading sample or not for pre-serialization
             for (var sceneIdx = 0; sceneIdx < SceneManager.sceneCount; ++sceneIdx)
             {
                 var scene = SceneManager.GetSceneAt(sceneIdx);
+                var loadMode = SceneManager.sceneCount > 1 ? LoadSceneMode.Additive : LoadSceneMode.Single;
                 if (scene.isLoaded)
-                    RecordLoadScene(scene, SceneManager.sceneCount > 1 ? LoadSceneMode.Additive : LoadSceneMode.Single);
+                {
+                    RecordLoadScene(scene, loadMode, ctx);
+                    OnLoadScene(scene, SceneManager.sceneCount > 1 ? LoadSceneMode.Additive : LoadSceneMode.Single, ctx);
+                }
             }
 
-            RecordChangeActiveScene(SceneManager.GetActiveScene());
+            RecordChangeActiveScene(SceneManager.GetActiveScene(), ctx);
         }
 
         protected override void OnStopRecording(RecorderContext ctx)
         {
             base.OnStopRecording(ctx);
-
-            SceneManager.sceneLoaded -= OnLoadScene;
-            SceneManager.sceneUnloaded -= OnUnloadScene;
-            SceneManager.activeSceneChanged -= OnChangeActiveScene;
 
             _loadedScenes.Clear();
             _lastActiveScene = null;
@@ -72,9 +78,9 @@ namespace PLUME.Base.Module.Unity.Scene
             _changeActiveSceneSample = null;
         }
 
-        private void OnLoadScene(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+        private void OnLoadScene(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode, RecorderContext ctx)
         {
-            RecordLoadScene(scene, mode);
+            RecordLoadScene(scene, mode, ctx);
 
             if (!_loadedScenes.Contains(scene))
                 _loadedScenes.Add(scene);
@@ -82,24 +88,24 @@ namespace PLUME.Base.Module.Unity.Scene
             if (SceneManager.GetActiveScene() != scene || _lastActiveScene == scene)
                 return;
 
-            RecordChangeActiveScene(scene);
+            RecordChangeActiveScene(scene, ctx);
             _lastActiveScene = scene;
         }
 
-        private void OnUnloadScene(UnityEngine.SceneManagement.Scene scene)
+        private void OnUnloadScene(UnityEngine.SceneManagement.Scene scene, RecorderContext ctx)
         {
-            RecordUnloadScene(scene);
+            RecordUnloadScene(scene, ctx);
             _loadedScenes.Remove(scene);
 
             if (SceneManager.GetActiveScene() == _lastActiveScene)
                 return;
 
-            RecordChangeActiveScene(SceneManager.GetActiveScene());
+            RecordChangeActiveScene(SceneManager.GetActiveScene(), ctx);
             _lastActiveScene = scene;
         }
 
         private void OnChangeActiveScene(UnityEngine.SceneManagement.Scene oldActive,
-            UnityEngine.SceneManagement.Scene newActive)
+            UnityEngine.SceneManagement.Scene newActive, RecorderContext ctx)
         {
             // As OnChangeActiveScene is fired before OnLoadScene, we make sure that the scene is already loaded to record
             // this change. Otherwise it means that this is called by a scene being loaded in single mode, thus the event
@@ -108,11 +114,11 @@ namespace PLUME.Base.Module.Unity.Scene
                 return;
 
             if (newActive == _lastActiveScene) return;
-            RecordChangeActiveScene(newActive);
+            RecordChangeActiveScene(newActive, ctx);
             _lastActiveScene = newActive;
         }
 
-        private void RecordLoadScene(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+        private void RecordLoadScene(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode, RecorderContext ctx)
         {
             var sceneIdentifier = SampleUtils.GetSceneIdentifierPayload(scene);
 
@@ -125,9 +131,17 @@ namespace PLUME.Base.Module.Unity.Scene
             };
 
             _loadSceneSamples.Add(loadSceneSample);
+
+            var gameObjects = Object.FindObjectsByType<UnityEngine.GameObject>(FindObjectsInactive.Include,
+                FindObjectsSortMode.None).Where(go => go.scene == scene);
+
+            foreach (var go in gameObjects)
+            {
+                ctx.StartRecordingGameObjectInternal(go);
+            }
         }
 
-        private void RecordUnloadScene(UnityEngine.SceneManagement.Scene scene)
+        private void RecordUnloadScene(UnityEngine.SceneManagement.Scene scene, RecorderContext ctx)
         {
             if (!_cachedSceneIdentifiers.TryGetValue(scene, out var sceneIdentifier)) return;
 
@@ -137,9 +151,17 @@ namespace PLUME.Base.Module.Unity.Scene
             };
 
             _unloadSceneSamples.Add(unloadSceneSample);
+
+            var gameObjects = Object.FindObjectsByType<UnityEngine.GameObject>(FindObjectsInactive.Include,
+                FindObjectsSortMode.None).Where(go => go.scene == scene);
+
+            foreach (var go in gameObjects)
+            {
+                ctx.StopRecordingGameObjectInternal(go);
+            }
         }
 
-        private void RecordChangeActiveScene(UnityEngine.SceneManagement.Scene scene)
+        private void RecordChangeActiveScene(UnityEngine.SceneManagement.Scene scene, RecorderContext ctx)
         {
             if (!_cachedSceneIdentifiers.TryGetValue(scene, out var sceneIdentifier)) return;
 

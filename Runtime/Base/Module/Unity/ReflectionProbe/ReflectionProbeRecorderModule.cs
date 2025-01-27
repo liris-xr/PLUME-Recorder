@@ -2,6 +2,7 @@
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity;
+using UnityEngine;
 using UnityEngine.Scripting;
 using static PLUME.Core.Utils.SampleUtils;
 using ReflectionProbeSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.ReflectionProbe>;
@@ -29,7 +30,10 @@ namespace PLUME.Base.Module.Unity.ReflectionProbe
             var customBakedTexture =
                 ctx.SafeRefProvider.GetOrCreateAssetSafeRef(objSafeRef.Component.customBakedTexture);
             var bakedTexture = ctx.SafeRefProvider.GetOrCreateAssetSafeRef(objSafeRef.Component.bakedTexture);
-
+            
+            var localBounds = objSafeRef.Component.bounds;
+            localBounds.center -= objSafeRef.Component.transform.position;
+            
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Enabled = objSafeRef.Component.enabled;
             updateSample.Mode = objSafeRef.Component.mode.ToPayload();
@@ -43,7 +47,7 @@ namespace PLUME.Base.Module.Unity.ReflectionProbe
             updateSample.RenderDynamicObjects = objSafeRef.Component.renderDynamicObjects;
             updateSample.BoxProjection = objSafeRef.Component.boxProjection;
             updateSample.BlendDistance = objSafeRef.Component.blendDistance;
-            updateSample.Bounds = objSafeRef.Component.bounds.ToPayload();
+            updateSample.Bounds = localBounds.ToPayload();
             updateSample.Resolution = objSafeRef.Component.resolution;
             updateSample.Hdr = objSafeRef.Component.hdr;
             updateSample.ShadowDistance = objSafeRef.Component.shadowDistance;

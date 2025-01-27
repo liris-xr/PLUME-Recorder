@@ -28,7 +28,7 @@ namespace PLUME.Sample.Unity.Settings {
             "LnByb3RvEhtwbHVtZS5zYW1wbGUudW5pdHkuc2V0dGluZ3MaJHBsdW1lL3Nh",
             "bXBsZS91bml0eS9pZGVudGlmaWVycy5wcm90bxofcGx1bWUvc2FtcGxlL2Nv",
             "bW1vbi9jb2xvci5wcm90bxowcGx1bWUvc2FtcGxlL2NvbW1vbi9zcGhlcmlj",
-            "YWxfaGFybW9uaWNzX2wyLnByb3RvIqQQChRSZW5kZXJTZXR0aW5nc1VwZGF0",
+            "YWxfaGFybW9uaWNzX2wyLnByb3RvIrUQChRSZW5kZXJTZXR0aW5nc1VwZGF0",
             "ZRJACgZza3lib3gYASABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJ",
             "ZGVudGlmaWVySABSBnNreWJveIgBARI+CgNzdW4YAiABKAsyJy5wbHVtZS5z",
             "YW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllckgBUgNzdW6IAQESFQoD",
@@ -38,57 +38,58 @@ namespace PLUME.Sample.Unity.Settings {
             "ckgEUghmb2dDb2xvcogBARIkCgtmb2dfZGVuc2l0eRgGIAEoAkgFUgpmb2dE",
             "ZW5zaXR5iAEBEjEKEmZvZ19zdGFydF9kaXN0YW5jZRgHIAEoAkgGUhBmb2dT",
             "dGFydERpc3RhbmNliAEBEi0KEGZvZ19lbmRfZGlzdGFuY2UYCCABKAJIB1IO",
-            "Zm9nRW5kRGlzdGFuY2WIAQESRAoNYW1iaWVudF9jb2xvchgJIAEoCzIaLnBs",
-            "dW1lLnNhbXBsZS5jb21tb24uQ29sb3JICFIMYW1iaWVudENvbG9yiAEBElMK",
-            "FWFtYmllbnRfZXF1YXRvcl9jb2xvchgKIAEoCzIaLnBsdW1lLnNhbXBsZS5j",
-            "b21tb24uQ29sb3JICVITYW1iaWVudEVxdWF0b3JDb2xvcogBARJRChRhbWJp",
-            "ZW50X2dyb3VuZF9jb2xvchgLIAEoCzIaLnBsdW1lLnNhbXBsZS5jb21tb24u",
-            "Q29sb3JIClISYW1iaWVudEdyb3VuZENvbG9yiAEBEksKEWFtYmllbnRfc2t5",
-            "X2NvbG9yGAwgASgLMhoucGx1bWUuc2FtcGxlLmNvbW1vbi5Db2xvckgLUg9h",
-            "bWJpZW50U2t5Q29sb3KIAQESMAoRYW1iaWVudF9pbnRlbnNpdHkYDSABKAJI",
-            "DFIQYW1iaWVudEludGVuc2l0eYgBARJQCgxhbWJpZW50X21vZGUYDiABKA4y",
-            "KC5wbHVtZS5zYW1wbGUudW5pdHkuc2V0dGluZ3MuQW1iaWVudE1vZGVIDVIL",
-            "YW1iaWVudE1vZGWIAQESUwoNYW1iaWVudF9wcm9iZRgPIAEoCzIpLnBsdW1l",
-            "LnNhbXBsZS5jb21tb24uU3BoZXJpY2FsSGFybW9uaWNzTDJIDlIMYW1iaWVu",
-            "dFByb2JliAEBEmQKGWN1c3RvbV9yZWZsZWN0aW9uX3RleHR1cmUYECABKAsy",
-            "Iy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVudGlmaWVySA9SF2N1c3Rv",
-            "bVJlZmxlY3Rpb25UZXh0dXJliAEBEm8KF2RlZmF1bHRfcmVmbGVjdGlvbl9t",
-            "b2RlGBEgASgOMjIucGx1bWUuc2FtcGxlLnVuaXR5LnNldHRpbmdzLkRlZmF1",
-            "bHRSZWZsZWN0aW9uTW9kZUgQUhVkZWZhdWx0UmVmbGVjdGlvbk1vZGWIAQES",
-            "RwodZGVmYXVsdF9yZWZsZWN0aW9uX3Jlc29sdXRpb24YEiABKAVIEVIbZGVm",
-            "YXVsdFJlZmxlY3Rpb25SZXNvbHV0aW9uiAEBEjIKEnJlZmxlY3Rpb25fYm91",
-            "bmNlcxgTIAEoBUgSUhFyZWZsZWN0aW9uQm91bmNlc4gBARI2ChRyZWZsZWN0",
-            "aW9uX2ludGVuc2l0eRgUIAEoAkgTUhNyZWZsZWN0aW9uSW50ZW5zaXR5iAEB",
-            "EigKDWhhbG9fc3RyZW5ndGgYFSABKAJIFFIMaGFsb1N0cmVuZ3RoiAEBEioK",
-            "DmZsYXJlX3N0cmVuZ3RoGBYgASgCSBVSDWZsYXJlU3RyZW5ndGiIAQESLQoQ",
-            "ZmxhcmVfZmFkZV9zcGVlZBgXIAEoAkgWUg5mbGFyZUZhZGVTcGVlZIgBARJZ",
-            "ChhzdWJ0cmFjdGl2ZV9zaGFkb3dfY29sb3IYGCABKAsyGi5wbHVtZS5zYW1w",
-            "bGUuY29tbW9uLkNvbG9ySBdSFnN1YnRyYWN0aXZlU2hhZG93Q29sb3KIAQFC",
-            "CQoHX3NreWJveEIGCgRfc3VuQgYKBF9mb2dCCwoJX2ZvZ19tb2RlQgwKCl9m",
-            "b2dfY29sb3JCDgoMX2ZvZ19kZW5zaXR5QhUKE19mb2dfc3RhcnRfZGlzdGFu",
-            "Y2VCEwoRX2ZvZ19lbmRfZGlzdGFuY2VCEAoOX2FtYmllbnRfY29sb3JCGAoW",
-            "X2FtYmllbnRfZXF1YXRvcl9jb2xvckIXChVfYW1iaWVudF9ncm91bmRfY29s",
-            "b3JCFAoSX2FtYmllbnRfc2t5X2NvbG9yQhQKEl9hbWJpZW50X2ludGVuc2l0",
-            "eUIPCg1fYW1iaWVudF9tb2RlQhAKDl9hbWJpZW50X3Byb2JlQhwKGl9jdXN0",
-            "b21fcmVmbGVjdGlvbl90ZXh0dXJlQhoKGF9kZWZhdWx0X3JlZmxlY3Rpb25f",
-            "bW9kZUIgCh5fZGVmYXVsdF9yZWZsZWN0aW9uX3Jlc29sdXRpb25CFQoTX3Jl",
-            "ZmxlY3Rpb25fYm91bmNlc0IXChVfcmVmbGVjdGlvbl9pbnRlbnNpdHlCEAoO",
-            "X2hhbG9fc3RyZW5ndGhCEQoPX2ZsYXJlX3N0cmVuZ3RoQhMKEV9mbGFyZV9m",
-            "YWRlX3NwZWVkQhsKGV9zdWJ0cmFjdGl2ZV9zaGFkb3dfY29sb3IqdAoHRm9n",
-            "TW9kZRIYChRGT0dfTU9ERV9VTlNQRUNJRklFRBAAEhMKD0ZPR19NT0RFX0xJ",
-            "TkVBUhABEhgKFEZPR19NT0RFX0VYUE9ORU5USUFMEAISIAocRk9HX01PREVf",
-            "RVhQT05FTlRJQUxfU1FVQVJFRBADKo8BCgtBbWJpZW50TW9kZRIcChhBTUJJ",
-            "RU5UX01PREVfVU5TUEVDSUZJRUQQABIXChNBTUJJRU5UX01PREVfU0tZQk9Y",
-            "EAESGQoVQU1CSUVOVF9NT0RFX1RSSUxJR0hUEAISFQoRQU1CSUVOVF9NT0RF",
-            "X0ZMQVQQAxIXChNBTUJJRU5UX01PREVfQ1VTVE9NEAQqiAEKFURlZmF1bHRS",
-            "ZWZsZWN0aW9uTW9kZRInCiNERUZBVUxUX1JFRkxFQ1RJT05fTU9ERV9VTlNQ",
-            "RUNJRklFRBAAEiIKHkRFRkFVTFRfUkVGTEVDVElPTl9NT0RFX1NLWUJPWBAB",
-            "EiIKHkRFRkFVTFRfUkVGTEVDVElPTl9NT0RFX0NVU1RPTRACQh6qAhtQTFVN",
-            "RS5TYW1wbGUuVW5pdHkuU2V0dGluZ3NiBnByb3RvMw=="));
+            "Zm9nRW5kRGlzdGFuY2WIAQESTwoTYW1iaWVudF9saWdodF9jb2xvchgJIAEo",
+            "CzIaLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3JICFIRYW1iaWVudExpZ2h0",
+            "Q29sb3KIAQESUwoVYW1iaWVudF9lcXVhdG9yX2NvbG9yGAogASgLMhoucGx1",
+            "bWUuc2FtcGxlLmNvbW1vbi5Db2xvckgJUhNhbWJpZW50RXF1YXRvckNvbG9y",
+            "iAEBElEKFGFtYmllbnRfZ3JvdW5kX2NvbG9yGAsgASgLMhoucGx1bWUuc2Ft",
+            "cGxlLmNvbW1vbi5Db2xvckgKUhJhbWJpZW50R3JvdW5kQ29sb3KIAQESSwoR",
+            "YW1iaWVudF9za3lfY29sb3IYDCABKAsyGi5wbHVtZS5zYW1wbGUuY29tbW9u",
+            "LkNvbG9ySAtSD2FtYmllbnRTa3lDb2xvcogBARIwChFhbWJpZW50X2ludGVu",
+            "c2l0eRgNIAEoAkgMUhBhbWJpZW50SW50ZW5zaXR5iAEBElAKDGFtYmllbnRf",
+            "bW9kZRgOIAEoDjIoLnBsdW1lLnNhbXBsZS51bml0eS5zZXR0aW5ncy5BbWJp",
+            "ZW50TW9kZUgNUgthbWJpZW50TW9kZYgBARJTCg1hbWJpZW50X3Byb2JlGA8g",
+            "ASgLMikucGx1bWUuc2FtcGxlLmNvbW1vbi5TcGhlcmljYWxIYXJtb25pY3NM",
+            "MkgOUgxhbWJpZW50UHJvYmWIAQESZAoZY3VzdG9tX3JlZmxlY3Rpb25fdGV4",
+            "dHVyZRgQIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZp",
+            "ZXJID1IXY3VzdG9tUmVmbGVjdGlvblRleHR1cmWIAQESbwoXZGVmYXVsdF9y",
+            "ZWZsZWN0aW9uX21vZGUYESABKA4yMi5wbHVtZS5zYW1wbGUudW5pdHkuc2V0",
+            "dGluZ3MuRGVmYXVsdFJlZmxlY3Rpb25Nb2RlSBBSFWRlZmF1bHRSZWZsZWN0",
+            "aW9uTW9kZYgBARJHCh1kZWZhdWx0X3JlZmxlY3Rpb25fcmVzb2x1dGlvbhgS",
+            "IAEoBUgRUhtkZWZhdWx0UmVmbGVjdGlvblJlc29sdXRpb26IAQESMgoScmVm",
+            "bGVjdGlvbl9ib3VuY2VzGBMgASgFSBJSEXJlZmxlY3Rpb25Cb3VuY2VziAEB",
+            "EjYKFHJlZmxlY3Rpb25faW50ZW5zaXR5GBQgASgCSBNSE3JlZmxlY3Rpb25J",
+            "bnRlbnNpdHmIAQESKAoNaGFsb19zdHJlbmd0aBgVIAEoAkgUUgxoYWxvU3Ry",
+            "ZW5ndGiIAQESKgoOZmxhcmVfc3RyZW5ndGgYFiABKAJIFVINZmxhcmVTdHJl",
+            "bmd0aIgBARItChBmbGFyZV9mYWRlX3NwZWVkGBcgASgCSBZSDmZsYXJlRmFk",
+            "ZVNwZWVkiAEBElkKGHN1YnRyYWN0aXZlX3NoYWRvd19jb2xvchgYIAEoCzIa",
+            "LnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3JIF1IWc3VidHJhY3RpdmVTaGFk",
+            "b3dDb2xvcogBAUIJCgdfc2t5Ym94QgYKBF9zdW5CBgoEX2ZvZ0ILCglfZm9n",
+            "X21vZGVCDAoKX2ZvZ19jb2xvckIOCgxfZm9nX2RlbnNpdHlCFQoTX2ZvZ19z",
+            "dGFydF9kaXN0YW5jZUITChFfZm9nX2VuZF9kaXN0YW5jZUIWChRfYW1iaWVu",
+            "dF9saWdodF9jb2xvckIYChZfYW1iaWVudF9lcXVhdG9yX2NvbG9yQhcKFV9h",
+            "bWJpZW50X2dyb3VuZF9jb2xvckIUChJfYW1iaWVudF9za3lfY29sb3JCFAoS",
+            "X2FtYmllbnRfaW50ZW5zaXR5Qg8KDV9hbWJpZW50X21vZGVCEAoOX2FtYmll",
+            "bnRfcHJvYmVCHAoaX2N1c3RvbV9yZWZsZWN0aW9uX3RleHR1cmVCGgoYX2Rl",
+            "ZmF1bHRfcmVmbGVjdGlvbl9tb2RlQiAKHl9kZWZhdWx0X3JlZmxlY3Rpb25f",
+            "cmVzb2x1dGlvbkIVChNfcmVmbGVjdGlvbl9ib3VuY2VzQhcKFV9yZWZsZWN0",
+            "aW9uX2ludGVuc2l0eUIQCg5faGFsb19zdHJlbmd0aEIRCg9fZmxhcmVfc3Ry",
+            "ZW5ndGhCEwoRX2ZsYXJlX2ZhZGVfc3BlZWRCGwoZX3N1YnRyYWN0aXZlX3No",
+            "YWRvd19jb2xvcip0CgdGb2dNb2RlEhgKFEZPR19NT0RFX1VOU1BFQ0lGSUVE",
+            "EAASEwoPRk9HX01PREVfTElORUFSEAESGAoURk9HX01PREVfRVhQT05FTlRJ",
+            "QUwQAhIgChxGT0dfTU9ERV9FWFBPTkVOVElBTF9TUVVBUkVEEAMqjwEKC0Ft",
+            "YmllbnRNb2RlEhwKGEFNQklFTlRfTU9ERV9VTlNQRUNJRklFRBAAEhcKE0FN",
+            "QklFTlRfTU9ERV9TS1lCT1gQARIZChVBTUJJRU5UX01PREVfVFJJTElHSFQQ",
+            "AhIVChFBTUJJRU5UX01PREVfRkxBVBADEhcKE0FNQklFTlRfTU9ERV9DVVNU",
+            "T00QBCqIAQoVRGVmYXVsdFJlZmxlY3Rpb25Nb2RlEicKI0RFRkFVTFRfUkVG",
+            "TEVDVElPTl9NT0RFX1VOU1BFQ0lGSUVEEAASIgoeREVGQVVMVF9SRUZMRUNU",
+            "SU9OX01PREVfU0tZQk9YEAESIgoeREVGQVVMVF9SRUZMRUNUSU9OX01PREVf",
+            "Q1VTVE9NEAJCHqoCG1BMVU1FLlNhbXBsZS5Vbml0eS5TZXR0aW5nc2IGcHJv",
+            "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, global::PLUME.Sample.Common.SphericalHarmonicsL2Reflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.Settings.FogMode), typeof(global::PLUME.Sample.Unity.Settings.AmbientMode), typeof(global::PLUME.Sample.Unity.Settings.DefaultReflectionMode), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.Settings.RenderSettingsUpdate), global::PLUME.Sample.Unity.Settings.RenderSettingsUpdate.Parser, new[]{ "Skybox", "Sun", "Fog", "FogMode", "FogColor", "FogDensity", "FogStartDistance", "FogEndDistance", "AmbientColor", "AmbientEquatorColor", "AmbientGroundColor", "AmbientSkyColor", "AmbientIntensity", "AmbientMode", "AmbientProbe", "CustomReflectionTexture", "DefaultReflectionMode", "DefaultReflectionResolution", "ReflectionBounces", "ReflectionIntensity", "HaloStrength", "FlareStrength", "FlareFadeSpeed", "SubtractiveShadowColor" }, new[]{ "Skybox", "Sun", "Fog", "FogMode", "FogColor", "FogDensity", "FogStartDistance", "FogEndDistance", "AmbientColor", "AmbientEquatorColor", "AmbientGroundColor", "AmbientSkyColor", "AmbientIntensity", "AmbientMode", "AmbientProbe", "CustomReflectionTexture", "DefaultReflectionMode", "DefaultReflectionResolution", "ReflectionBounces", "ReflectionIntensity", "HaloStrength", "FlareStrength", "FlareFadeSpeed", "SubtractiveShadowColor" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.Settings.RenderSettingsUpdate), global::PLUME.Sample.Unity.Settings.RenderSettingsUpdate.Parser, new[]{ "Skybox", "Sun", "Fog", "FogMode", "FogColor", "FogDensity", "FogStartDistance", "FogEndDistance", "AmbientLightColor", "AmbientEquatorColor", "AmbientGroundColor", "AmbientSkyColor", "AmbientIntensity", "AmbientMode", "AmbientProbe", "CustomReflectionTexture", "DefaultReflectionMode", "DefaultReflectionResolution", "ReflectionBounces", "ReflectionIntensity", "HaloStrength", "FlareStrength", "FlareFadeSpeed", "SubtractiveShadowColor" }, new[]{ "Skybox", "Sun", "Fog", "FogMode", "FogColor", "FogDensity", "FogStartDistance", "FogEndDistance", "AmbientLightColor", "AmbientEquatorColor", "AmbientGroundColor", "AmbientSkyColor", "AmbientIntensity", "AmbientMode", "AmbientProbe", "CustomReflectionTexture", "DefaultReflectionMode", "DefaultReflectionResolution", "ReflectionBounces", "ReflectionIntensity", "HaloStrength", "FlareStrength", "FlareFadeSpeed", "SubtractiveShadowColor" }, null, null, null)
           }));
     }
     #endregion
@@ -164,7 +165,7 @@ namespace PLUME.Sample.Unity.Settings {
       fogDensity_ = other.fogDensity_;
       fogStartDistance_ = other.fogStartDistance_;
       fogEndDistance_ = other.fogEndDistance_;
-      ambientColor_ = other.ambientColor_ != null ? other.ambientColor_.Clone() : null;
+      ambientLightColor_ = other.ambientLightColor_ != null ? other.ambientLightColor_.Clone() : null;
       ambientEquatorColor_ = other.ambientEquatorColor_ != null ? other.ambientEquatorColor_.Clone() : null;
       ambientGroundColor_ = other.ambientGroundColor_ != null ? other.ambientGroundColor_.Clone() : null;
       ambientSkyColor_ = other.ambientSkyColor_ != null ? other.ambientSkyColor_.Clone() : null;
@@ -360,15 +361,15 @@ namespace PLUME.Sample.Unity.Settings {
       _hasBits0 &= ~16;
     }
 
-    /// <summary>Field number for the "ambient_color" field.</summary>
-    public const int AmbientColorFieldNumber = 9;
-    private global::PLUME.Sample.Common.Color ambientColor_;
+    /// <summary>Field number for the "ambient_light_color" field.</summary>
+    public const int AmbientLightColorFieldNumber = 9;
+    private global::PLUME.Sample.Common.Color ambientLightColor_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::PLUME.Sample.Common.Color AmbientColor {
-      get { return ambientColor_; }
+    public global::PLUME.Sample.Common.Color AmbientLightColor {
+      get { return ambientLightColor_; }
       set {
-        ambientColor_ = value;
+        ambientLightColor_ = value;
       }
     }
 
@@ -710,7 +711,7 @@ namespace PLUME.Sample.Unity.Settings {
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FogDensity, other.FogDensity)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FogStartDistance, other.FogStartDistance)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FogEndDistance, other.FogEndDistance)) return false;
-      if (!object.Equals(AmbientColor, other.AmbientColor)) return false;
+      if (!object.Equals(AmbientLightColor, other.AmbientLightColor)) return false;
       if (!object.Equals(AmbientEquatorColor, other.AmbientEquatorColor)) return false;
       if (!object.Equals(AmbientGroundColor, other.AmbientGroundColor)) return false;
       if (!object.Equals(AmbientSkyColor, other.AmbientSkyColor)) return false;
@@ -741,7 +742,7 @@ namespace PLUME.Sample.Unity.Settings {
       if (HasFogDensity) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FogDensity);
       if (HasFogStartDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FogStartDistance);
       if (HasFogEndDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FogEndDistance);
-      if (ambientColor_ != null) hash ^= AmbientColor.GetHashCode();
+      if (ambientLightColor_ != null) hash ^= AmbientLightColor.GetHashCode();
       if (ambientEquatorColor_ != null) hash ^= AmbientEquatorColor.GetHashCode();
       if (ambientGroundColor_ != null) hash ^= AmbientGroundColor.GetHashCode();
       if (ambientSkyColor_ != null) hash ^= AmbientSkyColor.GetHashCode();
@@ -807,9 +808,9 @@ namespace PLUME.Sample.Unity.Settings {
         output.WriteRawTag(69);
         output.WriteFloat(FogEndDistance);
       }
-      if (ambientColor_ != null) {
+      if (ambientLightColor_ != null) {
         output.WriteRawTag(74);
-        output.WriteMessage(AmbientColor);
+        output.WriteMessage(AmbientLightColor);
       }
       if (ambientEquatorColor_ != null) {
         output.WriteRawTag(82);
@@ -913,9 +914,9 @@ namespace PLUME.Sample.Unity.Settings {
         output.WriteRawTag(69);
         output.WriteFloat(FogEndDistance);
       }
-      if (ambientColor_ != null) {
+      if (ambientLightColor_ != null) {
         output.WriteRawTag(74);
-        output.WriteMessage(AmbientColor);
+        output.WriteMessage(AmbientLightColor);
       }
       if (ambientEquatorColor_ != null) {
         output.WriteRawTag(82);
@@ -1011,8 +1012,8 @@ namespace PLUME.Sample.Unity.Settings {
       if (HasFogEndDistance) {
         size += 1 + 4;
       }
-      if (ambientColor_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AmbientColor);
+      if (ambientLightColor_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AmbientLightColor);
       }
       if (ambientEquatorColor_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(AmbientEquatorColor);
@@ -1104,11 +1105,11 @@ namespace PLUME.Sample.Unity.Settings {
       if (other.HasFogEndDistance) {
         FogEndDistance = other.FogEndDistance;
       }
-      if (other.ambientColor_ != null) {
-        if (ambientColor_ == null) {
-          AmbientColor = new global::PLUME.Sample.Common.Color();
+      if (other.ambientLightColor_ != null) {
+        if (ambientLightColor_ == null) {
+          AmbientLightColor = new global::PLUME.Sample.Common.Color();
         }
-        AmbientColor.MergeFrom(other.AmbientColor);
+        AmbientLightColor.MergeFrom(other.AmbientLightColor);
       }
       if (other.ambientEquatorColor_ != null) {
         if (ambientEquatorColor_ == null) {
@@ -1234,10 +1235,10 @@ namespace PLUME.Sample.Unity.Settings {
             break;
           }
           case 74: {
-            if (ambientColor_ == null) {
-              AmbientColor = new global::PLUME.Sample.Common.Color();
+            if (ambientLightColor_ == null) {
+              AmbientLightColor = new global::PLUME.Sample.Common.Color();
             }
-            input.ReadMessage(AmbientColor);
+            input.ReadMessage(AmbientLightColor);
             break;
           }
           case 82: {
@@ -1379,10 +1380,10 @@ namespace PLUME.Sample.Unity.Settings {
             break;
           }
           case 74: {
-            if (ambientColor_ == null) {
-              AmbientColor = new global::PLUME.Sample.Common.Color();
+            if (ambientLightColor_ == null) {
+              AmbientLightColor = new global::PLUME.Sample.Common.Color();
             }
-            input.ReadMessage(AmbientColor);
+            input.ReadMessage(AmbientLightColor);
             break;
           }
           case 82: {

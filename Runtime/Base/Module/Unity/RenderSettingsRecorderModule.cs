@@ -23,7 +23,7 @@ namespace PLUME.Base.Module.Unity
             RecordRenderSettingsUpdate(ctx);
         }
 
-        private static void RecordRenderSettingsUpdate(RecorderContext ctx)
+        private void RecordRenderSettingsUpdate(RecorderContext ctx)
         {
             // TODO: only record the diff instead of the whole RenderSettings
             var safeRefProvider = ctx.SafeRefProvider;
@@ -41,7 +41,7 @@ namespace PLUME.Base.Module.Unity
             s.FogDensity = RenderSettings.fogDensity;
             s.FogStartDistance = RenderSettings.fogStartDistance;
             s.FogEndDistance = RenderSettings.fogEndDistance;
-            s.AmbientColor = RenderSettings.ambientLight.ToPayload();
+            s.AmbientLightColor = RenderSettings.ambientLight.ToPayload();
             s.AmbientEquatorColor = RenderSettings.ambientEquatorColor.ToPayload();
             s.AmbientGroundColor = RenderSettings.ambientGroundColor.ToPayload();
             s.AmbientSkyColor = RenderSettings.ambientSkyColor.ToPayload();
@@ -57,14 +57,16 @@ namespace PLUME.Base.Module.Unity
             s.FlareStrength = RenderSettings.flareStrength;
             s.FlareFadeSpeed = RenderSettings.flareFadeSpeed;
             s.SubtractiveShadowColor = RenderSettings.subtractiveShadowColor.ToPayload();
+            
+            _renderSettingsUpdateSample = s;
         }
         
-        private static void OnLoadScene(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode, RecorderContext ctx)
+        private void OnLoadScene(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode, RecorderContext ctx)
         {
             RecordRenderSettingsUpdate(ctx);
         }
 
-        private static void OnUnloadScene(UnityEngine.SceneManagement.Scene scene, RecorderContext ctx)
+        private void OnUnloadScene(UnityEngine.SceneManagement.Scene scene, RecorderContext ctx)
         {
             RecordRenderSettingsUpdate(ctx);
         }

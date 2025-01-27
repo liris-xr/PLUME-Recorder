@@ -13,6 +13,7 @@ using AnimationCurve = PLUME.Sample.Common.AnimationCurve;
 using Bounds = PLUME.Sample.Common.Bounds;
 using Color = PLUME.Sample.Common.Color;
 using ColorSpace = PLUME.Sample.Common.ColorSpace;
+using FogMode = PLUME.Sample.Unity.Settings.FogMode;
 using FontStyle = PLUME.Sample.Unity.UI.FontStyle;
 using HorizontalWrapMode = PLUME.Sample.Unity.UI.HorizontalWrapMode;
 using LightmapData = PLUME.Sample.Unity.LightmapData;
@@ -292,6 +293,40 @@ namespace PLUME.Core.Utils
                 Shb6 = sphericalHarmonicsL2[0, 24],
                 Shb7 = sphericalHarmonicsL2[0, 25],
                 Shb8 = sphericalHarmonicsL2[0, 26]
+            };
+        }
+
+        public static AmbientMode ToPayload(this UnityEngine.Rendering.AmbientMode ambientMode)
+        {
+            return ambientMode switch
+            {
+                UnityEngine.Rendering.AmbientMode.Custom => AmbientMode.Custom,
+                UnityEngine.Rendering.AmbientMode.Skybox => AmbientMode.Skybox,
+                UnityEngine.Rendering.AmbientMode.Trilight => AmbientMode.Trilight,
+                UnityEngine.Rendering.AmbientMode.Flat => AmbientMode.Flat,
+                _ => throw new ArgumentOutOfRangeException(nameof(ambientMode), ambientMode, null)
+            };
+        }
+
+        public static FogMode ToPayload(this UnityEngine.FogMode fogMode)
+        {
+            return fogMode switch
+            {
+                UnityEngine.FogMode.Linear => FogMode.Linear,
+                UnityEngine.FogMode.Exponential => FogMode.Exponential,
+                UnityEngine.FogMode.ExponentialSquared => FogMode.ExponentialSquared,
+                _ => throw new ArgumentOutOfRangeException(nameof(fogMode), fogMode, null)
+            };
+        }
+
+        public static DefaultReflectionMode ToPayload(
+            this UnityEngine.Rendering.DefaultReflectionMode defaultReflectionMode)
+        {
+            return defaultReflectionMode switch
+            {
+                UnityEngine.Rendering.DefaultReflectionMode.Skybox => DefaultReflectionMode.Skybox,
+                UnityEngine.Rendering.DefaultReflectionMode.Custom => DefaultReflectionMode.Custom,
+                _ => throw new ArgumentOutOfRangeException(nameof(defaultReflectionMode), defaultReflectionMode, null)
             };
         }
 

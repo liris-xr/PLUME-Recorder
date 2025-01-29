@@ -1,6 +1,6 @@
 using System;
-using PLUME.Base.Module.Unity.Transform.Sample;
 using PLUME.Core.Recorder.Module.Frame;
+using PLUME.Sample.ProtoBurst.Unity;
 using Unity.Collections;
 
 namespace PLUME.Base.Module.Unity.Transform

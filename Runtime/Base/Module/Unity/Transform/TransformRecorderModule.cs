@@ -1,6 +1,5 @@
 using PLUME.Base.Hooks;
 using PLUME.Base.Module.Unity.Transform.Job;
-using PLUME.Base.Module.Unity.Transform.Sample;
 using PLUME.Base.Settings;
 using PLUME.Core.Object;
 using PLUME.Core.Recorder;

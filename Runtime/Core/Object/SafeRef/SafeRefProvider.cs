@@ -22,14 +22,16 @@ namespace PLUME.Core.Object.SafeRef
         public SceneSafeRef GetOrCreateSceneSafeRef(Scene scene)
         {
             if (!scene.IsValid())
+            {
                 return SceneSafeRef.Null;
+            }
 
             var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(scene);
             var sceneGuid = Guid.FromString(sceneGuidRegistry.SceneGuid);
 
             if (_cachedSceneRefs.TryGetValue(sceneGuidRegistry.SceneGuid, out var cachedRef))
                 return cachedRef;
-            
+
             var sceneSafeRef = new SceneSafeRef(scene, sceneGuid, scene.path);
             _cachedSceneRefs[sceneGuidRegistry.SceneGuid] = sceneSafeRef;
             return sceneSafeRef;

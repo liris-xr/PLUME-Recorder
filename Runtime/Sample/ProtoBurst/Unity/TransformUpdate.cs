@@ -1,32 +1,46 @@
+using System;
 using System.Runtime.CompilerServices;
-using PLUME.Core.Object;
 using PLUME.Sample.ProtoBurst.Common;
-using PLUME.Sample.ProtoBurst.Unity;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Mathematics;
+using Guid = PLUME.Core.Guid;
 
-namespace PLUME.Base.Module.Unity.Transform.Sample
+namespace PLUME.Sample.ProtoBurst.Unity
 {
     [BurstCompile]
     public struct TransformUpdate : IProtoBurstMessage
     {
         public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.TransformUpdate";
 
-        private static readonly uint IdentifierFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.LengthDelimited);
-        private static readonly uint ParentIdentifierFieldTag = WireFormat.MakeTag(2, WireFormat.WireType.LengthDelimited);
-        private static readonly uint SiblingIndexFieldTag = WireFormat.MakeTag(3, WireFormat.WireType.VarInt);
-        private static readonly uint LocalPositionFieldTag = WireFormat.MakeTag(4, WireFormat.WireType.LengthDelimited);
-        private static readonly uint LocalRotationFieldTag = WireFormat.MakeTag(5, WireFormat.WireType.LengthDelimited);
-        private static readonly uint LocalScaleFieldTag = WireFormat.MakeTag(6, WireFormat.WireType.LengthDelimited);
+        private static readonly uint IdentifierFieldTag =
+            WireFormat.MakeTag(Sample.Unity.TransformUpdate.ComponentFieldNumber, WireFormat.WireType.LengthDelimited);
+
+        private static readonly uint ParentIdentifierFieldTag =
+            WireFormat.MakeTag(Sample.Unity.TransformUpdate.ParentTransformFieldNumber,
+                WireFormat.WireType.LengthDelimited);
+
+        private static readonly uint SiblingIndexFieldTag =
+            WireFormat.MakeTag(Sample.Unity.TransformUpdate.SiblingIdxFieldNumber, WireFormat.WireType.VarInt);
+
+        private static readonly uint LocalPositionFieldTag =
+            WireFormat.MakeTag(Sample.Unity.TransformUpdate.LocalPositionFieldNumber,
+                WireFormat.WireType.LengthDelimited);
+
+        private static readonly uint LocalRotationFieldTag =
+            WireFormat.MakeTag(Sample.Unity.TransformUpdate.LocalRotationFieldNumber,
+                WireFormat.WireType.LengthDelimited);
+
+        private static readonly uint LocalScaleFieldTag =
+            WireFormat.MakeTag(Sample.Unity.TransformUpdate.LocalScaleFieldNumber, WireFormat.WireType.LengthDelimited);
 
         private ComponentIdentifier _identifier;
 
         private bool _hasParentTransformIdField;
         private ComponentIdentifier _parentTransformId;
-        
+
         private bool _hasSiblingIndexField;
         private int _siblingIndex;
 
@@ -42,19 +56,19 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
         public TransformUpdate(ComponentIdentifier identifier)
         {
             _identifier = identifier;
-            
+
             _hasParentTransformIdField = false;
             _parentTransformId = default;
-            
+
             _hasSiblingIndexField = false;
             _siblingIndex = default;
-            
+
             _hasLocalPositionField = false;
             _localPosition = default;
-            
+
             _hasLocalRotationField = false;
             _localRotation = default;
-            
+
             _hasLocalScaleField = false;
             _localScale = default;
         }
@@ -69,13 +83,13 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
                 bufferWriter.WriteTag(ParentIdentifierFieldTag);
                 bufferWriter.WriteLengthPrefixedMessage(ref _parentTransformId);
             }
-            
+
             if (_hasSiblingIndexField)
             {
                 bufferWriter.WriteTag(SiblingIndexFieldTag);
                 bufferWriter.WriteInt32(_siblingIndex);
             }
-            
+
             if (_hasLocalPositionField)
             {
                 bufferWriter.WriteTag(LocalPositionFieldTag);
@@ -107,13 +121,13 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
                 size += BufferWriterExtensions.ComputeTagSize(ParentIdentifierFieldTag) +
                         BufferWriterExtensions.ComputeLengthPrefixedMessageSize(ref _parentTransformId);
             }
-            
+
             if (_hasSiblingIndexField)
             {
                 size += BufferWriterExtensions.ComputeTagSize(SiblingIndexFieldTag) +
                         BufferWriterExtensions.ComputeInt32Size(_siblingIndex);
             }
-            
+
             if (_hasLocalPositionField)
             {
                 size += BufferWriterExtensions.ComputeTagSize(LocalPositionFieldTag) +
@@ -146,14 +160,14 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
             _hasParentTransformIdField = true;
             _parentTransformId = parent;
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetSiblingIndex(int siblingIndex)
         {
             _hasSiblingIndexField = true;
             _siblingIndex = siblingIndex;
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetLocalPosition(float3 localPosition)
         {
@@ -167,7 +181,7 @@ namespace PLUME.Base.Module.Unity.Transform.Sample
             _hasLocalRotationField = true;
             _localRotation = new Quaternion(localRotation);
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetLocalScale(float3 localScale)
         {

@@ -1,22 +1,20 @@
-using PLUME.Core.Object;
-using PLUME.Sample.ProtoBurst.Unity;
 using ProtoBurst;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 using Unity.Collections;
 
-namespace PLUME.Base.Module.Unity.Transform.Sample
+namespace PLUME.Sample.ProtoBurst.Unity
 {
     [BurstCompile]
-    public struct TransformDestroy : IProtoBurstMessage
+    public struct TransformCreate : IProtoBurstMessage
     {
-        public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.TransformDestroy";
+        public static readonly FixedString128Bytes TypeUrl = "fr.liris.plume/plume.sample.unity.TransformCreate";
 
-        private static readonly uint IdentifierFieldTag = WireFormat.MakeTag(1, WireFormat.WireType.LengthDelimited);
+        private static readonly uint IdentifierFieldTag = WireFormat.MakeTag(Sample.Unity.TransformCreate.ComponentFieldNumber, WireFormat.WireType.LengthDelimited);
 
         private ComponentIdentifier _identifier;
 
-        public TransformDestroy(ComponentIdentifier identifier)
+        public TransformCreate(ComponentIdentifier identifier)
         {
             _identifier = identifier;
         }

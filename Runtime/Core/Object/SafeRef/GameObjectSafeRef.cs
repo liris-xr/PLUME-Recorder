@@ -24,6 +24,7 @@ namespace PLUME.Core.Object.SafeRef
         {
             Identifier = GameObjectIdentifier.Null;
             GameObject = null;
+            SceneSafeRef = SceneSafeRef.Null;
         }
 
         internal GameObjectSafeRef(GameObject go, Guid guid, Guid transformGuid, SceneSafeRef sceneSafeRef)

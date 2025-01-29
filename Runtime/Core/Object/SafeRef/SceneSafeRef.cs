@@ -18,10 +18,11 @@ namespace PLUME.Core.Object.SafeRef
             Scene = default;
             Identifier = SceneIdentifier.Null;
         }
-
+        
         internal SceneSafeRef(Scene scene, Guid guid, FixedString512Bytes path)
         {
-            Identifier = new SceneIdentifier(guid, scene.name, path);
+            Scene = scene;
+            Identifier = new SceneIdentifier(guid, scene.name ?? "", path);
         }
 
         public bool Equals(SceneSafeRef other)

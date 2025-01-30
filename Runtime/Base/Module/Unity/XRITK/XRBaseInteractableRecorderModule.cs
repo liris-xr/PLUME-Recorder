@@ -28,6 +28,7 @@ namespace PLUME.Base.Module.Unity.XRITK
         private readonly Dictionary<XRBaseInteractableSafeRef, XRBaseInteractableCreate> _createSamples = new();
         private readonly Dictionary<XRBaseInteractableSafeRef, XRBaseInteractableDestroy> _destroySamples = new();
         private readonly Dictionary<XRBaseInteractableSafeRef, XRBaseInteractableUpdate> _updateSamples = new();
+        private readonly List<XRITKInteraction> _interactionSamples = new();
 
         private RecorderContext _ctx;
 
@@ -93,7 +94,7 @@ namespace PLUME.Base.Module.Unity.XRITK
                 Type = XRITKInteractionType.HoverEnter
             };
 
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableHoverEnter);
+            _interactionSamples.Add(interactableHoverEnter);
         }
 
         private void OnHoverExited(XRBaseInteractableSafeRef objSafeRef, HoverExitEventArgs args)
@@ -108,7 +109,7 @@ namespace PLUME.Base.Module.Unity.XRITK
                 Type = XRITKInteractionType.HoverExit
             };
 
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableHoverExit);
+            _interactionSamples.Add(interactableHoverExit);
         }
 
         private void OnSelectEntered(XRBaseInteractableSafeRef objSafeRef, SelectEnterEventArgs args)
@@ -123,7 +124,7 @@ namespace PLUME.Base.Module.Unity.XRITK
                 Type = XRITKInteractionType.SelectEnter
             };
 
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableSelectEnter);
+            _interactionSamples.Add(interactableSelectEnter);
         }
 
         private void OnSelectExited(XRBaseInteractableSafeRef objSafeRef, SelectExitEventArgs args)
@@ -138,7 +139,7 @@ namespace PLUME.Base.Module.Unity.XRITK
                 Type = XRITKInteractionType.SelectExit
             };
 
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableSelectExit);
+            _interactionSamples.Add(interactableSelectExit);
         }
 
         private void OnActivateEnter(XRBaseInteractableSafeRef objSafeRef, ActivateEventArgs args)
@@ -146,14 +147,14 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
-            var interactableActivated = new XRITKInteraction
+            var interactableActivateEnter = new XRITKInteraction
             {
                 Interactable = GetComponentIdentifierPayload(objSafeRef),
                 Interactor = GetComponentIdentifierPayload(args.interactorObject.transform),
                 Type = XRITKInteractionType.ActivateEnter
             };
-
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableActivated);
+            
+            _interactionSamples.Add(interactableActivateEnter);
         }
 
         private void OnActivateExit(XRBaseInteractableSafeRef objSafeRef, DeactivateEventArgs args)
@@ -161,14 +162,14 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
-            var interactableDeactivated = new XRITKInteraction
+            var interactableActivateExit = new XRITKInteraction
             {
                 Interactable = GetComponentIdentifierPayload(objSafeRef),
                 Interactor = GetComponentIdentifierPayload(args.interactorObject.transform),
                 Type = XRITKInteractionType.ActivateExit
             };
-
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactableDeactivated);
+            
+            _interactionSamples.Add(interactableActivateExit);
         }
 
         private XRBaseInteractableUpdate GetOrCreateUpdateSample(XRBaseInteractableSafeRef objSafeRef)
@@ -186,6 +187,7 @@ namespace PLUME.Base.Module.Unity.XRITK
             frameData.AddCreateSamples(_createSamples.Values);
             frameData.AddDestroySamples(_destroySamples.Values);
             frameData.AddUpdateSamples(_updateSamples.Values);
+            frameData.AddInteractionSamples(_interactionSamples);
             return frameData;
         }
 
@@ -195,6 +197,7 @@ namespace PLUME.Base.Module.Unity.XRITK
             _createSamples.Clear();
             _destroySamples.Clear();
             _updateSamples.Clear();
+            _interactionSamples.Clear();
         }
     }
 }

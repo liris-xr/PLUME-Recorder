@@ -11,6 +11,12 @@ namespace PLUME.Base.Module.Unity.XRITK
         private readonly List<XRBaseInteractableCreate> _createSamples = new();
         private readonly List<XRBaseInteractableDestroy> _destroySamples = new();
         private readonly List<XRBaseInteractableUpdate> _updateSamples = new();
+        private readonly List<XRITKInteraction> _interactionSamples = new();
+        
+        public void AddInteractionSamples(IEnumerable<XRITKInteraction> samples)
+        {
+            _interactionSamples.AddRange(samples);
+        }
 
         public void AddCreateSamples(IEnumerable<XRBaseInteractableCreate> samples)
         {
@@ -32,6 +38,7 @@ namespace PLUME.Base.Module.Unity.XRITK
             frameDataWriter.WriteManagedBatch(_createSamples);
             frameDataWriter.WriteManagedBatch(_destroySamples);
             frameDataWriter.WriteManagedBatch(_updateSamples);
+            frameDataWriter.WriteManagedBatch(_interactionSamples);
         }
 
         public override void Clear()
@@ -39,6 +46,7 @@ namespace PLUME.Base.Module.Unity.XRITK
             _createSamples.Clear();
             _destroySamples.Clear();
             _updateSamples.Clear();
+            _interactionSamples.Clear();
         }
     }
 }

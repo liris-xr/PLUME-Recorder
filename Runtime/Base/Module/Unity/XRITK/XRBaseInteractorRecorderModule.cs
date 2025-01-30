@@ -37,29 +37,6 @@ namespace PLUME.Base.Module.Unity.XRITK
             _ctx = ctx;
         }
 
-        protected override void OnStartRecordingObject(XRBaseInteractorSafeRef objSafeRef,
-            RecorderContext ctx)
-        {
-            base.OnStartRecordingObject(objSafeRef, ctx);
-            var interactor = objSafeRef.Component;
-            interactor.hoverEntered.AddListener(args => OnHoverEntered(objSafeRef, args));
-            interactor.hoverExited.AddListener(args => OnHoverExited(objSafeRef, args));
-            interactor.selectEntered.AddListener(args => OnSelectEntered(objSafeRef, args));
-            interactor.selectExited.AddListener(args => OnSelectExited(objSafeRef, args));
-        }
-
-        protected override void OnStopRecordingObject(XRBaseInteractorSafeRef objSafeRef,
-            RecorderContext ctx)
-        {
-            base.OnStopRecordingObject(objSafeRef, ctx);
-
-            var interactor = objSafeRef.Component;
-            interactor.hoverEntered.RemoveListener(args => OnHoverEntered(objSafeRef, args));
-            interactor.hoverExited.RemoveListener(args => OnHoverExited(objSafeRef, args));
-            interactor.selectEntered.RemoveListener(args => OnSelectEntered(objSafeRef, args));
-            interactor.selectExited.RemoveListener(args => OnSelectExited(objSafeRef, args));
-        }
-
         protected override void OnObjectMarkedCreated(XRBaseInteractorSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
@@ -74,62 +51,6 @@ namespace PLUME.Base.Module.Unity.XRITK
             base.OnObjectMarkedDestroyed(objSafeRef, ctx);
             _destroySamples[objSafeRef] = new XRBaseInteractorDestroy
                 { Component = GetComponentIdentifierPayload(objSafeRef) };
-        }
-
-        private void OnHoverEntered(XRBaseInteractorSafeRef objSafeRef, HoverEnterEventArgs args)
-        {
-            if (!_ctx.IsRecording)
-                return;
-
-            var interactorHoverEnter = new XRBaseInteractorHoverEnter
-            {
-                Component = GetComponentIdentifierPayload(objSafeRef),
-                Interactable = GetComponentIdentifierPayload(args.interactorObject.transform),
-            };
-
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorHoverEnter);
-        }
-
-        private void OnHoverExited(XRBaseInteractorSafeRef objSafeRef, HoverExitEventArgs args)
-        {
-            if (!_ctx.IsRecording)
-                return;
-
-            var interactorHoverExit = new XRBaseInteractorHoverExit
-            {
-                Component = GetComponentIdentifierPayload(objSafeRef),
-                Interactable = GetComponentIdentifierPayload(args.interactorObject.transform),
-            };
-
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorHoverExit);
-        }
-
-        private void OnSelectEntered(XRBaseInteractorSafeRef objSafeRef, SelectEnterEventArgs args)
-        {
-            if (!_ctx.IsRecording)
-                return;
-
-            var interactorSelectEnter = new XRBaseInteractorSelectEnter
-            {
-                Component = GetComponentIdentifierPayload(objSafeRef),
-                Interactable = GetComponentIdentifierPayload(args.interactorObject.transform),
-            };
-
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorSelectEnter);
-        }
-
-        private void OnSelectExited(XRBaseInteractorSafeRef objSafeRef, SelectExitEventArgs args)
-        {
-            if (!_ctx.IsRecording)
-                return;
-
-            var interactorSelectExit = new XRBaseInteractorSelectExit
-            {
-                Component = GetComponentIdentifierPayload(objSafeRef),
-                Interactable = GetComponentIdentifierPayload(args.interactorObject.transform),
-            };
-
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(interactorSelectExit);
         }
 
         protected override XRBaseInteractorFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)

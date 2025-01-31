@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity.XRITK;
+using UnityEngine;
 using UnityEngine.Scripting;
 using UnityEngine.XR.Interaction.Toolkit;
 using static PLUME.Core.Utils.SampleUtils;
@@ -86,11 +87,13 @@ namespace PLUME.Base.Module.Unity.XRITK
         {
             if (!_ctx.IsRecording)
                 return;
-
+            
+            var interactor = (Component) args.interactorObject;
+            
             var interactableHoverEnter = new XRITKInteraction
             {
                 Interactable = GetComponentIdentifierPayload(objSafeRef),
-                Interactor = GetComponentIdentifierPayload(args.interactorObject.transform),
+                Interactor = GetComponentIdentifierPayload(interactor),
                 Type = XRITKInteractionType.HoverEnter
             };
 
@@ -102,10 +105,12 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
+            var interactor = (Component) args.interactorObject;
+            
             var interactableHoverExit = new XRITKInteraction
             {
                 Interactable = GetComponentIdentifierPayload(objSafeRef),
-                Interactor = GetComponentIdentifierPayload(args.interactorObject.transform),
+                Interactor = GetComponentIdentifierPayload(interactor),
                 Type = XRITKInteractionType.HoverExit
             };
 
@@ -117,10 +122,12 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
+            var interactor = (Component) args.interactorObject;
+            
             var interactableSelectEnter = new XRITKInteraction
             {
                 Interactable = GetComponentIdentifierPayload(objSafeRef),
-                Interactor = GetComponentIdentifierPayload(args.interactorObject.transform),
+                Interactor = GetComponentIdentifierPayload(interactor),
                 Type = XRITKInteractionType.SelectEnter
             };
 
@@ -132,10 +139,12 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
+            var interactor = (Component) args.interactorObject;
+            
             var interactableSelectExit = new XRITKInteraction
             {
                 Interactable = GetComponentIdentifierPayload(objSafeRef),
-                Interactor = GetComponentIdentifierPayload(args.interactorObject.transform),
+                Interactor = GetComponentIdentifierPayload(interactor),
                 Type = XRITKInteractionType.SelectExit
             };
 
@@ -147,10 +156,12 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
+            var interactor = (Component) args.interactorObject;
+            
             var interactableActivateEnter = new XRITKInteraction
             {
                 Interactable = GetComponentIdentifierPayload(objSafeRef),
-                Interactor = GetComponentIdentifierPayload(args.interactorObject.transform),
+                Interactor = GetComponentIdentifierPayload(interactor),
                 Type = XRITKInteractionType.ActivateEnter
             };
             
@@ -162,10 +173,12 @@ namespace PLUME.Base.Module.Unity.XRITK
             if (!_ctx.IsRecording)
                 return;
 
+            var interactor = (Component) args.interactorObject;
+            
             var interactableActivateExit = new XRITKInteraction
             {
                 Interactable = GetComponentIdentifierPayload(objSafeRef),
-                Interactor = GetComponentIdentifierPayload(args.interactorObject.transform),
+                Interactor = GetComponentIdentifierPayload(interactor),
                 Type = XRITKInteractionType.ActivateExit
             };
             

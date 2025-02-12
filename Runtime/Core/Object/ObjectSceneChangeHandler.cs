@@ -22,6 +22,10 @@ namespace PLUME.Core.Object
 
         public static void OnGameObjectMovedToScene(GameObject go, Scene oldScene, Scene scene)
         {
+            // Sanity check
+            if (!oldScene.IsValid() || !scene.IsValid())
+                return;
+            
             // Move the game object from one registry to another to keep its GUID
             var oldSceneGuidRegistry = SceneGuidRegistry.GetOrCreate(oldScene);
             var newSceneGuidRegistry = SceneGuidRegistry.GetOrCreate(scene);

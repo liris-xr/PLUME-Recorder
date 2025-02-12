@@ -44,7 +44,6 @@ namespace PLUME.Base.Module.Unity.Input
             }
         }
         
-        
         private void OnActionPerformed(InputAction.CallbackContext context)
         {
             if (!_ctx.IsRecording)
@@ -56,68 +55,75 @@ namespace PLUME.Base.Module.Unity.Input
             };
             inputActionSample.BindingPaths.AddRange(context.action.bindings.Select(b => b.path));
 
-            switch (context.action.type)
+            // TODO: add support for composite actions
+            try
             {
-                case InputActionType.Value:
-                    inputActionSample.Type = Sample.Unity.InputActionType.Value;
-                    break;
-                case InputActionType.Button:
-                    inputActionSample.Type = Sample.Unity.InputActionType.Button;
-                    break;
-                case InputActionType.PassThrough:
-                    inputActionSample.Type = Sample.Unity.InputActionType.Passthrough;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            if (context.action.type == InputActionType.Button)
-            {
-                var b = context.ReadValueAsButton();
-                var f = context.ReadValue<float>();
-                
-                var buttonValue = new ButtonValue
+                switch (context.action.type)
                 {
-                    Boolean = b,
-                    Float = f
-                };
-
-                if (context.control is ButtonControl btnControl)
-                    buttonValue.Threshold = btnControl.pressPointOrDefault;
-                else
-                    buttonValue.Threshold = InputSystem.settings.defaultButtonPressPoint;
-            }
-            else
-            {
-                var value = context.ReadValueAsObject();
-            
-                switch (value)
-                {
-                    case bool b:
-                        inputActionSample.Boolean = b;
+                    case InputActionType.Value:
+                        inputActionSample.Type = Sample.Unity.InputActionType.Value;
                         break;
-                    case int i:
-                        inputActionSample.Integer = i;
+                    case InputActionType.Button:
+                        inputActionSample.Type = Sample.Unity.InputActionType.Button;
                         break;
-                    case float f:
-                        inputActionSample.Float = f;
+                    case InputActionType.PassThrough:
+                        inputActionSample.Type = Sample.Unity.InputActionType.Passthrough;
                         break;
-                    case double d:
-                        inputActionSample.Double = d;
-                        break;
-                    case Vector2 vec2:
-                        inputActionSample.Vector2 = vec2.ToPayload();
-                        break;
-                    case Vector3 vec3:
-                        inputActionSample.Vector3 = vec3.ToPayload();
-                        break;
-                    case Quaternion q:
-                        inputActionSample.Quaternion = q.ToPayload();
-                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
-            }
 
-            _ctx.CurrentRecord.RecordTimestampedManagedSample(inputActionSample);
+                if (context.action.type == InputActionType.Button)
+                {
+                    var b = context.ReadValueAsButton();
+                    var f = context.ReadValue<float>();
+
+                    var buttonValue = new ButtonValue
+                    {
+                        Boolean = b,
+                        Float = f
+                    };
+
+                    if (context.control is ButtonControl btnControl)
+                        buttonValue.Threshold = btnControl.pressPointOrDefault;
+                    else
+                        buttonValue.Threshold = InputSystem.settings.defaultButtonPressPoint;
+                }
+                else
+                {
+                    var value = context.ReadValueAsObject();
+
+                    switch (value)
+                    {
+                        case bool b:
+                            inputActionSample.Boolean = b;
+                            break;
+                        case int i:
+                            inputActionSample.Integer = i;
+                            break;
+                        case float f:
+                            inputActionSample.Float = f;
+                            break;
+                        case double d:
+                            inputActionSample.Double = d;
+                            break;
+                        case Vector2 vec2:
+                            inputActionSample.Vector2 = vec2.ToPayload();
+                            break;
+                        case Vector3 vec3:
+                            inputActionSample.Vector3 = vec3.ToPayload();
+                            break;
+                        case Quaternion q:
+                            inputActionSample.Quaternion = q.ToPayload();
+                            break;
+                    }
+                }
+
+                _ctx.CurrentRecord.RecordTimestampedManagedSample(inputActionSample);
+            } catch (Exception e)
+            {
+                Debug.LogWarning($"Failed to record input action: {e}");
+            }
         }
     }
 }

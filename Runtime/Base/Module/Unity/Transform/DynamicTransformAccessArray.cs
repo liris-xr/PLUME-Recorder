@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using PLUME.Core.Object;
+using PLUME.Core;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Sample.ProtoBurst.Unity;
 using Unity.Collections;
@@ -104,21 +104,22 @@ namespace PLUME.Base.Module.Unity.Transform
         }
 
         /// <summary>
-        /// Removes the given transform from the list and return. Throws an exception if the transform is not in the list.
+        /// Removes the given transform from the list and return.
         /// Might change the order of elements in the buffer as it swaps the last element with the one to remove.
         /// </summary>
         /// <param name="objRef">The transform to remove.</param>
-        /// <exception cref="InvalidOperationException">Thrown if the transform is not in the list.</exception>
-        /// <returns>The index of the removed transform.</returns>
-        public int RemoveSwapBack(IComponentSafeRef<UnityEngine.Transform> objRef)
+        /// <param name="index">The index where the transform was removed, or -1 if no object was removed.</param>
+        /// <returns>True if the transform was removed, false otherwise.</returns>
+        public bool TryRemoveSwapBack(IComponentSafeRef<UnityEngine.Transform> objRef, out int index)
         {
-            var index = IndexOf(objRef);
+            index = IndexOf(objRef);
 
+            // If the object is not in the list, we do not need to do anything
             if (index == -1)
-                throw new InvalidOperationException($"Transform {objRef.Component.name} is not in the list");
+                return false;
 
             RemoveAtSwapBack(index);
-            return index;
+            return true;
         }
 
         /// <summary>

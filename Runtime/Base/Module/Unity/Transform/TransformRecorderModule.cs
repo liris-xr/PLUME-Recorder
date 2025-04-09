@@ -133,11 +133,13 @@ namespace PLUME.Base.Module.Unity.Transform
         {
             base.OnStopRecordingObject(tSafeRef, ctx);
             var lastIdentifier = _transformAccessArray.GetAlignedIdentifiers()[^1];
+
+            // If the object is not in the list, we don't need to do anything
+            if (!_transformAccessArray.TryRemoveSwapBack(tSafeRef, out var idx))
+                return;
             
-            var idx = _transformAccessArray.RemoveSwapBack(tSafeRef);
             _alignedStates.RemoveAtSwapBack(idx);
-            
-            // Update the index of the swapped element
+            // As we swapped the removed element with the last one, we need to update the index of the last element
             _identifierToIndex[lastIdentifier] = idx;
         }
 

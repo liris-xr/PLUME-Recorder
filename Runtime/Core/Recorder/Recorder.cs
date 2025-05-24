@@ -49,7 +49,7 @@ namespace PLUME.Core.Recorder
         /// Starts the recording process. If the recorder is already recording, throw a <see cref="InvalidOperationException"/> exception.
         /// </summary>
         /// <exception cref="InvalidOperationException"></exception>
-        private void StartRecordingInternal(string name, string extraMetadata = "")
+        private void StartRecordingInternal(string name, string extraMetadata = "", IDataWriterInfo[] outputInfos = null)
         {
             if (_context.Status is RecorderStatus.Stopping)
                 throw new InvalidOperationException(
@@ -74,7 +74,29 @@ namespace PLUME.Core.Recorder
             RecordApplicationGlobalSettings(record);
             RecordApplicationCurrentSettings(record);
 
-            _dataDispatcher.Start(_context.CurrentRecord);
+            IDataWriter<IDataWriterInfo>[] outputs;
+
+            if (outputInfos == null)
+            {
+                IDataWriter<IDataWriterInfo> fileDataWriter = (IDataWriter<IDataWriterInfo>) new FileDataWriter(record);
+                outputs = new IDataWriter<IDataWriterInfo>[] { fileDataWriter };
+            }
+            else
+            {
+                List<IDataWriter<IDataWriterInfo>> outputsList = new List<IDataWriter<IDataWriterInfo>>();
+                foreach(IDataWriterInfo info in outputInfos)
+                {
+                    outputsList.Add(info switch
+                        {
+                            FileDataWriterInfo => (IDataWriter<IDataWriterInfo>)new FileDataWriter(record, (FileDataWriterInfo)info),
+                            NetworkDataWriterInfo => (IDataWriter<IDataWriterInfo>)new NetworkDataWriter(record, (NetworkDataWriterInfo)info),
+                            _ => throw new InvalidOperationException()
+                        });
+                }
+                outputs = outputsList.ToArray();
+            }
+
+            _dataDispatcher.Start(_context.CurrentRecord, outputs);
 
             // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _context.Modules.Count; i++)
@@ -272,6 +294,7 @@ namespace PLUME.Core.Recorder
 
             if (recorderSettings.StartOnPlay)
             {
+                // TODO: allow configuring data writers in Settings
                 StartRecordingInternal(recorderSettings.DefaultRecordPrefix, recorderSettings.DefaultRecordExtraMetadata);
             }
         }

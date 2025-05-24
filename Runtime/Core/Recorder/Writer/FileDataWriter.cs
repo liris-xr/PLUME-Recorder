@@ -7,13 +7,14 @@ using K4os.Compression.LZ4.Internal;
 using K4os.Compression.LZ4.Streams;
 using PLUME.Sample;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace PLUME.Core.Recorder.Writer
 {
     // TODO: add metadata file
     // TODO: add delayed write
     // TODO: use memory mapped files
-    public class FileDataWriter : IDataWriter, IDisposable
+    public class FileDataWriter : IDataWriter<FileDataWriterInfo>, IDisposable
     {
         private readonly Stream _stream;
         private readonly Stream _metaStream;
@@ -21,14 +22,21 @@ namespace PLUME.Core.Recorder.Writer
         
         private readonly Sample.RecordMetadata _metadata;
         private readonly RecordMetrics _metrics;
-        
-        public FileDataWriter(Record record)
-        {
-            var outputDir = Application.persistentDataPath;
 
-            GenerateFilePath(outputDir, record.Metadata, out var filePath, out var metaFilePath);
-            
-            Logger.Log($"Record will be saved to '{filePath}'.");
+        public FileDataWriterInfo Info { get; private set; }
+
+        public FileDataWriter(Record record, FileDataWriterInfo fileDataWriterInfo=null)
+        {
+            if (fileDataWriterInfo == null)
+            {
+                var outputDir = Application.persistentDataPath;
+
+                GenerateFilePath(outputDir, record.Metadata.Name, out var filePath, out var metaFilePath);
+                fileDataWriterInfo = new FileDataWriterInfo(filePath:filePath, metaFilePath:metaFilePath);
+            }
+            Info = fileDataWriterInfo;
+
+            Logger.Log($"Record will be saved to '{fileDataWriterInfo.FilePath}'.");
 
             PinnedMemory.MaxPooledSize = 0;
 
@@ -44,8 +52,8 @@ namespace PLUME.Core.Recorder.Writer
                 LZ4Codec.Enforce32 = false;
             }
 
-            _stream = LZ4Stream.Encode(File.Create(filePath), LZ4Level.L00_FAST);
-            _metaStream = File.Create(metaFilePath);
+            _stream = LZ4Stream.Encode(File.Create(fileDataWriterInfo.FilePath), LZ4Level.L00_FAST);
+            _metaStream = File.Create(fileDataWriterInfo.MetaFilePath);
             _metaCodedOutputStream = new CodedOutputStream(_metaStream);
             
             _metadata = record.Metadata.ToPayload();
@@ -57,13 +65,13 @@ namespace PLUME.Core.Recorder.Writer
             UpdateMetaFile();
         }
 
-        private static void GenerateFilePath(string outputDir, RecordMetadata recordMetadata,
+        public static void GenerateFilePath(string outputDir, string recordMetadataName,
             out string filePath, out string metadataPath)
         {
             var invalidChars = Path.GetInvalidFileNameChars().ToList();
             invalidChars.Add(' ');
             
-            var name = recordMetadata.Name;
+            var name = recordMetadataName;
             var safeName = new string(name.Select(c => invalidChars.Contains(c) ? '_' : c).ToArray());
 
             var formattedDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH-mm-sszz");
@@ -131,6 +139,21 @@ namespace PLUME.Core.Recorder.Writer
             _stream.Dispose();
             _metaStream.Dispose();
             _metaCodedOutputStream.Dispose();
+        }
+    }
+
+    public class FileDataWriterInfo: IDataWriterInfo
+    {
+        public string FilePath { get; private set; }
+        public string MetaFilePath { get; private set; }
+
+        public FileDataWriterInfo(string filePath, string metaFilePath)
+        {
+            Assert.IsFalse(string.IsNullOrWhiteSpace(filePath), "filePath is null, empty or whitespace");
+            Assert.IsFalse(string.IsNullOrWhiteSpace(metaFilePath), "metaFilePath is null, empty or whitespace");
+
+            FilePath = filePath;
+            MetaFilePath = metaFilePath;
         }
     }
 }

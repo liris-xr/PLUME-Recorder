@@ -11,16 +11,12 @@ namespace PLUME.Core.Recorder.Writer
         private bool _running;
         private Thread _dispatcherThread;
 
-        private IDataWriter[] _outputs;
+        private IDataWriter<IDataWriterInfo>[] _outputs;
         private NetworkStream _networkStream;
 
-        internal void Start(Record record)
+        internal void Start(Record record, IDataWriter<IDataWriterInfo>[] outputs)
         {
-            var fileDataWriter = new FileDataWriter(record);
-            _outputs = new IDataWriter[] { fileDataWriter };
-            
-            // var networkDataWriter = new NetworkDataWriter(recordIdentifier);
-            // _outputs = new IDataWriter[] { networkDataWriter };
+            _outputs = outputs;
 
             _dispatcherThread = new Thread(() => DispatchLoop(record))
             {

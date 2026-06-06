@@ -43,10 +43,16 @@ namespace PLUME.Editor.Core.Hooks
         [InitializeOnLoadMethod]
         public static void InitializeOnLoad()
         {
-            if (_instance != null)
-                CompilationPipeline.assemblyCompilationFinished -= _instance.OnAssemblyCompilationFinished;
-            _instance = new HooksInjector();
-            _instance.Initialize();
+            // Initialize() reads/creates the hooks settings asset, which must not happen
+            // while Unity is still importing assets (the case during InitializeOnLoad).
+            // Defer until the editor is idle.
+            EditorApplication.delayCall += () =>
+            {
+                if (_instance != null)
+                    CompilationPipeline.assemblyCompilationFinished -= _instance.OnAssemblyCompilationFinished;
+                _instance = new HooksInjector();
+                _instance.Initialize();
+            };
         }
 
         private void Initialize()

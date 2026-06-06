@@ -31,8 +31,8 @@ namespace PLUME.Core.Recorder
         {
             Name = "PLUME Recorder (Beta)",
             Major = "3",
-            Minor = "0",
-            Patch = "1",
+            Minor = "1",
+            Patch = "0",
         };
 
         private readonly RecorderContext _context;

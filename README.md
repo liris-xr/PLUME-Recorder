@@ -34,7 +34,7 @@ PLUME Recorder is the cornerstone of the <a href="https://github.com/liris-xr/PL
 
 ## Getting Started
 
-The installation of PLUME is straightforward and can be done in a few minutes at any development stage of your project. Please refer to the [getting started guide](https://liris-xr.github.io/PLUME/get-started/) to start using PLUME in your project.
+The installation of PLUME is straightforward and can be done in a few minutes at any development stage of your project. Please refer to the [getting started guide](https://liris-xr.github.io/PLUME/learn/get-started/) to start using PLUME in your project.
 
 ## Documentation
 

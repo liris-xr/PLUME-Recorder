@@ -26,43 +26,37 @@ namespace PLUME.Sample.Unity {
           string.Concat(
             "Ci5wbHVtZS9zYW1wbGUvdW5pdHkvc2tpbm5lZF9tZXNoX3JlbmRlcmVyLnBy",
             "b3RvEhJwbHVtZS5zYW1wbGUudW5pdHkaJHBsdW1lL3NhbXBsZS91bml0eS9p",
-            "ZGVudGlmaWVycy5wcm90byJiChlTa2lubmVkTWVzaFJlbmRlcmVyQ3JlYXRl",
-            "EkUKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
-            "b25lbnRJZGVudGlmaWVyUgljb21wb25lbnQiYwoaU2tpbm5lZE1lc2hSZW5k",
-            "ZXJlckRlc3Ryb3kSRQoJY29tcG9uZW50GAEgASgLMicucGx1bWUuc2FtcGxl",
-            "LnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXJSCWNvbXBvbmVudCLyBQoZU2tp",
-            "bm5lZE1lc2hSZW5kZXJlclVwZGF0ZRJFCgljb21wb25lbnQYASABKAsyJy5w",
-            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllclIJY29tcG9u",
-            "ZW50EjwKBG1lc2gYAiABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJ",
-            "ZGVudGlmaWVySABSBG1lc2iIAQESSQoJcm9vdF9ib25lGAMgASgLMicucGx1",
-            "bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXJIAVIIcm9vdEJv",
-            "bmWIAQESTgoFYm9uZXMYBCABKAsyMy5wbHVtZS5zYW1wbGUudW5pdHkuU2tp",
-            "bm5lZE1lc2hSZW5kZXJlclVwZGF0ZS5Cb25lc0gCUgVib25lc4gBARJ0ChNi",
-            "bGVuZF9zaGFwZV93ZWlnaHRzGAUgASgLMj8ucGx1bWUuc2FtcGxlLnVuaXR5",
-            "LlNraW5uZWRNZXNoUmVuZGVyZXJVcGRhdGUuQmxlbmRTaGFwZVdlaWdodHNI",
-            "A1IRYmxlbmRTaGFwZVdlaWdodHOIAQEaQgoFQm9uZXMSOQoDaWRzGAEgAygL",
-            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXJSA2lk",
-            "cxrBAQoRQmxlbmRTaGFwZVdlaWdodHMSagoHd2VpZ2h0cxgBIAMoCzJQLnBs",
-            "dW1lLnNhbXBsZS51bml0eS5Ta2lubmVkTWVzaFJlbmRlcmVyVXBkYXRlLkJs",
-            "ZW5kU2hhcGVXZWlnaHRzLkJsZW5kU2hhcGVXZWlnaHRSB3dlaWdodHMaQAoQ",
-            "QmxlbmRTaGFwZVdlaWdodBIUCgVpbmRleBgBIAEoBVIFaW5kZXgSFgoGd2Vp",
-            "Z2h0GAIgASgCUgZ3ZWlnaHRCBwoFX21lc2hCDAoKX3Jvb3RfYm9uZUIICgZf",
-            "Ym9uZXNCFgoUX2JsZW5kX3NoYXBlX3dlaWdodHNCFaoCElBMVU1FLlNhbXBs",
-            "ZS5Vbml0eWIGcHJvdG8z"));
+            "ZGVudGlmaWVycy5wcm90byJXChlTa2lubmVkTWVzaFJlbmRlcmVyQ3JlYXRl",
+            "EjoKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
+            "b25lbnRJZGVudGlmaWVyIlgKGlNraW5uZWRNZXNoUmVuZGVyZXJEZXN0cm95",
+            "EjoKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
+            "b25lbnRJZGVudGlmaWVyIp4EChlTa2lubmVkTWVzaFJlbmRlcmVyVXBkYXRl",
+            "EjoKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
+            "b25lbnRJZGVudGlmaWVyEjYKBG1lc2gYAiABKAsyIy5wbHVtZS5zYW1wbGUu",
+            "dW5pdHkuQXNzZXRJZGVudGlmaWVySACIAQESPwoJcm9vdF9ib25lGAMgASgL",
+            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXJIAYgB",
+            "ARJHCgVib25lcxgEIAEoCzIzLnBsdW1lLnNhbXBsZS51bml0eS5Ta2lubmVk",
+            "TWVzaFJlbmRlcmVyVXBkYXRlLkJvbmVzSAKIAQESYQoTYmxlbmRfc2hhcGVf",
+            "d2VpZ2h0cxgFIAEoCzI/LnBsdW1lLnNhbXBsZS51bml0eS5Ta2lubmVkTWVz",
+            "aFJlbmRlcmVyVXBkYXRlLkJsZW5kU2hhcGVXZWlnaHRzSAOIAQEaPQoFQm9u",
+            "ZXMSNAoDaWRzGAEgAygLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVu",
+            "dElkZW50aWZpZXIaKAoRQmxlbmRTaGFwZVdlaWdodHMSEwoHd2VpZ2h0cxgB",
+            "IAMoAkICEAFCBwoFX21lc2hCDAoKX3Jvb3RfYm9uZUIICgZfYm9uZXNCFgoU",
+            "X2JsZW5kX3NoYXBlX3dlaWdodHNCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererCreate), global::PLUME.Sample.Unity.SkinnedMeshRendererCreate.Parser, new[]{ "Component" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererDestroy), global::PLUME.Sample.Unity.SkinnedMeshRendererDestroy.Parser, new[]{ "Component" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Parser, new[]{ "Component", "Mesh", "RootBone", "Bones", "BlendShapeWeights" }, new[]{ "Mesh", "RootBone", "Bones", "BlendShapeWeights" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.Bones.Parser, new[]{ "Ids" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Parser, new[]{ "Weights" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight.Parser, new[]{ "Index", "Weight" }, null, null, null, null)})})
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights), global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Parser, new[]{ "Weights" }, null, null, null, null)})
           }));
     }
     #endregion
 
   }
   #region Messages
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SkinnedMeshRendererCreate : pb::IMessage<SkinnedMeshRendererCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -221,11 +215,7 @@ namespace PLUME.Sample.Unity {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
+        switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -247,11 +237,7 @@ namespace PLUME.Sample.Unity {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
+        switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -269,7 +255,6 @@ namespace PLUME.Sample.Unity {
 
   }
 
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SkinnedMeshRendererDestroy : pb::IMessage<SkinnedMeshRendererDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -428,11 +413,7 @@ namespace PLUME.Sample.Unity {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
+        switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -454,11 +435,7 @@ namespace PLUME.Sample.Unity {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
+        switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -476,7 +453,6 @@ namespace PLUME.Sample.Unity {
 
   }
 
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SkinnedMeshRendererUpdate : pb::IMessage<SkinnedMeshRendererUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -763,11 +739,7 @@ namespace PLUME.Sample.Unity {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
+        switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -817,11 +789,7 @@ namespace PLUME.Sample.Unity {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
+        switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -870,7 +838,6 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static partial class Types {
-      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
       public sealed partial class Bones : pb::IMessage<Bones>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
@@ -1015,11 +982,7 @@ namespace PLUME.Sample.Unity {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-          if ((tag & 7) == 4) {
-            // Abort on any end group tag.
-            return;
-          }
-          switch(tag) {
+            switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -1038,11 +1001,7 @@ namespace PLUME.Sample.Unity {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-          if ((tag & 7) == 4) {
-            // Abort on any end group tag.
-            return;
-          }
-          switch(tag) {
+            switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -1057,7 +1016,10 @@ namespace PLUME.Sample.Unity {
 
       }
 
-      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+      /// <summary>
+      /// Blend shape weights for every shape on the mesh, in shape index order (0..blendShapeCount-1).
+      /// Packed scalar array so recording a face rig every frame allocates no per-weight objects.
+      /// </summary>
       public sealed partial class BlendShapeWeights : pb::IMessage<BlendShapeWeights>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
@@ -1104,12 +1066,12 @@ namespace PLUME.Sample.Unity {
 
         /// <summary>Field number for the "weights" field.</summary>
         public const int WeightsFieldNumber = 1;
-        private static readonly pb::FieldCodec<global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight> _repeated_weights_codec
-            = pb::FieldCodec.ForMessage(10, global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight.Parser);
-        private readonly pbc::RepeatedField<global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight> weights_ = new pbc::RepeatedField<global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight>();
+        private static readonly pb::FieldCodec<float> _repeated_weights_codec
+            = pb::FieldCodec.ForFloat(10);
+        private readonly pbc::RepeatedField<float> weights_ = new pbc::RepeatedField<float>();
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public pbc::RepeatedField<global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight> Weights {
+        public pbc::RepeatedField<float> Weights {
           get { return weights_; }
         }
 
@@ -1202,15 +1164,12 @@ namespace PLUME.Sample.Unity {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-          if ((tag & 7) == 4) {
-            // Abort on any end group tag.
-            return;
-          }
-          switch(tag) {
+            switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
-              case 10: {
+              case 10:
+              case 13: {
                 weights_.AddEntriesFrom(input, _repeated_weights_codec);
                 break;
               }
@@ -1225,15 +1184,12 @@ namespace PLUME.Sample.Unity {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-          if ((tag & 7) == 4) {
-            // Abort on any end group tag.
-            return;
-          }
-          switch(tag) {
+            switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
-              case 10: {
+              case 10:
+              case 13: {
                 weights_.AddEntriesFrom(ref input, _repeated_weights_codec);
                 break;
               }
@@ -1241,249 +1197,6 @@ namespace PLUME.Sample.Unity {
           }
         }
         #endif
-
-        #region Nested types
-        /// <summary>Container for nested types declared in the BlendShapeWeights message type.</summary>
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public static partial class Types {
-          [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-          public sealed partial class BlendShapeWeight : pb::IMessage<BlendShapeWeight>
-          #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-              , pb::IBufferMessage
-          #endif
-          {
-            private static readonly pb::MessageParser<BlendShapeWeight> _parser = new pb::MessageParser<BlendShapeWeight>(() => new BlendShapeWeight());
-            private pb::UnknownFieldSet _unknownFields;
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public static pb::MessageParser<BlendShapeWeight> Parser { get { return _parser; } }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public static pbr::MessageDescriptor Descriptor {
-              get { return global::PLUME.Sample.Unity.SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Descriptor.NestedTypes[0]; }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            pbr::MessageDescriptor pb::IMessage.Descriptor {
-              get { return Descriptor; }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public BlendShapeWeight() {
-              OnConstruction();
-            }
-
-            partial void OnConstruction();
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public BlendShapeWeight(BlendShapeWeight other) : this() {
-              index_ = other.index_;
-              weight_ = other.weight_;
-              _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public BlendShapeWeight Clone() {
-              return new BlendShapeWeight(this);
-            }
-
-            /// <summary>Field number for the "index" field.</summary>
-            public const int IndexFieldNumber = 1;
-            private int index_;
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public int Index {
-              get { return index_; }
-              set {
-                index_ = value;
-              }
-            }
-
-            /// <summary>Field number for the "weight" field.</summary>
-            public const int WeightFieldNumber = 2;
-            private float weight_;
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public float Weight {
-              get { return weight_; }
-              set {
-                weight_ = value;
-              }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public override bool Equals(object other) {
-              return Equals(other as BlendShapeWeight);
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public bool Equals(BlendShapeWeight other) {
-              if (ReferenceEquals(other, null)) {
-                return false;
-              }
-              if (ReferenceEquals(other, this)) {
-                return true;
-              }
-              if (Index != other.Index) return false;
-              if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Weight, other.Weight)) return false;
-              return Equals(_unknownFields, other._unknownFields);
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public override int GetHashCode() {
-              int hash = 1;
-              if (Index != 0) hash ^= Index.GetHashCode();
-              if (Weight != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Weight);
-              if (_unknownFields != null) {
-                hash ^= _unknownFields.GetHashCode();
-              }
-              return hash;
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public override string ToString() {
-              return pb::JsonFormatter.ToDiagnosticString(this);
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public void WriteTo(pb::CodedOutputStream output) {
-            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-              output.WriteRawMessage(this);
-            #else
-              if (Index != 0) {
-                output.WriteRawTag(8);
-                output.WriteInt32(Index);
-              }
-              if (Weight != 0F) {
-                output.WriteRawTag(21);
-                output.WriteFloat(Weight);
-              }
-              if (_unknownFields != null) {
-                _unknownFields.WriteTo(output);
-              }
-            #endif
-            }
-
-            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-              if (Index != 0) {
-                output.WriteRawTag(8);
-                output.WriteInt32(Index);
-              }
-              if (Weight != 0F) {
-                output.WriteRawTag(21);
-                output.WriteFloat(Weight);
-              }
-              if (_unknownFields != null) {
-                _unknownFields.WriteTo(ref output);
-              }
-            }
-            #endif
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public int CalculateSize() {
-              int size = 0;
-              if (Index != 0) {
-                size += 1 + pb::CodedOutputStream.ComputeInt32Size(Index);
-              }
-              if (Weight != 0F) {
-                size += 1 + 4;
-              }
-              if (_unknownFields != null) {
-                size += _unknownFields.CalculateSize();
-              }
-              return size;
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public void MergeFrom(BlendShapeWeight other) {
-              if (other == null) {
-                return;
-              }
-              if (other.Index != 0) {
-                Index = other.Index;
-              }
-              if (other.Weight != 0F) {
-                Weight = other.Weight;
-              }
-              _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            public void MergeFrom(pb::CodedInputStream input) {
-            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-              input.ReadRawMessage(this);
-            #else
-              uint tag;
-              while ((tag = input.ReadTag()) != 0) {
-              if ((tag & 7) == 4) {
-                // Abort on any end group tag.
-                return;
-              }
-              switch(tag) {
-                  default:
-                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-                    break;
-                  case 8: {
-                    Index = input.ReadInt32();
-                    break;
-                  }
-                  case 21: {
-                    Weight = input.ReadFloat();
-                    break;
-                  }
-                }
-              }
-            #endif
-            }
-
-            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-            void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-              uint tag;
-              while ((tag = input.ReadTag()) != 0) {
-              if ((tag & 7) == 4) {
-                // Abort on any end group tag.
-                return;
-              }
-              switch(tag) {
-                  default:
-                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-                    break;
-                  case 8: {
-                    Index = input.ReadInt32();
-                    break;
-                  }
-                  case 21: {
-                    Weight = input.ReadFloat();
-                    break;
-                  }
-                }
-              }
-            }
-            #endif
-
-          }
-
-        }
-        #endregion
 
       }
 

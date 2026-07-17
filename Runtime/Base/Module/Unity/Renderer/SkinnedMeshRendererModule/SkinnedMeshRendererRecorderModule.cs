@@ -18,19 +18,14 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
         private readonly Dictionary<SkinnedMeshRendererSafeRef, SkinnedMeshRendererDestroy> _destroySamples = new();
         private readonly Dictionary<SkinnedMeshRendererSafeRef, SkinnedMeshRendererUpdate> _updateSamples = new();
 
-        // Renderers whose blend shape weights changed this frame. The (potentially large) weights
-        // snapshot is deferred to CollectFrameData so it is built once per frame instead of once per
-        // SetBlendShapeWeight call.
-        private readonly HashSet<SkinnedMeshRendererSafeRef> _dirtyBlendShapes = new();
-
         protected override void OnCreate(RecorderContext ctx)
         {
             base.OnCreate(ctx);
 
             SkinnedMeshRendererHooks.OnRootBoneChanged += (mr, rootBone) => OnRootBoneChanged(mr, rootBone, ctx);
             SkinnedMeshRendererHooks.OnBonesChanged += (mr, bones) => OnBonesChanged(mr, bones, ctx);
-            SkinnedMeshRendererHooks.OnBlendShapeWeightChanged +=
-                (mr, index, value) => OnBlendShapeWeightChanged(mr, ctx);
+            // Blend shape weights are recorded on a dedicated allocation-free stream by
+            // SkinnedMeshRendererBlendShapeRecorderModule.
         }
 
         protected override void OnObjectMarkedCreated(SkinnedMeshRendererSafeRef objSafeRef, RecorderContext ctx)
@@ -55,8 +50,6 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
                 }
             }
 
-            updateSample.BlendShapeWeights = BuildBlendShapeWeights(objSafeRef.Component);
-
             _createSamples[objSafeRef] = new SkinnedMeshRendererCreate
                 { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
@@ -67,41 +60,6 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
 
             _destroySamples[objSafeRef] = new SkinnedMeshRendererDestroy
                 { Component = GetComponentIdentifierPayload(objSafeRef) };
-        }
-
-        private void OnBlendShapeWeightChanged(SkinnedMeshRenderer skinnedMeshRenderer, RecorderContext ctx)
-        {
-            if (!ctx.IsRecording)
-                return;
-
-            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(skinnedMeshRenderer);
-
-            if (!IsRecordingObject(objSafeRef))
-                return;
-
-            _dirtyBlendShapes.Add(objSafeRef);
-        }
-
-        private static SkinnedMeshRendererUpdate.Types.BlendShapeWeights BuildBlendShapeWeights(
-            SkinnedMeshRenderer skinnedMeshRenderer)
-        {
-            var blendShapeWeights = new SkinnedMeshRendererUpdate.Types.BlendShapeWeights();
-
-            var sharedMesh = skinnedMeshRenderer.sharedMesh;
-
-            if (sharedMesh == null)
-                return blendShapeWeights;
-
-            // Packed float array in shape-index order (0..blendShapeCount-1). RepeatedField<float> stores the
-            // values in a reused backing array, so no per-weight object is allocated (unlike the old
-            // repeated BlendShapeWeight{index,weight} message).
-            var count = sharedMesh.blendShapeCount;
-            for (var i = 0; i < count; i++)
-            {
-                blendShapeWeights.Weights.Add(skinnedMeshRenderer.GetBlendShapeWeight(i));
-            }
-
-            return blendShapeWeights;
         }
 
         private void OnRootBoneChanged(SkinnedMeshRenderer skinnedMeshRenderer, UnityEngine.Transform rootBone,
@@ -154,15 +112,6 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
 
         protected override SkinnedMeshRendererFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
-            foreach (var objSafeRef in _dirtyBlendShapes)
-            {
-                if (!IsRecordingObject(objSafeRef) || objSafeRef.Component == null)
-                    continue;
-
-                var updateSample = GetOrCreateUpdateSample(objSafeRef);
-                updateSample.BlendShapeWeights = BuildBlendShapeWeights(objSafeRef.Component);
-            }
-
             var frameData = SkinnedMeshRendererFrameData.Pool.Get();
             frameData.AddCreateSamples(_createSamples.Values);
             frameData.AddDestroySamples(_destroySamples.Values);
@@ -177,7 +126,6 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
             _updateSamples.Clear();
             _createSamples.Clear();
             _destroySamples.Clear();
-            _dirtyBlendShapes.Clear();
         }
     }
 }

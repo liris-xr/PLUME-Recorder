@@ -81,6 +81,18 @@ namespace PLUME.Editor
             }
 #endif
 
+            // HDRP references diffusion profiles by a baked GUID/hash rather than an object reference, so the scene
+            // dependency walk above never includes them. Without the profile assets in the bundle, subsurface
+            // materials (e.g. skin) fall back to the neutral profile and render bright red on replay. Add every
+            // project diffusion profile explicitly. Queried by type name so no HDRP assembly reference is needed;
+            // a no-op for non-HDRP projects (no such assets exist).
+            foreach (var diffusionProfileGuid in AssetDatabase.FindAssets("t:DiffusionProfileSettings", new[] { "Assets" }))
+            {
+                var diffusionProfilePath = AssetDatabase.GUIDToAssetPath(diffusionProfileGuid);
+                if (!string.IsNullOrEmpty(diffusionProfilePath))
+                    assetsPaths.Add(diffusionProfilePath);
+            }
+
             var assetsBuild = new AssetBundleBuild
             {
                 assetBundleName = "plume_assets",

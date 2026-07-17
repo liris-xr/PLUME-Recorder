@@ -53,6 +53,12 @@ namespace PLUME.Core.Recorder.Module.Frame
         {
             CheckIsRecording(ctx);
 
+            // Null safe refs are produced for objects that cannot be identified (e.g. components on
+            // hidden HideAndDontSave GameObjects that are not part of a valid scene, such as the HDRP
+            // default camera/light singletons). Recording them would dereference a null Object.
+            if (objSafeRef.IsNull)
+                return false;
+
             // If we fail to add the object, this means that it is already being recorded.
             if (!_recordedObjectsIdentifier.Add(objSafeRef.Identifier))
                 return false;

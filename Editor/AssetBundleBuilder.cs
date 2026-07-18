@@ -9,6 +9,8 @@ using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using PLUME.Core.Settings;
+using PLUME.Editor.Core.Settings;
 using CompressionLevel = System.IO.Compression.CompressionLevel;
 using Logger = PLUME.Core.Logger;
 
@@ -52,22 +54,14 @@ namespace PLUME.Editor
                 }
             }
 
-            if (GraphicsSettings.defaultRenderPipeline != null)
+            // Bundling a render pipeline asset drags in its whole shader-variant set — the dominant
+            // build cost. Only include the ones the user asked for (default: the active pipeline).
+            var recorderSettings = SettingsEditor.GetSettings<RecorderSettings>();
+            foreach (var renderPipelineAsset in GetRenderPipelineAssetsToExport(recorderSettings))
             {
-                var defaultRenderPipelineAssetPath = AssetDatabase.GetAssetPath(GraphicsSettings.defaultRenderPipeline);
-
-                if (!string.IsNullOrEmpty(defaultRenderPipelineAssetPath))
-                    assetsPaths.Add(defaultRenderPipelineAssetPath);
-            }
-
-            for (var qualityLevel = 0; qualityLevel < QualitySettings.count; qualityLevel++)
-            {
-                var qualityLevelRenderPipeline = QualitySettings.GetRenderPipelineAssetAt(qualityLevel);
-                if (qualityLevelRenderPipeline == null)
-                    continue;
-                var qualityLevelRenderPipelineAssetPath = AssetDatabase.GetAssetPath(qualityLevelRenderPipeline);
-                if (!string.IsNullOrEmpty(qualityLevelRenderPipelineAssetPath))
-                    assetsPaths.Add(qualityLevelRenderPipelineAssetPath);
+                var renderPipelineAssetPath = AssetDatabase.GetAssetPath(renderPipelineAsset);
+                if (!string.IsNullOrEmpty(renderPipelineAssetPath))
+                    assetsPaths.Add(renderPipelineAssetPath);
             }
 
 #if URP_ENABLED
@@ -117,6 +111,33 @@ namespace PLUME.Editor
             catch (Exception e)
             {
                 Logger.LogError("Failed to build asset bundle.", e);
+            }
+        }
+
+        private static IEnumerable<RenderPipelineAsset> GetRenderPipelineAssetsToExport(RecorderSettings settings)
+        {
+            switch (settings.RenderPipelineExport)
+            {
+                case RenderPipelineExportMode.CurrentActive:
+                    if (GraphicsSettings.currentRenderPipeline != null)
+                        yield return GraphicsSettings.currentRenderPipeline;
+                    break;
+                case RenderPipelineExportMode.All:
+                    if (GraphicsSettings.defaultRenderPipeline != null)
+                        yield return GraphicsSettings.defaultRenderPipeline;
+                    for (var qualityLevel = 0; qualityLevel < QualitySettings.count; qualityLevel++)
+                    {
+                        var qualityLevelRenderPipeline = QualitySettings.GetRenderPipelineAssetAt(qualityLevel);
+                        if (qualityLevelRenderPipeline != null)
+                            yield return qualityLevelRenderPipeline;
+                    }
+                    break;
+                case RenderPipelineExportMode.Custom:
+                    // Skip null (deleted/unassigned) refs so a stale selection can't break the build.
+                    foreach (var renderPipelineAsset in settings.CustomRenderPipelineAssets)
+                        if (renderPipelineAsset != null)
+                            yield return renderPipelineAsset;
+                    break;
             }
         }
     }

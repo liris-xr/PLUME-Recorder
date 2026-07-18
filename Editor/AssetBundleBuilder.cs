@@ -57,12 +57,19 @@ namespace PLUME.Editor
             // Bundling a render pipeline asset drags in its whole shader-variant set — the dominant
             // build cost. Only include the ones the user asked for (default: the active pipeline).
             var recorderSettings = SettingsEditor.GetSettings<RecorderSettings>();
-            foreach (var renderPipelineAsset in GetRenderPipelineAssetsToExport(recorderSettings))
+            var exportedRenderPipelineAssets = GetRenderPipelineAssetsToExport(recorderSettings).ToList();
+            foreach (var renderPipelineAsset in exportedRenderPipelineAssets)
             {
                 var renderPipelineAssetPath = AssetDatabase.GetAssetPath(renderPipelineAsset);
                 if (!string.IsNullOrEmpty(renderPipelineAssetPath))
                     assetsPaths.Add(renderPipelineAssetPath);
             }
+
+            var exportedRenderPipelineNames = exportedRenderPipelineAssets.Count > 0
+                ? string.Join(", ", exportedRenderPipelineAssets.Select(rp => rp.name))
+                : "(none)";
+            Logger.Log($"Building asset bundle. Render pipeline export mode: {recorderSettings.RenderPipelineExport}. " +
+                       $"Exporting render pipeline assets: {exportedRenderPipelineNames}.");
 
 #if URP_ENABLED
             var urpGlobalSettings = GraphicsSettings.GetSettingsForRenderPipeline<UnityEngine.Rendering.Universal.UniversalRenderPipeline>();

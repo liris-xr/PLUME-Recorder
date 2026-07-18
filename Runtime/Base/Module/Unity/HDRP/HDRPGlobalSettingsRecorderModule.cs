@@ -1,4 +1,6 @@
-#if HDRP_ENABLED
+// VolumeManager.globalDefaultProfile is core RP 17+ (Unity 6). Guarded so the recorder
+// still compiles under Unity 2022 (HDRP 14), where this property does not exist.
+#if HDRP_ENABLED && UNITY_6000_0_OR_NEWER
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity.Settings;

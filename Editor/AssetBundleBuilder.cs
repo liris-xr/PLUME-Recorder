@@ -47,8 +47,18 @@ namespace PLUME.Editor
                     if (obj.fileType is FileType.NonAssetType)
                         continue;
                     var assetPath = AssetDatabase.GUIDToAssetPath(obj.guid);
-                    if (!string.IsNullOrEmpty(assetPath))
-                        assetsPaths.Add(assetPath);
+                    if (string.IsNullOrEmpty(assetPath))
+                        continue;
+
+                    // Never bundle MonoScript assets: the replay side binds scripted objects by
+                    // assembly/class name using its own compiled assemblies. Explicitly bundling a
+                    // script redirects m_Script of ScriptableObjects in the same bundle to the bundled
+                    // MonoScript, which fails to resolve at load time and silently drops the object
+                    // (observed with VolumeProfile when VolumeProfile.cs was bundled).
+                    if (AssetDatabase.GetMainAssetTypeAtPath(assetPath) == typeof(MonoScript))
+                        continue;
+
+                    assetsPaths.Add(assetPath);
 
                     // TODO: if referencing a file nested in a prefab, add the full prefab
                 }
@@ -86,11 +96,14 @@ namespace PLUME.Editor
             // materials (e.g. skin) fall back to the neutral profile and render bright red on replay. Add every
             // project diffusion profile explicitly. Queried by type name so no HDRP assembly reference is needed;
             // a no-op for non-HDRP projects (no such assets exist).
+            var diffusionProfilePaths = new List<string>();
             foreach (var diffusionProfileGuid in AssetDatabase.FindAssets("t:DiffusionProfileSettings", new[] { "Assets" }))
             {
                 var diffusionProfilePath = AssetDatabase.GUIDToAssetPath(diffusionProfileGuid);
-                if (!string.IsNullOrEmpty(diffusionProfilePath))
-                    assetsPaths.Add(diffusionProfilePath);
+                if (string.IsNullOrEmpty(diffusionProfilePath))
+                    continue;
+                assetsPaths.Add(diffusionProfilePath);
+                diffusionProfilePaths.Add(diffusionProfilePath);
             }
 
             var assetsBuild = new AssetBundleBuild
@@ -105,8 +118,10 @@ namespace PLUME.Editor
                 assetNames = scenePaths.ToArray()
             };
 
-            var outputPath = Path.Join(Application.dataPath, "AssetBundles", "plume_bundle/");
-            var zipOutputPath = Path.Join(Application.dataPath, "AssetBundles", "plume_bundle.zip");
+            // Output outside Assets/ so Unity doesn't re-import the built bundles as project assets.
+            var assetBundlesDir = Path.GetFullPath(Path.Join(Application.dataPath, "..", "AssetBundles"));
+            var outputPath = Path.Join(assetBundlesDir, "plume_bundle/");
+            var zipOutputPath = Path.Join(assetBundlesDir, "plume_bundle.zip");
             var builds = new[] { assetsBuild, scenesBuild };
             const BuildAssetBundleOptions options = BuildAssetBundleOptions.ChunkBasedCompression;
 
@@ -120,6 +135,8 @@ namespace PLUME.Editor
                 CompatibilityBuildPipeline.BuildAssetBundles(outputPath, builds, options,
                     BuildTarget.StandaloneWindows64);
 
+                WriteDiffusionProfileHashManifest(outputPath, diffusionProfilePaths);
+
                 File.Delete(zipOutputPath);
                 // Bundle is already LZ4-compressed (ChunkBasedCompression); Deflate gains ~15%
                 // but higher levels add <0.5% for ~2x the time. Fastest keeps the size, halves the zip.
@@ -131,6 +148,68 @@ namespace PLUME.Editor
             {
                 Logger.LogError("Failed to build asset bundle.", e);
             }
+        }
+
+        [Serializable]
+        private class DiffusionProfileHashManifest
+        {
+            public List<DiffusionProfileHashEntry> entries = new();
+        }
+
+        [Serializable]
+        private class DiffusionProfileHashEntry
+        {
+            public string name;
+            public uint hash;
+        }
+
+        /// <summary>
+        /// Writes a name-to-hash manifest for every bundled diffusion profile next to the bundles (zipped with
+        /// them). HDRP derives a profile's hash from its asset GUID in the editor and bakes that value into
+        /// materials, but when the viewer loads the profile from the bundle in the editor, HDRP re-derives the
+        /// hash from the (nonexistent) AssetDatabase path and zeroes it, breaking the material-to-profile match
+        /// (skin renders red). The viewer restores the hashes from this manifest after loading.
+        /// The in-memory hash is read here (not the serialized one), which is always the GUID-derived value the
+        /// materials were baked with, even if the profile asset was never saved after its hash was computed.
+        /// </summary>
+        private static void WriteDiffusionProfileHashManifest(string outputPath, List<string> diffusionProfilePaths)
+        {
+            var settingsType = Type.GetType(
+                "UnityEngine.Rendering.HighDefinition.DiffusionProfileSettings, Unity.RenderPipelines.HighDefinition.Runtime");
+            if (settingsType == null || diffusionProfilePaths.Count == 0)
+                return;
+
+            var profileField = settingsType.GetField("profile",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public |
+                System.Reflection.BindingFlags.NonPublic);
+
+            var manifest = new DiffusionProfileHashManifest();
+
+            foreach (var path in diffusionProfilePaths)
+            {
+                var settings = AssetDatabase.LoadAssetAtPath(path, settingsType);
+                if (settings == null) continue;
+
+                var diffusionProfile = profileField?.GetValue(settings);
+                var hashField = diffusionProfile?.GetType().GetField("hash",
+                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public |
+                    System.Reflection.BindingFlags.NonPublic);
+                if (hashField?.GetValue(diffusionProfile) is not uint hash)
+                    continue;
+
+                if (hash == 0)
+                {
+                    Logger.LogWarning($"Diffusion profile '{settings.name}' ({path}) has hash 0 at build time; " +
+                                      "subsurface materials using it will not match it on replay.");
+                    continue;
+                }
+
+                manifest.entries.Add(new DiffusionProfileHashEntry { name = settings.name, hash = hash });
+            }
+
+            var manifestPath = Path.Join(outputPath, "plume_diffusion_hashes.json");
+            File.WriteAllText(manifestPath, JsonUtility.ToJson(manifest, true));
+            Logger.Log($"Wrote diffusion profile hash manifest with {manifest.entries.Count} entries to {manifestPath}.");
         }
 
         private static IEnumerable<RenderPipelineAsset> GetRenderPipelineAssetsToExport(RecorderSettings settings)

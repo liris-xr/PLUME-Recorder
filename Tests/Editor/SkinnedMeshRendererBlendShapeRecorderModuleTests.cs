@@ -126,6 +126,20 @@ namespace Tests.Editor
         }
 
         [Test]
+        public void SubThresholdDrift_AccumulatesAgainstBaseline_AndEmitsOnCrossing()
+        {
+            RunFrame(0); // initial, baseline = 0
+
+            // Each step is below the threshold relative to the previous frame, but the baseline stays at the last
+            // recorded value (0), so the drift accumulates and must be recorded once the total crosses the threshold.
+            _smr.SetBlendShapeWeight(0, 0.006f);
+            Assert.That(RunFrame(1), Is.Zero, "0.006 is within the threshold of the baseline; nothing to record yet.");
+
+            _smr.SetBlendShapeWeight(0, 0.012f);
+            Assert.That(RunFrame(2), Is.GreaterThan(0), "Accumulated drift past the threshold must be recorded.");
+        }
+
+        [Test]
         public void SteadyState_ChangingEveryFrame_AllocatesNoManagedMemory()
         {
             // Warm up: first frame allocates the reused float[] buffer and the frame-data dictionary capacity.

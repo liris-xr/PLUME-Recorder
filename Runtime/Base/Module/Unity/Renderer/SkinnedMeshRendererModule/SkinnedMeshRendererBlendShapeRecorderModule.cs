@@ -18,8 +18,8 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
     /// an <see cref="Animator"/> writes blend shape weights internally through the playable-graph binding, bypassing
     /// the managed setter and its hook entirely.
     /// <para>
-    /// Each frame the current weights are read into a per-renderer reused buffer and compared against the previous
-    /// frame's weights: a renderer only emits a <see cref="SkinnedMeshRendererBlendShapeUpdate"/> when at least one
+    /// Each frame the current weights are compared against the last recorded weights: a renderer only emits a
+    /// <see cref="SkinnedMeshRendererBlendShapeUpdate"/> when at least one
     /// weight moved by more than <see cref="SkinnedMeshRendererBlendShapeRecorderModuleSettings.WeightThreshold"/>
     /// (or on its first recorded frame, or when its mesh's blend shape count changes). The reused buffers make the
     /// steady state allocation-free, so a face rig animating every frame produces no managed GC allocation.
@@ -29,7 +29,7 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
     public class SkinnedMeshRendererBlendShapeRecorderModule :
         ComponentRecorderModule<SkinnedMeshRenderer, SkinnedMeshRendererBlendShapeFrameData>
     {
-        // Previous frame's weights per recorded renderer. Each buffer is allocated once when the renderer starts
+        // Last recorded weights per recorded renderer. Each buffer is allocated once when the renderer starts
         // being recorded (or reallocated when its blend shape count changes) and reused every frame, so no managed
         // allocation happens in steady state.
         private readonly Dictionary<SkinnedMeshRendererSafeRef, float[]> _previousWeights = new();
@@ -96,17 +96,19 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
                     _previousWeights[objSafeRef] = previous;
                 }
 
-                // Read current weights into the reused buffer, flagging a change if any weight moved past the
-                // threshold. Baseline is the previous frame (matching TransformRecorderModule), so it is always
-                // overwritten with the current value.
-                for (var i = 0; i < count; i++)
+                // Compare against the last recorded weights without touching the baseline, so a weight drifting
+                // slower than the threshold per frame still accumulates and is eventually recorded instead of being
+                // dropped frame after frame.
+                if (!changed)
                 {
-                    var weight = skinnedMeshRenderer.GetBlendShapeWeight(i);
-
-                    if (!changed && Math.Abs(weight - previous[i]) > _weightThreshold)
-                        changed = true;
-
-                    previous[i] = weight;
+                    for (var i = 0; i < count; i++)
+                    {
+                        if (Math.Abs(skinnedMeshRenderer.GetBlendShapeWeight(i) - previous[i]) > _weightThreshold)
+                        {
+                            changed = true;
+                            break;
+                        }
+                    }
                 }
 
                 if (!changed)
@@ -122,11 +124,14 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
                     weights = new NativeList<float>(Allocator.Persistent);
                 }
 
-                // Only changed renderers append to the shared buffer; `previous` now holds the current weights.
+                // Record current weights and advance the baseline to them, so the next comparison is against the
+                // last recorded value.
                 var offset = weights.Length;
                 for (var i = 0; i < count; i++)
                 {
-                    weights.Add(previous[i]);
+                    var weight = skinnedMeshRenderer.GetBlendShapeWeight(i);
+                    previous[i] = weight;
+                    weights.Add(weight);
                 }
 
                 updateSamples.Add(new SkinnedMeshRendererBlendShapeUpdate

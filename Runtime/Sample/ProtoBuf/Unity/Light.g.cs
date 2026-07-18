@@ -32,7 +32,7 @@ namespace PLUME.Sample.Unity {
             "IAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVy",
             "Ugljb21wb25lbnQiVQoMTGlnaHREZXN0cm95EkUKCWNvbXBvbmVudBgBIAEo",
             "CzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyUglj",
-            "b21wb25lbnQiwxMKC0xpZ2h0VXBkYXRlEkUKCWNvbXBvbmVudBgBIAEoCzIn",
+            "b21wb25lbnQilRQKC0xpZ2h0VXBkYXRlEkUKCWNvbXBvbmVudBgBIAEoCzIn",
             "LnBsdW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyUgljb21w",
             "b25lbnQSHQoHZW5hYmxlZBgCIAEoCEgAUgdlbmFibGVkiAEBEjYKBHR5cGUY",
             "AyABKA4yHS5wbHVtZS5zYW1wbGUudW5pdHkuTGlnaHRUeXBlSAFSBHR5cGWI",
@@ -74,44 +74,48 @@ namespace PLUME.Sample.Unity {
             "LnVuaXR5LkFzc2V0SWRlbnRpZmllckgbUgZjb29raWWIAQESJAoLY29va2ll",
             "X3NpemUYHiABKAJIHFIKY29va2llU2l6ZYgBARI+CgVmbGFyZRgfIAEoCzIj",
             "LnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZpZXJIHVIFZmxhcmWI",
-            "AQFCCgoIX2VuYWJsZWRCBwoFX3R5cGVCCAoGX3NoYXBlQgwKCl9pbnRlbnNp",
-            "dHlCEwoRX2JvdW5jZV9pbnRlbnNpdHlCCAoGX3JhbmdlQggKBl9jb2xvckIU",
-            "ChJfY29sb3JfdGVtcGVyYXR1cmVCGAoWX3VzZV9jb2xvcl90ZW1wZXJhdHVy",
-            "ZUINCgtfc3BvdF9hbmdsZUITChFfaW5uZXJfc3BvdF9hbmdsZUIKCghfc2hh",
-            "ZG93c0ISChBfc2hhZG93X3N0cmVuZ3RoQhQKEl9zaGFkb3dfcmVzb2x1dGlv",
-            "bkIZChdfc2hhZG93X21hdHJpeF9vdmVycmlkZUIdChtfdXNlX3NoYWRvd19t",
-            "YXRyaXhfb3ZlcnJpZGVCDgoMX3NoYWRvd19iaWFzQhUKE19zaGFkb3dfbm9y",
-            "bWFsX2JpYXNCFAoSX3NoYWRvd19uZWFyX3BsYW5lQioKKF91c2Vfdmlld19m",
-            "cnVzdHVtX2Zvcl9zaGFkb3dfY2FzdGVyX2N1bGxCHgocX2xheWVyX3NoYWRv",
-            "d19jdWxsX2Rpc3RhbmNlc0IbChlfc2hhZG93X2N1c3RvbV9yZXNvbHV0aW9u",
-            "QhsKGV9saWdodF9zaGFkb3dfY2FzdGVyX21vZGVCFwoVX3JlbmRlcmluZ19s",
-            "YXllcl9tYXNrQg8KDV9jdWxsaW5nX21hc2tCGwoZX2JvdW5kaW5nX3NwaGVy",
-            "ZV9vdmVycmlkZUIfCh1fdXNlX2JvdW5kaW5nX3NwaGVyZV9vdmVycmlkZUIJ",
-            "CgdfY29va2llQg4KDF9jb29raWVfc2l6ZUIICgZfZmxhcmUiOAoYTGF5ZXJT",
-            "aGFkb3dDdWxsRGlzdGFuY2VzEhwKCWRpc3RhbmNlcxgBIAMoAlIJZGlzdGFu",
-            "Y2VzKpYBCglMaWdodFR5cGUSEwoPTElHSFRfVFlQRV9TUE9UEAASGgoWTElH",
-            "SFRfVFlQRV9ESVJFQ1RJT05BTBABEhQKEExJR0hUX1RZUEVfUE9JTlQQAhIT",
-            "Cg9MSUdIVF9UWVBFX0FSRUEQAxIYChRMSUdIVF9UWVBFX1JFQ1RBTkdMRRAE",
-            "EhMKD0xJR0hUX1RZUEVfRElTQxAFKlAKCkxpZ2h0U2hhcGUSFAoQTElHSFRf",
-            "U0hBUEVfQ09ORRAAEhcKE0xJR0hUX1NIQVBFX1BZUkFNSUQQARITCg9MSUdI",
-            "VF9TSEFQRV9CT1gQAiqZAQoVTGlnaHRTaGFkb3dDYXN0ZXJNb2RlEiQKIExJ",
-            "R0hUX1NIQURPV19DQVNURVJfTU9ERV9ERUZBVUxUEAASMQotTElHSFRfU0hB",
-            "RE9XX0NBU1RFUl9NT0RFX05PTl9MSUdIVE1BUFBFRF9PTkxZEAESJwojTElH",
-            "SFRfU0hBRE9XX0NBU1RFUl9NT0RFX0VWRVJZVEhJTkcQAirYAQoVTGlnaHRT",
-            "aGFkb3dSZXNvbHV0aW9uEjEKLUxJR0hUX1NIQURPV19SRVNPTFVUSU9OX0ZS",
-            "T01fUVVBTElUWV9TRVRUSU5HUxAAEh8KG0xJR0hUX1NIQURPV19SRVNPTFVU",
-            "SU9OX0xPVxABEiIKHkxJR0hUX1NIQURPV19SRVNPTFVUSU9OX01FRElVTRAC",
-            "EiAKHExJR0hUX1NIQURPV19SRVNPTFVUSU9OX0hJR0gQAxIlCiFMSUdIVF9T",
-            "SEFET1dfUkVTT0xVVElPTl9WRVJZX0hJR0gQBCpWCgxMaWdodFNoYWRvd3MS",
-            "FgoSTElHSFRfU0hBRE9XU19OT05FEAASFgoSTElHSFRfU0hBRE9XU19IQVJE",
-            "EAESFgoSTElHSFRfU0hBRE9XU19TT0ZUEAJCFaoCElBMVU1FLlNhbXBsZS5V",
-            "bml0eWIGcHJvdG8z"));
+            "AQESQQoKbGlnaHRfdW5pdBggIAEoDjIdLnBsdW1lLnNhbXBsZS51bml0eS5M",
+            "aWdodFVuaXRIHlIJbGlnaHRVbml0iAEBQgoKCF9lbmFibGVkQgcKBV90eXBl",
+            "QggKBl9zaGFwZUIMCgpfaW50ZW5zaXR5QhMKEV9ib3VuY2VfaW50ZW5zaXR5",
+            "QggKBl9yYW5nZUIICgZfY29sb3JCFAoSX2NvbG9yX3RlbXBlcmF0dXJlQhgK",
+            "Fl91c2VfY29sb3JfdGVtcGVyYXR1cmVCDQoLX3Nwb3RfYW5nbGVCEwoRX2lu",
+            "bmVyX3Nwb3RfYW5nbGVCCgoIX3NoYWRvd3NCEgoQX3NoYWRvd19zdHJlbmd0",
+            "aEIUChJfc2hhZG93X3Jlc29sdXRpb25CGQoXX3NoYWRvd19tYXRyaXhfb3Zl",
+            "cnJpZGVCHQobX3VzZV9zaGFkb3dfbWF0cml4X292ZXJyaWRlQg4KDF9zaGFk",
+            "b3dfYmlhc0IVChNfc2hhZG93X25vcm1hbF9iaWFzQhQKEl9zaGFkb3dfbmVh",
+            "cl9wbGFuZUIqCihfdXNlX3ZpZXdfZnJ1c3R1bV9mb3Jfc2hhZG93X2Nhc3Rl",
+            "cl9jdWxsQh4KHF9sYXllcl9zaGFkb3dfY3VsbF9kaXN0YW5jZXNCGwoZX3No",
+            "YWRvd19jdXN0b21fcmVzb2x1dGlvbkIbChlfbGlnaHRfc2hhZG93X2Nhc3Rl",
+            "cl9tb2RlQhcKFV9yZW5kZXJpbmdfbGF5ZXJfbWFza0IPCg1fY3VsbGluZ19t",
+            "YXNrQhsKGV9ib3VuZGluZ19zcGhlcmVfb3ZlcnJpZGVCHwodX3VzZV9ib3Vu",
+            "ZGluZ19zcGhlcmVfb3ZlcnJpZGVCCQoHX2Nvb2tpZUIOCgxfY29va2llX3Np",
+            "emVCCAoGX2ZsYXJlQg0KC19saWdodF91bml0IjgKGExheWVyU2hhZG93Q3Vs",
+            "bERpc3RhbmNlcxIcCglkaXN0YW5jZXMYASADKAJSCWRpc3RhbmNlcyp4CglM",
+            "aWdodFVuaXQSFAoQTElHSFRfVU5JVF9MVU1FThAAEhYKEkxJR0hUX1VOSVRf",
+            "Q0FOREVMQRABEhIKDkxJR0hUX1VOSVRfTFVYEAISEwoPTElHSFRfVU5JVF9O",
+            "SVRTEAMSFAoQTElHSFRfVU5JVF9FVjEwMBAEKpYBCglMaWdodFR5cGUSEwoP",
+            "TElHSFRfVFlQRV9TUE9UEAASGgoWTElHSFRfVFlQRV9ESVJFQ1RJT05BTBAB",
+            "EhQKEExJR0hUX1RZUEVfUE9JTlQQAhITCg9MSUdIVF9UWVBFX0FSRUEQAxIY",
+            "ChRMSUdIVF9UWVBFX1JFQ1RBTkdMRRAEEhMKD0xJR0hUX1RZUEVfRElTQxAF",
+            "KlAKCkxpZ2h0U2hhcGUSFAoQTElHSFRfU0hBUEVfQ09ORRAAEhcKE0xJR0hU",
+            "X1NIQVBFX1BZUkFNSUQQARITCg9MSUdIVF9TSEFQRV9CT1gQAiqZAQoVTGln",
+            "aHRTaGFkb3dDYXN0ZXJNb2RlEiQKIExJR0hUX1NIQURPV19DQVNURVJfTU9E",
+            "RV9ERUZBVUxUEAASMQotTElHSFRfU0hBRE9XX0NBU1RFUl9NT0RFX05PTl9M",
+            "SUdIVE1BUFBFRF9PTkxZEAESJwojTElHSFRfU0hBRE9XX0NBU1RFUl9NT0RF",
+            "X0VWRVJZVEhJTkcQAirYAQoVTGlnaHRTaGFkb3dSZXNvbHV0aW9uEjEKLUxJ",
+            "R0hUX1NIQURPV19SRVNPTFVUSU9OX0ZST01fUVVBTElUWV9TRVRUSU5HUxAA",
+            "Eh8KG0xJR0hUX1NIQURPV19SRVNPTFVUSU9OX0xPVxABEiIKHkxJR0hUX1NI",
+            "QURPV19SRVNPTFVUSU9OX01FRElVTRACEiAKHExJR0hUX1NIQURPV19SRVNP",
+            "TFVUSU9OX0hJR0gQAxIlCiFMSUdIVF9TSEFET1dfUkVTT0xVVElPTl9WRVJZ",
+            "X0hJR0gQBCpWCgxMaWdodFNoYWRvd3MSFgoSTElHSFRfU0hBRE9XU19OT05F",
+            "EAASFgoSTElHSFRfU0hBRE9XU19IQVJEEAESFgoSTElHSFRfU0hBRE9XU19T",
+            "T0ZUEAJCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Matrix4X4Reflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.LightType), typeof(global::PLUME.Sample.Unity.LightShape), typeof(global::PLUME.Sample.Unity.LightShadowCasterMode), typeof(global::PLUME.Sample.Unity.LightShadowResolution), typeof(global::PLUME.Sample.Unity.LightShadows), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.LightUnit), typeof(global::PLUME.Sample.Unity.LightType), typeof(global::PLUME.Sample.Unity.LightShape), typeof(global::PLUME.Sample.Unity.LightShadowCasterMode), typeof(global::PLUME.Sample.Unity.LightShadowResolution), typeof(global::PLUME.Sample.Unity.LightShadows), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightCreate), global::PLUME.Sample.Unity.LightCreate.Parser, new[]{ "Component" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightDestroy), global::PLUME.Sample.Unity.LightDestroy.Parser, new[]{ "Component" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdate), global::PLUME.Sample.Unity.LightUpdate.Parser, new[]{ "Component", "Enabled", "Type", "Shape", "Intensity", "BounceIntensity", "Range", "Color", "ColorTemperature", "UseColorTemperature", "SpotAngle", "InnerSpotAngle", "Shadows", "ShadowStrength", "ShadowResolution", "ShadowMatrixOverride", "UseShadowMatrixOverride", "ShadowBias", "ShadowNormalBias", "ShadowNearPlane", "UseViewFrustumForShadowCasterCull", "LayerShadowCullDistances", "ShadowCustomResolution", "LightShadowCasterMode", "RenderingLayerMask", "CullingMask", "BoundingSphereOverride", "UseBoundingSphereOverride", "Cookie", "CookieSize", "Flare" }, new[]{ "Enabled", "Type", "Shape", "Intensity", "BounceIntensity", "Range", "Color", "ColorTemperature", "UseColorTemperature", "SpotAngle", "InnerSpotAngle", "Shadows", "ShadowStrength", "ShadowResolution", "ShadowMatrixOverride", "UseShadowMatrixOverride", "ShadowBias", "ShadowNormalBias", "ShadowNearPlane", "UseViewFrustumForShadowCasterCull", "LayerShadowCullDistances", "ShadowCustomResolution", "LightShadowCasterMode", "RenderingLayerMask", "CullingMask", "BoundingSphereOverride", "UseBoundingSphereOverride", "Cookie", "CookieSize", "Flare" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LightUpdate), global::PLUME.Sample.Unity.LightUpdate.Parser, new[]{ "Component", "Enabled", "Type", "Shape", "Intensity", "BounceIntensity", "Range", "Color", "ColorTemperature", "UseColorTemperature", "SpotAngle", "InnerSpotAngle", "Shadows", "ShadowStrength", "ShadowResolution", "ShadowMatrixOverride", "UseShadowMatrixOverride", "ShadowBias", "ShadowNormalBias", "ShadowNearPlane", "UseViewFrustumForShadowCasterCull", "LayerShadowCullDistances", "ShadowCustomResolution", "LightShadowCasterMode", "RenderingLayerMask", "CullingMask", "BoundingSphereOverride", "UseBoundingSphereOverride", "Cookie", "CookieSize", "Flare", "LightUnit" }, new[]{ "Enabled", "Type", "Shape", "Intensity", "BounceIntensity", "Range", "Color", "ColorTemperature", "UseColorTemperature", "SpotAngle", "InnerSpotAngle", "Shadows", "ShadowStrength", "ShadowResolution", "ShadowMatrixOverride", "UseShadowMatrixOverride", "ShadowBias", "ShadowNormalBias", "ShadowNearPlane", "UseViewFrustumForShadowCasterCull", "LayerShadowCullDistances", "ShadowCustomResolution", "LightShadowCasterMode", "RenderingLayerMask", "CullingMask", "BoundingSphereOverride", "UseBoundingSphereOverride", "Cookie", "CookieSize", "Flare", "LightUnit" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LayerShadowCullDistances), global::PLUME.Sample.Unity.LayerShadowCullDistances.Parser, new[]{ "Distances" }, null, null, null, null)
           }));
     }
@@ -119,6 +123,14 @@ namespace PLUME.Sample.Unity {
 
   }
   #region Enums
+  public enum LightUnit {
+    [pbr::OriginalName("LIGHT_UNIT_LUMEN")] Lumen = 0,
+    [pbr::OriginalName("LIGHT_UNIT_CANDELA")] Candela = 1,
+    [pbr::OriginalName("LIGHT_UNIT_LUX")] Lux = 2,
+    [pbr::OriginalName("LIGHT_UNIT_NITS")] Nits = 3,
+    [pbr::OriginalName("LIGHT_UNIT_EV100")] Ev100 = 4,
+  }
+
   public enum LightType {
     [pbr::OriginalName("LIGHT_TYPE_SPOT")] Spot = 0,
     [pbr::OriginalName("LIGHT_TYPE_DIRECTIONAL")] Directional = 1,
@@ -639,6 +651,7 @@ namespace PLUME.Sample.Unity {
       cookie_ = other.cookie_ != null ? other.cookie_.Clone() : null;
       cookieSize_ = other.cookieSize_;
       flare_ = other.flare_ != null ? other.flare_.Clone() : null;
+      lightUnit_ = other.lightUnit_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1389,6 +1402,37 @@ namespace PLUME.Sample.Unity {
       }
     }
 
+    /// <summary>Field number for the "light_unit" field.</summary>
+    public const int LightUnitFieldNumber = 32;
+    private readonly static global::PLUME.Sample.Unity.LightUnit LightUnitDefaultValue = global::PLUME.Sample.Unity.LightUnit.Lumen;
+
+    private global::PLUME.Sample.Unity.LightUnit lightUnit_;
+    /// <summary>
+    /// Physical light unit (Unity 6 core Light API). HDRP/URP interpret `intensity`
+    /// relative to this unit; absent on records from older versions.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.LightUnit LightUnit {
+      get { if ((_hasBits0 & 16777216) != 0) { return lightUnit_; } else { return LightUnitDefaultValue; } }
+      set {
+        _hasBits0 |= 16777216;
+        lightUnit_ = value;
+      }
+    }
+    /// <summary>Gets whether the "light_unit" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasLightUnit {
+      get { return (_hasBits0 & 16777216) != 0; }
+    }
+    /// <summary>Clears the value of the "light_unit" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearLightUnit() {
+      _hasBits0 &= ~16777216;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1435,6 +1479,7 @@ namespace PLUME.Sample.Unity {
       if (!object.Equals(Cookie, other.Cookie)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(CookieSize, other.CookieSize)) return false;
       if (!object.Equals(Flare, other.Flare)) return false;
+      if (LightUnit != other.LightUnit) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1473,6 +1518,7 @@ namespace PLUME.Sample.Unity {
       if (cookie_ != null) hash ^= Cookie.GetHashCode();
       if (HasCookieSize) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(CookieSize);
       if (flare_ != null) hash ^= Flare.GetHashCode();
+      if (HasLightUnit) hash ^= LightUnit.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1615,6 +1661,10 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(250, 1);
         output.WriteMessage(Flare);
       }
+      if (HasLightUnit) {
+        output.WriteRawTag(128, 2);
+        output.WriteEnum((int) LightUnit);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1749,6 +1799,10 @@ namespace PLUME.Sample.Unity {
         output.WriteRawTag(250, 1);
         output.WriteMessage(Flare);
       }
+      if (HasLightUnit) {
+        output.WriteRawTag(128, 2);
+        output.WriteEnum((int) LightUnit);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1851,6 +1905,9 @@ namespace PLUME.Sample.Unity {
       }
       if (flare_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(Flare);
+      }
+      if (HasLightUnit) {
+        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) LightUnit);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1977,6 +2034,9 @@ namespace PLUME.Sample.Unity {
           Flare = new global::PLUME.Sample.Unity.AssetIdentifier();
         }
         Flare.MergeFrom(other.Flare);
+      }
+      if (other.HasLightUnit) {
+        LightUnit = other.LightUnit;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2142,6 +2202,10 @@ namespace PLUME.Sample.Unity {
             input.ReadMessage(Flare);
             break;
           }
+          case 256: {
+            LightUnit = (global::PLUME.Sample.Unity.LightUnit) input.ReadEnum();
+            break;
+          }
         }
       }
     #endif
@@ -2304,6 +2368,10 @@ namespace PLUME.Sample.Unity {
               Flare = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(Flare);
+            break;
+          }
+          case 256: {
+            LightUnit = (global::PLUME.Sample.Unity.LightUnit) input.ReadEnum();
             break;
           }
         }

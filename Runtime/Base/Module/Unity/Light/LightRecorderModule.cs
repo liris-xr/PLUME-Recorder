@@ -25,6 +25,7 @@ namespace PLUME.Base.Module.Unity.Light
             updateSample.Type = light.type.ToPayload();
             updateSample.Shape = light.shape.ToPayload();
             updateSample.Intensity = light.intensity;
+            updateSample.LightUnit = light.lightUnit.ToPayload();
             updateSample.BounceIntensity = light.bounceIntensity;
             updateSample.Range = light.range;
             updateSample.Color = light.color.ToPayload();

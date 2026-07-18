@@ -5,7 +5,8 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "PLUME.Recorder.Editor",
-        "PLUME.Recorder"
+        "PLUME.Recorder",
+        "Unity.Collections"
     ],
     "includePlatforms": [
         "Editor"

@@ -34,9 +34,9 @@ namespace PLUME.Base.Module.Unity.Transform.Job
             var localScaleChanged = math.distancesq(state.LocalScale, localScale) >= ScaleThresholdSq;
             var localRotationChanged = angle >= AngularThreshold;
 
-            state.LocalPosition = localPosition;
-            state.LocalRotation = localRotation;
-            state.LocalScale = localScale;
+            if (localPositionChanged) state.LocalPosition = localPosition;
+            if (localRotationChanged) state.LocalRotation = localRotation;
+            if (localScaleChanged) state.LocalScale = localScale;
             state.LocalPositionDirty = localPositionChanged;
             state.LocalRotationDirty = localRotationChanged;
             state.LocalScaleDirty = localScaleChanged;

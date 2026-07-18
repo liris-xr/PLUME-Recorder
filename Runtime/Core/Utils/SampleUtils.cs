@@ -22,6 +22,7 @@ using LightShadowCasterMode = PLUME.Sample.Unity.LightShadowCasterMode;
 using LightShadows = PLUME.Sample.Unity.LightShadows;
 using LightShape = PLUME.Sample.Unity.LightShape;
 using LightType = PLUME.Sample.Unity.LightType;
+using LightUnit = PLUME.Sample.Unity.LightUnit;
 using LoadSceneMode = PLUME.Sample.Unity.LoadSceneMode;
 using Matrix4x4 = PLUME.Sample.Common.Matrix4x4;
 using Quaternion = PLUME.Sample.Common.Quaternion;
@@ -390,6 +391,21 @@ namespace PLUME.Core.Utils
                 _ => throw new ArgumentOutOfRangeException(nameof(lightShadowCasterMode), lightShadowCasterMode, null)
             };
         }
+
+#if UNITY_6000_0_OR_NEWER
+        public static LightUnit ToPayload(this UnityEngine.Rendering.LightUnit lightUnit)
+        {
+            return lightUnit switch
+            {
+                UnityEngine.Rendering.LightUnit.Lumen => LightUnit.Lumen,
+                UnityEngine.Rendering.LightUnit.Candela => LightUnit.Candela,
+                UnityEngine.Rendering.LightUnit.Lux => LightUnit.Lux,
+                UnityEngine.Rendering.LightUnit.Nits => LightUnit.Nits,
+                UnityEngine.Rendering.LightUnit.Ev100 => LightUnit.Ev100,
+                _ => LightUnit.Lumen
+            };
+        }
+#endif
 
         public static Bounds ToPayload(this UnityEngine.Bounds bounds)
         {

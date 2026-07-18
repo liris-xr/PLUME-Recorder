@@ -392,18 +392,20 @@ namespace PLUME.Core.Utils
             };
         }
 
-        public static LightUnit ToPayload(this UnityEngine.LightUnit lightUnit)
+#if UNITY_6000_0_OR_NEWER
+        public static LightUnit ToPayload(this UnityEngine.Rendering.LightUnit lightUnit)
         {
             return lightUnit switch
             {
-                UnityEngine.LightUnit.Lumen => LightUnit.Lumen,
-                UnityEngine.LightUnit.Candela => LightUnit.Candela,
-                UnityEngine.LightUnit.Lux => LightUnit.Lux,
-                UnityEngine.LightUnit.Nits => LightUnit.Nits,
-                UnityEngine.LightUnit.Ev100 => LightUnit.Ev100,
+                UnityEngine.Rendering.LightUnit.Lumen => LightUnit.Lumen,
+                UnityEngine.Rendering.LightUnit.Candela => LightUnit.Candela,
+                UnityEngine.Rendering.LightUnit.Lux => LightUnit.Lux,
+                UnityEngine.Rendering.LightUnit.Nits => LightUnit.Nits,
+                UnityEngine.Rendering.LightUnit.Ev100 => LightUnit.Ev100,
                 _ => LightUnit.Lumen
             };
         }
+#endif
 
         public static Bounds ToPayload(this UnityEngine.Bounds bounds)
         {

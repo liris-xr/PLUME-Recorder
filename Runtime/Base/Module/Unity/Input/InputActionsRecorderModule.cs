@@ -12,6 +12,7 @@ using UnityEngine.InputSystem.Controls;
 using UnityEngine.Scripting;
 using InputAction = UnityEngine.InputSystem.InputAction;
 using InputActionType = UnityEngine.InputSystem.InputActionType;
+using Logger = PLUME.Core.Logger;
 
 namespace PLUME.Base.Module.Unity.Input
 {
@@ -31,6 +32,33 @@ namespace PLUME.Base.Module.Unity.Input
             foreach (var action in _enabledActions)
             {
                 action.performed += OnActionPerformed;
+            }
+
+            if (_enabledActions.Count == 0)
+            {
+                Logger.LogWarning("No enabled input action found. No input action will be recorded.");
+            }
+            else
+            {
+                var actionMapNames = _enabledActions
+                    .Where(a => a.actionMap != null)
+                    .Select(a => a.actionMap.asset == null
+                        ? a.actionMap.name
+                        : a.actionMap.asset.name + '/' + a.actionMap.name)
+                    .Distinct()
+                    .OrderBy(name => name)
+                    .ToList();
+
+                if (actionMapNames.Count == 0)
+                    Logger.Log("Recording input actions from no action map (standalone actions only).");
+                else
+                    Logger.Log(
+                        $"Recording {actionMapNames.Count} input action map(s): {string.Join(", ", actionMapNames)}");
+
+                var actionNames = _enabledActions
+                    .Select(a => (a.actionMap == null ? "" : a.actionMap.name + '/') + a.name)
+                    .OrderBy(name => name);
+                Logger.Log($"Recording {_enabledActions.Count} input action(s): {string.Join(", ", actionNames)}");
             }
         }
 

@@ -35,10 +35,15 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             lock (_framesData)
             {
+                // Remove (not just read) the entry: it is added once per frame in EnqueueFrameData and
+                // must be evicted after serialization, otherwise _framesData grows unbounded for the whole
+                // recording (memory leak) and keeps referencing frame data already returned to its pool.
                 if (!_framesData.TryGetValue(frameInfo, out frameData))
                 {
                     return;
                 }
+
+                _framesData.Remove(frameInfo);
             }
 
             frameData.Serialize(frameDataWriter);

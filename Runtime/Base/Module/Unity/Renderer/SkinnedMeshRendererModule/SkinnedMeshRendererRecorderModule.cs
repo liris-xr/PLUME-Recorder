@@ -24,8 +24,8 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
 
             SkinnedMeshRendererHooks.OnRootBoneChanged += (mr, rootBone) => OnRootBoneChanged(mr, rootBone, ctx);
             SkinnedMeshRendererHooks.OnBonesChanged += (mr, bones) => OnBonesChanged(mr, bones, ctx);
-            SkinnedMeshRendererHooks.OnBlendShapeWeightChanged +=
-                (mr, index, value) => OnBlendShapeWeightChanged(mr, ctx);
+            // Blend shape weights are recorded on a dedicated allocation-free stream by
+            // SkinnedMeshRendererBlendShapeRecorderModule.
         }
 
         protected override void OnObjectMarkedCreated(SkinnedMeshRendererSafeRef objSafeRef, RecorderContext ctx)
@@ -50,21 +50,6 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
                 }
             }
 
-            updateSample.BlendShapeWeights = new SkinnedMeshRendererUpdate.Types.BlendShapeWeights();
-
-            if (objSafeRef.Component.sharedMesh != null)
-            {
-                for (var i = 0; i < objSafeRef.Component.sharedMesh.blendShapeCount; i++)
-                {
-                    updateSample.BlendShapeWeights.Weights.Add(
-                        new SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight
-                        {
-                            Index = i,
-                            Weight = objSafeRef.Component.GetBlendShapeWeight(i)
-                        });
-                }
-            }
-
             _createSamples[objSafeRef] = new SkinnedMeshRendererCreate
                 { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
@@ -75,30 +60,6 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
 
             _destroySamples[objSafeRef] = new SkinnedMeshRendererDestroy
                 { Component = GetComponentIdentifierPayload(objSafeRef) };
-        }
-
-        private void OnBlendShapeWeightChanged(SkinnedMeshRenderer skinnedMeshRenderer, RecorderContext ctx)
-        {
-            if (!ctx.IsRecording)
-                return;
-
-            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(skinnedMeshRenderer);
-
-            if (!IsRecordingObject(objSafeRef))
-                return;
-
-            var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            updateSample.BlendShapeWeights = new SkinnedMeshRendererUpdate.Types.BlendShapeWeights();
-
-            for (var i = 0; i < objSafeRef.Component.sharedMesh.blendShapeCount; i++)
-            {
-                updateSample.BlendShapeWeights.Weights.Add(
-                    new SkinnedMeshRendererUpdate.Types.BlendShapeWeights.Types.BlendShapeWeight
-                    {
-                        Index = i,
-                        Weight = objSafeRef.Component.GetBlendShapeWeight(i)
-                    });
-            }
         }
 
         private void OnRootBoneChanged(SkinnedMeshRenderer skinnedMeshRenderer, UnityEngine.Transform rootBone,

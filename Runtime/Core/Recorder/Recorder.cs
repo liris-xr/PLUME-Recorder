@@ -27,14 +27,6 @@ namespace PLUME.Core.Recorder
     /// </summary>
     public sealed partial class PlumeRecorder : IDisposable
     {
-        public static readonly RecorderVersion Version = new()
-        {
-            Name = "PLUME Recorder (Beta)",
-            Major = "3",
-            Minor = "1",
-            Patch = "1",
-        };
-
         private readonly RecorderContext _context;
         private readonly DataDispatcher _dataDispatcher;
         private bool _wantsToQuit;

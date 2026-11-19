@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Duplicated scene assets were recorded with the same scene GUID (copied SceneGuidRegistry), so a player could not
+  tell that the scene changed, and every duplicate after the first was recorded with the first one's name and path.
+  Each scene asset now gets a unique GUID: the first scene seen keeps its registry GUID, later duplicates get a GUID
+  derived from it and their path. Object GUIDs of duplicated scenes still collide; regenerate the registry of
+  duplicated scenes to fix them.
+
 ## [2.0.0-beta]
 
 ### Changed

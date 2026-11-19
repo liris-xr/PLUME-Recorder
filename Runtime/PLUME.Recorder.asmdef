@@ -60,6 +60,11 @@
             "define": "TMP_ENABLED"
         },
         {
+            "name": "com.unity.ugui",
+            "expression": "2.0.0",
+            "define": "TMP_ENABLED"
+        },
+        {
             "name": "com.unity.inputsystem",
             "expression": "0",
             "define": "INPUT_SYSTEM_ENABLED"

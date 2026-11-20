@@ -1,0 +1,13 @@
+name: Check recorder version
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: RecorderVersion.g.cs matches package.json
+        run: sh "Tools~/check-version.sh"

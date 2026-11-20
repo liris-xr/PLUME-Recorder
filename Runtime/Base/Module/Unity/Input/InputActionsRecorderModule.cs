@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PLUME.Core;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Utils;
@@ -65,6 +66,10 @@ namespace PLUME.Base.Module.Unity.Input
         protected override void OnStopRecording(RecorderContext ctx)
         {
             base.OnStopRecording(ctx);
+
+            // Null when OnStartRecording failed before listing the actions.
+            if (_enabledActions == null)
+                return;
             
             foreach (var action in _enabledActions)
             {
@@ -74,18 +79,19 @@ namespace PLUME.Base.Module.Unity.Input
         
         private void OnActionPerformed(InputAction.CallbackContext context)
         {
-            if (!_ctx.IsRecording)
+            if (!_ctx.IsRecordingWith(this))
                 return;
 
-            var inputActionSample = new Sample.Unity.InputAction
-            {
-                Name = context.action.actionMap.name + '/' + context.action.name
-            };
-            inputActionSample.BindingPaths.AddRange(context.action.bindings.Select(b => b.path));
-
-            // TODO: add support for composite actions
+            // Called by the Input System: an exception escaping it would skip the application's own callbacks.
             try
             {
+                var inputActionSample = new Sample.Unity.InputAction
+                {
+                    Name = context.action.actionMap.name + '/' + context.action.name
+                };
+                inputActionSample.BindingPaths.AddRange(context.action.bindings.Select(b => b.path));
+
+                // TODO: add support for composite actions
                 switch (context.action.type)
                 {
                     case InputActionType.Value:
@@ -150,7 +156,8 @@ namespace PLUME.Base.Module.Unity.Input
                 _ctx.CurrentRecord.RecordTimestampedManagedSample(inputActionSample);
             } catch (Exception e)
             {
-                Debug.LogWarning($"Failed to record input action: {e}");
+                ErrorReporter.Report($"{nameof(InputActionsRecorderModule)}.{nameof(OnActionPerformed)}",
+                    "Failed to record an input action. That action is missing from the record.", e);
             }
         }
     }

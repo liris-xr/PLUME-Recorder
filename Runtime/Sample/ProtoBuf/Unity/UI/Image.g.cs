@@ -47,14 +47,15 @@ namespace PLUME.Sample.Unity.UI {
             "cmVzZXJ2ZV9hc3BlY3RCDgoMX2ZpbGxfY2VudGVyQg4KDF9maWxsX21ldGhv",
             "ZEIOCgxfZmlsbF9hbW91bnRCEQoPX2ZpbGxfY2xvY2t3aXNlQg4KDF9maWxs",
             "X29yaWdpbkISChBfdXNlX3Nwcml0ZV9tZXNoQh0KG19waXhlbHNfcGVyX3Vu",
-            "aXRfbXVsdGlwbGllcipmCglJbWFnZVR5cGUSFQoRSU1BR0VfVFlQRV9TSU1Q",
-            "TEUQABIVChFJTUFHRV9UWVBFX1NMSUNFRBABEhQKEElNQUdFX1RZUEVfVElM",
-            "RUQQAhIVChFJTUFHRV9UWVBFX0ZJTExFRBADKrgBCg9JbWFnZUZpbGxNZXRo",
-            "b2QSIAocSU1BR0VfRklMTF9NRVRIT0RfSE9SSVpPTlRBTBAAEh4KGklNQUdF",
-            "X0ZJTExfTUVUSE9EX1ZFUlRJQ0FMEAESHwobSU1BR0VfRklMTF9NRVRIT0Rf",
-            "UkFESUFMXzkwEAISIAocSU1BR0VfRklMTF9NRVRIT0RfUkFESUFMXzE4MBAD",
-            "EiAKHElNQUdFX0ZJTExfTUVUSE9EX1JBRElBTF8zNjAQBEIYqgIVUExVTUUu",
-            "U2FtcGxlLlVuaXR5LlVJYgZwcm90bzM="));
+            "aXRfbXVsdGlwbGllciqLAQoJSW1hZ2VUeXBlEhUKEUlNQUdFX1RZUEVfU0lN",
+            "UExFEAASIwoWSU1BR0VfVFlQRV9VTlNQRUNJRklFRBD///////////8BEhUK",
+            "EUlNQUdFX1RZUEVfU0xJQ0VEEAESFAoQSU1BR0VfVFlQRV9USUxFRBACEhUK",
+            "EUlNQUdFX1RZUEVfRklMTEVEEAMquAEKD0ltYWdlRmlsbE1ldGhvZBIgChxJ",
+            "TUFHRV9GSUxMX01FVEhPRF9IT1JJWk9OVEFMEAASHgoaSU1BR0VfRklMTF9N",
+            "RVRIT0RfVkVSVElDQUwQARIfChtJTUFHRV9GSUxMX01FVEhPRF9SQURJQUxf",
+            "OTAQAhIgChxJTUFHRV9GSUxMX01FVEhPRF9SQURJQUxfMTgwEAMSIAocSU1B",
+            "R0VfRklMTF9NRVRIT0RfUkFESUFMXzM2MBAEQhiqAhVQTFVNRS5TYW1wbGUu",
+            "VW5pdHkuVUliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.ImageType), typeof(global::PLUME.Sample.Unity.UI.ImageFillMethod), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -69,6 +70,7 @@ namespace PLUME.Sample.Unity.UI {
   #region Enums
   public enum ImageType {
     [pbr::OriginalName("IMAGE_TYPE_SIMPLE")] Simple = 0,
+    [pbr::OriginalName("IMAGE_TYPE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("IMAGE_TYPE_SLICED")] Sliced = 1,
     [pbr::OriginalName("IMAGE_TYPE_TILED")] Tiled = 2,
     [pbr::OriginalName("IMAGE_TYPE_FILLED")] Filled = 3,

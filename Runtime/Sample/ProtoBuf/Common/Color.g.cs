@@ -26,7 +26,7 @@ namespace PLUME.Sample.Common {
           string.Concat(
             "Ch9wbHVtZS9zYW1wbGUvY29tbW9uL2NvbG9yLnByb3RvEhNwbHVtZS5zYW1w",
             "bGUuY29tbW9uIj8KBUNvbG9yEgwKAXIYASABKAJSAXISDAoBZxgCIAEoAlIB",
-            "ZxIMCgFiGAMgASgCUgFiEgwKAWEYBCABKAJSAWEinAQKDUNvbG9yR3JhZGll",
+            "ZxIMCgFiGAMgASgCUgFiEgwKAWEYBCABKAJSAWEixQQKDUNvbG9yR3JhZGll",
             "bnQSQAoLY29sb3Jfc3BhY2UYASABKA4yHy5wbHVtZS5zYW1wbGUuY29tbW9u",
             "LkNvbG9yU3BhY2VSCmNvbG9yU3BhY2USQwoEbW9kZRgCIAEoDjIvLnBsdW1l",
             "LnNhbXBsZS5jb21tb24uQ29sb3JHcmFkaWVudC5HcmFkaWVudE1vZGVSBG1v",
@@ -36,12 +36,14 @@ namespace PLUME.Sample.Common {
             "QWxwaGFLZXlSCWFscGhhS2V5cxpQCghDb2xvcktleRIwCgVjb2xvchgBIAEo",
             "CzIaLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3JSBWNvbG9yEhIKBHRpbWUY",
             "AiABKAJSBHRpbWUaNAoIQWxwaGFLZXkSFAoFYWxwaGEYASABKAJSBWFscGhh",
-            "EhIKBHRpbWUYAiABKAJSBHRpbWUiZAoMR3JhZGllbnRNb2RlEhcKE0dSQURJ",
-            "RU5UX01PREVfQkxFTkQQABIXChNHUkFESUVOVF9NT0RFX0ZJWEVEEAESIgoe",
-            "R1JBRElFTlRfTU9ERV9QRVJDRVBUVUFMX0JMRU5EEAIqWgoKQ29sb3JTcGFj",
-            "ZRIdChlDT0xPUl9TUEFDRV9VTklOSVRJQUxJWkVEEAASFQoRQ09MT1JfU1BB",
-            "Q0VfR0FNTUEQARIWChJDT0xPUl9TUEFDRV9MSU5FQVIQAkIWqgITUExVTUUu",
-            "U2FtcGxlLkNvbW1vbmIGcHJvdG8z"));
+            "EhIKBHRpbWUYAiABKAJSBHRpbWUijAEKDEdyYWRpZW50TW9kZRIXChNHUkFE",
+            "SUVOVF9NT0RFX0JMRU5EEAASJgoZR1JBRElFTlRfTU9ERV9VTlNQRUNJRklF",
+            "RBD///////////8BEhcKE0dSQURJRU5UX01PREVfRklYRUQQARIiCh5HUkFE",
+            "SUVOVF9NT0RFX1BFUkNFUFRVQUxfQkxFTkQQAiqAAQoKQ29sb3JTcGFjZRId",
+            "ChlDT0xPUl9TUEFDRV9VTklOSVRJQUxJWkVEEAASJAoXQ09MT1JfU1BBQ0Vf",
+            "VU5TUEVDSUZJRUQQ////////////ARIVChFDT0xPUl9TUEFDRV9HQU1NQRAB",
+            "EhYKEkNPTE9SX1NQQUNFX0xJTkVBUhACQhaqAhNQTFVNRS5TYW1wbGUuQ29t",
+            "bW9uYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Common.ColorSpace), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -56,6 +58,7 @@ namespace PLUME.Sample.Common {
   #region Enums
   public enum ColorSpace {
     [pbr::OriginalName("COLOR_SPACE_UNINITIALIZED")] Uninitialized = 0,
+    [pbr::OriginalName("COLOR_SPACE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("COLOR_SPACE_GAMMA")] Gamma = 1,
     [pbr::OriginalName("COLOR_SPACE_LINEAR")] Linear = 2,
   }
@@ -664,6 +667,7 @@ namespace PLUME.Sample.Common {
     public static partial class Types {
       public enum GradientMode {
         [pbr::OriginalName("GRADIENT_MODE_BLEND")] Blend = 0,
+        [pbr::OriginalName("GRADIENT_MODE_UNSPECIFIED")] Unspecified = -1,
         [pbr::OriginalName("GRADIENT_MODE_FIXED")] Fixed = 1,
         [pbr::OriginalName("GRADIENT_MODE_PERCEPTUAL_BLEND")] PerceptualBlend = 2,
       }

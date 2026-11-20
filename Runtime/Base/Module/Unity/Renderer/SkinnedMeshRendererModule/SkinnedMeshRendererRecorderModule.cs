@@ -65,7 +65,7 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
         private void OnRootBoneChanged(SkinnedMeshRenderer skinnedMeshRenderer, UnityEngine.Transform rootBone,
             RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(skinnedMeshRenderer);
@@ -83,7 +83,7 @@ namespace PLUME.Base.Module.Unity.Renderer.SkinnedMeshRendererModule
             IEnumerable<UnityEngine.Transform> bones,
             RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(skinnedMeshRenderer);

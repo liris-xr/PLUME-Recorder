@@ -40,8 +40,9 @@ namespace PLUME.Sample.Unity {
             "bhI5CgZidXR0b24YCyABKAsyHy5wbHVtZS5zYW1wbGUudW5pdHkuQnV0dG9u",
             "VmFsdWVIAFIGYnV0dG9uQgcKBXZhbHVlIlsKC0J1dHRvblZhbHVlEhgKB2Jv",
             "b2xlYW4YASABKAhSB2Jvb2xlYW4SFAoFZmxvYXQYAiABKAJSBWZsb2F0EhwK",
-            "CXRocmVzaG9sZBgDIAEoAlIJdGhyZXNob2xkKm8KD0lucHV0QWN0aW9uVHlw",
-            "ZRIbChdJTlBVVF9BQ1RJT05fVFlQRV9WQUxVRRAAEhwKGElOUFVUX0FDVElP",
+            "CXRocmVzaG9sZBgDIAEoAlIJdGhyZXNob2xkKpsBCg9JbnB1dEFjdGlvblR5",
+            "cGUSGwoXSU5QVVRfQUNUSU9OX1RZUEVfVkFMVUUQABIqCh1JTlBVVF9BQ1RJ",
+            "T05fVFlQRV9VTlNQRUNJRklFRBD///////////8BEhwKGElOUFVUX0FDVElP",
             "Tl9UWVBFX0JVVFRPThABEiEKHUlOUFVUX0FDVElPTl9UWVBFX1BBU1NUSFJP",
             "VUdIEAJCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
@@ -57,6 +58,7 @@ namespace PLUME.Sample.Unity {
   #region Enums
   public enum InputActionType {
     [pbr::OriginalName("INPUT_ACTION_TYPE_VALUE")] Value = 0,
+    [pbr::OriginalName("INPUT_ACTION_TYPE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("INPUT_ACTION_TYPE_BUTTON")] Button = 1,
     [pbr::OriginalName("INPUT_ACTION_TYPE_PASSTHROUGH")] Passthrough = 2,
   }

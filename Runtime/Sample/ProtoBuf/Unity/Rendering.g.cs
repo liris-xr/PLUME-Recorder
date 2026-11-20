@@ -25,26 +25,31 @@ namespace PLUME.Sample.Unity {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CiJwbHVtZS9zYW1wbGUvdW5pdHkvcmVuZGVyaW5nLnByb3RvEhJwbHVtZS5z",
-            "YW1wbGUudW5pdHkqlQEKEVNoYWRvd0Nhc3RpbmdNb2RlEhsKF1NIQURPV19D",
-            "QVNUSU5HX01PREVfT0ZGEAASGgoWU0hBRE9XX0NBU1RJTkdfTU9ERV9PThAB",
-            "EiEKHVNIQURPV19DQVNUSU5HX01PREVfVFdPX1NJREVEEAISJAogU0hBRE9X",
-            "X0NBU1RJTkdfTU9ERV9TSEFET1dTX09OTFkQAyq2AQoUUmVmbGVjdGlvblBy",
-            "b2JlVXNhZ2USHgoaUkVGTEVDVElPTl9QUk9CRV9VU0FHRV9PRkYQABInCiNS",
-            "RUZMRUNUSU9OX1BST0JFX1VTQUdFX0JMRU5EX1BST0JFUxABEjIKLlJFRkxF",
-            "Q1RJT05fUFJPQkVfVVNBR0VfQkxFTkRfUFJPQkVTX0FORF9TS1lCT1gQAhIh",
-            "Ch1SRUZMRUNUSU9OX1BST0JFX1VTQUdFX1NJTVBMRRADKr0BCg1SZW5kZXJp",
-            "bmdQYXRoEiYKIlJFTkRFUklOR19QQVRIX1VTRV9QTEFZRVJfU0VUVElOR1MQ",
-            "ABIdChlSRU5ERVJJTkdfUEFUSF9WRVJURVhfTElUEAESGgoWUkVOREVSSU5H",
-            "X1BBVEhfRk9SV0FSRBACEiQKIFJFTkRFUklOR19QQVRIX0RFRkVSUkVEX0xJ",
-            "R0hUSU5HEAMSIwofUkVOREVSSU5HX1BBVEhfREVGRVJSRURfU0hBRElORxAE",
-            "KnkKDk9wYXF1ZVNvcnRNb2RlEhwKGE9QQVFVRV9TT1JUX01PREVfREVGQVVM",
-            "VBAAEiIKHk9QQVFVRV9TT1JUX01PREVfRlJPTlRfVE9fQkFDSxABEiUKIU9Q",
-            "QVFVRV9TT1JUX01PREVfTk9fRElTVEFOQ0VfU09SVBACKrMBChRUcmFuc3Bh",
+            "YW1wbGUudW5pdHkqwwEKEVNoYWRvd0Nhc3RpbmdNb2RlEhsKF1NIQURPV19D",
+            "QVNUSU5HX01PREVfT0ZGEAASLAofU0hBRE9XX0NBU1RJTkdfTU9ERV9VTlNQ",
+            "RUNJRklFRBD///////////8BEhoKFlNIQURPV19DQVNUSU5HX01PREVfT04Q",
+            "ARIhCh1TSEFET1dfQ0FTVElOR19NT0RFX1RXT19TSURFRBACEiQKIFNIQURP",
+            "V19DQVNUSU5HX01PREVfU0hBRE9XU19PTkxZEAMq5wEKFFJlZmxlY3Rpb25Q",
+            "cm9iZVVzYWdlEh4KGlJFRkxFQ1RJT05fUFJPQkVfVVNBR0VfT0ZGEAASLwoi",
+            "UkVGTEVDVElPTl9QUk9CRV9VU0FHRV9VTlNQRUNJRklFRBD///////////8B",
+            "EicKI1JFRkxFQ1RJT05fUFJPQkVfVVNBR0VfQkxFTkRfUFJPQkVTEAESMgou",
+            "UkVGTEVDVElPTl9QUk9CRV9VU0FHRV9CTEVORF9QUk9CRVNfQU5EX1NLWUJP",
+            "WBACEiEKHVJFRkxFQ1RJT05fUFJPQkVfVVNBR0VfU0lNUExFEAMq5gEKDVJl",
+            "bmRlcmluZ1BhdGgSJgoiUkVOREVSSU5HX1BBVEhfVVNFX1BMQVlFUl9TRVRU",
+            "SU5HUxAAEicKGlJFTkRFUklOR19QQVRIX1VOU1BFQ0lGSUVEEP//////////",
+            "/wESHQoZUkVOREVSSU5HX1BBVEhfVkVSVEVYX0xJVBABEhoKFlJFTkRFUklO",
+            "R19QQVRIX0ZPUldBUkQQAhIkCiBSRU5ERVJJTkdfUEFUSF9ERUZFUlJFRF9M",
+            "SUdIVElORxADEiMKH1JFTkRFUklOR19QQVRIX0RFRkVSUkVEX1NIQURJTkcQ",
+            "BCqkAQoOT3BhcXVlU29ydE1vZGUSHAoYT1BBUVVFX1NPUlRfTU9ERV9ERUZB",
+            "VUxUEAASKQocT1BBUVVFX1NPUlRfTU9ERV9VTlNQRUNJRklFRBD/////////",
+            "//8BEiIKHk9QQVFVRV9TT1JUX01PREVfRlJPTlRfVE9fQkFDSxABEiUKIU9Q",
+            "QVFVRV9TT1JUX01PREVfTk9fRElTVEFOQ0VfU09SVBACKuQBChRUcmFuc3Bh",
             "cmVuY3lTb3J0TW9kZRIiCh5UUkFOU1BBUkVOQ1lfU09SVF9NT0RFX0RFRkFV",
-            "TFQQABImCiJUUkFOU1BBUkVOQ1lfU09SVF9NT0RFX1BFUlNQRUNUSVZFEAES",
-            "JwojVFJBTlNQQVJFTkNZX1NPUlRfTU9ERV9PUlRIT0dSQVBISUMQAhImCiJU",
-            "UkFOU1BBUkVOQ1lfU09SVF9NT0RFX0NVU1RPTV9BWElTEANCFaoCElBMVU1F",
-            "LlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
+            "TFQQABIvCiJUUkFOU1BBUkVOQ1lfU09SVF9NT0RFX1VOU1BFQ0lGSUVEEP//",
+            "/////////wESJgoiVFJBTlNQQVJFTkNZX1NPUlRfTU9ERV9QRVJTUEVDVElW",
+            "RRABEicKI1RSQU5TUEFSRU5DWV9TT1JUX01PREVfT1JUSE9HUkFQSElDEAIS",
+            "JgoiVFJBTlNQQVJFTkNZX1NPUlRfTU9ERV9DVVNUT01fQVhJUxADQhWqAhJQ",
+            "TFVNRS5TYW1wbGUuVW5pdHliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.ShadowCastingMode), typeof(global::PLUME.Sample.Unity.ReflectionProbeUsage), typeof(global::PLUME.Sample.Unity.RenderingPath), typeof(global::PLUME.Sample.Unity.OpaqueSortMode), typeof(global::PLUME.Sample.Unity.TransparencySortMode), }, null, null));
@@ -55,6 +60,7 @@ namespace PLUME.Sample.Unity {
   #region Enums
   public enum ShadowCastingMode {
     [pbr::OriginalName("SHADOW_CASTING_MODE_OFF")] Off = 0,
+    [pbr::OriginalName("SHADOW_CASTING_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("SHADOW_CASTING_MODE_ON")] On = 1,
     [pbr::OriginalName("SHADOW_CASTING_MODE_TWO_SIDED")] TwoSided = 2,
     [pbr::OriginalName("SHADOW_CASTING_MODE_SHADOWS_ONLY")] ShadowsOnly = 3,
@@ -62,6 +68,7 @@ namespace PLUME.Sample.Unity {
 
   public enum ReflectionProbeUsage {
     [pbr::OriginalName("REFLECTION_PROBE_USAGE_OFF")] Off = 0,
+    [pbr::OriginalName("REFLECTION_PROBE_USAGE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("REFLECTION_PROBE_USAGE_BLEND_PROBES")] BlendProbes = 1,
     [pbr::OriginalName("REFLECTION_PROBE_USAGE_BLEND_PROBES_AND_SKYBOX")] BlendProbesAndSkybox = 2,
     [pbr::OriginalName("REFLECTION_PROBE_USAGE_SIMPLE")] Simple = 3,
@@ -69,6 +76,7 @@ namespace PLUME.Sample.Unity {
 
   public enum RenderingPath {
     [pbr::OriginalName("RENDERING_PATH_USE_PLAYER_SETTINGS")] UsePlayerSettings = 0,
+    [pbr::OriginalName("RENDERING_PATH_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("RENDERING_PATH_VERTEX_LIT")] VertexLit = 1,
     [pbr::OriginalName("RENDERING_PATH_FORWARD")] Forward = 2,
     [pbr::OriginalName("RENDERING_PATH_DEFERRED_LIGHTING")] DeferredLighting = 3,
@@ -77,12 +85,14 @@ namespace PLUME.Sample.Unity {
 
   public enum OpaqueSortMode {
     [pbr::OriginalName("OPAQUE_SORT_MODE_DEFAULT")] Default = 0,
+    [pbr::OriginalName("OPAQUE_SORT_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("OPAQUE_SORT_MODE_FRONT_TO_BACK")] FrontToBack = 1,
     [pbr::OriginalName("OPAQUE_SORT_MODE_NO_DISTANCE_SORT")] NoDistanceSort = 2,
   }
 
   public enum TransparencySortMode {
     [pbr::OriginalName("TRANSPARENCY_SORT_MODE_DEFAULT")] Default = 0,
+    [pbr::OriginalName("TRANSPARENCY_SORT_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("TRANSPARENCY_SORT_MODE_PERSPECTIVE")] Perspective = 1,
     [pbr::OriginalName("TRANSPARENCY_SORT_MODE_ORTHOGRAPHIC")] Orthographic = 2,
     [pbr::OriginalName("TRANSPARENCY_SORT_MODE_CUSTOM_AXIS")] CustomAxis = 3,

@@ -107,7 +107,7 @@ namespace PLUME.Base.Module.Unity.Renderer
             if (renderer is not TR typedRenderer)
                 return;
 
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(typedRenderer);
@@ -132,7 +132,7 @@ namespace PLUME.Base.Module.Unity.Renderer
             if (renderer is not TR typedRenderer)
                 return;
 
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(typedRenderer);

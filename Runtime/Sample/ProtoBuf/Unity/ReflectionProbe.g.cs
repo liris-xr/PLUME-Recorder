@@ -66,22 +66,27 @@ namespace PLUME.Sample.Unity {
             "Y3RzQhEKD19ib3hfcHJvamVjdGlvbkIRCg9fYmxlbmRfZGlzdGFuY2VCCQoH",
             "X2JvdW5kc0INCgtfcmVzb2x1dGlvbkIGCgRfaGRyQhIKEF9zaGFkb3dfZGlz",
             "dGFuY2VCEwoRX2JhY2tncm91bmRfY29sb3JCDwoNX2N1bGxpbmdfbWFza0IX",
-            "ChVfY3VzdG9tX2Jha2VkX3RleHR1cmVCEAoOX2Jha2VkX3RleHR1cmUqfAoT",
-            "UmVmbGVjdGlvblByb2JlTW9kZRIfChtSRUZMRUNUSU9OX1BST0JFX01PREVf",
-            "QkFLRUQQABIgChxSRUZMRUNUSU9OX1BST0JFX01PREVfQ1VTVE9NEAESIgoe",
-            "UkVGTEVDVElPTl9QUk9CRV9NT0RFX1JFQUxUSU1FEAIqcgoZUmVmbGVjdGlv",
-            "blByb2JlQ2xlYXJGbGFncxInCiNSRUZMRUNUSU9OX1BST0JFX0NMRUFSX0ZM",
-            "QUdTX1NLWUJPWBAAEiwKKFJFRkxFQ1RJT05fUFJPQkVfQ0xFQVJfRkxBR1Nf",
-            "U09MSURfQ09MT1IQASqoAQoaUmVmbGVjdGlvblByb2JlUmVmcmVzaE1vZGUS",
-            "KgomUkVGTEVDVElPTl9QUk9CRV9SRUZSRVNIX01PREVfT05fQVdBS0UQABIt",
-            "CilSRUZMRUNUSU9OX1BST0JFX1JFRlJFU0hfTU9ERV9FVkVSWV9GUkFNRRAB",
-            "Ei8KK1JFRkxFQ1RJT05fUFJPQkVfUkVGUkVTSF9NT0RFX1ZJQV9TQ1JJUFRJ",
-            "TkcQAirLAQoeUmVmbGVjdGlvblByb2JlVGltZVNsaWNpbmdNb2RlEjgKNFJF",
-            "RkxFQ1RJT05fUFJPQkVfVElNRV9TTElDSU5HX01PREVfQUxMX0ZBQ0VTX0FU",
-            "X09OQ0UQABI3CjNSRUZMRUNUSU9OX1BST0JFX1RJTUVfU0xJQ0lOR19NT0RF",
-            "X0lORElWSURVQUxfRkFDRVMQARI2CjJSRUZMRUNUSU9OX1BST0JFX1RJTUVf",
-            "U0xJQ0lOR19NT0RFX05PX1RJTUVfU0xJQ0lORxACQhWqAhJQTFVNRS5TYW1w",
-            "bGUuVW5pdHliBnByb3RvMw=="));
+            "ChVfY3VzdG9tX2Jha2VkX3RleHR1cmVCEAoOX2Jha2VkX3RleHR1cmUqrAEK",
+            "E1JlZmxlY3Rpb25Qcm9iZU1vZGUSHwobUkVGTEVDVElPTl9QUk9CRV9NT0RF",
+            "X0JBS0VEEAASLgohUkVGTEVDVElPTl9QUk9CRV9NT0RFX1VOU1BFQ0lGSUVE",
+            "EP///////////wESIAocUkVGTEVDVElPTl9QUk9CRV9NT0RFX0NVU1RPTRAB",
+            "EiIKHlJFRkxFQ1RJT05fUFJPQkVfTU9ERV9SRUFMVElNRRACKqkBChlSZWZs",
+            "ZWN0aW9uUHJvYmVDbGVhckZsYWdzEicKI1JFRkxFQ1RJT05fUFJPQkVfQ0xF",
+            "QVJfRkxBR1NfU0tZQk9YEAASNQooUkVGTEVDVElPTl9QUk9CRV9DTEVBUl9G",
+            "TEFHU19VTlNQRUNJRklFRBD///////////8BEiwKKFJFRkxFQ1RJT05fUFJP",
+            "QkVfQ0xFQVJfRkxBR1NfU09MSURfQ09MT1IQASrgAQoaUmVmbGVjdGlvblBy",
+            "b2JlUmVmcmVzaE1vZGUSKgomUkVGTEVDVElPTl9QUk9CRV9SRUZSRVNIX01P",
+            "REVfT05fQVdBS0UQABI2CilSRUZMRUNUSU9OX1BST0JFX1JFRlJFU0hfTU9E",
+            "RV9VTlNQRUNJRklFRBD///////////8BEi0KKVJFRkxFQ1RJT05fUFJPQkVf",
+            "UkVGUkVTSF9NT0RFX0VWRVJZX0ZSQU1FEAESLworUkVGTEVDVElPTl9QUk9C",
+            "RV9SRUZSRVNIX01PREVfVklBX1NDUklQVElORxACKogCCh5SZWZsZWN0aW9u",
+            "UHJvYmVUaW1lU2xpY2luZ01vZGUSOAo0UkVGTEVDVElPTl9QUk9CRV9USU1F",
+            "X1NMSUNJTkdfTU9ERV9BTExfRkFDRVNfQVRfT05DRRAAEjsKLlJFRkxFQ1RJ",
+            "T05fUFJPQkVfVElNRV9TTElDSU5HX01PREVfVU5TUEVDSUZJRUQQ////////",
+            "////ARI3CjNSRUZMRUNUSU9OX1BST0JFX1RJTUVfU0xJQ0lOR19NT0RFX0lO",
+            "RElWSURVQUxfRkFDRVMQARI2CjJSRUZMRUNUSU9OX1BST0JFX1RJTUVfU0xJ",
+            "Q0lOR19NT0RFX05PX1RJTUVfU0xJQ0lORxACQhWqAhJQTFVNRS5TYW1wbGUu",
+            "VW5pdHliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.BoundsReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.ReflectionProbeMode), typeof(global::PLUME.Sample.Unity.ReflectionProbeClearFlags), typeof(global::PLUME.Sample.Unity.ReflectionProbeRefreshMode), typeof(global::PLUME.Sample.Unity.ReflectionProbeTimeSlicingMode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -96,23 +101,27 @@ namespace PLUME.Sample.Unity {
   #region Enums
   public enum ReflectionProbeMode {
     [pbr::OriginalName("REFLECTION_PROBE_MODE_BAKED")] Baked = 0,
+    [pbr::OriginalName("REFLECTION_PROBE_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("REFLECTION_PROBE_MODE_CUSTOM")] Custom = 1,
     [pbr::OriginalName("REFLECTION_PROBE_MODE_REALTIME")] Realtime = 2,
   }
 
   public enum ReflectionProbeClearFlags {
     [pbr::OriginalName("REFLECTION_PROBE_CLEAR_FLAGS_SKYBOX")] Skybox = 0,
+    [pbr::OriginalName("REFLECTION_PROBE_CLEAR_FLAGS_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("REFLECTION_PROBE_CLEAR_FLAGS_SOLID_COLOR")] SolidColor = 1,
   }
 
   public enum ReflectionProbeRefreshMode {
     [pbr::OriginalName("REFLECTION_PROBE_REFRESH_MODE_ON_AWAKE")] OnAwake = 0,
+    [pbr::OriginalName("REFLECTION_PROBE_REFRESH_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("REFLECTION_PROBE_REFRESH_MODE_EVERY_FRAME")] EveryFrame = 1,
     [pbr::OriginalName("REFLECTION_PROBE_REFRESH_MODE_VIA_SCRIPTING")] ViaScripting = 2,
   }
 
   public enum ReflectionProbeTimeSlicingMode {
     [pbr::OriginalName("REFLECTION_PROBE_TIME_SLICING_MODE_ALL_FACES_AT_ONCE")] AllFacesAtOnce = 0,
+    [pbr::OriginalName("REFLECTION_PROBE_TIME_SLICING_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("REFLECTION_PROBE_TIME_SLICING_MODE_INDIVIDUAL_FACES")] IndividualFaces = 1,
     [pbr::OriginalName("REFLECTION_PROBE_TIME_SLICING_MODE_NO_TIME_SLICING")] NoTimeSlicing = 2,
   }

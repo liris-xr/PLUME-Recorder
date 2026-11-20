@@ -52,16 +52,18 @@ namespace PLUME.Sample.Unity.UI {
             "YWN0b3JCFwoVX3JlZmVyZW5jZV9yZXNvbHV0aW9uQhQKEl9zY3JlZW5fbWF0",
             "Y2hfbW9kZUIYChZfbWF0Y2hfd2lkdGhfb3JfaGVpZ2h0QhAKDl9waHlzaWNh",
             "bF91bml0QhYKFF9mYWxsYmFja19zY3JlZW5fZHBpQhUKE19kZWZhdWx0X3Nw",
-            "cml0ZV9kcGlCGgoYX2R5bmFtaWNfcGl4ZWxzX3Blcl91bml0Kn0KCVNjYWxl",
-            "TW9kZRIiCh5TQ0FMRV9NT0RFX0NPTlNUQU5UX1BJWEVMX1NJWkUQABIlCiFT",
-            "Q0FMRV9NT0RFX1NDQUxFX1dJVEhfU0NSRUVOX1NJWkUQARIlCiFTQ0FMRV9N",
-            "T0RFX0NPTlNUQU5UX1BIWVNJQ0FMX1NJWkUQAip6Cg9TY3JlZW5NYXRjaE1v",
-            "ZGUSKwonU0NSRUVOX01BVENIX01PREVfTUFUQ0hfV0lEVEhfT1JfSEVJR0hU",
-            "EAASHAoYU0NSRUVOX01BVENIX01PREVfRVhQQU5EEAESHAoYU0NSRUVOX01B",
-            "VENIX01PREVfU0hSSU5LEAIqZAoEVW5pdBIUChBVTklUX0NFTlRJTUVURVJT",
-            "EAASFAoQVU5JVF9NSUxMSU1FVEVSUxABEg8KC1VOSVRfSU5DSEVTEAISDwoL",
-            "VU5JVF9QT0lOVFMQAxIOCgpVTklUX1BJQ0FTEARCGKoCFVBMVU1FLlNhbXBs",
-            "ZS5Vbml0eS5VSWIGcHJvdG8z"));
+            "cml0ZV9kcGlCGgoYX2R5bmFtaWNfcGl4ZWxzX3Blcl91bml0KqIBCglTY2Fs",
+            "ZU1vZGUSIgoeU0NBTEVfTU9ERV9DT05TVEFOVF9QSVhFTF9TSVpFEAASIwoW",
+            "U0NBTEVfTU9ERV9VTlNQRUNJRklFRBD///////////8BEiUKIVNDQUxFX01P",
+            "REVfU0NBTEVfV0lUSF9TQ1JFRU5fU0laRRABEiUKIVNDQUxFX01PREVfQ09O",
+            "U1RBTlRfUEhZU0lDQUxfU0laRRACKqYBCg9TY3JlZW5NYXRjaE1vZGUSKwon",
+            "U0NSRUVOX01BVENIX01PREVfTUFUQ0hfV0lEVEhfT1JfSEVJR0hUEAASKgod",
+            "U0NSRUVOX01BVENIX01PREVfVU5TUEVDSUZJRUQQ////////////ARIcChhT",
+            "Q1JFRU5fTUFUQ0hfTU9ERV9FWFBBTkQQARIcChhTQ1JFRU5fTUFUQ0hfTU9E",
+            "RV9TSFJJTksQAiqDAQoEVW5pdBIUChBVTklUX0NFTlRJTUVURVJTEAASHQoQ",
+            "VU5JVF9VTlNQRUNJRklFRBD///////////8BEhQKEFVOSVRfTUlMTElNRVRF",
+            "UlMQARIPCgtVTklUX0lOQ0hFUxACEg8KC1VOSVRfUE9JTlRTEAMSDgoKVU5J",
+            "VF9QSUNBUxAEQhiqAhVQTFVNRS5TYW1wbGUuVW5pdHkuVUliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Vector2Reflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.ScaleMode), typeof(global::PLUME.Sample.Unity.UI.ScreenMatchMode), typeof(global::PLUME.Sample.Unity.UI.Unit), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -76,18 +78,21 @@ namespace PLUME.Sample.Unity.UI {
   #region Enums
   public enum ScaleMode {
     [pbr::OriginalName("SCALE_MODE_CONSTANT_PIXEL_SIZE")] ConstantPixelSize = 0,
+    [pbr::OriginalName("SCALE_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("SCALE_MODE_SCALE_WITH_SCREEN_SIZE")] ScaleWithScreenSize = 1,
     [pbr::OriginalName("SCALE_MODE_CONSTANT_PHYSICAL_SIZE")] ConstantPhysicalSize = 2,
   }
 
   public enum ScreenMatchMode {
     [pbr::OriginalName("SCREEN_MATCH_MODE_MATCH_WIDTH_OR_HEIGHT")] MatchWidthOrHeight = 0,
+    [pbr::OriginalName("SCREEN_MATCH_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("SCREEN_MATCH_MODE_EXPAND")] Expand = 1,
     [pbr::OriginalName("SCREEN_MATCH_MODE_SHRINK")] Shrink = 2,
   }
 
   public enum Unit {
     [pbr::OriginalName("UNIT_CENTIMETERS")] Centimeters = 0,
+    [pbr::OriginalName("UNIT_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("UNIT_MILLIMETERS")] Millimeters = 1,
     [pbr::OriginalName("UNIT_INCHES")] Inches = 2,
     [pbr::OriginalName("UNIT_POINTS")] Points = 3,

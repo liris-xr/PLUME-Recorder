@@ -115,7 +115,7 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
         
         private void OnWidthCurveChanged(UnityEngine.LineRenderer lineRenderer, AnimationCurve widthCurve, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
@@ -129,7 +129,7 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
         
         private void OnWidthMultiplierChanged(UnityEngine.LineRenderer lineRenderer, float widthMultiplier, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
@@ -143,7 +143,7 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
         
         private void OnColorChanged(UnityEngine.LineRenderer lineRenderer, Gradient color, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);

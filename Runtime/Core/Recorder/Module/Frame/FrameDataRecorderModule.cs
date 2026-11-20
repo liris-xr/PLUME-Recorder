@@ -46,8 +46,25 @@ namespace PLUME.Core.Recorder.Module.Frame
                 _framesData.Remove(frameInfo);
             }
 
-            frameData.Serialize(frameDataWriter);
-            frameData.Dispose();
+            try
+            {
+                frameData.Serialize(frameDataWriter);
+            }
+            finally
+            {
+                frameData.Dispose();
+            }
+        }
+
+        void IFrameDataRecorderModule.DisposePendingFrameData()
+        {
+            lock (_framesData)
+            {
+                foreach (var frameData in _framesData.Values)
+                    frameData.Dispose();
+
+                _framesData.Clear();
+            }
         }
         
         protected abstract TFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx);

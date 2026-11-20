@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using PLUME.Core;
 using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -28,12 +29,54 @@ namespace PLUME.Base.Hooks
 
         internal static void NotifyCreated(GameObject go)
         {
-            OnCreated(go);
+            try
+            {
+                OnCreated(go);
+            }
+            catch (Exception e)
+            {
+                ErrorReporter.Report($"{nameof(GameObjectHooks)}.{nameof(OnCreated)}",
+                    "Failed to record a created GameObject. The application is not affected.", e);
+            }
         }
 
         internal static void NotifyComponentAdded(GameObject go, Component component)
         {
-            OnComponentAdded(go, component);
+            try
+            {
+                OnComponentAdded(go, component);
+            }
+            catch (Exception e)
+            {
+                ErrorReporter.Report($"{nameof(GameObjectHooks)}.{nameof(OnComponentAdded)}",
+                    "Failed to record an added component. The application is not affected.", e);
+            }
+        }
+
+        private static void NotifyActiveChanged(GameObject go, bool active)
+        {
+            try
+            {
+                OnActiveChanged(go, active);
+            }
+            catch (Exception e)
+            {
+                ErrorReporter.Report($"{nameof(GameObjectHooks)}.{nameof(OnActiveChanged)}",
+                    "Failed to record a GameObject active state change. The application is not affected.", e);
+            }
+        }
+
+        private static void NotifyTagChanged(GameObject go, string tag)
+        {
+            try
+            {
+                OnTagChanged(go, tag);
+            }
+            catch (Exception e)
+            {
+                ErrorReporter.Report($"{nameof(GameObjectHooks)}.{nameof(OnTagChanged)}",
+                    "Failed to record a GameObject tag change. The application is not affected.", e);
+            }
         }
 
         public void RegisterHooks(HooksRegistry hooksRegistry)
@@ -125,22 +168,41 @@ namespace PLUME.Base.Hooks
 
         public static void SetActiveAndNotify(GameObject go, bool active)
         {
+            // A null or destroyed GameObject is left to the user's call, so that Unity raises its own exception.
+            if (go == null)
+            {
+                go.SetActive(active);
+                return;
+            }
+
             var previousActive = go.activeSelf;
             go.SetActive(active);
             if (previousActive == active)
                 return;
-            OnActiveChanged(go, active);
+            NotifyActiveChanged(go, active);
         }
 
         public static void SetTagPropertyAndNotify(GameObject go, string tag)
         {
-            if (go.CompareTag(tag)) return;
+            if (go == null)
+            {
+                go.tag = tag;
+                return;
+            }
+
+            // Not CompareTag before the call: the user's call must always run and be the one to reject an invalid tag.
+            var previousTag = go.tag;
             go.tag = tag;
-            OnTagChanged(go, tag);
+            if (previousTag != tag)
+                NotifyTagChanged(go, tag);
         }
 
         public static Component AddComponentAndNotify(GameObject go, Type componentType)
         {
+            // Required components cannot be looked up without both arguments: the user's call raises Unity's error.
+            if (go == null || componentType == null)
+                return go.AddComponent(componentType);
+
             var missingRequiredTypes = GetMissingRequiredComponents(go, componentType);
 
             var component = go.AddComponent(componentType);
@@ -156,6 +218,9 @@ namespace PLUME.Base.Hooks
 
         public static T AddComponentAndNotify<T>(GameObject go) where T : Component
         {
+            if (go == null)
+                return go.AddComponent<T>();
+
             var missingRequiredTypes = GetMissingRequiredComponents(go, typeof(T));
 
             var component = go.AddComponent<T>();

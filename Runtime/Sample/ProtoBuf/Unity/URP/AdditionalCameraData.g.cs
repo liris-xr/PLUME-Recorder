@@ -62,13 +62,15 @@ namespace PLUME.Sample.Unity.URP {
             "b2xvcl90ZXh0dXJlQhQKEl92b2x1bWVfbGF5ZXJfbWFza0IRCg9fdm9sdW1l",
             "X3RyaWdnZXJCGQoXX3JlbmRlcl9wb3N0X3Byb2Nlc3NpbmdCDwoNX2FudGlh",
             "bGlhc2luZ0IXChVfYW50aWFsaWFzaW5nX3F1YWxpdHlCCwoJX3N0b3BfbmFu",
-            "QgwKCl9kaXRoZXJpbmdCFQoTX2FsbG93X3hyX3JlbmRlcmluZyqHAQoUQ2Ft",
+            "QgwKCl9kaXRoZXJpbmdCFQoTX2FsbG93X3hyX3JlbmRlcmluZyq4AQoUQ2Ft",
             "ZXJhT3ZlcnJpZGVPcHRpb24SHgoaQ0FNRVJBX09WRVJSSURFX09QVElPTl9P",
-            "RkYQABIdChlDQU1FUkFfT1ZFUlJJREVfT1BUSU9OX09OEAESMAosQ0FNRVJB",
-            "X09WRVJSSURFX09QVElPTl9VU0VfUElQRUxJTkVfU0VUVElOR1MQAipPChBD",
-            "YW1lcmFSZW5kZXJUeXBlEhsKF0NBTUVSQV9SRU5ERVJfVFlQRV9CQVNFEAAS",
-            "HgoaQ0FNRVJBX1JFTkRFUl9UWVBFX09WRVJMQVkQAUIZqgIWUExVTUUuU2Ft",
-            "cGxlLlVuaXR5LlVSUGIGcHJvdG8z"));
+            "RkYQABIvCiJDQU1FUkFfT1ZFUlJJREVfT1BUSU9OX1VOU1BFQ0lGSUVEEP//",
+            "/////////wESHQoZQ0FNRVJBX09WRVJSSURFX09QVElPTl9PThABEjAKLENB",
+            "TUVSQV9PVkVSUklERV9PUFRJT05fVVNFX1BJUEVMSU5FX1NFVFRJTkdTEAIq",
+            "fAoQQ2FtZXJhUmVuZGVyVHlwZRIbChdDQU1FUkFfUkVOREVSX1RZUEVfQkFT",
+            "RRAAEisKHkNBTUVSQV9SRU5ERVJfVFlQRV9VTlNQRUNJRklFRBD/////////",
+            "//8BEh4KGkNBTUVSQV9SRU5ERVJfVFlQRV9PVkVSTEFZEAFCGaoCFlBMVU1F",
+            "LlNhbXBsZS5Vbml0eS5VUlBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Unity.URP.RenderingReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.URP.CameraOverrideOption), typeof(global::PLUME.Sample.Unity.URP.CameraRenderType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -83,12 +85,14 @@ namespace PLUME.Sample.Unity.URP {
   #region Enums
   public enum CameraOverrideOption {
     [pbr::OriginalName("CAMERA_OVERRIDE_OPTION_OFF")] Off = 0,
+    [pbr::OriginalName("CAMERA_OVERRIDE_OPTION_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("CAMERA_OVERRIDE_OPTION_ON")] On = 1,
     [pbr::OriginalName("CAMERA_OVERRIDE_OPTION_USE_PIPELINE_SETTINGS")] UsePipelineSettings = 2,
   }
 
   public enum CameraRenderType {
     [pbr::OriginalName("CAMERA_RENDER_TYPE_BASE")] Base = 0,
+    [pbr::OriginalName("CAMERA_RENDER_TYPE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("CAMERA_RENDER_TYPE_OVERLAY")] Overlay = 1,
   }
 

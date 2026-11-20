@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using PLUME.Core;
 using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -157,9 +159,71 @@ namespace PLUME.Base.Hooks
             );
         }
 
+        private static void NotifyNameChanged(Object obj, string name)
+        {
+            try
+            {
+                OnNameChanged(obj, name);
+            }
+            catch (Exception e)
+            {
+                ErrorReporter.Report($"{nameof(ObjectHooks)}.{nameof(OnNameChanged)}",
+                    "Failed to record an object name change. The application is not affected.", e);
+            }
+        }
+
+        private static void NotifyDontDestroyOnLoad(Object obj)
+        {
+            try
+            {
+                OnDontDestroyOnLoad(obj);
+            }
+            catch (Exception e)
+            {
+                ErrorReporter.Report($"{nameof(ObjectHooks)}.{nameof(OnDontDestroyOnLoad)}",
+                    "Failed to record a DontDestroyOnLoad call. The application is not affected.", e);
+            }
+        }
+
+        private static void NotifyBeforeDestroyed(Object obj, bool immediate)
+        {
+            try
+            {
+                OnBeforeDestroyed(obj, immediate);
+            }
+            catch (Exception e)
+            {
+                ErrorReporter.Report($"{nameof(ObjectHooks)}.{nameof(OnBeforeDestroyed)}",
+                    "Failed to record a destroyed object. The application is not affected.", e);
+            }
+        }
+
+        private static void NotifyHierarchyBeforeDestroyed(Object obj, bool immediate)
+        {
+            // A null or already destroyed object has nothing left to record, and enumerating it would throw.
+            if (obj == null)
+                return;
+
+            if (obj is GameObject go)
+            {
+                using var _ = ListPool<Component>.Get(out var tmpComponents);
+                go.GetComponentsInChildren(tmpComponents);
+
+                // Notified one by one, so that a failure for one component does not skip the others.
+                foreach (var component in tmpComponents)
+                {
+                    NotifyBeforeDestroyed(component, immediate);
+                }
+            }
+
+            NotifyBeforeDestroyed(obj, immediate);
+        }
+
         public static void DontDestroyOnLoadAndNotify(Object obj)
         {
-            if (obj is GameObject go)
+            // A destroyed GameObject goes to the else branch, so that Unity's own call raises the error instead of
+            // reading its scene.
+            if (obj is GameObject go && go != null)
             {
                 var oldScene = go.scene;
                 Object.DontDestroyOnLoad(obj);
@@ -171,90 +235,45 @@ namespace PLUME.Base.Hooks
                 Object.DontDestroyOnLoad(obj);
             }
 
-            OnDontDestroyOnLoad(obj);
+            NotifyDontDestroyOnLoad(obj);
         }
 
         public static void SetNamePropertyAndNotify(Object obj, string name)
         {
+            // A null or destroyed object is left to the user's call, so that Unity raises its own exception.
+            if (obj == null)
+            {
+                obj.name = name;
+                return;
+            }
+
             var previousName = obj.name;
             obj.name = name;
             if (name != previousName)
-                OnNameChanged(obj, name);
+                NotifyNameChanged(obj, name);
         }
 
         public static void DestroyAndNotify(Object obj)
         {
-            if (obj is GameObject go)
-            {
-                var tmpComponents = ListPool<Component>.Get();
-                go.GetComponentsInChildren(tmpComponents);
-
-                foreach (var component in tmpComponents)
-                {
-                    OnBeforeDestroyed(component, false);
-                }
-
-                ListPool<Component>.Release(tmpComponents);
-            }
-
-            OnBeforeDestroyed(obj, false);
+            NotifyHierarchyBeforeDestroyed(obj, false);
             Object.Destroy(obj);
         }
 
         public static void DestroyAndNotify(Object obj, float t)
         {
-            if (obj is GameObject go)
-            {
-                var tmpComponents = ListPool<Component>.Get();
-                go.GetComponentsInChildren(tmpComponents);
-
-                foreach (var component in tmpComponents)
-                {
-                    OnBeforeDestroyed(component, false);
-                }
-
-                ListPool<Component>.Release(tmpComponents);
-            }
-
-            OnBeforeDestroyed(obj, false);
+            NotifyHierarchyBeforeDestroyed(obj, false);
             Object.Destroy(obj, t);
         }
 
         public static void DestroyImmediateAndNotify(Object obj)
         {
-            if (obj is GameObject go)
-            {
-                var tmpComponents = ListPool<Component>.Get();
-                go.GetComponentsInChildren(tmpComponents);
-
-                foreach (var component in tmpComponents)
-                {
-                    OnBeforeDestroyed(component, true);
-                }
-
-                ListPool<Component>.Release(tmpComponents);
-            }
-
-            OnBeforeDestroyed(obj, true);
+            NotifyHierarchyBeforeDestroyed(obj, true);
             Object.DestroyImmediate(obj);
         }
 
         public static void DestroyImmediateAndNotify(Object obj, bool allowDestroyingAssets)
         {
-            if (obj is GameObject go)
-            {
-                var tmpComponents = ListPool<Component>.Get();
-                go.GetComponentsInChildren(tmpComponents);
-
-                foreach (var component in tmpComponents)
-                {
-                    OnBeforeDestroyed(component, true);
-                }
-
-                ListPool<Component>.Release(tmpComponents);
-            }
-
-            OnBeforeDestroyed(obj, true);
+            NotifyHierarchyBeforeDestroyed(obj, true);
             Object.DestroyImmediate(obj, allowDestroyingAssets);
         }
 
@@ -264,7 +283,7 @@ namespace PLUME.Base.Hooks
             {
                 GameObjectHooks.NotifyCreated(go);
 
-                var tmpComponents = ListPool<Component>.Get();
+                using var _ = ListPool<Component>.Get(out var tmpComponents);
                 go.GetComponentsInChildren(true, tmpComponents);
 
                 foreach (var component in tmpComponents)
@@ -276,8 +295,6 @@ namespace PLUME.Base.Hooks
 
                     GameObjectHooks.NotifyComponentAdded(component.gameObject, component);
                 }
-
-                ListPool<Component>.Release(tmpComponents);
             }
             else if (obj is Component component)
             {

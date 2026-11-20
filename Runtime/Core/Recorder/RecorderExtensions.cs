@@ -105,11 +105,8 @@ namespace PLUME.Core.Recorder
                 new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider, settingsProvider);
 
             Instance = new PlumeRecorder(dataDispatcher, recorderContext);
-
-            foreach (var recorderModule in recorderModules)
-            {
-                recorderModule.Create(recorderContext);
-            }
+            Instance.CallModules(nameof(IRecorderModule.Create), (module, ctx) => module.Create(ctx),
+                includeUninitialized: true);
 
             ApplicationPauseDetector.Paused += () => Instance.OnApplicationPaused();
 

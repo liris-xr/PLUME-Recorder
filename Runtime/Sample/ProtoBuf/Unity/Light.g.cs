@@ -90,26 +90,32 @@ namespace PLUME.Sample.Unity {
             "YXNrQhsKGV9ib3VuZGluZ19zcGhlcmVfb3ZlcnJpZGVCHwodX3VzZV9ib3Vu",
             "ZGluZ19zcGhlcmVfb3ZlcnJpZGVCCQoHX2Nvb2tpZUIOCgxfY29va2llX3Np",
             "emVCCAoGX2ZsYXJlQg0KC19saWdodF91bml0IjgKGExheWVyU2hhZG93Q3Vs",
-            "bERpc3RhbmNlcxIcCglkaXN0YW5jZXMYASADKAJSCWRpc3RhbmNlcyp4CglM",
-            "aWdodFVuaXQSFAoQTElHSFRfVU5JVF9MVU1FThAAEhYKEkxJR0hUX1VOSVRf",
-            "Q0FOREVMQRABEhIKDkxJR0hUX1VOSVRfTFVYEAISEwoPTElHSFRfVU5JVF9O",
-            "SVRTEAMSFAoQTElHSFRfVU5JVF9FVjEwMBAEKpYBCglMaWdodFR5cGUSEwoP",
-            "TElHSFRfVFlQRV9TUE9UEAASGgoWTElHSFRfVFlQRV9ESVJFQ1RJT05BTBAB",
-            "EhQKEExJR0hUX1RZUEVfUE9JTlQQAhITCg9MSUdIVF9UWVBFX0FSRUEQAxIY",
-            "ChRMSUdIVF9UWVBFX1JFQ1RBTkdMRRAEEhMKD0xJR0hUX1RZUEVfRElTQxAF",
-            "KlAKCkxpZ2h0U2hhcGUSFAoQTElHSFRfU0hBUEVfQ09ORRAAEhcKE0xJR0hU",
-            "X1NIQVBFX1BZUkFNSUQQARITCg9MSUdIVF9TSEFQRV9CT1gQAiqZAQoVTGln",
-            "aHRTaGFkb3dDYXN0ZXJNb2RlEiQKIExJR0hUX1NIQURPV19DQVNURVJfTU9E",
-            "RV9ERUZBVUxUEAASMQotTElHSFRfU0hBRE9XX0NBU1RFUl9NT0RFX05PTl9M",
-            "SUdIVE1BUFBFRF9PTkxZEAESJwojTElHSFRfU0hBRE9XX0NBU1RFUl9NT0RF",
-            "X0VWRVJZVEhJTkcQAirYAQoVTGlnaHRTaGFkb3dSZXNvbHV0aW9uEjEKLUxJ",
-            "R0hUX1NIQURPV19SRVNPTFVUSU9OX0ZST01fUVVBTElUWV9TRVRUSU5HUxAA",
-            "Eh8KG0xJR0hUX1NIQURPV19SRVNPTFVUSU9OX0xPVxABEiIKHkxJR0hUX1NI",
-            "QURPV19SRVNPTFVUSU9OX01FRElVTRACEiAKHExJR0hUX1NIQURPV19SRVNP",
-            "TFVUSU9OX0hJR0gQAxIlCiFMSUdIVF9TSEFET1dfUkVTT0xVVElPTl9WRVJZ",
-            "X0hJR0gQBCpWCgxMaWdodFNoYWRvd3MSFgoSTElHSFRfU0hBRE9XU19OT05F",
-            "EAASFgoSTElHSFRfU0hBRE9XU19IQVJEEAESFgoSTElHSFRfU0hBRE9XU19T",
-            "T0ZUEAJCFaoCElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
+            "bERpc3RhbmNlcxIcCglkaXN0YW5jZXMYASADKAJSCWRpc3RhbmNlcyqdAQoJ",
+            "TGlnaHRVbml0EhQKEExJR0hUX1VOSVRfTFVNRU4QABIjChZMSUdIVF9VTklU",
+            "X1VOU1BFQ0lGSUVEEP///////////wESFgoSTElHSFRfVU5JVF9DQU5ERUxB",
+            "EAESEgoOTElHSFRfVU5JVF9MVVgQAhITCg9MSUdIVF9VTklUX05JVFMQAxIU",
+            "ChBMSUdIVF9VTklUX0VWMTAwEAQquwEKCUxpZ2h0VHlwZRITCg9MSUdIVF9U",
+            "WVBFX1NQT1QQABIjChZMSUdIVF9UWVBFX1VOU1BFQ0lGSUVEEP//////////",
+            "/wESGgoWTElHSFRfVFlQRV9ESVJFQ1RJT05BTBABEhQKEExJR0hUX1RZUEVf",
+            "UE9JTlQQAhITCg9MSUdIVF9UWVBFX0FSRUEQAxIYChRMSUdIVF9UWVBFX1JF",
+            "Q1RBTkdMRRAEEhMKD0xJR0hUX1RZUEVfRElTQxAFKnYKCkxpZ2h0U2hhcGUS",
+            "FAoQTElHSFRfU0hBUEVfQ09ORRAAEiQKF0xJR0hUX1NIQVBFX1VOU1BFQ0lG",
+            "SUVEEP///////////wESFwoTTElHSFRfU0hBUEVfUFlSQU1JRBABEhMKD0xJ",
+            "R0hUX1NIQVBFX0JPWBACKswBChVMaWdodFNoYWRvd0Nhc3Rlck1vZGUSJAog",
+            "TElHSFRfU0hBRE9XX0NBU1RFUl9NT0RFX0RFRkFVTFQQABIxCiRMSUdIVF9T",
+            "SEFET1dfQ0FTVEVSX01PREVfVU5TUEVDSUZJRUQQ////////////ARIxCi1M",
+            "SUdIVF9TSEFET1dfQ0FTVEVSX01PREVfTk9OX0xJR0hUTUFQUEVEX09OTFkQ",
+            "ARInCiNMSUdIVF9TSEFET1dfQ0FTVEVSX01PREVfRVZFUllUSElORxACKooC",
+            "ChVMaWdodFNoYWRvd1Jlc29sdXRpb24SMQotTElHSFRfU0hBRE9XX1JFU09M",
+            "VVRJT05fRlJPTV9RVUFMSVRZX1NFVFRJTkdTEAASMAojTElHSFRfU0hBRE9X",
+            "X1JFU09MVVRJT05fVU5TUEVDSUZJRUQQ////////////ARIfChtMSUdIVF9T",
+            "SEFET1dfUkVTT0xVVElPTl9MT1cQARIiCh5MSUdIVF9TSEFET1dfUkVTT0xV",
+            "VElPTl9NRURJVU0QAhIgChxMSUdIVF9TSEFET1dfUkVTT0xVVElPTl9ISUdI",
+            "EAMSJQohTElHSFRfU0hBRE9XX1JFU09MVVRJT05fVkVSWV9ISUdIEAQqfgoM",
+            "TGlnaHRTaGFkb3dzEhYKEkxJR0hUX1NIQURPV1NfTk9ORRAAEiYKGUxJR0hU",
+            "X1NIQURPV1NfVU5TUEVDSUZJRUQQ////////////ARIWChJMSUdIVF9TSEFE",
+            "T1dTX0hBUkQQARIWChJMSUdIVF9TSEFET1dTX1NPRlQQAkIVqgISUExVTUUu",
+            "U2FtcGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Matrix4X4Reflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.LightUnit), typeof(global::PLUME.Sample.Unity.LightType), typeof(global::PLUME.Sample.Unity.LightShape), typeof(global::PLUME.Sample.Unity.LightShadowCasterMode), typeof(global::PLUME.Sample.Unity.LightShadowResolution), typeof(global::PLUME.Sample.Unity.LightShadows), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -125,6 +131,7 @@ namespace PLUME.Sample.Unity {
   #region Enums
   public enum LightUnit {
     [pbr::OriginalName("LIGHT_UNIT_LUMEN")] Lumen = 0,
+    [pbr::OriginalName("LIGHT_UNIT_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("LIGHT_UNIT_CANDELA")] Candela = 1,
     [pbr::OriginalName("LIGHT_UNIT_LUX")] Lux = 2,
     [pbr::OriginalName("LIGHT_UNIT_NITS")] Nits = 3,
@@ -133,6 +140,7 @@ namespace PLUME.Sample.Unity {
 
   public enum LightType {
     [pbr::OriginalName("LIGHT_TYPE_SPOT")] Spot = 0,
+    [pbr::OriginalName("LIGHT_TYPE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("LIGHT_TYPE_DIRECTIONAL")] Directional = 1,
     [pbr::OriginalName("LIGHT_TYPE_POINT")] Point = 2,
     [pbr::OriginalName("LIGHT_TYPE_AREA")] Area = 3,
@@ -142,18 +150,21 @@ namespace PLUME.Sample.Unity {
 
   public enum LightShape {
     [pbr::OriginalName("LIGHT_SHAPE_CONE")] Cone = 0,
+    [pbr::OriginalName("LIGHT_SHAPE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("LIGHT_SHAPE_PYRAMID")] Pyramid = 1,
     [pbr::OriginalName("LIGHT_SHAPE_BOX")] Box = 2,
   }
 
   public enum LightShadowCasterMode {
     [pbr::OriginalName("LIGHT_SHADOW_CASTER_MODE_DEFAULT")] Default = 0,
+    [pbr::OriginalName("LIGHT_SHADOW_CASTER_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("LIGHT_SHADOW_CASTER_MODE_NON_LIGHTMAPPED_ONLY")] NonLightmappedOnly = 1,
     [pbr::OriginalName("LIGHT_SHADOW_CASTER_MODE_EVERYTHING")] Everything = 2,
   }
 
   public enum LightShadowResolution {
     [pbr::OriginalName("LIGHT_SHADOW_RESOLUTION_FROM_QUALITY_SETTINGS")] FromQualitySettings = 0,
+    [pbr::OriginalName("LIGHT_SHADOW_RESOLUTION_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("LIGHT_SHADOW_RESOLUTION_LOW")] Low = 1,
     [pbr::OriginalName("LIGHT_SHADOW_RESOLUTION_MEDIUM")] Medium = 2,
     [pbr::OriginalName("LIGHT_SHADOW_RESOLUTION_HIGH")] High = 3,
@@ -162,6 +173,7 @@ namespace PLUME.Sample.Unity {
 
   public enum LightShadows {
     [pbr::OriginalName("LIGHT_SHADOWS_NONE")] None = 0,
+    [pbr::OriginalName("LIGHT_SHADOWS_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("LIGHT_SHADOWS_HARD")] Hard = 1,
     [pbr::OriginalName("LIGHT_SHADOWS_SOFT")] Soft = 2,
   }

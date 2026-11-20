@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using NAudio.Wave;
 using PLUME.Base.Settings;
+using PLUME.Core;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace PLUME.Base.Module.Unity.Audio
     {
         private WaveFileWriter _audioFileWriter;
         private AudioListener _audioListener;
+        private AudioListenerRecorderScript _recorderScript;
 
         private int _channelCount;
         private int _outputSampleRate;
@@ -68,11 +70,8 @@ namespace PLUME.Base.Module.Unity.Audio
         protected override void OnStopRecording(RecorderContext ctx)
         {
             base.OnStopRecording(ctx);
-
-            if (_audioListener == null)
-                return;
-
-            StopRecordingAudio(ctx);
+            // Unconditional: start may have failed midway, leaving any subset of the audio state behind.
+            StopRecordingAudio();
         }
 
         private void StartRecordingAudio(RecorderContext ctx)
@@ -91,24 +90,52 @@ namespace PLUME.Base.Module.Unity.Audio
             var waveFormat = new WaveFormat(_outputSampleRate, _channelCount);
             _audioFileWriter = new WaveFileWriter(audioFilePath, waveFormat);
 
-            var recorderScript = _audioListener.gameObject.AddComponent<AudioListenerRecorderScript>();
-            recorderScript.Context = ctx;
-            recorderScript.OnNewAudioSamples += OnNewAudioSamples;
+            _recorderScript = _audioListener.gameObject.AddComponent<AudioListenerRecorderScript>();
+            _recorderScript.Context = ctx;
+            _recorderScript.OnNewAudioSamples += OnNewAudioSamples;
 
-            _audioRecordingThread = new Thread(() => RecordAudioLoop(ctx))
+            var audioRecordingThread = new Thread(() => RecordAudioLoop(ctx))
             {
                 Name = "AudioRecordingThread"
             };
-            _audioRecordingThread.Start();
+            audioRecordingThread.Start();
+            // Assigned only once started: joining a thread that never started throws.
+            _audioRecordingThread = audioRecordingThread;
         }
 
-        private void StopRecordingAudio(RecorderContext ctx)
+        private void StopRecordingAudio()
         {
-            Object.Destroy(_audioListener.gameObject.GetComponent<AudioListener>());
-            _audioRecordingThread?.Join();
-            _audioRecordingThread = null;
-            _audioFileWriter?.Dispose();
-            _audioFileWriter = null;
+            // Unsubscribe first so the audio thread stops feeding the queue the recording thread is draining.
+            // 'is not null': a component destroyed with its GameObject compares == null but still holds the handler.
+            if (_recorderScript is not null)
+                _recorderScript.OnNewAudioSamples -= OnNewAudioSamples;
+
+            try
+            {
+                _audioRecordingThread?.Join();
+            }
+            finally
+            {
+                try
+                {
+                    _audioFileWriter?.Dispose();
+                }
+                finally
+                {
+                    while (_audioSamplesQueue.TryTake(out _))
+                    {
+                    }
+
+                    var recorderScript = _recorderScript;
+                    _recorderScript = null;
+                    _audioListener = null;
+                    _audioRecordingThread = null;
+                    _audioFileWriter = null;
+
+                    if (recorderScript != null)
+                        Object.Destroy(recorderScript);
+                }
+            }
         }
 
         private void RecordAudioLoop(RecorderContext ctx)
@@ -116,48 +143,57 @@ namespace PLUME.Base.Module.Unity.Audio
             while (ctx.IsRecording || _audioSamplesQueue.Count > 0)
             {
                 if (!_audioSamplesQueue.TryTake(out var audioSamples, 100)) continue;
-                var samples = audioSamples.Samples;
-                var channelCount = audioSamples.ChannelCount;
-                var samplesTimestampSeconds = audioSamples.Timestamp / 1_000_000_000.0;
-                var samplesChunkDurationSeconds = samples.Length / (double)_outputSampleRate / channelCount;
-                var audioFileDurationSeconds = _audioFileWriter.TotalTime.TotalSeconds;
-
-                // Samples are timestamped before the duration of the audio file, skipping.
-                if (samplesTimestampSeconds < audioFileDurationSeconds)
-                    continue;
-
-                // Ensure recorder time and audio dsp time are in sync by inserting silence if needed
-                if (samplesTimestampSeconds - samplesChunkDurationSeconds - audioFileDurationSeconds >
-                    TriggerAudioSyncThresholdSeconds)
+                // Samples that fail to be written are lost, but the thread must survive to write the rest.
+                try
                 {
-                    var silenceDurationSeconds = samplesTimestampSeconds - audioFileDurationSeconds;
-                    var silenceSamplesCount = (int)(silenceDurationSeconds * _outputSampleRate * _channelCount);
-                    var silenceSamples = new float[silenceSamplesCount];
-                    _audioFileWriter.WriteSamples(silenceSamples, 0, silenceSamples.Length);
+                    var samples = audioSamples.Samples;
+                    var channelCount = audioSamples.ChannelCount;
+                    var samplesTimestampSeconds = audioSamples.Timestamp / 1_000_000_000.0;
+                    var samplesChunkDurationSeconds = samples.Length / (double)_outputSampleRate / channelCount;
+                    var audioFileDurationSeconds = _audioFileWriter.TotalTime.TotalSeconds;
 
-                    if (_settings.LogSilenceInsertion)
+                    // Samples are timestamped before the duration of the audio file, skipping.
+                    if (samplesTimestampSeconds < audioFileDurationSeconds)
+                        continue;
+
+                    // Ensure recorder time and audio dsp time are in sync by inserting silence if needed
+                    if (samplesTimestampSeconds - samplesChunkDurationSeconds - audioFileDurationSeconds >
+                        TriggerAudioSyncThresholdSeconds)
                     {
-                        Logger.Log(
-                            $"Inserted {silenceDurationSeconds * 1000}ms of silence to audio recording to sync with recorder time.");
+                        var silenceDurationSeconds = samplesTimestampSeconds - audioFileDurationSeconds;
+                        var silenceSamplesCount = (int)(silenceDurationSeconds * _outputSampleRate * _channelCount);
+                        var silenceSamples = new float[silenceSamplesCount];
+                        _audioFileWriter.WriteSamples(silenceSamples, 0, silenceSamples.Length);
+
+                        if (_settings.LogSilenceInsertion)
+                        {
+                            Logger.Log(
+                                $"Inserted {silenceDurationSeconds * 1000}ms of silence to audio recording to sync with recorder time.");
+                        }
+                    }
+
+                    if (channelCount == _channelCount)
+                    {
+                        _audioFileWriter.WriteSamples(samples, 0, samples.Length);
+                    }
+                    else
+                    {
+                        Logger.LogWarning(
+                            $"Channel count mismatch. Expected {_channelCount} channels, but received {channelCount} channels. Resampling audio samples to match expected channel count.");
+                        // TODO: copy channels to match expected channel count
+                        // var stride = channelCount * _outputSampleRate;
+                        // var expectedStride = _channelCount * _outputSampleRate;
+                        //
+                        // for (var i = 0; i < samples.Length; i += stride)
+                        // {
+                        //     _audioFileWriter.WriteSamples(samples, 0, expectedStride);
+                        // }
                     }
                 }
-
-                if (channelCount == _channelCount)
+                catch (Exception e)
                 {
-                    _audioFileWriter.WriteSamples(samples, 0, samples.Length);
-                }
-                else
-                {
-                    Logger.LogWarning(
-                        $"Channel count mismatch. Expected {_channelCount} channels, but received {channelCount} channels. Resampling audio samples to match expected channel count.");
-                    // TODO: copy channels to match expected channel count
-                    // var stride = channelCount * _outputSampleRate;
-                    // var expectedStride = _channelCount * _outputSampleRate;
-                    //
-                    // for (var i = 0; i < samples.Length; i += stride)
-                    // {
-                    //     _audioFileWriter.WriteSamples(samples, 0, expectedStride);
-                    // }
+                    ErrorReporter.Report($"{nameof(AudioRecorderModule)}.{nameof(RecordAudioLoop)}",
+                        "Failed to write audio samples. Those samples are lost, audio recording continues.", e);
                 }
             }
         }

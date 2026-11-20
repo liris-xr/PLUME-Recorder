@@ -1,4 +1,5 @@
-﻿using PLUME.Core.Recorder;
+﻿using PLUME.Core;
+using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity.Settings;
 using UnityEngine;
@@ -12,15 +13,24 @@ namespace PLUME.Base.Module.Unity
     public class RenderSettingsRecorderModule : FrameDataRecorderModule<RenderSettingsFrameData>
     {
         private RenderSettingsUpdate _renderSettingsUpdateSample;
+        private RecorderContext _ctx;
         
         protected override void OnStartRecording(RecorderContext ctx)
         {
             base.OnStartRecording(ctx);
+            _ctx = ctx;
 
-            SceneManager.sceneLoaded += (scene, loadMode) => OnLoadScene(scene, loadMode, ctx);
-            SceneManager.sceneUnloaded += scene => OnUnloadScene(scene, ctx);
+            SceneManager.sceneLoaded += OnLoadScene;
+            SceneManager.sceneUnloaded += OnUnloadScene;
             
             RecordRenderSettingsUpdate(ctx);
+        }
+
+        protected override void OnStopRecording(RecorderContext ctx)
+        {
+            base.OnStopRecording(ctx);
+            SceneManager.sceneLoaded -= OnLoadScene;
+            SceneManager.sceneUnloaded -= OnUnloadScene;
         }
 
         private void RecordRenderSettingsUpdate(RecorderContext ctx)
@@ -61,14 +71,31 @@ namespace PLUME.Base.Module.Unity
             _renderSettingsUpdateSample = s;
         }
         
-        private void OnLoadScene(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode, RecorderContext ctx)
+        private void OnLoadScene(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
         {
-            RecordRenderSettingsUpdate(ctx);
+            OnSceneChanged();
         }
 
-        private void OnUnloadScene(UnityEngine.SceneManagement.Scene scene, RecorderContext ctx)
+        private void OnUnloadScene(UnityEngine.SceneManagement.Scene scene)
         {
-            RecordRenderSettingsUpdate(ctx);
+            OnSceneChanged();
+        }
+
+        // Called from SceneManager events: an exception escaping it would skip the application's own subscribers.
+        private void OnSceneChanged()
+        {
+            if (!_ctx.IsRecordingWith(this))
+                return;
+
+            try
+            {
+                RecordRenderSettingsUpdate(_ctx);
+            }
+            catch (System.Exception e)
+            {
+                ErrorReporter.Report($"{nameof(RenderSettingsRecorderModule)}.{nameof(OnSceneChanged)}",
+                    "Failed to record the render settings after a scene change. They may be outdated in the record.", e);
+            }
         }
         
         protected override RenderSettingsFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)

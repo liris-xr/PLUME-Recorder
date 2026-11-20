@@ -38,10 +38,11 @@ namespace PLUME.Sample.Unity {
             "cmUYAyABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJZGVudGlmaWVy",
             "SAJSGWxpZ2h0bWFwU2hhZG93TWFza1RleHR1cmWIAQFCGQoXX2xpZ2h0bWFw",
             "X2NvbG9yX3RleHR1cmVCFwoVX2xpZ2h0bWFwX2Rpcl90ZXh0dXJlQh8KHV9s",
-            "aWdodG1hcF9zaGFkb3dfbWFza190ZXh0dXJlKlwKDUxpZ2h0bWFwc01vZGUS",
-            "IgoeTElHSFRNQVBTX01PREVfTk9OX0RJUkVDVElPTkFMEAASJwojTElHSFRN",
-            "QVBTX01PREVfQ09NQklORURfRElSRUNUSU9OQUwQAUIVqgISUExVTUUuU2Ft",
-            "cGxlLlVuaXR5YgZwcm90bzM="));
+            "aWdodG1hcF9zaGFkb3dfbWFza190ZXh0dXJlKoUBCg1MaWdodG1hcHNNb2Rl",
+            "EiIKHkxJR0hUTUFQU19NT0RFX05PTl9ESVJFQ1RJT05BTBAAEicKGkxJR0hU",
+            "TUFQU19NT0RFX1VOU1BFQ0lGSUVEEP///////////wESJwojTElHSFRNQVBT",
+            "X01PREVfQ09NQklORURfRElSRUNUSU9OQUwQAUIVqgISUExVTUUuU2FtcGxl",
+            "LlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.LightmapsMode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -55,6 +56,7 @@ namespace PLUME.Sample.Unity {
   #region Enums
   public enum LightmapsMode {
     [pbr::OriginalName("LIGHTMAPS_MODE_NON_DIRECTIONAL")] NonDirectional = 0,
+    [pbr::OriginalName("LIGHTMAPS_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("LIGHTMAPS_MODE_COMBINED_DIRECTIONAL")] CombinedDirectional = 1,
   }
 

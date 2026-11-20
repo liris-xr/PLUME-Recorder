@@ -49,7 +49,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
         private void OnComponentAdded(UnityEngine.GameObject go, Component component, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             if (component is not UnityEngine.Transform t || component is RectTransform)
@@ -145,7 +145,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
         private void OnParentChanged(UnityEngine.Transform t, UnityEngine.Transform parent, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var tSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(t);
@@ -165,7 +165,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
         private void OnSiblingIndexChanged(UnityEngine.Transform t, int siblingIndex, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var tSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(t);

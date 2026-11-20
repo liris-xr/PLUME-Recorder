@@ -60,11 +60,14 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         void IRecorderModule.StartRecording(RecorderContext ctx)
         {
+            // Each record has its own clock starting at 0: times left over from a previous recording would make
+            // the elapsed time underflow and schedule billions of fixed updates.
             _lastUpdateTime = 0;
+            _lastFixedUpdateTime = 0;
             _shouldRunUpdate = true;
             _shouldSerialize = true;
 
-            _serializationThread = new Thread(() => SerializeFrameLoop(ctx.CurrentRecord))
+            _serializationThread = new Thread(() => SerializeFrameLoop(ctx, ctx.CurrentRecord))
             {
                 Name = "FrameRecorderModule.SerializeThread",
                 IsBackground = false
@@ -77,19 +80,106 @@ namespace PLUME.Core.Recorder.Module.Frame
         {
             _shouldRunUpdate = false;
             _shouldSerialize = false;
-            _serializationThread.Join();
+            _serializationThread?.Join();
             _serializationThread = null;
+
+            // Frames left behind by a failed serialization must not leak into the next recording.
+            while (_frameQueue.TryTake(out _))
+            {
+            }
+
+            foreach (var module in _frameDataRecorderModules)
+            {
+                try
+                {
+                    module.DisposePendingFrameData();
+                }
+                catch (Exception e)
+                {
+                    ctx.Faults.Disable(module, nameof(IFrameDataRecorderModule.DisposePendingFrameData), e);
+                }
+            }
         }
 
         internal async Task CompleteSerializationAsync()
         {
             _shouldSerialize = false;
 
+            if (_serializationThread == null)
+                return;
+
             var remainingFramesCount = _frameQueue.Count;
             if (remainingFramesCount > 0)
                 Logger.Log(nameof(FrameRecorderModule), $"{remainingFramesCount} frames left in queue.");
 
             await Task.Run(_serializationThread.Join);
+        }
+
+        private enum Phase
+        {
+            FixedUpdate,
+            EarlyUpdate,
+            PreUpdate,
+            Update,
+            PreLateUpdate,
+            PostLateUpdate,
+            BeforeEnqueueFrameData,
+            EnqueueFrameData,
+            AfterEnqueueFrameData
+        }
+
+        /// <summary>
+        /// Calls the given phase on every enabled frame data recorder module. This is the exception boundary
+        /// between the frame loop and the modules: a module that throws is disabled, the others still run.
+        /// </summary>
+        private void RunPhase(Phase phase, ulong deltaTime, FrameInfo frame, RecorderContext ctx)
+        {
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < _frameDataRecorderModules.Length; i++)
+            {
+                var module = _frameDataRecorderModules[i];
+
+                if (ctx.Faults.IsDisabled(module))
+                    continue;
+
+                try
+                {
+                    switch (phase)
+                    {
+                        case Phase.FixedUpdate:
+                            module.FixedUpdate(deltaTime, ctx);
+                            break;
+                        case Phase.EarlyUpdate:
+                            module.EarlyUpdate(deltaTime, ctx);
+                            break;
+                        case Phase.PreUpdate:
+                            module.PreUpdate(deltaTime, ctx);
+                            break;
+                        case Phase.Update:
+                            module.Update(deltaTime, ctx);
+                            break;
+                        case Phase.PreLateUpdate:
+                            module.PreLateUpdate(deltaTime, ctx);
+                            break;
+                        case Phase.PostLateUpdate:
+                            module.PostLateUpdate(deltaTime, ctx);
+                            break;
+                        case Phase.BeforeEnqueueFrameData:
+                            module.BeforeEnqueueFrameData(frame, ctx);
+                            break;
+                        case Phase.EnqueueFrameData:
+                            module.EnqueueFrameData(frame, ctx);
+                            break;
+                        case Phase.AfterEnqueueFrameData:
+                            module.AfterEnqueueFrameData(frame, ctx);
+                            break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    ctx.Faults.Disable(module, phase.ToString(), e);
+                }
+            }
         }
 
         private void EarlyUpdate(RecorderContext ctx)
@@ -100,11 +190,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             if (!_shouldRunUpdate || !ctx.IsRecording)
                 return;
 
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _frameDataRecorderModules.Length; i++)
-            {
-                _frameDataRecorderModules[i].EarlyUpdate(_deltaTime, ctx);
-            }
+            RunPhase(Phase.EarlyUpdate, _deltaTime, default, ctx);
         }
 
         private void RunFixedUpdate(RecorderContext ctx)
@@ -125,11 +211,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             for (var i = 0; i < nFixedUpdates; i++)
             {
-                // ReSharper disable once ForCanBeConvertedToForeach
-                for (var j = 0; j < _frameDataRecorderModules.Length; j++)
-                {
-                    _frameDataRecorderModules[j].FixedUpdate(_updateInterval, ctx);
-                }
+                RunPhase(Phase.FixedUpdate, _updateInterval, default, ctx);
 
                 fixedTime += _updateInterval;
                 ctx.CurrentRecord.FixedTime = fixedTime;
@@ -174,11 +256,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             if (!_shouldRunUpdate || !ctx.IsRecording)
                 return;
 
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _frameDataRecorderModules.Length; i++)
-            {
-                _frameDataRecorderModules[i].PreUpdate(_deltaTime, ctx);
-            }
+            RunPhase(Phase.PreUpdate, _deltaTime, default, ctx);
         }
 
         private void Update(RecorderContext ctx)
@@ -186,11 +264,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             if (!_shouldRunUpdate || !ctx.IsRecording)
                 return;
 
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _frameDataRecorderModules.Length; i++)
-            {
-                _frameDataRecorderModules[i].Update(_deltaTime, ctx);
-            }
+            RunPhase(Phase.Update, _deltaTime, default, ctx);
         }
 
         private void PreLateUpdate(RecorderContext ctx)
@@ -198,11 +272,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             if (!_shouldRunUpdate || !ctx.IsRecording)
                 return;
 
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _frameDataRecorderModules.Length; i++)
-            {
-                _frameDataRecorderModules[i].PreLateUpdate(_deltaTime, ctx);
-            }
+            RunPhase(Phase.PreLateUpdate, _deltaTime, default, ctx);
         }
 
         private void PostLateUpdate(RecorderContext ctx)
@@ -210,11 +280,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             if (!_shouldRunUpdate || !ctx.IsRecording)
                 return;
 
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _frameDataRecorderModules.Length; i++)
-            {
-                _frameDataRecorderModules[i].PostLateUpdate(_deltaTime, ctx);
-            }
+            RunPhase(Phase.PostLateUpdate, _deltaTime, default, ctx);
 
             var timestamp = ctx.CurrentRecord.Time;
             var frame = Time.frameCount;
@@ -225,25 +291,13 @@ namespace PLUME.Core.Recorder.Module.Frame
         {
             var frame = new FrameInfo(timestamp, frameNumber);
 
-            foreach (var module in _frameDataRecorderModules)
-            {
-                module.BeforeEnqueueFrameData(frame, ctx);
-            }
-            
-            foreach (var module in _frameDataRecorderModules)
-            {
-                module.EnqueueFrameData(frame, ctx);
-            }
-            
+            RunPhase(Phase.BeforeEnqueueFrameData, 0, frame, ctx);
+            RunPhase(Phase.EnqueueFrameData, 0, frame, ctx);
             _frameQueue.Add(frame);
-            
-            foreach (var module in _frameDataRecorderModules)
-            {
-                module.AfterEnqueueFrameData(frame, ctx);
-            }
+            RunPhase(Phase.AfterEnqueueFrameData, 0, frame, ctx);
         }
 
-        internal void SerializeFrameLoop(Record record)
+        internal void SerializeFrameLoop(RecorderContext ctx, Record record)
         {
             Profiler.BeginThreadProfiling("PLUME", "FrameRecorderModule.SerializeThread");
 
@@ -253,30 +307,57 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             var frameSampleTypeUrl = SampleTypeUrl.Alloc(Sample.ProtoBurst.Unity.Frame.TypeUrl, Allocator.Persistent);
 
-            while (_shouldSerialize || _frameQueue.Count > 0)
+            try
             {
-                while (_frameQueue.TryTake(out var frame))
+                while (_shouldSerialize || _frameQueue.Count > 0)
                 {
-                    frameDataRawBytes.Clear();
-
-                    // ReSharper disable once LoopCanBeConvertedToQuery
-                    foreach (var module in _frameDataRecorderModules)
+                    while (_frameQueue.TryTake(out var frame))
                     {
-                        module.SerializeFrameData(frame, frameDataWriter);
+                        // A frame that fails to serialize is dropped: the thread must survive to serialize the next ones.
+                        try
+                        {
+                            SerializeFrame(frame, ctx, record, ref frameDataRawBytes, frameDataWriter, frameSampleTypeUrl);
+                        }
+                        catch (Exception e)
+                        {
+                            ErrorReporter.Report($"{nameof(FrameRecorderModule)}.{nameof(SerializeFrame)}",
+                                "Failed to serialize a frame. The frame is dropped from the record.", e);
+                        }
                     }
+                }
+            }
+            finally
+            {
+                frameSampleTypeUrl.Dispose();
+                frameDataRawBytes.Dispose();
+                Profiler.EndThreadProfiling();
+            }
+        }
 
-                    var frameSample = Sample.ProtoBurst.Unity.Frame.Pack(frame.FrameNumber, ref frameDataRawBytes, Allocator.Persistent);
-                    var frameSampleBytes = frameSample.ToBytes(Allocator.Persistent);
-                    frameSample.Dispose();
+        private void SerializeFrame(FrameInfo frame, RecorderContext ctx, Record record,
+            ref NativeList<byte> frameDataRawBytes, FrameDataWriter frameDataWriter, SampleTypeUrl frameSampleTypeUrl)
+        {
+            frameDataRawBytes.Clear();
 
-                    record.RecordTimestampedSample(frameSampleBytes, frameSampleTypeUrl, frame.Timestamp);
-                    frameSampleBytes.Dispose();
+            // ReSharper disable once LoopCanBeConvertedToQuery
+            foreach (var module in _frameDataRecorderModules)
+            {
+                if (ctx.Faults.IsDisabled(module))
+                    continue;
+
+                try
+                {
+                    module.SerializeFrameData(frame, frameDataWriter);
+                }
+                catch (Exception e)
+                {
+                    ctx.Faults.Disable(module, nameof(IFrameDataRecorderModule.SerializeFrameData), e);
                 }
             }
 
-            frameSampleTypeUrl.Dispose();
-            frameDataRawBytes.Dispose();
-            Profiler.EndThreadProfiling();
+            using var frameSample = Sample.ProtoBurst.Unity.Frame.Pack(frame.FrameNumber, ref frameDataRawBytes, Allocator.Persistent);
+            using var frameSampleBytes = frameSample.ToBytes(Allocator.Persistent);
+            record.RecordTimestampedSample(frameSampleBytes, frameSampleTypeUrl, frame.Timestamp);
         }
     }
 }

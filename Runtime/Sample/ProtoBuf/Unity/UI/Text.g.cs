@@ -56,20 +56,24 @@ namespace PLUME.Sample.Unity.UI {
             "dEIUChJfYWxpZ25fYnlfZ2VvbWV0cnlCFgoUX2hvcml6b250YWxfb3ZlcmZs",
             "b3dCFAoSX3ZlcnRpY2FsX292ZXJmbG93QhsKGV9yZXNpemVfdGV4dF9mb3Jf",
             "YmVzdF9maXRCFwoVX3Jlc2l6ZV90ZXh0X21pbl9zaXplQhcKFV9yZXNpemVf",
-            "dGV4dF9tYXhfc2l6ZSpWChJIb3Jpem9udGFsV3JhcE1vZGUSHQoZSE9SSVpP",
-            "TlRBTF9XUkFQX01PREVfV1JBUBAAEiEKHUhPUklaT05UQUxfV1JBUF9NT0RF",
-            "X09WRVJGTE9XEAEqVAoQVmVydGljYWxXcmFwTW9kZRIfChtWRVJUSUNBTF9X",
-            "UkFQX01PREVfVFJVTkNBVEUQABIfChtWRVJUSUNBTF9XUkFQX01PREVfT1ZF",
-            "UkZMT1cQASqUAgoKVGV4dEFuY2hvchIaChZURVhUX0FOQ0hPUl9VUFBFUl9M",
-            "RUZUEAASHAoYVEVYVF9BTkNIT1JfVVBQRVJfQ0VOVEVSEAESGwoXVEVYVF9B",
-            "TkNIT1JfVVBQRVJfUklHSFQQAhIbChdURVhUX0FOQ0hPUl9NSURETEVfTEVG",
-            "VBADEh0KGVRFWFRfQU5DSE9SX01JRERMRV9DRU5URVIQBBIcChhURVhUX0FO",
-            "Q0hPUl9NSURETEVfUklHSFQQBRIaChZURVhUX0FOQ0hPUl9MT1dFUl9MRUZU",
-            "EAYSHAoYVEVYVF9BTkNIT1JfTE9XRVJfQ0VOVEVSEAcSGwoXVEVYVF9BTkNI",
-            "T1JfTE9XRVJfUklHSFQQCCpuCglGb250U3R5bGUSFQoRRk9OVF9TVFlMRV9O",
-            "T1JNQUwQABITCg9GT05UX1NUWUxFX0JPTEQQARIVChFGT05UX1NUWUxFX0lU",
-            "QUxJQxACEh4KGkZPTlRfU1RZTEVfQk9MRF9BTkRfSVRBTElDEANCGKoCFVBM",
-            "VU1FLlNhbXBsZS5Vbml0eS5VSWIGcHJvdG8z"));
+            "dGV4dF9tYXhfc2l6ZSqFAQoSSG9yaXpvbnRhbFdyYXBNb2RlEh0KGUhPUkla",
+            "T05UQUxfV1JBUF9NT0RFX1dSQVAQABItCiBIT1JJWk9OVEFMX1dSQVBfTU9E",
+            "RV9VTlNQRUNJRklFRBD///////////8BEiEKHUhPUklaT05UQUxfV1JBUF9N",
+            "T0RFX09WRVJGTE9XEAEqgQEKEFZlcnRpY2FsV3JhcE1vZGUSHwobVkVSVElD",
+            "QUxfV1JBUF9NT0RFX1RSVU5DQVRFEAASKwoeVkVSVElDQUxfV1JBUF9NT0RF",
+            "X1VOU1BFQ0lGSUVEEP///////////wESHwobVkVSVElDQUxfV1JBUF9NT0RF",
+            "X09WRVJGTE9XEAEqugIKClRleHRBbmNob3ISGgoWVEVYVF9BTkNIT1JfVVBQ",
+            "RVJfTEVGVBAAEiQKF1RFWFRfQU5DSE9SX1VOU1BFQ0lGSUVEEP//////////",
+            "/wESHAoYVEVYVF9BTkNIT1JfVVBQRVJfQ0VOVEVSEAESGwoXVEVYVF9BTkNI",
+            "T1JfVVBQRVJfUklHSFQQAhIbChdURVhUX0FOQ0hPUl9NSURETEVfTEVGVBAD",
+            "Eh0KGVRFWFRfQU5DSE9SX01JRERMRV9DRU5URVIQBBIcChhURVhUX0FOQ0hP",
+            "Ul9NSURETEVfUklHSFQQBRIaChZURVhUX0FOQ0hPUl9MT1dFUl9MRUZUEAYS",
+            "HAoYVEVYVF9BTkNIT1JfTE9XRVJfQ0VOVEVSEAcSGwoXVEVYVF9BTkNIT1Jf",
+            "TE9XRVJfUklHSFQQCCqTAQoJRm9udFN0eWxlEhUKEUZPTlRfU1RZTEVfTk9S",
+            "TUFMEAASIwoWRk9OVF9TVFlMRV9VTlNQRUNJRklFRBD///////////8BEhMK",
+            "D0ZPTlRfU1RZTEVfQk9MRBABEhUKEUZPTlRfU1RZTEVfSVRBTElDEAISHgoa",
+            "Rk9OVF9TVFlMRV9CT0xEX0FORF9JVEFMSUMQA0IYqgIVUExVTUUuU2FtcGxl",
+            "LlVuaXR5LlVJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.HorizontalWrapMode), typeof(global::PLUME.Sample.Unity.UI.VerticalWrapMode), typeof(global::PLUME.Sample.Unity.UI.TextAnchor), typeof(global::PLUME.Sample.Unity.UI.FontStyle), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -84,16 +88,19 @@ namespace PLUME.Sample.Unity.UI {
   #region Enums
   public enum HorizontalWrapMode {
     [pbr::OriginalName("HORIZONTAL_WRAP_MODE_WRAP")] Wrap = 0,
+    [pbr::OriginalName("HORIZONTAL_WRAP_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("HORIZONTAL_WRAP_MODE_OVERFLOW")] Overflow = 1,
   }
 
   public enum VerticalWrapMode {
     [pbr::OriginalName("VERTICAL_WRAP_MODE_TRUNCATE")] Truncate = 0,
+    [pbr::OriginalName("VERTICAL_WRAP_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("VERTICAL_WRAP_MODE_OVERFLOW")] Overflow = 1,
   }
 
   public enum TextAnchor {
     [pbr::OriginalName("TEXT_ANCHOR_UPPER_LEFT")] UpperLeft = 0,
+    [pbr::OriginalName("TEXT_ANCHOR_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("TEXT_ANCHOR_UPPER_CENTER")] UpperCenter = 1,
     [pbr::OriginalName("TEXT_ANCHOR_UPPER_RIGHT")] UpperRight = 2,
     [pbr::OriginalName("TEXT_ANCHOR_MIDDLE_LEFT")] MiddleLeft = 3,
@@ -106,6 +113,7 @@ namespace PLUME.Sample.Unity.UI {
 
   public enum FontStyle {
     [pbr::OriginalName("FONT_STYLE_NORMAL")] Normal = 0,
+    [pbr::OriginalName("FONT_STYLE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("FONT_STYLE_BOLD")] Bold = 1,
     [pbr::OriginalName("FONT_STYLE_ITALIC")] Italic = 2,
     [pbr::OriginalName("FONT_STYLE_BOLD_AND_ITALIC")] BoldAndItalic = 3,

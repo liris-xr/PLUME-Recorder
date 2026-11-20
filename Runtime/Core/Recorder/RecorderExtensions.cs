@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Google.Protobuf;
+using PLUME.Core.Hooks;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
 using PLUME.Core.Recorder.Writer;
@@ -104,6 +105,7 @@ namespace PLUME.Core.Recorder
             var recorderContext =
                 new RecorderContext(Array.AsReadOnly(recorderModules), objSafeRefProvider, settingsProvider);
 
+            HookErrors.Reporter = ErrorReporter.Report;
             Instance = new PlumeRecorder(dataDispatcher, recorderContext);
             Instance.CallModules(nameof(IRecorderModule.Create), (module, ctx) => module.Create(ctx),
                 includeUninitialized: true);

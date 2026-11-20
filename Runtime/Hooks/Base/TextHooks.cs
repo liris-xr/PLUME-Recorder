@@ -1,5 +1,4 @@
 using System;
-using PLUME.Core;
 using PLUME.Core.Hooks;
 using UnityEngine.Scripting;
 using UnityEngine.UI;
@@ -27,7 +26,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(TextHooks)}.{nameof(OnTextChanged)}",
+                HookErrors.Report($"{nameof(TextHooks)}.{nameof(OnTextChanged)}",
                     "Failed to record a text change. The application is not affected.", e);
             }
         }

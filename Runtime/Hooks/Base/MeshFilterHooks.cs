@@ -1,5 +1,4 @@
 using System;
-using PLUME.Core;
 using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -34,7 +33,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(MeshFilterHooks)}.{nameof(OnMeshChanged)}",
+                HookErrors.Report($"{nameof(MeshFilterHooks)}.{nameof(OnMeshChanged)}",
                     "Failed to record a mesh change. The application is not affected.", e);
             }
         }
@@ -47,7 +46,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(MeshFilterHooks)}.{nameof(OnSharedMeshChanged)}",
+                HookErrors.Report($"{nameof(MeshFilterHooks)}.{nameof(OnSharedMeshChanged)}",
                     "Failed to record a shared mesh change. The application is not affected.", e);
             }
         }

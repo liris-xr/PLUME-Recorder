@@ -6,6 +6,7 @@
         "UnityEditor.TestRunner",
         "PLUME.Recorder.Editor",
         "PLUME.Recorder",
+        "PLUME.Recorder.Hooks",
         "Unity.Collections",
         "PLUME.Recorder.Tests.HooksFixture"
     ],

@@ -26,6 +26,7 @@ namespace PLUME.Editor.CodeGen
         private static readonly HashSet<string> BaseBlacklistedAssemblyNames = new()
         {
             "PLUME.Recorder",
+            "PLUME.Recorder.Hooks",
             "Unity.PLUME.Recorder.CodeGen",
             "UnityRuntimeGuid",
             "UnityRuntimeGuid.Editor",
@@ -95,8 +96,8 @@ namespace PLUME.Editor.CodeGen
         /// <summary>
         /// Runs the regular hook registration (<see cref="IRegisterHooksCallback"/>) in the post-processing process.
         /// Types that cannot be loaded there (e.g. types depending on plugin DLLs) are skipped: hook declarations
-        /// only depend on UnityEngine and the recorder. Only assemblies loaded by this process are scanned, so hooks
-        /// must be declared in PLUME.Recorder: loading other assemblies here could not be undone when they change.
+        /// only depend on UnityEngine. Only assemblies loaded by this process are scanned, so hooks must be declared in
+        /// PLUME.Recorder.Hooks: loading other assemblies here could not be undone when they change.
         /// </summary>
         private static IReadOnlyList<Hook> DiscoverHooks()
         {

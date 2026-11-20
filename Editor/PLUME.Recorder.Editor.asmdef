@@ -2,6 +2,7 @@
     "name": "PLUME.Recorder.Editor",
     "rootNamespace": "PLUME",
     "references": [
+        "PLUME.Recorder.Hooks",
         "GUID:78b8f45ffa70db540bc27e0012b1024c",
         "GUID:c5ecc461727906345a35491a0440694f",
         "GUID:5c1ff9bd975acec488150743d53a93ca",

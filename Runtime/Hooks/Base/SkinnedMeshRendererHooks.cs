@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PLUME.Core;
 using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -41,7 +40,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(SkinnedMeshRendererHooks)}.{nameof(OnBonesChanged)}",
+                HookErrors.Report($"{nameof(SkinnedMeshRendererHooks)}.{nameof(OnBonesChanged)}",
                     "Failed to record a bones change. The application is not affected.", e);
             }
         }
@@ -54,7 +53,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(SkinnedMeshRendererHooks)}.{nameof(OnRootBoneChanged)}",
+                HookErrors.Report($"{nameof(SkinnedMeshRendererHooks)}.{nameof(OnRootBoneChanged)}",
                     "Failed to record a root bone change. The application is not affected.", e);
             }
         }
@@ -67,7 +66,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(SkinnedMeshRendererHooks)}.{nameof(OnBlendShapeWeightChanged)}",
+                HookErrors.Report($"{nameof(SkinnedMeshRendererHooks)}.{nameof(OnBlendShapeWeightChanged)}",
                     "Failed to record a blend shape weight change. The application is not affected.", e);
             }
         }

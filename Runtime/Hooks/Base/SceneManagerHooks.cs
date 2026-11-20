@@ -1,12 +1,10 @@
 ﻿using System;
-using PLUME.Core;
 using PLUME.Core.Hooks;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
 using UnityEngine.Scripting;
-using UnityRuntimeGuid;
 
 namespace PLUME.Base.Hooks
 {
@@ -38,7 +36,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(SceneManagerHooks)}.{nameof(OnGameObjectMovedToScene)}",
+                HookErrors.Report($"{nameof(SceneManagerHooks)}.{nameof(OnGameObjectMovedToScene)}",
                     "Failed to record a GameObject moved to another scene. The application is not affected.", e);
             }
         }

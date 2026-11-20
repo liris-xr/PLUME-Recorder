@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using PLUME.Core;
 using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -167,7 +166,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(ObjectHooks)}.{nameof(OnNameChanged)}",
+                HookErrors.Report($"{nameof(ObjectHooks)}.{nameof(OnNameChanged)}",
                     "Failed to record an object name change. The application is not affected.", e);
             }
         }
@@ -180,7 +179,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(ObjectHooks)}.{nameof(OnDontDestroyOnLoad)}",
+                HookErrors.Report($"{nameof(ObjectHooks)}.{nameof(OnDontDestroyOnLoad)}",
                     "Failed to record a DontDestroyOnLoad call. The application is not affected.", e);
             }
         }
@@ -193,7 +192,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(ObjectHooks)}.{nameof(OnBeforeDestroyed)}",
+                HookErrors.Report($"{nameof(ObjectHooks)}.{nameof(OnBeforeDestroyed)}",
                     "Failed to record a destroyed object. The application is not affected.", e);
             }
         }

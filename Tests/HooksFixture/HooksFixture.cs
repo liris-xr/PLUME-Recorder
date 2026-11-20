@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -42,6 +44,24 @@ namespace Tests.HooksFixture
         {
             go.AddComponent<BoxCollider>();
             go.AddComponent(typeof(SphereCollider));
+        }
+
+        private static readonly MethodInfo SetActive = typeof(GameObject).GetMethod(nameof(GameObject.SetActive));
+
+        public static void SetActiveThroughCreateDelegate(GameObject go, bool value) =>
+            ((Action<GameObject, bool>)SetActive.CreateDelegate(typeof(Action<GameObject, bool>)))(go, value);
+
+        public static void SetActiveThroughBoundDelegate(GameObject go, bool value) =>
+            ((Action<bool>)Delegate.CreateDelegate(typeof(Action<bool>), go, SetActive))(value);
+
+        public static void SetActiveThroughInvoke(GameObject go, bool value) => SetActive.Invoke(go, new object[] { value });
+
+        public static void SetActiveThroughExpression(GameObject go, bool value)
+        {
+            var target = Expression.Parameter(typeof(GameObject));
+            var argument = Expression.Parameter(typeof(bool));
+            Expression.Lambda<Action<GameObject, bool>>(Expression.Call(target, SetActive, argument), target, argument)
+                .Compile()(go, value);
         }
 
         private static T InstantiateGeneric<T>(T original) where T : Object => Object.Instantiate(original);

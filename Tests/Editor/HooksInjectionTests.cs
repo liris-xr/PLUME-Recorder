@@ -63,5 +63,37 @@ namespace Tests.Editor
 
             Assert.AreEqual(2, notified);
         }
+
+        // Calls built through reflection have no call site to rewrite: the reflection APIs themselves are redirected.
+        [TestCase("CreateDelegate")]
+        [TestCase("BoundDelegate")]
+        [TestCase("Invoke")]
+        [TestCase("Expression")]
+        public void SettingActive_ThroughReflection_NotifiesTheChange(string path)
+        {
+            var go = new GameObject();
+            _created.Add(go);
+            var notified = 0;
+            void OnActiveChanged(GameObject target, bool active) => notified++;
+
+            GameObjectHooks.OnActiveChanged += OnActiveChanged;
+            try
+            {
+                switch (path)
+                {
+                    case "CreateDelegate": Fixture.SetActiveThroughCreateDelegate(go, false); break;
+                    case "BoundDelegate": Fixture.SetActiveThroughBoundDelegate(go, false); break;
+                    case "Invoke": Fixture.SetActiveThroughInvoke(go, false); break;
+                    case "Expression": Fixture.SetActiveThroughExpression(go, false); break;
+                }
+            }
+            finally
+            {
+                GameObjectHooks.OnActiveChanged -= OnActiveChanged;
+            }
+
+            Assert.IsFalse(go.activeSelf);
+            Assert.AreEqual(1, notified);
+        }
     }
 }

@@ -19,6 +19,16 @@ namespace PLUME.Core.Recorder
         public Record CurrentRecord { get; internal set; }
         internal ModuleFaults Faults { get; } = new();
 
+        /// <summary>
+        /// Whether the given module should record: the recorder is recording and the module was not disabled after
+        /// a failure. Module event handlers (hooks, Unity callbacks) must check this rather than
+        /// <see cref="IsRecording"/>, so that a disabled module stops recording from them too.
+        /// </summary>
+        public bool IsRecordingWith(IRecorderModule module)
+        {
+            return IsRecording && !Faults.IsDisabled(module);
+        }
+
         public RecorderContext(ReadOnlyCollection<IRecorderModule> modules, SafeRefProvider safeRefProvider, ISettingsProvider settingsProvider)
         {
             Modules = modules;

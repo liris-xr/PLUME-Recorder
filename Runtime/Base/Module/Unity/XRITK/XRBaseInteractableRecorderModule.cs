@@ -85,7 +85,7 @@ namespace PLUME.Base.Module.Unity.XRITK
 
         private void OnHoverEntered(XRBaseInteractableSafeRef objSafeRef, HoverEnterEventArgs args)
         {
-            if (!_ctx.IsRecording)
+            if (!_ctx.IsRecordingWith(this))
                 return;
             
             var interactor = (Component) args.interactorObject;
@@ -102,7 +102,7 @@ namespace PLUME.Base.Module.Unity.XRITK
 
         private void OnHoverExited(XRBaseInteractableSafeRef objSafeRef, HoverExitEventArgs args)
         {
-            if (!_ctx.IsRecording)
+            if (!_ctx.IsRecordingWith(this))
                 return;
 
             var interactor = (Component) args.interactorObject;
@@ -119,7 +119,7 @@ namespace PLUME.Base.Module.Unity.XRITK
 
         private void OnSelectEntered(XRBaseInteractableSafeRef objSafeRef, SelectEnterEventArgs args)
         {
-            if (!_ctx.IsRecording)
+            if (!_ctx.IsRecordingWith(this))
                 return;
 
             var interactor = (Component) args.interactorObject;
@@ -136,7 +136,7 @@ namespace PLUME.Base.Module.Unity.XRITK
 
         private void OnSelectExited(XRBaseInteractableSafeRef objSafeRef, SelectExitEventArgs args)
         {
-            if (!_ctx.IsRecording)
+            if (!_ctx.IsRecordingWith(this))
                 return;
 
             var interactor = (Component) args.interactorObject;
@@ -153,7 +153,7 @@ namespace PLUME.Base.Module.Unity.XRITK
 
         private void OnActivateEnter(XRBaseInteractableSafeRef objSafeRef, ActivateEventArgs args)
         {
-            if (!_ctx.IsRecording)
+            if (!_ctx.IsRecordingWith(this))
                 return;
 
             var interactor = (Component) args.interactorObject;
@@ -170,7 +170,7 @@ namespace PLUME.Base.Module.Unity.XRITK
 
         private void OnActivateExit(XRBaseInteractableSafeRef objSafeRef, DeactivateEventArgs args)
         {
-            if (!_ctx.IsRecording)
+            if (!_ctx.IsRecordingWith(this))
                 return;
 
             var interactor = (Component) args.interactorObject;

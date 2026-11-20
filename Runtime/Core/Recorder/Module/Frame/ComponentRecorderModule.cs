@@ -22,7 +22,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         private void OnComponentAdded(GameObject go, Component component, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             if (component is not TC c)
@@ -38,7 +38,7 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         private void OnBeforeDestroyed(UnityEngine.Object obj, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             if (obj is not TC c)

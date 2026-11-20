@@ -53,7 +53,7 @@ namespace PLUME.Base.Module.Unity.UI.Graphics.Text
         
         private void OnTextChanged(RecorderContext ctx, UnityEngine.UI.Text text, string value)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(text);

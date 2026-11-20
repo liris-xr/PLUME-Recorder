@@ -47,7 +47,7 @@ namespace PLUME.Base.Module.Unity.MeshFilter
         /// </summary>
         private void OnMeshChanged(UnityEngine.MeshFilter meshFilter, Mesh mesh, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(meshFilter);

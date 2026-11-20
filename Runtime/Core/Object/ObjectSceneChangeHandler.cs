@@ -21,6 +21,15 @@ namespace PLUME.Core.Object
             };
         }
 
+        private static void MoveEntry(UnityEngine.Object obj, SceneGuidRegistry from, SceneGuidRegistry to)
+        {
+            if (!from.TryGetEntry(obj, out var entry))
+                return;
+
+            from.Remove(obj);
+            to.TryAdd(entry);
+        }
+
         public static void OnGameObjectMovedToScene(GameObject go, Scene oldScene, Scene scene)
         {
             // Sanity check
@@ -35,19 +44,14 @@ namespace PLUME.Core.Object
                 var oldSceneGuidRegistry = SceneGuidRegistry.GetOrCreate(oldScene);
                 var newSceneGuidRegistry = SceneGuidRegistry.GetOrCreate(scene);
 
-                var components = ListPool<Component>.Get();
+                using var _ = ListPool<Component>.Get(out var components);
                 go.GetComponentsInChildren(true, components);
 
-                var goRegistryEntry = oldSceneGuidRegistry.GetOrCreateEntry(go);
-                oldSceneGuidRegistry.Remove(go);
-                newSceneGuidRegistry.TryAdd(goRegistryEntry);
-                
+                // Only objects serialized in a scene have a registry entry: runtime objects have no GUID to move.
+                MoveEntry(go, oldSceneGuidRegistry, newSceneGuidRegistry);
+
                 foreach (var component in components)
-                {
-                    var componentRegistryEntry = oldSceneGuidRegistry.GetOrCreateEntry(component);
-                    oldSceneGuidRegistry.Remove(component);
-                    newSceneGuidRegistry.TryAdd(componentRegistryEntry);
-                }
+                    MoveEntry(component, oldSceneGuidRegistry, newSceneGuidRegistry);
             }
             catch (Exception e)
             {

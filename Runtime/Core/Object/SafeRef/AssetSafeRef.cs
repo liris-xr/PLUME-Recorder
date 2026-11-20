@@ -15,7 +15,8 @@ namespace PLUME.Core.Object.SafeRef
     }
 
     // TODO: make this alloc free
-    public class AssetSafeRef<TA> : IAssetSafeRef<TA> where TA : UnityObject
+    public class AssetSafeRef<TA> : IAssetSafeRef<TA>, IIdentifierPayloadCache<PLUME.Sample.Unity.AssetIdentifier>
+        where TA : UnityObject
     {
         public static readonly AssetSafeRef<TA> Null = new();
         
@@ -27,6 +28,14 @@ namespace PLUME.Core.Object.SafeRef
         IObjectIdentifier IObjectSafeRef.Identifier => Identifier;
 
         public bool IsNull => Identifier.Equals(AssetIdentifier.Null);
+
+        private PLUME.Sample.Unity.AssetIdentifier _payload;
+
+        PLUME.Sample.Unity.AssetIdentifier IIdentifierPayloadCache<PLUME.Sample.Unity.AssetIdentifier>.Payload
+        {
+            get => _payload;
+            set => _payload = value;
+        }
 
         internal AssetSafeRef()
         {

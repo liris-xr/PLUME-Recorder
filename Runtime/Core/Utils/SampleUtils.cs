@@ -1,6 +1,7 @@
 ﻿using System;
 using Google.Protobuf.Reflection;
 using PLUME.Core.Object.SafeRef;
+using PLUME.Core.Recorder;
 using PLUME.Sample.Common;
 using PLUME.Sample.Unity;
 using PLUME.Sample.Unity.Settings;
@@ -8,7 +9,6 @@ using PLUME.Sample.Unity.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityRuntimeGuid;
 using AnimationCurve = PLUME.Sample.Common.AnimationCurve;
 using Bounds = PLUME.Sample.Common.Bounds;
 using Color = PLUME.Sample.Common.Color;
@@ -74,19 +74,17 @@ namespace PLUME.Core.Utils
             GameObject = NullGameObjectIdentifierPayload
         };
 
+        private static readonly SafeRefProvider FallbackSafeRefProvider = new();
+
+        // Identifiers must come from the recorder's provider, the single source of object identity in a record.
+        private static SafeRefProvider SafeRefProvider =>
+            PlumeRecorder.CurrentSafeRefProvider ?? FallbackSafeRefProvider;
+
         public static AssetIdentifier GetAssetIdentifierPayload(UnityEngine.Object obj)
         {
-            if (obj == null)
-                return NullAssetIdentifierPayload;
-
-            var guidRegistry = AssetsGuidRegistry.GetOrCreate();
-            var guidRegistryEntry = guidRegistry.GetOrCreateEntry(obj);
-
-            return new AssetIdentifier
-            {
-                Guid = guidRegistryEntry.guid,
-                AssetBundlePath = guidRegistryEntry.assetBundlePath
-            };
+            return obj == null
+                ? NullAssetIdentifierPayload
+                : GetAssetIdentifierPayload(SafeRefProvider.GetOrCreateAssetSafeRef(obj));
         }
 
         public static AssetIdentifier GetAssetIdentifierPayload(IAssetSafeRef asset)
@@ -96,26 +94,26 @@ namespace PLUME.Core.Utils
                 return NullAssetIdentifierPayload;
             }
 
-            return new AssetIdentifier
+            var cache = asset as IIdentifierPayloadCache<AssetIdentifier>;
+            if (cache?.Payload != null)
+                return cache.Payload;
+
+            var payload = new AssetIdentifier
             {
                 Guid = asset.Identifier.Guid.ToString(),
                 AssetBundlePath = asset.Identifier.AssetPath.ToString()
             };
+
+            if (cache != null)
+                cache.Payload = payload;
+            return payload;
         }
 
         public static ComponentIdentifier GetComponentIdentifierPayload(Component component)
         {
-            if (component == null)
-                return NullComponentIdentifierPayload;
-
-            var guidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
-            var componentGuidRegistryEntry = guidRegistry.GetOrCreateEntry(component);
-
-            return new ComponentIdentifier
-            {
-                Guid = componentGuidRegistryEntry.guid,
-                GameObject = GetGameObjectIdentifierPayload(component.gameObject)
-            };
+            return component == null
+                ? NullComponentIdentifierPayload
+                : GetComponentIdentifierPayload(SafeRefProvider.GetOrCreateComponentSafeRef(component));
         }
 
         public static ComponentIdentifier GetComponentIdentifierPayload(IComponentSafeRef component)
@@ -125,33 +123,28 @@ namespace PLUME.Core.Utils
                 return NullComponentIdentifierPayload;
             }
 
-            return new ComponentIdentifier
+            // Rebuilt only if the GameObject's identifier changed, i.e. when it moved to another scene.
+            var gameObject = GetGameObjectIdentifierPayload(component.GameObjectSafeRef);
+            var cache = component as IIdentifierPayloadCache<ComponentIdentifier>;
+            if (cache?.Payload != null && ReferenceEquals(cache.Payload.GameObject, gameObject))
+                return cache.Payload;
+
+            var payload = new ComponentIdentifier
             {
                 Guid = component.Identifier.Guid.ToString(),
-                GameObject = new GameObjectIdentifier
-                {
-                    Guid = component.Identifier.GameObject.Guid.ToString(),
-                    TransformGuid = component.GameObjectSafeRef.Identifier.TransformGuid.ToString(),
-                    Scene = GetSceneIdentifierPayload(component.GameObjectSafeRef.SceneSafeRef)
-                }
+                GameObject = gameObject
             };
+
+            if (cache != null)
+                cache.Payload = payload;
+            return payload;
         }
 
         public static GameObjectIdentifier GetGameObjectIdentifierPayload(GameObject go)
         {
-            if (go == null)
-                return NullGameObjectIdentifierPayload;
-
-            var guidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
-            var gameObjectGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go);
-            var transformGuidRegistryEntry = guidRegistry.GetOrCreateEntry(go.transform);
-
-            return new GameObjectIdentifier
-            {
-                Guid = gameObjectGuidRegistryEntry.guid,
-                TransformGuid = transformGuidRegistryEntry.guid,
-                Scene = GetSceneIdentifierPayload(go.scene)
-            };
+            return go == null
+                ? NullGameObjectIdentifierPayload
+                : GetGameObjectIdentifierPayload(SafeRefProvider.GetOrCreateGameObjectSafeRef(go));
         }
 
         public static GameObjectIdentifier GetGameObjectIdentifierPayload(GameObjectSafeRef go)
@@ -161,38 +154,34 @@ namespace PLUME.Core.Utils
                 return NullGameObjectIdentifierPayload;
             }
 
-            return new GameObjectIdentifier
+            // Rebuilt only if the GameObject moved to another scene.
+            var scene = GetSceneIdentifierPayload(go.SceneSafeRef);
+            var cache = (IIdentifierPayloadCache<GameObjectIdentifier>)go;
+            if (cache.Payload != null && ReferenceEquals(cache.Payload.Scene, scene))
+                return cache.Payload;
+
+            return cache.Payload = new GameObjectIdentifier
             {
                 Guid = go.Identifier.Guid.ToString(),
                 TransformGuid = go.Identifier.TransformGuid.ToString(),
-                Scene = GetSceneIdentifierPayload(go.SceneSafeRef)
+                Scene = scene
             };
         }
 
         public static SceneIdentifier GetSceneIdentifierPayload(Scene scene)
         {
-            var guidRegistry = SceneGuidRegistry.GetOrCreate(scene);
-
-            var sceneIdentifier = new SceneIdentifier
-            {
-                Guid = guidRegistry.SceneGuid,
-                AssetBundlePath = scene.path,
-                Name = scene.name
-            };
-
-            return sceneIdentifier;
+            return GetSceneIdentifierPayload(SafeRefProvider.GetOrCreateSceneSafeRef(scene));
         }
 
         public static SceneIdentifier GetSceneIdentifierPayload(SceneSafeRef sceneSafeRef)
         {
-            var sceneIdentifier = new SceneIdentifier
+            var cache = (IIdentifierPayloadCache<SceneIdentifier>)sceneSafeRef;
+            return cache.Payload ??= new SceneIdentifier
             {
                 Guid = sceneSafeRef.Identifier.Guid.ToString(),
                 AssetBundlePath = sceneSafeRef.Identifier.Path.ToString(),
                 Name = sceneSafeRef.Identifier.Name.ToString()
             };
-
-            return sceneIdentifier;
         }
 
         public static string GetTypeUrl(IDescriptor descriptor, string prefix) => !prefix.EndsWith("/")

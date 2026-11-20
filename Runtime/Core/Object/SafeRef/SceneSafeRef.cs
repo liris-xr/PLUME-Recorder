@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace PLUME.Core.Object.SafeRef
 {
-    public class SceneSafeRef
+    public class SceneSafeRef : IIdentifierPayloadCache<PLUME.Sample.Unity.SceneIdentifier>
     {
         public static readonly SceneSafeRef Null = new();
 
@@ -12,6 +12,14 @@ namespace PLUME.Core.Object.SafeRef
         public SceneIdentifier Identifier { get; }
 
         public bool IsNull => Identifier.Equals(SceneIdentifier.Null);
+
+        private PLUME.Sample.Unity.SceneIdentifier _payload;
+
+        PLUME.Sample.Unity.SceneIdentifier IIdentifierPayloadCache<PLUME.Sample.Unity.SceneIdentifier>.Payload
+        {
+            get => _payload;
+            set => _payload = value;
+        }
 
         internal SceneSafeRef()
         {

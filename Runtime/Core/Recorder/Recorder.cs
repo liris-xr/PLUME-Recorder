@@ -200,7 +200,13 @@ namespace PLUME.Core.Recorder
             _context.Status = RecorderStatus.Stopped;
             _context.CurrentRecord?.Dispose();
             _context.CurrentRecord = null;
+            _context.SafeRefProvider.Clear();
         }
+
+        /// <summary>
+        /// The safe ref provider of the recorder, the single source of object identity in a record.
+        /// </summary>
+        internal static SafeRefProvider CurrentSafeRefProvider => Instance?._context.SafeRefProvider;
 
         /// <summary>
         /// Calls a lifecycle method on every module. This is the exception boundary between the recorder and its

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using ProtoBurst.Packages.ProtoBurst.Runtime;
 using Unity.Burst;
 
@@ -24,6 +23,17 @@ namespace PLUME.Core
             _b = b;
         }
         
+        /// <summary>
+        /// Creates a random identifier, as unique as <see cref="System.Guid.NewGuid"/>, without allocating.
+        /// </summary>
+        [BurstDiscard]
+        public static Guid NewRandom()
+        {
+            Span<byte> bytes = stackalloc byte[16];
+            System.Guid.NewGuid().TryWriteBytes(bytes);
+            return new Guid(BitConverter.ToUInt64(bytes.Slice(0, 8)), BitConverter.ToUInt64(bytes.Slice(8, 8)));
+        }
+
         public static Guid FromString(string guid)
         {
             var formattedStr = System.Guid.Parse(guid).ToString("N");
@@ -67,25 +77,16 @@ namespace PLUME.Core
         [BurstDiscard]
         public override string ToString()
         {
-            var sb = new StringBuilder();
-            
-            for(var i = 0; i < 32; i++)
+            Span<char> chars = stackalloc char[32];
+
+            for (var i = 0; i < 32; i++)
             {
-                if (i < 16)
-                {
-                    var shift = i * 4;
-                    var val = (byte) ((_a >> shift) & 0xF);
-                    sb.Append(HexToChar(val));
-                }
-                else
-                {
-                    var shift = (i - 16) * 4;
-                    var val = (byte) ((_b >> shift) & 0xF);
-                    sb.Append(HexToChar(val));
-                }
+                var half = i < 16 ? _a : _b;
+                var shift = i % 16 * 4;
+                chars[i] = HexToChar((byte)((half >> shift) & 0xF));
             }
-            
-            return sb.ToString();
+
+            return new string(chars);
         }
 
         public bool Equals(Guid other)

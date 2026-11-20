@@ -7,8 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Unity UI (uGUI) recording: RawImage, Mask, RectMask2D, CanvasGroup, Selectable (interactable and selection
+  state, i.e. hover/press/select), Button clicks, Toggle, Slider, Scrollbar, ScrollRect, Dropdown and
+  TMP_Dropdown, InputField and TMP_InputField (text, focus and end-edit events), and the layout components
+  (Horizontal/Vertical/Grid layout groups, LayoutElement, AspectRatioFitter, recorded for analysis only).
+- CanvasRenderer color (Selectable color tints, CrossFade tweens), Graphic enabled, Canvas enabled and the Image
+  fill properties.
+
 ### Fixed
 
+- UI state changed after creation was never recorded: RectTransform rects (layout groups, fitters), Graphic,
+  Image, TMP text, CanvasRenderer and Canvas properties are now polled every frame and recorded when they change.
+- TextMeshPro was not recorded in Unity 6, where it ships inside `com.unity.ugui` 2.x instead of
+  `com.unity.textmeshpro`.
 - LineRenderer positions rewritten from package code (e.g. XR Interaction Toolkit interactor rays) were never
   recorded. Positions are now polled every frame on a dedicated allocation-free stream
   (`LineRendererPositionsUpdate`), recorded only when the count changes or a position moves.

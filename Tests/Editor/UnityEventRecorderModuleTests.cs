@@ -5,6 +5,7 @@ using PLUME.Base.Module.Unity.Events;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module;
+using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Settings;
 using UnityEditor.Events;
 using UnityEngine;
@@ -94,6 +95,28 @@ namespace Tests.Editor
 
             Assert.IsFalse(_target.activeSelf);
             Assert.AreEqual(0, _notified);
+        }
+
+        [Test]
+        public void Component_DestroyedWithoutHooks_StopsBeingRecorded()
+        {
+            var button = Create<Button>();
+            var safeRef = _ctx.SafeRefProvider.GetOrCreateComponentSafeRef<MonoBehaviour>(button);
+            StartRecording(button);
+
+            // The hook handlers ignore what happens while not recording, as for code the hooks do not see.
+            _ctx.Status = RecorderStatus.Stopped;
+            Object.DestroyImmediate(button);
+            _ctx.Status = RecorderStatus.Recording;
+
+            var frameInfo = new FrameInfo(0, 0);
+            var module = (IFrameDataRecorderModule)_module;
+            module.BeforeEnqueueFrameData(frameInfo, _ctx);
+            _ctx.StopRecordingDestroyedObjectsIfRequested();
+            module.EnqueueFrameData(frameInfo, _ctx);
+            module.AfterEnqueueFrameData(frameInfo, _ctx);
+
+            Assert.IsFalse(_module.IsRecordingObject(safeRef));
         }
 
         private T Create<T>() where T : Component

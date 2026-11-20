@@ -90,8 +90,8 @@ namespace PLUME.Core.Recorder
         }
 
         /// <summary>
-        /// Asks for <see cref="StopRecordingDestroyedObjects"/> before the next frame is recorded, e.g. when an object
-        /// destroyed without the hooks seeing it is noticed during a frame.
+        /// Asks for <see cref="StopRecordingDestroyedObjects"/> before the frame data is collected, e.g. when a module
+        /// notices an object destroyed without the hooks seeing it.
         /// </summary>
         internal void RequestDestroyedObjectsSweep()
         {

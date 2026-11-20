@@ -143,8 +143,7 @@ namespace Tests.Editor
             Object.DestroyImmediate(go);
             _ctx.Status = RecorderStatus.Recording;
 
-            RunFrame(); // Notices the destroyed transform.
-            RunFrame(); // Stops recording it, marked destroyed.
+            RunFrame();
 
             Assert.IsFalse(_module.IsRecordingObject(transform));
         }
@@ -180,8 +179,8 @@ namespace Tests.Editor
         {
             var frameInfo = new FrameInfo((ulong)_frame, _frame++);
             var module = (IFrameDataRecorderModule)_module;
-            _ctx.StopRecordingDestroyedObjectsIfRequested();
             module.BeforeEnqueueFrameData(frameInfo, _ctx);
+            _ctx.StopRecordingDestroyedObjectsIfRequested();
             module.EnqueueFrameData(frameInfo, _ctx);
             module.AfterEnqueueFrameData(frameInfo, _ctx);
             module.SerializeFrameData(frameInfo, new FrameDataWriter(_out));

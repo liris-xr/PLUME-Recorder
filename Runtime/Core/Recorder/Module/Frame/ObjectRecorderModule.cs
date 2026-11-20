@@ -25,6 +25,11 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         private readonly HashSet<TObjectIdentifier> _objectsToStopRecordingIdentifiers = new();
 
+        // Objects destroyed without the hooks seeing it are found by checking a few of them each frame, round-robin,
+        // at a constant cost whatever the number of recorded objects.
+        private const int LivenessChecksPerFrame = 16;
+        private int _nextLivenessCheck;
+
         protected override void OnStopRecording(RecorderContext ctx)
         {
             base.OnStopRecording(ctx);
@@ -131,8 +136,26 @@ namespace PLUME.Core.Recorder.Module.Frame
             for (var i = 0; i < _recordedObjects.Count; i++)
             {
                 var objSafeRef = _recordedObjects[i];
-                if (objSafeRef.Object == null)
+                if (IsDestroyed(objSafeRef))
                     StopRecordingObject(objSafeRef, true, ctx);
+            }
+        }
+
+        protected override void BeforeCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        {
+            base.BeforeCollectFrameData(frameInfo, ctx);
+
+            var checks = Math.Min(LivenessChecksPerFrame, _recordedObjects.Count);
+            for (var i = 0; i < checks; i++)
+            {
+                _nextLivenessCheck = (_nextLivenessCheck + 1) % _recordedObjects.Count;
+                var objSafeRef = _recordedObjects[_nextLivenessCheck];
+
+                if (IsDestroyed(objSafeRef) && !IsStoppingRecordingObject(objSafeRef.Identifier))
+                {
+                    ctx.RequestDestroyedObjectsSweep();
+                    return;
+                }
             }
         }
 
@@ -173,6 +196,11 @@ namespace PLUME.Core.Recorder.Module.Frame
             }
 
             _recordedObjects.RemoveAt(lastIndex);
+        }
+
+        protected virtual bool IsDestroyed(TObjectSafeRef objSafeRef)
+        {
+            return objSafeRef.Object == null;
         }
 
         /// <summary>

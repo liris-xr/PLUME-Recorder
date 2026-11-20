@@ -120,6 +120,13 @@ namespace PLUME.Base.Module.Unity.Transform
             return true;
         }
 
+        // A transform is destroyed with its GameObject: one gone while its GameObject lives was replaced by a
+        // RectTransform outside the hooks, and must be left untouched (see WarnIfReplacedOutsideHooks).
+        protected override bool IsDestroyed(TransformSafeRef tSafeRef)
+        {
+            return tSafeRef.GameObjectSafeRef.GameObject == null;
+        }
+
         protected override void OnDestroy(RecorderContext ctx)
         {
             base.OnDestroy(ctx);
@@ -267,21 +274,26 @@ namespace PLUME.Base.Module.Unity.Transform
             _nDestroyedInFrame = 0;
         }
 
-        protected override TransformFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        protected override void BeforeCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < RecordedComponents.Count; i++)
-                WarnIfReplacedOutsideHooks(RecordedComponents[i]);
+            base.BeforeCollectFrameData(frameInfo, ctx);
 
             _transformPositionStateUpdater.UpdatePositionStates(_alignedStates, _transformAccessArray, _invalidIndices);
 
             // Every destroyed GameObject has a destroyed transform: one destroyed without the hooks seeing it is still
-            // recorded, in every module.
+            // recorded, in every module. Noticed here for free, for all of them at once.
             while (_invalidIndices.TryDequeue(out var invalidIndex))
             {
                 if (!IsStoppingRecordingObject(_transformAccessArray.GetAlignedIdentifiers()[invalidIndex]))
                     ctx.RequestDestroyedObjectsSweep();
             }
+        }
+
+        protected override TransformFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        {
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < RecordedComponents.Count; i++)
+                WarnIfReplacedOutsideHooks(RecordedComponents[i]);
 
             var nRecorded = RecordedComponents.Count;
             var updateSamples = new NativeList<TransformUpdate>(nRecorded, Allocator.Persistent);

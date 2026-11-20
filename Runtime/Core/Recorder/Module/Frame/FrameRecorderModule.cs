@@ -291,8 +291,9 @@ namespace PLUME.Core.Recorder.Module.Frame
         {
             var frame = new FrameInfo(timestamp, frameNumber);
 
-            ctx.StopRecordingDestroyedObjectsIfRequested();
             RunPhase(Phase.BeforeEnqueueFrameData, 0, frame, ctx);
+            // Objects found destroyed before collection are recorded destroyed in this very frame.
+            ctx.StopRecordingDestroyedObjectsIfRequested();
             RunPhase(Phase.EnqueueFrameData, 0, frame, ctx);
             _frameQueue.Add(frame);
             RunPhase(Phase.AfterEnqueueFrameData, 0, frame, ctx);

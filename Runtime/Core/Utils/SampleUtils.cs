@@ -297,6 +297,26 @@ namespace PLUME.Core.Utils
             };
         }
 
+        /// <summary>
+        /// Fallback for an enum value that has no counterpart in the record format, e.g. a value added by a newer
+        /// Unity version or a corrupted field. Recording must not abort on data it cannot represent, so the value is
+        /// recorded as the payload enum's UNSPECIFIED member and a warning is logged once per value and recording.
+        /// </summary>
+        internal static TPayload UnknownEnumValue<TValue, TPayload>(TValue value)
+            where TValue : struct, Enum
+            where TPayload : struct, Enum
+        {
+            // UNSPECIFIED is the zero member for the few enums designed with it, and -1 for the others, where it was
+            // added without renumbering so that existing records keep their meaning.
+            var unspecified = default(TPayload).ToString() == "Unspecified"
+                ? default
+                : (TPayload)Enum.ToObject(typeof(TPayload), -1);
+
+            ErrorReporter.Warn($"{typeof(TValue).FullName}.{value}",
+                $"Unknown {typeof(TValue).Name} value '{value}', recorded as unspecified.");
+            return unspecified;
+        }
+
         public static AmbientMode ToPayload(this UnityEngine.Rendering.AmbientMode ambientMode)
         {
             return ambientMode switch
@@ -305,7 +325,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.Rendering.AmbientMode.Skybox => AmbientMode.Skybox,
                 UnityEngine.Rendering.AmbientMode.Trilight => AmbientMode.Trilight,
                 UnityEngine.Rendering.AmbientMode.Flat => AmbientMode.Flat,
-                _ => throw new ArgumentOutOfRangeException(nameof(ambientMode), ambientMode, null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.AmbientMode, AmbientMode>(ambientMode)
             };
         }
 
@@ -316,7 +336,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.FogMode.Linear => FogMode.Linear,
                 UnityEngine.FogMode.Exponential => FogMode.Exponential,
                 UnityEngine.FogMode.ExponentialSquared => FogMode.ExponentialSquared,
-                _ => throw new ArgumentOutOfRangeException(nameof(fogMode), fogMode, null)
+                _ => UnknownEnumValue<UnityEngine.FogMode, FogMode>(fogMode)
             };
         }
 
@@ -327,7 +347,7 @@ namespace PLUME.Core.Utils
             {
                 UnityEngine.Rendering.DefaultReflectionMode.Skybox => DefaultReflectionMode.Skybox,
                 UnityEngine.Rendering.DefaultReflectionMode.Custom => DefaultReflectionMode.Custom,
-                _ => throw new ArgumentOutOfRangeException(nameof(defaultReflectionMode), defaultReflectionMode, null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.DefaultReflectionMode, DefaultReflectionMode>(defaultReflectionMode)
             };
         }
 
@@ -340,7 +360,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.LightType.Spot => LightType.Spot,
                 UnityEngine.LightType.Rectangle => LightType.Rectangle,
                 UnityEngine.LightType.Disc => LightType.Disc,
-                _ => throw new ArgumentOutOfRangeException(nameof(lightType), lightType, null)
+                _ => UnknownEnumValue<UnityEngine.LightType, LightType>(lightType)
             };
         }
 
@@ -351,7 +371,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.LightShape.Cone => LightShape.Cone,
                 UnityEngine.LightShape.Pyramid => LightShape.Pyramid,
                 UnityEngine.LightShape.Box => LightShape.Box,
-                _ => throw new ArgumentOutOfRangeException(nameof(lightShape), lightShape, null)
+                _ => UnknownEnumValue<UnityEngine.LightShape, LightShape>(lightShape)
             };
         }
 
@@ -362,7 +382,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.LightShadows.None => LightShadows.None,
                 UnityEngine.LightShadows.Hard => LightShadows.Hard,
                 UnityEngine.LightShadows.Soft => LightShadows.Soft,
-                _ => throw new ArgumentOutOfRangeException(nameof(lightShadows), lightShadows, null)
+                _ => UnknownEnumValue<UnityEngine.LightShadows, LightShadows>(lightShadows)
             };
         }
 
@@ -377,7 +397,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.Rendering.LightShadowResolution.Medium => LightShadowResolution.Medium,
                 UnityEngine.Rendering.LightShadowResolution.High => LightShadowResolution.High,
                 UnityEngine.Rendering.LightShadowResolution.VeryHigh => LightShadowResolution.VeryHigh,
-                _ => throw new ArgumentOutOfRangeException(nameof(lightShadowResolution), lightShadowResolution, null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.LightShadowResolution, LightShadowResolution>(lightShadowResolution)
             };
         }
 
@@ -388,7 +408,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.LightShadowCasterMode.Default => LightShadowCasterMode.Default,
                 UnityEngine.LightShadowCasterMode.NonLightmappedOnly => LightShadowCasterMode.NonLightmappedOnly,
                 UnityEngine.LightShadowCasterMode.Everything => LightShadowCasterMode.Everything,
-                _ => throw new ArgumentOutOfRangeException(nameof(lightShadowCasterMode), lightShadowCasterMode, null)
+                _ => UnknownEnumValue<UnityEngine.LightShadowCasterMode, LightShadowCasterMode>(lightShadowCasterMode)
             };
         }
 
@@ -432,7 +452,7 @@ namespace PLUME.Core.Utils
             {
                 UnityEngine.LightmapsMode.NonDirectional => LightmapsMode.NonDirectional,
                 UnityEngine.LightmapsMode.CombinedDirectional => LightmapsMode.CombinedDirectional,
-                _ => throw new ArgumentOutOfRangeException(nameof(lightmapsMode), lightmapsMode, null)
+                _ => UnknownEnumValue<UnityEngine.LightmapsMode, LightmapsMode>(lightmapsMode)
             };
         }
 
@@ -443,7 +463,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.Rendering.ReflectionProbeMode.Custom => ReflectionProbeMode.Custom,
                 UnityEngine.Rendering.ReflectionProbeMode.Baked => ReflectionProbeMode.Baked,
                 UnityEngine.Rendering.ReflectionProbeMode.Realtime => ReflectionProbeMode.Realtime,
-                _ => throw new ArgumentOutOfRangeException(nameof(reflectionProbeMode), reflectionProbeMode, null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.ReflectionProbeMode, ReflectionProbeMode>(reflectionProbeMode)
             };
         }
 
@@ -456,8 +476,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.Rendering.ReflectionProbeRefreshMode.OnAwake => ReflectionProbeRefreshMode.OnAwake,
                 UnityEngine.Rendering.ReflectionProbeRefreshMode.ViaScripting =>
                     ReflectionProbeRefreshMode.ViaScripting,
-                _ => throw new ArgumentOutOfRangeException(nameof(reflectionProbeRefreshMode),
-                    reflectionProbeRefreshMode, null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.ReflectionProbeRefreshMode, ReflectionProbeRefreshMode>(reflectionProbeRefreshMode)
             };
         }
 
@@ -472,8 +491,7 @@ namespace PLUME.Core.Utils
                     .IndividualFaces,
                 UnityEngine.Rendering.ReflectionProbeTimeSlicingMode.AllFacesAtOnce => ReflectionProbeTimeSlicingMode
                     .AllFacesAtOnce,
-                _ => throw new ArgumentOutOfRangeException(nameof(reflectionProbeTimeSlicingMode),
-                    reflectionProbeTimeSlicingMode, null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.ReflectionProbeTimeSlicingMode, ReflectionProbeTimeSlicingMode>(reflectionProbeTimeSlicingMode)
             };
         }
 
@@ -484,8 +502,7 @@ namespace PLUME.Core.Utils
             {
                 UnityEngine.Rendering.ReflectionProbeClearFlags.Skybox => ReflectionProbeClearFlags.Skybox,
                 UnityEngine.Rendering.ReflectionProbeClearFlags.SolidColor => ReflectionProbeClearFlags.SolidColor,
-                _ => throw new ArgumentOutOfRangeException(nameof(reflectionProbeClearFlags), reflectionProbeClearFlags,
-                    null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.ReflectionProbeClearFlags, ReflectionProbeClearFlags>(reflectionProbeClearFlags)
             };
         }
 
@@ -497,8 +514,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.Rendering.ShadowCastingMode.On => ShadowCastingMode.On,
                 UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly => ShadowCastingMode.ShadowsOnly,
                 UnityEngine.Rendering.ShadowCastingMode.TwoSided => ShadowCastingMode.TwoSided,
-                _ => throw new ArgumentOutOfRangeException(nameof(shadowCastingMode), shadowCastingMode,
-                    null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.ShadowCastingMode, ShadowCastingMode>(shadowCastingMode)
             };
         }
 
@@ -512,8 +528,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.Rendering.ReflectionProbeUsage.BlendProbesAndSkybox => ReflectionProbeUsage
                     .BlendProbesAndSkybox,
                 UnityEngine.Rendering.ReflectionProbeUsage.Simple => ReflectionProbeUsage.Simple,
-                _ => throw new ArgumentOutOfRangeException(nameof(reflectionProbeUsage), reflectionProbeUsage,
-                    null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.ReflectionProbeUsage, ReflectionProbeUsage>(reflectionProbeUsage)
             };
         }
 
@@ -547,8 +562,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.Rendering.OpaqueSortMode.Default => OpaqueSortMode.Default,
                 UnityEngine.Rendering.OpaqueSortMode.NoDistanceSort => OpaqueSortMode.NoDistanceSort,
                 UnityEngine.Rendering.OpaqueSortMode.FrontToBack => OpaqueSortMode.FrontToBack,
-                _ => throw new ArgumentOutOfRangeException(nameof(opaqueSortMode), opaqueSortMode,
-                    null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.OpaqueSortMode, OpaqueSortMode>(opaqueSortMode)
             };
         }
 
@@ -560,8 +574,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.TransparencySortMode.Orthographic => TransparencySortMode.Orthographic,
                 UnityEngine.TransparencySortMode.Perspective => TransparencySortMode.Perspective,
                 UnityEngine.TransparencySortMode.CustomAxis => TransparencySortMode.CustomAxis,
-                _ => throw new ArgumentOutOfRangeException(nameof(transparencySortMode), transparencySortMode,
-                    null)
+                _ => UnknownEnumValue<UnityEngine.TransparencySortMode, TransparencySortMode>(transparencySortMode)
             };
         }
 
@@ -573,8 +586,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.RenderingPath.Forward => RenderingPath.Forward,
                 UnityEngine.RenderingPath.VertexLit => RenderingPath.VertexLit,
                 UnityEngine.RenderingPath.UsePlayerSettings => RenderingPath.UsePlayerSettings,
-                _ => throw new ArgumentOutOfRangeException(nameof(renderingPath), renderingPath,
-                    null)
+                _ => UnknownEnumValue<UnityEngine.RenderingPath, RenderingPath>(renderingPath)
             };
         }
 
@@ -587,8 +599,7 @@ namespace PLUME.Core.Utils
                 Camera.GateFitMode.Horizontal => CameraGateFitMode.Horizontal,
                 Camera.GateFitMode.Vertical => CameraGateFitMode.Vertical,
                 Camera.GateFitMode.Overscan => CameraGateFitMode.Overscan,
-                _ => throw new ArgumentOutOfRangeException(nameof(gateFitMode), gateFitMode,
-                    null)
+                _ => UnknownEnumValue<Camera.GateFitMode, CameraGateFitMode>(gateFitMode)
             };
         }
 
@@ -600,8 +611,7 @@ namespace PLUME.Core.Utils
                 StereoTargetEyeMask.Both => CameraStereoTargetEyeMask.Both,
                 StereoTargetEyeMask.Left => CameraStereoTargetEyeMask.Left,
                 StereoTargetEyeMask.Right => CameraStereoTargetEyeMask.Right,
-                _ => throw new ArgumentOutOfRangeException(nameof(stereoTargetEyeMask), stereoTargetEyeMask,
-                    null)
+                _ => UnknownEnumValue<StereoTargetEyeMask, CameraStereoTargetEyeMask>(stereoTargetEyeMask)
             };
         }
 
@@ -611,7 +621,7 @@ namespace PLUME.Core.Utils
             {
                 UnityEngine.SceneManagement.LoadSceneMode.Additive => LoadSceneMode.Additive,
                 UnityEngine.SceneManagement.LoadSceneMode.Single => LoadSceneMode.Single,
-                _ => throw new ArgumentOutOfRangeException(nameof(loadSceneMode), loadSceneMode, null)
+                _ => UnknownEnumValue<UnityEngine.SceneManagement.LoadSceneMode, LoadSceneMode>(loadSceneMode)
             };
         }
 
@@ -623,8 +633,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.WeightedMode.In => WeightedMode.In,
                 UnityEngine.WeightedMode.Out => WeightedMode.Out,
                 UnityEngine.WeightedMode.Both => WeightedMode.Both,
-                _ => throw new ArgumentOutOfRangeException(nameof(weightedMode), weightedMode,
-                    null)
+                _ => UnknownEnumValue<UnityEngine.WeightedMode, WeightedMode>(weightedMode)
             };
         }
 
@@ -635,7 +644,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.RenderMode.ScreenSpaceOverlay => RenderMode.ScreenSpaceOverlay,
                 UnityEngine.RenderMode.ScreenSpaceCamera => RenderMode.ScreenSpaceCamera,
                 UnityEngine.RenderMode.WorldSpace => RenderMode.WorldSpace,
-                _ => throw new ArgumentOutOfRangeException(nameof(renderMode), renderMode, null)
+                _ => UnknownEnumValue<UnityEngine.RenderMode, RenderMode>(renderMode)
             };
         }
 
@@ -645,7 +654,7 @@ namespace PLUME.Core.Utils
             {
                 UnityEngine.StandaloneRenderResize.Enabled => StandaloneRenderResize.Enabled,
                 UnityEngine.StandaloneRenderResize.Disabled => StandaloneRenderResize.Disabled,
-                _ => throw new ArgumentOutOfRangeException(nameof(renderResize), renderResize, null)
+                _ => UnknownEnumValue<UnityEngine.StandaloneRenderResize, StandaloneRenderResize>(renderResize)
             };
         }
 
@@ -656,7 +665,7 @@ namespace PLUME.Core.Utils
                 CanvasScaler.ScaleMode.ConstantPixelSize => ScaleMode.ConstantPixelSize,
                 CanvasScaler.ScaleMode.ConstantPhysicalSize => ScaleMode.ConstantPhysicalSize,
                 CanvasScaler.ScaleMode.ScaleWithScreenSize => ScaleMode.ScaleWithScreenSize,
-                _ => throw new ArgumentOutOfRangeException(nameof(scaleMode), scaleMode, null)
+                _ => UnknownEnumValue<CanvasScaler.ScaleMode, ScaleMode>(scaleMode)
             };
         }
 
@@ -667,7 +676,7 @@ namespace PLUME.Core.Utils
                 CanvasScaler.ScreenMatchMode.MatchWidthOrHeight => ScreenMatchMode.MatchWidthOrHeight,
                 CanvasScaler.ScreenMatchMode.Expand => ScreenMatchMode.Expand,
                 CanvasScaler.ScreenMatchMode.Shrink => ScreenMatchMode.Shrink,
-                _ => throw new ArgumentOutOfRangeException(nameof(screenMatchMode), screenMatchMode, null)
+                _ => UnknownEnumValue<CanvasScaler.ScreenMatchMode, ScreenMatchMode>(screenMatchMode)
             };
         }
 
@@ -680,7 +689,7 @@ namespace PLUME.Core.Utils
                 CanvasScaler.Unit.Inches => Unit.Inches,
                 CanvasScaler.Unit.Points => Unit.Points,
                 CanvasScaler.Unit.Picas => Unit.Picas,
-                _ => throw new ArgumentOutOfRangeException(nameof(unit), unit, null)
+                _ => UnknownEnumValue<CanvasScaler.Unit, Unit>(unit)
             };
         }
 
@@ -692,7 +701,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.FontStyle.Bold => FontStyle.Bold,
                 UnityEngine.FontStyle.Italic => FontStyle.Italic,
                 UnityEngine.FontStyle.BoldAndItalic => FontStyle.BoldAndItalic,
-                _ => throw new ArgumentOutOfRangeException(nameof(fontStyle), fontStyle, null)
+                _ => UnknownEnumValue<UnityEngine.FontStyle, FontStyle>(fontStyle)
             };
         }
 
@@ -709,7 +718,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.TextAnchor.LowerLeft => TextAnchor.LowerLeft,
                 UnityEngine.TextAnchor.LowerCenter => TextAnchor.LowerCenter,
                 UnityEngine.TextAnchor.LowerRight => TextAnchor.LowerRight,
-                _ => throw new ArgumentOutOfRangeException(nameof(textAnchor), textAnchor, null)
+                _ => UnknownEnumValue<UnityEngine.TextAnchor, TextAnchor>(textAnchor)
             };
         }
 
@@ -719,7 +728,7 @@ namespace PLUME.Core.Utils
             {
                 UnityEngine.HorizontalWrapMode.Wrap => HorizontalWrapMode.Wrap,
                 UnityEngine.HorizontalWrapMode.Overflow => HorizontalWrapMode.Overflow,
-                _ => throw new ArgumentOutOfRangeException(nameof(horizontalWrapMode), horizontalWrapMode, null)
+                _ => UnknownEnumValue<UnityEngine.HorizontalWrapMode, HorizontalWrapMode>(horizontalWrapMode)
             };
         }
 
@@ -729,7 +738,7 @@ namespace PLUME.Core.Utils
             {
                 UnityEngine.VerticalWrapMode.Truncate => VerticalWrapMode.Truncate,
                 UnityEngine.VerticalWrapMode.Overflow => VerticalWrapMode.Overflow,
-                _ => throw new ArgumentOutOfRangeException(nameof(verticalWrapMode), verticalWrapMode, null)
+                _ => UnknownEnumValue<UnityEngine.VerticalWrapMode, VerticalWrapMode>(verticalWrapMode)
             };
         }
 
@@ -741,7 +750,7 @@ namespace PLUME.Core.Utils
                 Image.Type.Sliced => ImageType.Sliced,
                 Image.Type.Tiled => ImageType.Tiled,
                 Image.Type.Filled => ImageType.Filled,
-                _ => throw new ArgumentOutOfRangeException(nameof(imageType), imageType, null)
+                _ => UnknownEnumValue<Image.Type, ImageType>(imageType)
             };
         }
 
@@ -752,7 +761,7 @@ namespace PLUME.Core.Utils
                 ContentSizeFitter.FitMode.Unconstrained => FitMode.Unconstrained,
                 ContentSizeFitter.FitMode.MinSize => FitMode.MinSize,
                 ContentSizeFitter.FitMode.PreferredSize => FitMode.PrefSize,
-                _ => throw new ArgumentOutOfRangeException(nameof(fitMode), fitMode, null)
+                _ => UnknownEnumValue<ContentSizeFitter.FitMode, FitMode>(fitMode)
             };
         }
 
@@ -767,7 +776,7 @@ namespace PLUME.Core.Utils
                 AudioSpeakerMode.Mode5point1 => SpeakerMode.Surround5Point1,
                 AudioSpeakerMode.Mode7point1 => SpeakerMode.Surround7Point1,
                 AudioSpeakerMode.Prologic => SpeakerMode.Prologic,
-                _ => throw new ArgumentOutOfRangeException(nameof(audioSpeakerMode), audioSpeakerMode, null)
+                _ => UnknownEnumValue<AudioSpeakerMode, SpeakerMode>(audioSpeakerMode)
             };
         }
 
@@ -778,7 +787,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.ColorSpace.Uninitialized => ColorSpace.Uninitialized,
                 UnityEngine.ColorSpace.Gamma => ColorSpace.Gamma,
                 UnityEngine.ColorSpace.Linear => ColorSpace.Linear,
-                _ => throw new ArgumentOutOfRangeException(nameof(colorSpace), colorSpace, null)
+                _ => UnknownEnumValue<UnityEngine.ColorSpace, ColorSpace>(colorSpace)
             };
         }
 
@@ -789,7 +798,7 @@ namespace PLUME.Core.Utils
                 GradientMode.Blend => ColorGradient.Types.GradientMode.Blend,
                 GradientMode.Fixed => ColorGradient.Types.GradientMode.Fixed,
                 GradientMode.PerceptualBlend => ColorGradient.Types.GradientMode.PerceptualBlend,
-                _ => throw new ArgumentOutOfRangeException(nameof(gradientMode), gradientMode, null)
+                _ => UnknownEnumValue<GradientMode, ColorGradient.Types.GradientMode>(gradientMode)
             };
         }
 
@@ -828,7 +837,7 @@ namespace PLUME.Core.Utils
             {
                 LineAlignment.View => Alignment.View,
                 LineAlignment.TransformZ => Alignment.TransformZ,
-                _ => throw new ArgumentOutOfRangeException(nameof(alignment), alignment, null)
+                _ => UnknownEnumValue<LineAlignment, Alignment>(alignment)
             };
         }
 
@@ -841,7 +850,7 @@ namespace PLUME.Core.Utils
                 LineTextureMode.DistributePerSegment => TextureMode.DistributePerSegment,
                 LineTextureMode.RepeatPerSegment => TextureMode.RepeatPerSegment,
                 LineTextureMode.Static => TextureMode.Static,
-                _ => throw new ArgumentOutOfRangeException(nameof(lineTextureMode), lineTextureMode, null)
+                _ => UnknownEnumValue<LineTextureMode, TextureMode>(lineTextureMode)
             };
         }
 
@@ -852,7 +861,7 @@ namespace PLUME.Core.Utils
                 SpriteMaskInteraction.None => MaskInteraction.None,
                 SpriteMaskInteraction.VisibleInsideMask => MaskInteraction.VisibleInside,
                 SpriteMaskInteraction.VisibleOutsideMask => MaskInteraction.VisibleOutside,
-                _ => throw new ArgumentOutOfRangeException(nameof(spriteMaskInteraction), spriteMaskInteraction, null)
+                _ => UnknownEnumValue<SpriteMaskInteraction, MaskInteraction>(spriteMaskInteraction)
             };
         }
 
@@ -887,8 +896,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.Rendering.Universal.CameraOverrideOption.On => CameraOverrideOption.On,
                 UnityEngine.Rendering.Universal.CameraOverrideOption.UsePipelineSettings => CameraOverrideOption
                     .UsePipelineSettings,
-                _ => throw new ArgumentOutOfRangeException(nameof(cameraOverrideOption), cameraOverrideOption,
-                    null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.Universal.CameraOverrideOption, CameraOverrideOption>(cameraOverrideOption)
             };
         }
 
@@ -898,8 +906,7 @@ namespace PLUME.Core.Utils
             {
                 UnityEngine.Rendering.Universal.CameraRenderType.Base => CameraRenderType.Base,
                 UnityEngine.Rendering.Universal.CameraRenderType.Overlay => CameraRenderType.Overlay,
-                _ => throw new ArgumentOutOfRangeException(nameof(cameraRenderType), cameraRenderType,
-                    null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.Universal.CameraRenderType, CameraRenderType>(cameraRenderType)
             };
         }
 
@@ -912,8 +919,7 @@ namespace PLUME.Core.Utils
                     .FastApproximateAntialiasing,
                 UnityEngine.Rendering.Universal.AntialiasingMode.SubpixelMorphologicalAntiAliasing => AntialiasingMode
                     .SubpixelMorphologicalAntiAliasing,
-                _ => throw new ArgumentOutOfRangeException(nameof(antialiasingMode), antialiasingMode,
-                    null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.Universal.AntialiasingMode, AntialiasingMode>(antialiasingMode)
             };
         }
 
@@ -925,8 +931,7 @@ namespace PLUME.Core.Utils
                 UnityEngine.Rendering.Universal.AntialiasingQuality.Low => AntialiasingQuality.Low,
                 UnityEngine.Rendering.Universal.AntialiasingQuality.Medium => AntialiasingQuality.Medium,
                 UnityEngine.Rendering.Universal.AntialiasingQuality.High => AntialiasingQuality.High,
-                _ => throw new ArgumentOutOfRangeException(nameof(antialiasingQuality), antialiasingQuality,
-                    null)
+                _ => UnknownEnumValue<UnityEngine.Rendering.Universal.AntialiasingQuality, AntialiasingQuality>(antialiasingQuality)
             };
         }
 #endif

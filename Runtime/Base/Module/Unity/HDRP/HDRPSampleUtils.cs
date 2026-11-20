@@ -1,5 +1,5 @@
 #if HDRP_ENABLED
-using System;
+using PLUME.Core.Utils;
 using PLUME.Sample.Unity.HDRP;
 using UnityEngine.Rendering.HighDefinition;
 
@@ -14,7 +14,7 @@ namespace PLUME.Base.Module.Unity.HDRP
                 HDAdditionalCameraData.ClearColorMode.Sky => HDClearColorMode.Sky,
                 HDAdditionalCameraData.ClearColorMode.Color => HDClearColorMode.Color,
                 HDAdditionalCameraData.ClearColorMode.None => HDClearColorMode.None,
-                _ => throw new ArgumentOutOfRangeException(nameof(clearColorMode), clearColorMode, null)
+                _ => SampleUtils.UnknownEnumValue<HDAdditionalCameraData.ClearColorMode, HDClearColorMode>(clearColorMode)
             };
         }
 
@@ -28,7 +28,7 @@ namespace PLUME.Base.Module.Unity.HDRP
                 HDAdditionalCameraData.AntialiasingMode.TemporalAntialiasing => HDCameraAntialiasingMode.Temporal,
                 HDAdditionalCameraData.AntialiasingMode.SubpixelMorphologicalAntiAliasing => HDCameraAntialiasingMode
                     .SubpixelMorphological,
-                _ => throw new ArgumentOutOfRangeException(nameof(antialiasingMode), antialiasingMode, null)
+                _ => SampleUtils.UnknownEnumValue<HDAdditionalCameraData.AntialiasingMode, HDCameraAntialiasingMode>(antialiasingMode)
             };
         }
 
@@ -39,7 +39,7 @@ namespace PLUME.Base.Module.Unity.HDRP
                 HDAdditionalCameraData.SMAAQualityLevel.Low => HDSMAAQualityLevel.Low,
                 HDAdditionalCameraData.SMAAQualityLevel.Medium => HDSMAAQualityLevel.Medium,
                 HDAdditionalCameraData.SMAAQualityLevel.High => HDSMAAQualityLevel.High,
-                _ => throw new ArgumentOutOfRangeException(nameof(smaaQualityLevel), smaaQualityLevel, null)
+                _ => SampleUtils.UnknownEnumValue<HDAdditionalCameraData.SMAAQualityLevel, HDSMAAQualityLevel>(smaaQualityLevel)
             };
         }
 
@@ -50,7 +50,7 @@ namespace PLUME.Base.Module.Unity.HDRP
                 HDAdditionalCameraData.TAAQualityLevel.Low => HDTAAQualityLevel.Low,
                 HDAdditionalCameraData.TAAQualityLevel.Medium => HDTAAQualityLevel.Medium,
                 HDAdditionalCameraData.TAAQualityLevel.High => HDTAAQualityLevel.High,
-                _ => throw new ArgumentOutOfRangeException(nameof(taaQualityLevel), taaQualityLevel, null)
+                _ => SampleUtils.UnknownEnumValue<HDAdditionalCameraData.TAAQualityLevel, HDTAAQualityLevel>(taaQualityLevel)
             };
         }
     }

@@ -62,13 +62,15 @@ namespace PLUME.Sample.Unity.UI {
             "YXllcl9pZEIdChtfYWRkaXRpb25hbF9zaGFkZXJfY2hhbm5lbHNCFQoTX3Nv",
             "cnRpbmdfbGF5ZXJfbmFtZUInCiVfdXBkYXRlX3JlY3RfdHJhbnNmb3JtX2Zv",
             "cl9zdGFuZGFsb25lQg8KDV93b3JsZF9jYW1lcmFCHwodX25vcm1hbGl6ZWRf",
-            "c29ydGluZ19ncmlkX3NpemUqdAoKUmVuZGVyTW9kZRIkCiBSRU5ERVJfTU9E",
-            "RV9TQ1JFRU5fU1BBQ0VfT1ZFUkxBWRAAEiMKH1JFTkRFUl9NT0RFX1NDUkVF",
-            "Tl9TUEFDRV9DQU1FUkEQARIbChdSRU5ERVJfTU9ERV9XT1JMRF9TUEFDRRAC",
-            "KmUKFlN0YW5kYWxvbmVSZW5kZXJSZXNpemUSJAogU1RBTkRBTE9ORV9SRU5E",
-            "RVJfUkVTSVpFX0VOQUJMRUQQABIlCiFTVEFOREFMT05FX1JFTkRFUl9SRVNJ",
-            "WkVfRElTQUJMRUQQAUIYqgIVUExVTUUuU2FtcGxlLlVuaXR5LlVJYgZwcm90",
-            "bzM="));
+            "c29ydGluZ19ncmlkX3NpemUqmgEKClJlbmRlck1vZGUSJAogUkVOREVSX01P",
+            "REVfU0NSRUVOX1NQQUNFX09WRVJMQVkQABIkChdSRU5ERVJfTU9ERV9VTlNQ",
+            "RUNJRklFRBD///////////8BEiMKH1JFTkRFUl9NT0RFX1NDUkVFTl9TUEFD",
+            "RV9DQU1FUkEQARIbChdSRU5ERVJfTU9ERV9XT1JMRF9TUEFDRRACKpgBChZT",
+            "dGFuZGFsb25lUmVuZGVyUmVzaXplEiQKIFNUQU5EQUxPTkVfUkVOREVSX1JF",
+            "U0laRV9FTkFCTEVEEAASMQokU1RBTkRBTE9ORV9SRU5ERVJfUkVTSVpFX1VO",
+            "U1BFQ0lGSUVEEP///////////wESJQohU1RBTkRBTE9ORV9SRU5ERVJfUkVT",
+            "SVpFX0RJU0FCTEVEEAFCGKoCFVBMVU1FLlNhbXBsZS5Vbml0eS5VSWIGcHJv",
+            "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.RenderMode), typeof(global::PLUME.Sample.Unity.UI.StandaloneRenderResize), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -83,12 +85,14 @@ namespace PLUME.Sample.Unity.UI {
   #region Enums
   public enum RenderMode {
     [pbr::OriginalName("RENDER_MODE_SCREEN_SPACE_OVERLAY")] ScreenSpaceOverlay = 0,
+    [pbr::OriginalName("RENDER_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("RENDER_MODE_SCREEN_SPACE_CAMERA")] ScreenSpaceCamera = 1,
     [pbr::OriginalName("RENDER_MODE_WORLD_SPACE")] WorldSpace = 2,
   }
 
   public enum StandaloneRenderResize {
     [pbr::OriginalName("STANDALONE_RENDER_RESIZE_ENABLED")] Enabled = 0,
+    [pbr::OriginalName("STANDALONE_RENDER_RESIZE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("STANDALONE_RENDER_RESIZE_DISABLED")] Disabled = 1,
   }
 

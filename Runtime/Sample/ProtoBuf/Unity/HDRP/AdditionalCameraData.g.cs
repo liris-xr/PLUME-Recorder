@@ -61,20 +61,24 @@ namespace PLUME.Sample.Unity.HDRP {
             "bWFhX3F1YWxpdHlCDgoMX3RhYV9xdWFsaXR5QgwKCl9kaXRoZXJpbmdCDAoK",
             "X3N0b3BfbmFuc0IcChpfY3VzdG9tX3JlbmRlcmluZ19zZXR0aW5nc0IPCg1f",
             "eHJfcmVuZGVyaW5nQhEKD19mb2N1c19kaXN0YW5jZUIGCgRfaXNvQhAKDl9z",
-            "aHV0dGVyX3NwZWVkQgsKCV9hcGVydHVyZSpsChBIRENsZWFyQ29sb3JNb2Rl",
-            "EhsKF0hEX0NMRUFSX0NPTE9SX01PREVfU0tZEAASHQoZSERfQ0xFQVJfQ09M",
-            "T1JfTU9ERV9DT0xPUhABEhwKGEhEX0NMRUFSX0NPTE9SX01PREVfTk9ORRAC",
-            "KtQBChhIRENhbWVyYUFudGlhbGlhc2luZ01vZGUSJAogSERfQ0FNRVJBX0FO",
-            "VElBTElBU0lOR19NT0RFX05PTkUQABIwCixIRF9DQU1FUkFfQU5USUFMSUFT",
-            "SU5HX01PREVfRkFTVF9BUFBST1hJTUFURRABEigKJEhEX0NBTUVSQV9BTlRJ",
-            "QUxJQVNJTkdfTU9ERV9URU1QT1JBTBACEjYKMkhEX0NBTUVSQV9BTlRJQUxJ",
-            "QVNJTkdfTU9ERV9TVUJQSVhFTF9NT1JQSE9MT0dJQ0FMEAMqcgoSSERTTUFB",
-            "UXVhbGl0eUxldmVsEhwKGEhEU01BQV9RVUFMSVRZX0xFVkVMX0xPVxAAEh8K",
-            "G0hEU01BQV9RVUFMSVRZX0xFVkVMX01FRElVTRABEh0KGUhEU01BQV9RVUFM",
-            "SVRZX0xFVkVMX0hJR0gQAipuChFIRFRBQVF1YWxpdHlMZXZlbBIbChdIRFRB",
-            "QV9RVUFMSVRZX0xFVkVMX0xPVxAAEh4KGkhEVEFBX1FVQUxJVFlfTEVWRUxf",
-            "TUVESVVNEAESHAoYSERUQUFfUVVBTElUWV9MRVZFTF9ISUdIEAJCGqoCF1BM",
-            "VU1FLlNhbXBsZS5Vbml0eS5IRFJQYgZwcm90bzM="));
+            "aHV0dGVyX3NwZWVkQgsKCV9hcGVydHVyZSqaAQoQSERDbGVhckNvbG9yTW9k",
+            "ZRIbChdIRF9DTEVBUl9DT0xPUl9NT0RFX1NLWRAAEiwKH0hEX0NMRUFSX0NP",
+            "TE9SX01PREVfVU5TUEVDSUZJRUQQ////////////ARIdChlIRF9DTEVBUl9D",
+            "T0xPUl9NT0RFX0NPTE9SEAESHAoYSERfQ0xFQVJfQ09MT1JfTU9ERV9OT05F",
+            "EAIqigIKGEhEQ2FtZXJhQW50aWFsaWFzaW5nTW9kZRIkCiBIRF9DQU1FUkFf",
+            "QU5USUFMSUFTSU5HX01PREVfTk9ORRAAEjQKJ0hEX0NBTUVSQV9BTlRJQUxJ",
+            "QVNJTkdfTU9ERV9VTlNQRUNJRklFRBD///////////8BEjAKLEhEX0NBTUVS",
+            "QV9BTlRJQUxJQVNJTkdfTU9ERV9GQVNUX0FQUFJPWElNQVRFEAESKAokSERf",
+            "Q0FNRVJBX0FOVElBTElBU0lOR19NT0RFX1RFTVBPUkFMEAISNgoySERfQ0FN",
+            "RVJBX0FOVElBTElBU0lOR19NT0RFX1NVQlBJWEVMX01PUlBIT0xPR0lDQUwQ",
+            "AyqhAQoSSERTTUFBUXVhbGl0eUxldmVsEhwKGEhEU01BQV9RVUFMSVRZX0xF",
+            "VkVMX0xPVxAAEi0KIEhEU01BQV9RVUFMSVRZX0xFVkVMX1VOU1BFQ0lGSUVE",
+            "EP///////////wESHwobSERTTUFBX1FVQUxJVFlfTEVWRUxfTUVESVVNEAES",
+            "HQoZSERTTUFBX1FVQUxJVFlfTEVWRUxfSElHSBACKpwBChFIRFRBQVF1YWxp",
+            "dHlMZXZlbBIbChdIRFRBQV9RVUFMSVRZX0xFVkVMX0xPVxAAEiwKH0hEVEFB",
+            "X1FVQUxJVFlfTEVWRUxfVU5TUEVDSUZJRUQQ////////////ARIeChpIRFRB",
+            "QV9RVUFMSVRZX0xFVkVMX01FRElVTRABEhwKGEhEVEFBX1FVQUxJVFlfTEVW",
+            "RUxfSElHSBACQhqqAhdQTFVNRS5TYW1wbGUuVW5pdHkuSERSUGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.HDRP.HDClearColorMode), typeof(global::PLUME.Sample.Unity.HDRP.HDCameraAntialiasingMode), typeof(global::PLUME.Sample.Unity.HDRP.HDSMAAQualityLevel), typeof(global::PLUME.Sample.Unity.HDRP.HDTAAQualityLevel), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -89,12 +93,14 @@ namespace PLUME.Sample.Unity.HDRP {
   #region Enums
   public enum HDClearColorMode {
     [pbr::OriginalName("HD_CLEAR_COLOR_MODE_SKY")] Sky = 0,
+    [pbr::OriginalName("HD_CLEAR_COLOR_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("HD_CLEAR_COLOR_MODE_COLOR")] Color = 1,
     [pbr::OriginalName("HD_CLEAR_COLOR_MODE_NONE")] None = 2,
   }
 
   public enum HDCameraAntialiasingMode {
     [pbr::OriginalName("HD_CAMERA_ANTIALIASING_MODE_NONE")] None = 0,
+    [pbr::OriginalName("HD_CAMERA_ANTIALIASING_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("HD_CAMERA_ANTIALIASING_MODE_FAST_APPROXIMATE")] FastApproximate = 1,
     [pbr::OriginalName("HD_CAMERA_ANTIALIASING_MODE_TEMPORAL")] Temporal = 2,
     [pbr::OriginalName("HD_CAMERA_ANTIALIASING_MODE_SUBPIXEL_MORPHOLOGICAL")] SubpixelMorphological = 3,
@@ -102,12 +108,14 @@ namespace PLUME.Sample.Unity.HDRP {
 
   public enum HDSMAAQualityLevel {
     [pbr::OriginalName("HDSMAA_QUALITY_LEVEL_LOW")] Low = 0,
+    [pbr::OriginalName("HDSMAA_QUALITY_LEVEL_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("HDSMAA_QUALITY_LEVEL_MEDIUM")] Medium = 1,
     [pbr::OriginalName("HDSMAA_QUALITY_LEVEL_HIGH")] High = 2,
   }
 
   public enum HDTAAQualityLevel {
     [pbr::OriginalName("HDTAA_QUALITY_LEVEL_LOW")] Low = 0,
+    [pbr::OriginalName("HDTAA_QUALITY_LEVEL_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("HDTAA_QUALITY_LEVEL_MEDIUM")] Medium = 1,
     [pbr::OriginalName("HDTAA_QUALITY_LEVEL_HIGH")] High = 2,
   }

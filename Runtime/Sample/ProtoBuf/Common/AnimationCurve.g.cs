@@ -33,10 +33,11 @@ namespace PLUME.Sample.Common {
             "bnQYBCABKAJSCm91dFRhbmdlbnQSRgoNd2VpZ2h0ZWRfbW9kZRgFIAEoDjIh",
             "LnBsdW1lLnNhbXBsZS5jb21tb24uV2VpZ2h0ZWRNb2RlUgx3ZWlnaHRlZE1v",
             "ZGUSGwoJaW5fd2VpZ2h0GAYgASgCUghpbldlaWdodBIdCgpvdXRfd2VpZ2h0",
-            "GAcgASgCUglvdXRXZWlnaHQqawoMV2VpZ2h0ZWRNb2RlEhYKEldFSUdIVEVE",
-            "X01PREVfTk9ORRAAEhQKEFdFSUdIVEVEX01PREVfSU4QARIVChFXRUlHSFRF",
-            "RF9NT0RFX09VVBACEhYKEldFSUdIVEVEX01PREVfQk9USBADQhaqAhNQTFVN",
-            "RS5TYW1wbGUuQ29tbW9uYgZwcm90bzM="));
+            "GAcgASgCUglvdXRXZWlnaHQqkwEKDFdlaWdodGVkTW9kZRIWChJXRUlHSFRF",
+            "RF9NT0RFX05PTkUQABImChlXRUlHSFRFRF9NT0RFX1VOU1BFQ0lGSUVEEP//",
+            "/////////wESFAoQV0VJR0hURURfTU9ERV9JThABEhUKEVdFSUdIVEVEX01P",
+            "REVfT1VUEAISFgoSV0VJR0hURURfTU9ERV9CT1RIEANCFqoCE1BMVU1FLlNh",
+            "bXBsZS5Db21tb25iBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Common.WeightedMode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -50,6 +51,7 @@ namespace PLUME.Sample.Common {
   #region Enums
   public enum WeightedMode {
     [pbr::OriginalName("WEIGHTED_MODE_NONE")] None = 0,
+    [pbr::OriginalName("WEIGHTED_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("WEIGHTED_MODE_IN")] In = 1,
     [pbr::OriginalName("WEIGHTED_MODE_OUT")] Out = 2,
     [pbr::OriginalName("WEIGHTED_MODE_BOTH")] Both = 3,

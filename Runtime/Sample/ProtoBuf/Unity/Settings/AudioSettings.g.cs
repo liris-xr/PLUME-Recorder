@@ -30,13 +30,13 @@ namespace PLUME.Sample.Unity.Settings {
             "YW1wbGUudW5pdHkuc2V0dGluZ3MuU3BlYWtlck1vZGVIAFILc3BlYWtlck1v",
             "ZGWIAQESOwoXc3BhdGlhbGl6ZXJfcGx1Z2luX25hbWUYAiABKAlIAVIVc3Bh",
             "dGlhbGl6ZXJQbHVnaW5OYW1liAEBQg8KDV9zcGVha2VyX21vZGVCGgoYX3Nw",
-            "YXRpYWxpemVyX3BsdWdpbl9uYW1lKtABCgtTcGVha2VyTW9kZRIVChFTUEVB",
-            "S0VSX01PREVfTU9OTxAAEhcKE1NQRUFLRVJfTU9ERV9TVEVSRU8QARIVChFT",
-            "UEVBS0VSX01PREVfUVVBRBACEhkKFVNQRUFLRVJfTU9ERV9TVVJST1VORBAD",
-            "EiEKHVNQRUFLRVJfTU9ERV9TVVJST1VORF81UE9JTlQxEAQSIQodU1BFQUtF",
-            "Ul9NT0RFX1NVUlJPVU5EXzdQT0lOVDEQBRIZChVTUEVBS0VSX01PREVfUFJP",
-            "TE9HSUMQBkIeqgIbUExVTUUuU2FtcGxlLlVuaXR5LlNldHRpbmdzYgZwcm90",
-            "bzM="));
+            "YXRpYWxpemVyX3BsdWdpbl9uYW1lKvcBCgtTcGVha2VyTW9kZRIVChFTUEVB",
+            "S0VSX01PREVfTU9OTxAAEiUKGFNQRUFLRVJfTU9ERV9VTlNQRUNJRklFRBD/",
+            "//////////8BEhcKE1NQRUFLRVJfTU9ERV9TVEVSRU8QARIVChFTUEVBS0VS",
+            "X01PREVfUVVBRBACEhkKFVNQRUFLRVJfTU9ERV9TVVJST1VORBADEiEKHVNQ",
+            "RUFLRVJfTU9ERV9TVVJST1VORF81UE9JTlQxEAQSIQodU1BFQUtFUl9NT0RF",
+            "X1NVUlJPVU5EXzdQT0lOVDEQBRIZChVTUEVBS0VSX01PREVfUFJPTE9HSUMQ",
+            "BkIeqgIbUExVTUUuU2FtcGxlLlVuaXR5LlNldHRpbmdzYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.Settings.SpeakerMode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -49,6 +49,7 @@ namespace PLUME.Sample.Unity.Settings {
   #region Enums
   public enum SpeakerMode {
     [pbr::OriginalName("SPEAKER_MODE_MONO")] Mono = 0,
+    [pbr::OriginalName("SPEAKER_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("SPEAKER_MODE_STEREO")] Stereo = 1,
     [pbr::OriginalName("SPEAKER_MODE_QUAD")] Quad = 2,
     [pbr::OriginalName("SPEAKER_MODE_SURROUND")] Surround = 3,

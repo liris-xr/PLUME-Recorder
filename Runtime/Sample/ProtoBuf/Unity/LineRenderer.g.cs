@@ -61,15 +61,18 @@ namespace PLUME.Sample.Unity {
             "cnRpY2VzQgwKCl9hbGlnbm1lbnRCDwoNX3RleHR1cmVfbW9kZUIQCg5fdGV4",
             "dHVyZV9zY2FsZUIOCgxfc2hhZG93X2JpYXNCGQoXX2dlbmVyYXRlX2xpZ2h0",
             "aW5nX2RhdGFCEgoQX3VzZV93b3JsZF9zcGFjZUITChFfbWFza19pbnRlcmFj",
-            "dGlvbio6CglBbGlnbm1lbnQSEgoOQUxJR05NRU5UX1ZJRVcQABIZChVBTElH",
-            "Tk1FTlRfVFJBTlNGT1JNX1oQASqlAQoLVGV4dHVyZU1vZGUSGAoUVEVYVFVS",
-            "RV9NT0RFX1NUUkVUQ0gQABIVChFURVhUVVJFX01PREVfVElMRRABEicKI1RF",
-            "WFRVUkVfTU9ERV9ESVNUUklCVVRFX1BFUl9TRUdNRU5UEAISIwofVEVYVFVS",
-            "RV9NT0RFX1JFUEVBVF9QRVJfU0VHTUVOVBADEhcKE1RFWFRVUkVfTU9ERV9T",
-            "VEFUSUMQBCp3Cg9NYXNrSW50ZXJhY3Rpb24SGQoVTUFTS19JTlRFUkFDVElP",
-            "Tl9OT05FEAASIwofTUFTS19JTlRFUkFDVElPTl9WSVNJQkxFX0lOU0lERRAB",
-            "EiQKIE1BU0tfSU5URVJBQ1RJT05fVklTSUJMRV9PVVRTSURFEAJCFaoCElBM",
-            "VU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
+            "dGlvbipeCglBbGlnbm1lbnQSEgoOQUxJR05NRU5UX1ZJRVcQABIiChVBTElH",
+            "Tk1FTlRfVU5TUEVDSUZJRUQQ////////////ARIZChVBTElHTk1FTlRfVFJB",
+            "TlNGT1JNX1oQASrMAQoLVGV4dHVyZU1vZGUSGAoUVEVYVFVSRV9NT0RFX1NU",
+            "UkVUQ0gQABIlChhURVhUVVJFX01PREVfVU5TUEVDSUZJRUQQ////////////",
+            "ARIVChFURVhUVVJFX01PREVfVElMRRABEicKI1RFWFRVUkVfTU9ERV9ESVNU",
+            "UklCVVRFX1BFUl9TRUdNRU5UEAISIwofVEVYVFVSRV9NT0RFX1JFUEVBVF9Q",
+            "RVJfU0VHTUVOVBADEhcKE1RFWFRVUkVfTU9ERV9TVEFUSUMQBCqiAQoPTWFz",
+            "a0ludGVyYWN0aW9uEhkKFU1BU0tfSU5URVJBQ1RJT05fTk9ORRAAEikKHE1B",
+            "U0tfSU5URVJBQ1RJT05fVU5TUEVDSUZJRUQQ////////////ARIjCh9NQVNL",
+            "X0lOVEVSQUNUSU9OX1ZJU0lCTEVfSU5TSURFEAESJAogTUFTS19JTlRFUkFD",
+            "VElPTl9WSVNJQkxFX09VVFNJREUQAkIVqgISUExVTUUuU2FtcGxlLlVuaXR5",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, global::PLUME.Sample.Common.Vector2Reflection.Descriptor, global::PLUME.Sample.Common.Vector3Reflection.Descriptor, global::PLUME.Sample.Common.AnimationCurveReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.Alignment), typeof(global::PLUME.Sample.Unity.TextureMode), typeof(global::PLUME.Sample.Unity.MaskInteraction), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -84,11 +87,13 @@ namespace PLUME.Sample.Unity {
   #region Enums
   public enum Alignment {
     [pbr::OriginalName("ALIGNMENT_VIEW")] View = 0,
+    [pbr::OriginalName("ALIGNMENT_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("ALIGNMENT_TRANSFORM_Z")] TransformZ = 1,
   }
 
   public enum TextureMode {
     [pbr::OriginalName("TEXTURE_MODE_STRETCH")] Stretch = 0,
+    [pbr::OriginalName("TEXTURE_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("TEXTURE_MODE_TILE")] Tile = 1,
     [pbr::OriginalName("TEXTURE_MODE_DISTRIBUTE_PER_SEGMENT")] DistributePerSegment = 2,
     [pbr::OriginalName("TEXTURE_MODE_REPEAT_PER_SEGMENT")] RepeatPerSegment = 3,
@@ -97,6 +102,7 @@ namespace PLUME.Sample.Unity {
 
   public enum MaskInteraction {
     [pbr::OriginalName("MASK_INTERACTION_NONE")] None = 0,
+    [pbr::OriginalName("MASK_INTERACTION_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("MASK_INTERACTION_VISIBLE_INSIDE")] VisibleInside = 1,
     [pbr::OriginalName("MASK_INTERACTION_VISIBLE_OUTSIDE")] VisibleOutside = 2,
   }

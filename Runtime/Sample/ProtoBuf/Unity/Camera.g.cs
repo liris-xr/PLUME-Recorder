@@ -116,16 +116,18 @@ namespace PLUME.Sample.Unity {
             "X3JlbmRlcmluZ0IUChJfc3RlcmVvX3NlcGFyYXRpb25CFQoTX3N0ZXJlb19j",
             "b252ZXJnZW5jZUIUChJfc3RlcmVvX3RhcmdldF9leWUiOAoYQ2FtZXJhTGF5",
             "ZXJDdWxsRGlzdGFuY2VzEhwKCWRpc3RhbmNlcxgBIAMoAlIJZGlzdGFuY2Vz",
-            "KrwBChFDYW1lcmFHYXRlRml0TW9kZRIdChlDQU1FUkFfR0FURV9GSVRfTU9E",
-            "RV9OT05FEAASIQodQ0FNRVJBX0dBVEVfRklUX01PREVfVkVSVElDQUwQARIj",
-            "Ch9DQU1FUkFfR0FURV9GSVRfTU9ERV9IT1JJWk9OVEFMEAISHQoZQ0FNRVJB",
-            "X0dBVEVfRklUX01PREVfRklMTBADEiEKHUNBTUVSQV9HQVRFX0ZJVF9NT0RF",
-            "X09WRVJTQ0FOEAQqvAEKGUNhbWVyYVN0ZXJlb1RhcmdldEV5ZU1hc2sSJgoi",
-            "Q0FNRVJBX1NURVJFT19UQVJHRVRfRVlFX01BU0tfTk9ORRAAEiYKIkNBTUVS",
-            "QV9TVEVSRU9fVEFSR0VUX0VZRV9NQVNLX0xFRlQQARInCiNDQU1FUkFfU1RF",
-            "UkVPX1RBUkdFVF9FWUVfTUFTS19SSUdIVBACEiYKIkNBTUVSQV9TVEVSRU9f",
-            "VEFSR0VUX0VZRV9NQVNLX0JPVEgQA0IVqgISUExVTUUuU2FtcGxlLlVuaXR5",
-            "YgZwcm90bzM="));
+            "KusBChFDYW1lcmFHYXRlRml0TW9kZRIdChlDQU1FUkFfR0FURV9GSVRfTU9E",
+            "RV9OT05FEAASLQogQ0FNRVJBX0dBVEVfRklUX01PREVfVU5TUEVDSUZJRUQQ",
+            "////////////ARIhCh1DQU1FUkFfR0FURV9GSVRfTU9ERV9WRVJUSUNBTBAB",
+            "EiMKH0NBTUVSQV9HQVRFX0ZJVF9NT0RFX0hPUklaT05UQUwQAhIdChlDQU1F",
+            "UkFfR0FURV9GSVRfTU9ERV9GSUxMEAMSIQodQ0FNRVJBX0dBVEVfRklUX01P",
+            "REVfT1ZFUlNDQU4QBCr0AQoZQ2FtZXJhU3RlcmVvVGFyZ2V0RXllTWFzaxIm",
+            "CiJDQU1FUkFfU1RFUkVPX1RBUkdFVF9FWUVfTUFTS19OT05FEAASNgopQ0FN",
+            "RVJBX1NURVJFT19UQVJHRVRfRVlFX01BU0tfVU5TUEVDSUZJRUQQ////////",
+            "////ARImCiJDQU1FUkFfU1RFUkVPX1RBUkdFVF9FWUVfTUFTS19MRUZUEAES",
+            "JwojQ0FNRVJBX1NURVJFT19UQVJHRVRfRVlFX01BU0tfUklHSFQQAhImCiJD",
+            "QU1FUkFfU1RFUkVPX1RBUkdFVF9FWUVfTUFTS19CT1RIEANCFaoCElBMVU1F",
+            "LlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Unity.RenderingReflection.Descriptor, global::PLUME.Sample.Common.Vector2Reflection.Descriptor, global::PLUME.Sample.Common.Vector3Reflection.Descriptor, global::PLUME.Sample.Common.Matrix4X4Reflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, global::PLUME.Sample.Common.RectReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.CameraGateFitMode), typeof(global::PLUME.Sample.Unity.CameraStereoTargetEyeMask), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -141,6 +143,7 @@ namespace PLUME.Sample.Unity {
   #region Enums
   public enum CameraGateFitMode {
     [pbr::OriginalName("CAMERA_GATE_FIT_MODE_NONE")] None = 0,
+    [pbr::OriginalName("CAMERA_GATE_FIT_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("CAMERA_GATE_FIT_MODE_VERTICAL")] Vertical = 1,
     [pbr::OriginalName("CAMERA_GATE_FIT_MODE_HORIZONTAL")] Horizontal = 2,
     [pbr::OriginalName("CAMERA_GATE_FIT_MODE_FILL")] Fill = 3,
@@ -149,6 +152,7 @@ namespace PLUME.Sample.Unity {
 
   public enum CameraStereoTargetEyeMask {
     [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_NONE")] None = 0,
+    [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_LEFT")] Left = 1,
     [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_RIGHT")] Right = 2,
     [pbr::OriginalName("CAMERA_STEREO_TARGET_EYE_MASK_BOTH")] Both = 3,

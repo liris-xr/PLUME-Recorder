@@ -25,14 +25,16 @@ namespace PLUME.Sample.Unity.URP {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CiZwbHVtZS9zYW1wbGUvdW5pdHkvdXJwL3JlbmRlcmluZy5wcm90bxIWcGx1",
-            "bWUuc2FtcGxlLnVuaXR5LnVycCqfAQoQQW50aWFsaWFzaW5nTW9kZRIaChZB",
-            "TlRJQUxJQVNJTkdfTU9ERV9OT05FEAASMwovQU5USUFMSUFTSU5HX01PREVf",
-            "RkFTVF9BUFBST1hJTUFURV9BTlRJQUxJQVNJTkcQARI6CjZBTlRJQUxJQVNJ",
-            "TkdfTU9ERV9TVUJQSVhFTF9NT1JQSE9MT0dJQ0FMX0FOVElfQUxJQVNJTkcQ",
-            "AipzChNBbnRpYWxpYXNpbmdRdWFsaXR5EhwKGEFOVElBTElBU0lOR19RVUFM",
-            "SVRZX0xPVxAAEh8KG0FOVElBTElBU0lOR19RVUFMSVRZX01FRElVTRABEh0K",
-            "GUFOVElBTElBU0lOR19RVUFMSVRZX0hJR0gQAkIZqgIWUExVTUUuU2FtcGxl",
-            "LlVuaXR5LlVSUGIGcHJvdG8z"));
+            "bWUuc2FtcGxlLnVuaXR5LnVycCrLAQoQQW50aWFsaWFzaW5nTW9kZRIaChZB",
+            "TlRJQUxJQVNJTkdfTU9ERV9OT05FEAASKgodQU5USUFMSUFTSU5HX01PREVf",
+            "VU5TUEVDSUZJRUQQ////////////ARIzCi9BTlRJQUxJQVNJTkdfTU9ERV9G",
+            "QVNUX0FQUFJPWElNQVRFX0FOVElBTElBU0lORxABEjoKNkFOVElBTElBU0lO",
+            "R19NT0RFX1NVQlBJWEVMX01PUlBIT0xPR0lDQUxfQU5USV9BTElBU0lORxAC",
+            "KqIBChNBbnRpYWxpYXNpbmdRdWFsaXR5EhwKGEFOVElBTElBU0lOR19RVUFM",
+            "SVRZX0xPVxAAEi0KIEFOVElBTElBU0lOR19RVUFMSVRZX1VOU1BFQ0lGSUVE",
+            "EP///////////wESHwobQU5USUFMSUFTSU5HX1FVQUxJVFlfTUVESVVNEAES",
+            "HQoZQU5USUFMSUFTSU5HX1FVQUxJVFlfSElHSBACQhmqAhZQTFVNRS5TYW1w",
+            "bGUuVW5pdHkuVVJQYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.URP.AntialiasingMode), typeof(global::PLUME.Sample.Unity.URP.AntialiasingQuality), }, null, null));
@@ -43,12 +45,14 @@ namespace PLUME.Sample.Unity.URP {
   #region Enums
   public enum AntialiasingMode {
     [pbr::OriginalName("ANTIALIASING_MODE_NONE")] None = 0,
+    [pbr::OriginalName("ANTIALIASING_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("ANTIALIASING_MODE_FAST_APPROXIMATE_ANTIALIASING")] FastApproximateAntialiasing = 1,
     [pbr::OriginalName("ANTIALIASING_MODE_SUBPIXEL_MORPHOLOGICAL_ANTI_ALIASING")] SubpixelMorphologicalAntiAliasing = 2,
   }
 
   public enum AntialiasingQuality {
     [pbr::OriginalName("ANTIALIASING_QUALITY_LOW")] Low = 0,
+    [pbr::OriginalName("ANTIALIASING_QUALITY_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("ANTIALIASING_QUALITY_MEDIUM")] Medium = 1,
     [pbr::OriginalName("ANTIALIASING_QUALITY_HIGH")] High = 2,
   }

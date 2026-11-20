@@ -32,9 +32,10 @@ namespace PLUME.Sample.Unity {
             "YWRTY2VuZRI5CgVzY2VuZRgBIAEoCzIjLnBsdW1lLnNhbXBsZS51bml0eS5T",
             "Y2VuZUlkZW50aWZpZXJSBXNjZW5lIk4KEUNoYW5nZUFjdGl2ZVNjZW5lEjkK",
             "BXNjZW5lGAEgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LlNjZW5lSWRlbnRp",
-            "ZmllclIFc2NlbmUqSQoNTG9hZFNjZW5lTW9kZRIaChZMT0FEX1NDRU5FX01P",
-            "REVfU0lOR0xFEAASHAoYTE9BRF9TQ0VORV9NT0RFX0FERElUSVZFEAFCFaoC",
-            "ElBMVU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
+            "ZmllclIFc2NlbmUqcwoNTG9hZFNjZW5lTW9kZRIaChZMT0FEX1NDRU5FX01P",
+            "REVfU0lOR0xFEAASKAobTE9BRF9TQ0VORV9NT0RFX1VOU1BFQ0lGSUVEEP//",
+            "/////////wESHAoYTE9BRF9TQ0VORV9NT0RFX0FERElUSVZFEAFCFaoCElBM",
+            "VU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.LoadSceneMode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -49,6 +50,7 @@ namespace PLUME.Sample.Unity {
   #region Enums
   public enum LoadSceneMode {
     [pbr::OriginalName("LOAD_SCENE_MODE_SINGLE")] Single = 0,
+    [pbr::OriginalName("LOAD_SCENE_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("LOAD_SCENE_MODE_ADDITIVE")] Additive = 1,
   }
 

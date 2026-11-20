@@ -37,9 +37,10 @@ namespace PLUME.Sample.Unity.UI {
             "eS51aS5GaXRNb2RlSABSDWhvcml6b250YWxGaXSIAQESRgoMdmVydGljYWxf",
             "Zml0GAMgASgOMh4ucGx1bWUuc2FtcGxlLnVuaXR5LnVpLkZpdE1vZGVIAVIL",
             "dmVydGljYWxGaXSIAQFCEQoPX2hvcml6b250YWxfZml0Qg8KDV92ZXJ0aWNh",
-            "bF9maXQqVAoHRml0TW9kZRIaChZGSVRfTU9ERV9VTkNPTlNUUkFJTkVEEAAS",
-            "FQoRRklUX01PREVfTUlOX1NJWkUQARIWChJGSVRfTU9ERV9QUkVGX1NJWkUQ",
-            "AkIYqgIVUExVTUUuU2FtcGxlLlVuaXR5LlVJYgZwcm90bzM="));
+            "bF9maXQqdwoHRml0TW9kZRIaChZGSVRfTU9ERV9VTkNPTlNUUkFJTkVEEAAS",
+            "IQoURklUX01PREVfVU5TUEVDSUZJRUQQ////////////ARIVChFGSVRfTU9E",
+            "RV9NSU5fU0laRRABEhYKEkZJVF9NT0RFX1BSRUZfU0laRRACQhiqAhVQTFVN",
+            "RS5TYW1wbGUuVW5pdHkuVUliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.FitMode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -54,6 +55,7 @@ namespace PLUME.Sample.Unity.UI {
   #region Enums
   public enum FitMode {
     [pbr::OriginalName("FIT_MODE_UNCONSTRAINED")] Unconstrained = 0,
+    [pbr::OriginalName("FIT_MODE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("FIT_MODE_MIN_SIZE")] MinSize = 1,
     [pbr::OriginalName("FIT_MODE_PREF_SIZE")] PrefSize = 2,
   }

@@ -35,10 +35,11 @@ namespace PLUME.Sample.Unity.UI {
             "c3ByaXRlGAIgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRp",
             "ZmllckgAUgZzcHJpdGWIAQESOQoEdHlwZRgDIAEoDjIgLnBsdW1lLnNhbXBs",
             "ZS51bml0eS51aS5JbWFnZVR5cGVIAVIEdHlwZYgBAUIJCgdfc3ByaXRlQgcK",
-            "BV90eXBlKmYKCUltYWdlVHlwZRIVChFJTUFHRV9UWVBFX1NJTVBMRRAAEhUK",
-            "EUlNQUdFX1RZUEVfU0xJQ0VEEAESFAoQSU1BR0VfVFlQRV9USUxFRBACEhUK",
-            "EUlNQUdFX1RZUEVfRklMTEVEEANCGKoCFVBMVU1FLlNhbXBsZS5Vbml0eS5V",
-            "SWIGcHJvdG8z"));
+            "BV90eXBlKosBCglJbWFnZVR5cGUSFQoRSU1BR0VfVFlQRV9TSU1QTEUQABIj",
+            "ChZJTUFHRV9UWVBFX1VOU1BFQ0lGSUVEEP///////////wESFQoRSU1BR0Vf",
+            "VFlQRV9TTElDRUQQARIUChBJTUFHRV9UWVBFX1RJTEVEEAISFQoRSU1BR0Vf",
+            "VFlQRV9GSUxMRUQQA0IYqgIVUExVTUUuU2FtcGxlLlVuaXR5LlVJYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.ImageType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -53,6 +54,7 @@ namespace PLUME.Sample.Unity.UI {
   #region Enums
   public enum ImageType {
     [pbr::OriginalName("IMAGE_TYPE_SIMPLE")] Simple = 0,
+    [pbr::OriginalName("IMAGE_TYPE_UNSPECIFIED")] Unspecified = -1,
     [pbr::OriginalName("IMAGE_TYPE_SLICED")] Sliced = 1,
     [pbr::OriginalName("IMAGE_TYPE_TILED")] Tiled = 2,
     [pbr::OriginalName("IMAGE_TYPE_FILLED")] Filled = 3,

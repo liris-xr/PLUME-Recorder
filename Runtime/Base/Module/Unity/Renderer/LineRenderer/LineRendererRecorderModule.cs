@@ -3,7 +3,6 @@ using PLUME.Base.Hooks;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Scripting;
 using LineRendererSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.LineRenderer>;
@@ -18,23 +17,100 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
         private readonly Dictionary<LineRendererSafeRef, LineRendererDestroy> _destroySamples = new();
         private readonly Dictionary<LineRendererSafeRef, LineRendererUpdate> _updateSamples = new();
 
-        private NativeList<Vector3> _tmpPositions;
+        private struct LineState
+        {
+            public Color StartColor;
+            public Color EndColor;
+            public float StartWidth;
+            public float EndWidth;
+            public float WidthMultiplier;
+            public bool Loop;
+            public bool UseWorldSpace;
+        }
+
+        // Last recorded state per line, compared every frame. Only allocation-free getters are polled; the gradient
+        // and width curve (whose getters allocate) are read only when their endpoints change. Changes confined to
+        // inner gradient or curve keys are still caught by the setter hooks below when they run.
+        private readonly Dictionary<LineRendererSafeRef, LineState> _states = new();
 
         protected override void OnCreate(RecorderContext ctx)
         {
             base.OnCreate(ctx);
-            _tmpPositions = new NativeList<Vector3>(Allocator.Persistent);
 
-            LineRendererHooks.OnPositionsChanged += (r, positions) => OnPositionChanged(r, positions, ctx);
+            // Positions are recorded by LineRendererPositionsRecorderModule, which polls them allocation-free.
             LineRendererHooks.OnColorChanged += (r, color) => OnColorChanged(r, color, ctx);
             LineRendererHooks.OnWidthCurveChanged += (r, widthCurve) => OnWidthCurveChanged(r, widthCurve, ctx);
             LineRendererHooks.OnWidthMultiplierChanged += (r, widthMultiplier) => OnWidthMultiplierChanged(r, widthMultiplier, ctx);
         }
 
-        protected override void OnDestroy(RecorderContext ctx)
+        protected override void OnStopRecordingObject(LineRendererSafeRef objSafeRef, RecorderContext ctx)
         {
-            base.OnDestroy(ctx);
-            _tmpPositions.Dispose();
+            base.OnStopRecordingObject(objSafeRef, ctx);
+            _states.Remove(objSafeRef);
+        }
+
+        protected override void OnStopRecording(RecorderContext ctx)
+        {
+            base.OnStopRecording(ctx);
+            _states.Clear();
+        }
+
+        protected override void BeforeCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        {
+            base.BeforeCollectFrameData(frameInfo, ctx);
+
+            var recorded = RecordedComponents;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < recorded.Count; i++)
+                PollLine(recorded[i]);
+        }
+
+        private static LineState ReadLineState(UnityEngine.LineRenderer lineRenderer)
+        {
+            return new LineState
+            {
+                StartColor = lineRenderer.startColor,
+                EndColor = lineRenderer.endColor,
+                StartWidth = lineRenderer.startWidth,
+                EndWidth = lineRenderer.endWidth,
+                WidthMultiplier = lineRenderer.widthMultiplier,
+                Loop = lineRenderer.loop,
+                UseWorldSpace = lineRenderer.useWorldSpace
+            };
+        }
+
+        private void PollLine(LineRendererSafeRef objSafeRef)
+        {
+            var lineRenderer = objSafeRef.Component;
+
+            if (lineRenderer == null)
+                return;
+
+            var current = ReadLineState(lineRenderer);
+
+            // No baseline yet (recording started without a creation mark): store it, the creation sample or the
+            // hooks hold the full state.
+            if (!_states.TryGetValue(objSafeRef, out var previous))
+            {
+                _states[objSafeRef] = current;
+                return;
+            }
+
+            // XR interactor lines switch between valid/invalid gradients every frame from package code.
+            if (previous.StartColor != current.StartColor || previous.EndColor != current.EndColor)
+                GetOrCreateUpdateSample(objSafeRef).Color = lineRenderer.colorGradient.ToPayload();
+            if (!Mathf.Approximately(previous.StartWidth, current.StartWidth) ||
+                !Mathf.Approximately(previous.EndWidth, current.EndWidth))
+                GetOrCreateUpdateSample(objSafeRef).WidthCurve = lineRenderer.widthCurve.ToPayload();
+            if (!Mathf.Approximately(previous.WidthMultiplier, current.WidthMultiplier))
+                GetOrCreateUpdateSample(objSafeRef).WidthMultiplier = current.WidthMultiplier;
+            if (previous.Loop != current.Loop)
+                GetOrCreateUpdateSample(objSafeRef).Loop = current.Loop;
+            if (previous.UseWorldSpace != current.UseWorldSpace)
+                GetOrCreateUpdateSample(objSafeRef).UseWorldSpace = current.UseWorldSpace;
+
+            _states[objSafeRef] = current;
         }
         
         private void OnWidthCurveChanged(UnityEngine.LineRenderer lineRenderer, AnimationCurve widthCurve, RecorderContext ctx)
@@ -79,24 +155,6 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             updateSample.Color = color.ToPayload();
         }
 
-        private void OnPositionChanged(UnityEngine.LineRenderer lineRenderer, IEnumerable<Vector3> positions, RecorderContext ctx)
-        {
-            if (!ctx.IsRecording)
-                return;
-
-            var objSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(lineRenderer);
-
-            if (!IsRecordingObject(objSafeRef))
-                return;
-            
-            var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            updateSample.Positions = new LineRendererUpdate.Types.Positions();
-
-            foreach (var position in positions)
-            {
-                updateSample.Positions.Positions_.Add(position.ToPayload());
-            }
-        }
 
         protected override void OnObjectMarkedCreated(LineRendererSafeRef objSafeRef, RecorderContext ctx)
         {
@@ -106,7 +164,6 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Loop = lineRenderer.loop;
             updateSample.WidthCurve = lineRenderer.widthCurve.ToPayload();
-            updateSample.Positions = new LineRendererUpdate.Types.Positions();
             updateSample.Color = lineRenderer.colorGradient.ToPayload();
             updateSample.CornerVertices = lineRenderer.numCornerVertices;
             updateSample.EndCapVertices = lineRenderer.numCapVertices;
@@ -117,15 +174,9 @@ namespace PLUME.Base.Module.Unity.Renderer.LineRenderer
             updateSample.GenerateLightingData = lineRenderer.generateLightingData;
             updateSample.UseWorldSpace = lineRenderer.useWorldSpace;
             updateSample.MaskInteraction = lineRenderer.maskInteraction.ToPayload();
+            updateSample.WidthMultiplier = lineRenderer.widthMultiplier;
+            _states[objSafeRef] = ReadLineState(lineRenderer);
 
-            _tmpPositions.ResizeUninitialized(lineRenderer.positionCount);
-            
-            var nPositions = lineRenderer.GetPositions(_tmpPositions.AsArray());
-            for(var i = 0; i < nPositions; ++i)
-            {
-                updateSample.Positions.Positions_.Add(_tmpPositions[i].ToPayload());
-            }
-            
             _createSamples[objSafeRef] = new LineRendererCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
         }
 

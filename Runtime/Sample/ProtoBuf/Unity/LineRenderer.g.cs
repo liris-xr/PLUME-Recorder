@@ -33,48 +33,52 @@ namespace PLUME.Sample.Unity {
             "Y29tcG9uZW50GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVu",
             "dElkZW50aWZpZXJSCWNvbXBvbmVudCJcChNMaW5lUmVuZGVyZXJEZXN0cm95",
             "EkUKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
-            "b25lbnRJZGVudGlmaWVyUgljb21wb25lbnQi0wkKEkxpbmVSZW5kZXJlclVw",
-            "ZGF0ZRJFCgljb21wb25lbnQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
-            "Q29tcG9uZW50SWRlbnRpZmllclIJY29tcG9uZW50EhcKBGxvb3AYAiABKAhI",
-            "AFIEbG9vcIgBARJJCgt3aWR0aF9jdXJ2ZRgDIAEoCzIjLnBsdW1lLnNhbXBs",
-            "ZS5jb21tb24uQW5pbWF0aW9uQ3VydmVIAVIKd2lkdGhDdXJ2ZYgBARIuChB3",
-            "aWR0aF9tdWx0aXBsaWVyGAQgASgCSAJSD3dpZHRoTXVsdGlwbGllcogBARJT",
-            "Cglwb3NpdGlvbnMYBSABKAsyMC5wbHVtZS5zYW1wbGUudW5pdHkuTGluZVJl",
-            "bmRlcmVyVXBkYXRlLlBvc2l0aW9uc0gDUglwb3NpdGlvbnOIAQESPQoFY29s",
-            "b3IYBiABKAsyIi5wbHVtZS5zYW1wbGUuY29tbW9uLkNvbG9yR3JhZGllbnRI",
-            "BFIFY29sb3KIAQESLAoPY29ybmVyX3ZlcnRpY2VzGAcgASgFSAVSDmNvcm5l",
-            "clZlcnRpY2VziAEBEi0KEGVuZF9jYXBfdmVydGljZXMYCCABKAVIBlIOZW5k",
-            "Q2FwVmVydGljZXOIAQESQAoJYWxpZ25tZW50GAkgASgOMh0ucGx1bWUuc2Ft",
-            "cGxlLnVuaXR5LkFsaWdubWVudEgHUglhbGlnbm1lbnSIAQESRwoMdGV4dHVy",
-            "ZV9tb2RlGAogASgOMh8ucGx1bWUuc2FtcGxlLnVuaXR5LlRleHR1cmVNb2Rl",
-            "SAhSC3RleHR1cmVNb2RliAEBEkYKDXRleHR1cmVfc2NhbGUYCyABKAsyHC5w",
-            "bHVtZS5zYW1wbGUuY29tbW9uLlZlY3RvcjJICVIMdGV4dHVyZVNjYWxliAEB",
-            "EiQKC3NoYWRvd19iaWFzGAwgASgCSApSCnNoYWRvd0JpYXOIAQESOQoWZ2Vu",
-            "ZXJhdGVfbGlnaHRpbmdfZGF0YRgNIAEoCEgLUhRnZW5lcmF0ZUxpZ2h0aW5n",
-            "RGF0YYgBARIrCg91c2Vfd29ybGRfc3BhY2UYDiABKAhIDFINdXNlV29ybGRT",
-            "cGFjZYgBARJTChBtYXNrX2ludGVyYWN0aW9uGA8gASgOMiMucGx1bWUuc2Ft",
-            "cGxlLnVuaXR5Lk1hc2tJbnRlcmFjdGlvbkgNUg9tYXNrSW50ZXJhY3Rpb26I",
-            "AQEaRwoJUG9zaXRpb25zEjoKCXBvc2l0aW9ucxgBIAMoCzIcLnBsdW1lLnNh",
-            "bXBsZS5jb21tb24uVmVjdG9yM1IJcG9zaXRpb25zQgcKBV9sb29wQg4KDF93",
-            "aWR0aF9jdXJ2ZUITChFfd2lkdGhfbXVsdGlwbGllckIMCgpfcG9zaXRpb25z",
-            "QggKBl9jb2xvckISChBfY29ybmVyX3ZlcnRpY2VzQhMKEV9lbmRfY2FwX3Zl",
-            "cnRpY2VzQgwKCl9hbGlnbm1lbnRCDwoNX3RleHR1cmVfbW9kZUIQCg5fdGV4",
-            "dHVyZV9zY2FsZUIOCgxfc2hhZG93X2JpYXNCGQoXX2dlbmVyYXRlX2xpZ2h0",
-            "aW5nX2RhdGFCEgoQX3VzZV93b3JsZF9zcGFjZUITChFfbWFza19pbnRlcmFj",
-            "dGlvbio6CglBbGlnbm1lbnQSEgoOQUxJR05NRU5UX1ZJRVcQABIZChVBTElH",
-            "Tk1FTlRfVFJBTlNGT1JNX1oQASqlAQoLVGV4dHVyZU1vZGUSGAoUVEVYVFVS",
-            "RV9NT0RFX1NUUkVUQ0gQABIVChFURVhUVVJFX01PREVfVElMRRABEicKI1RF",
-            "WFRVUkVfTU9ERV9ESVNUUklCVVRFX1BFUl9TRUdNRU5UEAISIwofVEVYVFVS",
-            "RV9NT0RFX1JFUEVBVF9QRVJfU0VHTUVOVBADEhcKE1RFWFRVUkVfTU9ERV9T",
-            "VEFUSUMQBCp3Cg9NYXNrSW50ZXJhY3Rpb24SGQoVTUFTS19JTlRFUkFDVElP",
-            "Tl9OT05FEAASIwofTUFTS19JTlRFUkFDVElPTl9WSVNJQkxFX0lOU0lERRAB",
-            "EiQKIE1BU0tfSU5URVJBQ1RJT05fVklTSUJMRV9PVVRTSURFEAJCFaoCElBM",
-            "VU1FLlNhbXBsZS5Vbml0eWIGcHJvdG8z"));
+            "b25lbnRJZGVudGlmaWVyUgljb21wb25lbnQihgEKG0xpbmVSZW5kZXJlclBv",
+            "c2l0aW9uc1VwZGF0ZRJFCgljb21wb25lbnQYASABKAsyJy5wbHVtZS5zYW1w",
+            "bGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllclIJY29tcG9uZW50EiAKCXBv",
+            "c2l0aW9ucxgCIAMoAkICEAFSCXBvc2l0aW9ucyLTCQoSTGluZVJlbmRlcmVy",
+            "VXBkYXRlEkUKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0",
+            "eS5Db21wb25lbnRJZGVudGlmaWVyUgljb21wb25lbnQSFwoEbG9vcBgCIAEo",
+            "CEgAUgRsb29wiAEBEkkKC3dpZHRoX2N1cnZlGAMgASgLMiMucGx1bWUuc2Ft",
+            "cGxlLmNvbW1vbi5BbmltYXRpb25DdXJ2ZUgBUgp3aWR0aEN1cnZliAEBEi4K",
+            "EHdpZHRoX211bHRpcGxpZXIYBCABKAJIAlIPd2lkdGhNdWx0aXBsaWVyiAEB",
+            "ElMKCXBvc2l0aW9ucxgFIAEoCzIwLnBsdW1lLnNhbXBsZS51bml0eS5MaW5l",
+            "UmVuZGVyZXJVcGRhdGUuUG9zaXRpb25zSANSCXBvc2l0aW9uc4gBARI9CgVj",
+            "b2xvchgGIAEoCzIiLnBsdW1lLnNhbXBsZS5jb21tb24uQ29sb3JHcmFkaWVu",
+            "dEgEUgVjb2xvcogBARIsCg9jb3JuZXJfdmVydGljZXMYByABKAVIBVIOY29y",
+            "bmVyVmVydGljZXOIAQESLQoQZW5kX2NhcF92ZXJ0aWNlcxgIIAEoBUgGUg5l",
+            "bmRDYXBWZXJ0aWNlc4gBARJACglhbGlnbm1lbnQYCSABKA4yHS5wbHVtZS5z",
+            "YW1wbGUudW5pdHkuQWxpZ25tZW50SAdSCWFsaWdubWVudIgBARJHCgx0ZXh0",
+            "dXJlX21vZGUYCiABKA4yHy5wbHVtZS5zYW1wbGUudW5pdHkuVGV4dHVyZU1v",
+            "ZGVICFILdGV4dHVyZU1vZGWIAQESRgoNdGV4dHVyZV9zY2FsZRgLIAEoCzIc",
+            "LnBsdW1lLnNhbXBsZS5jb21tb24uVmVjdG9yMkgJUgx0ZXh0dXJlU2NhbGWI",
+            "AQESJAoLc2hhZG93X2JpYXMYDCABKAJIClIKc2hhZG93Qmlhc4gBARI5ChZn",
+            "ZW5lcmF0ZV9saWdodGluZ19kYXRhGA0gASgISAtSFGdlbmVyYXRlTGlnaHRp",
+            "bmdEYXRhiAEBEisKD3VzZV93b3JsZF9zcGFjZRgOIAEoCEgMUg11c2VXb3Js",
+            "ZFNwYWNliAEBElMKEG1hc2tfaW50ZXJhY3Rpb24YDyABKA4yIy5wbHVtZS5z",
+            "YW1wbGUudW5pdHkuTWFza0ludGVyYWN0aW9uSA1SD21hc2tJbnRlcmFjdGlv",
+            "bogBARpHCglQb3NpdGlvbnMSOgoJcG9zaXRpb25zGAEgAygLMhwucGx1bWUu",
+            "c2FtcGxlLmNvbW1vbi5WZWN0b3IzUglwb3NpdGlvbnNCBwoFX2xvb3BCDgoM",
+            "X3dpZHRoX2N1cnZlQhMKEV93aWR0aF9tdWx0aXBsaWVyQgwKCl9wb3NpdGlv",
+            "bnNCCAoGX2NvbG9yQhIKEF9jb3JuZXJfdmVydGljZXNCEwoRX2VuZF9jYXBf",
+            "dmVydGljZXNCDAoKX2FsaWdubWVudEIPCg1fdGV4dHVyZV9tb2RlQhAKDl90",
+            "ZXh0dXJlX3NjYWxlQg4KDF9zaGFkb3dfYmlhc0IZChdfZ2VuZXJhdGVfbGln",
+            "aHRpbmdfZGF0YUISChBfdXNlX3dvcmxkX3NwYWNlQhMKEV9tYXNrX2ludGVy",
+            "YWN0aW9uKjoKCUFsaWdubWVudBISCg5BTElHTk1FTlRfVklFVxAAEhkKFUFM",
+            "SUdOTUVOVF9UUkFOU0ZPUk1fWhABKqUBCgtUZXh0dXJlTW9kZRIYChRURVhU",
+            "VVJFX01PREVfU1RSRVRDSBAAEhUKEVRFWFRVUkVfTU9ERV9USUxFEAESJwoj",
+            "VEVYVFVSRV9NT0RFX0RJU1RSSUJVVEVfUEVSX1NFR01FTlQQAhIjCh9URVhU",
+            "VVJFX01PREVfUkVQRUFUX1BFUl9TRUdNRU5UEAMSFwoTVEVYVFVSRV9NT0RF",
+            "X1NUQVRJQxAEKncKD01hc2tJbnRlcmFjdGlvbhIZChVNQVNLX0lOVEVSQUNU",
+            "SU9OX05PTkUQABIjCh9NQVNLX0lOVEVSQUNUSU9OX1ZJU0lCTEVfSU5TSURF",
+            "EAESJAogTUFTS19JTlRFUkFDVElPTl9WSVNJQkxFX09VVFNJREUQAkIVqgIS",
+            "UExVTUUuU2FtcGxlLlVuaXR5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, global::PLUME.Sample.Common.Vector2Reflection.Descriptor, global::PLUME.Sample.Common.Vector3Reflection.Descriptor, global::PLUME.Sample.Common.AnimationCurveReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.Alignment), typeof(global::PLUME.Sample.Unity.TextureMode), typeof(global::PLUME.Sample.Unity.MaskInteraction), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererCreate), global::PLUME.Sample.Unity.LineRendererCreate.Parser, new[]{ "Component" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererDestroy), global::PLUME.Sample.Unity.LineRendererDestroy.Parser, new[]{ "Component" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererPositionsUpdate), global::PLUME.Sample.Unity.LineRendererPositionsUpdate.Parser, new[]{ "Component", "Positions" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererUpdate), global::PLUME.Sample.Unity.LineRendererUpdate.Parser, new[]{ "Component", "Loop", "WidthCurve", "WidthMultiplier", "Positions", "Color", "CornerVertices", "EndCapVertices", "Alignment", "TextureMode", "TextureScale", "ShadowBias", "GenerateLightingData", "UseWorldSpace", "MaskInteraction" }, new[]{ "Loop", "WidthCurve", "WidthMultiplier", "Positions", "Color", "CornerVertices", "EndCapVertices", "Alignment", "TextureMode", "TextureScale", "ShadowBias", "GenerateLightingData", "UseWorldSpace", "MaskInteraction" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions), global::PLUME.Sample.Unity.LineRendererUpdate.Types.Positions.Parser, new[]{ "Positions_" }, null, null, null, null)})
           }));
     }
@@ -518,6 +522,248 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  /// <summary>
+  /// Line positions, recorded by polling and decoupled from LineRendererUpdate so the recorder can serialize them
+  /// without managed allocation (e.g. an XR interactor ray rewritten every frame). Supersedes LineRendererUpdate.positions.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class LineRendererPositionsUpdate : pb::IMessage<LineRendererPositionsUpdate>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<LineRendererPositionsUpdate> _parser = new pb::MessageParser<LineRendererPositionsUpdate>(() => new LineRendererPositionsUpdate());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<LineRendererPositionsUpdate> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PLUME.Sample.Unity.LineRendererReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LineRendererPositionsUpdate() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LineRendererPositionsUpdate(LineRendererPositionsUpdate other) : this() {
+      component_ = other.component_ != null ? other.component_.Clone() : null;
+      positions_ = other.positions_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LineRendererPositionsUpdate Clone() {
+      return new LineRendererPositionsUpdate(this);
+    }
+
+    /// <summary>Field number for the "component" field.</summary>
+    public const int ComponentFieldNumber = 1;
+    private global::PLUME.Sample.Unity.ComponentIdentifier component_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.ComponentIdentifier Component {
+      get { return component_; }
+      set {
+        component_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "positions" field.</summary>
+    public const int PositionsFieldNumber = 2;
+    private static readonly pb::FieldCodec<float> _repeated_positions_codec
+        = pb::FieldCodec.ForFloat(18);
+    private readonly pbc::RepeatedField<float> positions_ = new pbc::RepeatedField<float>();
+    /// <summary>
+    /// x, y, z triplets, in the line's space (world or local, see LineRendererUpdate.use_world_space)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<float> Positions {
+      get { return positions_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as LineRendererPositionsUpdate);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(LineRendererPositionsUpdate other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Component, other.Component)) return false;
+      if(!positions_.Equals(other.positions_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (component_ != null) hash ^= Component.GetHashCode();
+      hash ^= positions_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (component_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Component);
+      }
+      positions_.WriteTo(output, _repeated_positions_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (component_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Component);
+      }
+      positions_.WriteTo(ref output, _repeated_positions_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (component_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Component);
+      }
+      size += positions_.CalculateSize(_repeated_positions_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(LineRendererPositionsUpdate other) {
+      if (other == null) {
+        return;
+      }
+      if (other.component_ != null) {
+        if (component_ == null) {
+          Component = new global::PLUME.Sample.Unity.ComponentIdentifier();
+        }
+        Component.MergeFrom(other.Component);
+      }
+      positions_.Add(other.positions_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (component_ == null) {
+              Component = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Component);
+            break;
+          }
+          case 18:
+          case 21: {
+            positions_.AddEntriesFrom(input, _repeated_positions_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (component_ == null) {
+              Component = new global::PLUME.Sample.Unity.ComponentIdentifier();
+            }
+            input.ReadMessage(Component);
+            break;
+          }
+          case 18:
+          case 21: {
+            positions_.AddEntriesFrom(ref input, _repeated_positions_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class LineRendererUpdate : pb::IMessage<LineRendererUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -534,7 +780,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PLUME.Sample.Unity.LineRendererReflection.Descriptor.MessageTypes[2]; }
+      get { return global::PLUME.Sample.Unity.LineRendererReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

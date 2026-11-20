@@ -1,5 +1,5 @@
 using System;
-using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 using Google.Protobuf;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
@@ -35,7 +35,7 @@ namespace PLUME.Core.Recorder
             Instance.StartRecordingInternal(name, extraMetadata);
         }
 
-        public static async UniTask StopRecording()
+        public static async Task StopRecording()
         {
             CheckInstantiated();
             await Instance.StopRecordingInternal();

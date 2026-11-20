@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 using Google.Protobuf;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder.Module;
@@ -125,7 +125,7 @@ namespace PLUME.Core.Recorder
         /// This method also stops the clock without resetting it.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown if called when the recorder is not recording.</exception>
-        private async UniTask StopRecordingInternal()
+        private async Task StopRecordingInternal()
         {
             if (_context.Status is RecorderStatus.Stopping)
                 throw new InvalidOperationException("Recorder is already stopping.");
@@ -239,7 +239,10 @@ namespace PLUME.Core.Recorder
             if (_context.Status is RecorderStatus.Recording)
             {
                 var stopTask = StopRecordingInternal();
-                if (!stopTask.Status.IsCompleted())
+                // Unlike UniTask.Forget(), an unawaited Task swallows its exceptions.
+                stopTask.ContinueWith(t => Logger.LogException(t.Exception),
+                    TaskContinuationOptions.OnlyOnFaulted);
+                if (!stopTask.IsCompleted)
                 {
                     Logger.Log(
                         "Waiting for the recorder modules to stop before quitting the application. The application will stop automatically when finished.");
@@ -249,9 +252,17 @@ namespace PLUME.Core.Recorder
             if (_wantsToQuit)
                 return false;
 
-            UniTask.WaitUntil(() => _context.Status is RecorderStatus.Stopped).ContinueWith(Application.Quit).Forget();
+            QuitWhenStopped();
             _wantsToQuit = true;
             return false;
+        }
+
+        private async void QuitWhenStopped()
+        {
+            // Task.Yield resumes on the next frame through UnitySynchronizationContext.
+            while (_context.Status is not RecorderStatus.Stopped)
+                await Task.Yield();
+            Application.Quit();
         }
 
         private void OnApplicationQuitting()

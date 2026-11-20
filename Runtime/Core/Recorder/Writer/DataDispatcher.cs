@@ -1,6 +1,6 @@
 using System.Net.Sockets;
 using System.Threading;
-using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 using Unity.Collections;
 using UnityEngine.Profiling;
 
@@ -104,10 +104,10 @@ namespace PLUME.Core.Recorder.Writer
             }
         }
 
-        internal async UniTask StopAsync()
+        internal async Task StopAsync()
         {
             _running = false;
-            await UniTask.WaitUntil(() => !_dispatcherThread.IsAlive);
+            await Task.Run(_dispatcherThread.Join);
             _dispatcherThread = null;
 
             if (_outputs != null)

@@ -26,23 +26,25 @@ namespace PLUME.Sample.Unity {
           string.Concat(
             "Ci5wbHVtZS9zYW1wbGUvdW5pdHkvc2tpbm5lZF9tZXNoX3JlbmRlcmVyLnBy",
             "b3RvEhJwbHVtZS5zYW1wbGUudW5pdHkaJHBsdW1lL3NhbXBsZS91bml0eS9p",
-            "ZGVudGlmaWVycy5wcm90byJXChlTa2lubmVkTWVzaFJlbmRlcmVyQ3JlYXRl",
-            "EjoKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
-            "b25lbnRJZGVudGlmaWVyIlgKGlNraW5uZWRNZXNoUmVuZGVyZXJEZXN0cm95",
-            "EjoKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
-            "b25lbnRJZGVudGlmaWVyIv8CChlTa2lubmVkTWVzaFJlbmRlcmVyVXBkYXRl",
-            "EjoKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
-            "b25lbnRJZGVudGlmaWVyEjYKBG1lc2gYAiABKAsyIy5wbHVtZS5zYW1wbGUu",
-            "dW5pdHkuQXNzZXRJZGVudGlmaWVySACIAQESPwoJcm9vdF9ib25lGAMgASgL",
-            "MicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXJIAYgB",
-            "ARJHCgVib25lcxgEIAEoCzIzLnBsdW1lLnNhbXBsZS51bml0eS5Ta2lubmVk",
-            "TWVzaFJlbmRlcmVyVXBkYXRlLkJvbmVzSAKIAQEaPQoFQm9uZXMSNAoDaWRz",
-            "GAEgAygLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZp",
-            "ZXJCBwoFX21lc2hCDAoKX3Jvb3RfYm9uZUIICgZfYm9uZXNKBAgFEAYidgoj",
-            "U2tpbm5lZE1lc2hSZW5kZXJlckJsZW5kU2hhcGVVcGRhdGUSOgoJY29tcG9u",
-            "ZW50GAEgASgLMicucGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50",
-            "aWZpZXISEwoHd2VpZ2h0cxgCIAMoAkICEAFCFaoCElBMVU1FLlNhbXBsZS5V",
-            "bml0eWIGcHJvdG8z"));
+            "ZGVudGlmaWVycy5wcm90byJiChlTa2lubmVkTWVzaFJlbmRlcmVyQ3JlYXRl",
+            "EkUKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNhbXBsZS51bml0eS5Db21w",
+            "b25lbnRJZGVudGlmaWVyUgljb21wb25lbnQiYwoaU2tpbm5lZE1lc2hSZW5k",
+            "ZXJlckRlc3Ryb3kSRQoJY29tcG9uZW50GAEgASgLMicucGx1bWUuc2FtcGxl",
+            "LnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXJSCWNvbXBvbmVudCKmAwoZU2tp",
+            "bm5lZE1lc2hSZW5kZXJlclVwZGF0ZRJFCgljb21wb25lbnQYASABKAsyJy5w",
+            "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllclIJY29tcG9u",
+            "ZW50EjwKBG1lc2gYAiABKAsyIy5wbHVtZS5zYW1wbGUudW5pdHkuQXNzZXRJ",
+            "ZGVudGlmaWVySABSBG1lc2iIAQESSQoJcm9vdF9ib25lGAMgASgLMicucGx1",
+            "bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXJIAVIIcm9vdEJv",
+            "bmWIAQESTgoFYm9uZXMYBCABKAsyMy5wbHVtZS5zYW1wbGUudW5pdHkuU2tp",
+            "bm5lZE1lc2hSZW5kZXJlclVwZGF0ZS5Cb25lc0gCUgVib25lc4gBARpCCgVC",
+            "b25lcxI5CgNpZHMYASADKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9u",
+            "ZW50SWRlbnRpZmllclIDaWRzQgcKBV9tZXNoQgwKCl9yb290X2JvbmVCCAoG",
+            "X2JvbmVzSgQIBRAGIooBCiNTa2lubmVkTWVzaFJlbmRlcmVyQmxlbmRTaGFw",
+            "ZVVwZGF0ZRJFCgljb21wb25lbnQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5p",
+            "dHkuQ29tcG9uZW50SWRlbnRpZmllclIJY29tcG9uZW50EhwKB3dlaWdodHMY",
+            "AiADKAJCAhABUgd3ZWlnaHRzQhWqAhJQTFVNRS5TYW1wbGUuVW5pdHliBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -56,6 +58,7 @@ namespace PLUME.Sample.Unity {
 
   }
   #region Messages
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SkinnedMeshRendererCreate : pb::IMessage<SkinnedMeshRendererCreate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -214,7 +217,11 @@ namespace PLUME.Sample.Unity {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -236,7 +243,11 @@ namespace PLUME.Sample.Unity {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -254,6 +265,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SkinnedMeshRendererDestroy : pb::IMessage<SkinnedMeshRendererDestroy>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -412,7 +424,11 @@ namespace PLUME.Sample.Unity {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -434,7 +450,11 @@ namespace PLUME.Sample.Unity {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -452,6 +472,7 @@ namespace PLUME.Sample.Unity {
 
   }
 
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SkinnedMeshRendererUpdate : pb::IMessage<SkinnedMeshRendererUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -706,7 +727,11 @@ namespace PLUME.Sample.Unity {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -749,7 +774,11 @@ namespace PLUME.Sample.Unity {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -791,6 +820,7 @@ namespace PLUME.Sample.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static partial class Types {
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
       public sealed partial class Bones : pb::IMessage<Bones>
       #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
           , pb::IBufferMessage
@@ -935,7 +965,11 @@ namespace PLUME.Sample.Unity {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -954,7 +988,11 @@ namespace PLUME.Sample.Unity {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -979,6 +1017,7 @@ namespace PLUME.Sample.Unity {
   /// so a face rig animating every frame can be captured with zero GC allocation. Weights are packed floats in
   /// shape index order (0..blendShapeCount-1); the index is implicit.
   /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SkinnedMeshRendererBlendShapeUpdate : pb::IMessage<SkinnedMeshRendererBlendShapeUpdate>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1155,7 +1194,11 @@ namespace PLUME.Sample.Unity {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -1182,7 +1225,11 @@ namespace PLUME.Sample.Unity {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;

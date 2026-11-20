@@ -1,9 +1,11 @@
 #if USE_XRITK_2 || USE_XRITK_3
+using System;
 using System.Collections.Generic;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity.XRITK;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Scripting;
 using UnityEngine.XR.Interaction.Toolkit;
 using static PLUME.Core.Utils.SampleUtils;
@@ -31,6 +33,9 @@ namespace PLUME.Base.Module.Unity.XRITK
         private readonly Dictionary<XRBaseInteractableSafeRef, XRBaseInteractableUpdate> _updateSamples = new();
         private readonly List<XRITKInteraction> _interactionSamples = new();
 
+        // Listeners must be removed with the delegate instances that were added: a new lambda never matches.
+        private readonly Dictionary<XRBaseInteractableSafeRef, Action> _unsubscribers = new();
+
         private RecorderContext _ctx;
 
         protected override void OnStartRecording(RecorderContext ctx)
@@ -44,25 +49,44 @@ namespace PLUME.Base.Module.Unity.XRITK
         {
             base.OnStartRecordingObject(objSafeRef, ctx);
             var interactable = objSafeRef.Component;
-            interactable.hoverEntered.AddListener(args => OnHoverEntered(objSafeRef, args));
-            interactable.hoverExited.AddListener(args => OnHoverExited(objSafeRef, args));
-            interactable.selectEntered.AddListener(args => OnSelectEntered(objSafeRef, args));
-            interactable.selectExited.AddListener(args => OnSelectExited(objSafeRef, args));
-            interactable.activated.AddListener(args => OnActivateEnter(objSafeRef, args));
-            interactable.deactivated.AddListener(args => OnActivateExit(objSafeRef, args));
+            var unsubscribers = new[]
+            {
+                Subscribe(interactable.hoverEntered, args => OnHoverEntered(objSafeRef, args)),
+                Subscribe(interactable.hoverExited, args => OnHoverExited(objSafeRef, args)),
+                Subscribe(interactable.selectEntered, args => OnSelectEntered(objSafeRef, args)),
+                Subscribe(interactable.selectExited, args => OnSelectExited(objSafeRef, args)),
+                Subscribe(interactable.activated, args => OnActivateEnter(objSafeRef, args)),
+                Subscribe(interactable.deactivated, args => OnActivateExit(objSafeRef, args))
+            };
+            _unsubscribers[objSafeRef] = () =>
+            {
+                foreach (var unsubscribe in unsubscribers)
+                    unsubscribe();
+            };
+        }
+
+        protected override void OnStopRecording(RecorderContext ctx)
+        {
+            base.OnStopRecording(ctx);
+
+            foreach (var unsubscribe in _unsubscribers.Values)
+                unsubscribe();
+
+            _unsubscribers.Clear();
+        }
+
+        private static Action Subscribe<T>(UnityEvent<T> unityEvent, UnityAction<T> listener)
+        {
+            unityEvent.AddListener(listener);
+            return () => unityEvent.RemoveListener(listener);
         }
 
         protected override void OnStopRecordingObject(XRBaseInteractableSafeRef objSafeRef,
             RecorderContext ctx)
         {
             base.OnStopRecordingObject(objSafeRef, ctx);
-            var interactable = objSafeRef.Component;
-            interactable.hoverEntered.RemoveListener(args => OnHoverEntered(objSafeRef, args));
-            interactable.hoverExited.RemoveListener(args => OnHoverExited(objSafeRef, args));
-            interactable.selectEntered.RemoveListener(args => OnSelectEntered(objSafeRef, args));
-            interactable.selectExited.RemoveListener(args => OnSelectExited(objSafeRef, args));
-            interactable.activated.RemoveListener(args => OnActivateEnter(objSafeRef, args));
-            interactable.deactivated.RemoveListener(args => OnActivateExit(objSafeRef, args));
+            if (_unsubscribers.Remove(objSafeRef, out var unsubscribe))
+                unsubscribe();
         }
 
         protected override void OnObjectMarkedCreated(XRBaseInteractableSafeRef objSafeRef, RecorderContext ctx)

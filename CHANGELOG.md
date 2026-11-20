@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- LineRenderer positions rewritten from package code (e.g. XR Interaction Toolkit interactor rays) were never
+  recorded. Positions are now polled every frame on a dedicated allocation-free stream
+  (`LineRendererPositionsUpdate`), recorded only when the count changes or a position moves.
+- LineRenderer colors and widths changed from package code are now detected by polling allocation-free getters.
+- Renderer enabled state toggled from package code is now polled, so lines and meshes shown/hidden at runtime are
+  recorded.
+
 ## [2.0.0-beta]
 
 ### Changed

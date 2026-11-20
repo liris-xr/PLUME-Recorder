@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using PLUME.Core;
 using PLUME.Core.Hooks;
 using Unity.Collections;
 using UnityEngine;
@@ -83,7 +82,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(LineRendererHooks)}.{nameof(OnWidthMultiplierChanged)}",
+                HookErrors.Report($"{nameof(LineRendererHooks)}.{nameof(OnWidthMultiplierChanged)}",
                     "Failed to record a line renderer width multiplier change. The application is not affected.", e);
             }
         }
@@ -96,7 +95,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(LineRendererHooks)}.{nameof(OnWidthCurveChanged)}",
+                HookErrors.Report($"{nameof(LineRendererHooks)}.{nameof(OnWidthCurveChanged)}",
                     "Failed to record a line renderer width change. The application is not affected.", e);
             }
         }
@@ -109,7 +108,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(LineRendererHooks)}.{nameof(OnColorChanged)}",
+                HookErrors.Report($"{nameof(LineRendererHooks)}.{nameof(OnColorChanged)}",
                     "Failed to record a line renderer color change. The application is not affected.", e);
             }
         }
@@ -126,7 +125,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(LineRendererHooks)}.{nameof(OnPositionsChanged)}",
+                HookErrors.Report($"{nameof(LineRendererHooks)}.{nameof(OnPositionsChanged)}",
                     "Failed to record a line renderer positions change. The application is not affected.", e);
             }
         }

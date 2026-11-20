@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PLUME.Core;
 using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -71,7 +70,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(RendererHooks)}.{nameof(OnEnabledChanged)}",
+                HookErrors.Report($"{nameof(RendererHooks)}.{nameof(OnEnabledChanged)}",
                     "Failed to record a renderer enabled state change. The application is not affected.", e);
             }
         }
@@ -84,7 +83,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(RendererHooks)}.{nameof(OnSharedMaterialChanged)}",
+                HookErrors.Report($"{nameof(RendererHooks)}.{nameof(OnSharedMaterialChanged)}",
                     "Failed to record a shared material change. The application is not affected.", e);
             }
         }
@@ -97,7 +96,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(RendererHooks)}.{nameof(OnSharedMaterialsChanged)}",
+                HookErrors.Report($"{nameof(RendererHooks)}.{nameof(OnSharedMaterialsChanged)}",
                     "Failed to record a shared materials change. The application is not affected.", e);
             }
         }
@@ -110,7 +109,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(RendererHooks)}.{nameof(OnMaterialChanged)}",
+                HookErrors.Report($"{nameof(RendererHooks)}.{nameof(OnMaterialChanged)}",
                     "Failed to record a material change. The application is not affected.", e);
             }
         }
@@ -123,7 +122,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(RendererHooks)}.{nameof(OnMaterialsChanged)}",
+                HookErrors.Report($"{nameof(RendererHooks)}.{nameof(OnMaterialsChanged)}",
                     "Failed to record a materials change. The application is not affected.", e);
             }
         }
@@ -137,7 +136,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(RendererHooks)}.{nameof(OnPropertyBlockMaterialIndexChanged)}",
+                HookErrors.Report($"{nameof(RendererHooks)}.{nameof(OnPropertyBlockMaterialIndexChanged)}",
                     "Failed to record a per-material property block change. The application is not affected.", e);
             }
         }
@@ -150,7 +149,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(RendererHooks)}.{nameof(OnPropertyBlockChanged)}",
+                HookErrors.Report($"{nameof(RendererHooks)}.{nameof(OnPropertyBlockChanged)}",
                     "Failed to record a renderer property block change. The application is not affected.", e);
             }
         }

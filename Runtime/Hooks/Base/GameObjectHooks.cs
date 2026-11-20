@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using PLUME.Core;
 using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -35,7 +34,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(GameObjectHooks)}.{nameof(OnCreated)}",
+                HookErrors.Report($"{nameof(GameObjectHooks)}.{nameof(OnCreated)}",
                     "Failed to record a created GameObject. The application is not affected.", e);
             }
         }
@@ -48,7 +47,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(GameObjectHooks)}.{nameof(OnComponentAdded)}",
+                HookErrors.Report($"{nameof(GameObjectHooks)}.{nameof(OnComponentAdded)}",
                     "Failed to record an added component. The application is not affected.", e);
             }
         }
@@ -61,7 +60,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(GameObjectHooks)}.{nameof(OnActiveChanged)}",
+                HookErrors.Report($"{nameof(GameObjectHooks)}.{nameof(OnActiveChanged)}",
                     "Failed to record a GameObject active state change. The application is not affected.", e);
             }
         }
@@ -74,7 +73,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(GameObjectHooks)}.{nameof(OnTagChanged)}",
+                HookErrors.Report($"{nameof(GameObjectHooks)}.{nameof(OnTagChanged)}",
                     "Failed to record a GameObject tag change. The application is not affected.", e);
             }
         }

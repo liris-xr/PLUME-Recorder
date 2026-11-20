@@ -1,5 +1,4 @@
 using System;
-using PLUME.Core;
 using PLUME.Core.Hooks;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -41,7 +40,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(TransformHooks)}.{nameof(OnParentChanged)}",
+                HookErrors.Report($"{nameof(TransformHooks)}.{nameof(OnParentChanged)}",
                     "Failed to record a parent change. The application is not affected.", e);
             }
         }
@@ -54,7 +53,7 @@ namespace PLUME.Base.Hooks
             }
             catch (Exception e)
             {
-                ErrorReporter.Report($"{nameof(TransformHooks)}.{nameof(OnSiblingIndexChanged)}",
+                HookErrors.Report($"{nameof(TransformHooks)}.{nameof(OnSiblingIndexChanged)}",
                     "Failed to record a sibling index change. The application is not affected.", e);
             }
         }

@@ -60,7 +60,10 @@ namespace PLUME.Core.Recorder.Module.Frame
 
         void IRecorderModule.StartRecording(RecorderContext ctx)
         {
+            // Each record has its own clock starting at 0: times left over from a previous recording would make
+            // the elapsed time underflow and schedule billions of fixed updates.
             _lastUpdateTime = 0;
+            _lastFixedUpdateTime = 0;
             _shouldRunUpdate = true;
             _shouldSerialize = true;
 

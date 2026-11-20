@@ -27,7 +27,7 @@ namespace PLUME.Sample.Unity.UI {
             "CiNwbHVtZS9zYW1wbGUvdW5pdHkvdWkvZ3JhcGhpYy5wcm90bxIVcGx1bWUu",
             "c2FtcGxlLnVuaXR5LnVpGiRwbHVtZS9zYW1wbGUvdW5pdHkvaWRlbnRpZmll",
             "cnMucHJvdG8aIXBsdW1lL3NhbXBsZS9jb21tb24vdmVjdG9yNC5wcm90bxof",
-            "cGx1bWUvc2FtcGxlL2NvbW1vbi9jb2xvci5wcm90byKJAwoNR3JhcGhpY1Vw",
+            "cGx1bWUvc2FtcGxlL2NvbW1vbi9jb2xvci5wcm90byK0AwoNR3JhcGhpY1Vw",
             "ZGF0ZRJFCgljb21wb25lbnQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHku",
             "Q29tcG9uZW50SWRlbnRpZmllclIJY29tcG9uZW50EjUKBWNvbG9yGAIgASgL",
             "MhoucGx1bWUuc2FtcGxlLmNvbW1vbi5Db2xvckgAUgVjb2xvcogBARIqCg5y",
@@ -35,13 +35,14 @@ namespace PLUME.Sample.Unity.UI {
             "eWNhc3RfcGFkZGluZxgEIAEoCzIcLnBsdW1lLnNhbXBsZS5jb21tb24uVmVj",
             "dG9yNEgCUg5yYXljYXN0UGFkZGluZ4gBARJECghtYXRlcmlhbBgFIAEoCzIj",
             "LnBsdW1lLnNhbXBsZS51bml0eS5Bc3NldElkZW50aWZpZXJIA1IIbWF0ZXJp",
-            "YWyIAQFCCAoGX2NvbG9yQhEKD19yYXljYXN0X3RhcmdldEISChBfcmF5Y2Fz",
-            "dF9wYWRkaW5nQgsKCV9tYXRlcmlhbEIYqgIVUExVTUUuU2FtcGxlLlVuaXR5",
-            "LlVJYgZwcm90bzM="));
+            "YWyIAQESHQoHZW5hYmxlZBgGIAEoCEgEUgdlbmFibGVkiAEBQggKBl9jb2xv",
+            "ckIRCg9fcmF5Y2FzdF90YXJnZXRCEgoQX3JheWNhc3RfcGFkZGluZ0ILCglf",
+            "bWF0ZXJpYWxCCgoIX2VuYWJsZWRCGKoCFVBMVU1FLlNhbXBsZS5Vbml0eS5V",
+            "SWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.Vector4Reflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.GraphicUpdate), global::PLUME.Sample.Unity.UI.GraphicUpdate.Parser, new[]{ "Component", "Color", "RaycastTarget", "RaycastPadding", "Material" }, new[]{ "Color", "RaycastTarget", "RaycastPadding", "Material" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.GraphicUpdate), global::PLUME.Sample.Unity.UI.GraphicUpdate.Parser, new[]{ "Component", "Color", "RaycastTarget", "RaycastPadding", "Material", "Enabled" }, new[]{ "Color", "RaycastTarget", "RaycastPadding", "Material", "Enabled" }, null, null, null)
           }));
     }
     #endregion
@@ -90,6 +91,7 @@ namespace PLUME.Sample.Unity.UI {
       raycastTarget_ = other.raycastTarget_;
       raycastPadding_ = other.raycastPadding_ != null ? other.raycastPadding_.Clone() : null;
       material_ = other.material_ != null ? other.material_.Clone() : null;
+      enabled_ = other.enabled_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -174,6 +176,33 @@ namespace PLUME.Sample.Unity.UI {
       }
     }
 
+    /// <summary>Field number for the "enabled" field.</summary>
+    public const int EnabledFieldNumber = 6;
+    private readonly static bool EnabledDefaultValue = false;
+
+    private bool enabled_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Enabled {
+      get { if ((_hasBits0 & 2) != 0) { return enabled_; } else { return EnabledDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        enabled_ = value;
+      }
+    }
+    /// <summary>Gets whether the "enabled" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasEnabled {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "enabled" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearEnabled() {
+      _hasBits0 &= ~2;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -194,6 +223,7 @@ namespace PLUME.Sample.Unity.UI {
       if (RaycastTarget != other.RaycastTarget) return false;
       if (!object.Equals(RaycastPadding, other.RaycastPadding)) return false;
       if (!object.Equals(Material, other.Material)) return false;
+      if (Enabled != other.Enabled) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -206,6 +236,7 @@ namespace PLUME.Sample.Unity.UI {
       if (HasRaycastTarget) hash ^= RaycastTarget.GetHashCode();
       if (raycastPadding_ != null) hash ^= RaycastPadding.GetHashCode();
       if (material_ != null) hash ^= Material.GetHashCode();
+      if (HasEnabled) hash ^= Enabled.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -244,6 +275,10 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(42);
         output.WriteMessage(Material);
       }
+      if (HasEnabled) {
+        output.WriteRawTag(48);
+        output.WriteBool(Enabled);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -274,6 +309,10 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(42);
         output.WriteMessage(Material);
       }
+      if (HasEnabled) {
+        output.WriteRawTag(48);
+        output.WriteBool(Enabled);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -298,6 +337,9 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (material_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Material);
+      }
+      if (HasEnabled) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -337,6 +379,9 @@ namespace PLUME.Sample.Unity.UI {
           Material = new global::PLUME.Sample.Unity.AssetIdentifier();
         }
         Material.MergeFrom(other.Material);
+      }
+      if (other.HasEnabled) {
+        Enabled = other.Enabled;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -389,6 +434,10 @@ namespace PLUME.Sample.Unity.UI {
             input.ReadMessage(Material);
             break;
           }
+          case 48: {
+            Enabled = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -438,6 +487,10 @@ namespace PLUME.Sample.Unity.UI {
               Material = new global::PLUME.Sample.Unity.AssetIdentifier();
             }
             input.ReadMessage(Material);
+            break;
+          }
+          case 48: {
+            Enabled = input.ReadBool();
             break;
           }
         }

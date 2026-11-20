@@ -28,6 +28,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - LineRenderer colors and widths changed from package code are now detected by polling allocation-free getters.
 - Renderer enabled state toggled from package code is now polled, so lines and meshes shown/hidden at runtime are
   recorded.
+- Duplicated scene assets were recorded with the same scene GUID (copied SceneGuidRegistry), so a player could not
+  tell that the scene changed, and every duplicate after the first was recorded with the first one's name and path.
+  Each scene asset now gets a unique GUID: the first scene seen keeps its registry GUID, later duplicates get a GUID
+  derived from it and their path. Object GUIDs of duplicated scenes still collide; regenerate the registry of
+  duplicated scenes to fix them.
 
 ## [2.0.0-beta]
 

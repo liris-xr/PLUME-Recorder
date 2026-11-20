@@ -17,7 +17,9 @@ namespace PLUME.Core.Object.SafeRef
     public class SafeRefProvider
     {
         private readonly Dictionary<int, IObjectSafeRef> _cachedObjectRefs = new();
-        private readonly Dictionary<string, SceneSafeRef> _cachedSceneRefs = new();
+        // Keyed by registry GUID and scene path: duplicated scene assets share their registry GUID, and keying by it
+        // alone returned the first scene's ref (and name) for every later duplicate.
+        private readonly Dictionary<(string, string), SceneSafeRef> _cachedSceneRefs = new();
 
         public SceneSafeRef GetOrCreateSceneSafeRef(Scene scene)
         {
@@ -27,13 +29,14 @@ namespace PLUME.Core.Object.SafeRef
             }
 
             var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(scene);
-            var sceneGuid = Guid.FromString(sceneGuidRegistry.SceneGuid);
+            var cacheKey = (sceneGuidRegistry.SceneGuid, SceneGuidResolver.GetSceneKey(scene));
 
-            if (_cachedSceneRefs.TryGetValue(sceneGuidRegistry.SceneGuid, out var cachedRef))
+            if (_cachedSceneRefs.TryGetValue(cacheKey, out var cachedRef))
                 return cachedRef;
 
+            var sceneGuid = Guid.FromString(SceneGuidResolver.Resolve(cacheKey.Item1, cacheKey.Item2));
             var sceneSafeRef = new SceneSafeRef(scene, sceneGuid, scene.path);
-            _cachedSceneRefs[sceneGuidRegistry.SceneGuid] = sceneSafeRef;
+            _cachedSceneRefs[cacheKey] = sceneSafeRef;
             return sceneSafeRef;
         }
 

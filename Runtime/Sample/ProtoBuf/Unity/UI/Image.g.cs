@@ -30,22 +30,38 @@ namespace PLUME.Sample.Unity.UI {
             "dW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyUgljb21wb25l",
             "bnQiVQoMSW1hZ2VEZXN0cm95EkUKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1l",
             "LnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyUgljb21wb25lbnQi",
-            "5QEKC0ltYWdlVXBkYXRlEkUKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNh",
+            "iAYKC0ltYWdlVXBkYXRlEkUKCWNvbXBvbmVudBgBIAEoCzInLnBsdW1lLnNh",
             "bXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyUgljb21wb25lbnQSQAoG",
             "c3ByaXRlGAIgASgLMiMucGx1bWUuc2FtcGxlLnVuaXR5LkFzc2V0SWRlbnRp",
             "ZmllckgAUgZzcHJpdGWIAQESOQoEdHlwZRgDIAEoDjIgLnBsdW1lLnNhbXBs",
-            "ZS51bml0eS51aS5JbWFnZVR5cGVIAVIEdHlwZYgBAUIJCgdfc3ByaXRlQgcK",
-            "BV90eXBlKosBCglJbWFnZVR5cGUSFQoRSU1BR0VfVFlQRV9TSU1QTEUQABIj",
-            "ChZJTUFHRV9UWVBFX1VOU1BFQ0lGSUVEEP///////////wESFQoRSU1BR0Vf",
-            "VFlQRV9TTElDRUQQARIUChBJTUFHRV9UWVBFX1RJTEVEEAISFQoRSU1BR0Vf",
-            "VFlQRV9GSUxMRUQQA0IYqgIVUExVTUUuU2FtcGxlLlVuaXR5LlVJYgZwcm90",
-            "bzM="));
+            "ZS51bml0eS51aS5JbWFnZVR5cGVIAVIEdHlwZYgBARIsCg9wcmVzZXJ2ZV9h",
+            "c3BlY3QYBCABKAhIAlIOcHJlc2VydmVBc3BlY3SIAQESJAoLZmlsbF9jZW50",
+            "ZXIYBSABKAhIA1IKZmlsbENlbnRlcogBARJMCgtmaWxsX21ldGhvZBgGIAEo",
+            "DjImLnBsdW1lLnNhbXBsZS51bml0eS51aS5JbWFnZUZpbGxNZXRob2RIBFIK",
+            "ZmlsbE1ldGhvZIgBARIkCgtmaWxsX2Ftb3VudBgHIAEoAkgFUgpmaWxsQW1v",
+            "dW50iAEBEioKDmZpbGxfY2xvY2t3aXNlGAggASgISAZSDWZpbGxDbG9ja3dp",
+            "c2WIAQESJAoLZmlsbF9vcmlnaW4YCSABKAVIB1IKZmlsbE9yaWdpbogBARIr",
+            "Cg91c2Vfc3ByaXRlX21lc2gYCiABKAhICFINdXNlU3ByaXRlTWVzaIgBARJA",
+            "ChpwaXhlbHNfcGVyX3VuaXRfbXVsdGlwbGllchgLIAEoAkgJUhdwaXhlbHNQ",
+            "ZXJVbml0TXVsdGlwbGllcogBAUIJCgdfc3ByaXRlQgcKBV90eXBlQhIKEF9w",
+            "cmVzZXJ2ZV9hc3BlY3RCDgoMX2ZpbGxfY2VudGVyQg4KDF9maWxsX21ldGhv",
+            "ZEIOCgxfZmlsbF9hbW91bnRCEQoPX2ZpbGxfY2xvY2t3aXNlQg4KDF9maWxs",
+            "X29yaWdpbkISChBfdXNlX3Nwcml0ZV9tZXNoQh0KG19waXhlbHNfcGVyX3Vu",
+            "aXRfbXVsdGlwbGllciqLAQoJSW1hZ2VUeXBlEhUKEUlNQUdFX1RZUEVfU0lN",
+            "UExFEAASIwoWSU1BR0VfVFlQRV9VTlNQRUNJRklFRBD///////////8BEhUK",
+            "EUlNQUdFX1RZUEVfU0xJQ0VEEAESFAoQSU1BR0VfVFlQRV9USUxFRBACEhUK",
+            "EUlNQUdFX1RZUEVfRklMTEVEEAMquAEKD0ltYWdlRmlsbE1ldGhvZBIgChxJ",
+            "TUFHRV9GSUxMX01FVEhPRF9IT1JJWk9OVEFMEAASHgoaSU1BR0VfRklMTF9N",
+            "RVRIT0RfVkVSVElDQUwQARIfChtJTUFHRV9GSUxMX01FVEhPRF9SQURJQUxf",
+            "OTAQAhIgChxJTUFHRV9GSUxMX01FVEhPRF9SQURJQUxfMTgwEAMSIAocSU1B",
+            "R0VfRklMTF9NRVRIT0RfUkFESUFMXzM2MBAEQhiqAhVQTFVNRS5TYW1wbGUu",
+            "VW5pdHkuVUliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.ImageType), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.ImageType), typeof(global::PLUME.Sample.Unity.UI.ImageFillMethod), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageCreate), global::PLUME.Sample.Unity.UI.ImageCreate.Parser, new[]{ "Component" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageDestroy), global::PLUME.Sample.Unity.UI.ImageDestroy.Parser, new[]{ "Component" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageUpdate), global::PLUME.Sample.Unity.UI.ImageUpdate.Parser, new[]{ "Component", "Sprite", "Type" }, new[]{ "Sprite", "Type" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.ImageUpdate), global::PLUME.Sample.Unity.UI.ImageUpdate.Parser, new[]{ "Component", "Sprite", "Type", "PreserveAspect", "FillCenter", "FillMethod", "FillAmount", "FillClockwise", "FillOrigin", "UseSpriteMesh", "PixelsPerUnitMultiplier" }, new[]{ "Sprite", "Type", "PreserveAspect", "FillCenter", "FillMethod", "FillAmount", "FillClockwise", "FillOrigin", "UseSpriteMesh", "PixelsPerUnitMultiplier" }, null, null, null)
           }));
     }
     #endregion
@@ -58,6 +74,14 @@ namespace PLUME.Sample.Unity.UI {
     [pbr::OriginalName("IMAGE_TYPE_SLICED")] Sliced = 1,
     [pbr::OriginalName("IMAGE_TYPE_TILED")] Tiled = 2,
     [pbr::OriginalName("IMAGE_TYPE_FILLED")] Filled = 3,
+  }
+
+  public enum ImageFillMethod {
+    [pbr::OriginalName("IMAGE_FILL_METHOD_HORIZONTAL")] Horizontal = 0,
+    [pbr::OriginalName("IMAGE_FILL_METHOD_VERTICAL")] Vertical = 1,
+    [pbr::OriginalName("IMAGE_FILL_METHOD_RADIAL_90")] Radial90 = 2,
+    [pbr::OriginalName("IMAGE_FILL_METHOD_RADIAL_180")] Radial180 = 3,
+    [pbr::OriginalName("IMAGE_FILL_METHOD_RADIAL_360")] Radial360 = 4,
   }
 
   #endregion
@@ -517,6 +541,14 @@ namespace PLUME.Sample.Unity.UI {
       component_ = other.component_ != null ? other.component_.Clone() : null;
       sprite_ = other.sprite_ != null ? other.sprite_.Clone() : null;
       type_ = other.type_;
+      preserveAspect_ = other.preserveAspect_;
+      fillCenter_ = other.fillCenter_;
+      fillMethod_ = other.fillMethod_;
+      fillAmount_ = other.fillAmount_;
+      fillClockwise_ = other.fillClockwise_;
+      fillOrigin_ = other.fillOrigin_;
+      useSpriteMesh_ = other.useSpriteMesh_;
+      pixelsPerUnitMultiplier_ = other.pixelsPerUnitMultiplier_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -577,6 +609,225 @@ namespace PLUME.Sample.Unity.UI {
       _hasBits0 &= ~1;
     }
 
+    /// <summary>Field number for the "preserve_aspect" field.</summary>
+    public const int PreserveAspectFieldNumber = 4;
+    private readonly static bool PreserveAspectDefaultValue = false;
+
+    private bool preserveAspect_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool PreserveAspect {
+      get { if ((_hasBits0 & 2) != 0) { return preserveAspect_; } else { return PreserveAspectDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        preserveAspect_ = value;
+      }
+    }
+    /// <summary>Gets whether the "preserve_aspect" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasPreserveAspect {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "preserve_aspect" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearPreserveAspect() {
+      _hasBits0 &= ~2;
+    }
+
+    /// <summary>Field number for the "fill_center" field.</summary>
+    public const int FillCenterFieldNumber = 5;
+    private readonly static bool FillCenterDefaultValue = false;
+
+    private bool fillCenter_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool FillCenter {
+      get { if ((_hasBits0 & 4) != 0) { return fillCenter_; } else { return FillCenterDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        fillCenter_ = value;
+      }
+    }
+    /// <summary>Gets whether the "fill_center" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFillCenter {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "fill_center" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFillCenter() {
+      _hasBits0 &= ~4;
+    }
+
+    /// <summary>Field number for the "fill_method" field.</summary>
+    public const int FillMethodFieldNumber = 6;
+    private readonly static global::PLUME.Sample.Unity.UI.ImageFillMethod FillMethodDefaultValue = global::PLUME.Sample.Unity.UI.ImageFillMethod.Horizontal;
+
+    private global::PLUME.Sample.Unity.UI.ImageFillMethod fillMethod_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Unity.UI.ImageFillMethod FillMethod {
+      get { if ((_hasBits0 & 8) != 0) { return fillMethod_; } else { return FillMethodDefaultValue; } }
+      set {
+        _hasBits0 |= 8;
+        fillMethod_ = value;
+      }
+    }
+    /// <summary>Gets whether the "fill_method" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFillMethod {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "fill_method" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFillMethod() {
+      _hasBits0 &= ~8;
+    }
+
+    /// <summary>Field number for the "fill_amount" field.</summary>
+    public const int FillAmountFieldNumber = 7;
+    private readonly static float FillAmountDefaultValue = 0F;
+
+    private float fillAmount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float FillAmount {
+      get { if ((_hasBits0 & 16) != 0) { return fillAmount_; } else { return FillAmountDefaultValue; } }
+      set {
+        _hasBits0 |= 16;
+        fillAmount_ = value;
+      }
+    }
+    /// <summary>Gets whether the "fill_amount" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFillAmount {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "fill_amount" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFillAmount() {
+      _hasBits0 &= ~16;
+    }
+
+    /// <summary>Field number for the "fill_clockwise" field.</summary>
+    public const int FillClockwiseFieldNumber = 8;
+    private readonly static bool FillClockwiseDefaultValue = false;
+
+    private bool fillClockwise_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool FillClockwise {
+      get { if ((_hasBits0 & 32) != 0) { return fillClockwise_; } else { return FillClockwiseDefaultValue; } }
+      set {
+        _hasBits0 |= 32;
+        fillClockwise_ = value;
+      }
+    }
+    /// <summary>Gets whether the "fill_clockwise" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFillClockwise {
+      get { return (_hasBits0 & 32) != 0; }
+    }
+    /// <summary>Clears the value of the "fill_clockwise" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFillClockwise() {
+      _hasBits0 &= ~32;
+    }
+
+    /// <summary>Field number for the "fill_origin" field.</summary>
+    public const int FillOriginFieldNumber = 9;
+    private readonly static int FillOriginDefaultValue = 0;
+
+    private int fillOrigin_;
+    /// <summary>
+    /// Meaning depends on fill_method (Image.OriginHorizontal, OriginVertical, Origin90, Origin180 or Origin360).
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int FillOrigin {
+      get { if ((_hasBits0 & 64) != 0) { return fillOrigin_; } else { return FillOriginDefaultValue; } }
+      set {
+        _hasBits0 |= 64;
+        fillOrigin_ = value;
+      }
+    }
+    /// <summary>Gets whether the "fill_origin" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFillOrigin {
+      get { return (_hasBits0 & 64) != 0; }
+    }
+    /// <summary>Clears the value of the "fill_origin" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFillOrigin() {
+      _hasBits0 &= ~64;
+    }
+
+    /// <summary>Field number for the "use_sprite_mesh" field.</summary>
+    public const int UseSpriteMeshFieldNumber = 10;
+    private readonly static bool UseSpriteMeshDefaultValue = false;
+
+    private bool useSpriteMesh_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool UseSpriteMesh {
+      get { if ((_hasBits0 & 128) != 0) { return useSpriteMesh_; } else { return UseSpriteMeshDefaultValue; } }
+      set {
+        _hasBits0 |= 128;
+        useSpriteMesh_ = value;
+      }
+    }
+    /// <summary>Gets whether the "use_sprite_mesh" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasUseSpriteMesh {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "use_sprite_mesh" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearUseSpriteMesh() {
+      _hasBits0 &= ~128;
+    }
+
+    /// <summary>Field number for the "pixels_per_unit_multiplier" field.</summary>
+    public const int PixelsPerUnitMultiplierFieldNumber = 11;
+    private readonly static float PixelsPerUnitMultiplierDefaultValue = 0F;
+
+    private float pixelsPerUnitMultiplier_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float PixelsPerUnitMultiplier {
+      get { if ((_hasBits0 & 256) != 0) { return pixelsPerUnitMultiplier_; } else { return PixelsPerUnitMultiplierDefaultValue; } }
+      set {
+        _hasBits0 |= 256;
+        pixelsPerUnitMultiplier_ = value;
+      }
+    }
+    /// <summary>Gets whether the "pixels_per_unit_multiplier" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasPixelsPerUnitMultiplier {
+      get { return (_hasBits0 & 256) != 0; }
+    }
+    /// <summary>Clears the value of the "pixels_per_unit_multiplier" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearPixelsPerUnitMultiplier() {
+      _hasBits0 &= ~256;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -595,6 +846,14 @@ namespace PLUME.Sample.Unity.UI {
       if (!object.Equals(Component, other.Component)) return false;
       if (!object.Equals(Sprite, other.Sprite)) return false;
       if (Type != other.Type) return false;
+      if (PreserveAspect != other.PreserveAspect) return false;
+      if (FillCenter != other.FillCenter) return false;
+      if (FillMethod != other.FillMethod) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(FillAmount, other.FillAmount)) return false;
+      if (FillClockwise != other.FillClockwise) return false;
+      if (FillOrigin != other.FillOrigin) return false;
+      if (UseSpriteMesh != other.UseSpriteMesh) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PixelsPerUnitMultiplier, other.PixelsPerUnitMultiplier)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -605,6 +864,14 @@ namespace PLUME.Sample.Unity.UI {
       if (component_ != null) hash ^= Component.GetHashCode();
       if (sprite_ != null) hash ^= Sprite.GetHashCode();
       if (HasType) hash ^= Type.GetHashCode();
+      if (HasPreserveAspect) hash ^= PreserveAspect.GetHashCode();
+      if (HasFillCenter) hash ^= FillCenter.GetHashCode();
+      if (HasFillMethod) hash ^= FillMethod.GetHashCode();
+      if (HasFillAmount) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(FillAmount);
+      if (HasFillClockwise) hash ^= FillClockwise.GetHashCode();
+      if (HasFillOrigin) hash ^= FillOrigin.GetHashCode();
+      if (HasUseSpriteMesh) hash ^= UseSpriteMesh.GetHashCode();
+      if (HasPixelsPerUnitMultiplier) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PixelsPerUnitMultiplier);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -635,6 +902,38 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(24);
         output.WriteEnum((int) Type);
       }
+      if (HasPreserveAspect) {
+        output.WriteRawTag(32);
+        output.WriteBool(PreserveAspect);
+      }
+      if (HasFillCenter) {
+        output.WriteRawTag(40);
+        output.WriteBool(FillCenter);
+      }
+      if (HasFillMethod) {
+        output.WriteRawTag(48);
+        output.WriteEnum((int) FillMethod);
+      }
+      if (HasFillAmount) {
+        output.WriteRawTag(61);
+        output.WriteFloat(FillAmount);
+      }
+      if (HasFillClockwise) {
+        output.WriteRawTag(64);
+        output.WriteBool(FillClockwise);
+      }
+      if (HasFillOrigin) {
+        output.WriteRawTag(72);
+        output.WriteInt32(FillOrigin);
+      }
+      if (HasUseSpriteMesh) {
+        output.WriteRawTag(80);
+        output.WriteBool(UseSpriteMesh);
+      }
+      if (HasPixelsPerUnitMultiplier) {
+        output.WriteRawTag(93);
+        output.WriteFloat(PixelsPerUnitMultiplier);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -657,6 +956,38 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(24);
         output.WriteEnum((int) Type);
       }
+      if (HasPreserveAspect) {
+        output.WriteRawTag(32);
+        output.WriteBool(PreserveAspect);
+      }
+      if (HasFillCenter) {
+        output.WriteRawTag(40);
+        output.WriteBool(FillCenter);
+      }
+      if (HasFillMethod) {
+        output.WriteRawTag(48);
+        output.WriteEnum((int) FillMethod);
+      }
+      if (HasFillAmount) {
+        output.WriteRawTag(61);
+        output.WriteFloat(FillAmount);
+      }
+      if (HasFillClockwise) {
+        output.WriteRawTag(64);
+        output.WriteBool(FillClockwise);
+      }
+      if (HasFillOrigin) {
+        output.WriteRawTag(72);
+        output.WriteInt32(FillOrigin);
+      }
+      if (HasUseSpriteMesh) {
+        output.WriteRawTag(80);
+        output.WriteBool(UseSpriteMesh);
+      }
+      if (HasPixelsPerUnitMultiplier) {
+        output.WriteRawTag(93);
+        output.WriteFloat(PixelsPerUnitMultiplier);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -675,6 +1006,30 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasType) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+      }
+      if (HasPreserveAspect) {
+        size += 1 + 1;
+      }
+      if (HasFillCenter) {
+        size += 1 + 1;
+      }
+      if (HasFillMethod) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) FillMethod);
+      }
+      if (HasFillAmount) {
+        size += 1 + 4;
+      }
+      if (HasFillClockwise) {
+        size += 1 + 1;
+      }
+      if (HasFillOrigin) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FillOrigin);
+      }
+      if (HasUseSpriteMesh) {
+        size += 1 + 1;
+      }
+      if (HasPixelsPerUnitMultiplier) {
+        size += 1 + 4;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -702,6 +1057,30 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (other.HasType) {
         Type = other.Type;
+      }
+      if (other.HasPreserveAspect) {
+        PreserveAspect = other.PreserveAspect;
+      }
+      if (other.HasFillCenter) {
+        FillCenter = other.FillCenter;
+      }
+      if (other.HasFillMethod) {
+        FillMethod = other.FillMethod;
+      }
+      if (other.HasFillAmount) {
+        FillAmount = other.FillAmount;
+      }
+      if (other.HasFillClockwise) {
+        FillClockwise = other.FillClockwise;
+      }
+      if (other.HasFillOrigin) {
+        FillOrigin = other.FillOrigin;
+      }
+      if (other.HasUseSpriteMesh) {
+        UseSpriteMesh = other.UseSpriteMesh;
+      }
+      if (other.HasPixelsPerUnitMultiplier) {
+        PixelsPerUnitMultiplier = other.PixelsPerUnitMultiplier;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -740,6 +1119,38 @@ namespace PLUME.Sample.Unity.UI {
             Type = (global::PLUME.Sample.Unity.UI.ImageType) input.ReadEnum();
             break;
           }
+          case 32: {
+            PreserveAspect = input.ReadBool();
+            break;
+          }
+          case 40: {
+            FillCenter = input.ReadBool();
+            break;
+          }
+          case 48: {
+            FillMethod = (global::PLUME.Sample.Unity.UI.ImageFillMethod) input.ReadEnum();
+            break;
+          }
+          case 61: {
+            FillAmount = input.ReadFloat();
+            break;
+          }
+          case 64: {
+            FillClockwise = input.ReadBool();
+            break;
+          }
+          case 72: {
+            FillOrigin = input.ReadInt32();
+            break;
+          }
+          case 80: {
+            UseSpriteMesh = input.ReadBool();
+            break;
+          }
+          case 93: {
+            PixelsPerUnitMultiplier = input.ReadFloat();
+            break;
+          }
         }
       }
     #endif
@@ -775,6 +1186,38 @@ namespace PLUME.Sample.Unity.UI {
           }
           case 24: {
             Type = (global::PLUME.Sample.Unity.UI.ImageType) input.ReadEnum();
+            break;
+          }
+          case 32: {
+            PreserveAspect = input.ReadBool();
+            break;
+          }
+          case 40: {
+            FillCenter = input.ReadBool();
+            break;
+          }
+          case 48: {
+            FillMethod = (global::PLUME.Sample.Unity.UI.ImageFillMethod) input.ReadEnum();
+            break;
+          }
+          case 61: {
+            FillAmount = input.ReadFloat();
+            break;
+          }
+          case 64: {
+            FillClockwise = input.ReadBool();
+            break;
+          }
+          case 72: {
+            FillOrigin = input.ReadInt32();
+            break;
+          }
+          case 80: {
+            UseSpriteMesh = input.ReadBool();
+            break;
+          }
+          case 93: {
+            PixelsPerUnitMultiplier = input.ReadFloat();
             break;
           }
         }

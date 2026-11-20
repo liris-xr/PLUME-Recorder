@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using PLUME.Core.Object;
 using PLUME.Core.Object.SafeRef;
-using Unity.Collections;
 
 namespace PLUME.Core.Recorder.Module.Frame
 {
@@ -14,7 +13,8 @@ namespace PLUME.Core.Recorder.Module.Frame
     {
         private readonly List<TObjectSafeRef> _recordedObjects = new();
 
-        private readonly HashSet<TObjectIdentifier> _recordedObjectsIdentifier = new(1000);
+        // Index of each recorded object in _recordedObjects, for constant-time lookup and removal.
+        private readonly Dictionary<TObjectIdentifier, int> _recordedObjectIndices = new(1000);
 
         protected IReadOnlyList<TObjectSafeRef> RecordedObjects => _recordedObjects;
 
@@ -23,12 +23,15 @@ namespace PLUME.Core.Recorder.Module.Frame
         /// </summary>
         private readonly List<TObjectSafeRef> _objectsToStopRecording = new();
 
+        private readonly HashSet<TObjectIdentifier> _objectsToStopRecordingIdentifiers = new();
+
         protected override void OnStopRecording(RecorderContext ctx)
         {
             base.OnStopRecording(ctx);
             _recordedObjects.Clear();
-            _recordedObjectsIdentifier.Clear();
+            _recordedObjectIndices.Clear();
             _objectsToStopRecording.Clear();
+            _objectsToStopRecordingIdentifiers.Clear();
         }
 
         public bool StartRecordingObject(IObjectSafeRef objSafeRef, bool markCreated, RecorderContext ctx)
@@ -62,7 +65,7 @@ namespace PLUME.Core.Recorder.Module.Frame
                 return false;
 
             // If we fail to add the object, this means that it is already being recorded.
-            if (!_recordedObjectsIdentifier.Add(objSafeRef.Identifier))
+            if (!_recordedObjectIndices.TryAdd(objSafeRef.Identifier, _recordedObjects.Count))
                 return false;
 
             _recordedObjects.Add(objSafeRef);
@@ -74,8 +77,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             catch (Exception e)
             {
                 // Roll back so that the module never iterates over a half-registered object.
-                _recordedObjectsIdentifier.Remove(objSafeRef.Identifier);
-                _recordedObjects.RemoveSwapBack(objSafeRef);
+                RemoveRecordedObject(objSafeRef.Identifier);
                 ModuleFaults.ReportObjectFailure(this, nameof(OnStartRecordingObject), e);
                 return false;
             }
@@ -101,7 +103,8 @@ namespace PLUME.Core.Recorder.Module.Frame
             CheckIsRecording(ctx);
 
             // Not recorded, or already stopping in this frame.
-            if (!_recordedObjectsIdentifier.Contains(objSafeRef.Identifier) || _objectsToStopRecording.Contains(objSafeRef))
+            if (!_recordedObjectIndices.ContainsKey(objSafeRef.Identifier) ||
+                !_objectsToStopRecordingIdentifiers.Add(objSafeRef.Identifier))
                 return false;
 
             // Deferred removal (after frame data collection)
@@ -122,14 +125,24 @@ namespace PLUME.Core.Recorder.Module.Frame
             return true;
         }
 
+        void IObjectRecorderModule.StopRecordingDestroyedObjects(RecorderContext ctx)
+        {
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < _recordedObjects.Count; i++)
+            {
+                var objSafeRef = _recordedObjects[i];
+                if (objSafeRef.Object == null)
+                    StopRecordingObject(objSafeRef, true, ctx);
+            }
+        }
+
         protected override void AfterCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
             base.AfterCollectFrameData(frameInfo, ctx);
 
             foreach (var toRemove in _objectsToStopRecording)
             {
-                _recordedObjectsIdentifier.Remove(toRemove.Identifier);
-                _recordedObjects.RemoveSwapBack(toRemove);
+                RemoveRecordedObject(toRemove.Identifier);
 
                 try
                 {
@@ -142,11 +155,37 @@ namespace PLUME.Core.Recorder.Module.Frame
             }
 
             _objectsToStopRecording.Clear();
+            _objectsToStopRecordingIdentifiers.Clear();
+        }
+
+        private void RemoveRecordedObject(TObjectIdentifier identifier)
+        {
+            if (!_recordedObjectIndices.Remove(identifier, out var index))
+                return;
+
+            // Swap back: move the last object into the removed one's place.
+            var lastIndex = _recordedObjects.Count - 1;
+            if (index != lastIndex)
+            {
+                var last = _recordedObjects[lastIndex];
+                _recordedObjects[index] = last;
+                _recordedObjectIndices[last.Identifier] = index;
+            }
+
+            _recordedObjects.RemoveAt(lastIndex);
+        }
+
+        /// <summary>
+        /// Whether the object was asked to stop being recorded during this frame (it is until the frame is collected).
+        /// </summary>
+        protected bool IsStoppingRecordingObject(TObjectIdentifier identifier)
+        {
+            return _objectsToStopRecordingIdentifiers.Contains(identifier);
         }
 
         public bool IsRecordingObject(TObjectSafeRef objSafeRef)
         {
-            return _recordedObjectsIdentifier.Contains(objSafeRef.Identifier);
+            return _recordedObjectIndices.ContainsKey(objSafeRef.Identifier);
         }
 
         protected void CheckIsRecording(RecorderContext ctx)

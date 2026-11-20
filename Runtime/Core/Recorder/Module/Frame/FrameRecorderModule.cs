@@ -291,6 +291,7 @@ namespace PLUME.Core.Recorder.Module.Frame
         {
             var frame = new FrameInfo(timestamp, frameNumber);
 
+            ctx.StopRecordingDestroyedObjectsIfRequested();
             RunPhase(Phase.BeforeEnqueueFrameData, 0, frame, ctx);
             RunPhase(Phase.EnqueueFrameData, 0, frame, ctx);
             _frameQueue.Add(frame);

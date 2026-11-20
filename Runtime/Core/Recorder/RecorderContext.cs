@@ -19,6 +19,8 @@ namespace PLUME.Core.Recorder
         public Record CurrentRecord { get; internal set; }
         internal ModuleFaults Faults { get; } = new();
 
+        private bool _destroyedObjectsSweepRequested;
+
         /// <summary>
         /// Whether the given module should record: the recorder is recording and the module was not disabled after
         /// a failure. Module event handlers (hooks, Unity callbacks) must check this rather than
@@ -83,6 +85,47 @@ namespace PLUME.Core.Recorder
                 if (component is Transform)
                 {
                     StopRecordingObjectInternal(componentSafeRef.GameObjectSafeRef, markDestroyed);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Asks for <see cref="StopRecordingDestroyedObjects"/> before the next frame is recorded, e.g. when an object
+        /// destroyed without the hooks seeing it is noticed during a frame.
+        /// </summary>
+        internal void RequestDestroyedObjectsSweep()
+        {
+            _destroyedObjectsSweepRequested = true;
+        }
+
+        internal void StopRecordingDestroyedObjectsIfRequested()
+        {
+            if (_destroyedObjectsSweepRequested)
+                StopRecordingDestroyedObjects();
+        }
+
+        /// <summary>
+        /// Objects destroyed without the hooks seeing it (scene unload, engine, unhooked code) are still recorded:
+        /// stops recording them, marked destroyed. Visits every recorded object: only run when some were destroyed.
+        /// </summary>
+        internal void StopRecordingDestroyedObjects()
+        {
+            _destroyedObjectsSweepRequested = false;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < Modules.Count; i++)
+            {
+                var module = Modules[i];
+                if (module is not IObjectRecorderModule objectRecorderModule || Faults.IsDisabled(module))
+                    continue;
+
+                try
+                {
+                    objectRecorderModule.StopRecordingDestroyedObjects(this);
+                }
+                catch (System.Exception e)
+                {
+                    ModuleFaults.ReportObjectFailure(module, nameof(StopRecordingDestroyedObjects), e);
                 }
             }
         }

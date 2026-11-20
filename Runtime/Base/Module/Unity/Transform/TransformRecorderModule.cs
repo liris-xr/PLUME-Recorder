@@ -22,6 +22,7 @@ namespace PLUME.Base.Module.Unity.Transform
         
         private NativeHashMap<ComponentIdentifier, int> _identifierToIndex;
         private NativeList<TransformState> _alignedStates;
+        private NativeQueue<int> _invalidIndices;
 
         private TransformPositionStateUpdater _transformPositionStateUpdater;
         
@@ -46,6 +47,7 @@ namespace PLUME.Base.Module.Unity.Transform
 
             _identifierToIndex = new NativeHashMap<ComponentIdentifier, int>(1000, Allocator.Persistent);
             _alignedStates = new NativeList<TransformState>(1000, Allocator.Persistent);
+            _invalidIndices = new NativeQueue<int>(Allocator.Persistent);
 
             TransformHooks.OnParentChanged += (t, parent) => OnParentChanged(t, parent, ctx);
             TransformHooks.OnSiblingIndexChanged += (t, siblingIdx) => OnSiblingIndexChanged(t, siblingIdx, ctx);
@@ -62,6 +64,14 @@ namespace PLUME.Base.Module.Unity.Transform
             // shortcut: if AddComponent then fails without replacing it, the transform stops being recorded. Unity only
             // refuses conflicting components, which a GameObject without RectTransform hardly has; restart it if seen.
             RemoveFromArrays(tSafeRef);
+
+            // Stopped or destroyed during this frame: its successor is not recorded in its place.
+            if (IsStoppingRecordingObject(tSafeRef.Identifier))
+            {
+                _transformByGameObject.Remove(go.GetInstanceID());
+                return;
+            }
+
             StopRecordingObject(tSafeRef, false, ctx);
         }
 
@@ -117,6 +127,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _transformAccessArray.Dispose();
             _identifierToIndex.Dispose();
             _alignedStates.Dispose();
+            _invalidIndices.Dispose();
         }
 
         protected override void OnObjectMarkedCreated(TransformSafeRef tSafeRef, RecorderContext ctx)
@@ -262,7 +273,15 @@ namespace PLUME.Base.Module.Unity.Transform
             for (var i = 0; i < RecordedComponents.Count; i++)
                 WarnIfReplacedOutsideHooks(RecordedComponents[i]);
 
-            _transformPositionStateUpdater.UpdatePositionStates(_alignedStates, _transformAccessArray);
+            _transformPositionStateUpdater.UpdatePositionStates(_alignedStates, _transformAccessArray, _invalidIndices);
+
+            // Every destroyed GameObject has a destroyed transform: one destroyed without the hooks seeing it is still
+            // recorded, in every module.
+            while (_invalidIndices.TryDequeue(out var invalidIndex))
+            {
+                if (!IsStoppingRecordingObject(_transformAccessArray.GetAlignedIdentifiers()[invalidIndex]))
+                    ctx.RequestDestroyedObjectsSweep();
+            }
 
             var nRecorded = RecordedComponents.Count;
             var updateSamples = new NativeList<TransformUpdate>(nRecorded, Allocator.Persistent);

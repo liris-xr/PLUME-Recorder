@@ -130,6 +130,25 @@ namespace Tests.Editor
             Assert.AreEqual(0, warnings);
         }
 
+        [Test]
+        public void Transform_DestroyedWithoutHooks_StopsBeingRecorded()
+        {
+            var go = new GameObject("destroyed unhooked");
+            var transform = _ctx.SafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
+            Start(transform);
+            RunFrame();
+
+            // The hook handlers ignore what happens while not recording, as for code the hooks do not see.
+            _ctx.Status = RecorderStatus.Stopped;
+            Object.DestroyImmediate(go);
+            _ctx.Status = RecorderStatus.Recording;
+
+            RunFrame(); // Notices the destroyed transform.
+            RunFrame(); // Stops recording it, marked destroyed.
+
+            Assert.IsFalse(_module.IsRecordingObject(transform));
+        }
+
         private static int CountWarnings(System.Action action)
         {
             var warnings = 0;
@@ -161,6 +180,7 @@ namespace Tests.Editor
         {
             var frameInfo = new FrameInfo((ulong)_frame, _frame++);
             var module = (IFrameDataRecorderModule)_module;
+            _ctx.StopRecordingDestroyedObjectsIfRequested();
             module.BeforeEnqueueFrameData(frameInfo, _ctx);
             module.EnqueueFrameData(frameInfo, _ctx);
             module.AfterEnqueueFrameData(frameInfo, _ctx);

@@ -22,7 +22,7 @@ namespace PLUME.Base.Module.Unity.Transform
         }
 
         public void UpdatePositionStates(NativeList<TransformState> alignedStates,
-            DynamicTransformAccessArray transformAccessArray)
+            DynamicTransformAccessArray transformAccessArray, NativeQueue<int> invalidIndices)
         {
             var pollTransformStatesJob = new UpdatePositionStatesJob
             {
@@ -30,6 +30,7 @@ namespace PLUME.Base.Module.Unity.Transform
                 AngularThreshold = _angularThreshold,
                 PositionThresholdSq = _positionThresholdSq,
                 ScaleThresholdSq = _scaleThresholdSq,
+                InvalidIndices = invalidIndices.AsParallelWriter(),
             };
 
             _pollNewPositionStatesJobHandle = pollTransformStatesJob.ScheduleReadOnly(transformAccessArray, 128);

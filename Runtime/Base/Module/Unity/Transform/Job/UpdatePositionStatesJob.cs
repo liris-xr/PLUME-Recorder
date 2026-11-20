@@ -17,10 +17,16 @@ namespace PLUME.Base.Module.Unity.Transform.Job
 
         public NativeArray<TransformState> AlignedStates;
 
+        // Indices of the destroyed transforms.
+        [WriteOnly] public NativeQueue<int>.ParallelWriter InvalidIndices;
+
         public void Execute(int index, TransformAccess transform)
         {
             if (!transform.isValid)
+            {
+                InvalidIndices.Enqueue(index);
                 return;
+            }
 
             var state = AlignedStates[index];
 

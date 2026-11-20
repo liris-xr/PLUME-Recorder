@@ -23,5 +23,10 @@ namespace PLUME.Core.Recorder.Module
          * @return Whether the object was successfully stopped recording.
          */
         public bool StopRecordingObject(IObjectSafeRef objSafeRef, bool markDestroyed, RecorderContext ctx);
+
+        /**
+         * Stop recording, marked destroyed, the objects destroyed without the recorder being notified.
+         */
+        internal void StopRecordingDestroyedObjects(RecorderContext ctx);
     }
 }

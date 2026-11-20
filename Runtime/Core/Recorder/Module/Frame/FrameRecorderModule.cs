@@ -2,7 +2,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
-using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 using PLUME.Core.Settings;
 using PLUME.Core.Utils;
 using ProtoBurst;
@@ -81,7 +81,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             _serializationThread = null;
         }
 
-        internal async UniTask CompleteSerializationAsync()
+        internal async Task CompleteSerializationAsync()
         {
             _shouldSerialize = false;
 
@@ -89,7 +89,7 @@ namespace PLUME.Core.Recorder.Module.Frame
             if (remainingFramesCount > 0)
                 Logger.Log(nameof(FrameRecorderModule), $"{remainingFramesCount} frames left in queue.");
 
-            await UniTask.WaitUntil(() => !_serializationThread.IsAlive);
+            await Task.Run(_serializationThread.Join);
         }
 
         private void EarlyUpdate(RecorderContext ctx)

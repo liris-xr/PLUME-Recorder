@@ -21,6 +21,12 @@ namespace PLUME.Core.Recorder.Module.Frame
         /// <param name="frameInfo">Frame info used know which frame data to serialize.</param>
         /// <param name="frameDataWriter">The writer to write frame data to.</param>
         internal void SerializeFrameData(FrameInfo frameInfo, FrameDataWriter frameDataWriter);
+
+        /// <summary>
+        /// Disposes the frame data collected but never serialized, e.g. because the module was disabled or the
+        /// serialization thread failed. Called once serialization is complete.
+        /// </summary>
+        internal void DisposePendingFrameData();
         
         internal void FixedUpdate(ulong fixedDeltaTime, RecorderContext ctx);
 

@@ -1,3 +1,4 @@
+using System;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace PLUME.Core.Recorder.Writer
         private Thread _dispatcherThread;
 
         private IDataWriter[] _outputs;
+        // Held around every write batch, flush and close: outputs are not thread-safe and flush runs on the main thread.
+        private readonly object _outputsLock = new();
         private NetworkStream _networkStream;
 
         internal void Start(Record record)
@@ -38,33 +41,67 @@ namespace PLUME.Core.Recorder.Writer
             DataChunks tmpTimelessDataChunks = new(Allocator.Persistent);
             DataChunksTimestamped tmpDataChunksTimestamped = new(Allocator.Persistent);
 
-            while (_running)
+            try
             {
-                var timestamp = record.Time;
-                var timeBarrier = timestamp - 1_000_000;
-                
-                tmpTimelessDataChunks.Clear();
-                tmpDataChunksTimestamped.Clear();
-
-                if (record.TryRemoveAllTimelessDataChunks(tmpTimelessDataChunks))
+                while (_running)
                 {
-                    DispatchTimelessDataChunks(tmpTimelessDataChunks);
-                }
-                
-                if (record.TryRemoveAllTimestampedDataChunksBeforeTimestamp(timeBarrier, tmpDataChunksTimestamped,
-                        true))
-                {
-                    DispatchTimestampedDataChunks(tmpDataChunksTimestamped);
+                    // Data that fails to be written is lost, but the thread must survive to write the rest.
+                    try
+                    {
+                        DispatchAvailableData(record, tmpTimelessDataChunks, tmpDataChunksTimestamped);
+                    }
+                    catch (Exception e)
+                    {
+                        ErrorReporter.Report($"{nameof(DataDispatcher)}.{nameof(DispatchLoop)}",
+                            "Failed to write recorded data. That data is lost, recording continues.", e);
+                    }
+
+                    if (_running)
+                        Thread.Sleep(1);
                 }
 
-                if (_running)
-                    Thread.Sleep(1);
+                DispatchRemainingData(record, tmpTimelessDataChunks, tmpDataChunksTimestamped);
             }
+            catch (Exception e)
+            {
+                ErrorReporter.Report($"{nameof(DataDispatcher)}.{nameof(DispatchRemainingData)}",
+                    "Failed to write the end of the record. The record file may be truncated.", e);
+            }
+            finally
+            {
+                tmpTimelessDataChunks.Dispose();
+                tmpDataChunksTimestamped.Dispose();
+                Profiler.EndThreadProfiling();
+            }
+        }
+
+        private void DispatchAvailableData(Record record, DataChunks tmpTimelessDataChunks,
+            DataChunksTimestamped tmpDataChunksTimestamped)
+        {
+            var timestamp = record.Time;
+            var timeBarrier = timestamp - 1_000_000;
 
             tmpTimelessDataChunks.Clear();
             tmpDataChunksTimestamped.Clear();
-            
-            // Dispatch any remaining data
+
+            if (record.TryRemoveAllTimelessDataChunks(tmpTimelessDataChunks))
+            {
+                DispatchTimelessDataChunks(tmpTimelessDataChunks);
+            }
+
+            if (record.TryRemoveAllTimestampedDataChunksBeforeTimestamp(timeBarrier, tmpDataChunksTimestamped,
+                    true))
+            {
+                DispatchTimestampedDataChunks(tmpDataChunksTimestamped);
+            }
+        }
+
+        private void DispatchRemainingData(Record record, DataChunks tmpTimelessDataChunks,
+            DataChunksTimestamped tmpDataChunksTimestamped)
+        {
+            tmpTimelessDataChunks.Clear();
+            tmpDataChunksTimestamped.Clear();
+
             if (record.TryRemoveAllTimelessDataChunks(tmpTimelessDataChunks))
             {
                 DispatchTimelessDataChunks(tmpTimelessDataChunks);
@@ -74,11 +111,6 @@ namespace PLUME.Core.Recorder.Writer
             {
                 DispatchTimestampedDataChunks(tmpDataChunksTimestamped);
             }
-
-            tmpTimelessDataChunks.Dispose();
-            tmpDataChunksTimestamped.Dispose();
-
-            Profiler.EndThreadProfiling();
         }
 
         private void DispatchTimelessDataChunks(DataChunks dataChunks)
@@ -86,9 +118,12 @@ namespace PLUME.Core.Recorder.Writer
             if (_outputs == null)
                 return;
 
-            foreach (var output in _outputs)
+            lock (_outputsLock)
             {
-                output.WriteTimelessData(dataChunks);
+                foreach (var output in _outputs)
+                {
+                    output.WriteTimelessData(dataChunks);
+                }
             }
         }
 
@@ -98,43 +133,57 @@ namespace PLUME.Core.Recorder.Writer
                 return;
             
             // TODO: Dispatcher shouldn't wait for the writers to finish. Instead they should copy the data and handle it themselves. 
-            foreach (var output in _outputs)
+            lock (_outputsLock)
             {
-                output.WriteTimestampedData(dataChunks);
+                foreach (var output in _outputs)
+                {
+                    output.WriteTimestampedData(dataChunks);
+                }
             }
         }
 
         internal async Task StopAsync()
         {
             _running = false;
-            await Task.Run(_dispatcherThread.Join);
-            _dispatcherThread = null;
 
-            if (_outputs != null)
-            {
-                foreach (var output in _outputs)
-                {
-                    output.Close();
-                }
-            }
+            if (_dispatcherThread != null)
+                await Task.Run(_dispatcherThread.Join);
 
-            _outputs = null;
+            CloseOutputs();
         }
 
         internal void Stop()
         {
             _running = false;
-            _dispatcherThread.Join();
+            _dispatcherThread?.Join();
+            CloseOutputs();
+        }
+
+        private void CloseOutputs()
+        {
             _dispatcherThread = null;
-            
-            if (_outputs != null)
+
+            lock (_outputsLock)
             {
-                foreach (var output in _outputs)
+                if (_outputs != null)
                 {
-                    output.Close();
+                    foreach (var output in _outputs)
+                    {
+                        // Each output must get the chance to close its file, even if another one fails.
+                        try
+                        {
+                            output.Close();
+                        }
+                        catch (Exception e)
+                        {
+                            ErrorReporter.Report($"{output.GetType().Name}.{nameof(IDataWriter.Close)}",
+                                "Failed to close a record output. The record file may be truncated.", e);
+                        }
+                    }
                 }
+
+                _outputs = null;
             }
-            _outputs = null;
         }
 
         public void OnApplicationPaused()
@@ -144,9 +193,25 @@ namespace PLUME.Core.Recorder.Writer
 
             Logger.Log("Application paused detected. Flushing data.");
 
-            foreach (var output in _outputs)
+            // Synchronous on purpose: the application may be suspended as soon as this callback returns.
+            lock (_outputsLock)
             {
-                output.Flush();
+                if (_outputs == null)
+                    return;
+
+                foreach (var output in _outputs)
+                {
+                    // Called from Unity's pause callback, which must never throw.
+                    try
+                    {
+                        output.Flush();
+                    }
+                    catch (Exception e)
+                    {
+                        ErrorReporter.Report($"{output.GetType().Name}.{nameof(IDataWriter.Flush)}",
+                            "Failed to flush a record output on application pause. Data may be lost if the application is killed.", e);
+                    }
+                }
             }
         }
     }

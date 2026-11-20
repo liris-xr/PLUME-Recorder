@@ -58,6 +58,8 @@ namespace PLUME.Core.Recorder
             if (_context.Status is RecorderStatus.Recording)
                 throw new InvalidOperationException("Recorder is already recording.");
 
+            ErrorReporter.Reset();
+            _context.Faults.ResetForNewRecording();
             ApplicationPauseDetector.EnsureExists();
 
             var createdAt = DateTime.UtcNow;
@@ -68,19 +70,26 @@ namespace PLUME.Core.Recorder
             _context.CurrentRecord = record;
             _context.Status = RecorderStatus.Recording;
 
-            // Record the metadata first
-            record.RecordTimelessManagedSample(recordMetadata.ToPayload());
-            // Record the application settings (ie. graphics settings, quality settings, etc.)
-            RecordApplicationGlobalSettings(record);
-            RecordApplicationCurrentSettings(record);
-
-            _dataDispatcher.Start(_context.CurrentRecord);
-
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
+            try
             {
-                _context.Modules[i].StartRecording(_context);
+                // Record the metadata first
+                record.RecordTimelessManagedSample(recordMetadata.ToPayload());
+                // Record the application settings (ie. graphics settings, quality settings, etc.)
+                RecordApplicationGlobalSettings(record);
+                RecordApplicationCurrentSettings(record);
+
+                _dataDispatcher.Start(_context.CurrentRecord);
             }
+            catch
+            {
+                // No module is recording yet: roll back to a clean stopped state and let the caller know.
+                _dataDispatcher.Stop();
+                ApplicationPauseDetector.Destroy();
+                EndRecording();
+                throw;
+            }
+
+            CallModules(nameof(IRecorderModule.StartRecording), (module, ctx) => module.StartRecording(ctx));
 
             recordClock.Start();
 
@@ -138,28 +147,23 @@ namespace PLUME.Core.Recorder
             _context.CurrentRecord.InternalClock.Stop();
             _context.Status = RecorderStatus.Stopping;
 
-            if (_context.TryGetRecorderModule(out FrameRecorderModule frameRecorderModule))
+            try
             {
-                await frameRecorderModule.CompleteSerializationAsync();
+                if (_context.TryGetRecorderModule(out FrameRecorderModule frameRecorderModule))
+                {
+                    await frameRecorderModule.CompleteSerializationAsync();
+                }
+
+                CallModules(nameof(IRecorderModule.StopRecording), (module, ctx) => module.StopRecording(ctx));
+
+                await _dataDispatcher.StopAsync();
+            }
+            finally
+            {
+                ApplicationPauseDetector.Destroy();
+                EndRecording();
             }
 
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
-            {
-                _context.Modules[i].StopRecording(_context);
-            }
-
-            await _dataDispatcher.StopAsync();
-
-            ApplicationPauseDetector.Destroy();
-
-            if (_context.CurrentRecord != null)
-            {
-                _context.CurrentRecord.Dispose();
-                _context.CurrentRecord = null;
-            }
-
-            _context.Status = RecorderStatus.Stopped;
             Logger.Log("Recorder stopped.");
         }
 
@@ -173,23 +177,59 @@ namespace PLUME.Core.Recorder
 
             var stopwatch = Stopwatch.StartNew();
 
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
+            try
             {
-                _context.Modules[i].StopRecording(_context);
+                CallModules(nameof(IRecorderModule.StopRecording), (module, ctx) => module.StopRecording(ctx));
+                _dataDispatcher.Stop();
             }
-
-            _dataDispatcher.Stop();
-
-            if (_context.CurrentRecord != null)
+            finally
             {
-                _context.CurrentRecord.Dispose();
-                _context.CurrentRecord = null;
+                EndRecording();
             }
 
             stopwatch.Stop();
-            _context.Status = RecorderStatus.Stopped;
             Logger.Log("Recorder force stopped after " + stopwatch.ElapsedMilliseconds + "ms.");
+        }
+
+        /// <summary>
+        /// Releases the current record and marks the recorder as stopped. Runs whatever happened before, so that the
+        /// recorder never stays stuck in <see cref="RecorderStatus.Stopping"/> nor leaks the record's native memory.
+        /// </summary>
+        private void EndRecording()
+        {
+            _context.Status = RecorderStatus.Stopped;
+            _context.CurrentRecord?.Dispose();
+            _context.CurrentRecord = null;
+        }
+
+        /// <summary>
+        /// Calls a lifecycle method on every module. This is the exception boundary between the recorder and its
+        /// modules: a module that throws is disabled and the remaining modules are still called.
+        /// </summary>
+        /// <param name="phase">Name of the lifecycle method, used to report failures.</param>
+        /// <param name="call">Calls the lifecycle method on the given module.</param>
+        /// <param name="includeUninitialized">Whether to also call modules that failed to initialize, e.g. to let
+        /// them release what they allocated before failing.</param>
+        private void CallModules(string phase, Action<IRecorderModule, RecorderContext> call,
+            bool includeUninitialized = false)
+        {
+            // A module failing before any recording started is not initialized, so it is never started.
+            var disablesPermanently = phase is nameof(IRecorderModule.Create) or nameof(IRecorderModule.Awake);
+
+            foreach (var module in _context.Modules)
+            {
+                if (!includeUninitialized && _context.Faults.IsDisabledPermanently(module))
+                    continue;
+
+                try
+                {
+                    call(module, _context);
+                }
+                catch (Exception e)
+                {
+                    _context.Faults.Disable(module, phase, e, disablesPermanently);
+                }
+            }
         }
         
         private void RecordTimestampedManagedSampleInternal(IMessage sample)
@@ -273,17 +313,22 @@ namespace PLUME.Core.Recorder
 
         private void Awake()
         {
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < _context.Modules.Count; i++)
-            {
-                _context.Modules[i].Awake(_context);
-            }
+            CallModules(nameof(IRecorderModule.Awake), (module, ctx) => module.Awake(ctx));
 
             var recorderSettings = _context.SettingsProvider.GetOrCreate<RecorderSettings>();
 
-            if (recorderSettings.StartOnPlay)
+            if (!recorderSettings.StartOnPlay)
+                return;
+
+            // Called by Unity at scene load: report the failure instead of throwing into the engine.
+            try
             {
                 StartRecordingInternal(recorderSettings.DefaultRecordPrefix, recorderSettings.DefaultRecordExtraMetadata);
+            }
+            catch (Exception e)
+            {
+                ErrorReporter.Report($"{nameof(PlumeRecorder)}.{nameof(RecorderSettings.StartOnPlay)}",
+                    "Failed to start recording on play. Nothing is recorded.", e);
             }
         }
 
@@ -300,8 +345,8 @@ namespace PLUME.Core.Recorder
 
         public void Dispose()
         {
-            foreach (var module in _context.Modules)
-                module.Destroy(_context);
+            CallModules(nameof(IRecorderModule.Destroy), (module, ctx) => module.Destroy(ctx),
+                includeUninitialized: true);
         }
     }
 }

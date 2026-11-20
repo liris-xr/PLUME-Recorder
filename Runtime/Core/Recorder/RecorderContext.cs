@@ -17,6 +17,7 @@ namespace PLUME.Core.Recorder
         public RecorderStatus Status { get; internal set; } = RecorderStatus.Stopped;
         public bool IsRecording => Status == RecorderStatus.Recording;
         public Record CurrentRecord { get; internal set; }
+        internal ModuleFaults Faults { get; } = new();
 
         public RecorderContext(ReadOnlyCollection<IRecorderModule> modules, SafeRefProvider safeRefProvider, ISettingsProvider settingsProvider)
         {
@@ -41,7 +42,7 @@ namespace PLUME.Core.Recorder
         
         internal void StartRecordingGameObjectInternal(GameObject go, bool markCreated = true)
         {
-            var tmpComponents = ListPool<Component>.Get();
+            using var _ = ListPool<Component>.Get(out var tmpComponents);
             go.GetComponentsInChildren(true, tmpComponents);
 
             foreach (var component in tmpComponents)
@@ -56,13 +57,11 @@ namespace PLUME.Core.Recorder
 
                 StartRecordingObjectInternal(componentSafeRef, markCreated);
             }
-            
-            ListPool<Component>.Release(tmpComponents);
         }
 
         internal void StopRecordingGameObjectInternal(GameObject go, bool markDestroyed = true)
         {
-            var tmpComponents = ListPool<Component>.Get();
+            using var _ = ListPool<Component>.Get(out var tmpComponents);
             go.GetComponentsInChildren(tmpComponents);
 
             foreach (var component in tmpComponents)
@@ -76,8 +75,6 @@ namespace PLUME.Core.Recorder
                     StopRecordingObjectInternal(componentSafeRef.GameObjectSafeRef, markDestroyed);
                 }
             }
-            
-            ListPool<Component>.Release(tmpComponents);
         }
 
         internal void StartRecordingObjectInternal(IObjectSafeRef objectSafeRef, bool markCreated)
@@ -88,7 +85,7 @@ namespace PLUME.Core.Recorder
             for (var i = 0; i < Modules.Count; i++)
             {
                 var module = Modules[i];
-                if (module is not IObjectRecorderModule objectRecorderModule)
+                if (module is not IObjectRecorderModule objectRecorderModule || Faults.IsDisabled(module))
                     continue;
 
                 objectRecorderModule.StartRecordingObject(objectSafeRef, markCreated, this);
@@ -102,7 +99,7 @@ namespace PLUME.Core.Recorder
             {
                 var module = Modules[i];
 
-                if (module is not IObjectRecorderModule objectRecorderModule)
+                if (module is not IObjectRecorderModule objectRecorderModule || Faults.IsDisabled(module))
                     continue;
 
                 objectRecorderModule.StopRecordingObject(objectSafeRef, markDestroyed, this);

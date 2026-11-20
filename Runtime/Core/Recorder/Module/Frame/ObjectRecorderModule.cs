@@ -64,11 +64,31 @@ namespace PLUME.Core.Recorder.Module.Frame
                 return false;
 
             _recordedObjects.Add(objSafeRef);
-            OnStartRecordingObject(objSafeRef, ctx);
+
+            try
+            {
+                OnStartRecordingObject(objSafeRef, ctx);
+            }
+            catch (Exception e)
+            {
+                // Roll back so that the module never iterates over a half-registered object.
+                _recordedObjectsIdentifier.Remove(objSafeRef.Identifier);
+                _recordedObjects.RemoveSwapBack(objSafeRef);
+                ModuleFaults.ReportObjectFailure(this, nameof(OnStartRecordingObject), e);
+                return false;
+            }
 
             if (markCreated)
             {
-                OnObjectMarkedCreated(objSafeRef, ctx);
+                try
+                {
+                    OnObjectMarkedCreated(objSafeRef, ctx);
+                }
+                catch (Exception e)
+                {
+                    // The object stays recorded: only its creation sample is missing.
+                    ModuleFaults.ReportObjectFailure(this, nameof(OnObjectMarkedCreated), e);
+                }
             }
 
             return true;
@@ -87,7 +107,14 @@ namespace PLUME.Core.Recorder.Module.Frame
 
             if (markDestroyed)
             {
-                OnObjectMarkedDestroyed(objSafeRef, ctx);
+                try
+                {
+                    OnObjectMarkedDestroyed(objSafeRef, ctx);
+                }
+                catch (Exception e)
+                {
+                    ModuleFaults.ReportObjectFailure(this, nameof(OnObjectMarkedDestroyed), e);
+                }
             }
 
             return true;
@@ -101,7 +128,15 @@ namespace PLUME.Core.Recorder.Module.Frame
             {
                 _recordedObjectsIdentifier.Remove(toRemove.Identifier);
                 _recordedObjects.RemoveSwapBack(toRemove);
-                OnStopRecordingObject(toRemove, ctx);
+
+                try
+                {
+                    OnStopRecordingObject(toRemove, ctx);
+                }
+                catch (Exception e)
+                {
+                    ModuleFaults.ReportObjectFailure(this, nameof(OnStopRecordingObject), e);
+                }
             }
 
             _objectsToStopRecording.Clear();

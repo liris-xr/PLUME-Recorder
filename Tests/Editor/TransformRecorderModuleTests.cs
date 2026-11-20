@@ -100,14 +100,56 @@ namespace Tests.Editor
             Start(transform);
             RunFrame();
 
-            GameObjectHooks.AddComponentAndNotify<Image>(go);
-            RunFrame();
+            var warnings = CountWarnings(() =>
+            {
+                GameObjectHooks.AddComponentAndNotify<Image>(go);
+                RunFrame();
+            });
 
             var rectTransform = _ctx.SafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
             Assert.IsInstanceOf<RectTransform>(rectTransform.Component);
             Assert.IsTrue(_module.IsRecordingObject(rectTransform));
             Assert.IsFalse(_module.IsRecordingObject(transform));
             Assert.AreEqual(transform.Identifier.Guid, rectTransform.Identifier.Guid);
+            Assert.AreEqual(0, warnings, "A replacement seen by the hooks must not be reported.");
+        }
+
+        [Test]
+        public void Transform_DestroyedWithItsGameObject_IsNotReportedAsReplaced()
+        {
+            var go = new GameObject("destroyed");
+            Start(_ctx.SafeRefProvider.GetOrCreateComponentSafeRef(go.transform));
+            RunFrame();
+
+            var warnings = CountWarnings(() =>
+            {
+                Object.DestroyImmediate(go);
+                RunFrame();
+            });
+
+            Assert.AreEqual(0, warnings);
+        }
+
+        private static int CountWarnings(System.Action action)
+        {
+            var warnings = 0;
+            void OnLog(string message, string stackTrace, LogType type)
+            {
+                if (type == LogType.Warning)
+                    warnings++;
+            }
+
+            Application.logMessageReceived += OnLog;
+            try
+            {
+                action();
+            }
+            finally
+            {
+                Application.logMessageReceived -= OnLog;
+            }
+
+            return warnings;
         }
 
         private void Start(IComponentSafeRef<Transform> t)

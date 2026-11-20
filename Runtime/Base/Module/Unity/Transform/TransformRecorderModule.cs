@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using PLUME.Base.Hooks;
 using PLUME.Base.Module.Unity.Transform.Job;
 using PLUME.Base.Settings;
+using PLUME.Core;
 using PLUME.Core.Object;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
@@ -71,13 +72,42 @@ namespace PLUME.Base.Module.Unity.Transform
         /// </summary>
         private void OnComponentAdded(UnityEngine.GameObject go, RecorderContext ctx)
         {
-            if (!ctx.IsRecordingWith(this) || !_transformByGameObject.ContainsKey(go.GetInstanceID()))
+            if (!ctx.IsRecordingWith(this) || !_transformByGameObject.TryGetValue(go.GetInstanceID(), out var recorded))
+                return;
+
+            if (WarnIfReplacedOutsideHooks(recorded))
                 return;
 
             var tSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
 
             if (!IsRecordingObject(tSafeRef))
                 ctx.StartRecordingObjectInternal(tSafeRef, true);
+        }
+
+        /// <summary>
+        /// Detects a transform replaced by a RectTransform without the hooks seeing it coming, e.g. by a precompiled
+        /// plugin adding a UI component. Its TransformAccessArray entry silently became the RectTransform, which is
+        /// still recorded through it. It is left untouched: Unity crashes on any change to that entry, and will crash
+        /// when the GameObject is destroyed anyway (Unity bug), which the warning lets the user diagnose.
+        /// </summary>
+        /// <returns>Whether the transform was replaced outside the hooks.</returns>
+        private bool WarnIfReplacedOutsideHooks(TransformSafeRef tSafeRef)
+        {
+            // Removed from the array beforehand when the hooks saw the replacement coming.
+            if (tSafeRef.Component != null || !_identifierToIndex.ContainsKey(tSafeRef.Identifier))
+                return false;
+
+            // Destroyed with its GameObject, not replaced.
+            var go = tSafeRef.GameObjectSafeRef.GameObject;
+            if (go == null)
+                return false;
+
+            ErrorReporter.Warn($"{nameof(TransformRecorderModule)}.TransformReplaced.{go.GetInstanceID()}",
+                $"The Transform of '{go.name}' was replaced by a RectTransform from code the recorder does not hook " +
+                "(e.g. a precompiled plugin adding a UI component). Because of a Unity bug, Unity may crash when this " +
+                "GameObject is destroyed. Add the UI component from your own scripts, or record this GameObject " +
+                "after it gets its RectTransform.");
+            return true;
         }
 
         protected override void OnDestroy(RecorderContext ctx)
@@ -228,6 +258,10 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override TransformFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < RecordedComponents.Count; i++)
+                WarnIfReplacedOutsideHooks(RecordedComponents[i]);
+
             _transformPositionStateUpdater.UpdatePositionStates(_alignedStates, _transformAccessArray);
 
             var nRecorded = RecordedComponents.Count;

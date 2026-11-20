@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using Google.Protobuf;
 using PLUME.Base.Settings;
+using PLUME.Core;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module;
 using PLUME.Sample.LSL;
@@ -104,7 +105,9 @@ namespace PLUME.Base.Module.LSL
         protected override void OnStopRecording(RecorderContext ctx)
         {
             base.OnStopRecording(ctx);
-            _streamResolverThread.Join();
+            // Threads are null when OnStartRecording failed before starting them.
+            _streamResolverThread?.Join();
+            _streamResolverThread = null;
 
             lock (_resolvedStreams)
             {
@@ -116,7 +119,8 @@ namespace PLUME.Base.Module.LSL
                 _resolvedStreams.Clear();
             }
 
-            _streamRecorderThread.Join();
+            _streamRecorderThread?.Join();
+            _streamRecorderThread = null;
 
             lock (_resolvedStreams)
             {
@@ -134,18 +138,27 @@ namespace PLUME.Base.Module.LSL
                 {
                     foreach (var stream in _resolvedStreams)
                     {
-                        int nPulledSamples;
-
-                        do
+                        // Samples that fail to be recorded are lost, but the thread must survive to record the rest.
+                        try
                         {
-                            nPulledSamples = stream.PullChunk();
+                            int nPulledSamples;
 
-                            if (nPulledSamples > 0)
+                            do
                             {
-                                RecordStreamSampleChunk(stream, nPulledSamples, stream.GetDataBuffer(),
-                                    stream.GetTimestampBuffer(), ctx);
-                            }
-                        } while (nPulledSamples != 0);
+                                nPulledSamples = stream.PullChunk();
+
+                                if (nPulledSamples > 0)
+                                {
+                                    RecordStreamSampleChunk(stream, nPulledSamples, stream.GetDataBuffer(),
+                                        stream.GetTimestampBuffer(), ctx);
+                                }
+                            } while (nPulledSamples != 0);
+                        }
+                        catch (Exception e)
+                        {
+                            ErrorReporter.Report($"{nameof(LslRecorderModule)}.{nameof(LslStreamRecorderLoop)}",
+                                $"Failed to record samples of LSL stream {stream.Name}. They are lost, recording continues.", e);
+                        }
                     }
                 }
             }
@@ -157,86 +170,117 @@ namespace PLUME.Base.Module.LSL
         {
             Profiler.BeginThreadProfiling("PLUME", "LslRecorderModule.StreamResolver");
 
-            var streamResolver = new ContinuousResolver(_settings.ResolverPredicate, _settings.ForgetAfter);
-
-            // Stream ID should always start at 1 according to LSL documentation.
-            // Otherwise the id is considered unset if it equals 0.
-            var nextLslStreamId = 1u;
-
-            var lastKnownUIDs = new HashSet<string>();
-            var lastKnownSourceIds = new HashSet<string>();
-            var forgottenStreamsByUid = new Dictionary<string, BufferedInlet>();
-
-            while (ctx.IsRecording)
+            try
             {
-                lastKnownUIDs.Clear();
-                lastKnownSourceIds.Clear();
-                forgottenStreamsByUid.Clear();
+                using var streamResolver = new ContinuousResolver(_settings.ResolverPredicate, _settings.ForgetAfter);
 
-                lock (_resolvedStreams)
+                // Stream ID should always start at 1 according to LSL documentation.
+                // Otherwise the id is considered unset if it equals 0.
+                var nextLslStreamId = 1u;
+
+                var lastKnownUIDs = new HashSet<string>();
+                var lastKnownSourceIds = new HashSet<string>();
+                var forgottenStreamsByUid = new Dictionary<string, BufferedInlet>();
+
+                while (ctx.IsRecording)
                 {
-                    foreach (var resolvedStream in _resolvedStreams)
+                    // A failed resolution is retried at the next interval, the thread must survive to resolve new streams.
+                    try
                     {
-                        lastKnownUIDs.Add(resolvedStream.Uid);
-                        lastKnownSourceIds.Add(resolvedStream.SourceId);
-                        forgottenStreamsByUid.Add(resolvedStream.Uid, resolvedStream);
-                    }
-                }
-
-                foreach (var streamInfo in streamResolver.results())
-                {
-                    var streamSourceId = streamInfo.source_id();
-                    var streamUid = streamInfo.uid();
-                    var channelFormat = streamInfo.channel_format();
-                    var streamName = streamInfo.name();
-
-                    forgottenStreamsByUid.Remove(streamInfo.uid());
-
-                    if (lastKnownUIDs.Contains(streamUid))
-                        continue;
-
-                    if (lastKnownSourceIds.Contains(streamSourceId) && !string.IsNullOrEmpty(streamSourceId))
-                        continue;
-
-                    var bufferedInlet = CreateBufferedInlet(channelFormat, streamInfo, nextLslStreamId++);
-
-                    Logger.Log($"Resolved new stream {streamName} with UID {streamUid} and source ID {streamSourceId}");
-                    RecordOpenStream(bufferedInlet, ctx);
-
-                    lock (_resolvedStreams)
-                    {
-                        _resolvedStreams.Add(bufferedInlet);
-                    }
-                }
-
-                foreach (var (uid, forgottenStream) in forgottenStreamsByUid)
-                {
-                    var sourceId = forgottenStream.SourceId;
-                    var name = forgottenStream.Name;
-
-                    lock (_resolvedStreams)
-                    {
-                        if (!string.IsNullOrEmpty(sourceId) &&
-                            _resolvedStreams.FirstOrDefault(s => s.Uid != uid && s.SourceId == sourceId) != null)
-                        {
-                            continue;
-                        }
+                        lastKnownUIDs.Clear();
+                        lastKnownSourceIds.Clear();
+                        forgottenStreamsByUid.Clear();
 
                         lock (_resolvedStreams)
                         {
-                            _resolvedStreams.Remove(forgottenStream);
+                            foreach (var resolvedStream in _resolvedStreams)
+                            {
+                                lastKnownUIDs.Add(resolvedStream.Uid);
+                                lastKnownSourceIds.Add(resolvedStream.SourceId);
+                                forgottenStreamsByUid.Add(resolvedStream.Uid, resolvedStream);
+                            }
+                        }
+
+                        foreach (var streamInfo in streamResolver.results())
+                        {
+                            var streamSourceId = streamInfo.source_id();
+                            var streamUid = streamInfo.uid();
+                            var channelFormat = streamInfo.channel_format();
+                            var streamName = streamInfo.name();
+
+                            forgottenStreamsByUid.Remove(streamInfo.uid());
+
+                            if (lastKnownUIDs.Contains(streamUid))
+                                continue;
+
+                            if (lastKnownSourceIds.Contains(streamSourceId) && !string.IsNullOrEmpty(streamSourceId))
+                                continue;
+
+                            // A stream that fails to open (e.g. unsupported format) must not prevent opening the others.
+                            BufferedInlet bufferedInlet = null;
+                            try
+                            {
+                                bufferedInlet = CreateBufferedInlet(channelFormat, streamInfo, nextLslStreamId++);
+
+                                Logger.Log($"Resolved new stream {streamName} with UID {streamUid} and source ID {streamSourceId}");
+                                RecordOpenStream(bufferedInlet, ctx);
+                            }
+                            catch (Exception e)
+                            {
+                                bufferedInlet?.Close();
+                                ErrorReporter.Report($"{nameof(LslRecorderModule)}.{nameof(RecordOpenStream)}",
+                                    $"Failed to open LSL stream {streamName}. It is not recorded, retrying later.", e);
+                                continue;
+                            }
+
+                            lock (_resolvedStreams)
+                            {
+                                _resolvedStreams.Add(bufferedInlet);
+                            }
+                        }
+
+                        foreach (var (uid, forgottenStream) in forgottenStreamsByUid)
+                        {
+                            var sourceId = forgottenStream.SourceId;
+                            var name = forgottenStream.Name;
+
+                            lock (_resolvedStreams)
+                            {
+                                if (!string.IsNullOrEmpty(sourceId) &&
+                                    _resolvedStreams.FirstOrDefault(s => s.Uid != uid && s.SourceId == sourceId) != null)
+                                {
+                                    continue;
+                                }
+
+                                lock (_resolvedStreams)
+                                {
+                                    _resolvedStreams.Remove(forgottenStream);
+                                }
+                            }
+
+                            Logger.Log($"Lost stream {name} with UID {uid} and source ID {sourceId}.");
+                            RecordCloseStream(forgottenStream, ctx);
                         }
                     }
+                    catch (Exception e)
+                    {
+                        ErrorReporter.Report($"{nameof(LslRecorderModule)}.{nameof(LslStreamResolverLoop)}",
+                            "Failed to resolve LSL streams. Retrying at the next resolve interval.", e);
+                    }
 
-                    Logger.Log($"Lost stream {name} with UID {uid} and source ID {sourceId}.");
-                    RecordCloseStream(forgottenStream, ctx);
+                    if (ctx.IsRecording)
+                        Thread.Sleep(_settings.ResolveInterval);
                 }
-
-                if (ctx.IsRecording)
-                    Thread.Sleep(_settings.ResolveInterval);
             }
-
-            Profiler.EndThreadProfiling();
+            catch (Exception e)
+            {
+                ErrorReporter.Report($"{nameof(LslRecorderModule)}.{nameof(ContinuousResolver)}",
+                    "Failed to create the LSL stream resolver. No new LSL stream will be recorded.", e);
+            }
+            finally
+            {
+                Profiler.EndThreadProfiling();
+            }
         }
 
         private static BufferedInlet CreateBufferedInlet(channel_format_t channelFormat, StreamInfo streamInfo, uint id)

@@ -56,6 +56,9 @@ namespace PLUME.Base.Module.Unity.GameObject
         private void OnMoveGameObjectToScene(UnityEngine.GameObject go, UnityEngine.SceneManagement.Scene scene,
             RecorderContext ctx)
         {
+            if (!ctx.IsRecordingWith(this))
+                return;
+
             // We need to modify the scene safe ref of the game object
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go);
             objSafeRef.SceneSafeRef = ctx.SafeRefProvider.GetOrCreateSceneSafeRef(scene);
@@ -69,7 +72,7 @@ namespace PLUME.Base.Module.Unity.GameObject
 
         private void OnActiveChanged(UnityEngine.GameObject go, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go);
@@ -83,7 +86,7 @@ namespace PLUME.Base.Module.Unity.GameObject
 
         private void OnCreated(UnityEngine.GameObject go, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go);
@@ -96,7 +99,7 @@ namespace PLUME.Base.Module.Unity.GameObject
 
         private void OnTagChanged(UnityEngine.GameObject go, string tag, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             var objSafeRef = ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go);
@@ -110,7 +113,7 @@ namespace PLUME.Base.Module.Unity.GameObject
 
         private void OnNameChanged(Object obj, string name, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             if (obj is not UnityEngine.GameObject go)
@@ -127,7 +130,7 @@ namespace PLUME.Base.Module.Unity.GameObject
 
         private void OnBeforeDestroyed(Object obj, RecorderContext ctx)
         {
-            if (!ctx.IsRecording)
+            if (!ctx.IsRecordingWith(this))
                 return;
 
             if (obj is not UnityEngine.GameObject go)

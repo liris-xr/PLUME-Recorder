@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using PLUME.Core;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Utils;
@@ -24,15 +25,18 @@ namespace PLUME.Base.Module.Unity.Scene
         private ChangeActiveScene _changeActiveSceneSample;
 
         private UnityEngine.GameObject _dontDestroyOnLoadHandle;
-        
+
+        private RecorderContext _ctx;
+
         protected override void OnStartRecording(RecorderContext ctx)
         {
             base.OnStartRecording(ctx);
+            _ctx = ctx;
 
-            SceneManager.sceneLoaded += (scene, loadMode) => OnLoadScene(scene, loadMode, ctx);
-            SceneManager.sceneUnloaded += scene => OnUnloadScene(scene, ctx);
-            SceneManager.activeSceneChanged += (scene, loadMode) => OnChangeActiveScene(scene, loadMode, ctx);
-            
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
+            SceneManager.activeSceneChanged += OnActiveSceneChanged;
+
             _dontDestroyOnLoadHandle = new UnityEngine.GameObject("DontDestroyOnLoadHandle");
             Object.DontDestroyOnLoad(_dontDestroyOnLoadHandle);
             OnLoadScene(_dontDestroyOnLoadHandle.scene, LoadSceneMode.Additive, ctx);
@@ -56,9 +60,17 @@ namespace PLUME.Base.Module.Unity.Scene
         {
             base.OnStopRecording(ctx);
 
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
+            SceneManager.activeSceneChanged -= OnActiveSceneChanged;
+
             _loadedScenes.Clear();
             _lastActiveScene = null;
             _cachedSceneIdentifiers.Clear();
+
+            if (_dontDestroyOnLoadHandle != null)
+                Object.Destroy(_dontDestroyOnLoadHandle);
+            _dontDestroyOnLoadHandle = null;
         }
 
         protected override SceneFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
@@ -76,6 +88,57 @@ namespace PLUME.Base.Module.Unity.Scene
             _loadSceneSamples.Clear();
             _unloadSceneSamples.Clear();
             _changeActiveSceneSample = null;
+        }
+
+        // The SceneManager handlers below are called by Unity: an exception escaping them would skip the
+        // application's own subscribers to the same event.
+        private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+        {
+            if (!_ctx.IsRecordingWith(this))
+                return;
+
+            try
+            {
+                OnLoadScene(scene, mode, _ctx);
+            }
+            catch (System.Exception e)
+            {
+                ErrorReporter.Report($"{nameof(SceneRecorderModule)}.{nameof(OnSceneLoaded)}",
+                    "Failed to record a scene load. The scene may be missing from the record.", e);
+            }
+        }
+
+        private void OnSceneUnloaded(UnityEngine.SceneManagement.Scene scene)
+        {
+            if (!_ctx.IsRecordingWith(this))
+                return;
+
+            try
+            {
+                OnUnloadScene(scene, _ctx);
+            }
+            catch (System.Exception e)
+            {
+                ErrorReporter.Report($"{nameof(SceneRecorderModule)}.{nameof(OnSceneUnloaded)}",
+                    "Failed to record a scene unload. The scene may remain loaded in the record.", e);
+            }
+        }
+
+        private void OnActiveSceneChanged(UnityEngine.SceneManagement.Scene oldActive,
+            UnityEngine.SceneManagement.Scene newActive)
+        {
+            if (!_ctx.IsRecordingWith(this))
+                return;
+
+            try
+            {
+                OnChangeActiveScene(oldActive, newActive, _ctx);
+            }
+            catch (System.Exception e)
+            {
+                ErrorReporter.Report($"{nameof(SceneRecorderModule)}.{nameof(OnActiveSceneChanged)}",
+                    "Failed to record an active scene change. The record may show the wrong active scene.", e);
+            }
         }
 
         private void OnLoadScene(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode, RecorderContext ctx)

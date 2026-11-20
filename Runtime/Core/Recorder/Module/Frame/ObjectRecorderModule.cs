@@ -27,6 +27,8 @@ namespace PLUME.Core.Recorder.Module.Frame
         {
             base.OnStopRecording(ctx);
             _recordedObjects.Clear();
+            _recordedObjectsIdentifier.Clear();
+            _objectsToStopRecording.Clear();
         }
 
         public bool StartRecordingObject(IObjectSafeRef objSafeRef, bool markCreated, RecorderContext ctx)

@@ -18,13 +18,24 @@ namespace PLUME.Base.Hooks
 
         public delegate void OnTagChangedDelegate(GameObject go, string tag);
 
+        public delegate void OnBeforeTransformReplacedDelegate(GameObject go);
+
         public static event OnCreatedDelegate OnCreated = delegate { };
         public static event OnComponentAddedDelegate OnComponentAdded = delegate { };
         public static event OnActiveChangedDelegate OnActiveChanged = delegate { };
         public static event OnTagChangedDelegate OnTagChanged = delegate { };
 
+        /// <summary>
+        /// Raised before a component is added that makes Unity replace the GameObject's Transform by a
+        /// RectTransform (e.g. a UI Image). A Transform in a TransformAccessArray must be removed from it before:
+        /// replacing it corrupts Unity's native state, which then crashes when the GameObject is destroyed.
+        /// </summary>
+        public static event OnBeforeTransformReplacedDelegate OnBeforeTransformReplaced = delegate { };
+
         // Temporary list to avoid allocations when calling GetComponentsInChildren
         private static readonly List<Component> TempComponents = new();
+
+        private static readonly Dictionary<Type, bool> RequiresRectTransformByType = new();
 
         internal static void NotifyCreated(GameObject go)
         {
@@ -49,6 +60,20 @@ namespace PLUME.Base.Hooks
             {
                 HookErrors.Report($"{nameof(GameObjectHooks)}.{nameof(OnComponentAdded)}",
                     "Failed to record an added component. The application is not affected.", e);
+            }
+        }
+
+        internal static void NotifyBeforeTransformReplaced(GameObject go)
+        {
+            try
+            {
+                OnBeforeTransformReplaced(go);
+            }
+            catch (Exception e)
+            {
+                HookErrors.Report($"{nameof(GameObjectHooks)}.{nameof(OnBeforeTransformReplaced)}",
+                    "Failed to prepare for a Transform replaced by a RectTransform. The application is not affected.",
+                    e);
             }
         }
 
@@ -204,6 +229,9 @@ namespace PLUME.Base.Hooks
 
             var missingRequiredTypes = GetMissingRequiredComponents(go, componentType);
 
+            if (go.transform is not RectTransform && RequiresRectTransform(componentType))
+                NotifyBeforeTransformReplaced(go);
+
             var component = go.AddComponent(componentType);
 
             if (component != null)
@@ -221,6 +249,9 @@ namespace PLUME.Base.Hooks
                 return go.AddComponent<T>();
 
             var missingRequiredTypes = GetMissingRequiredComponents(go, typeof(T));
+
+            if (go.transform is not RectTransform && RequiresRectTransform(typeof(T)))
+                NotifyBeforeTransformReplaced(go);
 
             var component = go.AddComponent<T>();
 
@@ -244,6 +275,38 @@ namespace PLUME.Base.Hooks
                     NotifyComponentAdded(go, implicitlyCreatedComponent);
                 }
             }
+        }
+
+        /// <summary>
+        /// Whether adding a component of the given type gives the GameObject a RectTransform, directly or through
+        /// the components it requires.
+        /// </summary>
+        private static bool RequiresRectTransform(Type componentType)
+        {
+            if (RequiresRectTransformByType.TryGetValue(componentType, out var requires))
+                return requires;
+
+            return RequiresRectTransformByType[componentType] = RequiresRectTransform(componentType, new HashSet<Type>());
+        }
+
+        private static bool RequiresRectTransform(Type componentType, HashSet<Type> visited)
+        {
+            if (componentType == typeof(RectTransform))
+                return true;
+
+            // Requirements can form cycles.
+            if (!visited.Add(componentType))
+                return false;
+
+            foreach (var attr in componentType.GetCustomAttributes<RequireComponent>())
+            {
+                if (attr.m_Type0 != null && RequiresRectTransform(attr.m_Type0, visited) ||
+                    attr.m_Type1 != null && RequiresRectTransform(attr.m_Type1, visited) ||
+                    attr.m_Type2 != null && RequiresRectTransform(attr.m_Type2, visited))
+                    return true;
+            }
+
+            return false;
         }
 
         private static List<Type> GetMissingRequiredComponents(GameObject go, Type componentType)

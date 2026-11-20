@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using PLUME.Base.Hooks;
 using PLUME.Base.Module.Unity.Transform.Job;
 using PLUME.Base.Settings;
+using PLUME.Core;
 using PLUME.Core.Object;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
@@ -20,9 +22,13 @@ namespace PLUME.Base.Module.Unity.Transform
         
         private NativeHashMap<ComponentIdentifier, int> _identifierToIndex;
         private NativeList<TransformState> _alignedStates;
+        private NativeQueue<int> _invalidIndices;
 
         private TransformPositionStateUpdater _transformPositionStateUpdater;
         
+        // The recorded transform of each GameObject, by GameObject runtime id.
+        private readonly Dictionary<int, TransformSafeRef> _transformByGameObject = new();
+
         private int _nCreatedInFrame;
         private int _nDestroyedInFrame;
 
@@ -41,26 +47,84 @@ namespace PLUME.Base.Module.Unity.Transform
 
             _identifierToIndex = new NativeHashMap<ComponentIdentifier, int>(1000, Allocator.Persistent);
             _alignedStates = new NativeList<TransformState>(1000, Allocator.Persistent);
+            _invalidIndices = new NativeQueue<int>(Allocator.Persistent);
 
-            GameObjectHooks.OnComponentAdded += (go, comp) => OnComponentAdded(go, comp, ctx);
             TransformHooks.OnParentChanged += (t, parent) => OnParentChanged(t, parent, ctx);
             TransformHooks.OnSiblingIndexChanged += (t, siblingIdx) => OnSiblingIndexChanged(t, siblingIdx, ctx);
+            GameObjectHooks.OnBeforeTransformReplaced += go => OnBeforeTransformReplaced(go, ctx);
+            GameObjectHooks.OnComponentAdded += (go, _) => OnComponentAdded(go, ctx);
         }
 
-        private void OnComponentAdded(UnityEngine.GameObject go, Component component, RecorderContext ctx)
+        private void OnBeforeTransformReplaced(UnityEngine.GameObject go, RecorderContext ctx)
         {
-            if (!ctx.IsRecordingWith(this))
+            if (!ctx.IsRecordingWith(this) || !_transformByGameObject.TryGetValue(go.GetInstanceID(), out var tSafeRef))
                 return;
 
-            if (component is not UnityEngine.Transform t || component is RectTransform)
+            // Must leave the TransformAccessArray now, not at the end of the frame: see OnBeforeTransformReplaced.
+            // shortcut: if AddComponent then fails without replacing it, the transform stops being recorded. Unity only
+            // refuses conflicting components, which a GameObject without RectTransform hardly has; restart it if seen.
+            RemoveFromArrays(tSafeRef);
+
+            // Stopped or destroyed during this frame: its successor is not recorded in its place.
+            if (IsStoppingRecordingObject(tSafeRef.Identifier))
+            {
+                _transformByGameObject.Remove(go.GetInstanceID());
+                return;
+            }
+
+            StopRecordingObject(tSafeRef, false, ctx);
+        }
+
+        /// <summary>
+        /// Adding a UI component (e.g. an Image) to a GameObject makes Unity replace its Transform by a RectTransform,
+        /// which is not notified when only required indirectly: the new transform is recorded by all the modules, as
+        /// the old one's successor.
+        /// </summary>
+        private void OnComponentAdded(UnityEngine.GameObject go, RecorderContext ctx)
+        {
+            if (!ctx.IsRecordingWith(this) || !_transformByGameObject.TryGetValue(go.GetInstanceID(), out var recorded))
                 return;
 
-            var tSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(t);
-
-            if (IsRecordingObject(tSafeRef))
+            if (WarnIfReplacedOutsideHooks(recorded))
                 return;
 
-            StartRecordingObject(tSafeRef, true, ctx);
+            var tSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
+
+            if (!IsRecordingObject(tSafeRef))
+                ctx.StartRecordingObjectInternal(tSafeRef, true);
+        }
+
+        /// <summary>
+        /// Detects a transform replaced by a RectTransform without the hooks seeing it coming, e.g. by a precompiled
+        /// plugin adding a UI component. Its TransformAccessArray entry silently became the RectTransform, which is
+        /// still recorded through it. It is left untouched: Unity crashes on any change to that entry, and will crash
+        /// when the GameObject is destroyed anyway (Unity bug), which the warning lets the user diagnose.
+        /// </summary>
+        /// <returns>Whether the transform was replaced outside the hooks.</returns>
+        private bool WarnIfReplacedOutsideHooks(TransformSafeRef tSafeRef)
+        {
+            // Removed from the array beforehand when the hooks saw the replacement coming.
+            if (tSafeRef.Component != null || !_identifierToIndex.ContainsKey(tSafeRef.Identifier))
+                return false;
+
+            // Destroyed with its GameObject, not replaced.
+            var go = tSafeRef.GameObjectSafeRef.GameObject;
+            if (go == null)
+                return false;
+
+            ErrorReporter.Warn($"{nameof(TransformRecorderModule)}.TransformReplaced.{go.GetInstanceID()}",
+                $"The Transform of '{go.name}' was replaced by a RectTransform from code the recorder does not hook " +
+                "(e.g. a precompiled plugin adding a UI component). Because of a Unity bug, Unity may crash when this " +
+                "GameObject is destroyed. Add the UI component from your own scripts, or record this GameObject " +
+                "after it gets its RectTransform.");
+            return true;
+        }
+
+        // A transform is destroyed with its GameObject: one gone while its GameObject lives was replaced by a
+        // RectTransform outside the hooks, and must be left untouched (see WarnIfReplacedOutsideHooks).
+        protected override bool IsDestroyed(TransformSafeRef tSafeRef)
+        {
+            return tSafeRef.GameObjectSafeRef.GameObject == null;
         }
 
         protected override void OnDestroy(RecorderContext ctx)
@@ -70,6 +134,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _transformAccessArray.Dispose();
             _identifierToIndex.Dispose();
             _alignedStates.Dispose();
+            _invalidIndices.Dispose();
         }
 
         protected override void OnObjectMarkedCreated(TransformSafeRef tSafeRef, RecorderContext ctx)
@@ -127,16 +192,32 @@ namespace PLUME.Base.Module.Unity.Transform
             _transformAccessArray.Add(tSafeRef);
             _identifierToIndex.Add(tSafeRef.Identifier, idx);
             _alignedStates.Add(initialState);
+
+            // A GameObject has a single transform: a different one recorded for it was replaced, and is gone. It
+            // shares the new one's identity, so it stops being recorded without being marked destroyed.
+            var gameObjectId = tSafeRef.Identifier.GameObject.RuntimeId;
+            if (_transformByGameObject.TryGetValue(gameObjectId, out var replaced))
+                StopRecordingObject(replaced, false, ctx);
+            _transformByGameObject[gameObjectId] = tSafeRef;
         }
 
         protected override void OnStopRecordingObject(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
             base.OnStopRecordingObject(tSafeRef, ctx);
 
-            // If the object is not in the list, we don't need to do anything
+            var gameObjectId = tSafeRef.Identifier.GameObject.RuntimeId;
+            if (_transformByGameObject.TryGetValue(gameObjectId, out var current) && current == tSafeRef)
+                _transformByGameObject.Remove(gameObjectId);
+
+            RemoveFromArrays(tSafeRef);
+        }
+
+        private void RemoveFromArrays(TransformSafeRef tSafeRef)
+        {
+            // Already removed, e.g. before its replacement by a RectTransform
             if (!_transformAccessArray.TryRemoveSwapBack(tSafeRef, out var idx))
                 return;
-            
+
             _alignedStates.RemoveAtSwapBack(idx);
             _identifierToIndex.Remove(tSafeRef.Identifier);
 
@@ -188,13 +269,31 @@ namespace PLUME.Base.Module.Unity.Transform
             _transformAccessArray.Clear();
             _identifierToIndex.Clear();
             _alignedStates.Clear();
+            _transformByGameObject.Clear();
             _nCreatedInFrame = 0;
             _nDestroyedInFrame = 0;
         }
 
+        protected override void BeforeCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        {
+            base.BeforeCollectFrameData(frameInfo, ctx);
+
+            _transformPositionStateUpdater.UpdatePositionStates(_alignedStates, _transformAccessArray, _invalidIndices);
+
+            // Every destroyed GameObject has a destroyed transform: one destroyed without the hooks seeing it is still
+            // recorded, in every module. Noticed here for free, for all of them at once.
+            while (_invalidIndices.TryDequeue(out var invalidIndex))
+            {
+                if (!IsStoppingRecordingObject(_transformAccessArray.GetAlignedIdentifiers()[invalidIndex]))
+                    ctx.RequestDestroyedObjectsSweep();
+            }
+        }
+
         protected override TransformFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
-            _transformPositionStateUpdater.UpdatePositionStates(_alignedStates, _transformAccessArray);
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < RecordedComponents.Count; i++)
+                WarnIfReplacedOutsideHooks(RecordedComponents[i]);
 
             var nRecorded = RecordedComponents.Count;
             var updateSamples = new NativeList<TransformUpdate>(nRecorded, Allocator.Persistent);
@@ -208,7 +307,7 @@ namespace PLUME.Base.Module.Unity.Transform
                 UpdateSamples = updateSamples.AsParallelWriter(),
                 CreateSamples = createSamples.AsParallelWriter(),
                 DestroySamples = destroySamples.AsParallelWriter()
-            }.RunBatch(RecordedComponents.Count);
+            }.RunBatch(_alignedStates.Length);
 
             return new TransformFrameData(updateSamples, createSamples, destroySamples);
         }

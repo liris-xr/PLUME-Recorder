@@ -215,13 +215,8 @@ namespace PLUME.Base.Module.Unity.Scene
 
             _unloadSceneSamples.Add(unloadSceneSample);
 
-            var gameObjects = Object.FindObjectsByType<UnityEngine.GameObject>(FindObjectsInactive.Include,
-                FindObjectsSortMode.None).Where(go => go.scene == scene);
-
-            foreach (var go in gameObjects)
-            {
-                ctx.StopRecordingGameObjectInternal(go);
-            }
+            // The scene's objects are already destroyed when it is notified as unloaded.
+            ctx.StopRecordingDestroyedObjects();
         }
 
         private void RecordChangeActiveScene(UnityEngine.SceneManagement.Scene scene, RecorderContext ctx)

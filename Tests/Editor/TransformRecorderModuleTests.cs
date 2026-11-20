@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using NUnit.Framework;
+using PLUME.Base.Hooks;
 using PLUME.Base.Module.Unity.Transform;
 using PLUME.Core.Object.SafeRef;
 using PLUME.Core.Recorder;
@@ -8,6 +9,7 @@ using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Core.Settings;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Tests.Editor
 {
@@ -42,6 +44,7 @@ namespace Tests.Editor
         public void TearDown()
         {
             ((IRecorderModule)_module).StopRecording(_ctx);
+            _ctx.Status = RecorderStatus.Stopped;
             ((IRecorderModule)_module).Destroy(_ctx);
             _out.Dispose();
             foreach (var go in _created)
@@ -74,6 +77,99 @@ namespace Tests.Editor
                 Assert.IsTrue(_module.IsRecordingObject(t));
         }
 
+        [Test]
+        public void Transform_SharesItsGuidWithItsGameObjectIdentifier()
+        {
+            var go = new GameObject("runtime");
+            _created.Add(go);
+
+            var transformGuid = _ctx.SafeRefProvider.GetOrCreateComponentSafeRef(go.transform).Identifier.Guid;
+
+            Assert.AreEqual(_ctx.SafeRefProvider.GetOrCreateGameObjectSafeRef(go).Identifier.TransformGuid,
+                transformGuid);
+        }
+
+        // Unity replaces the Transform by a RectTransform when a UI component is added. A replaced Transform left in a
+        // TransformAccessArray crashes Unity when its GameObject is destroyed (here, in TearDown).
+        [Test]
+        public void Transform_ReplacedByRectTransform_IsRecordedAsTheSameTransform()
+        {
+            var go = new GameObject("replaced");
+            _created.Add(go);
+            var transform = _ctx.SafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
+            Start(transform);
+            RunFrame();
+
+            var warnings = CountWarnings(() =>
+            {
+                GameObjectHooks.AddComponentAndNotify<Image>(go);
+                RunFrame();
+            });
+
+            var rectTransform = _ctx.SafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
+            Assert.IsInstanceOf<RectTransform>(rectTransform.Component);
+            Assert.IsTrue(_module.IsRecordingObject(rectTransform));
+            Assert.IsFalse(_module.IsRecordingObject(transform));
+            Assert.AreEqual(transform.Identifier.Guid, rectTransform.Identifier.Guid);
+            Assert.AreEqual(0, warnings, "A replacement seen by the hooks must not be reported.");
+        }
+
+        [Test]
+        public void Transform_DestroyedWithItsGameObject_IsNotReportedAsReplaced()
+        {
+            var go = new GameObject("destroyed");
+            Start(_ctx.SafeRefProvider.GetOrCreateComponentSafeRef(go.transform));
+            RunFrame();
+
+            var warnings = CountWarnings(() =>
+            {
+                Object.DestroyImmediate(go);
+                RunFrame();
+            });
+
+            Assert.AreEqual(0, warnings);
+        }
+
+        [Test]
+        public void Transform_DestroyedWithoutHooks_StopsBeingRecorded()
+        {
+            var go = new GameObject("destroyed unhooked");
+            var transform = _ctx.SafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
+            Start(transform);
+            RunFrame();
+
+            // The hook handlers ignore what happens while not recording, as for code the hooks do not see.
+            _ctx.Status = RecorderStatus.Stopped;
+            Object.DestroyImmediate(go);
+            _ctx.Status = RecorderStatus.Recording;
+
+            RunFrame();
+
+            Assert.IsFalse(_module.IsRecordingObject(transform));
+        }
+
+        private static int CountWarnings(System.Action action)
+        {
+            var warnings = 0;
+            void OnLog(string message, string stackTrace, LogType type)
+            {
+                if (type == LogType.Warning)
+                    warnings++;
+            }
+
+            Application.logMessageReceived += OnLog;
+            try
+            {
+                action();
+            }
+            finally
+            {
+                Application.logMessageReceived -= OnLog;
+            }
+
+            return warnings;
+        }
+
         private void Start(IComponentSafeRef<Transform> t)
         {
             Assert.IsTrue(((IObjectRecorderModule)_module).StartRecordingObject(t, false, _ctx));
@@ -84,6 +180,7 @@ namespace Tests.Editor
             var frameInfo = new FrameInfo((ulong)_frame, _frame++);
             var module = (IFrameDataRecorderModule)_module;
             module.BeforeEnqueueFrameData(frameInfo, _ctx);
+            _ctx.StopRecordingDestroyedObjectsIfRequested();
             module.EnqueueFrameData(frameInfo, _ctx);
             module.AfterEnqueueFrameData(frameInfo, _ctx);
             module.SerializeFrameData(frameInfo, new FrameDataWriter(_out));

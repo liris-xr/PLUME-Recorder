@@ -158,7 +158,7 @@ namespace PLUME.Base.Hooks
             );
         }
 
-        private static void NotifyNameChanged(Object obj, string name)
+        internal static void NotifyNameChanged(Object obj, string name)
         {
             try
             {

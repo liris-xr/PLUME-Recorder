@@ -74,7 +74,7 @@ namespace PLUME.Base.Hooks
                     new[] { typeof(NativeSlice<Vector3>) }));
         }
 
-        private static void NotifyWidthMultiplierChanged(LineRenderer lineRenderer, float widthMultiplier)
+        internal static void NotifyWidthMultiplierChanged(LineRenderer lineRenderer, float widthMultiplier)
         {
             try
             {

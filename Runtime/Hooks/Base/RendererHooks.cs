@@ -62,7 +62,7 @@ namespace PLUME.Base.Hooks
                 typeof(Renderer).GetMethod(nameof(Renderer.SetSharedMaterials), new[] {typeof(List<Material>)}));
         }
         
-        private static void NotifyEnabledChanged(Renderer renderer, bool enabled)
+        internal static void NotifyEnabledChanged(Renderer renderer, bool enabled)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace PLUME.Base.Hooks
             }
         }
 
-        private static void NotifySharedMaterialChanged(Renderer renderer, Material material)
+        internal static void NotifySharedMaterialChanged(Renderer renderer, Material material)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace PLUME.Base.Hooks
             }
         }
 
-        private static void NotifyMaterialChanged(Renderer renderer, Material material)
+        internal static void NotifyMaterialChanged(Renderer renderer, Material material)
         {
             try
             {

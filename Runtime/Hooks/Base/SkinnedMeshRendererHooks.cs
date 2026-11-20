@@ -45,7 +45,7 @@ namespace PLUME.Base.Hooks
             }
         }
 
-        private static void NotifyRootBoneChanged(SkinnedMeshRenderer renderer, Transform rootBone)
+        internal static void NotifyRootBoneChanged(SkinnedMeshRenderer renderer, Transform rootBone)
         {
             try
             {

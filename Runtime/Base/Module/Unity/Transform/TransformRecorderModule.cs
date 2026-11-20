@@ -132,15 +132,17 @@ namespace PLUME.Base.Module.Unity.Transform
         protected override void OnStopRecordingObject(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
             base.OnStopRecordingObject(tSafeRef, ctx);
-            var lastIdentifier = _transformAccessArray.GetAlignedIdentifiers()[^1];
 
             // If the object is not in the list, we don't need to do anything
             if (!_transformAccessArray.TryRemoveSwapBack(tSafeRef, out var idx))
                 return;
             
             _alignedStates.RemoveAtSwapBack(idx);
-            // As we swapped the removed element with the last one, we need to update the index of the last element
-            _identifierToIndex[lastIdentifier] = idx;
+            _identifierToIndex.Remove(tSafeRef.Identifier);
+
+            // The last element was swapped into the removed one's place, unless the removed one was the last
+            if (idx < _transformAccessArray.Length)
+                _identifierToIndex[_transformAccessArray.GetAlignedIdentifiers()[idx]] = idx;
         }
 
         private void OnParentChanged(UnityEngine.Transform t, UnityEngine.Transform parent, RecorderContext ctx)

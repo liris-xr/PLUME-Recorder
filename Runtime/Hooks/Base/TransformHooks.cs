@@ -32,7 +32,7 @@ namespace PLUME.Base.Hooks
                 typeof(Transform).GetMethod(nameof(Transform.SetAsFirstSibling)));
         }
         
-        private static void NotifyParentChanged(Transform t, Transform parent)
+        internal static void NotifyParentChanged(Transform t, Transform parent)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace PLUME.Base.Hooks
             }
         }
 
-        private static void NotifySiblingIndexChanged(Transform t, int siblingIdx)
+        internal static void NotifySiblingIndexChanged(Transform t, int siblingIdx)
         {
             try
             {

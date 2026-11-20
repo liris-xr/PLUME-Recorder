@@ -52,7 +52,7 @@ namespace PLUME.Base.Hooks
             }
         }
 
-        private static void NotifyActiveChanged(GameObject go, bool active)
+        internal static void NotifyActiveChanged(GameObject go, bool active)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace PLUME.Base.Hooks
             }
         }
 
-        private static void NotifyTagChanged(GameObject go, string tag)
+        internal static void NotifyTagChanged(GameObject go, string tag)
         {
             try
             {

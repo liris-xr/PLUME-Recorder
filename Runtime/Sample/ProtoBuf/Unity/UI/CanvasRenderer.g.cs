@@ -26,22 +26,24 @@ namespace PLUME.Sample.Unity.UI {
           string.Concat(
             "CitwbHVtZS9zYW1wbGUvdW5pdHkvdWkvY2FudmFzX3JlbmRlcmVyLnByb3Rv",
             "EhVwbHVtZS5zYW1wbGUudW5pdHkudWkaJHBsdW1lL3NhbXBsZS91bml0eS9p",
-            "ZGVudGlmaWVycy5wcm90byJdChRDYW52YXNSZW5kZXJlckNyZWF0ZRJFCglj",
+            "ZGVudGlmaWVycy5wcm90bxofcGx1bWUvc2FtcGxlL2NvbW1vbi9jb2xvci5w",
+            "cm90byJdChRDYW52YXNSZW5kZXJlckNyZWF0ZRJFCgljb21wb25lbnQYASAB",
+            "KAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllclIJ",
+            "Y29tcG9uZW50Il4KFUNhbnZhc1JlbmRlcmVyRGVzdHJveRJFCgljb21wb25l",
+            "bnQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRp",
+            "ZmllclIJY29tcG9uZW50IvEBChRDYW52YXNSZW5kZXJlclVwZGF0ZRJFCglj",
             "b21wb25lbnQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50",
-            "SWRlbnRpZmllclIJY29tcG9uZW50Il4KFUNhbnZhc1JlbmRlcmVyRGVzdHJv",
-            "eRJFCgljb21wb25lbnQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5pdHkuQ29t",
-            "cG9uZW50SWRlbnRpZmllclIJY29tcG9uZW50IrABChRDYW52YXNSZW5kZXJl",
-            "clVwZGF0ZRJFCgljb21wb25lbnQYASABKAsyJy5wbHVtZS5zYW1wbGUudW5p",
-            "dHkuQ29tcG9uZW50SWRlbnRpZmllclIJY29tcG9uZW50EjcKFWN1bGxfdHJh",
-            "bnNwYXJlbnRfbWVzaBgCIAEoCEgAUhNjdWxsVHJhbnNwYXJlbnRNZXNoiAEB",
-            "QhgKFl9jdWxsX3RyYW5zcGFyZW50X21lc2hCGKoCFVBMVU1FLlNhbXBsZS5V",
-            "bml0eS5VSWIGcHJvdG8z"));
+            "SWRlbnRpZmllclIJY29tcG9uZW50EjcKFWN1bGxfdHJhbnNwYXJlbnRfbWVz",
+            "aBgCIAEoCEgAUhNjdWxsVHJhbnNwYXJlbnRNZXNoiAEBEjUKBWNvbG9yGAMg",
+            "ASgLMhoucGx1bWUuc2FtcGxlLmNvbW1vbi5Db2xvckgBUgVjb2xvcogBAUIY",
+            "ChZfY3VsbF90cmFuc3BhcmVudF9tZXNoQggKBl9jb2xvckIYqgIVUExVTUUu",
+            "U2FtcGxlLlVuaXR5LlVJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, global::PLUME.Sample.Common.ColorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasRendererCreate), global::PLUME.Sample.Unity.UI.CanvasRendererCreate.Parser, new[]{ "Component" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasRendererDestroy), global::PLUME.Sample.Unity.UI.CanvasRendererDestroy.Parser, new[]{ "Component" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasRendererUpdate), global::PLUME.Sample.Unity.UI.CanvasRendererUpdate.Parser, new[]{ "Component", "CullTransparentMesh" }, new[]{ "CullTransparentMesh" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasRendererUpdate), global::PLUME.Sample.Unity.UI.CanvasRendererUpdate.Parser, new[]{ "Component", "CullTransparentMesh", "Color" }, new[]{ "CullTransparentMesh", "Color" }, null, null, null)
           }));
     }
     #endregion
@@ -501,6 +503,7 @@ namespace PLUME.Sample.Unity.UI {
       _hasBits0 = other._hasBits0;
       component_ = other.component_ != null ? other.component_.Clone() : null;
       cullTransparentMesh_ = other.cullTransparentMesh_;
+      color_ = other.color_ != null ? other.color_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -549,6 +552,22 @@ namespace PLUME.Sample.Unity.UI {
       _hasBits0 &= ~1;
     }
 
+    /// <summary>Field number for the "color" field.</summary>
+    public const int ColorFieldNumber = 3;
+    private global::PLUME.Sample.Common.Color color_;
+    /// <summary>
+    /// Vertex color multiplier set through CanvasRenderer.SetColor/SetAlpha, e.g. by Selectable color tint
+    /// transitions (CrossFadeColor) and CanvasGroup-independent alpha fades.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::PLUME.Sample.Common.Color Color {
+      get { return color_; }
+      set {
+        color_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -566,6 +585,7 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (!object.Equals(Component, other.Component)) return false;
       if (CullTransparentMesh != other.CullTransparentMesh) return false;
+      if (!object.Equals(Color, other.Color)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -575,6 +595,7 @@ namespace PLUME.Sample.Unity.UI {
       int hash = 1;
       if (component_ != null) hash ^= Component.GetHashCode();
       if (HasCullTransparentMesh) hash ^= CullTransparentMesh.GetHashCode();
+      if (color_ != null) hash ^= Color.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -601,6 +622,10 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(16);
         output.WriteBool(CullTransparentMesh);
       }
+      if (color_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Color);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -619,6 +644,10 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(16);
         output.WriteBool(CullTransparentMesh);
       }
+      if (color_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Color);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -634,6 +663,9 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasCullTransparentMesh) {
         size += 1 + 1;
+      }
+      if (color_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -655,6 +687,12 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (other.HasCullTransparentMesh) {
         CullTransparentMesh = other.CullTransparentMesh;
+      }
+      if (other.color_ != null) {
+        if (color_ == null) {
+          Color = new global::PLUME.Sample.Common.Color();
+        }
+        Color.MergeFrom(other.Color);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -686,6 +724,13 @@ namespace PLUME.Sample.Unity.UI {
             CullTransparentMesh = input.ReadBool();
             break;
           }
+          case 26: {
+            if (color_ == null) {
+              Color = new global::PLUME.Sample.Common.Color();
+            }
+            input.ReadMessage(Color);
+            break;
+          }
         }
       }
     #endif
@@ -714,6 +759,13 @@ namespace PLUME.Sample.Unity.UI {
           }
           case 16: {
             CullTransparentMesh = input.ReadBool();
+            break;
+          }
+          case 26: {
+            if (color_ == null) {
+              Color = new global::PLUME.Sample.Common.Color();
+            }
+            input.ReadMessage(Color);
             break;
           }
         }

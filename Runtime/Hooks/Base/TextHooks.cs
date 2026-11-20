@@ -18,7 +18,7 @@ namespace PLUME.Base.Hooks
                 typeof(Text).GetProperty(nameof(Text.text))!.GetSetMethod());
         }
 
-        private static void NotifyTextChanged(Text text, string value)
+        internal static void NotifyTextChanged(Text text, string value)
         {
             try
             {

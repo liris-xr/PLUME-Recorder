@@ -25,7 +25,7 @@ namespace PLUME.Base.Hooks
                 typeof(MeshFilter).GetProperty(nameof(MeshFilter.mesh))!.GetGetMethod());
         }
 
-        private static void NotifyMeshChanged(MeshFilter meshFilter, Mesh mesh)
+        internal static void NotifyMeshChanged(MeshFilter meshFilter, Mesh mesh)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace PLUME.Base.Hooks
             }
         }
 
-        private static void NotifySharedMeshChanged(MeshFilter meshFilter, Mesh mesh)
+        internal static void NotifySharedMeshChanged(MeshFilter meshFilter, Mesh mesh)
         {
             try
             {

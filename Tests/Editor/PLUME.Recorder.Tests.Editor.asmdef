@@ -8,7 +8,8 @@
         "PLUME.Recorder",
         "PLUME.Recorder.Hooks",
         "Unity.Collections",
-        "PLUME.Recorder.Tests.HooksFixture"
+        "PLUME.Recorder.Tests.HooksFixture",
+        "UnityEngine.UI"
     ],
     "includePlatforms": [
         "Editor"

@@ -22,6 +22,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Image, TMP text, CanvasRenderer and Canvas properties are now polled every frame and recorded when they change.
 - TextMeshPro was not recorded in Unity 6, where it ships inside `com.unity.ugui` 2.x instead of
   `com.unity.textmeshpro`.
+- LineRenderer positions rewritten from package code (e.g. XR Interaction Toolkit interactor rays) were never
+  recorded. Positions are now polled every frame on a dedicated allocation-free stream
+  (`LineRendererPositionsUpdate`), recorded only when the count changes or a position moves.
+- LineRenderer colors and widths changed from package code are now detected by polling allocation-free getters.
+- Renderer enabled state toggled from package code is now polled, so lines and meshes shown/hidden at runtime are
+  recorded.
 
 ## [2.0.0-beta]
 

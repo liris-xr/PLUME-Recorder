@@ -16,7 +16,8 @@ namespace PLUME.Core.Object.SafeRef
     }
 
     // TODO: make this alloc free
-    public class ComponentSafeRef<TC> : IComponentSafeRef<TC> where TC : Component
+    public class ComponentSafeRef<TC> : IComponentSafeRef<TC>,
+        IIdentifierPayloadCache<PLUME.Sample.Unity.ComponentIdentifier> where TC : Component
     {
         public static readonly ComponentSafeRef<TC> Null = new();
 
@@ -29,6 +30,14 @@ namespace PLUME.Core.Object.SafeRef
         IObjectIdentifier IObjectSafeRef.Identifier => Identifier;
 
         public bool IsNull => Identifier.Equals(ComponentIdentifier.Null);
+
+        private PLUME.Sample.Unity.ComponentIdentifier _payload;
+
+        PLUME.Sample.Unity.ComponentIdentifier IIdentifierPayloadCache<PLUME.Sample.Unity.ComponentIdentifier>.Payload
+        {
+            get => _payload;
+            set => _payload = value;
+        }
 
         internal ComponentSafeRef()
         {

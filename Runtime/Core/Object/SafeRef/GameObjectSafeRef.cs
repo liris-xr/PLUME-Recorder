@@ -5,7 +5,8 @@ using UnityEngine;
 namespace PLUME.Core.Object.SafeRef
 {
     // TODO: make this alloc free
-    public class GameObjectSafeRef : IObjectSafeRef<GameObjectIdentifier>, IEquatable<GameObjectSafeRef>
+    public class GameObjectSafeRef : IObjectSafeRef<GameObjectIdentifier>, IEquatable<GameObjectSafeRef>,
+        IIdentifierPayloadCache<PLUME.Sample.Unity.GameObjectIdentifier>
     {
         public static readonly GameObjectSafeRef Null = new();
 
@@ -19,6 +20,14 @@ namespace PLUME.Core.Object.SafeRef
         GameObjectIdentifier IObjectSafeRef<GameObjectIdentifier>.Identifier => Identifier;
 
         public bool IsNull => Identifier.Equals(GameObjectIdentifier.Null);
+
+        private PLUME.Sample.Unity.GameObjectIdentifier _payload;
+
+        PLUME.Sample.Unity.GameObjectIdentifier IIdentifierPayloadCache<PLUME.Sample.Unity.GameObjectIdentifier>.Payload
+        {
+            get => _payload;
+            set => _payload = value;
+        }
 
         internal GameObjectSafeRef()
         {

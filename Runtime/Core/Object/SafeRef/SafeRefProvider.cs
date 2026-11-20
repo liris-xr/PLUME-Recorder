@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Reflection;
 using Unity.Collections;
 using UnityEngine;
@@ -13,13 +12,28 @@ namespace PLUME.Core.Object.SafeRef
     /// <summary>
     /// Provides a way to create and cache safe reference to unity objects preventing NPE when accessing destroyed objects,
     /// while still being able to access the object identifier (GUID, id).
+    /// This is the single source of object identity in a record: objects serialized in a scene keep the GUID stored in
+    /// the scene's GUID registry, so that they can be matched across records. Objects created at runtime have no
+    /// persistent identity to keep, so they get a random GUID and nothing is added to the registry.
     /// </summary>
     public class SafeRefProvider
     {
+        private const int MinEvictionThreshold = 1024;
+
+        private delegate IComponentSafeRef ComponentSafeRefFactory(Component component, Guid guid,
+            GameObjectSafeRef gameObjectSafeRef);
+
+        private delegate IAssetSafeRef AssetSafeRefFactory(UnityObject asset, Guid guid, FixedString512Bytes assetPath);
+
+        // Safe refs are generic over the object's runtime type: one factory is built per type, then reused.
+        private static readonly Dictionary<Type, ComponentSafeRefFactory> ComponentSafeRefFactories = new();
+        private static readonly Dictionary<Type, AssetSafeRefFactory> AssetSafeRefFactories = new();
+
         private readonly Dictionary<int, IObjectSafeRef> _cachedObjectRefs = new();
-        // Keyed by registry GUID and scene path: duplicated scene assets share their registry GUID, and keying by it
-        // alone returned the first scene's ref (and name) for every later duplicate.
-        private readonly Dictionary<(string, string), SceneSafeRef> _cachedSceneRefs = new();
+        private readonly Dictionary<int, SceneSafeRef> _cachedSceneRefs = new();
+        private readonly Dictionary<int, SceneGuidRegistry> _cachedSceneRegistries = new();
+        private readonly List<int> _evictedInstanceIds = new();
+        private int _evictionThreshold = MinEvictionThreshold;
 
         public SceneSafeRef GetOrCreateSceneSafeRef(Scene scene)
         {
@@ -28,15 +42,14 @@ namespace PLUME.Core.Object.SafeRef
                 return SceneSafeRef.Null;
             }
 
-            var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(scene);
-            var cacheKey = (sceneGuidRegistry.SceneGuid, SceneGuidResolver.GetSceneKey(scene));
-
-            if (_cachedSceneRefs.TryGetValue(cacheKey, out var cachedRef))
+            if (_cachedSceneRefs.TryGetValue(scene.handle, out var cachedRef))
                 return cachedRef;
 
-            var sceneGuid = Guid.FromString(SceneGuidResolver.Resolve(cacheKey.Item1, cacheKey.Item2));
+            // Unique per scene asset, even for duplicated scenes sharing their registry GUID.
+            var sceneGuid = Guid.FromString(
+                SceneGuidResolver.Resolve(GetSceneGuidRegistry(scene).SceneGuid, SceneGuidResolver.GetSceneKey(scene)));
             var sceneSafeRef = new SceneSafeRef(scene, sceneGuid, scene.path);
-            _cachedSceneRefs[cacheKey] = sceneSafeRef;
+            _cachedSceneRefs[scene.handle] = sceneSafeRef;
             return sceneSafeRef;
         }
 
@@ -53,14 +66,13 @@ namespace PLUME.Core.Object.SafeRef
             if (!go.scene.IsValid())
                 return GameObjectSafeRef.Null;
 
-            var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(go.scene);
-            var goRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go);
-            var transformRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(go.transform);
-            var goGuid = Guid.FromString(goRegistryEntry.guid);
-            var transformGuid = Guid.FromString(transformRegistryEntry.guid);
+            var sceneGuidRegistry = GetSceneGuidRegistry(go.scene);
+            var transform = go.transform;
+            var goGuid = GetGuid(sceneGuidRegistry, go);
+            var transformGuid = GetGuid(sceneGuidRegistry, transform);
             var sceneSafeRef = GetOrCreateSceneSafeRef(go.scene);
             goRef = new GameObjectSafeRef(go, goGuid, transformGuid, sceneSafeRef);
-            _cachedObjectRefs[instanceId] = goRef;
+            Cache(instanceId, goRef);
             return goRef;
         }
 
@@ -75,15 +87,14 @@ namespace PLUME.Core.Object.SafeRef
                 cachedRef is IComponentSafeRef<TC> componentSafeRef)
                 return componentSafeRef;
 
-            if (!component.gameObject.scene.IsValid())
+            var go = component.gameObject;
+            if (!go.scene.IsValid())
                 return ComponentSafeRef<TC>.Null;
 
-            var sceneGuidRegistry = SceneGuidRegistry.GetOrCreate(component.gameObject.scene);
-            var guidRegistryEntry = sceneGuidRegistry.GetOrCreateEntry(component);
-            var gameObjectRef = GetOrCreateGameObjectSafeRef(component.gameObject);
-            var goGuid = Guid.FromString(guidRegistryEntry.guid);
-            componentSafeRef = CreateComponentSafeRef(component, gameObjectRef, goGuid);
-            _cachedObjectRefs[instanceId] = componentSafeRef;
+            var guid = GetGuid(GetSceneGuidRegistry(go.scene), component);
+            var gameObjectRef = GetOrCreateGameObjectSafeRef(go);
+            componentSafeRef = (IComponentSafeRef<TC>)CreateComponentSafeRef(component, guid, gameObjectRef);
+            Cache(instanceId, componentSafeRef);
             return componentSafeRef;
         }
 
@@ -102,32 +113,108 @@ namespace PLUME.Core.Object.SafeRef
             var assetsGuidRegistryEntry = assetsGuidRegistry.GetOrCreateEntry(asset);
             var assetBundlePath = new FixedString512Bytes(assetsGuidRegistryEntry.assetBundlePath);
             var assetGuid = Guid.FromString(assetsGuidRegistryEntry.guid);
-            assetSafeRef = CreateAssetObjectSafeRef(asset, assetGuid, assetBundlePath);
-            _cachedObjectRefs[instanceId] = assetSafeRef;
+            assetSafeRef = (IAssetSafeRef<TA>)CreateAssetSafeRef(asset, assetGuid, assetBundlePath);
+            Cache(instanceId, assetSafeRef);
             return assetSafeRef;
         }
 
-        // TODO: Get rid of this
-        private static IComponentSafeRef<TC> CreateComponentSafeRef<TC>(TC component,
-            GameObjectSafeRef gameObjectRef,
-            Guid guid) where TC : Component
+        /// <summary>
+        /// Forgets every cached reference, e.g. when a recording ends. Objects serialized in a scene get the same
+        /// GUID back when referenced again.
+        /// </summary>
+        internal void Clear()
         {
-            const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
-            var type = typeof(ComponentSafeRef<>).MakeGenericType(component.GetType());
-            var parameters = new object[] { component, guid, gameObjectRef };
-            return (IComponentSafeRef<TC>)Activator.CreateInstance(type, flags, null, parameters,
-                CultureInfo.InvariantCulture);
+            _cachedObjectRefs.Clear();
+            _cachedSceneRefs.Clear();
+            _cachedSceneRegistries.Clear();
+            _evictionThreshold = MinEvictionThreshold;
         }
 
-        // TODO: Get rid of this
-        private static IAssetSafeRef<TA> CreateAssetObjectSafeRef<TA>(TA obj, Guid guid,
-            FixedString512Bytes assetPath) where TA : UnityObject
+        private static Guid GetGuid(SceneGuidRegistry sceneGuidRegistry, UnityObject obj)
         {
-            const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
-            var type = typeof(AssetSafeRef<>).MakeGenericType(obj.GetType());
-            var parameters = new object[] { obj, guid, assetPath };
-            return (IAssetSafeRef<TA>)Activator.CreateInstance(type, flags, null, parameters,
-                CultureInfo.InvariantCulture);
+            return sceneGuidRegistry.TryGetEntry(obj, out var entry) ? Guid.FromString(entry.guid) : Guid.NewRandom();
+        }
+
+        private SceneGuidRegistry GetSceneGuidRegistry(Scene scene)
+        {
+            // A cached registry is destroyed when its scene unloads, and the handle of a scene loaded again changes.
+            if (_cachedSceneRegistries.TryGetValue(scene.handle, out var registry) && registry != null)
+                return registry;
+
+            registry = SceneGuidRegistry.GetOrCreate(scene);
+            _cachedSceneRegistries[scene.handle] = registry;
+            return registry;
+        }
+
+        /// <summary>
+        /// Caches a reference, first evicting the references of destroyed objects whenever the cache has doubled
+        /// since the last eviction: the cost stays amortized O(1) per object and the cache does not grow with the
+        /// number of objects ever created.
+        /// </summary>
+        private void Cache(int instanceId, IObjectSafeRef safeRef)
+        {
+            if (_cachedObjectRefs.Count >= _evictionThreshold)
+            {
+                foreach (var (cachedInstanceId, cachedRef) in _cachedObjectRefs)
+                {
+                    // Unity's null check: true once the object is destroyed. Instance ids are never reused.
+                    if (cachedRef.Object == null)
+                        _evictedInstanceIds.Add(cachedInstanceId);
+                }
+
+                foreach (var evictedInstanceId in _evictedInstanceIds)
+                    _cachedObjectRefs.Remove(evictedInstanceId);
+
+                _evictedInstanceIds.Clear();
+                _evictionThreshold = Math.Max(MinEvictionThreshold, _cachedObjectRefs.Count * 2);
+            }
+
+            _cachedObjectRefs[instanceId] = safeRef;
+        }
+
+        private static IComponentSafeRef CreateComponentSafeRef(Component component, Guid guid,
+            GameObjectSafeRef gameObjectRef)
+        {
+            var type = component.GetType();
+
+            if (!ComponentSafeRefFactories.TryGetValue(type, out var factory))
+            {
+                factory = (ComponentSafeRefFactory)typeof(SafeRefProvider)
+                    .GetMethod(nameof(NewComponentSafeRef), BindingFlags.NonPublic | BindingFlags.Static)!
+                    .MakeGenericMethod(type)
+                    .CreateDelegate(typeof(ComponentSafeRefFactory));
+                ComponentSafeRefFactories[type] = factory;
+            }
+
+            return factory(component, guid, gameObjectRef);
+        }
+
+        private static IAssetSafeRef CreateAssetSafeRef(UnityObject asset, Guid guid, FixedString512Bytes assetPath)
+        {
+            var type = asset.GetType();
+
+            if (!AssetSafeRefFactories.TryGetValue(type, out var factory))
+            {
+                factory = (AssetSafeRefFactory)typeof(SafeRefProvider)
+                    .GetMethod(nameof(NewAssetSafeRef), BindingFlags.NonPublic | BindingFlags.Static)!
+                    .MakeGenericMethod(type)
+                    .CreateDelegate(typeof(AssetSafeRefFactory));
+                AssetSafeRefFactories[type] = factory;
+            }
+
+            return factory(asset, guid, assetPath);
+        }
+
+        private static IComponentSafeRef NewComponentSafeRef<TC>(Component component, Guid guid,
+            GameObjectSafeRef gameObjectSafeRef) where TC : Component
+        {
+            return new ComponentSafeRef<TC>((TC)component, guid, gameObjectSafeRef);
+        }
+
+        private static IAssetSafeRef NewAssetSafeRef<TA>(UnityObject asset, Guid guid, FixedString512Bytes assetPath)
+            where TA : UnityObject
+        {
+            return new AssetSafeRef<TA>((TA)asset, guid, assetPath);
         }
     }
 }

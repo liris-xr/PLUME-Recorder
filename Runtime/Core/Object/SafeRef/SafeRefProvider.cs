@@ -45,7 +45,9 @@ namespace PLUME.Core.Object.SafeRef
             if (_cachedSceneRefs.TryGetValue(scene.handle, out var cachedRef))
                 return cachedRef;
 
-            var sceneGuid = Guid.FromString(GetSceneGuidRegistry(scene).SceneGuid);
+            // Unique per scene asset, even for duplicated scenes sharing their registry GUID.
+            var sceneGuid = Guid.FromString(
+                SceneGuidResolver.Resolve(GetSceneGuidRegistry(scene).SceneGuid, SceneGuidResolver.GetSceneKey(scene)));
             var sceneSafeRef = new SceneSafeRef(scene, sceneGuid, scene.path);
             _cachedSceneRefs[scene.handle] = sceneSafeRef;
             return sceneSafeRef;

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using PLUME.Base.Module.Unity.UI.Common;
 using PLUME.Core.Recorder;
 using PLUME.Core.Recorder.Module.Frame;
 using PLUME.Sample.Unity.UI;
+using UnityEngine;
 using UnityEngine.Scripting;
 using CanvasRendererSafeRef = PLUME.Core.Object.SafeRef.IComponentSafeRef<UnityEngine.CanvasRenderer>;
 using static PLUME.Core.Utils.SampleUtils;
@@ -15,14 +17,69 @@ namespace PLUME.Base.Module.Unity.UI.CanvasRenderer
         private readonly Dictionary<CanvasRendererSafeRef, CanvasRendererDestroy> _destroySamples = new();
         private readonly Dictionary<CanvasRendererSafeRef, CanvasRendererUpdate> _updateSamples = new();
 
+        private struct CanvasRendererState
+        {
+            public bool CullTransparentMesh;
+            public Color Color;
+        }
+
+        // Last recorded state per canvas renderer, compared every frame.
+        private readonly Dictionary<CanvasRendererSafeRef, CanvasRendererState> _states = new();
+
         protected override void OnObjectMarkedCreated(CanvasRendererSafeRef objSafeRef, RecorderContext ctx)
         {
             base.OnObjectMarkedCreated(objSafeRef, ctx);
 
-            var canvasRenderer = objSafeRef.Component;
-            var updateSample = GetOrCreateUpdateSample(objSafeRef);
-            updateSample.CullTransparentMesh = canvasRenderer.cullTransparentMesh;
             _createSamples[objSafeRef] = new CanvasRendererCreate { Component = GetComponentIdentifierPayload(objSafeRef) };
+            _states.Remove(objSafeRef);
+            PollCanvasRenderer(objSafeRef);
+        }
+
+        protected override void OnStopRecordingObject(CanvasRendererSafeRef objSafeRef, RecorderContext ctx)
+        {
+            base.OnStopRecordingObject(objSafeRef, ctx);
+            _states.Remove(objSafeRef);
+        }
+
+        protected override void OnStopRecording(RecorderContext ctx)
+        {
+            base.OnStopRecording(ctx);
+            _states.Clear();
+        }
+
+        protected override void BeforeCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        {
+            base.BeforeCollectFrameData(frameInfo, ctx);
+
+            var recorded = RecordedComponents;
+
+            // ReSharper disable once ForCanBeConvertedToForeach
+            for (var i = 0; i < recorded.Count; i++)
+                PollCanvasRenderer(recorded[i]);
+        }
+
+        private void PollCanvasRenderer(CanvasRendererSafeRef objSafeRef)
+        {
+            var canvasRenderer = objSafeRef.Component;
+
+            if (canvasRenderer == null)
+                return;
+
+            var current = new CanvasRendererState
+            {
+                CullTransparentMesh = canvasRenderer.cullTransparentMesh,
+                Color = canvasRenderer.GetColor()
+            };
+
+            var has = _states.TryGetValue(objSafeRef, out var previous);
+
+            if (UIDiff.Changed(has, previous.CullTransparentMesh, current.CullTransparentMesh))
+                GetOrCreateUpdateSample(objSafeRef).CullTransparentMesh = current.CullTransparentMesh;
+            // Selectable color tint transitions and CrossFadeColor/CrossFadeAlpha tweens only write this color.
+            if (UIDiff.Changed(has, previous.Color, current.Color))
+                GetOrCreateUpdateSample(objSafeRef).Color = current.Color.ToPayload();
+
+            _states[objSafeRef] = current;
         }
 
         protected override void OnObjectMarkedDestroyed(CanvasRendererSafeRef objSafeRef, RecorderContext ctx)

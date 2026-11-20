@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Unity UI (uGUI) recording: RawImage, Mask, RectMask2D, CanvasGroup, Selectable (interactable and selection
+  state, i.e. hover/press/select), Button clicks, Toggle, Slider, Scrollbar, ScrollRect, Dropdown and
+  TMP_Dropdown, InputField and TMP_InputField (text, focus and end-edit events), and the layout components
+  (Horizontal/Vertical/Grid layout groups, LayoutElement, AspectRatioFitter, recorded for analysis only).
+- CanvasRenderer color (Selectable color tints, CrossFade tweens), Graphic enabled, Canvas enabled and the Image
+  fill properties.
+
+### Fixed
+
+- UI state changed after creation was never recorded: RectTransform rects (layout groups, fitters), Graphic,
+  Image, TMP text, CanvasRenderer and Canvas properties are now polled every frame and recorded when they change.
+- TextMeshPro was not recorded in Unity 6, where it ships inside `com.unity.ugui` 2.x instead of
+  `com.unity.textmeshpro`.
+- LineRenderer positions rewritten from package code (e.g. XR Interaction Toolkit interactor rays) were never
+  recorded. Positions are now polled every frame on a dedicated allocation-free stream
+  (`LineRendererPositionsUpdate`), recorded only when the count changes or a position moves.
+- LineRenderer colors and widths changed from package code are now detected by polling allocation-free getters.
+- Renderer enabled state toggled from package code is now polled, so lines and meshes shown/hidden at runtime are
+  recorded.
+- Duplicated scene assets were recorded with the same scene GUID (copied SceneGuidRegistry), so a player could not
+  tell that the scene changed, and every duplicate after the first was recorded with the first one's name and path.
+  Each scene asset now gets a unique GUID: the first scene seen keeps its registry GUID, later duplicates get a GUID
+  derived from it and their path. Object GUIDs of duplicated scenes still collide; regenerate the registry of
+  duplicated scenes to fix them.
+
 ## [2.0.0-beta]
 
 ### Changed

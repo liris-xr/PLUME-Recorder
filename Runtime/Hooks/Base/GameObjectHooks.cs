@@ -283,23 +283,30 @@ namespace PLUME.Base.Hooks
         /// </summary>
         private static bool RequiresRectTransform(Type componentType)
         {
-            if (componentType == typeof(RectTransform))
-                return true;
-
             if (RequiresRectTransformByType.TryGetValue(componentType, out var requires))
                 return requires;
 
-            // Set before recursing, so that requirement cycles end.
-            RequiresRectTransformByType[componentType] = false;
+            return RequiresRectTransformByType[componentType] = RequiresRectTransform(componentType, new HashSet<Type>());
+        }
+
+        private static bool RequiresRectTransform(Type componentType, HashSet<Type> visited)
+        {
+            if (componentType == typeof(RectTransform))
+                return true;
+
+            // Requirements can form cycles.
+            if (!visited.Add(componentType))
+                return false;
 
             foreach (var attr in componentType.GetCustomAttributes<RequireComponent>())
             {
-                requires |= attr.m_Type0 != null && RequiresRectTransform(attr.m_Type0) ||
-                            attr.m_Type1 != null && RequiresRectTransform(attr.m_Type1) ||
-                            attr.m_Type2 != null && RequiresRectTransform(attr.m_Type2);
+                if (attr.m_Type0 != null && RequiresRectTransform(attr.m_Type0, visited) ||
+                    attr.m_Type1 != null && RequiresRectTransform(attr.m_Type1, visited) ||
+                    attr.m_Type2 != null && RequiresRectTransform(attr.m_Type2, visited))
+                    return true;
             }
 
-            return RequiresRectTransformByType[componentType] = requires;
+            return false;
         }
 
         private static List<Type> GetMissingRequiredComponents(GameObject go, Type componentType)

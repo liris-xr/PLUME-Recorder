@@ -31,7 +31,7 @@ namespace PLUME.Core.Recorder
                 Name = Name,
                 ExtraMetadata = ExtraMetadata,
                 StartTime = Timestamp.FromDateTime(StartTime),
-                RecorderVersion = PlumeRecorder.Version
+                RecorderVersion = PlumeRecorder.Version.Clone()
             };
         }
     }

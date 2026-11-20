@@ -30,7 +30,7 @@ namespace PLUME.Sample.Unity.UI {
             "cGx1bWUuc2FtcGxlLnVuaXR5LkNvbXBvbmVudElkZW50aWZpZXJSCWNvbXBv",
             "bmVudCJWCg1DYW52YXNEZXN0cm95EkUKCWNvbXBvbmVudBgBIAEoCzInLnBs",
             "dW1lLnNhbXBsZS51bml0eS5Db21wb25lbnRJZGVudGlmaWVyUgljb21wb25l",
-            "bnQirAsKDENhbnZhc1VwZGF0ZRJFCgljb21wb25lbnQYASABKAsyJy5wbHVt",
+            "bnQi1wsKDENhbnZhc1VwZGF0ZRJFCgljb21wb25lbnQYASABKAsyJy5wbHVt",
             "ZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllclIJY29tcG9uZW50",
             "EkcKC3JlbmRlcl9tb2RlGAIgASgOMiEucGx1bWUuc2FtcGxlLnVuaXR5LnVp",
             "LlJlbmRlck1vZGVIAFIKcmVuZGVyTW9kZYgBARImCgxzY2FsZV9mYWN0b3IY",
@@ -53,30 +53,31 @@ namespace PLUME.Sample.Unity.UI {
             "b3JtRm9yU3RhbmRhbG9uZYgBARJPCgx3b3JsZF9jYW1lcmEYECABKAsyJy5w",
             "bHVtZS5zYW1wbGUudW5pdHkuQ29tcG9uZW50SWRlbnRpZmllckgOUgt3b3Js",
             "ZENhbWVyYYgBARJEChxub3JtYWxpemVkX3NvcnRpbmdfZ3JpZF9zaXplGBEg",
-            "ASgCSA9SGW5vcm1hbGl6ZWRTb3J0aW5nR3JpZFNpemWIAQFCDgoMX3JlbmRl",
-            "cl9tb2RlQg8KDV9zY2FsZV9mYWN0b3JCHAoaX3JlZmVyZW5jZV9waXhlbHNf",
-            "cGVyX3VuaXRCGQoXX292ZXJyaWRlX3BpeGVsX3BlcmZlY3RCIgogX3ZlcnRl",
-            "eF9jb2xvcl9hbHdheXNfZ2FtbWFfc3BhY2VCEAoOX3BpeGVsX3BlcmZlY3RC",
-            "EQoPX3BsYW5lX2Rpc3RhbmNlQhMKEV9vdmVycmlkZV9zb3J0aW5nQhAKDl9z",
-            "b3J0aW5nX29yZGVyQhEKD190YXJnZXRfZGlzcGxheUITChFfc29ydGluZ19s",
-            "YXllcl9pZEIdChtfYWRkaXRpb25hbF9zaGFkZXJfY2hhbm5lbHNCFQoTX3Nv",
-            "cnRpbmdfbGF5ZXJfbmFtZUInCiVfdXBkYXRlX3JlY3RfdHJhbnNmb3JtX2Zv",
-            "cl9zdGFuZGFsb25lQg8KDV93b3JsZF9jYW1lcmFCHwodX25vcm1hbGl6ZWRf",
-            "c29ydGluZ19ncmlkX3NpemUqmgEKClJlbmRlck1vZGUSJAogUkVOREVSX01P",
-            "REVfU0NSRUVOX1NQQUNFX09WRVJMQVkQABIkChdSRU5ERVJfTU9ERV9VTlNQ",
-            "RUNJRklFRBD///////////8BEiMKH1JFTkRFUl9NT0RFX1NDUkVFTl9TUEFD",
-            "RV9DQU1FUkEQARIbChdSRU5ERVJfTU9ERV9XT1JMRF9TUEFDRRACKpgBChZT",
-            "dGFuZGFsb25lUmVuZGVyUmVzaXplEiQKIFNUQU5EQUxPTkVfUkVOREVSX1JF",
-            "U0laRV9FTkFCTEVEEAASMQokU1RBTkRBTE9ORV9SRU5ERVJfUkVTSVpFX1VO",
-            "U1BFQ0lGSUVEEP///////////wESJQohU1RBTkRBTE9ORV9SRU5ERVJfUkVT",
-            "SVpFX0RJU0FCTEVEEAFCGKoCFVBMVU1FLlNhbXBsZS5Vbml0eS5VSWIGcHJv",
-            "dG8z"));
+            "ASgCSA9SGW5vcm1hbGl6ZWRTb3J0aW5nR3JpZFNpemWIAQESHQoHZW5hYmxl",
+            "ZBgSIAEoCEgQUgdlbmFibGVkiAEBQg4KDF9yZW5kZXJfbW9kZUIPCg1fc2Nh",
+            "bGVfZmFjdG9yQhwKGl9yZWZlcmVuY2VfcGl4ZWxzX3Blcl91bml0QhkKF19v",
+            "dmVycmlkZV9waXhlbF9wZXJmZWN0QiIKIF92ZXJ0ZXhfY29sb3JfYWx3YXlz",
+            "X2dhbW1hX3NwYWNlQhAKDl9waXhlbF9wZXJmZWN0QhEKD19wbGFuZV9kaXN0",
+            "YW5jZUITChFfb3ZlcnJpZGVfc29ydGluZ0IQCg5fc29ydGluZ19vcmRlckIR",
+            "Cg9fdGFyZ2V0X2Rpc3BsYXlCEwoRX3NvcnRpbmdfbGF5ZXJfaWRCHQobX2Fk",
+            "ZGl0aW9uYWxfc2hhZGVyX2NoYW5uZWxzQhUKE19zb3J0aW5nX2xheWVyX25h",
+            "bWVCJwolX3VwZGF0ZV9yZWN0X3RyYW5zZm9ybV9mb3Jfc3RhbmRhbG9uZUIP",
+            "Cg1fd29ybGRfY2FtZXJhQh8KHV9ub3JtYWxpemVkX3NvcnRpbmdfZ3JpZF9z",
+            "aXplQgoKCF9lbmFibGVkKpoBCgpSZW5kZXJNb2RlEiQKIFJFTkRFUl9NT0RF",
+            "X1NDUkVFTl9TUEFDRV9PVkVSTEFZEAASJAoXUkVOREVSX01PREVfVU5TUEVD",
+            "SUZJRUQQ////////////ARIjCh9SRU5ERVJfTU9ERV9TQ1JFRU5fU1BBQ0Vf",
+            "Q0FNRVJBEAESGwoXUkVOREVSX01PREVfV09STERfU1BBQ0UQAiqYAQoWU3Rh",
+            "bmRhbG9uZVJlbmRlclJlc2l6ZRIkCiBTVEFOREFMT05FX1JFTkRFUl9SRVNJ",
+            "WkVfRU5BQkxFRBAAEjEKJFNUQU5EQUxPTkVfUkVOREVSX1JFU0laRV9VTlNQ",
+            "RUNJRklFRBD///////////8BEiUKIVNUQU5EQUxPTkVfUkVOREVSX1JFU0la",
+            "RV9ESVNBQkxFRBABQhiqAhVQTFVNRS5TYW1wbGUuVW5pdHkuVUliBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PLUME.Sample.Unity.IdentifiersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PLUME.Sample.Unity.UI.RenderMode), typeof(global::PLUME.Sample.Unity.UI.StandaloneRenderResize), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasCreate), global::PLUME.Sample.Unity.UI.CanvasCreate.Parser, new[]{ "Component" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasDestroy), global::PLUME.Sample.Unity.UI.CanvasDestroy.Parser, new[]{ "Component" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasUpdate), global::PLUME.Sample.Unity.UI.CanvasUpdate.Parser, new[]{ "Component", "RenderMode", "ScaleFactor", "ReferencePixelsPerUnit", "OverridePixelPerfect", "VertexColorAlwaysGammaSpace", "PixelPerfect", "PlaneDistance", "OverrideSorting", "SortingOrder", "TargetDisplay", "SortingLayerId", "AdditionalShaderChannels", "SortingLayerName", "UpdateRectTransformForStandalone", "WorldCamera", "NormalizedSortingGridSize" }, new[]{ "RenderMode", "ScaleFactor", "ReferencePixelsPerUnit", "OverridePixelPerfect", "VertexColorAlwaysGammaSpace", "PixelPerfect", "PlaneDistance", "OverrideSorting", "SortingOrder", "TargetDisplay", "SortingLayerId", "AdditionalShaderChannels", "SortingLayerName", "UpdateRectTransformForStandalone", "WorldCamera", "NormalizedSortingGridSize" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PLUME.Sample.Unity.UI.CanvasUpdate), global::PLUME.Sample.Unity.UI.CanvasUpdate.Parser, new[]{ "Component", "RenderMode", "ScaleFactor", "ReferencePixelsPerUnit", "OverridePixelPerfect", "VertexColorAlwaysGammaSpace", "PixelPerfect", "PlaneDistance", "OverrideSorting", "SortingOrder", "TargetDisplay", "SortingLayerId", "AdditionalShaderChannels", "SortingLayerName", "UpdateRectTransformForStandalone", "WorldCamera", "NormalizedSortingGridSize", "Enabled" }, new[]{ "RenderMode", "ScaleFactor", "ReferencePixelsPerUnit", "OverridePixelPerfect", "VertexColorAlwaysGammaSpace", "PixelPerfect", "PlaneDistance", "OverrideSorting", "SortingOrder", "TargetDisplay", "SortingLayerId", "AdditionalShaderChannels", "SortingLayerName", "UpdateRectTransformForStandalone", "WorldCamera", "NormalizedSortingGridSize", "Enabled" }, null, null, null)
           }));
     }
     #endregion
@@ -567,6 +568,7 @@ namespace PLUME.Sample.Unity.UI {
       updateRectTransformForStandalone_ = other.updateRectTransformForStandalone_;
       worldCamera_ = other.worldCamera_ != null ? other.worldCamera_.Clone() : null;
       normalizedSortingGridSize_ = other.normalizedSortingGridSize_;
+      enabled_ = other.enabled_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1004,6 +1006,33 @@ namespace PLUME.Sample.Unity.UI {
       _hasBits0 &= ~8192;
     }
 
+    /// <summary>Field number for the "enabled" field.</summary>
+    public const int EnabledFieldNumber = 18;
+    private readonly static bool EnabledDefaultValue = false;
+
+    private bool enabled_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Enabled {
+      get { if ((_hasBits0 & 16384) != 0) { return enabled_; } else { return EnabledDefaultValue; } }
+      set {
+        _hasBits0 |= 16384;
+        enabled_ = value;
+      }
+    }
+    /// <summary>Gets whether the "enabled" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasEnabled {
+      get { return (_hasBits0 & 16384) != 0; }
+    }
+    /// <summary>Clears the value of the "enabled" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearEnabled() {
+      _hasBits0 &= ~16384;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1036,6 +1065,7 @@ namespace PLUME.Sample.Unity.UI {
       if (UpdateRectTransformForStandalone != other.UpdateRectTransformForStandalone) return false;
       if (!object.Equals(WorldCamera, other.WorldCamera)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(NormalizedSortingGridSize, other.NormalizedSortingGridSize)) return false;
+      if (Enabled != other.Enabled) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1060,6 +1090,7 @@ namespace PLUME.Sample.Unity.UI {
       if (HasUpdateRectTransformForStandalone) hash ^= UpdateRectTransformForStandalone.GetHashCode();
       if (worldCamera_ != null) hash ^= WorldCamera.GetHashCode();
       if (HasNormalizedSortingGridSize) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NormalizedSortingGridSize);
+      if (HasEnabled) hash ^= Enabled.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1146,6 +1177,10 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(141, 1);
         output.WriteFloat(NormalizedSortingGridSize);
       }
+      if (HasEnabled) {
+        output.WriteRawTag(144, 1);
+        output.WriteBool(Enabled);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1224,6 +1259,10 @@ namespace PLUME.Sample.Unity.UI {
         output.WriteRawTag(141, 1);
         output.WriteFloat(NormalizedSortingGridSize);
       }
+      if (HasEnabled) {
+        output.WriteRawTag(144, 1);
+        output.WriteBool(Enabled);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1284,6 +1323,9 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (HasNormalizedSortingGridSize) {
         size += 2 + 4;
+      }
+      if (HasEnabled) {
+        size += 2 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1353,6 +1395,9 @@ namespace PLUME.Sample.Unity.UI {
       }
       if (other.HasNormalizedSortingGridSize) {
         NormalizedSortingGridSize = other.NormalizedSortingGridSize;
+      }
+      if (other.HasEnabled) {
+        Enabled = other.Enabled;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1447,6 +1492,10 @@ namespace PLUME.Sample.Unity.UI {
             NormalizedSortingGridSize = input.ReadFloat();
             break;
           }
+          case 144: {
+            Enabled = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -1538,6 +1587,10 @@ namespace PLUME.Sample.Unity.UI {
           }
           case 141: {
             NormalizedSortingGridSize = input.ReadFloat();
+            break;
+          }
+          case 144: {
+            Enabled = input.ReadBool();
             break;
           }
         }

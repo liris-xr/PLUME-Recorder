@@ -10,6 +10,7 @@ using PLUME.Core.Hooks;
 using PLUME.Core.Settings;
 using UnityEditor;
 using UnityEditor.Compilation;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using FileMode = System.IO.FileMode;
 using Logger = PLUME.Core.Logger;
@@ -35,6 +36,8 @@ namespace PLUME.Editor.Core.Hooks
             "UnityEngine.UI"
         };
         
+        private const string RecorderPackageName = "fr.liris.plume.recorder";
+
         private static HooksInjector _instance;
 
         private HooksRegistry _hooksRegistry;
@@ -49,7 +52,10 @@ namespace PLUME.Editor.Core.Hooks
             EditorApplication.delayCall += () =>
             {
                 if (_instance != null)
+                {
                     CompilationPipeline.assemblyCompilationFinished -= _instance.OnAssemblyCompilationFinished;
+                    Events.registeringPackages -= _instance.OnRegisteringPackages;
+                }
                 _instance = new HooksInjector();
                 _instance.Initialize();
             };
@@ -62,6 +68,19 @@ namespace PLUME.Editor.Core.Hooks
             _hooksRegistry = new HooksRegistry();
             _hooksRegistry.RegisterHooksInternal();
             CompilationPipeline.assemblyCompilationFinished += OnAssemblyCompilationFinished;
+            Events.registeringPackages += OnRegisteringPackages;
+        }
+
+        private void OnRegisteringPackages(PackageRegistrationEventArgs args)
+        {
+            if (args.removed.All(package => package.name != RecorderPackageName))
+                return;
+
+            // Hooks are injected in place into Library/ScriptAssemblies, which the build cache does not track: an
+            // incremental compilation would keep the injected assemblies, still referencing the removed recorder,
+            // and Unity would refuse to load them. Stop injecting and rebuild every assembly from scratch.
+            CompilationPipeline.assemblyCompilationFinished -= OnAssemblyCompilationFinished;
+            CompilationPipeline.RequestScriptCompilation(RequestScriptCompilationOptions.CleanBuildCache);
         }
 
         private void OnAssemblyCompilationFinished(string assemblyPath, CompilerMessage[] messages)

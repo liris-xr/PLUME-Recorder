@@ -100,8 +100,8 @@ namespace PLUME.Core.Recorder.Module.Frame
         {
             CheckIsRecording(ctx);
 
-            // If we fail to remove the object, this means that it was not being recorded.
-            if (!_recordedObjectsIdentifier.Contains(objSafeRef.Identifier))
+            // Not recorded, or already stopping in this frame.
+            if (!_recordedObjectsIdentifier.Contains(objSafeRef.Identifier) || _objectsToStopRecording.Contains(objSafeRef))
                 return false;
 
             // Deferred removal (after frame data collection)

@@ -47,6 +47,7 @@ namespace Tests.Editor
         {
             GameObjectHooks.OnActiveChanged -= OnActiveChanged;
             ((IRecorderModule)_module).StopRecording(_ctx);
+            _ctx.Status = RecorderStatus.Stopped;
             foreach (var obj in _created)
                 Object.DestroyImmediate(obj);
             _created.Clear();

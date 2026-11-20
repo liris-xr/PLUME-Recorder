@@ -89,8 +89,12 @@ namespace PLUME.Core.Object.SafeRef
             if (!go.scene.IsValid())
                 return ComponentSafeRef<TC>.Null;
 
-            var guid = GetGuid(GetSceneGuidRegistry(go.scene), component);
             var gameObjectRef = GetOrCreateGameObjectSafeRef(go);
+            // A GameObject's identifier embeds its transform's GUID: the transform takes it, which also keeps its
+            // identity when Unity replaces it by a RectTransform (e.g. when a UI component is added).
+            var guid = component is Transform
+                ? gameObjectRef.Identifier.TransformGuid
+                : GetGuid(GetSceneGuidRegistry(go.scene), component);
             componentSafeRef = (IComponentSafeRef<TC>)CreateComponentSafeRef(component, guid, gameObjectRef);
             Cache(instanceId, componentSafeRef);
             return componentSafeRef;

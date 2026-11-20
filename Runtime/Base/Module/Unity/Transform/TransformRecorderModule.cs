@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using PLUME.Base.Hooks;
 using PLUME.Base.Module.Unity.Transform.Job;
 using PLUME.Base.Settings;
@@ -23,6 +24,9 @@ namespace PLUME.Base.Module.Unity.Transform
 
         private TransformPositionStateUpdater _transformPositionStateUpdater;
         
+        // The recorded transform of each GameObject, by GameObject runtime id.
+        private readonly Dictionary<int, TransformSafeRef> _transformByGameObject = new();
+
         private int _nCreatedInFrame;
         private int _nDestroyedInFrame;
 
@@ -42,25 +46,38 @@ namespace PLUME.Base.Module.Unity.Transform
             _identifierToIndex = new NativeHashMap<ComponentIdentifier, int>(1000, Allocator.Persistent);
             _alignedStates = new NativeList<TransformState>(1000, Allocator.Persistent);
 
-            GameObjectHooks.OnComponentAdded += (go, comp) => OnComponentAdded(go, comp, ctx);
             TransformHooks.OnParentChanged += (t, parent) => OnParentChanged(t, parent, ctx);
             TransformHooks.OnSiblingIndexChanged += (t, siblingIdx) => OnSiblingIndexChanged(t, siblingIdx, ctx);
+            GameObjectHooks.OnBeforeTransformReplaced += go => OnBeforeTransformReplaced(go, ctx);
+            GameObjectHooks.OnComponentAdded += (go, _) => OnComponentAdded(go, ctx);
         }
 
-        private void OnComponentAdded(UnityEngine.GameObject go, Component component, RecorderContext ctx)
+        private void OnBeforeTransformReplaced(UnityEngine.GameObject go, RecorderContext ctx)
         {
-            if (!ctx.IsRecordingWith(this))
+            if (!ctx.IsRecordingWith(this) || !_transformByGameObject.TryGetValue(go.GetInstanceID(), out var tSafeRef))
                 return;
 
-            if (component is not UnityEngine.Transform t || component is RectTransform)
+            // Must leave the TransformAccessArray now, not at the end of the frame: see OnBeforeTransformReplaced.
+            // shortcut: if AddComponent then fails without replacing it, the transform stops being recorded. Unity only
+            // refuses conflicting components, which a GameObject without RectTransform hardly has; restart it if seen.
+            RemoveFromArrays(tSafeRef);
+            StopRecordingObject(tSafeRef, false, ctx);
+        }
+
+        /// <summary>
+        /// Adding a UI component (e.g. an Image) to a GameObject makes Unity replace its Transform by a RectTransform,
+        /// which is not notified when only required indirectly: the new transform is recorded by all the modules, as
+        /// the old one's successor.
+        /// </summary>
+        private void OnComponentAdded(UnityEngine.GameObject go, RecorderContext ctx)
+        {
+            if (!ctx.IsRecordingWith(this) || !_transformByGameObject.ContainsKey(go.GetInstanceID()))
                 return;
 
-            var tSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(t);
+            var tSafeRef = ctx.SafeRefProvider.GetOrCreateComponentSafeRef(go.transform);
 
-            if (IsRecordingObject(tSafeRef))
-                return;
-
-            StartRecordingObject(tSafeRef, true, ctx);
+            if (!IsRecordingObject(tSafeRef))
+                ctx.StartRecordingObjectInternal(tSafeRef, true);
         }
 
         protected override void OnDestroy(RecorderContext ctx)
@@ -127,16 +144,32 @@ namespace PLUME.Base.Module.Unity.Transform
             _transformAccessArray.Add(tSafeRef);
             _identifierToIndex.Add(tSafeRef.Identifier, idx);
             _alignedStates.Add(initialState);
+
+            // A GameObject has a single transform: a different one recorded for it was replaced, and is gone. It
+            // shares the new one's identity, so it stops being recorded without being marked destroyed.
+            var gameObjectId = tSafeRef.Identifier.GameObject.RuntimeId;
+            if (_transformByGameObject.TryGetValue(gameObjectId, out var replaced))
+                StopRecordingObject(replaced, false, ctx);
+            _transformByGameObject[gameObjectId] = tSafeRef;
         }
 
         protected override void OnStopRecordingObject(TransformSafeRef tSafeRef, RecorderContext ctx)
         {
             base.OnStopRecordingObject(tSafeRef, ctx);
 
-            // If the object is not in the list, we don't need to do anything
+            var gameObjectId = tSafeRef.Identifier.GameObject.RuntimeId;
+            if (_transformByGameObject.TryGetValue(gameObjectId, out var current) && current == tSafeRef)
+                _transformByGameObject.Remove(gameObjectId);
+
+            RemoveFromArrays(tSafeRef);
+        }
+
+        private void RemoveFromArrays(TransformSafeRef tSafeRef)
+        {
+            // Already removed, e.g. before its replacement by a RectTransform
             if (!_transformAccessArray.TryRemoveSwapBack(tSafeRef, out var idx))
                 return;
-            
+
             _alignedStates.RemoveAtSwapBack(idx);
             _identifierToIndex.Remove(tSafeRef.Identifier);
 
@@ -188,6 +221,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _transformAccessArray.Clear();
             _identifierToIndex.Clear();
             _alignedStates.Clear();
+            _transformByGameObject.Clear();
             _nCreatedInFrame = 0;
             _nDestroyedInFrame = 0;
         }
@@ -208,7 +242,7 @@ namespace PLUME.Base.Module.Unity.Transform
                 UpdateSamples = updateSamples.AsParallelWriter(),
                 CreateSamples = createSamples.AsParallelWriter(),
                 DestroySamples = destroySamples.AsParallelWriter()
-            }.RunBatch(RecordedComponents.Count);
+            }.RunBatch(_alignedStates.Length);
 
             return new TransformFrameData(updateSamples, createSamples, destroySamples);
         }

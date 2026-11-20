@@ -16,6 +16,10 @@ namespace PLUME.Base.Module.Unity.Renderer
         // Update samples for the current frame and for each component, entries are only added when a property changes
         private readonly Dictionary<IComponentSafeRef<TR>, RendererUpdate> _updateSamples = new();
 
+        // Last recorded enabled state per renderer, polled every frame: renderers toggled from package code (e.g. XR
+        // Interaction Toolkit interactor lines shown and hidden every frame) never run the injected setter hook.
+        private readonly Dictionary<IComponentSafeRef<TR>, bool> _enabledStates = new();
+
         protected override void OnCreate(RecorderContext ctx)
         {
             base.OnCreate(ctx);
@@ -31,6 +35,7 @@ namespace PLUME.Base.Module.Unity.Renderer
 
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Enabled = objSafeRef.Component.enabled;
+            _enabledStates[objSafeRef] = updateSample.Enabled;
             updateSample.Materials = new RendererUpdate.Types.Materials();
             updateSample.LocalBounds = objSafeRef.Component.localBounds.ToPayload();
             updateSample.LightmapIndex = objSafeRef.Component.lightmapIndex;
@@ -40,6 +45,42 @@ namespace PLUME.Base.Module.Unity.Renderer
 
             updateSample.Materials.Ids.AddRange(objSafeRef.Component.sharedMaterials.Select(m =>
                 GetAssetIdentifierPayload(ctx.SafeRefProvider.GetOrCreateAssetSafeRef(m))));
+        }
+
+        protected override void OnStopRecordingObject(IComponentSafeRef<TR> objSafeRef, RecorderContext ctx)
+        {
+            base.OnStopRecordingObject(objSafeRef, ctx);
+            _enabledStates.Remove(objSafeRef);
+        }
+
+        protected override void OnStopRecording(RecorderContext ctx)
+        {
+            base.OnStopRecording(ctx);
+            _enabledStates.Clear();
+        }
+
+        protected override void BeforeCollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
+        {
+            base.BeforeCollectFrameData(frameInfo, ctx);
+
+            var recorded = RecordedComponents;
+
+            for (var i = 0; i < recorded.Count; i++)
+            {
+                var objSafeRef = recorded[i];
+                var renderer = objSafeRef.Component;
+
+                if (renderer == null)
+                    continue;
+
+                var enabled = renderer.enabled;
+
+                if (_enabledStates.TryGetValue(objSafeRef, out var previous) && previous == enabled)
+                    continue;
+
+                GetOrCreateUpdateSample(objSafeRef).Enabled = enabled;
+                _enabledStates[objSafeRef] = enabled;
+            }
         }
 
         protected IEnumerable<RendererUpdate> GetRendererUpdateSamples()
@@ -77,6 +118,7 @@ namespace PLUME.Base.Module.Unity.Renderer
             var enabled = objSafeRef.Component.enabled;
             var updateSample = GetOrCreateUpdateSample(objSafeRef);
             updateSample.Enabled = enabled;
+            _enabledStates[objSafeRef] = enabled;
         }
 
         /// <summary>

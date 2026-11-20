@@ -171,11 +171,10 @@ namespace PLUME.Core.Utils
 
         public static SceneIdentifier GetSceneIdentifierPayload(Scene scene)
         {
-            var guidRegistry = SceneGuidRegistry.GetOrCreate(scene);
-
             var sceneIdentifier = new SceneIdentifier
             {
-                Guid = guidRegistry.SceneGuid,
+                // Unique per scene asset, even for duplicated scenes sharing their registry GUID.
+                Guid = PLUME.Core.Object.SceneGuidResolver.GetSceneGuid(scene),
                 AssetBundlePath = scene.path,
                 Name = scene.name
             };

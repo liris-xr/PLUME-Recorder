@@ -52,7 +52,7 @@ namespace PLUME.Base.Module.Unity.UI.Interaction
 
             void OnClick()
             {
-                if (ctx.IsRecording)
+                if (ctx.IsRecordingWith(this))
                     AddEventSample(new ButtonClick { Component = GetComponentIdentifierPayload(objSafeRef) });
             }
 

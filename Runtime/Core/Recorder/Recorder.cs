@@ -139,6 +139,7 @@ namespace PLUME.Core.Recorder
             _context.CurrentRecord.InternalClock.Stop();
             _context.Status = RecorderStatus.Stopping;
 
+            var dispatcherStopped = false;
             try
             {
                 if (_context.TryGetRecorderModule(out FrameRecorderModule frameRecorderModule))
@@ -149,9 +150,24 @@ namespace PLUME.Core.Recorder
                 CallModules(nameof(IRecorderModule.StopRecording), (module, ctx) => module.StopRecording(ctx));
 
                 await _dataDispatcher.StopAsync();
+                dispatcherStopped = true;
             }
             finally
             {
+                // The record is released below: the dispatcher thread must not be writing it anymore.
+                if (!dispatcherStopped)
+                {
+                    try
+                    {
+                        _dataDispatcher.Stop();
+                    }
+                    catch (Exception e)
+                    {
+                        ErrorReporter.Report($"{nameof(PlumeRecorder)}.{nameof(StopRecordingInternal)}",
+                            "Failed to stop writing the record: its end may be missing.", e);
+                    }
+                }
+
                 ApplicationPauseDetector.Destroy();
                 EndRecording();
             }

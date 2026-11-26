@@ -9,7 +9,8 @@ namespace PLUME.Core.Recorder.Writer
 {
     public class DataDispatcher
     {
-        private bool _running;
+        // Read by the dispatcher thread.
+        private volatile bool _running;
         private Thread _dispatcherThread;
 
         private IDataWriter[] _outputs;

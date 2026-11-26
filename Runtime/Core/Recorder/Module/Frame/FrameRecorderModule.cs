@@ -23,7 +23,7 @@ namespace PLUME.Core.Recorder.Module.Frame
         private IFrameDataRecorderModule[] _frameDataRecorderModules;
 
         private Thread _serializationThread;
-        private bool _shouldSerialize;
+        private volatile bool _shouldSerialize; // Read by the serialization thread.
 
         private BlockingCollection<FrameInfo> _frameQueue;
 

@@ -4,6 +4,7 @@ using System.Reflection;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Scripting;
 using UnityRuntimeGuid;
 using UnityObject = UnityEngine.Object;
 
@@ -46,7 +47,7 @@ namespace PLUME.Core.Object.SafeRef
                 return cachedRef;
 
             // Unique per scene asset, even for duplicated scenes sharing their registry GUID.
-            var sceneGuid = Guid.FromString(
+            var sceneGuid = ParseRegistryGuid(
                 SceneGuidResolver.Resolve(GetSceneGuidRegistry(scene).SceneGuid, SceneGuidResolver.GetSceneKey(scene)));
             var sceneSafeRef = new SceneSafeRef(scene, sceneGuid, scene.path);
             _cachedSceneRefs[scene.handle] = sceneSafeRef;
@@ -116,7 +117,7 @@ namespace PLUME.Core.Object.SafeRef
             var assetsGuidRegistry = AssetsGuidRegistry.GetOrCreate();
             var assetsGuidRegistryEntry = assetsGuidRegistry.GetOrCreateEntry(asset);
             var assetBundlePath = new FixedString512Bytes(assetsGuidRegistryEntry.assetBundlePath);
-            var assetGuid = Guid.FromString(assetsGuidRegistryEntry.guid);
+            var assetGuid = ParseRegistryGuid(assetsGuidRegistryEntry.guid);
             assetSafeRef = (IAssetSafeRef<TA>)CreateAssetSafeRef(asset, assetGuid, assetBundlePath);
             Cache(instanceId, assetSafeRef);
             return assetSafeRef;
@@ -136,7 +137,21 @@ namespace PLUME.Core.Object.SafeRef
 
         private static Guid GetGuid(SceneGuidRegistry sceneGuidRegistry, UnityObject obj)
         {
-            return sceneGuidRegistry.TryGetEntry(obj, out var entry) ? Guid.FromString(entry.guid) : Guid.NewRandom();
+            return sceneGuidRegistry.TryGetEntry(obj, out var entry) ? ParseRegistryGuid(entry.guid) : Guid.NewRandom();
+        }
+
+        /// <summary>
+        /// Registries are serialized in the project: a corrupted GUID gives the object a new one for this session
+        /// rather than failing its identification.
+        /// </summary>
+        private static Guid ParseRegistryGuid(string guid)
+        {
+            if (System.Guid.TryParse(guid, out _))
+                return Guid.FromString(guid);
+
+            ErrorReporter.Warn($"{nameof(SafeRefProvider)}.InvalidRegistryGuid.{guid}",
+                $"Invalid GUID '{guid}' in a GUID registry: a new GUID is used for this session.");
+            return Guid.NewRandom();
         }
 
         private SceneGuidRegistry GetSceneGuidRegistry(Scene scene)
@@ -209,12 +224,14 @@ namespace PLUME.Core.Object.SafeRef
             return factory(asset, guid, assetPath);
         }
 
+        [Preserve] // Only called by reflection.
         private static IComponentSafeRef NewComponentSafeRef<TC>(Component component, Guid guid,
             GameObjectSafeRef gameObjectSafeRef) where TC : Component
         {
             return new ComponentSafeRef<TC>((TC)component, guid, gameObjectSafeRef);
         }
 
+        [Preserve] // Only called by reflection.
         private static IAssetSafeRef NewAssetSafeRef<TA>(UnityObject asset, Guid guid, FixedString512Bytes assetPath)
             where TA : UnityObject
         {

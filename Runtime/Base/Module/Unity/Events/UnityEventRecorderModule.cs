@@ -44,15 +44,25 @@ namespace PLUME.Base.Module.Unity.Events
 
             foreach (var field in GetEventFields(component.GetType()))
             {
-                if (field.GetValue(component) is not UnityEventBase unityEvent)
-                    continue;
+                // One event that cannot be subscribed to leaves the others recorded.
+                try
+                {
+                    if (field.GetValue(component) is not UnityEventBase unityEvent)
+                        continue;
 
-                var subscriber = GetSubscriber(unityEvent.GetType());
-                if (subscriber == null)
-                    continue;
+                    var subscriber = GetSubscriber(unityEvent.GetType());
+                    if (subscriber == null)
+                        continue;
 
-                unsubscribers ??= new List<Action>();
-                unsubscribers.Add(subscriber(unityEvent, () => OnEventInvoked(unityEvent, ctx)));
+                    unsubscribers ??= new List<Action>();
+                    unsubscribers.Add(subscriber(unityEvent, () => OnEventInvoked(unityEvent, ctx)));
+                }
+                catch (Exception e)
+                {
+                    ErrorReporter.Report($"{nameof(UnityEventRecorderModule)}.{field.DeclaringType}.{field.Name}",
+                        $"Failed to subscribe to the UnityEvent {field.DeclaringType}.{field.Name}: the changes its " +
+                        "inspector listeners make are not recorded.", e);
+                }
             }
 
             if (unsubscribers != null)
@@ -191,24 +201,41 @@ namespace PLUME.Base.Module.Unity.Events
             if (SubscribersByEventType.TryGetValue(eventType, out var subscriber))
                 return subscriber;
 
-            // UnityEvent, UnityEvent<T0>... are the direct subclasses of UnityEventBase.
+            // Cached even when unsupported or failing, so that each event type is only examined (and reported) once.
+            SubscribersByEventType[eventType] = null;
+
             var baseType = eventType;
-            while (baseType != null && baseType.BaseType != typeof(UnityEventBase))
+            while (baseType != null && !IsUnityEventDefinition(baseType))
                 baseType = baseType.BaseType;
 
-            if (baseType?.Namespace == typeof(UnityEventBase).Namespace)
-            {
-                var arguments = baseType.IsGenericType ? baseType.GetGenericArguments() : Type.EmptyTypes;
-                var method = typeof(UnityEventRecorderModule).GetMethod("Subscribe" + arguments.Length,
-                    BindingFlags.NonPublic | BindingFlags.Static)!;
-                if (arguments.Length > 0)
-                    method = method.MakeGenericMethod(arguments);
-                subscriber = (Subscriber)method.CreateDelegate(typeof(Subscriber));
-            }
+            if (baseType == null)
+                return null;
 
-            return SubscribersByEventType[eventType] = subscriber;
+            var arguments = baseType.IsGenericType ? baseType.GetGenericArguments() : Type.EmptyTypes;
+            var method = typeof(UnityEventRecorderModule).GetMethod("Subscribe" + arguments.Length,
+                BindingFlags.NonPublic | BindingFlags.Static);
+            if (method == null)
+                return null;
+
+            if (arguments.Length > 0)
+                method = method.MakeGenericMethod(arguments);
+
+            return SubscribersByEventType[eventType] = (Subscriber)method.CreateDelegate(typeof(Subscriber));
         }
 
+        private static bool IsUnityEventDefinition(Type type)
+        {
+            if (type == typeof(UnityEngine.Events.UnityEvent))
+                return true;
+            if (!type.IsGenericType)
+                return false;
+
+            var definition = type.GetGenericTypeDefinition();
+            return definition == typeof(UnityEvent<>) || definition == typeof(UnityEvent<,>) ||
+                   definition == typeof(UnityEvent<,,>) || definition == typeof(UnityEvent<,,,>);
+        }
+
+        [Preserve] // Only called by reflection.
         private static Action Subscribe0(UnityEventBase unityEvent, Action onInvoked)
         {
             var e = (UnityEvent)unityEvent;
@@ -217,6 +244,7 @@ namespace PLUME.Base.Module.Unity.Events
             return () => e.RemoveListener(listener);
         }
 
+        [Preserve] // Only called by reflection.
         private static Action Subscribe1<T0>(UnityEventBase unityEvent, Action onInvoked)
         {
             var e = (UnityEvent<T0>)unityEvent;
@@ -225,6 +253,7 @@ namespace PLUME.Base.Module.Unity.Events
             return () => e.RemoveListener(listener);
         }
 
+        [Preserve] // Only called by reflection.
         private static Action Subscribe2<T0, T1>(UnityEventBase unityEvent, Action onInvoked)
         {
             var e = (UnityEvent<T0, T1>)unityEvent;
@@ -233,6 +262,7 @@ namespace PLUME.Base.Module.Unity.Events
             return () => e.RemoveListener(listener);
         }
 
+        [Preserve] // Only called by reflection.
         private static Action Subscribe3<T0, T1, T2>(UnityEventBase unityEvent, Action onInvoked)
         {
             var e = (UnityEvent<T0, T1, T2>)unityEvent;
@@ -241,6 +271,7 @@ namespace PLUME.Base.Module.Unity.Events
             return () => e.RemoveListener(listener);
         }
 
+        [Preserve] // Only called by reflection.
         private static Action Subscribe4<T0, T1, T2, T3>(UnityEventBase unityEvent, Action onInvoked)
         {
             var e = (UnityEvent<T0, T1, T2, T3>)unityEvent;

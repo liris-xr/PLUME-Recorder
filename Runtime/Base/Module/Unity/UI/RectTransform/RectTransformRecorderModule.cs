@@ -85,22 +85,23 @@ namespace PLUME.Base.Module.Unity.UI.RectTransform
                 if (rectTransform == null)
                     continue;
 
-                var last = _layouts[objSafeRef];
+                // No previous layout (should not happen): recorded in full rather than failing the module.
+                var hasLast = _layouts.TryGetValue(objSafeRef, out var last);
                 var layout = new Layout(rectTransform);
 
-                if (layout.Equals(last))
+                if (hasLast && layout.Equals(last))
                     continue;
 
                 var updateSample = GetOrCreateUpdateSample(objSafeRef);
-                if (layout.AnchorMin != last.AnchorMin)
+                if (!hasLast || layout.AnchorMin != last.AnchorMin)
                     updateSample.AnchorMin = layout.AnchorMin.ToPayload();
-                if (layout.AnchorMax != last.AnchorMax)
+                if (!hasLast || layout.AnchorMax != last.AnchorMax)
                     updateSample.AnchorMax = layout.AnchorMax.ToPayload();
-                if (layout.Pivot != last.Pivot)
+                if (!hasLast || layout.Pivot != last.Pivot)
                     updateSample.Pivot = layout.Pivot.ToPayload();
-                if (layout.SizeDelta != last.SizeDelta)
+                if (!hasLast || layout.SizeDelta != last.SizeDelta)
                     updateSample.SizeDelta = layout.SizeDelta.ToPayload();
-                if (layout.AnchoredPosition != last.AnchoredPosition)
+                if (!hasLast || layout.AnchoredPosition != last.AnchoredPosition)
                     updateSample.AnchoredPosition = layout.AnchoredPosition.ToPayload();
 
                 _layouts[objSafeRef] = layout;

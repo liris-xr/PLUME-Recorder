@@ -24,6 +24,11 @@
             "name": "com.unity.render-pipelines.universal",
             "expression": "0",
             "define": "URP_ENABLED"
+        },
+        {
+            "name": "com.unity.render-pipelines.high-definition",
+            "expression": "0",
+            "define": "HDRP_ENABLED"
         }
     ],
     "noEngineReferences": false

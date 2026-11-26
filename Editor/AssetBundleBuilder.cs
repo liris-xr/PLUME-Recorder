@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.Build.Content;
 using UnityEditor.Build.Pipeline;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -18,7 +19,39 @@ namespace PLUME.Editor
 {
     public static class AssetBundleBuilder
     {
+        /// <summary>
+        /// Builds the bundle of the scenes in the build settings (or the active scene) and the assets they need.
+        /// Computing the scenes' dependencies and building their bundle open each scene: unsaved changes are saved
+        /// first, with the user's consent, and the editor's scenes are restored afterwards.
+        /// </summary>
         public static void BuildAssetBundle()
+        {
+            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+            {
+                Logger.LogWarning("Asset bundle not built: the modified scenes were not saved.");
+                return;
+            }
+
+            var sceneSetup = EditorSceneManager.GetSceneManagerSetup();
+            try
+            {
+                BuildAssetBundleOpeningScenes();
+            }
+            catch (Exception e)
+            {
+                Logger.LogError("Failed to build asset bundle.", e);
+            }
+            finally
+            {
+                // Untitled scenes cannot be reopened.
+                if (sceneSetup.Length > 0 && sceneSetup.All(scene => !string.IsNullOrEmpty(scene.path)))
+                    EditorSceneManager.RestoreSceneManagerSetup(sceneSetup);
+                else
+                    EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects);
+            }
+        }
+
+        private static void BuildAssetBundleOpeningScenes()
         {
             var scenePaths = EditorBuildSettings.scenes
                 .Where(s => s.enabled)
@@ -70,9 +103,17 @@ namespace PLUME.Editor
             var exportedRenderPipelineAssets = GetRenderPipelineAssetsToExport(recorderSettings).ToList();
             foreach (var renderPipelineAsset in exportedRenderPipelineAssets)
             {
-                var renderPipelineAssetPath = AssetDatabase.GetAssetPath(renderPipelineAsset);
-                if (!string.IsNullOrEmpty(renderPipelineAssetPath))
-                    assetsPaths.Add(renderPipelineAssetPath);
+                AddBundleableAsset(assetsPaths, renderPipelineAsset);
+
+                // Objects created at runtime (e.g. GameObject.CreatePrimitive) use the pipeline's default materials,
+                // which no scene references.
+                foreach (var defaultMaterial in new[]
+                         {
+                             renderPipelineAsset.defaultMaterial, renderPipelineAsset.defaultParticleMaterial,
+                             renderPipelineAsset.defaultLineMaterial, renderPipelineAsset.defaultTerrainMaterial,
+                             renderPipelineAsset.defaultUIMaterial
+                         })
+                    AddBundleableAsset(assetsPaths, defaultMaterial);
             }
 
             var exportedRenderPipelineNames = exportedRenderPipelineAssets.Count > 0
@@ -80,6 +121,12 @@ namespace PLUME.Editor
                 : "(none)";
             Logger.Log($"Building asset bundle. Render pipeline export mode: {recorderSettings.RenderPipelineExport}. " +
                        $"Exporting render pipeline assets: {exportedRenderPipelineNames}.");
+
+#if HDRP_ENABLED
+            // HDRP applies its default volume profile (sky, exposure...) to every scene, which none references.
+            AddBundleableAsset(assetsPaths,
+                PLUME.Base.Module.Unity.HDRP.HDRPGlobalSettingsRecorderModule.GetDefaultVolumeProfile());
+#endif
 
 #if URP_ENABLED
             var urpGlobalSettings = GraphicsSettings.GetSettingsForRenderPipeline<UnityEngine.Rendering.Universal.UniversalRenderPipeline>();
@@ -148,6 +195,21 @@ namespace PLUME.Editor
             {
                 Logger.LogError("Failed to build asset bundle.", e);
             }
+        }
+
+        /// <summary>
+        /// Adds an asset (null or not, built-in or not) only if it is a project or package asset: built-in resources
+        /// cannot be bundled and would fail the build.
+        /// </summary>
+        private static void AddBundleableAsset(HashSet<string> assetsPaths, UnityEngine.Object asset)
+        {
+            if (asset == null)
+                return;
+
+            var path = AssetDatabase.GetAssetPath(asset);
+            if (path.StartsWith("Assets/", StringComparison.Ordinal) ||
+                path.StartsWith("Packages/", StringComparison.Ordinal))
+                assetsPaths.Add(path);
         }
 
         [Serializable]

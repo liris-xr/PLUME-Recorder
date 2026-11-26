@@ -87,23 +87,23 @@ namespace PLUME.Base.Hooks
             );
 
             hooksRegistry.RegisterHook(
-                typeof(ObjectHooks).GetMethods().First(m =>
+                typeof(ObjectHooks).GetMethods().FirstOrDefault(m =>
                     m.IsGenericMethod && m.Name == nameof(InstantiateAndNotify)
                                       && m.GetParameters().Length == 1
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType)),
-                typeof(Object).GetMethods().First(m =>
+                typeof(Object).GetMethods().FirstOrDefault(m =>
                     m.IsGenericMethod && m.Name == nameof(Object.Instantiate)
                                       && m.GetParameters().Length == 1
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType))
             );
 
             hooksRegistry.RegisterHook(
-                typeof(ObjectHooks).GetMethods().First(m =>
+                typeof(ObjectHooks).GetMethods().FirstOrDefault(m =>
                     m.IsGenericMethod && m.Name == nameof(InstantiateAndNotify)
                                       && m.GetParameters().Length == 2
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType)
                                       && m.GetParameters()[1].ParameterType == typeof(Transform)),
-                typeof(Object).GetMethods().First(m =>
+                typeof(Object).GetMethods().FirstOrDefault(m =>
                     m.IsGenericMethod && m.Name == nameof(Object.Instantiate)
                                       && m.GetParameters().Length == 2
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType)
@@ -111,13 +111,13 @@ namespace PLUME.Base.Hooks
             );
 
             hooksRegistry.RegisterHook(
-                typeof(ObjectHooks).GetMethods().First(m =>
+                typeof(ObjectHooks).GetMethods().FirstOrDefault(m =>
                     m.IsGenericMethod && m.Name == nameof(InstantiateAndNotify)
                                       && m.GetParameters().Length == 3
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType)
                                       && m.GetParameters()[1].ParameterType == typeof(Transform)
                                       && m.GetParameters()[2].ParameterType == typeof(bool)),
-                typeof(Object).GetMethods().First(m =>
+                typeof(Object).GetMethods().FirstOrDefault(m =>
                     m.IsGenericMethod && m.Name == nameof(Object.Instantiate)
                                       && m.GetParameters().Length == 3
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType)
@@ -126,13 +126,13 @@ namespace PLUME.Base.Hooks
             );
 
             hooksRegistry.RegisterHook(
-                typeof(ObjectHooks).GetMethods().First(m =>
+                typeof(ObjectHooks).GetMethods().FirstOrDefault(m =>
                     m.IsGenericMethod && m.Name == nameof(InstantiateAndNotify)
                                       && m.GetParameters().Length == 3
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType)
                                       && m.GetParameters()[1].ParameterType == typeof(Vector3)
                                       && m.GetParameters()[2].ParameterType == typeof(Quaternion)),
-                typeof(Object).GetMethods().First(m =>
+                typeof(Object).GetMethods().FirstOrDefault(m =>
                     m.IsGenericMethod && m.Name == nameof(Object.Instantiate)
                                       && m.GetParameters().Length == 3
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType)
@@ -141,14 +141,14 @@ namespace PLUME.Base.Hooks
             );
 
             hooksRegistry.RegisterHook(
-                typeof(ObjectHooks).GetMethods().First(m =>
+                typeof(ObjectHooks).GetMethods().FirstOrDefault(m =>
                     m.IsGenericMethod && m.Name == nameof(InstantiateAndNotify)
                                       && m.GetParameters().Length == 4
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType)
                                       && m.GetParameters()[1].ParameterType == typeof(Vector3)
                                       && m.GetParameters()[2].ParameterType == typeof(Quaternion)
                                       && m.GetParameters()[3].ParameterType == typeof(Transform)),
-                typeof(Object).GetMethods().First(m =>
+                typeof(Object).GetMethods().FirstOrDefault(m =>
                     m.IsGenericMethod && m.Name == nameof(Object.Instantiate)
                                       && m.GetParameters().Length == 4
                                       && typeof(Object).IsAssignableFrom(m.GetParameters()[0].ParameterType)

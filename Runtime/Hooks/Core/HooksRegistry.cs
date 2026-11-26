@@ -9,31 +9,74 @@ namespace PLUME.Core.Hooks
     {
         public IReadOnlyList<Hook> Hooks => _hooks;
 
+        /// <summary>
+        /// Why hooks were skipped: a target missing or changed in this Unity or package version, a callback that
+        /// failed. The other hooks are still registered.
+        /// </summary>
+        public IReadOnlyList<string> Errors => _errors;
+
         private readonly List<Hook> _hooks = new();
+        private readonly List<string> _errors = new();
 
         internal void RegisterHooksInternal()
         {
             var registerHooksCallbackAssembly = typeof(IRegisterHooksCallback).Assembly;
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+            RegisterHooksFrom(AppDomain.CurrentDomain.GetAssemblies()
                 .Where(a => a == registerHooksCallbackAssembly || a.GetReferencedAssemblies()
-                    .Any(ra => ra.FullName == registerHooksCallbackAssembly.GetName().FullName));
-            
+                    .Any(ra => ra.FullName == registerHooksCallbackAssembly.GetName().FullName)));
+        }
+
+        /// <summary>
+        /// Runs every <see cref="IRegisterHooksCallback"/> of the assemblies. Types that cannot be loaded and
+        /// callbacks that fail are skipped and reported in <see cref="Errors"/>.
+        /// </summary>
+        internal void RegisterHooksFrom(IEnumerable<Assembly> assemblies)
+        {
             foreach (var assembly in assemblies)
             {
-                foreach (var type in assembly.GetTypes())
+                Type[] types;
+                try
                 {
-                    if (type.GetInterface(nameof(IRegisterHooksCallback)) != null)
+                    types = assembly.GetTypes();
+                }
+                catch (ReflectionTypeLoadException e)
+                {
+                    types = e.Types.Where(type => type != null).ToArray();
+                }
+
+                foreach (var type in types)
+                {
+                    if (type.IsAbstract || !typeof(IRegisterHooksCallback).IsAssignableFrom(type))
+                        continue;
+
+                    try
                     {
-                        var instance = Activator.CreateInstance(type) as IRegisterHooksCallback;
-                        instance?.RegisterHooks(this);
+                        ((IRegisterHooksCallback)Activator.CreateInstance(type)).RegisterHooks(this);
+                    }
+                    catch (Exception e)
+                    {
+                        _errors.Add($"Hooks of {type.FullName} were not all registered: {e.Message}");
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Registers a hook, or skips it with an error if its target is missing (e.g. an API removed or renamed in
+        /// this Unity version) or incompatible.
+        /// </summary>
         public void RegisterHook(MethodInfo hookMethod, MethodBase targetMethod)
         {
-            CheckHookMethodValidity(hookMethod, targetMethod);
+            try
+            {
+                CheckHookMethodValidity(hookMethod, targetMethod);
+            }
+            catch (Exception e)
+            {
+                _errors.Add($"Skipped hook {hookMethod?.DeclaringType?.Name}.{hookMethod?.Name}: {e.Message}");
+                return;
+            }
+
             _hooks.Add(new Hook(hookMethod, targetMethod));
         }
 

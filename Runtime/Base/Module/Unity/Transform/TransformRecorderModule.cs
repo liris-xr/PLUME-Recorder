@@ -29,6 +29,8 @@ namespace PLUME.Base.Module.Unity.Transform
         // The recorded transform of each GameObject, by GameObject runtime id.
         private readonly Dictionary<int, TransformSafeRef> _transformByGameObject = new();
 
+        private readonly HashSet<ComponentIdentifier> _warnedReplacedTransforms = new();
+
         private int _nCreatedInFrame;
         private int _nDestroyedInFrame;
 
@@ -61,8 +63,9 @@ namespace PLUME.Base.Module.Unity.Transform
                 return;
 
             // Must leave the TransformAccessArray now, not at the end of the frame: see OnBeforeTransformReplaced.
-            // shortcut: if AddComponent then fails without replacing it, the transform stops being recorded. Unity only
-            // refuses conflicting components, which a GameObject without RectTransform hardly has; restart it if seen.
+            // shortcut: if AddComponent then fails without replacing it, the transform stops being recorded until its
+            // GameObject is recorded again. Unity only refuses conflicting components, which a GameObject without
+            // RectTransform hardly has; cancelling the stop is the upgrade if it is ever seen.
             RemoveFromArrays(tSafeRef);
 
             // Stopped or destroyed during this frame: its successor is not recorded in its place.
@@ -112,6 +115,9 @@ namespace PLUME.Base.Module.Unity.Transform
             if (go == null)
                 return false;
 
+            if (!_warnedReplacedTransforms.Add(tSafeRef.Identifier))
+                return true;
+
             ErrorReporter.Warn($"{nameof(TransformRecorderModule)}.TransformReplaced.{go.GetInstanceID()}",
                 $"The Transform of '{go.name}' was replaced by a RectTransform from code the recorder does not hook " +
                 "(e.g. a precompiled plugin adding a UI component). Because of a Unity bug, Unity may crash when this " +
@@ -122,8 +128,11 @@ namespace PLUME.Base.Module.Unity.Transform
 
         // A transform is destroyed with its GameObject: one gone while its GameObject lives was replaced by a
         // RectTransform outside the hooks, and must be left untouched (see WarnIfReplacedOutsideHooks).
+        // Also where a replacement outside the hooks is noticed: these checks visit a few transforms per frame, at a
+        // constant cost.
         protected override bool IsDestroyed(TransformSafeRef tSafeRef)
         {
+            WarnIfReplacedOutsideHooks(tSafeRef);
             return tSafeRef.GameObjectSafeRef.GameObject == null;
         }
 
@@ -270,6 +279,7 @@ namespace PLUME.Base.Module.Unity.Transform
             _identifierToIndex.Clear();
             _alignedStates.Clear();
             _transformByGameObject.Clear();
+            _warnedReplacedTransforms.Clear();
             _nCreatedInFrame = 0;
             _nDestroyedInFrame = 0;
         }
@@ -291,10 +301,6 @@ namespace PLUME.Base.Module.Unity.Transform
 
         protected override TransformFrameData CollectFrameData(FrameInfo frameInfo, RecorderContext ctx)
         {
-            // ReSharper disable once ForCanBeConvertedToForeach
-            for (var i = 0; i < RecordedComponents.Count; i++)
-                WarnIfReplacedOutsideHooks(RecordedComponents[i]);
-
             var nRecorded = RecordedComponents.Count;
             var updateSamples = new NativeList<TransformUpdate>(nRecorded, Allocator.Persistent);
             var createSamples = new NativeList<TransformCreate>(_nCreatedInFrame, Allocator.Persistent);

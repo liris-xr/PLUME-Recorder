@@ -64,6 +64,16 @@ namespace Tests.HooksFixture
                 .Compile()(go, value);
         }
 
+        // Reflection calls are redirected to hooks: methods without a runtime handle must still be invoked.
+        public static object InvokeDynamicMethod()
+        {
+            var method = new System.Reflection.Emit.DynamicMethod("Answer", typeof(int), Type.EmptyTypes);
+            var il = method.GetILGenerator();
+            il.Emit(System.Reflection.Emit.OpCodes.Ldc_I4, 42);
+            il.Emit(System.Reflection.Emit.OpCodes.Ret);
+            return method.Invoke(null, null);
+        }
+
         private static T InstantiateGeneric<T>(T original) where T : Object => Object.Instantiate(original);
 
         private static IEnumerator Iterator()

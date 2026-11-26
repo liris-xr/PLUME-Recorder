@@ -42,7 +42,10 @@ namespace PLUME.Editor.CodeGen
             "UnityEngine.UI"
         };
 
-        private static readonly Lazy<IReadOnlyList<Hook>> Hooks = new(DiscoverHooks);
+        private static readonly Lazy<HooksRegistry> Hooks = new(DiscoverHooks);
+
+        // Skipped hooks are reported with the first processed assembly only, not with every assembly.
+        private static bool _skippedHooksReported;
 
         public override ILPostProcessor GetInstance() => this;
 
@@ -60,12 +63,24 @@ namespace PLUME.Editor.CodeGen
 
             try
             {
-                using var assembly = ReadAssembly(compiledAssembly);
+                if (!_skippedHooksReported)
+                {
+                    _skippedHooksReported = true;
+                    foreach (var error in Hooks.Value.Errors)
+                        diagnostics.Add(new DiagnosticMessage
+                        {
+                            DiagnosticType = DiagnosticType.Warning,
+                            MessageData = $"[PLUME] {error}"
+                        });
+                }
+
+                using var resolver = CreateAssemblyResolver(compiledAssembly);
+                using var assembly = ReadAssembly(compiledAssembly, resolver);
 
                 if (IsEditorOnly(assembly, compiledAssembly.Name))
                     return new ILPostProcessResult(null, diagnostics);
 
-                var injectedCount = HookInjection.InjectHooks(Hooks.Value, assembly);
+                var injectedCount = HookInjection.InjectHooks(Hooks.Value.Hooks, assembly);
 
                 if (injectedCount == 0)
                     return new ILPostProcessResult(null, diagnostics);
@@ -99,32 +114,11 @@ namespace PLUME.Editor.CodeGen
         /// only depend on UnityEngine. Only assemblies loaded by this process are scanned, so hooks must be declared in
         /// PLUME.Recorder.Hooks: loading other assemblies here could not be undone when they change.
         /// </summary>
-        private static IReadOnlyList<Hook> DiscoverHooks()
+        private static HooksRegistry DiscoverHooks()
         {
             var registry = new HooksRegistry();
-
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                Type[] types;
-                try
-                {
-                    types = assembly.GetTypes();
-                }
-                catch (ReflectionTypeLoadException e)
-                {
-                    types = e.Types.Where(type => type != null).ToArray();
-                }
-
-                foreach (var type in types)
-                {
-                    if (type.IsAbstract || !typeof(IRegisterHooksCallback).IsAssignableFrom(type))
-                        continue;
-
-                    ((IRegisterHooksCallback)Activator.CreateInstance(type)).RegisterHooks(registry);
-                }
-            }
-
-            return registry.Hooks;
+            registry.RegisterHooksFrom(AppDomain.CurrentDomain.GetAssemblies());
+            return registry;
         }
 
         /// <summary>
@@ -195,12 +189,18 @@ namespace PLUME.Editor.CodeGen
             return names;
         }
 
-        private static AssemblyDefinition ReadAssembly(ICompiledAssembly compiledAssembly)
+        // Disposed once the assembly is written: it keeps the referenced assemblies it opened (and their files) open.
+        private static DefaultAssemblyResolver CreateAssemblyResolver(ICompiledAssembly compiledAssembly)
         {
             var resolver = new DefaultAssemblyResolver();
             foreach (var directory in compiledAssembly.References.Select(Path.GetDirectoryName).Distinct())
                 resolver.AddSearchDirectory(directory);
+            return resolver;
+        }
 
+        private static AssemblyDefinition ReadAssembly(ICompiledAssembly compiledAssembly,
+            IAssemblyResolver resolver)
+        {
             return AssemblyDefinition.ReadAssembly(
                 new MemoryStream(compiledAssembly.InMemoryAssembly.PeData.ToArray()),
                 new ReaderParameters

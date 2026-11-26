@@ -23,8 +23,21 @@ namespace PLUME.Editor.CodeGen
 
             foreach (var hook in hooks)
             {
-                var targetMethodRef = module.ImportReference(hook.TargetMethod);
-                var resolvedHook = new ResolvedHook(module.ImportReference(hook.HookMethod), targetMethodRef.Resolve());
+                ResolvedHook resolvedHook;
+                try
+                {
+                    var targetMethodDefinition = module.ImportReference(hook.TargetMethod).Resolve();
+
+                    // Not resolvable from this assembly's references: the assembly cannot call it anyway.
+                    if (targetMethodDefinition == null)
+                        continue;
+
+                    resolvedHook = new ResolvedHook(module.ImportReference(hook.HookMethod), targetMethodDefinition);
+                }
+                catch (AssemblyResolutionException)
+                {
+                    continue;
+                }
 
                 if (!resolvedHooksByTargetName.TryGetValue(resolvedHook.TargetMethodDefinition.Name, out var resolvedHooks))
                 {
@@ -45,7 +58,6 @@ namespace PLUME.Editor.CodeGen
                 return 0;
 
             var injectedCount = 0;
-            var processor = methodDefinition.Body.GetILProcessor();
             var instructions = methodDefinition.Body.Instructions;
 
             for (var i = 0; i < instructions.Count; i++)
@@ -77,6 +89,10 @@ namespace PLUME.Editor.CodeGen
                     if (instrMethodRef.Resolve() != targetMethodDef)
                         continue;
 
+                    // A constrained. callvirt (a call on a generic receiver) cannot become a call: left unhooked.
+                    if (instruction.Previous?.OpCode == OpCodes.Constrained)
+                        break;
+
                     if (instrMethodRef is GenericInstanceMethod genericInstanceMethod)
                     {
                         var genericHookMethodRef = new GenericInstanceMethod(resolvedHook.HookMethodReference);
@@ -87,12 +103,15 @@ namespace PLUME.Editor.CodeGen
                         foreach (var genericParameter in genericInstanceMethod.GenericParameters)
                             genericHookMethodRef.GenericParameters.Add(genericParameter);
 
-                        processor.Replace(instruction, processor.Create(OpCodes.Call, genericHookMethodRef));
+                        instruction.Operand = genericHookMethodRef;
                     }
                     else
                     {
-                        processor.Replace(instruction, processor.Create(OpCodes.Call, resolvedHook.HookMethodReference));
+                        instruction.Operand = resolvedHook.HookMethodReference;
                     }
+
+                    // Rewritten in place: branches and sequence points pointing at the instruction stay valid.
+                    instruction.OpCode = OpCodes.Call;
 
                     injectedCount++;
                     break;

@@ -65,7 +65,7 @@ namespace PLUME.Base.Module.Unity.UI.Interaction
 
             void OnEndEdit(string text)
             {
-                if (ctx.IsRecording)
+                if (ctx.IsRecordingWith(this))
                     AddEventSample(new InputFieldEndEdit
                     {
                         Component = GetComponentIdentifierPayload(objSafeRef),

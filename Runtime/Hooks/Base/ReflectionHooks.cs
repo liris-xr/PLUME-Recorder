@@ -104,8 +104,18 @@ namespace PLUME.Base.Hooks
             if (method == null)
                 return false;
 
-            var definition = method.IsGenericMethod ? method.GetGenericMethodDefinition() : method;
-            if (!HookByTargetHandle.TryGetValue(definition.MethodHandle.Value, out hook))
+            IntPtr handle;
+            try
+            {
+                handle = (method.IsGenericMethod ? method.GetGenericMethodDefinition() : method).MethodHandle.Value;
+            }
+            catch (Exception)
+            {
+                // No runtime handle (DynamicMethod, MethodBuilder...): never a Unity API.
+                return false;
+            }
+
+            if (!HookByTargetHandle.TryGetValue(handle, out hook))
                 return false;
 
             if (method.IsGenericMethod)
@@ -134,15 +144,26 @@ namespace PLUME.Base.Hooks
                 if (_hookByTargetHandle != null)
                     return _hookByTargetHandle;
 
-                var registry = new HooksRegistry();
-                registry.RegisterHooksInternal();
                 var map = new Dictionary<IntPtr, MethodInfo>();
-                foreach (var hook in registry.Hooks)
+
+                // Reflection calls must keep working whatever happens here: worst case, they are not redirected.
+                try
                 {
-                    // Only redirect Unity APIs: redirecting the reflection APIs to themselves would recurse.
-                    if (hook.HookMethod.DeclaringType == typeof(ReflectionHooks) || hook.TargetMethod is not MethodInfo)
-                        continue;
-                    map[hook.TargetMethod.MethodHandle.Value] = hook.HookMethod;
+                    var registry = new HooksRegistry();
+                    registry.RegisterHooksInternal();
+                    foreach (var hook in registry.Hooks)
+                    {
+                        // Only redirect Unity APIs: redirecting the reflection APIs to themselves would recurse.
+                        if (hook.HookMethod.DeclaringType == typeof(ReflectionHooks) ||
+                            hook.TargetMethod is not MethodInfo)
+                            continue;
+                        map[hook.TargetMethod.MethodHandle.Value] = hook.HookMethod;
+                    }
+                }
+                catch (Exception e)
+                {
+                    HookErrors.Report($"{nameof(ReflectionHooks)}.Registry",
+                        "Calls made through reflection are not recorded: the hooks could not be listed.", e);
                 }
 
                 return _hookByTargetHandle = map;

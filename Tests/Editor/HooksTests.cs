@@ -24,6 +24,25 @@ namespace Tests.Editor
                 HooksRegistry.CheckHookMethodValidity(hookMethod, targetMethod));
         }
 
+        [Test]
+        public void RegisterHook_WithMissingTarget_SkipsItAndReportsWhy()
+        {
+            var registry = new HooksRegistry();
+            var hookMethod = typeof(HooksTests).GetMethod(nameof(GenericMethodHook));
+
+            // A target removed or renamed in another Unity version is found as null.
+            Assert.DoesNotThrow(() => registry.RegisterHook(hookMethod, null));
+
+            Assert.IsEmpty(registry.Hooks);
+            Assert.AreEqual(1, registry.Errors.Count);
+        }
+
+        [Test]
+        public void HookedReflectionCall_OnDynamicMethod_IsInvoked()
+        {
+            Assert.AreEqual(42, Tests.HooksFixture.HooksFixture.InvokeDynamicMethod());
+        }
+
         public static T GenericMethod1<T>(T value) where T : struct
         {
             return value;

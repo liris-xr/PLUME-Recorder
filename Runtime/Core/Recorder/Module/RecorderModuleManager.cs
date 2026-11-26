@@ -41,8 +41,15 @@ namespace PLUME.Core.Recorder.Module
                     continue;
                 }
                 
-                var recorderModule = (IRecorderModule)Activator.CreateInstance(moduleType);
-                modules.Add(recorderModule);
+                // A module whose constructor fails is left out: the others still record.
+                try
+                {
+                    modules.Add((IRecorderModule)Activator.CreateInstance(moduleType));
+                }
+                catch (Exception e)
+                {
+                    Logger.LogWarning($"Failed to create the recorder module {moduleType}: {e.InnerException ?? e}. Skipping.");
+                }
             }
 
             return modules.ToArray();
@@ -69,8 +76,19 @@ namespace PLUME.Core.Recorder.Module
 
         internal static IEnumerable<Type> GetRecorderModulesTypesFromAssembly(Assembly assembly)
         {
-            return assembly.GetTypes().Where(type => type.GetInterfaces().Contains(typeof(IRecorderModule)) &&
-                                                     !type.IsAbstract && !type.IsInterface);
+            Type[] types;
+            try
+            {
+                types = assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException e)
+            {
+                // Types depending on a missing assembly cannot be modules anyway.
+                types = e.Types.Where(type => type != null).ToArray();
+            }
+
+            return types.Where(type => type.GetInterfaces().Contains(typeof(IRecorderModule)) &&
+                                       !type.IsAbstract && !type.IsInterface);
         }
     }
 }
